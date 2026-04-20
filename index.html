@@ -195,12 +195,13 @@
             <div class="hidden md:flex items-center gap-8 text-sm text-gray-400">
                 <a href="#features" class="hover:text-white transition-colors">Features</a>
                 <a href="#code" class="hover:text-white transition-colors">Quick Start</a>
+                <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
                 <a href="demo/" class="hover:text-white transition-colors">Live Demo</a>
                 <a href="https://github.com/looponia/fluera_engine" target="_blank"
                     class="hover:text-white transition-colors">GitHub</a>
-                <a href="https://pub.dev/packages/fluera_engine" target="_blank"
+                <a href="beta.html"
                     class="px-4 py-2 rounded-lg bg-accent-blue/10 text-accent-glow border border-accent-blue/20 hover:bg-accent-blue/20 transition-all text-sm font-medium">
-                    pub.dev →
+                    Beta →
                 </a>
             </div>
 
@@ -217,12 +218,13 @@
             <div class="px-6 py-4 space-y-3">
                 <a href="#features" class="block text-gray-400 hover:text-white transition-colors py-2">Features</a>
                 <a href="#code" class="block text-gray-400 hover:text-white transition-colors py-2">Quick Start</a>
+                <a href="#pricing" class="block text-gray-400 hover:text-white transition-colors py-2">Pricing</a>
                 <a href="demo/" class="block text-gray-400 hover:text-white transition-colors py-2">Live Demo</a>
                 <a href="https://github.com/looponia/fluera_engine" target="_blank"
                     class="block text-gray-400 hover:text-white transition-colors py-2">GitHub</a>
-                <a href="https://pub.dev/packages/fluera_engine" target="_blank"
+                <a href="beta.html"
                     class="block text-center px-4 py-2.5 rounded-lg bg-accent-blue/10 text-accent-glow border border-accent-blue/20 font-medium mt-2">
-                    pub.dev →
+                    Beta →
                 </a>
             </div>
         </div>
@@ -261,7 +263,8 @@
             <p
                 class="animate-on-load animate-fade-in-up-delay text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
                 Professional canvas engine with pressure-sensitive brushes, scene graph,
-                real-time collaboration, and <span class="text-gray-200 font-medium">60 FPS GPU rendering</span>.
+                real-time collaboration, and <span class="text-gray-200 font-medium">120 FPS GPU rendering</span>.
+                Source-available. <span class="text-gray-200 font-medium">Free to use</span>.
             </p>
 
             <!-- CTA buttons -->
@@ -317,7 +320,7 @@
                 <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Pro Brushes</div>
             </div>
             <div>
-                <div class="text-2xl sm:text-3xl font-bold gradient-text">60</div>
+                <div class="text-2xl sm:text-3xl font-bold gradient-text">120</div>
                 <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">FPS Rendering</div>
             </div>
             <div>
@@ -325,8 +328,8 @@
                 <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Node Types</div>
             </div>
             <div>
-                <div class="text-2xl sm:text-3xl font-bold gradient-text">234K+</div>
-                <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Lines of Code</div>
+                <div class="text-2xl sm:text-3xl font-bold gradient-text">10M+</div>
+                <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Strokes Supported</div>
             </div>
         </div>
     </section>
@@ -371,6 +374,21 @@
                         indexing with R-tree, and O(log n) viewport culling.</p>
                 </div>
 
+                <!-- Feature: Embedded Images & PDFs -->
+                <div class="feature-card rounded-xl border border-white/5 bg-dark-800/40 p-6 hover:bg-dark-700/40">
+                    <div class="w-10 h-10 rounded-lg bg-pink-500/10 flex items-center justify-center mb-4">
+                        <svg class="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21zM8.25 8.625a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Embedded Images & PDFs</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Images and multi-page PDFs live directly on the
+                        infinite canvas as first-class nodes — move, scale, rotate, crop, adjust colors, draw strokes
+                        on top, and annotate them with full built-in image editing.</p>
+                </div>
+
                 <!-- Feature 3 -->
                 <div class="feature-card rounded-xl border border-white/5 bg-dark-800/40 p-6 hover:bg-dark-700/40">
                     <div class="w-10 h-10 rounded-lg bg-violet-500/10 flex items-center justify-center mb-4">
@@ -394,9 +412,9 @@
                                 d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 010 1.954l-7.108 4.061A1.125 1.125 0 013 16.811V8.69zM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 010 1.954l-7.108 4.061a1.125 1.125 0 01-1.683-.977V8.69z" />
                         </svg>
                     </div>
-                    <h3 class="font-semibold text-white mb-2">60 FPS Performance</h3>
+                    <h3 class="font-semibold text-white mb-2">120 FPS Performance</h3>
                     <p class="text-sm text-gray-400 leading-relaxed">Tile-cached rendering, LOD cross-fade, frame budget
-                        manager, object pooling, and isolate rasterization for complex scenes.</p>
+                        manager, SQLite stroke paging, and lazy decode for 10M+ stroke canvases under 25MB RAM.</p>
                 </div>
 
                 <!-- Feature 5 -->
@@ -544,6 +562,68 @@
         </div>
     </section>
 
+    <!-- ════════════════════════ PERFORMANCE ════════════════════════ -->
+    <section class="py-24 sm:py-32">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-accent-cyan text-sm font-semibold tracking-widest uppercase mb-3">Performance</p>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Built for <span class="gradient-text">10
+                        million</span> strokes</h2>
+                <p class="mt-4 text-gray-400 max-w-xl mx-auto">Real benchmarks from real devices. No tricks, no caveats.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Benchmark 1 -->
+                <div class="rounded-xl border border-white/5 bg-dark-800/40 p-6 text-center">
+                    <div class="text-3xl font-bold gradient-text mb-2">25 MB</div>
+                    <div class="text-sm text-gray-300 font-medium mb-1">RAM at 100K strokes</div>
+                    <div class="text-xs text-gray-500">SQLite paging + lazy decode</div>
+                </div>
+
+                <!-- Benchmark 2 -->
+                <div class="rounded-xl border border-white/5 bg-dark-800/40 p-6 text-center">
+                    <div class="text-3xl font-bold gradient-text mb-2">&lt;8 ms</div>
+                    <div class="text-sm text-gray-300 font-medium mb-1">Frame time at 120 Hz</div>
+                    <div class="text-xs text-gray-500">GPU-composited rendering</div>
+                </div>
+
+                <!-- Benchmark 3 -->
+                <div class="rounded-xl border border-white/5 bg-dark-800/40 p-6 text-center">
+                    <div class="text-3xl font-bold gradient-text mb-2">200 ms</div>
+                    <div class="text-sm text-gray-300 font-medium mb-1">Load time (1M strokes)</div>
+                    <div class="text-xs text-gray-500">Lazy decode from SQLite index</div>
+                </div>
+
+                <!-- Benchmark 4 -->
+                <div class="rounded-xl border border-white/5 bg-dark-800/40 p-6 text-center">
+                    <div class="text-3xl font-bold gradient-text mb-2">0 MB</div>
+                    <div class="text-sm text-gray-300 font-medium mb-1">Peak on 2nd+ open</div>
+                    <div class="text-xs text-gray-500">No transient memory spike</div>
+                </div>
+            </div>
+
+            <!-- Architecture highlights -->
+            <div class="mt-12 grid sm:grid-cols-3 gap-5">
+                <div class="rounded-xl border border-white/5 bg-dark-800/40 p-5">
+                    <div class="text-accent-blue text-sm font-semibold mb-2">🌲 Dual R-Tree</div>
+                    <p class="text-xs text-gray-400">In-memory + persistent SQLite R*Tree. O(log n) spatial queries at
+                        any scale. Zero startup rebuild cost on 2nd+ open.</p>
+                </div>
+                <div class="rounded-xl border border-white/5 bg-dark-800/40 p-5">
+                    <div class="text-accent-cyan text-sm font-semibold mb-2">📦 Stroke Paging</div>
+                    <p class="text-xs text-gray-400">Only viewport-visible strokes live in RAM (~5K). The rest sleep in
+                        SQLite as 64-byte stubs. Automatic page-in/out with hysteresis.</p>
+                </div>
+                <div class="rounded-xl border border-white/5 bg-dark-800/40 p-5">
+                    <div class="text-accent-glow text-sm font-semibold mb-2">🧠 Memory Budget</div>
+                    <p class="text-xs text-gray-400">Auto-calibrates to device RAM. Coordinated eviction across all
+                        caches (tiles, images, PDFs). Responds to OS memory pressure in real-time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ════════════════════════ CODE SECTION ════════════════════════ -->
     <section id="code" class="py-24 sm:py-32 bg-dark-800/30">
         <div class="max-w-6xl mx-auto px-6">
@@ -657,6 +737,156 @@
             </div>
         </div>
     </section>
+    <!-- ════════════════════════ PRICING ════════════════════════ -->
+    <section id="pricing" class="py-24 sm:py-32">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-accent-cyan text-sm font-semibold tracking-widest uppercase mb-3">Get Fluera</p>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Two ways to <span
+                        class="gradient-text">experience Fluera</span></h2>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto">A source-available engine for developers who build
+                    creative
+                    tools, and a beautiful app for everyone who uses them.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Fluera Engine (for Developers) -->
+                <div class="feature-card rounded-xl border border-white/5 bg-dark-800/40 p-8 flex flex-col">
+                    <div class="flex items-center gap-2 mb-1">
+                        <svg class="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                        </svg>
+                        <p class="text-accent-cyan text-xs font-semibold tracking-widest uppercase">For Developers</p>
+                    </div>
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-white">Fluera Engine</h3>
+                        <p class="text-xs text-gray-500 mt-1">Source-available 2D canvas SDK for Flutter</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-white">Free</span>
+                        <span class="text-gray-500 text-sm">to use · Fluera License</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-gray-400 mb-8 flex-grow">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Full source code — study, learn, build
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            120 FPS rendering, 10M+ strokes
+                        </li>
+                        Free for revenue under €100K/year
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-accent-blue flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                            </svg>
+                            Commercial license above €100K
+                        </li>
+                    </ul>
+                    <div class="flex gap-3">
+                        <a href="https://github.com/looponia/fluera_engine" target="_blank"
+                            class="flex-1 text-center px-5 py-3 rounded-xl border border-white/10 text-gray-300 font-medium text-sm hover:bg-white/5 hover:border-white/20 transition-all flex items-center justify-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="#"
+                            class="flex-1 text-center px-5 py-3 rounded-xl border border-accent-blue/20 text-accent-glow font-medium text-sm hover:bg-accent-blue/10 transition-all flex items-center justify-center gap-2">
+                            📄 License
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Fluera App (for Users) -->
+                <div
+                    class="feature-card rounded-xl border border-accent-blue/30 bg-dark-800/60 p-8 flex flex-col relative">
+                    <div
+                        class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-accent-blue to-accent-cyan text-white text-xs font-semibold tracking-wide">
+                        Coming Soon</div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <svg class="w-5 h-5 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+                        </svg>
+                        <p class="text-accent-blue text-xs font-semibold tracking-widest uppercase">For Everyone</p>
+                    </div>
+                    <div class="mb-4">
+                        <h3 class="text-xl font-bold text-white">Fluera App</h3>
+                        <p class="text-xs text-gray-500 mt-1">Note-taking & drawing — powered by the engine</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold gradient-text">Free</span>
+                        <span class="text-gray-500 text-sm">· Pro €49.99/year</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-gray-400 mb-4">
+                        <li class="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Free</li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Infinite canvas, pressure-sensitive drawing
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            3 brushes, 3 notebooks, export PNG
+                        </li>
+                    </ul>
+                    <ul class="space-y-3 text-sm text-gray-400 mb-8 flex-grow">
+                        <li class="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Pro — €49.99/year
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-accent-blue flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                            </svg>
+                            All 6 pro brushes + unlimited notebooks
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-accent-blue flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                            </svg>
+                            PDF import & annotation
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-accent-blue flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                            </svg>
+                            Cloud sync + export PDF/SVG
+                        </li>
+                    </ul>
+                    <a href="#"
+                        class="block text-center px-6 py-3 rounded-xl bg-gradient-to-r from-accent-blue to-accent-cyan text-white font-semibold text-sm hover:shadow-lg hover:shadow-accent-blue/25 transition-all hover:scale-[1.02] active:scale-[0.98]">Join
+                        Waitlist</a>
+                </div>
+            </div>
+
+            <p class="text-center text-gray-500 text-sm mt-8">The app is built with the engine. <span
+                    class="text-gray-300">Same code, same performance</span>. Source-available, not open source.</p>
+        </div>
+    </section>
 
     <!-- ════════════════════════ CTA ════════════════════════ -->
     <section class="py-24 sm:py-32 relative overflow-hidden">
@@ -664,10 +894,10 @@
         </div>
 
         <div class="relative max-w-3xl mx-auto px-6 text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">Ready to build something <span
-                    class="gradient-text">extraordinary</span>?</h2>
-            <p class="text-gray-400 mb-10 max-w-lg mx-auto">Start building with Fluera Engine today. Free and
-                open-source under the BSD 3-Clause License.</p>
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">The future of <span class="gradient-text">2D
+                    on Flutter</span></h2>
+            <p class="text-gray-400 mb-10 max-w-lg mx-auto">Source-available, built by developers who care about
+                performance. Free for indie and small studios. Build with it, or just use the app.</p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="demo/"
@@ -679,13 +909,13 @@
                     </svg>
                     Try Live Demo
                 </a>
-                <a href="https://pub.dev/packages/fluera_engine" target="_blank"
-                    class="px-8 py-3.5 rounded-xl border border-white/10 text-gray-300 font-medium text-sm hover:bg-white/5 hover:border-white/20 transition-all">
-                    Install from pub.dev
-                </a>
                 <a href="https://github.com/looponia/fluera_engine" target="_blank"
-                    class="px-8 py-3.5 rounded-xl border border-white/10 text-gray-300 font-medium text-sm hover:bg-white/5 hover:border-white/20 transition-all">
-                    Read the Docs
+                    class="px-8 py-3.5 rounded-xl border border-white/10 text-gray-300 font-medium text-sm hover:bg-white/5 hover:border-white/20 transition-all flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                    Star on GitHub
                 </a>
             </div>
         </div>
@@ -721,12 +951,15 @@
                         GitHub
                     </a>
                     <a href="demo/" class="hover:text-accent-glow transition-colors">Live Demo</a>
+                    <a href="beta.html" class="hover:text-accent-glow transition-colors">Beta</a>
                     <a href="https://fluera.dev" target="_blank"
                         class="hover:text-accent-glow transition-colors">Docs</a>
+                    <a href="privacy.html" class="hover:text-accent-glow transition-colors">Privacy</a>
+                    <a href="terms.html" class="hover:text-accent-glow transition-colors">Terms</a>
                 </div>
 
                 <!-- Copyright -->
-                <p class="text-xs text-gray-600">© 2026 Looponia. BSD 3-Clause License.</p>
+                <p class="text-xs text-gray-600">© 2026 Looponia. All rights reserved.</p>
             </div>
         </div>
     </footer>
