@@ -1,0 +1,19 @@
+---
+export interface Props {
+  n: number;
+  title: string;
+  verb: string;
+  description: string;
+}
+const { n, title, verb, description } = Astro.props;
+const pad = String(n).padStart(2, "0");
+---
+
+<li class="group relative pl-14 py-5 border-t border-white/[0.06] first:border-t-0">
+  <span class="absolute left-0 top-5 font-mono text-sm text-ink-500 tabular-nums">{pad}</span>
+  <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+    <h3 class="font-serif text-lg font-medium text-paper-50">{title}</h3>
+    <span class="eyebrow text-accent-glow">{verb}</span>
+  </div>
+  <p class="text-sm text-paper-300 max-w-prose leading-relaxed">{description}</p>
+</li>

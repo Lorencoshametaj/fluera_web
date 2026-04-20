@@ -1,0 +1,39 @@
+---
+export interface Props {
+  label: string;
+  title: string;
+  description: string;
+  citation: string;
+  href: string;
+  status?: "stable" | "beta" | "coming-soon";
+  reverse?: boolean;
+}
+const { label, title, description, citation, href, status = "beta", reverse = false } = Astro.props;
+const statusLabel: Record<string, string> = {
+  stable: "Available now",
+  beta: "In beta",
+  "coming-soon": "Coming soon",
+};
+---
+
+<article class={`grid md:grid-cols-2 gap-8 md:gap-16 items-center ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
+  <div class="order-2 md:order-none">
+    <div class="eyebrow mb-3 text-accent-glow">{label}</div>
+    <h3 class="font-serif text-display-lg text-paper-50 mb-5">{title}</h3>
+    <p class="prose-ink mb-4">{description}</p>
+    <p class="text-sm text-ink-500 italic mb-6">{citation}</p>
+    <div class="flex items-center gap-4 flex-wrap">
+      <a href={href} class="btn-secondary">Try it in the beta →</a>
+      <span class="pill text-[11px]">{statusLabel[status]}</span>
+    </div>
+  </div>
+
+  <div class="order-1 md:order-none">
+    <div class="aspect-[4/3] rounded-2xl border border-white/[0.08] bg-gradient-to-br from-ink-800 via-ink-850 to-ink-900 relative overflow-hidden">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <span class="font-mono text-xs text-ink-500 uppercase tracking-widest">[ Demo loop placeholder ]</span>
+      </div>
+      <div class="glow-orb h-64 w-64 top-[-20%] right-[-10%] bg-accent-ink/30"></div>
+    </div>
+  </div>
+</article>

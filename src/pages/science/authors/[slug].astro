@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const authors = await getCollection("authors", ({ data }) => data.lang === "en");
+  return authors.map((a) => ({ params: { slug: a.id }, props: { author: a } }));
+}
+
+const { author } = Astro.props;
+const { Content } = await render(author);
+
+const principles = await Promise.all(
+  author.data.keyPrinciples.map((ref) => getEntry(ref)),
+);
+const features = await Promise.all(
+  author.data.appliedInFeatures.map((ref) => getEntry(ref)),
+);
+---
+
+<BaseLayout
+  title={`${author.data.name} — The Science of Fluera`}
+  description={author.data.shortBio}
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <nav class="mb-8 text-xs font-mono uppercase tracking-widest text-ink-500" aria-label="Breadcrumb">
+        <a href="/science" class="hover:text-paper-200">Science</a>
+        <span class="mx-2 text-ink-600">/</span>
+        <a href="/science#authors" class="hover:text-paper-200">Authors</a>
+      </nav>
+
+      <div class="flex items-start justify-between gap-4 mb-6">
+        <p class="eyebrow text-accent-glow">{author.data.fields.join(" · ")}</p>
+        {author.data.nobelLaureate && <span class="pill text-[11px] text-accent-glow border-accent-glow/30">Nobel laureate</span>}
+      </div>
+
+      <h1 class="font-serif text-display-xl text-paper-50 mb-4">{author.data.name}</h1>
+      <p class="font-mono text-sm text-ink-500 uppercase tracking-widest mb-6">{author.data.years}</p>
+      <p class="prose-ink text-xl mb-8">{author.data.shortBio}</p>
+
+      <dl class="py-6 border-t border-white/[0.06]">
+        <dt class="eyebrow mb-2 text-ink-500">Notable work</dt>
+        <dd class="font-serif text-paper-100 text-base italic">{author.data.notableWork}</dd>
+      </dl>
+
+      {author.data.externalProfile && (
+        <a href={author.data.externalProfile} class="btn-secondary text-sm mt-2" rel="noopener">
+          Academic profile ↗
+        </a>
+      )}
+    </div>
+  </section>
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-ink text-lg">
+      <Content />
+    </div>
+  </article>
+
+  {principles.length > 0 && (
+    <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+      <div class="container-prose">
+        <p class="eyebrow mb-6 text-accent-glow">Associated principles</p>
+        <h2 class="font-serif text-2xl text-paper-50 mb-6">The ideas their work contributed.</h2>
+        <ul class="grid sm:grid-cols-2 gap-3 list-none p-0">
+          {principles.map((p) => (
+            <li>
+              <a href={`/science/principles/${p.id}`} class="block card p-5 hover:border-accent-glow/40 transition-colors">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-serif text-base font-medium text-paper-50">{p.data.title}</h3>
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+                </div>
+                <p class="text-sm text-paper-300 line-clamp-2">{p.data.shortDescription}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {features.length > 0 && (
+    <section class="py-16 border-b border-white/[0.04]">
+      <div class="container-prose">
+        <p class="eyebrow mb-6 text-accent-glow">Applied in Fluera</p>
+        <h2 class="font-serif text-2xl text-paper-50 mb-6">Features built on this work.</h2>
+        <ul class="space-y-3 list-none p-0">
+          {features.map((f) => (
+            <li>
+              <a href={`/features/${f.id}`} class="block card p-5 hover:border-accent-glow/40 transition-colors">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-serif text-lg text-paper-50">{f.data.title}</h3>
+                  <span class="pill text-[10px] capitalize">{f.data.status.replace("-", " ")}</span>
+                </div>
+                <p class="text-sm text-paper-300">{f.data.tagline}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="py-16 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <a href="/science" class="btn-secondary">← Back to the science</a>
+    </div>
+  </section>
+
+</BaseLayout>

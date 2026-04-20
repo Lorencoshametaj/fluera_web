@@ -1,0 +1,104 @@
+---
+export interface Props {
+  authors: string;
+  year: string | number;
+  href?: string;
+  title?: string;
+}
+const { authors, year, href, title } = Astro.props;
+const id = `cit-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<span class="citation-wrap">
+  <slot />
+  <sup class="citation-marker">
+    {href ? (
+      <a href={href} aria-describedby={id} rel="noopener">
+        [{authors}, {year}]
+      </a>
+    ) : (
+      <span aria-describedby={id}>
+        [{authors}, {year}]
+      </span>
+    )}
+    <span id={id} role="tooltip" class="citation-tooltip">
+      <span class="citation-tooltip-authors">{authors} ({year})</span>
+      {title && <span class="citation-tooltip-title">{title}</span>}
+      {href && <span class="citation-tooltip-link">View in bibliography →</span>}
+    </span>
+  </sup>
+</span>
+
+<style>
+  .citation-wrap {
+    position: relative;
+    display: inline;
+  }
+  .citation-marker {
+    position: relative;
+    display: inline-block;
+    margin-left: 0.15em;
+    font-size: 0.7em;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+  }
+  .citation-marker a,
+  .citation-marker > span {
+    color: theme("colors.accent.glow");
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+    cursor: help;
+  }
+  .citation-marker a:hover,
+  .citation-marker:hover > span {
+    color: theme("colors.paper.50");
+  }
+  .citation-tooltip {
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 16rem;
+    max-width: 22rem;
+    padding: 0.75rem 1rem;
+    background: theme("colors.ink.850");
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    font-family: theme("fontFamily.sans");
+    line-height: 1.5;
+    color: theme("colors.paper.200");
+    text-align: left;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s, visibility 0.15s;
+    z-index: 40;
+    box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.5);
+  }
+  .citation-marker:hover .citation-tooltip,
+  .citation-marker:focus-within .citation-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+  .citation-tooltip-authors {
+    display: block;
+    font-weight: 500;
+    color: theme("colors.paper.50");
+    font-family: theme("fontFamily.serif");
+    margin-bottom: 0.25rem;
+  }
+  .citation-tooltip-title {
+    display: block;
+    font-style: italic;
+    margin-bottom: 0.25rem;
+  }
+  .citation-tooltip-link {
+    display: block;
+    color: theme("colors.accent.glow");
+    font-size: 0.75rem;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    margin-top: 0.35rem;
+  }
+</style>

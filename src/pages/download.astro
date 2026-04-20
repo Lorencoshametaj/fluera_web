@@ -1,0 +1,49 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "Beta",  note: "TestFlight invite sent after beta approval." },
+  { name: "macOS",        status: "Beta",  note: "Direct .dmg via private link after beta approval." },
+  { name: "Android",      status: "Alpha", note: "APK via Google Play internal track." },
+  { name: "Windows",      status: "Alpha", note: ".exe installer, signed via Microsoft Store." },
+  { name: "Linux",        status: "Alpha", note: "AppImage + flatpak." },
+  { name: "Web",          status: "Demo",  note: "Try now at /demo — WebGPU browser required." },
+];
+---
+
+<BaseLayout
+  title="Download"
+  description="Fluera runs natively on iOS, Android, macOS, Windows, Linux, and the web. Join the private beta for early access."
+>
+  <PageHero
+    kicker="Download"
+    title="Six platforms.<br />Join the beta for access."
+    description="Fluera is in private beta. Once you're in, install links arrive by email — native on every platform you use, no browser wrappers."
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">Request beta access →</a>
+      <a href="/demo" class="btn-secondary">Try the web demo</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Public App Store and Google Play listings go live when we exit private beta. In the meantime, status labels above reflect real release readiness — we'd rather ship one platform solidly than six of them broken.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

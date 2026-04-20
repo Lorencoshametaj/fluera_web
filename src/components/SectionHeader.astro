@@ -1,0 +1,46 @@
+---
+export interface Props {
+  kicker?: string;
+  title: string;
+  sub?: string;
+  titleSize?: "lg" | "xl";
+  align?: "left" | "center";
+  marginBottom?: "sm" | "md" | "lg";
+  class?: string;
+}
+
+const {
+  kicker,
+  title,
+  sub,
+  titleSize = "xl",
+  align = "left",
+  marginBottom = "lg",
+  class: className = "",
+} = Astro.props;
+
+const titleClass = {
+  lg: "font-serif text-display-lg text-paper-50",
+  xl: "font-serif text-display-xl text-paper-50",
+}[titleSize];
+
+const marginClass = {
+  sm: "mb-8",
+  md: "mb-10",
+  lg: "mb-14",
+}[marginBottom];
+---
+
+<div
+  class:list={[
+    "max-w-3xl",
+    marginClass,
+    align === "center" ? "text-center mx-auto" : "",
+    className,
+  ]}
+>
+  {kicker && <p class="eyebrow mb-6 text-accent-glow">{kicker}</p>}
+  <h2 class={`${titleClass} ${sub ? "mb-6" : ""}`} set:html={title} />
+  {sub && <p class="prose-ink text-lg max-w-prose" set:html={sub} />}
+  <slot />
+</div>

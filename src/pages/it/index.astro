@@ -1,0 +1,272 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "Un canvas di studio infinito costruito sulla scienza cognitiva dell'apprendimento.",
+  url: `${SITE.url}/it/`,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const steps = [
+  { n: 1,  title: "Cattura",             verb: "Giorno lezione",        description: "Scrivi i concetti a mano durante la lezione. Posizionali nello spazio. La compressione — forzata dalla lentezza della penna — è dove nasce la codifica." },
+  { n: 2,  title: "Ricostruzione",       verb: "Stessa sera",           description: "Chiudi il libro. Ricostruisci ciò che ricordi su un canvas vuoto. I nodi rossi dove vacilli sono la mappa di cosa studiare (Kapur, productive failure, 2008)." },
+  { n: 3,  title: "Socratica",           verb: "Entro 48h",             description: "L'IA chiede, tu rispondi. Dichiari la tua confidenza da 1 a 5 prima di ogni rivelazione. Metacognizione resa esplicita." },
+  { n: 4,  title: "Centauro",            verb: "Subito dopo",           description: "Ghost Map sovrappone il tuo ragionamento alla mappa ideale. L'ipercorrezione rende permanenti le lacune (Butterfield & Metcalfe, 2001)." },
+  { n: 5,  title: "Sonno",               verb: "Quella notte",          description: "Non fare nulla. Il sonno a onde lente rigioca il giorno. L'ippocampo passa le tracce alla corteccia. Noi ci facciamo da parte." },
+  { n: 6,  title: "Primo ritorno",       verb: "Giorno 1",              description: "Torna il giorno dopo. Il canvas sfuma ciò che quasi sapevi. Lo recuperi dalla memoria e riscrivi ciò che è scivolato." },
+  { n: 7,  title: "Apprendimento solidale",verb: "Giorni 2–3",           description: "Visita il canvas di un compagno. Insegna. Fatti insegnare. Organizzare per altri lo consolida per te (effetto protégé)." },
+  { n: 8,  title: "Ritorni SRS",         verb: "Giorno 3 · 7 · 14…",    description: "Riapprendimento successivo a intervalli crescenti. La strategia gold standard nell'evidenza scientifica (Rawson & Dunlosky, 2011)." },
+  { n: 9,  title: "Ponti cross-dominio", verb: "Settimane dopo",        description: "Zoom out alla vista continente. Traccia frecce tra chimica ed equazioni differenziali. Il transfer è il test vero dell'apprendimento." },
+  { n: 10, title: "Preparazione esame",  verb: "7–14 giorni prima",     description: "Fog of War. Naviga nella nebbia del tuo canvas. Verde, rosso, punti ciechi — la mappa della padronanza si disegna da sola." },
+  { n: 11, title: "L'esame",             verb: "Il giorno",             description: "Chiudi il dispositivo. Cammina nel palazzo della memoria che hai costruito con le mani per settimane. Il canvas vive in te ora." },
+  { n: 12, title: "Crescita permanente", verb: "Per sempre",            description: "Il canvas persiste come autobiografia cognitiva. Torni dopo due anni e vedi la forma tangibile di quanto sei cresciuto." },
+];
+
+const authors = [
+  { name: "Robert A. Bjork", contribution: "Desirable difficulties — la scoperta controintuitiva che uno studio più difficile produce ricordo migliore.", year: "1994" },
+  { name: "Butterfield e Metcalfe", contribution: "Effetto ipercorrezione — gli errori fatti con alta confidenza, una volta corretti, sono i più duraturi.", year: "2001" },
+  { name: "Daniel Kahneman", contribution: "Sistema 1 vs Sistema 2 — intuizione veloce contro deliberazione lenta nel pensiero e nella memoria.", year: "2011" },
+  { name: "Lev Vygotsky", contribution: "Zona di sviluppo prossimale — la fascia stretta dove imparare con scaffolding supera l'imparare da soli.", year: "1978" },
+  { name: "Albert Bandura", contribution: "Auto-efficacia — il predittore singolo più forte del successo accademico, superiore al QI.", year: "1977" },
+  { name: "Carol Dweck", contribution: "Growth mindset — lodare lo sforzo invece del talento cambia la risposta alla difficoltà.", year: "2006" },
+  { name: "Mihaly Csikszentmihalyi", contribution: "Flow — massima prestazione cognitiva quando sfida e abilità si bilanciano.", year: "1990" },
+  { name: "Joseph Novak", contribution: "Concept mapping — costruire una mappa batte studiarne una precostruita, in ogni disciplina.", year: "1984" },
+  { name: "O'Keefe e Moser", contribution: "Place cells e grid cells — il GPS biologico del cervello. Perché il Palazzo della Memoria funziona.", year: "Nobel 2014", nobel: true },
+  { name: "Mueller e Oppenheimer", contribution: "Gli appunti a mano battono quelli al laptop sulle domande concettuali — anche quando quelli al laptop sono più completi.", year: "2014" },
+  { name: "Audrey van der Meer", contribution: "Evidenza EEG: la scrittura a mano attiva reti cerebrali più ampie della digitazione.", year: "2020" },
+  { name: "Roediger e Karpicke", contribution: "Retrieval practice — il test non misura la memoria, la crea.", year: "2006" },
+];
+
+const platforms = [
+  { name: "iOS",     api: "Metal",        status: "Beta" },
+  { name: "iPadOS",  api: "Metal",        status: "Beta" },
+  { name: "macOS",   api: "Metal",        status: "Beta" },
+  { name: "Windows", api: "Direct3D 11",  status: "Alpha" },
+  { name: "Android", api: "Vulkan",       status: "Alpha" },
+  { name: "Linux",   api: "OpenGL",       status: "Alpha" },
+  { name: "Web",     api: "WebGPU",       status: "Demo" },
+];
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="Un canvas di studio infinito costruito sulla scienza cognitiva dell'apprendimento. iOS, Android, macOS, Windows, Linux, Web."
+  jsonLd={jsonLd}
+  locale="it"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -left-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -right-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          Beta privata · Prima coorte
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          Lo spazio di studio<br />per come funziona<br /><span class="text-gradient">davvero la mente.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          Scrivi a mano su un canvas infinito. Fatti interrogare invece di ricevere risposte. Rivedi il tuo stesso pensiero nel tempo. Costruito per come funziona davvero la memoria.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            Entra nella beta
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            Prova la demo live
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>End-to-end cifrato</span><span class="text-ink-600">·</span>
+          <span>GDPR-nativo</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">Il collo di bottiglia</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Puoi chiedere qualsiasi cosa.<br />La risposta non te la ricordi lo stesso.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Nel 2026 la conoscenza si recupera in tre secondi e si dimentica in tre settimane. Abbiamo dieci app per prendere appunti e nessuna per <em>trattenere</em> ciò che impariamo.
+        </p>
+        <p>
+          Sottolineare sembra studiare. Rileggere sembra studiare. Chiedere a un LLM un riassunto sembra studiare. Nessuna delle tre lo è — la scienza cognitiva lo dice da cinquant'anni.
+        </p>
+        <p>
+          Il collo di bottiglia dell'apprendimento non è più l'accesso. È <em>la codifica</em>. È <em>la ritenzione</em>. È <em>il transfer</em>.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera è costruito per queste tre.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Il metodo</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Un canvas.<br />Dodici mosse cognitive.<br />Il ciclo con cui impara il tuo cervello.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Ogni feature di Fluera vive a un passo del ciclo, e ogni passo poggia su ricerca pubblicata. Saltane uno e la catena si spezza. Seguili tutti e il quaderno diventa permanente.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">Quattro differenziatori cognitivi</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          Quattro modi per ricordare davvero.
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map · Passo 4"
+          title="Vedi lo scarto tra ciò che hai scritto e ciò che era giusto."
+          description="Dopo un tentativo di recupero, Fluera sovrappone il tuo lavoro a una soluzione ideale. Le discrepanze pulsano. Non accusano — risvegliano la memoria. Più avevi torto, più la correzione si fissa."
+          citation="Effetto ipercorrezione — Butterfield e Metcalfe, 2001."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratica · Passo 3"
+          title="La nostra IA non risponde. Chiede."
+          description="Dichiara la tua confidenza da 1 a 5 prima di ogni rivelazione. La metacognizione è metà della padronanza, e la calibrazione della confidenza è come si costruisce — una previsione alla volta."
+          citation="Monitoraggio metacognitivo — Flavell, 1979."
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War · Passo 10"
+          title="Modalità esame che nasconde ciò che quasi ricordi."
+          description="Maschera qualsiasi regione del canvas. Recuperala dalla memoria. Lo sforzo del recupero — non il rivedere — è dove la memoria si indurisce."
+          citation="Difficoltà desiderabili — Bjork, 1994."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Time Travel · Passo 5+"
+          title="Rigioca ogni tratto sincronizzato con l'audio della lezione."
+          description="Tocca un appunto di tre settimane fa e l'audio riprende dove stavi scrivendo. Ri-vivi il tuo stesso pensiero. Il quaderno diventa una macchina del tempo per il contesto."
+          citation="Recupero dipendente dal contesto — Tulving, 1972."
+          href="/beta"
+          status="coming-soon"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">Provalo nella beta →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Fondamenti scientifici</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Sulle spalle dei giganti — citati per nome.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Ogni scelta di design risale a un paper. Qui dodici delle menti che vivono dentro Fluera. La bibliografia completa è pubblica.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Sei piattaforme, un inchiostro</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Sei piattaforme. Un inchiostro. Una mente.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Renderer nativi su Vulkan, Metal, OpenGL, Direct3D 11 e WebGPU. Il tuo quaderno sincronizza end-to-end cifrato, oppure resta offline. Decidi tu.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 left-1/2 -translate-x-1/2 bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">Unisciti a noi</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Siamo in beta privata.<br />Lenta di proposito.
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        Facciamo entrare poche centinaia di learner alla volta, per poter ascoltare ciascuno. Se sei stanco di app che promettono di imparare al posto tuo, scrivici.
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        Richiedi accesso →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,93 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import DocSidebar, { type DocSection } from "@/components/DocSidebar.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+  sections: DocSection[];
+  rootHref: string;
+  rootLabel: string;
+  sectionLabel?: string;
+  updatedAt?: Date;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description,
+  sections,
+  rootHref,
+  rootLabel,
+  sectionLabel,
+  updatedAt,
+  noIndex = false,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description} noIndex={noIndex}>
+  <!-- Mobile nav toggle -->
+  <div class="md:hidden sticky top-16 z-30 border-b border-white/[0.06] bg-ink-950/85 backdrop-blur-xl">
+    <button
+      id="docs-sidebar-btn"
+      type="button"
+      class="w-full flex items-center justify-between px-6 py-3 text-sm text-paper-200"
+      aria-expanded="false"
+      aria-controls="docs-sidebar-mobile"
+    >
+      <span class="flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
+        </svg>
+        Browse {rootLabel.toLowerCase()}
+      </span>
+      <span id="docs-sidebar-chev" class="text-ink-500 transition-transform">▾</span>
+    </button>
+    <div id="docs-sidebar-mobile" hidden class="border-t border-white/[0.06]">
+      <DocSidebar sections={sections} rootHref={rootHref} rootLabel={rootLabel} />
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-[16rem_minmax(0,1fr)] lg:grid-cols-[17rem_minmax(0,1fr)] max-w-[90rem] mx-auto">
+    <!-- Desktop sidebar -->
+    <div class="hidden md:block">
+      <DocSidebar sections={sections} rootHref={rootHref} rootLabel={rootLabel} />
+    </div>
+
+    <!-- Main content -->
+    <div class="min-w-0">
+      <article class="px-6 sm:px-8 lg:px-12 py-12 md:py-16 max-w-3xl">
+        <header class="mb-10 pb-8 border-b border-white/[0.06]">
+          {sectionLabel && (
+            <p class="eyebrow mb-4 text-accent-glow">{sectionLabel}</p>
+          )}
+          <h1 class="font-serif text-display-lg text-paper-50 mb-4">{title}</h1>
+          <p class="prose-ink text-lg max-w-prose">{description}</p>
+          {updatedAt && (
+            <p class="mt-4 text-xs font-mono uppercase tracking-widest text-ink-500">
+              Updated {updatedAt.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}
+            </p>
+          )}
+        </header>
+
+        <div class="prose-v2">
+          <slot />
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById("docs-sidebar-btn");
+    const panel = document.getElementById("docs-sidebar-mobile");
+    const chev = document.getElementById("docs-sidebar-chev");
+    btn?.addEventListener("click", () => {
+      if (!panel) return;
+      const open = panel.hidden === false;
+      panel.hidden = open;
+      btn.setAttribute("aria-expanded", String(!open));
+      if (chev) chev.style.transform = open ? "" : "rotate(180deg)";
+    });
+  </script>
+
+</BaseLayout>

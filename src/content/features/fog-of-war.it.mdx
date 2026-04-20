@@ -1,0 +1,51 @@
+---
+lang: "it"
+title: Fog of War
+tagline: "Modalità esame che nasconde ciò che quasi ricordi."
+shortDescription: "Maschera le regioni del canvas. Recuperale dalla memoria. Lo sforzo del recupero — non il rivedere — è dove la memoria si indurisce."
+status: beta
+stepInCycle: 10
+relatedPrinciples:
+  - desirable-difficulties
+  - retrieval-practice
+  - spatial-cognition
+  - spacing-effect
+relatedAuthors:
+  - robert-bjork
+  - roediger-karpicke
+  - okeefe-moser
+order: 3
+---
+
+## Cosa risolve
+
+La preparazione all'esame tipicamente degenera in una delle due modalità sbagliate: rilettura (sembra produttiva, insegna poco) o cramming di panico (insegna brevemente, poi crolla). Entrambe evitano la cosa che in realtà costruisce memoria duratura — la *lotta* di provare a recuperare senza supporto.
+
+Fog of War rende quella lotta lo stato di default del tuo canvas.
+
+## Come funziona
+
+Da sette a quattordici giorni prima di un esame, attivi Fog of War sulla regione del canvas che vuoi testare. La zona viene mascherata — una sfocatura semi-opaca che nasconde il contenuto finché non lo recuperi dalla memoria o lo riveli esplicitamente.
+
+Navighi il canvas. Ti fermi su un nodo mascherato. Provi a ricordare cosa c'era. Lo dici ad alta voce o lo scrivi su una superficie di appoggio. Solo allora tocchi per rivelare.
+
+Tre esiti:
+- **Verde** — recuperato correttamente. La maschera si assottiglia permanentemente.
+- **Ambra** — preso in parte. La maschera diventa trasparente ma il nodo resta evidenziato per rivisitarlo.
+- **Rosso** — mancato del tutto. Fluera programma un ritorno immediato e ti chiede di riscrivere il nodo a mano — rinforzando via generazione, non rilettura.
+
+Fai girare il loop finché la maggior parte del canvas non passa al verde. Ciò che resta rosso è la mappa di ciò che non sai — esattamente la mappa che ti serviva.
+
+## La scienza dietro
+
+Il framework delle **difficoltà desiderabili** di Robert Bjork è l'idea portante. La fluenza durante lo studio è un segnale cattivo — un avviso che la codifica è superficiale. L'attrito del recupero sotto occlusione è l'opposto: non-fluente, lento, frustrante *e* esattamente ciò che cementa la memoria.
+
+Il lavoro del 2006 di Roediger e Karpicke ha mostrato che un singolo tentativo di recupero produce ritenzione a lungo termine più forte di quattro sessioni di rilettura. Fog of War è tentativi di recupero su scala, sull'intero canvas, senza attrito per domanda.
+
+Conta anche l'elemento spaziale. Poiché il tuo canvas è un palazzo della memoria (O'Keefe e Moser, Nobel 2014), recuperare dalla posizione rinforza non solo il concetto ma l'indice spaziale che vi porta. All'esame non ricordi il fatto — *navighi* fino a esso.
+
+## Cosa arriva
+
+- **Scheduling automatico della maschera** — nebbia guidata dall'FSRS che si infittisce sugli item in scadenza di review.
+- **Simulazione esame a tempo** — pressione realistica con vincoli configurabili.
+- **Mappa post-mortem** — dopo l'esame vero, annoti quali domande hai preso e quali hai sbagliato, e Fluera aggiorna lo scheduler con quella verità di campo.

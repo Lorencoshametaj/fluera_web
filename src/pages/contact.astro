@@ -1,0 +1,69 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const channels = [
+  {
+    label: "General",
+    email: SITE.company.contactEmail,
+    body: "Feedback, questions, general inquiries. We read everything that lands here.",
+  },
+  {
+    label: "Education & sales",
+    email: SITE.company.contactEmail,
+    body: "Universities, schools, research labs. We'll send over our DPA, pricing brief and pilot program details.",
+  },
+  {
+    label: "Press",
+    email: SITE.company.contactEmail,
+    body: "Interviews, quotes, embargoed briefs. Press kit with logos and screenshots available on request.",
+  },
+  {
+    label: "Security",
+    email: SITE.company.securityEmail,
+    body: "Vulnerability disclosures. We acknowledge within 24 hours, patch critical issues within 72.",
+  },
+  {
+    label: "Privacy & data requests",
+    email: SITE.company.privacyEmail,
+    body: "GDPR data access, export, deletion. Responses within 30 days — usually within 48 hours.",
+  },
+  {
+    label: "Support",
+    email: SITE.company.supportEmail,
+    body: "Existing users hitting bugs or needing help with features.",
+  },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Fluera. General, sales, press, security, privacy and support channels."
+>
+  <PageHero
+    kicker="Contact"
+    title="Six doors. Pick the right one."
+    description="We don't hide behind a ticketing system. Every channel below reaches a real person — usually within a day or two."
+  >
+    <div class="mt-16 grid md:grid-cols-2 gap-5 max-w-5xl">
+        {channels.map((c) => (
+          <article class="card p-6">
+            <p class="eyebrow text-accent-glow mb-3">{c.label}</p>
+            <a href={`mailto:${c.email}`} class="font-serif text-xl text-paper-50 block mb-3 hover:text-accent-glow transition-colors">
+              {c.email}
+            </a>
+            <p class="text-sm text-paper-300 leading-relaxed">{c.body}</p>
+          </article>
+        ))}
+      </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Based in {SITE.company.city}. We don't publish a phone number — async-first keeps us focused. For urgent security issues, PGP key on our GitHub profile.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

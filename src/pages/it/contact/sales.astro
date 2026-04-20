@@ -1,0 +1,120 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Parla con le vendite — Fluera per le istituzioni"
+  description="Prenota una chiacchierata con i founder di Fluera per portare strumenti di studio basati sull'evidenza nella tua classe, facoltà o campus."
+  locale="it"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">Vendite istituzionali</p>
+      <h1 class="font-serif text-display-xl text-paper-50 mb-6">Facciamo un piano per i tuoi studenti.</h1>
+      <p class="prose-ink text-lg mb-8">
+        Compila qui sotto e un founder (non un BDR) risponde entro 24 ore lavorative. Preferiamo partire in asincrono — un'email ben scritta vale più di tre round di scheduling.
+      </p>
+
+      <form id="sales-form" class="card p-6 md:p-8 space-y-5" action={`mailto:${SITE.company.contactEmail}`} method="post" enctype="text/plain">
+        <div>
+          <label class="sales-label" for="s-name">Il tuo nome <span class="text-signal-bad">*</span></label>
+          <input id="s-name" name="name" type="text" required class="sales-input" placeholder="Nome e cognome" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-role">Ruolo <span class="text-signal-bad">*</span></label>
+          <select id="s-role" name="role" required class="sales-input">
+            <option value="" disabled selected>Seleziona…</option>
+            <option>Docente</option>
+            <option>Responsabile di dipartimento</option>
+            <option>Preside / dirigente</option>
+            <option>IT / procurement</option>
+            <option>Bibliotecario / instructional designer</option>
+            <option>Rappresentante studenti</option>
+            <option>Altro</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-institution">Istituzione <span class="text-signal-bad">*</span></label>
+          <input id="s-institution" name="institution" type="text" required class="sales-input" placeholder="Università o scuola" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-email">Email di lavoro <span class="text-signal-bad">*</span></label>
+          <input id="s-email" name="email" type="email" required class="sales-input" placeholder="tu@universita.it" />
+          <p class="sales-hint">Usa la tua email istituzionale per facilitare la verifica.</p>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-size">Interessato a</label>
+          <select id="s-size" name="size" class="sales-input">
+            <option value="" selected>Seleziona…</option>
+            <option>Pilota — una classe, un semestre</option>
+            <option>Licenza di facoltà</option>
+            <option>Licenza di ateneo</option>
+            <option>Sto esplorando — ho bisogno di un briefing</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-context">Cosa dovremmo sapere prima di risponderti? <span class="text-signal-bad">*</span></label>
+          <textarea id="s-context" name="context" rows="5" required minlength="20" maxlength="2000"
+            class="sales-input"
+            placeholder="Nome del corso, profilo studenti, tempistiche, strumenti già in uso, vincoli di compliance — qualunque cosa sia utile."></textarea>
+          <p class="sales-hint">Più sei specifico, più breve possiamo rispondere.</p>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="btn-primary w-full py-3.5">Invia →</button>
+          <p class="sales-hint text-center mt-3">
+            Il form si invia per email. Nulla lascia la tua macchina finché non premi invia. Preferisci scrivere direttamente? <a href={`mailto:${SITE.company.contactEmail}`} class="text-accent-glow underline">{SITE.company.contactEmail}</a>.
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">Cosa succede dopo l'invio</h2>
+      <ol class="space-y-4 text-sm text-paper-200 list-none p-0">
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">01</span><span>Un founder risponde entro 1 giorno lavorativo con domande specifiche sulla tua situazione — mai uno script generico.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">02</span><span>Ti inviamo un brief pilota (PDF) adattato al tuo caso d'uso, con esempi di syllabus e una lista di domande da porre ai tuoi studenti.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">03</span><span>Una chiamata di 30 minuti con il founder e, se serve, il tuo referente IT. Copriamo SSO, DPA e tempistiche con onestà — inclusi i limiti attuali.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">04</span><span>Il pilota parte. Di solito entro 2–4 settimane dal primo contatto.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <style>
+    .sales-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: theme("colors.paper.200");
+      margin-bottom: 0.5rem;
+    }
+    .sales-hint {
+      font-size: 0.75rem;
+      color: theme("colors.ink.500");
+      margin-top: 0.375rem;
+    }
+    .sales-input {
+      width: 100%;
+      background: theme("colors.ink.900");
+      border: 1px solid rgb(255 255 255 / 0.08);
+      border-radius: 0.625rem;
+      padding: 0.75rem 1rem;
+      color: theme("colors.paper.50");
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .sales-input:focus {
+      outline: none;
+      border-color: theme("colors.accent.ink");
+      box-shadow: 0 0 0 3px rgb(45 74 222 / 0.18);
+    }
+  </style>
+</BaseLayout>

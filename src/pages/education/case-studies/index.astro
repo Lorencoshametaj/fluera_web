@@ -1,0 +1,65 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Education case studies"
+  description="Real stories from universities, faculties and classes using Fluera. Currently empty while pilot programmes complete their first semesters."
+>
+
+  <PageHero
+    kicker="Case studies"
+    title="The pilots are running.<br />The stories are forthcoming."
+    description="We won't publish a case study until a pilot has completed at least one semester, the faculty has signed off, and the anonymised student data has been reviewed for accuracy. Fall 2026 and Spring 2027 cohorts are in progress — this page will fill up as they finish."
+    breadcrumb={{ label: "Education", href: "/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Fall 2026 · In progress</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">A pre-clinical medicine cohort</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            ~30 first-year medical students using Fluera across a semester of anatomy and biochemistry. Publishing at end-of-semester.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Expected Q1 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Fall 2026 · In progress</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Undergraduate economics</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            A concept-heavy microeconomics course. Focus: how the 12-step cycle holds up when the material is abstract rather than factual.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Expected Q2 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Spring 2027 · Starting</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">A graduate law seminar</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Constitutional interpretation. Smaller cohort, deeper engagement. Focused on Ghost Map for case-law comparison.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Expected Q3 2027</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Want to start a pilot?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          We run pilots at one cohort per semester — one class, thirty students, one semester, no charge. In exchange we ask for structured feedback and the option to publish an anonymised case study at the end.
+        </p>
+        <a href="/contact/sales" class="btn-primary">Start a pilot conversation →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        Why the wait? Because a case study with real numbers takes time to gather honestly — and publishing marketing-grade "case studies" based on vendor-selected anecdotes is the exact genre of content we do not want to produce.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

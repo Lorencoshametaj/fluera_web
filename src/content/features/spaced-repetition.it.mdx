@@ -1,0 +1,44 @@
+---
+lang: "it"
+title: Ripetizione spaziata
+tagline: "Successive relearning — la strategia di studio con l'evidenza più forte, dentro il tuo canvas."
+shortDescription: "L'IA programma ritorni a intervalli crescenti. Ogni ritorno è recupero, non rilettura. Spacing e recupero combinati producono risultati superadditivi."
+status: beta
+stepInCycle: 8
+relatedPrinciples:
+  - spacing-effect
+  - retrieval-practice
+  - successive-relearning
+  - interleaving
+relatedAuthors:
+  - roediger-karpicke
+  - robert-bjork
+  - albert-bandura
+order: 5
+---
+
+## Cosa risolve
+
+La maggior parte degli strumenti di ripetizione spaziata sono app di flashcard. De-contestualizzano la conoscenza in carte atomiche, poi ricostruiscono gli intervalli sulla base della facilità auto-dichiarata. Funzionano — ma al costo di rimuovere il significato spaziale e strutturale che rendeva la conoscenza recuperabile in primo luogo.
+
+La ripetizione spaziata di Fluera vive dentro il tuo canvas. Il nodo che rivedi è il nodo che hai scritto, nella posizione in cui l'hai scritto, collegato ai concetti su cui hai tracciato archi. Nulla viene atomizzato.
+
+## Come funziona
+
+Dopo ogni sessione socratica e ogni sovrapposizione Ghost Map, Fluera aggiorna una stima di forza della memoria per nodo. Sa quali concetti hai risposto facilmente, quali hanno innescato ipercorrezione e quali non vedi da un po'.
+
+A ogni ritorno (giorno 3, 7, 14, 30, 60+), Fluera apre il canvas con i nodi in scadenza resi in Fog of War. Navighi, recuperi, riveli. Lo scheduler aggiorna. Il prossimo intervallo si allarga o si restringe in base a ciò che hai davvero ricordato, non a ciò che hai detto di ricordare.
+
+**FSRS personalizzato.** Lo scheduler non è un algoritmo fisso. Calibra otto parametri di peso per utente via gradient descent sulla tua storia di review — lo stesso metodo della ricerca più moderna sulla ripetizione spaziata, adattato al segnale più ricco di Fluera (confidenza, tempo di risposta, magnitudine dell'ipercorrezione).
+
+## La scienza dietro
+
+Roediger e Karpicke (2006) hanno stabilito che la retrieval practice batte la rilettura. I decenni di lavoro di Bjork hanno mostrato che la pratica spaziata batte quella concentrata. Nel 2011, Rawson e Dunlosky hanno combinato le due — *successive relearning* — e hanno dimostrato risultati **superadditivi**: la retrieval practice spaziata produce effetti maggiori della somma di spacing e recupero presi singolarmente.
+
+Questa è la base di evidenza singola più forte nella scienza dell'apprendimento per qualsiasi strategia di studio specifica. Il lavoro di Fluera non è reinventarla, ma rimuovere ogni ostacolo a praticarla — specialmente il più grande, che è la noia di costruire flashcard in primo luogo. Su Fluera, il canvas che hai già *è* il materiale di review.
+
+## Cosa arriva
+
+- **Percorsi interleaved** — l'IA sceglie rotte di review che attraversano zone di materia diversa, disabilitando il pilota automatico.
+- **Calibrazione per materia** — pesi FSRS separati per lingue vs matematica vs medicina clinica, dove le dinamiche di memoria differiscono in modo misurabile.
+- **Import da Anki** — per studenti con mazzi esistenti che vogliono migrare gradualmente.

@@ -1,0 +1,92 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft && data.lang === "it");
+  return posts.map((p) => ({
+    // Strip the `.it` suffix from the id so /it/blog/<base-slug> matches EN routes.
+    params: { slug: p.id.replace(/\.it$/, "") },
+    props: { post: p },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+async function resolveLocalized(ref: { collection: "principles"; id: string }) {
+  const itId = ref.id.endsWith(".it") ? ref.id : `${ref.id}.it`;
+  const it = await getEntry(ref.collection, itId);
+  if (it) return it;
+  return getEntry(ref);
+}
+
+const relatedPrinciples = await Promise.all(
+  post.data.relatedPrinciples.map((ref) => resolveLocalized(ref)),
+);
+
+const categoryLabel: Record<string, string> = {
+  "cognitive-science": "Scienza cognitiva",
+  "product": "Prodotto",
+  "engineering": "Ingegneria",
+  "field-notes": "Appunti sul campo",
+};
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("it-IT", { year: "numeric", month: "long", day: "numeric" });
+}
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  locale="it"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <nav class="mb-8 text-xs font-mono uppercase tracking-widest text-ink-500" aria-label="Breadcrumb">
+        <a href="/it/blog" class="hover:text-paper-200">Blog</a>
+        <span class="mx-2 text-ink-600">/</span>
+        <span>{categoryLabel[post.data.category]}</span>
+      </nav>
+
+      <p class="eyebrow mb-6 text-accent-glow">
+        {categoryLabel[post.data.category]} · {formatDate(post.data.publishedAt)}
+      </p>
+      <h1 class="font-serif text-display-xl text-paper-50 mb-6">{post.data.title}</h1>
+      <p class="prose-ink text-xl mb-4">{post.data.description}</p>
+      <p class="text-sm text-ink-500 font-mono">Di {post.data.author}</p>
+    </div>
+  </section>
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+      <Content />
+    </div>
+  </article>
+
+  {relatedPrinciples.length > 0 && (
+    <section class="py-16 border-b border-white/[0.04] bg-ink-900/40">
+      <div class="container-prose">
+        <p class="eyebrow mb-6 text-accent-glow">Principi collegati</p>
+        <ul class="grid sm:grid-cols-2 gap-3 list-none p-0">
+          {relatedPrinciples.map((p) => (
+            <li>
+              <a href={`/it/science/principles/${p.id.replace(/\.it$/, "")}`} class="block card p-4 hover:border-accent-glow/40 transition-colors">
+                <h3 class="font-serif text-sm font-medium text-paper-50 mb-1">{p.data.title}</h3>
+                <p class="text-xs text-paper-300 line-clamp-2">{p.data.shortDescription}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <a href="/it/blog" class="btn-secondary">← Altri post</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,66 @@
+---
+title: "What 'desirable difficulties' look like inside an app"
+description: "Bjork's framework is the backbone of Fluera. Here is how a counter-intuitive research finding becomes concrete design decisions — and what the hardest trade-offs are."
+publishedAt: 2026-04-10
+author: "Lorenzo"
+category: product
+tags: ["bjork", "design", "desirable-difficulties"]
+relatedPrinciples: [desirable-difficulties, retrieval-practice, productive-failure]
+---
+import Citation from "@/components/Citation.astro";
+
+When we pitch Fluera to sceptical observers, the single idea that does the most work is <Citation authors="Bjork" year="1994" href="/research">Robert Bjork's *desirable difficulties*</Citation>. Once people absorb that study conditions which feel easier are almost always producing worse outcomes, the rest of our design decisions stop looking quirky and start looking inevitable.
+
+But "inevitable" is doing a lot of work there. Turning a research finding into a product interface involves trade-offs that don't show up in the meta-analyses. Here is a partial accounting.
+
+## The blank canvas
+
+The default study app has a template. You open it and there is a suggested structure — a mind-map skeleton, a bullet list, a Cornell-notes layout. The template lowers the activation energy. It feels helpful.
+
+It is not helpful. A template lets you skip the generation step — the cognitive act of deciding what belongs where, what connects to what, what the central concept is. The generation step is the learning. Skipping it is skipping the reason to have the notebook in the first place.
+
+Fluera's canvas is blank. Infinite, blank, unintimidating. The cost is that new users feel the friction immediately. Some bounce. We accept this. The alternative is a tool that attracts more users and teaches fewer of them.
+
+## The AI that asks, not answers
+
+Every user research session we've run has included at least one person saying "it would be useful if the AI could write a summary." Every one.
+
+They're right that it would be useful. They're wrong that usefulness is the goal. An AI that summarises your lecture is an AI that handles the part of learning that was supposed to be *your* job. You get a summary. You feel studied. You remember nothing.
+
+Socratic Mode exists specifically to not do the thing users ask for. It interrogates the canvas instead of summarising it. On user satisfaction at first interaction, it scores worse than an AI that explains. <Citation authors="Roediger & Karpicke" year="2006" href="/research">On retention weeks later</Citation>, it wins by margins that make the short-term preference look meaningless.
+
+The trade-off is real. Some users never cross the threshold. For the ones who do, the difference is the product.
+
+## The confidence slider
+
+You finish writing an answer. You tap "reveal the solution". Fluera asks one more thing first: rate your confidence, 1 to 5.
+
+This is a small interruption. On every trial, it adds two or three seconds. Across a study session, those seconds add up. Users ask to turn it off.
+
+The slider is load-bearing. <Citation authors="Butterfield & Metcalfe" year="2001" href="/research">Butterfield and Metcalfe's hypercorrection effect</Citation> — errors made with high confidence, when corrected, stick harder than errors made with low confidence — requires that you have *named* your confidence before the correction arrives. Without the slider, you correct in a fog and the correction fades. With the slider, the contrast is explicit and the correction lands.
+
+We keep the slider. The annoyance is the mechanism.
+
+## Fog of War over exam prep
+
+The obvious way to study for an exam is to re-read your notes. Fluency increases. Perceived preparedness increases. On exam day, performance collapses — because recognition is not retrieval, and the exam asks for retrieval.
+
+Fog of War inverts the interaction. In exam mode, Fluera *hides* your canvas — masks regions you've covered before and asks you to retrieve them from memory before revealing. The first session is miserable. You sit in front of a foggy canvas and discover how much of what you thought you knew you cannot produce.
+
+Users hate the first session. They love the exam results. The friction of the first session is what makes the exam results possible.
+
+## What we don't do (and hate not doing)
+
+The evidence also supports some interventions we have not built. <Citation authors="Rohrer & Taylor" year="2007">Interleaving — randomising topic order during practice rather than blocking</Citation> — is robustly shown to improve transfer. We want to build deeper interleaving features. The obstacle is that the *product feel* of random topic ordering, without careful design, can be deeply disorienting. The user experience collapses before the cognitive benefit kicks in.
+
+Handling that trade-off — preserving flow while introducing desirable friction — is the hardest design problem we have.
+
+## The pattern
+
+The pattern that runs through all these decisions is: **short-term user preference is a systematically misleading signal.** Users prefer the easy version. The easy version is worse. Building the harder version is often rewarded later — by retention, by exam outcomes, by the rare user who comes back and says "I thought you were crazy, and now I see." But it is almost always punished earlier — by churn, by bad reviews, by the temptation to ship the easier version the next time.
+
+We try to resist that temptation. We sometimes fail. We ship and undo and ship again.
+
+The bet is that, in a field — ed-tech — where every competitor has surrendered to user preference and built tools that feel great and teach nothing, there is room for the tool that is worse at the feel and better at the teach.
+
+If you want to help us find out, [the beta is open](/beta).

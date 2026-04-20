@@ -1,0 +1,221 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+
+const stats = [
+  { n: "13",     label: "Brush engine",       sub: "pressione · tilt · velocità" },
+  { n: "17",     label: "GPU shader",         sub: "fragment + compute" },
+  { n: "23",     label: "Nodi scene graph",   sub: "tratti, forme, PDF, LaTeX" },
+  { n: "6",      label: "Piattaforme native", sub: "Vulkan · Metal · OpenGL · D3D11 · WebGPU" },
+  { n: "<15 ms", label: "Latenza tratto",     sub: "renderer mobile nativi" },
+  { n: "60 FPS", label: "Sostenuti",          sub: "su hardware consumer" },
+];
+
+const capabilities = [
+  {
+    title: "Brush engine pressure-sensitive",
+    body: "13 pennelli (penna a sfera, matita, stilografica, pennarello, carboncino, olio, spray, neon, acquerello inchiostrato, acquerello, evidenziatore, penna tecnica, gomma). Ogni pennello è una pipeline programmabile: smoothing One-Euro, semplificazione Douglas-Peucker, fragment shader per pennello, predizione Apple Pencil su iOS.",
+  },
+  {
+    title: "Scene graph spaziale",
+    body: "R-tree per hit testing e viewport culling in O(log n). 23 tipi di nodo: tratti, path Bézier, forme, raster, rich text, LaTeX, PDF embed, tabelle, istanze di simboli, clip group, adjustment layer, grafici di funzioni, vector network.",
+  },
+  {
+    title: "Rendering GPU ovunque",
+    body: "Renderer nativi per piattaforma: Vulkan (Android), Metal (iOS/macOS), OpenGL 3.3 (Linux), Direct3D 11 (Windows), WebGPU (web). I live stroke overlay bypassano il Dart canvas per sub-15 ms di latenza su mobile.",
+  },
+  {
+    title: "Persistenza e sync",
+    body: "SQLite locale con opzionale cifratura SQLCipher (AES-256). L'adapter cloud è un'interfaccia — porti il tuo backend (Firebase, Supabase, S3, REST). CRDT con vector clock per la collaborazione real-time.",
+  },
+  {
+    title: "Pipeline di export",
+    body: "PNG, JPEG, WebP, SVG, PDF multi-pagina e il formato proprietario .fluera. La rasterizzazione gira in isolate Dart, quindi non blocca mai la UI — anche per export da 5M+ pixel in DPI da stampa.",
+  },
+  {
+    title: "Zero vendor lock-in",
+    body: "Ogni punto di integrazione (storage, sync, P2P, presenza, permessi, registrazione audio) è un'interfaccia adapter. Collega quello che ti serve, salta il resto. I moduli core si auto-registrano; i moduli enterprise sono package separati.",
+  },
+];
+
+const codeSnippet = `import 'package:fluera_engine/fluera_engine.dart';
+
+Widget build(BuildContext context) {
+  return FlueraCanvasScreen(
+    config: FlueraCanvasConfig(
+      storageAdapter: MyStorageAdapter(),   // SQLite di default
+      cloudAdapter:   MyCloudAdapter(),     // opzionale
+      realtimeAdapter: MyRealtimeAdapter(), // opzionale
+      permissions:    FlueraPermissions.defaults(),
+      brushes:        FlueraBrushSet.pro(), // 13 pennelli
+    ),
+  );
+}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  name: "fluera_engine",
+  description: "Un motore di rendering 2D per Flutter con pennelli pressure-sensitive, GPU shader, scene graph e collaborazione CRDT su sei piattaforme.",
+  codeRepository: `https://github.com/${SITE.company.github}`,
+  programmingLanguage: "Dart",
+  runtimePlatform: "Flutter",
+};
+---
+
+<BaseLayout
+  title="fluera_engine — Un motore di rendering 2D per Flutter"
+  description="13 pennelli, 17 GPU shader, latenza tratto sub-15ms, sei piattaforme native. Il motore che alimenta Fluera, disponibile come SDK."
+  locale="it"
+  jsonLd={jsonLd}
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -right-40 bg-accent-glow/20 animate-orb-pulse"></div>
+
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow flex items-center gap-3">
+          <span class="font-mono">fluera_engine</span>
+          <span class="pill text-[10px]">SDK · v1.0</span>
+        </p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Un motore 2D<br />per Flutter.<br /><span class="text-gradient">Pensato per l'inchiostro.</span>
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Tredici pennelli pressure-sensitive. Diciassette GPU shader. Un scene graph a 23 nodi. Sei piattaforme native. Lo stesso motore che alimenta Fluera, disponibile per chi costruisce strumenti creativi.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <a href={SITE.social.github} class="btn-primary" rel="noopener">Vedi su GitHub</a>
+          <a href="/engine/docs" class="btn-secondary">Leggi la documentazione →</a>
+          <a href="/demo" class="btn-ghost">Demo live</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {stats.map((s) => (
+          <div>
+            <p class="font-serif text-3xl md:text-4xl text-paper-50 mb-1 tabular-nums">{s.n}</p>
+            <p class="text-sm text-paper-200">{s.label}</p>
+            <p class="text-[11px] font-mono uppercase tracking-widest text-ink-500 mt-1">{s.sub}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Capacità</p>
+        <h2 class="font-serif text-display-xl text-paper-50">2D enterprise-grade, su ogni superficie.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {capabilities.map((c) => (
+          <article class="card p-7">
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{c.title}</h3>
+            <p class="text-sm text-paper-200 leading-relaxed">{c.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Quickstart</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            Cinque righe per un canvas professionale.
+          </h2>
+          <ol class="space-y-4 text-sm text-paper-200 leading-relaxed max-w-md">
+            <li class="flex gap-3">
+              <span class="font-mono text-ink-500 shrink-0 w-6">01</span>
+              <span>Aggiungi <code class="font-mono text-accent-glow">fluera_engine</code> al tuo pubspec.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-mono text-ink-500 shrink-0 w-6">02</span>
+              <span>Metti <code class="font-mono text-accent-glow">FlueraCanvasScreen</code> nel tuo widget tree.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="font-mono text-ink-500 shrink-0 w-6">03</span>
+              <span>Inietta solo gli adapter che ti servono. Tutto il resto è opzionale.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="rounded-2xl border border-white/[0.08] bg-ink-950 overflow-hidden">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06] bg-ink-900/60">
+            <span class="h-3 w-3 rounded-full bg-signal-bad/60"></span>
+            <span class="h-3 w-3 rounded-full bg-signal-warn/60"></span>
+            <span class="h-3 w-3 rounded-full bg-signal-ok/60"></span>
+            <span class="ml-3 text-xs font-mono text-ink-500">canvas_screen.dart</span>
+          </div>
+          <pre class="p-5 text-sm font-mono text-paper-200 overflow-x-auto leading-relaxed"><code>{codeSnippet}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Showcase</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">Costruito con fluera_engine.</h2>
+          <div class="card p-6 mb-4">
+            <p class="font-serif text-lg text-paper-50 mb-1">Fluera</p>
+            <p class="text-sm text-paper-300">
+              L'app cognitiva di studio che ha fatto nascere il motore. Quaderni scritti a mano, tutor AI, ciclo di apprendimento in 12 passi.
+            </p>
+            <a href="/it/" class="text-accent-glow text-sm underline underline-offset-4 mt-3 inline-block">Scopri Fluera →</a>
+          </div>
+          <p class="text-sm text-ink-500 italic">
+            Stai costruendo qualcosa con fluera_engine? Scrivici — lo presentiamo qui.
+          </p>
+        </div>
+
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Licenze</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">Open core, commercial-friendly.</h2>
+          <div class="space-y-4">
+            <div class="card p-6">
+              <h3 class="font-serif text-lg text-paper-50 mb-2">Source-available</h3>
+              <p class="text-sm text-paper-300">
+                Leggi il codice, fork per uso personale ed educativo, contribuisci upstream. Licenza completa su GitHub.
+              </p>
+            </div>
+            <div class="card p-6">
+              <h3 class="font-serif text-lg text-paper-50 mb-2">Licenza commerciale</h3>
+              <p class="text-sm text-paper-300 mb-3">
+                Stai costruendo un prodotto a pagamento su <code class="font-mono">fluera_engine</code>? Prendi una licenza commerciale — fee annuale fissa, niente per-seat.
+              </p>
+              <a href="/it/contact" class="text-accent-glow text-sm underline underline-offset-4">Parliamone →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Inizia a costruire.</h2>
+      <p class="prose-ink mb-8">
+        Il motore è su GitHub, la documentazione su fluera.dev, la demo live gira nel browser.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/engine/docs" class="btn-primary">Leggi la documentazione →</a>
+        <a href={SITE.social.github} class="btn-secondary" rel="noopener">Vedi su GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

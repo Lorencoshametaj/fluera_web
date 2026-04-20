@@ -1,0 +1,56 @@
+---
+title: "Why we're building a study app in 2026"
+description: "If anyone can ask any question and get an answer in three seconds, the interesting question is not what we know. It's what we keep."
+publishedAt: 2026-04-20
+author: "Lorenzo"
+category: cognitive-science
+tags: ["manifesto", "ai", "positioning"]
+relatedPrinciples: [automation-bias, illusion-of-competence, centaur-paradigm]
+---
+import Citation from "@/components/Citation.astro";
+
+There is a version of this essay I wrote eighteen months ago that I am glad I never published.
+
+It was called *Why a study app in the age of ChatGPT?*, and it spent two thousand words explaining how AI was going to transform education, how Fluera would be the app that finally made personalised tutoring real, and how in five years nobody would study the way they had before. It was cheerful. It was confident. It was also, in retrospect, almost entirely wrong.
+
+What I did not see, back then, was that the problem was never that students couldn't get to information. It was never that teachers couldn't personalise. The problem was — and is — that modern tools make it effortless to feel you have learned something when you haven't. And the better the tool gets at the *feeling*, the worse it gets at the thing that matters.
+
+## The bottleneck shifted
+
+For most of history, the question that defined the study of anything was *access*. Books cost money. Teachers were scarce. Libraries were far. An educated person was, first and foremost, someone who had managed to get near the information at all.
+
+For my generation, the question became *navigation*. Information was abundant; finding the right piece of it was the work. Google, Wikipedia, Stack Overflow — a whole infrastructure for one question: *where is it?* Being educated in 2015 meant being good at searching.
+
+In 2026, neither question binds anymore. Any fact is three seconds away. Any explanation is generable in whatever style you want. The bottleneck has moved again, and — this is the part I missed — we do not yet have infrastructure for the new shape.
+
+The new bottleneck is: *how do I turn what I read into something I keep?*
+
+## The old cognitive science, quietly vindicated
+
+Here is the funny thing. The answers to that question have been in the literature for fifty years. Spaced repetition, from Ebbinghaus in 1885. <Citation authors="Roediger & Karpicke" year="2006" href="/research">Retrieval practice, from Roediger and Karpicke in 2006</Citation>. <Citation authors="Bjork" year="1994" href="/research">Desirable difficulties, from Bjork in 1994</Citation>. <Citation authors="Novak & Gowin" year="1984" href="/research">Concept mapping, from Novak in 1984</Citation>. The neuroscience of spatial memory from O'Keefe and the Mosers, <Citation authors="Moser et al." year="2005" href="/research">which won the Nobel in 2014</Citation>.
+
+These findings are robust. The meta-analyses are consistent. The effect sizes range from moderate to *d = 0.88* — very large by any cognitive-science standard.
+
+What we have never had — not once, in the entire history of ed-tech — is tools that make the right thing the easy thing. Anki makes retrieval practice possible but at enormous build cost. Notion makes notes readable but not retrievable. GoodNotes makes handwriting beautiful but disconnected from any memory schedule. Every tool solves one step of a multi-step cycle; none solve the cycle.
+
+And now, on top of that patchwork, we have LLMs. Which makes the wrong thing — passive consumption of articulate answers — feel like the right thing. Three seconds of fluency, mistaken for encoding. <Citation authors="Kahneman" year="2011" href="/research">Automation bias at planetary scale</Citation>.
+
+## The Centaur, not the replacement
+
+The temptation in building an AI-powered study tool is to put the AI at the centre. To have it generate your notes, summarise your textbook, explain your exam questions. I understand the temptation. It is the obvious product. It is also, from everything the science says, exactly wrong.
+
+Kasparov's Centaur framing is the one that works. The strongest chess player in the world is not Stockfish. It's not Carlsen either. It is Carlsen *with* Stockfish, in structured symbiosis — each doing what they do best, neither pretending to be the other.
+
+For study, the human contribution is depth, judgement, and generation. The AI contribution is breadth, verification, and scaffolding. A tool that gets this right has the AI ask before it answers, scaffold before it solves, verify before it volunteers. A tool that gets it wrong does the inverse, and the student leaves the session feeling smarter while having learned nothing.
+
+Fluera is our attempt at the first one.
+
+## What we're betting on
+
+We're betting that there is a cohort of learners — not all, not most, but enough — who can feel the difference between fluency and competence when it matters. Students preparing for oral exams they cannot fake their way through. Lifelong learners who notice that everything they ask ChatGPT evaporates by next week. Faculty who are tired of seeing students submit articulate LLM-generated essays that the student cannot then defend.
+
+For them, friction is not a bug. Writing by hand is not a nostalgia. Being quizzed before being told is not a punishment. These are features. They are the mechanism.
+
+We are making a study tool that is slower, quieter, and harder than the alternatives. Because the evidence says that's what works. And because the tools that are faster, louder, and easier have become, at this point, instruments for the illusion of competence.
+
+If that resonates — [come build it with us in the beta](/beta). If it doesn't, that's fine too. Not every tool is for every learner. This one is for the ones who can tell the difference.

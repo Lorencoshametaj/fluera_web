@@ -1,0 +1,313 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --body-bg: theme("colors.ink.950");
+    --body-fg: theme("colors.paper.100");
+    --muted-fg: theme("colors.paper.300");
+    --dim-fg: theme("colors.ink.500");
+    --hairline: rgb(255 255 255 / 0.06);
+    --hairline-strong: rgb(255 255 255 / 0.1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--body-bg);
+    color: var(--body-fg);
+    font-family: theme("fontFamily.sans");
+    font-feature-settings: "ss01", "ss02", "cv11";
+  }
+
+  ::selection {
+    background: theme("colors.accent.ink" / 40%);
+    color: theme("colors.paper.50");
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: theme("colors.ink.950"); }
+  ::-webkit-scrollbar-thumb {
+    background: theme("colors.ink.700");
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: theme("colors.accent.ink"); }
+
+  a { color: inherit; }
+
+  h1, h2, h3, h4 {
+    font-family: theme("fontFamily.serif");
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme("colors.accent.glow");
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8;
+  }
+  .container-narrow {
+    @apply mx-auto w-full max-w-narrow px-6 sm:px-8;
+  }
+  .container-prose {
+    @apply mx-auto w-full max-w-prose px-6 sm:px-8;
+  }
+
+  .hairline { border-color: var(--hairline); }
+  .hairline-strong { border-color: var(--hairline-strong); }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all;
+    @apply focus-visible:outline-offset-4;
+  }
+  .btn-primary {
+    @apply btn bg-paper-50 text-ink-950 hover:bg-white;
+  }
+  .btn-secondary {
+    @apply btn border border-white/15 text-paper-100 hover:border-white/30 hover:bg-white/5;
+  }
+  .btn-ghost {
+    @apply btn text-paper-200 hover:text-paper-50 hover:bg-white/5;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-paper-200;
+  }
+
+  .eyebrow {
+    @apply text-xs font-mono uppercase tracking-[0.18em] text-paper-300;
+  }
+
+  .prose-ink {
+    @apply text-paper-200 leading-relaxed;
+  }
+  .prose-ink p + p { @apply mt-4; }
+  .prose-ink a { @apply text-accent-glow underline underline-offset-4 hover:text-paper-50; }
+
+  /* ──────────────────────────────────────────────────────────────────
+     prose-v2 — the shared long-form prose utility.
+     Base = blog / docs default (p 1.125rem, h2 1.75rem).
+     Modifiers: .prose-v2-essay, .prose-v2-compact, .prose-v2-legal.
+     Replaces blog-prose, doc-prose, manifesto-prose, legal-prose, changelog-prose.
+     ────────────────────────────────────────────────────────────────── */
+  .prose-v2 :where(h2) {
+    font-family: theme("fontFamily.serif");
+    font-weight: 500;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: theme("colors.paper.50");
+    scroll-margin-top: 5rem;
+  }
+  .prose-v2 :where(h3) {
+    font-family: theme("fontFamily.serif");
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    color: theme("colors.paper.100");
+    scroll-margin-top: 5rem;
+  }
+  .prose-v2 :where(p) {
+    color: theme("colors.paper.200");
+    font-size: 1.125rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+  .prose-v2 :where(ul, ol) {
+    color: theme("colors.paper.200");
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+  .prose-v2 :where(ul) { list-style: disc; }
+  .prose-v2 :where(ol) { list-style: decimal; }
+  .prose-v2 :where(li) { margin-bottom: 0.5rem; }
+  .prose-v2 :where(a) {
+    color: theme("colors.accent.glow");
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-v2 :where(a:hover) { color: theme("colors.paper.50"); }
+  .prose-v2 :where(strong) { color: theme("colors.paper.50"); font-weight: 600; }
+  .prose-v2 :where(em) { font-style: italic; color: theme("colors.paper.100"); }
+  .prose-v2 :where(code) {
+    font-family: theme("fontFamily.mono");
+    font-size: 0.9em;
+    background: theme("colors.ink.800");
+    color: theme("colors.accent.glow");
+    padding: 0.125rem 0.4rem;
+    border-radius: 0.25rem;
+  }
+  .prose-v2 :where(pre) {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+    background: theme("colors.ink.950");
+    border: 1px solid rgb(255 255 255 / 0.06);
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    font-family: theme("fontFamily.mono");
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+  .prose-v2 :where(pre code) {
+    background: transparent;
+    color: theme("colors.paper.100");
+    padding: 0;
+    font-size: inherit;
+  }
+  .prose-v2 :where(blockquote) {
+    border-left: 3px solid theme("colors.accent.ink");
+    padding: 0.5rem 0 0.5rem 1.25rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: theme("colors.paper.100");
+  }
+  .prose-v2 :where(kbd) {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    font-family: theme("fontFamily.mono");
+    font-size: 0.85em;
+    background: theme("colors.ink.800");
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-bottom-width: 2px;
+    border-radius: 0.3rem;
+    color: theme("colors.paper.100");
+  }
+  .prose-v2 :where(hr) {
+    border: none;
+    border-top: 1px solid rgb(255 255 255 / 0.06);
+    margin: 2.5rem 0;
+  }
+  .prose-v2 :where(table) {
+    width: 100%;
+    margin: 1.5rem 0;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  .prose-v2 :where(th) {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.15);
+    color: theme("colors.paper.50");
+    font-family: theme("fontFamily.mono");
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .prose-v2 :where(td) {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.05);
+    color: theme("colors.paper.200");
+  }
+
+  /* Essay modifier — manifesto, long-form pages */
+  .prose-v2-essay :where(h2) {
+    font-size: 2rem;
+    line-height: 1.15;
+    margin-top: 4rem;
+    margin-bottom: 1.25rem;
+  }
+  .prose-v2-essay :where(h2:first-child) { margin-top: 0; }
+  .prose-v2-essay :where(p) {
+    font-size: 1.1875rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Compact modifier — changelog */
+  .prose-v2-compact :where(h2) { display: none; }
+  .prose-v2-compact :where(h3) {
+    font-size: 1.125rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .prose-v2-compact :where(p) {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+  .prose-v2-compact :where(ul, ol) {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .prose-v2-compact :where(li) { margin-bottom: 0.35rem; }
+  .prose-v2-compact :where(code) { font-size: 0.85em; }
+
+  /* Legal modifier — smaller h2 for dense docs, shared placeholder style */
+  .prose-v2-legal :where(h2) {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin-top: 2.5rem;
+  }
+  .prose-v2-legal :where(h3) {
+    font-size: 1.125rem;
+    margin-top: 1.75rem;
+  }
+  .prose-v2-legal :where(p, ul, ol) {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  .prose-v2-legal :where(.legal-placeholder) {
+    background: rgb(239 68 68 / 0.12);
+    color: rgb(252 165 165);
+    padding: 0 0.375rem;
+    border-radius: 0.25rem;
+    border: 1px dashed rgb(239 68 68 / 0.35);
+    font-family: theme("fontFamily.mono");
+    font-size: 0.9em;
+  }
+
+  .section {
+    @apply py-20 sm:py-28 md:py-36;
+  }
+  .section-tight {
+    @apply py-14 sm:py-20;
+  }
+
+  .card {
+    @apply rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm;
+  }
+
+  .glow-orb {
+    @apply pointer-events-none absolute rounded-full blur-[80px];
+  }
+
+  .divider-dot::before {
+    content: "·";
+    @apply mx-3 text-ink-500;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background-image: linear-gradient(135deg, theme("colors.paper.50") 0%, theme("colors.accent.glow") 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .noise::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 opacity-[0.015];
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+}

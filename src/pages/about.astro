@@ -1,0 +1,78 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="About"
+  description="Fluera is built by a small team in Italy. Read our story, our beliefs, and the line we won't cross."
+>
+  <PageHero
+    kicker="About"
+    title="We built the study app<br />we wished existed<br />when we were students."
+  >
+    <div slot="copy" class="prose-ink text-lg mt-8">
+      <p>
+        Fluera started as a frustration. One of us was a full-stack developer with ten years behind him; the other, a student watching his peers fall into the same trap — apps that felt productive but didn't make anyone remember anything.
+      </p>
+      <p>
+        We read the research. <em>A lot</em> of it. Bjork, Mueller, Roediger, van der Meer, O'Keefe. The cognitive science has been clear for half a century: handwriting beats typing, retrieval beats rereading, spacing beats cramming, friction is a feature. We couldn't find an app that took any of it seriously. So we built one.
+      </p>
+      <p>
+        Along the way we wrote a 2D rendering engine from scratch — because Flutter didn't have one that could do pressure-sensitive ink at 60 FPS across six native platforms. That engine is now open for anyone who needs it, under <a href="/engine">fluera_engine</a>.
+      </p>
+    </div>
+  </PageHero>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <SectionHeader kicker="The line" title="What we won't do." titleSize="lg" marginBottom="md" />
+      <div class="max-w-3xl">
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">We won't have an AI that answers your exam questions for you.</strong>
+              <p class="text-sm mt-1 text-paper-300">Fluera's AI asks, scaffolds, mirrors. It never finishes your thinking. Using AI to do the cognitive work is using AI to atrophy the muscle we're supposed to be training.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">We won't sell your notebook data.</strong>
+              <p class="text-sm mt-1 text-paper-300">Your notes are encrypted at rest, end-to-end when synced, and never used to train anyone's models. Including ours.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">We won't run ads, engagement loops, or streaks.</strong>
+              <p class="text-sm mt-1 text-paper-300">Your relationship with studying shouldn't depend on a push notification. We'd rather you use Fluera less and learn more.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">We won't ship features we can't defend with a citation.</strong>
+              <p class="text-sm mt-1 text-paper-300">If a feature doesn't trace back to a published finding, or to consistent feedback from our beta, it doesn't ship. Shiny is not a feature. Novelty is not a feature.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        Based in {SITE.company.city}. A longer-form statement of what we refuse and why lives in the <a href="/manifesto" class="text-paper-300 underline underline-offset-4">manifesto</a>.
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/contact" class="btn-secondary">Get in touch</a>
+        <a href="/beta" class="btn-primary">Join the beta</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

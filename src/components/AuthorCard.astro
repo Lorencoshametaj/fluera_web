@@ -1,0 +1,22 @@
+---
+export interface Props {
+  name: string;
+  contribution: string;
+  year?: string;
+  nobel?: boolean;
+}
+const { name, contribution, year, nobel = false } = Astro.props;
+---
+
+<article class="card p-5 transition-colors hover:border-white/[0.12] hover:bg-white/[0.04]">
+  <header class="flex items-start justify-between gap-3 mb-2">
+    <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{name}</h3>
+    {nobel && (
+      <span class="shrink-0 pill text-[10px] text-accent-glow border-accent-glow/30 bg-accent-glow/[0.08]">
+        Nobel
+      </span>
+    )}
+  </header>
+  <p class="text-sm text-paper-300 leading-relaxed">{contribution}</p>
+  {year && <p class="mt-3 text-[11px] font-mono uppercase tracking-widest text-ink-500">{year}</p>}
+</article>

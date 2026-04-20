@@ -1,0 +1,98 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const pillars = [
+  {
+    title: "Encryption",
+    body: "Every Fluera notebook is encrypted at rest with AES-256 via SQLCipher. Traffic is TLS 1.3 in transit. Sync between your devices is end-to-end encrypted with keys derived from your passphrase — held in your platform keychain, never sent to our servers.",
+  },
+  {
+    title: "Data ownership",
+    body: "Every byte you write is exportable in a single click: PNG, JPEG, WebP, SVG, PDF, and our open .fluera format. Your notebooks live on your devices first. The cloud is a convenience, not a prison — lock-in is a business model we chose against.",
+  },
+  {
+    title: "GDPR, natively",
+    body: "Fluera is EU-hosted and GDPR-native. A Data Processing Agreement is available to any educational institution on request. Full data export and right-to-be-forgotten requests are honoured within 30 days (usually within 48 hours).",
+  },
+  {
+    title: "Local-first, always",
+    body: "You can run Fluera fully offline. Sync is opt-in per notebook, not account-wide. If you turn sync off, your data never leaves the device — including telemetry, which is consent-based and anonymous.",
+  },
+  {
+    title: "Audit log (Education)",
+    body: "For Education accounts, every access to shared notebooks is logged in an immutable audit trail, exportable for compliance reviews. Administrators can enforce SSO (SAML, OIDC) and MDM-managed deployments.",
+  },
+  {
+    title: "What we don't do",
+    body: "We don't run ads. We don't sell data. We don't train our models on your content. We don't track you across the web. We don't hand data to third parties beyond named sub-processors (Supabase, Vercel, Stripe) — all under DPA.",
+  },
+];
+---
+
+<BaseLayout
+  title="Security & Privacy"
+  description="AES-256 encryption at rest, GDPR-native, EU-hosted, zero ad-tech. Read Fluera's full security architecture and data ownership commitment."
+>
+  <PageHero
+    kicker="Security &amp; privacy"
+    title="Your notebook belongs to you.<br />Even from us."
+    titleSize="2xl"
+    description="Encryption by default. No ad-tech. EU-hosted. Full export. We think of privacy as a design constraint, not a compliance task."
+    orbs
+    noise
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {pillars.map((p, i) => (
+          <article class="card p-8">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
+            <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Responsible disclosure</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Found something?</h2>
+          <p class="prose-ink mb-6">
+            Security researchers are welcome here. Report vulnerabilities to
+            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
+            We acknowledge within 24 hours, patch critical issues within 72, and credit reporters in our hall of fame unless you'd rather stay anonymous.
+          </p>
+          <p class="text-sm text-ink-500 italic">
+            A PGP key for encrypted submissions is published on our GitHub.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Compliance &amp; deployment</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Deploying Fluera at your institution?</h2>
+          <p class="prose-ink mb-6">
+            Universities, schools and research labs: we can walk you through our DPA, sub-processor list, SSO setup and the audit log model. Pilots typically start with one class, one semester, no charge.
+          </p>
+          <a href="/contact" class="btn-primary">Talk to us about deployment →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
+        This page covers the essentials. The full architecture, sub-processor register and DPA template live at
+        <a href="/security/architecture" class="text-paper-300 underline">/security/architecture</a> and
+        <a href="/security/sub-processors" class="text-paper-300 underline">/security/sub-processors</a>. Specific compliance questions? Write to
+        <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

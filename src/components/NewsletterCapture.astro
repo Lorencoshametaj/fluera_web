@@ -1,0 +1,83 @@
+---
+export interface Props {
+  headline?: string;
+  sub?: string;
+  buttonLabel?: string;
+  variant?: "inline" | "card";
+}
+const {
+  headline = "One email a month. Only the good stuff.",
+  sub = "Cognitive-science deep dives, product notes, and — when we have them — research findings from the Fluera beta. Unsubscribe anytime, because that is what a real-human newsletter looks like.",
+  buttonLabel = "Subscribe",
+  variant = "card",
+} = Astro.props;
+---
+
+<aside class={variant === "card" ? "card p-7 md:p-9" : ""}>
+  <h3 class="font-serif text-xl md:text-2xl text-paper-50 mb-3">{headline}</h3>
+  <p class="text-sm text-paper-300 leading-relaxed mb-6 max-w-prose">{sub}</p>
+
+  <form class="newsletter-form flex flex-col sm:flex-row gap-3 max-w-md" data-newsletter-form>
+    <label class="sr-only" for="newsletter-email">Email</label>
+    <input
+      id="newsletter-email"
+      type="email"
+      name="email"
+      required
+      autocomplete="email"
+      class="newsletter-input flex-1"
+      placeholder="you@domain.com"
+    />
+    <button type="submit" class="btn-primary whitespace-nowrap px-5">
+      {buttonLabel}
+    </button>
+  </form>
+
+  <p class="newsletter-status text-xs font-mono uppercase tracking-widest mt-4 hidden" data-newsletter-status></p>
+  <p class="text-[11px] font-mono uppercase tracking-widest text-ink-500 mt-4">
+    Newsletter wiring arrives in Phase 2 — today the form captures your email so we can backfill it when we pick a provider.
+  </p>
+</aside>
+
+<style>
+  .newsletter-input {
+    background: theme("colors.ink.900");
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: 9999px;
+    padding: 0.75rem 1.25rem;
+    color: theme("colors.paper.50");
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+  .newsletter-input:focus {
+    outline: none;
+    border-color: theme("colors.accent.ink");
+    box-shadow: 0 0 0 3px rgb(45 74 222 / 0.18);
+  }
+</style>
+
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>("[data-newsletter-form]");
+  forms.forEach((form) => {
+    const status = form.parentElement?.querySelector<HTMLElement>("[data-newsletter-status]");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
+      if (!email) return;
+
+      // Phase 2: replace with real provider POST (Buttondown / EmailOctopus / Substack)
+      try {
+        const stored = JSON.parse(localStorage.getItem("fluera-newsletter-emails") || "[]");
+        if (!stored.includes(email)) stored.push(email);
+        localStorage.setItem("fluera-newsletter-emails", JSON.stringify(stored));
+      } catch { /* ignore */ }
+
+      if (status) {
+        status.textContent = "Got it. We'll backfill when the provider is wired up.";
+        status.classList.remove("hidden");
+        status.classList.add("text-accent-glow");
+      }
+      form.reset();
+    });
+  });
+</script>

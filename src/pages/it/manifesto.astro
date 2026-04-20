@@ -1,0 +1,155 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Manifesto — Costruire un'app di studio nel 2026"
+  description="Una dichiarazione in forma lunga di cosa è Fluera, cosa si rifiuta di essere e perché il prodotto ovvio era quello sbagliato."
+  locale="it"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Manifesto</p>
+      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">Lo spazio di studio per come funziona davvero la mente.</h1>
+      <p class="prose-ink text-xl italic">
+        Una dichiarazione in forma lunga di cosa è Fluera, cosa si rifiuta di essere e perché il prodotto ovvio era quello sbagliato.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-16 md:py-20">
+    <div class="container-prose prose-v2 prose-v2-essay">
+
+      <h2>La premessa</h2>
+      <p>
+        Nel 2026, qualsiasi fatto è a tre secondi. Qualsiasi spiegazione può essere rigenerata nello stile che preferisci. Il costo marginale di accedere alla conoscenza è sceso quasi a zero, per la prima volta nella storia della nostra specie.
+      </p>
+      <p>
+        Eppure i learner — studenti, professionisti, adulti con la curiosità di tutta la vita — raccontano di sentirsi meno competenti su ciò che consumano di quanto lo fossero dieci anni fa. Non perché la materia sia più difficile. Perché il consumo è senza attrito, e il consumo senza attrito non lascia traccia.
+      </p>
+      <p>
+        Il collo di bottiglia dell'apprendimento si è spostato. Per gran parte della storia era l'accesso. Per la mia generazione era la ricerca. Nel 2026 è qualcosa di diverso e più difficile da nominare: <em>la trasformazione del riconoscimento fluente in competenza duratura</em>. E per il nuovo collo di bottiglia l'infrastruttura non l'abbiamo ancora costruita.
+      </p>
+
+      <h2>Cosa dice la scienza</h2>
+      <p>
+        Da cinquant'anni, la scienza cognitiva dell'apprendimento converge su un piccolo insieme di risultati con la proprietà insolita di essere al tempo stesso controintuitivi e estremamente robusti.
+      </p>
+      <p>
+        Ebbinghaus nel 1885 ha mostrato che la curva dell'oblio è esponenziale e che il ripasso spaziato la reimposta. Slamecka e Graf nel 1978 hanno mostrato che l'informazione che tu stesso generi viene ricordata infinitamente meglio della stessa informazione letta passivamente. Bjork ha documentato per quattro decenni che le condizioni che durante lo studio sembrano più facili sono quasi esattamente le condizioni che producono la peggior ritenzione a lungo termine — il framework delle <em>desirable difficulties</em>. Butterfield e Metcalfe nel 2001 hanno mostrato che gli errori fatti con alta confidenza, una volta corretti, restano più duraturi degli errori fatti con bassa confidenza — l'ipercorrezione. Roediger e Karpicke nel 2006 hanno stabilito che essere testati non è una misura della memoria ma un atto che la crea.
+      </p>
+      <p>
+        Le meta-analisi hanno confermato questi risultati ripetutamente, attraverso discipline, fasce d'età e culture. Nella classifica delle strategie di studio per forza dell'evidenza, il successive relearning — spacing combinato con retrieval practice a intervalli crescenti — sta in cima. La rilettura sta vicino al fondo. Sottolineare è praticamente inutile.
+      </p>
+      <p>
+        L'implicazione pratica è netta: i comportamenti di studio di default che sembrano produttivi sono, secondo l'evidenza, i meno produttivi. E i comportamenti che producono i risultati migliori sembrano più difficili, più lenti e meno soddisfacenti nel momento.
+      </p>
+      <p>
+        Non è un cavillo metodologico. È la cosa singola più importante da capire sull'apprendimento, ed è quasi del tutto assente dal design di ogni strumento di studio sul mercato.
+      </p>
+
+      <h2>Cosa hanno rotto gli LLM</h2>
+      <p>
+        L'arrivo dei modelli di linguaggio su larga scala non ha cambiato nessuno dei risultati sopra. Ha cambiato la trama con cui i learner li incontrano.
+      </p>
+      <p>
+        Un LLM che risponde in tre secondi, nello stile che chiedi, in perfetta fluenza, innesca esattamente lo schema contro cui la scienza mette in guardia. Riconoscimento scambiato per codifica. Confidenza del Sistema 1 senza ingaggio del Sistema 2. Automation bias amplificato dalla fluenza di superficie dell'output. L'illusione di competenza, su scala planetaria.
+      </p>
+      <p>
+        Gli scienziati cognitivi che avevano passato quarant'anni a mettere in guardia contro l'evidenziatore hanno improvvisamente trovato un avversario più serio: uno strumento così bravo a far sembrare giusta la cosa sbagliata che persino loro, nel proprio apprendimento, hanno dovuto lavorare per resistergli.
+      </p>
+      <p>
+        Peggio: lo schema di default dell'interfaccia LLM — <em>chiedi, ricevi una risposta fluente, annuisci, vai avanti</em> — è quasi perfettamente progettato per scavalcare retrieval practice, generation effect e desirable difficulties che la memoria duratura richiede. L'interfaccia premia la passività. Il modello sottostante la amplifica. Il learner risultante si sente istruito e non lo è.
+      </p>
+
+      <h2>La premessa Centauro</h2>
+      <p>
+        Dopo che Deep Blue ha battuto Kasparov nel 1997, il mondo ha brevemente assunto che gli scacchi fossero finiti — le macchine avevano vinto, lo sforzo umano era obsoleto. Poi Kasparov stesso ha proposto un'osservazione più strana: il giocatore di scacchi più forte del mondo non è un umano né una macchina. È un umano <em>con</em> una macchina, in simbiosi strutturata. Lo ha chiamato il <em>Centauro</em>.
+      </p>
+      <p>
+        L'intuizione si generalizza ben oltre gli scacchi. In ogni dominio dove il giudizio umano è irriducibile — strategia, contesto, valori, gusto, profondità di significato — lo schema che vince non è umano contro IA né umano sostituito dall'IA. È umano amplificato dall'IA, con l'umano che tiene il lavoro cognitivo che produce crescita.
+      </p>
+      <p>
+        Applicato all'apprendimento, lo schema Centauro inverte l'uso comune del 2026. Il default di oggi — <em>chiedi all'LLM, leggi la risposta, vai avanti</em> — è anti-Centauro. L'umano sta esternalizzando esattamente l'attività cognitiva che produce memoria e comprensione.
+      </p>
+      <p>
+        La versione Centauro è l'opposto. L'IA chiede invece di rispondere. Verifica invece di offrirsi. Fa da impalcatura invece di risolvere. L'umano fa il recupero, la generazione, il posizionamento spaziale, la codifica scritta a mano. L'IA contribuisce ampiezza di conoscenza, calibrazione in tempo reale e i prompt socratici che un buon tutor fornirebbe se te lo potessi permettere.
+      </p>
+
+      <h2>Cosa è Fluera</h2>
+      <p>
+        Fluera è il Centauro, costruito come strumento di studio.
+      </p>
+      <p>
+        Il canvas è infinito, vuoto, scritto a mano. Ogni concetto che metti è generato dalla tua mano — parafrasato, compresso, posizionato nello spazio. Il vuoto è deliberato. I template scorticerebbero il passo di generazione.
+      </p>
+      <p>
+        L'IA interroga il canvas. Pone domande calibrate sullo stato attuale della tua conoscenza, dentro la Zona di Sviluppo Prossimale — troppo facile non insegna nulla, troppo difficile non si può imparare. Prima di ogni rivelazione, Fluera chiede la tua confidenza su una scala da uno a cinque. Non è un vezzo di UI. Innesca l'effetto ipercorrezione: una risposta sbagliata a confidenza 5, corretta, lascia una traccia molto più profonda di qualsiasi quantità di riletture passive.
+      </p>
+      <p>
+        Ghost Map — la funzione che esprime più pulitamente lo schema Centauro — sovrappone una ricostruzione ideale alla tua. Le discrepanze pulsano visivamente. Correggi scrivendo, non cliccando. Più avevi torto, più duratura è la correzione.
+      </p>
+      <p>
+        Fog of War, per la preparazione all'esame, nasconde regioni del canvas e ti chiede di recuperare prima di rivelare. La prima sessione è frustrante. È il punto. Il recupero sotto occlusione è l'attività di studio più efficace che la letteratura di scienza cognitiva abbia documentato, e la frustrazione è il meccanismo.
+      </p>
+      <p>
+        Lo scheduler di ripetizione spaziata pianifica ritorni a intervalli crescenti, con modifier pedagogici — bonus ipercorrezione, malus peek, segnale tempo-risposta — sovrapposti a un modello FSRS personalizzato calibrato sulla tua storia reale di review. Lavora con il canvas che hai già, non con un universo parallelo di flashcard che dovresti costruire.
+      </p>
+      <p>
+        Time Travel tiene l'audio della lezione sincronizzato a ogni tratto della tua scrittura, così settimane dopo puoi toccare un appunto e sentire il momento in cui lo hai scritto. Il recupero dipendente dal contesto dice che far combaciare il contesto di recupero a quello di codifica rafforza il ricordo. Time Travel è quel principio reso letterale.
+      </p>
+
+      <h2>Cosa Fluera rifiuta di essere</h2>
+      <p>
+        Ci sono quattro cose che Fluera non farà, in ordine grosso modo decrescente di tentazione.
+      </p>
+      <p>
+        <strong>Non avremo un'IA che risponde ai tuoi esami al posto tuo.</strong> La soddisfazione utente a breve termine sarebbe enorme. L'esito a lungo termine — atrofia dei muscoli cognitivi che lo strumento dovrebbe rafforzare — sarebbe un tradimento dell'obiettivo dichiarato. Un'IA che fa il lavoro al posto tuo è un'IA che non ti insegna nulla.
+      </p>
+      <p>
+        <strong>Non venderemo i dati dei tuoi quaderni.</strong> Ogni quaderno è cifrato at-rest con AES-256. Il sync, quando attivato, è end-to-end cifrato. Non addestriamo i nostri modelli sui tuoi contenuti. La tua scrittura a mano, il tuo pensiero, i tuoi errori e la tua crescita sono tuoi. Il fatto che "i tuoi dati sono il prodotto" sia il default dell'ed-tech 2026 non lo rende tollerabile.
+      </p>
+      <p>
+        <strong>Non avremo engagement loop, pubblicità o streak.</strong> Il segnale più forte che potremmo ottimizzare — utenti attivi giornalieri, durata sessione, click-through sulle notifiche — è anche quello più probabile per corrompere il prodotto. La tua relazione con lo studio non dovrebbe dipendere da una push notification. Preferiamo che tu usi Fluera meno e impari di più.
+      </p>
+      <p>
+        <strong>Non pubblicheremo funzioni che non possiamo difendere con una citazione.</strong> O la funzione risale a un risultato pubblicato, o risale a feedback coerente dalla beta, o non va in produzione. La novità non è una funzione. Abbiamo detto no a più idee di quante ne abbiamo costruite, e il rapporto è il prodotto.
+      </p>
+
+      <h2>Per chi stiamo costruendo</h2>
+      <p>
+        Fluera non è per tutti. L'attrito è reale. Le scelte di design sono invertite rispetto al prodotto ovvio. L'abbandono alla prima sessione è più alto di quanto vorremmo, e non lo sistemeremo rimuovendo l'attrito — perché l'attrito è la cosa che fa funzionare il prodotto.
+      </p>
+      <p>
+        Costruiamo per una coorte specifica. Studenti di medicina che preparano orali a cui non si può fingere. Dottorandi in campi dove la chiacchiera fluente viene punita dai commissari. Avvocati che preparano l'esame di stato. Autodidatti e professionisti a metà carriera che notano come tutto quello che delegano a ChatGPT evapora entro la settimana successiva. Studenti di programmi universitari concept-heavy che hanno capito che i loro evidenziatori producono fluenza, non competenza.
+      </p>
+      <p>
+        Se sei tu, pensiamo che la differenza la sentirai rapidamente. Se non sei tu, capiamo — ci sono altri prodotti per altri problemi, e non fingeremo che Fluera sia universale.
+      </p>
+
+      <h2>Cosa stiamo scommettendo</h2>
+      <p>
+        La scommessa è che in un campo in cui ogni concorrente si è arreso alla preferenza utente di breve termine e ha costruito strumenti che fanno sentire bene e insegnano quasi nulla, c'è spazio per uno strumento peggiore nella sensazione e migliore nell'insegnamento. Il mercato è più piccolo di quello che comandano gli incumbent dell'ed-tech. L'adattamento culturale al tempo è più difficile. Il prodotto è più lento da costruire.
+      </p>
+      <p>
+        In cambio: una possibilità reale di costruire qualcosa che mantiene ciò che promette. Una possibilità reale di aiutare una coorte reale di learner a produrre competenza duratura in un decennio che ha reso la durata rara. E — a essere onesti — una possibilità reale di mettere agli atti che nel 2026 c'era un altro modo di costruire questo prodotto, diverso dal modo ovvio.
+      </p>
+      <p>
+        Questo è il prodotto. Questa è la squadra. Questo è l'impegno.
+      </p>
+      <p>
+        Se qualcosa di tutto ciò ti risuona — la beta è aperta su <a href="/beta">/beta</a>, e ci piacerebbe incontrarti.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Entra nella beta →</a>
+        <a href="/it/science" class="btn-secondary">Leggi la scienza</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

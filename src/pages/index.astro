@@ -1,0 +1,417 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE, PRIMARY_CTA } from "@/lib/site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: SITE.description,
+  url: SITE.url,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const steps = [
+  { n: 1,  title: "Capture",              verb: "Lecture day",    description: "Write concepts by hand during the lecture. Position them in space. Compression — forced by the slowness of the pen — is where encoding begins." },
+  { n: 2,  title: "Reconstruct",          verb: "Same evening",   description: "Close the book. Rebuild what you remember on a blank canvas. The red nodes where you falter are the map of what to study next (Kapur, productive failure, 2008)." },
+  { n: 3,  title: "Socratic",             verb: "Within 48h",     description: "The AI asks; you answer. Rate your confidence one to five before each reveal. Metacognition made explicit." },
+  { n: 4,  title: "Centaur",              verb: "Right after",    description: "Ghost Map overlays your reasoning against the ideal. Hypercorrection makes the gaps permanent (Butterfield & Metcalfe, 2001)." },
+  { n: 5,  title: "Sleep",                verb: "That night",     description: "Do nothing. Slow-wave sleep replays the day. The hippocampus hands traces to the neocortex. Our job is to get out of the way." },
+  { n: 6,  title: "First Return",         verb: "Day 1",          description: "Come back the next day. The canvas fades what you almost knew. Pull it back from memory, then rewrite what slipped." },
+  { n: 7,  title: "Peer Learning",        verb: "Days 2–3",       description: "Visit a classmate's canvas. Teach. Be taught. Recall duels. Organising for others cements it for you (protégé effect)." },
+  { n: 8,  title: "Spaced Returns",       verb: "Day 3 · 7 · 14…",description: "Successive relearning at widening intervals. The gold-standard evidence-based strategy (Rawson & Dunlosky, 2011)." },
+  { n: 9,  title: "Cross-Domain Bridges", verb: "Weeks later",    description: "Zoom out to continent view. Draw arrows between chemistry and differential equations. Transfer is the real test of learning." },
+  { n: 10, title: "Exam Prep",            verb: "7–14 days before",description: "Fog of War mode. Navigate the mist of your own canvas. Green, red, blind spots — the mastery map makes itself." },
+  { n: 11, title: "The Exam",             verb: "The day",        description: "Close the device. Walk the memory palace you built with your hands over weeks. The canvas lives in you now." },
+  { n: 12, title: "Lasting Growth",       verb: "Forever after",  description: "The canvas persists as a cognitive autobiography. Return in two years and see the tangible shape of how much you've grown." },
+];
+
+const authors = [
+  { name: "Robert A. Bjork", contribution: "Desirable difficulties — the counterintuitive finding that harder study produces better retention.", year: "1994" },
+  { name: "Butterfield & Metcalfe", contribution: "Hypercorrection Effect — confident errors are remembered most permanently once corrected.", year: "2001" },
+  { name: "Daniel Kahneman", contribution: "System 1 vs System 2 — fast intuition versus slow deliberation in thinking and memory.", year: "2011" },
+  { name: "Lev Vygotsky", contribution: "Zone of Proximal Development — the narrow band where scaffolded practice beats solo practice.", year: "1978" },
+  { name: "Albert Bandura", contribution: "Self-efficacy — the single strongest predictor of academic success, stronger than IQ.", year: "1977" },
+  { name: "Carol Dweck", contribution: "Growth mindset — praising effort over talent changes how learners respond to difficulty.", year: "2006" },
+  { name: "Mihaly Csikszentmihalyi", contribution: "Flow — peak cognitive performance when challenge matches skill and feedback is immediate.", year: "1990" },
+  { name: "Joseph Novak", contribution: "Concept mapping — building a map beats studying a pre-built one, across disciplines.", year: "1984" },
+  { name: "O'Keefe & Moser", contribution: "Place and grid cells — the brain's built-in GPS. Why memory palaces work.", year: "Nobel 2014", nobel: true },
+  { name: "Mueller & Oppenheimer", contribution: "Handwritten notes beat laptop notes on conceptual recall — even when the laptop notes were more complete.", year: "2014" },
+  { name: "Audrey van der Meer", contribution: "EEG evidence that handwriting recruits broader brain networks than typing.", year: "2020" },
+  { name: "Roediger & Karpicke", contribution: "Retrieval practice — testing does not measure memory, it creates it.", year: "2006" },
+];
+
+const platforms = [
+  { name: "iOS",     api: "Metal",    status: "Beta" },
+  { name: "iPadOS",  api: "Metal",    status: "Beta" },
+  { name: "macOS",   api: "Metal",    status: "Beta" },
+  { name: "Windows", api: "Direct3D 11", status: "Alpha" },
+  { name: "Android", api: "Vulkan",   status: "Alpha" },
+  { name: "Linux",   api: "OpenGL",   status: "Alpha" },
+  { name: "Web",     api: "WebGPU",   status: "Demo" },
+];
+---
+
+<BaseLayout
+  title={SITE.name}
+  description={SITE.description}
+  jsonLd={jsonLd}
+>
+
+  <!-- ═══════════ 1 · HERO ═══════════ -->
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -left-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -right-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          Private beta · First cohort
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          The study space<br />your brain was<br /><span class="text-gradient">built for.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          Handwrite on an infinite canvas. Be quizzed instead of answered. Replay your own thinking in time. Built for the way memory actually works.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href={PRIMARY_CTA.href} class="btn-primary text-base px-6 py-3.5">
+            {PRIMARY_CTA.label}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            Try the live demo
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>End-to-end encrypted</span><span class="text-ink-600">·</span>
+          <span>GDPR-native</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 2 · PROBLEM STATEMENT ═══════════ -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">The bottleneck</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        You can ask any question.<br />You still can't remember the answer.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          In 2026, knowledge takes three seconds to retrieve and three weeks to forget. We have ten apps for taking notes and none for keeping what we learn.
+        </p>
+        <p>
+          Highlighting feels like studying. Re-reading feels like studying. Asking an LLM for a summary feels like studying. None of them are — and the cognitive science has been clear about this since the 1970s.
+        </p>
+        <p>
+          The bottleneck of learning is no longer access. It's <em>encoding</em>. It's <em>retention</em>. It's <em>transfer</em>.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera is built for those three.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 3 · THE 12-STEP LEARNING CYCLE ═══════════ -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">The method</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          One canvas.<br />Twelve cognitive moves.<br />The loop your brain learns from.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Every Fluera feature lives at a step in this loop, and every step is grounded in published research. Skip one, the chain breaks. Keep them all, the notebook becomes permanent.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+
+      <div class="mt-12 max-w-3xl">
+        <a href="/#science" class="btn-secondary">Explore the science →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 4 · PILLAR FEATURES ═══════════ -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">Four cognitive differentiators</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          Four ways Fluera makes you actually remember.
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map · Step 4"
+          title="See the gap between what you wrote and what was right."
+          description="After you finish a problem, Fluera overlays your work against an ideal solution. The mismatches don't shame — they shock the memory awake. The wronger you were, the more the right answer sticks."
+          citation="Hypercorrection effect — Butterfield & Metcalfe, 2001."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode · Step 3"
+          title="Our AI doesn't answer. It asks."
+          description="Rate your confidence one to five before each reveal. Metacognition is half of mastery, and confidence calibration is how you build it — one prediction at a time."
+          citation="Metacognitive monitoring — Flavell, 1979."
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War · Step 10"
+          title="Exam mode that hides what you almost remember."
+          description="Mask any region of the canvas. Pull it back from memory before revealing. The retrieval struggle — not the seeing-again — is where memory hardens."
+          citation="Desirable difficulties — Bjork, 1994."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Time Travel · Step 5+"
+          title="Replay any stroke synced to the lecture audio."
+          description="Touch a note from three weeks ago. The lecture audio picks up exactly where your pen was moving. Re-experience your own thinking. The notebook becomes a time machine for context."
+          citation="Cue-dependent retrieval — Tulving, 1972."
+          href="/beta"
+          status="coming-soon"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">See it all in the beta →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 5 · WHY HANDWRITING WINS ═══════════ -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">Ink, not type</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            Type is faster.<br />Handwriting is better.<br />The brain isn't optimized for speed.
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller & Oppenheimer, Princeton 2014 · van der Meer, NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            When Mueller and Oppenheimer ran their now-famous Princeton study in 2014, they found that students who took notes by hand outperformed laptop-takers on conceptual questions — <em>even though</em> laptop-takers wrote significantly more words. The hand was slower. The mind was deeper.
+          </p>
+          <p>
+            A decade later, Audrey van der Meer's EEG work at NTNU (2020) gave us the <em>why</em>: handwriting recruits broader brain networks than typing, especially in regions tied to memory formation and sensorimotor integration. The pen, it turns out, is a cognitive instrument.
+          </p>
+          <p>
+            Fluera is built around this finding. Thirteen brush engines. Pressure, tilt, velocity. Sub-15-millisecond stroke latency on every supported device. The infinite canvas isn't an aesthetic — it's the substrate your memory has been asking for.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 6 · SCIENTIFIC FOUNDATION ═══════════ -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Scientific foundation</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Standing on the shoulders of giants — by name.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Every design decision traces back to a paper we can link to. Twelve of those minds are below. The full bibliography lives in a public vault.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] max-w-2xl">
+        <h3 class="font-serif text-lg text-paper-50 mb-2">What we don't claim</h3>
+        <p class="text-sm text-paper-300 leading-relaxed">
+          We cite five decades of memory research. We have not run our own randomized trials on Fluera itself — not yet. When we say "evidence-based," we mean the underlying principles are; our specific implementation is an engineering bet informed by the evidence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 7 · MULTIPLATFORM PROOF ═══════════ -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Six platforms, one ink</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Six platforms. One ink. One brain.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Native renderers on Vulkan, Metal, OpenGL, Direct3D 11 and WebGPU. Your notebook syncs end-to-end encrypted, or stays offline. Your call.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        Status labels are honest about release readiness. Platforms marked "Alpha" or "Demo" work but need polish — join the beta if you want to help shape them.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 8 · SECURITY & PRIVACY ═══════════ -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Your mind, your data</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Your notebook belongs to you.<br />Even from us.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">AES-256 at rest</h3>
+          <p class="text-sm text-paper-300">SQLCipher encryption on every device. Your local database is unreadable without your key.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">GDPR-native</h3>
+          <p class="text-sm text-paper-300">EU-based, data processing agreement available, full export and deletion on request.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Zero ad-tech</h3>
+          <p class="text-sm text-paper-300">No tracking pixels. No behavioural ads. We don't train our models on your content.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Audit log</h3>
+          <p class="text-sm text-paper-300">For Education accounts, every access is logged in an immutable trail.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">Read our security architecture →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 9 · PRICING SNAPSHOT ═══════════ -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Pricing</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Free to learn. Pro to go deeper.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">The full canvas. Three notebooks. Forever free.</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Student</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">~€4/mo</p>
+          <p class="text-sm text-paper-300">Everything in Fluera, half the price, verified .edu.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">~€9/mo</p>
+          <p class="text-sm text-paper-300">Unlimited notebooks, full AI suite, sync across all six platforms.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Education</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">Custom</p>
+          <p class="text-sm text-paper-300">Campus-wide license, faculty training, audit log, SSO.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        Built by two people in Italy. Prices may evolve as we grow — whoever joins now keeps their tier rate for life.
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">See full pricing →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 10 · BETA CTA ═══════════ -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 left-1/2 -translate-x-1/2 bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">Join us</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        We're in private beta.<br />Slow on purpose.
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        We let learners in a few hundred at a time so we can listen to every one. If you're tired of apps that promise to learn for you, write to us.
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        Request access →
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════ 11 · ENGINE TEASER ═══════════ -->
+  <section id="engine-teaser" class="section-tight border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-3 gap-8 items-start">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">For developers</p>
+          <h2 class="font-serif text-2xl text-paper-50">Building something that needs ink? Use our engine.</h2>
+        </div>
+        <div class="md:col-span-2">
+          <p class="prose-ink mb-5">
+            Fluera runs on <code class="font-mono text-sm text-accent-glow">fluera_engine</code> — a 2D rendering engine for Flutter with 13 brushes, 17 GPU shaders, and pressure-sensitive input across six platforms. Available as an SDK for builders of creative tools.
+          </p>
+          <div class="flex flex-wrap gap-4 items-center">
+            <a href="/engine" class="btn-secondary">Explore the engine →</a>
+            <a href={SITE.social.github} class="btn-ghost" rel="noopener">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

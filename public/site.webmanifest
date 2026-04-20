@@ -1,0 +1,13 @@
+{
+  "name": "Fluera",
+  "short_name": "Fluera",
+  "description": "The study space your brain was built for.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05070c",
+  "theme_color": "#05070c",
+  "icons": [
+    { "src": "/favicon.png",          "sizes": "32x32",   "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

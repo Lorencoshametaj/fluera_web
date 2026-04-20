@@ -1,0 +1,65 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Case study educativi"
+  description="Storie vere da università, facoltà e classi che usano Fluera. Attualmente vuoto mentre i programmi pilota completano il primo semestre."
+  locale="it"
+>
+  <PageHero
+    kicker="Case study"
+    title="I piloti sono in corso.<br />Le storie arriveranno."
+    description="Non pubblichiamo un case study finché un pilota non ha completato almeno un semestre, la facoltà non ha firmato l'approvazione e i dati anonimizzati degli studenti non sono stati verificati per accuratezza. Le coorti dell'autunno 2026 e primavera 2027 sono in corso — questa pagina si riempirà man mano che finiscono."
+    breadcrumb={{ label: "Istituzioni", href: "/it/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Autunno 2026 · In corso</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Coorte pre-clinica di medicina</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            ~30 studenti del primo anno di medicina che usano Fluera durante un semestre di anatomia e biochimica. Pubblicazione a fine semestre.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Atteso: Q1 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Autunno 2026 · In corso</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Microeconomia universitaria</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Corso di microeconomia concept-heavy. Focus: come regge il ciclo in 12 passi quando la materia è astratta più che fattuale.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Atteso: Q2 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Primavera 2027 · In partenza</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Seminario di diritto costituzionale</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Interpretazione costituzionale. Coorte più piccola, coinvolgimento più profondo. Focus su Ghost Map per il confronto di casi giurisprudenziali.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Atteso: Q3 2027</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Vuoi avviare un pilota?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          Facciamo piloti una coorte per semestre — una classe, trenta studenti, un semestre, senza costi. In cambio chiediamo feedback strutturato e l'opzione di pubblicare un case study anonimizzato a fine percorso.
+        </p>
+        <a href="/it/contact/sales" class="btn-primary">Avvia un pilota →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        Perché aspettare? Perché un case study con numeri veri richiede tempo per raccogliere i dati onestamente — e pubblicare "case study" di marketing basati su aneddoti selezionati dal vendor è esattamente il genere di contenuto che non vogliamo produrre.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

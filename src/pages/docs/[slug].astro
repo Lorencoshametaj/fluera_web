@@ -1,0 +1,41 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import { buildDocsSections } from "@/lib/docs-nav";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+  return docs.map((d) => ({ params: { slug: d.id }, props: { doc: d } }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+const sections = await buildDocsSections();
+
+const relatedDocs = await Promise.all(
+  doc.data.relatedDocs.map((ref) => getEntry(ref)),
+);
+---
+
+<DocLayout
+  title={doc.data.title}
+  description={doc.data.description}
+  sections={sections}
+  rootHref="/docs"
+  rootLabel="User docs"
+  sectionLabel={doc.data.sectionLabel}
+  updatedAt={doc.data.updatedAt}
+>
+  <Content />
+
+  {relatedDocs.length > 0 && (
+    <section class="mt-16 pt-8 border-t border-white/[0.06]">
+      <h3 class="font-serif text-lg text-paper-50 mb-3">Related</h3>
+      <ul>
+        {relatedDocs.map((d) => (
+          <li><a href={`/docs/${d.id}`}>{d.data.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  )}
+</DocLayout>

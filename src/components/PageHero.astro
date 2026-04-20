@@ -1,0 +1,79 @@
+---
+export interface Props {
+  kicker?: string;
+  title: string;
+  titleSize?: "lg" | "xl" | "2xl";
+  description?: string;
+  breadcrumb?: { label: string; href: string };
+  orbs?: boolean;
+  noise?: boolean;
+  background?: "default" | "dim";
+  size?: "sm" | "md" | "lg";
+  borderBottom?: boolean;
+  wide?: boolean;
+}
+
+const {
+  kicker,
+  title,
+  titleSize = "xl",
+  description,
+  breadcrumb,
+  orbs = false,
+  noise = false,
+  background = "default",
+  size = "lg",
+  borderBottom = true,
+  wide = false,
+} = Astro.props;
+
+const sizeClass = {
+  sm: "py-16 md:py-20",
+  md: "py-20 md:py-24",
+  lg: "py-20 md:py-28",
+}[size];
+
+const titleClass = {
+  lg: "font-serif text-display-lg text-paper-50 mb-6",
+  xl: "font-serif text-display-xl text-paper-50 mb-6",
+  "2xl": "font-serif text-display-2xl text-paper-50 mb-6",
+}[titleSize];
+
+const copyContainer = wide ? "" : "max-w-3xl";
+const hasFx = orbs || noise;
+---
+
+<section
+  class:list={[
+    sizeClass,
+    borderBottom ? "border-b border-white/[0.04]" : "",
+    background === "dim" ? "bg-ink-900/40" : "",
+    hasFx ? "relative overflow-hidden" : "",
+    noise ? "noise" : "",
+  ]}
+>
+  {orbs && (
+    <>
+      <div class="glow-orb h-[500px] w-[500px] -top-32 -left-32 bg-accent-ink/25 animate-orb-pulse" aria-hidden="true"></div>
+      <div class="glow-orb h-[420px] w-[420px] top-24 -right-24 bg-accent-glow/20 animate-orb-pulse" style="animation-delay: -3s" aria-hidden="true"></div>
+    </>
+  )}
+
+  <div class:list={["container-site", hasFx ? "relative" : ""]}>
+    {breadcrumb && (
+      <nav class="mb-8 text-xs font-mono uppercase tracking-widest text-ink-500" aria-label="Breadcrumb">
+        <a href={breadcrumb.href} class="hover:text-paper-200">{breadcrumb.label}</a>
+      </nav>
+    )}
+
+    <div class={copyContainer}>
+      {kicker && <p class="eyebrow mb-6 text-accent-glow">{kicker}</p>}
+      <h1 class={titleClass} set:html={title} />
+      {description && (
+        <p class="prose-ink text-lg max-w-2xl" set:html={description} />
+      )}
+      <slot name="copy" />
+    </div>
+    <slot />
+  </div>
+</section>

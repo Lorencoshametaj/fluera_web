@@ -1,0 +1,200 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+
+const tiers = [
+  {
+    name: "Free",
+    price: "€0",
+    period: "forever",
+    tagline: "The full canvas. Three notebooks. Forever free.",
+    features: [
+      "Infinite canvas, 13 brushes, full handwriting engine",
+      "3 notebooks, unlimited pages",
+      "Local-first — fully offline",
+      "Export to PNG and PDF",
+      "Basic Socratic mode",
+    ],
+    cta: { label: "Start free", href: "/beta" },
+    highlighted: false,
+  },
+  {
+    name: "Student",
+    price: "~€4",
+    period: "per month · .edu verified",
+    tagline: "Everything in Fluera, half the price, verified student email.",
+    features: [
+      "Everything in Pro",
+      "Half the price of Pro",
+      "Annual billing, verified each year",
+      "Proof: .edu / .ac.uk / ISIC academic card",
+    ],
+    cta: { label: "Get student access", href: "/beta" },
+    highlighted: true,
+    badge: "Recommended",
+  },
+  {
+    name: "Pro",
+    price: "~€9",
+    period: "per month",
+    tagline: "Unlimited notebooks, full AI suite, sync across all six platforms.",
+    features: [
+      "Unlimited notebooks",
+      "Full AI suite (Atlas, Ghost Map, Socratic, Fog of War)",
+      "Multi-device end-to-end encrypted sync",
+      "Time Travel audio-synced replay",
+      "All export formats (PNG, JPEG, WebP, SVG, PDF, .fluera)",
+      "Priority email support",
+    ],
+    cta: { label: "Get Pro", href: "/beta" },
+    highlighted: false,
+  },
+  {
+    name: "Education",
+    price: "Custom",
+    period: "campus-wide",
+    tagline: "Built for institutions. Talk to us.",
+    features: [
+      "Per-seat / classroom / campus-wide licensing",
+      "SSO (SAML, OIDC), MDM-friendly deployment",
+      "Immutable audit log per account",
+      "Faculty training on the 12-step cycle (2h workshop)",
+      "Data processing agreement, GDPR-native",
+      "Pilot program: one semester free with a class of 30+",
+    ],
+    cta: { label: "Talk to us", href: "/contact" },
+    highlighted: false,
+  },
+];
+
+const faq = [
+  {
+    q: "Why are you in private beta if I can see pricing?",
+    a: "We're finalising the pricing model with feedback from our first cohort. These numbers are our current best guess — whoever signs up now locks in that rate for life.",
+  },
+  {
+    q: "How does student verification work?",
+    a: "You sign up with a .edu or verified academic email address. If your institution doesn't use a .edu domain (common in Europe), we accept scanned student IDs, ISIC cards or a one-off verification email from your faculty.",
+  },
+  {
+    q: "What happens to my notebooks if I cancel Pro?",
+    a: "Your notebooks stay on your device and in the Free tier. You keep the first three; the rest become read-only until you resubscribe or export them. Nothing is ever deleted without your explicit action.",
+  },
+  {
+    q: "Is there a refund policy?",
+    a: "Yes — 30 days, no questions asked, on monthly and annual plans. Email support@fluera.dev from the address you signed up with.",
+  },
+  {
+    q: "Can I self-host Fluera?",
+    a: "The local-first part already runs fully offline on all six platforms. Cloud sync self-hosting is on the Education roadmap (on-prem, SSO, audit log) — not yet available in Phase 1.",
+  },
+  {
+    q: "Do you offer discounts for researchers or non-profits?",
+    a: "Yes. Research labs, PhD programs and registered non-profits can apply at /contact — we typically grant Pro at the Student rate or free in exchange for feedback.",
+  },
+  {
+    q: "Why no free trial of Pro?",
+    a: "The Free tier isn't crippled marketing — it's the full canvas. Use it as long as you need. Pro unlocks AI and sync, which are ongoing cloud costs we can't give for free.",
+  },
+  {
+    q: "What payment methods do you accept?",
+    a: "Credit/debit cards via Stripe (all major brands), SEPA direct debit for EU customers, and Apple Pay / Google Pay. Education customers can pay by bank transfer or purchase order.",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Pricing"
+  description="Free, Student, Pro and Education plans. Full canvas free forever. Verified student discount. Custom education licensing."
+  jsonLd={jsonLd}
+>
+  <PageHero
+    kicker="Pricing"
+    title="Free to learn.<br />Pro to go deeper."
+    description="One canvas. Four ways to pay for it — or not. Two people built this, the pricing is honest, and whoever joins now keeps their rate for life."
+  >
+    <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {tiers.map((t) => (
+          <article class={`card p-6 flex flex-col ${t.highlighted ? "border-accent-ink/40 bg-accent-ink/[0.05]" : ""}`}>
+            <div class="flex items-start justify-between mb-4">
+              <h2 class="font-serif text-xl text-paper-50">{t.name}</h2>
+              {t.badge && <span class="pill text-[10px] text-accent-glow border-accent-glow/40">{t.badge}</span>}
+            </div>
+
+            <div class="mb-5">
+              <p class="font-serif text-3xl text-paper-50 mb-1">{t.price}</p>
+              <p class="text-xs text-ink-500 font-mono uppercase tracking-widest">{t.period}</p>
+            </div>
+
+            <p class="text-sm text-paper-300 mb-6 leading-relaxed">{t.tagline}</p>
+
+            <ul class="space-y-2.5 text-sm mb-8 flex-grow">
+              {t.features.map((f) => (
+                <li class="flex items-start gap-2.5 text-paper-200">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="shrink-0 mt-0.5 text-accent-glow" aria-hidden="true">
+                    <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={t.cta.href}
+              class={t.highlighted ? "btn-primary" : "btn-secondary"}
+            >
+              {t.cta.label}
+            </a>
+          </article>
+        ))}
+      </div>
+
+    <p class="mt-12 text-xs text-ink-500 max-w-2xl italic">
+      Prices may evolve as we grow — whoever signs up now locks their tier rate for life. No dark patterns, no surprise auto-renewals: we email before every charge.
+    </p>
+  </PageHero>
+
+  <!-- FAQ -->
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-3 gap-12">
+        <SectionHeader kicker="Frequently asked" title="Questions, honestly answered." titleSize="lg" marginBottom="sm" class="mb-0" />
+        <div class="md:col-span-2 divide-y divide-white/[0.06]">
+          {faq.map((item) => (
+            <details class="group py-5 first:pt-0">
+              <summary class="cursor-pointer flex items-start justify-between gap-4 font-serif text-lg text-paper-50 list-none [&::-webkit-details-marker]:hidden">
+                <span>{item.q}</span>
+                <span class="mt-1.5 text-ink-500 transition-transform group-open:rotate-45" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <p class="mt-3 text-sm text-paper-300 leading-relaxed max-w-prose">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enterprise CTA -->
+  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Teaching a class? Running a faculty?</h2>
+      <p class="prose-ink text-lg mb-8 max-w-2xl mx-auto">
+        We run pilots with universities one cohort at a time. Free for the first semester, in exchange for structured feedback from your students.
+      </p>
+      <a href="/contact" class="btn-primary">Book a faculty conversation →</a>
+    </div>
+  </section>
+</BaseLayout>

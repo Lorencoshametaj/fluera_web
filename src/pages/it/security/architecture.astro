@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Architettura di sicurezza"
+  description="Come Fluera cifra il tuo quaderno a riposo, in transito e tra dispositivi. SQLCipher, TLS 1.3, sync end-to-end, telemetria opt-in, audit log per le istituzioni."
+  locale="it"
+>
+  <PageHero
+    kicker="Architettura"
+    title="Come Fluera protegge il tuo quaderno."
+    description={`Questa pagina descrive il modello di sicurezza al livello che un lettore tecnico — security officer, CISO di ateneo, sviluppatore curioso — si aspetta. Per la sintesi non-tecnica, parti da <a href="/it/security">/it/security</a>.`}
+    breadcrumb={{ label: "Sicurezza", href: "/it/security" }}
+  />
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+
+      <h2>Threat model</h2>
+      <p>
+        Assumiamo furto del dispositivo, intercettazione di rete ed esposizione accidentale via backup o cloud sync. Assumiamo che le credenziali dell'utente possano essere compromesse. <em>Non</em> assumiamo avversari di livello statale con accesso fisico a dispositivi sbloccati — Fluera non è uno strumento di segretezza, è uno strumento di studio.
+      </p>
+      <p>Dentro quel modello, tre garanzie:</p>
+      <ul>
+        <li><strong>I dati locali sono illeggibili senza la chiave.</strong> Un dispositivo rubato produce un blob cifrato.</li>
+        <li><strong>I dati sincronizzati sono illeggibili per noi.</strong> Il cloud tiene solo ciphertext. La derivazione avviene sul dispositivo.</li>
+        <li><strong>La telemetria è consensuale e de-identificata.</strong> Gli analytics non possono collegare un utente ai suoi contenuti nemmeno in caso di breach completo.</li>
+      </ul>
+
+      <h2>At-rest: SQLCipher, AES-256</h2>
+      <p>
+        Ogni quaderno Fluera vive in un database SQLite locale cifrato con SQLCipher — un'estensione ampiamente verificata che cifra trasparentemente ogni pagina del database con AES-256-CBC e integrity check HMAC-SHA512 per pagina.
+      </p>
+      <p>
+        La derivazione della chiave usa PBKDF2 con SHA-256, 256.000 iterazioni (allineato a OWASP). La passphrase è custodita nel keychain della piattaforma — Keychain su iOS/macOS, Keystore su Android, DPAPI su Windows, libsecret su Linux. Non viene mai inviata ai nostri server.
+      </p>
+
+      <h2>In transito: TLS 1.3, certificate pinning</h2>
+      <p>
+        Tutto il traffico di rete è TLS 1.3 con cifrari moderni. Su iOS e Android facciamo pinning dei certificati sulla nostra catena di CA per prevenire man-in-the-middle di proxy aziendali — con override documentato per gli amministratori di rete che ne hanno bisogno.
+      </p>
+
+      <h2>Sync tra dispositivi: end-to-end cifrato</h2>
+      <p>
+        Il cloud sync, quando attivato, usa un set di chiavi separato derivato sul dispositivo. Il server di sync (Supabase Storage, regione UE) tiene ciphertext e non può decifrare. Il sync è opt-in per quaderno — puoi tenerne alcuni solo locali mentre ne sincronizzi altri.
+      </p>
+      <p>
+        Rotazione delle chiavi: avviarla da qualsiasi dispositivo re-cifra tutti i payload futuri con una nuova chiave. I ciphertext vecchi restano leggibili per i client più vecchi finché non confermi la migrazione su tutti i dispositivi.
+      </p>
+
+      <h2>Collaborazione P2P: diretta, cifrata</h2>
+      <p>
+        La collaborazione real-time usa WebRTC DataChannel con cifratura DTLS-SRTP. Supabase Realtime fa solo da broker di signaling — setup della connessione — non da relay per il traffico vero del canvas. Dopo l'handshake, gli edit del canvas fluiscono peer-to-peer. Il server non li vede.
+      </p>
+      <p>
+        Su NAT restrittivi passiamo via TURN, nel qual caso il relay vede solo pacchetti DTLS cifrati che non può decrittare.
+      </p>
+
+      <h2>Chiamate AI: via proxy, mai dirette</h2>
+      <p>
+        Le chiamate a Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) passano attraverso una Supabase Edge Function che custodisce la API key lato server. I dispositivi client non vedono mai la chiave. Il proxy applica i rate limit per piano e logga le durate delle chiamate per la contabilità — mai il contenuto del canvas.
+      </p>
+      <p>
+        Se disattivi le funzioni AI in <em>Impostazioni → Privacy</em>, nessun contenuto del canvas viene inviato a Gemini, nemmeno per fallback OCR on-device.
+      </p>
+
+      <h2>Telemetria: opt-in, hashata, allowlisted</h2>
+      <p>
+        Gli analytics di prodotto sono disattivati di default. Quando attivati, gli eventi sono limitati a una whitelist lato server (inizio/fine sessione, invocazione feature, durata chiamata AI — mai contenuto). L'ID utente è hashato SHA-256 sul dispositivo; l'ID in chiaro non lascia mai il client. Gli eventi sono conservati 180 giorni, poi aggregati o eliminati.
+      </p>
+
+      <h2>Audit log (account Istituzionali)</h2>
+      <p>
+        Ogni accesso ai quaderni condivisi — chi, da quale dispositivo, quando — viene scritto in un audit log append-only. Gli amministratori possono esportare il log in CSV o JSON per i controlli di compliance. Il log è write-once: la cancellazione richiede una motivazione documentata ed è a sua volta loggata.
+      </p>
+
+      <h2>Recovery e perdita della chiave</h2>
+      <p>
+        Se perdi la passphrase, i dati cifrati diventano irrecuperabili. È intenzionale — l'alternativa sarebbe un percorso di recovery che indebolirebbe necessariamente il modello di cifratura. Per gli account Istituzionali, si può configurare una chiave di recovery opzionale custodita dall'amministratore; è un trade-off documentato su cui l'istituzione sceglie consapevolmente.
+      </p>
+
+      <h2>Responsible disclosure</h2>
+      <p>
+        I security researcher sono benvenuti. Segnala le vulnerabilità a <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> con cifratura PGP (chiave pubblicata sul profilo GitHub). Riceviamo riscontro entro 24 ore, patch dei problemi critici entro 72, e citiamo chi segnala nella hall of fame salvo richiesta di anonimato.
+      </p>
+      <p>
+        Scope: l'app Fluera (tutte le piattaforme), il servizio di sync, il proxy AI e questo sito marketing. Fuori scope: servizi terzi (Supabase, Google, Apple, Sentry, RevenueCat) — segnala ai vendor corrispondenti.
+      </p>
+
+      <h2>Valutazioni esterne</h2>
+      <p>
+        Fluera non ha attualmente certificazioni SOC 2 o ISO 27001. Sono sulla roadmap enterprise e saranno annunciate pubblicamente a completamento. Preferiamo non dichiarare controlli che non abbiamo verificato in modo indipendente.
+      </p>
+      <p>
+        La <a href="/it/security/sub-processors">lista sub-processor</a> è pubblica e aggiornata. Il Data Processing Agreement è disponibile su richiesta a <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a>.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/it/security/sub-processors" class="btn-secondary">Sub-processor →</a>
+        <a href="/it/contact" class="btn-primary">Parliamone per il deploy</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

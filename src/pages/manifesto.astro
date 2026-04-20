@@ -1,0 +1,156 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Manifesto — On building a study app in 2026"
+  description="A long-form statement of what Fluera is, what it refuses to be, and why the obvious product is the wrong product."
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Manifesto</p>
+      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">The study space your brain was built for.</h1>
+      <p class="prose-ink text-xl italic">
+        A long-form statement of what Fluera is, what it refuses to be, and why the obvious product was the wrong product.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-16 md:py-20">
+    <div class="container-prose prose-v2 prose-v2-essay">
+
+      <h2>The premise</h2>
+      <p>
+        In 2026, any fact is three seconds away. Any explanation can be regenerated in whatever style suits the reader. The marginal cost of accessing knowledge has fallen approximately to zero, for the first time in the history of our species.
+      </p>
+      <p>
+        And yet learners — students, professionals, lifelong-curious adults — report feeling less competent at what they consume than they did ten years ago. Not because the material is harder. Because the consumption is frictionless, and frictionless consumption leaves no trace.
+      </p>
+      <p>
+        The bottleneck of learning has moved. For most of history it was access. For my generation it was search. In 2026 it is something different and harder to name: <em>the transformation of fluent recognition into durable competence</em>. And we have not built infrastructure for the new bottleneck yet.
+      </p>
+
+      <h2>What the science has been saying</h2>
+      <p>
+        For fifty years, the cognitive science of learning has been converging on a small set of findings that have the unusual property of being both counter-intuitive and extremely robust.
+      </p>
+      <p>
+        Ebbinghaus showed in 1885 that the forgetting curve is exponential, and that spaced review resets it. Slamecka and Graf showed in 1978 that information you generate yourself is remembered vastly better than identical information you merely read. Bjork documented across four decades that the conditions which feel easiest during study are almost exactly the conditions that produce the worst long-term retention — the <em>desirable difficulties</em> framework. Butterfield and Metcalfe showed in 2001 that errors made with high confidence, when corrected, stick harder than errors made with low confidence — hypercorrection. Roediger and Karpicke established in 2006 that being tested is not a measurement of memory but an act that creates it.
+      </p>
+      <p>
+        Meta-analyses have confirmed these findings repeatedly, across disciplines, age groups, and cultures. In the ranking of study strategies by evidence strength, successive relearning — spacing combined with retrieval practice at widening intervals — sits at the top. Rereading sits near the bottom. Highlighting is approximately useless.
+      </p>
+      <p>
+        The practical implication is sharp: the default study behaviours that feel productive are, on the evidence, the least productive. And the study behaviours that produce the best results feel harder, slower, and less satisfying in the moment.
+      </p>
+      <p>
+        This is not a minor methodological quibble. It is the single most important thing to understand about learning, and it is almost entirely absent from the design of every major study tool on the market.
+      </p>
+
+      <h2>What LLMs broke</h2>
+      <p>
+        The arrival of large language models did not change any of the findings above. It changed the texture of how learners encounter them.
+      </p>
+      <p>
+        An LLM that answers your question in three seconds, in whatever style you specify, in perfect fluency, triggers exactly the pattern the science warns against. Recognition mistaken for encoding. System 1 confidence without System 2 engagement. Automation bias amplified by the surface fluency of the output. The illusion of competence, at planetary scale.
+      </p>
+      <p>
+        The cognitive scientists who had spent forty years warning against highlighting suddenly had a more serious adversary: a tool so good at making the wrong thing feel right that even they, in their own learning, had to work to resist it.
+      </p>
+      <p>
+        Worse: the default user-interface pattern for LLMs — <em>ask question, receive fluent answer, nod, move on</em> — is almost perfectly designed to bypass the retrieval practice, generation effect, and desirable difficulties that durable memory requires. The interface rewards passivity. The underlying model amplifies it. The resulting learner feels taught and is not.
+      </p>
+
+      <h2>The Centaur premise</h2>
+      <p>
+        After Deep Blue beat Kasparov in 1997, the world briefly assumed chess was over — the engines had won, and human effort was obsolete. Then Kasparov himself proposed a stranger observation: the strongest chess player in the world is neither a human nor a machine. It is a human <em>with</em> a machine, in structured symbiosis. He called it the <em>Centaur</em>.
+      </p>
+      <p>
+        The insight generalises far beyond chess. In any domain where human judgement is irreducible — strategy, context, values, taste, depth of meaning — the pattern that wins is neither human versus AI nor human replaced by AI. It is human amplified by AI, with the human keeping the cognitive work that produces growth.
+      </p>
+      <p>
+        Applied to learning, the Centaur pattern inverts common 2026 usage. The default today — <em>ask the LLM, read the answer, move on</em> — is anti-Centaur. The human is outsourcing the exact cognitive activity that produces memory and understanding.
+      </p>
+      <p>
+        The Centaur version is the opposite. The AI asks instead of answering. Verifies instead of volunteering. Scaffolds instead of solving. The human does the retrieval, the generation, the spatial positioning, the handwritten encoding. The AI contributes breadth of knowledge, real-time calibration, and the Socratic prompts that a good tutor would provide if you could afford one.
+      </p>
+
+      <h2>What Fluera is</h2>
+      <p>
+        Fluera is the Centaur, built as a study tool.
+      </p>
+      <p>
+        The canvas is infinite, blank, handwritten. Every concept you place is generated by your own hand — paraphrased, compressed, positioned in space. The blankness is deliberate. Templates would short-circuit the generation step.
+      </p>
+      <p>
+        The AI interrogates the canvas. It asks questions calibrated to the current state of your knowledge, within the Zone of Proximal Development — too easy teaches nothing, too hard cannot be learned. Before each reveal, Fluera asks for your confidence on a scale of one to five. This is not a UI quirk. It primes the hypercorrection effect: a confidence-5 wrong answer, corrected, leaves a far deeper trace than any number of passive re-readings.
+      </p>
+      <p>
+        Ghost Map — the feature that most cleanly expresses the Centaur pattern — overlays an ideal reconstruction against your own. Mismatches pulse visually. You correct by writing, not by clicking. The wronger you were, the more durable the correction.
+      </p>
+      <p>
+        Fog of War, for exam preparation, hides regions of your canvas and asks you to retrieve before revealing. The first session is frustrating. That is the point. Retrieval under occlusion is the single most effective study activity the cognitive science literature has documented, and the frustration is the mechanism.
+      </p>
+      <p>
+        The spaced repetition scheduler schedules returns at widening intervals, with pedagogical modifiers — hypercorrection bonus, peek malus, response-time signal — layered on top of a personalised FSRS model calibrated on your actual review history. It works with the canvas you have, not with a parallel universe of flashcards you would have to build.
+      </p>
+      <p>
+        Time Travel keeps the audio of the lecture synchronised to every stroke of your handwriting, so that weeks later you can touch a note and hear the moment you wrote it. Cue-dependent retrieval says that matching the retrieval context to the encoding context strengthens recall. Time Travel is that principle made literal.
+      </p>
+
+      <h2>What Fluera refuses to be</h2>
+      <p>
+        There are four things Fluera will not do, in roughly descending order of temptation.
+      </p>
+      <p>
+        <strong>We will not have an AI that answers your exam questions for you.</strong> The short-term user satisfaction would be enormous. The long-term outcome — atrophy of the exact cognitive muscles the tool is supposed to strengthen — would be a betrayal of the stated goal. An AI that does the work for you is an AI that teaches you nothing.
+      </p>
+      <p>
+        <strong>We will not sell your notebook data.</strong> Every notebook is encrypted at rest with AES-256. Sync, when enabled, is end-to-end encrypted. We do not train our models on your content. Your handwriting, your thinking, your mistakes, and your growth are yours. The fact that "your data is the product" is the default in 2026 ed-tech does not make it tolerable.
+      </p>
+      <p>
+        <strong>We will not run engagement loops, ads, or streaks.</strong> The strongest signal we could optimise for — daily active users, session length, notification click-through — is also the one most likely to corrupt the product. Your relationship with studying should not depend on a push notification. We would rather you use Fluera less and learn more.
+      </p>
+      <p>
+        <strong>We will not ship features we cannot defend with evidence.</strong> Either the feature traces to a published finding, or it traces to consistent feedback from our beta, or it does not ship. Shiny is not a feature. Novelty is not a feature. We have turned down more ideas than we have built, and the ratio is the product.
+      </p>
+
+      <h2>Who we are building for</h2>
+      <p>
+        Fluera is not for everyone. The friction is real. The design decisions are inverted from the obvious product. First-session abandonment is higher than we'd like, and we are not going to fix it by removing the friction — because the friction is the thing that makes the product work.
+      </p>
+      <p>
+        We build for a specific cohort. Medical students preparing for oral exams they cannot fake through. PhD students in fields where fluent bullshit gets punished by their committees. Lawyers studying for the bar. Autodidacts and late-career professionals who notice that everything they delegate to ChatGPT evaporates by next week. Undergraduates in concept-heavy programmes who have realised their highlighters are producing fluency, not competence.
+      </p>
+      <p>
+        If that's you, we think you'll feel the difference quickly. If it's not, we understand — there are other products for other problems, and we will not pretend Fluera is universal.
+      </p>
+
+      <h2>What we are betting</h2>
+      <p>
+        The bet is that in a field where every competitor has surrendered to short-term user preference and built tools that feel great and teach almost nothing, there is room for a tool that is worse at the feel and better at the teach. The market is smaller than the ed-tech incumbents command. The cultural fit with the times is harder. The product is slower to build.
+      </p>
+      <p>
+        In exchange: a real chance of building something that does what it says. A real chance of helping a real cohort of learners produce durable competence in a decade that has made durability rare. And — if we're honest — a real chance of putting on record that there was another way to build this, in 2026, that wasn't the obvious way.
+      </p>
+      <p>
+        That is the product. That is the team. That is the commitment.
+      </p>
+      <p>
+        If any of it resonates — the beta is open at <a href="/beta">/beta</a>, and we'd like to meet you.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Join the beta →</a>
+        <a href="/science" class="btn-secondary">Read the science</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

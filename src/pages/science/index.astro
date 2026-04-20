@@ -1,0 +1,236 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import { getCollection } from "astro:content";
+
+const principles = (await getCollection("principles", ({ data }) => data.lang === "en")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const authors = (await getCollection("authors", ({ data }) => data.lang === "en")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const fields = [
+  { slug: "memory",         label: "Memory" },
+  { slug: "metacognition",  label: "Metacognition" },
+  { slug: "pedagogy",       label: "Pedagogy" },
+  { slug: "motivation",     label: "Motivation" },
+  { slug: "embodiment",     label: "Embodiment" },
+  { slug: "neuroscience",   label: "Neuroscience" },
+];
+
+const steps = [
+  { n: 1,  title: "Capture",              verb: "Lecture day",    description: "Write concepts by hand during the lecture. Position them in space. Compression — forced by the slowness of the pen — is where encoding begins." },
+  { n: 2,  title: "Reconstruct",          verb: "Same evening",   description: "Close the book. Rebuild what you remember on a blank canvas. The red nodes are the map of what to study next." },
+  { n: 3,  title: "Socratic",             verb: "Within 48h",     description: "The AI asks; you answer. Rate your confidence one to five before each reveal. Metacognition made explicit." },
+  { n: 4,  title: "Centaur",              verb: "Right after",    description: "Ghost Map overlays your reasoning against the ideal. Hypercorrection makes the gaps permanent." },
+  { n: 5,  title: "Sleep",                verb: "That night",     description: "Do nothing. Slow-wave sleep replays the day. The hippocampus hands traces to the neocortex." },
+  { n: 6,  title: "First Return",         verb: "Day 1",          description: "Come back the next day. The canvas fades what you almost knew. Pull it back from memory." },
+  { n: 7,  title: "Peer Learning",        verb: "Days 2–3",       description: "Visit a classmate's canvas. Teach. Be taught. Organising for others cements it for you." },
+  { n: 8,  title: "Spaced Returns",       verb: "Day 3 · 7 · 14…",description: "Successive relearning at widening intervals. The gold-standard evidence-based strategy." },
+  { n: 9,  title: "Cross-Domain Bridges", verb: "Weeks later",    description: "Zoom out to continent view. Draw arrows between subjects. Transfer is the real test of learning." },
+  { n: 10, title: "Exam Prep",            verb: "7–14 days before",description: "Fog of War mode. Navigate the mist of your own canvas. The mastery map makes itself." },
+  { n: 11, title: "The Exam",             verb: "The day",        description: "Close the device. Walk the memory palace you built with your hands. The canvas lives in you now." },
+  { n: 12, title: "Lasting Growth",       verb: "Forever after",  description: "The canvas persists as a cognitive autobiography. See the tangible shape of how much you've grown." },
+];
+---
+
+<BaseLayout
+  title="The Science of Fluera"
+  description="Fluera is built on five decades of memory research — Bjork, Mueller, van der Meer, Roediger, and the Nobel-winning neuroscience of place cells. Explore the 12-step learning cycle and the principles behind every feature."
+>
+
+  <!-- HERO -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -left-40 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">The Science</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Five decades of memory research,<br />mapped to one app.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Every Fluera feature traces back to published research. Below: the 12-step learning cycle, the 23 principles behind it, the twelve minds whose work we build on, and — honestly — the edges of what we do not yet claim.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#learning-cycle" class="btn-secondary">Jump to the cycle</a>
+          <a href="#principles" class="btn-secondary">Principle index</a>
+          <a href="#authors" class="btn-secondary">Authors</a>
+          <a href="/research" class="btn-secondary">Bibliography →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP CYCLE -->
+  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">The loop</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">One canvas. Twelve cognitive moves.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          The cycle is sequential and iterative. Steps 1–4 build the encoding. Step 5 (sleep) is non-negotiable biology. Steps 6–9 consolidate across days and weeks. Steps 10–12 make the knowledge permanent and transferable.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PRINCIPLE INDEX -->
+  <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Principle index</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">The 23 principles behind Fluera.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Each links to a dedicated page with primary authors, applied features, and the papers we cite.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-8" role="group" aria-label="Filter principles by field">
+        <button data-filter="all" class="filter-pill filter-pill-active pill hover:border-accent-glow/40">All</button>
+        {fields.map((f) => (
+          <button data-filter={f.slug} class="filter-pill pill hover:border-accent-glow/40">{f.label}</button>
+        ))}
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3" id="principle-grid">
+        {principles.map((p) => (
+          <li data-field={p.data.fieldOfStudy}>
+            <a
+              href={`/science/principles/${p.id}`}
+              class="block card p-5 h-full transition-all hover:border-accent-glow/40 hover:bg-white/[0.04]"
+            >
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{p.data.title}</h3>
+                <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+              </div>
+              <p class="text-sm text-paper-300 leading-relaxed line-clamp-3">{p.data.shortDescription}</p>
+              <span class="mt-3 inline-block text-[10px] font-mono uppercase tracking-widest text-accent-glow/70">
+                {p.data.fieldOfStudy}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <style>
+      .filter-pill { cursor: pointer; transition: all 0.15s; }
+      .filter-pill-active {
+        background: rgb(45 74 222 / 0.18);
+        border-color: rgb(56 189 248 / 0.5);
+        color: theme("colors.accent.glow");
+      }
+    </style>
+
+    <script>
+      const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-pill");
+      const items = document.querySelectorAll<HTMLLIElement>("#principle-grid li");
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const filter = btn.dataset.filter!;
+          buttons.forEach((b) => b.classList.remove("filter-pill-active"));
+          btn.classList.add("filter-pill-active");
+          items.forEach((li) => {
+            const field = li.dataset.field;
+            li.style.display = filter === "all" || field === filter ? "" : "none";
+          });
+        });
+      });
+    </script>
+  </section>
+
+  <!-- AUTHORS -->
+  <section id="authors" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">The minds behind the method</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Twelve researchers whose work lives inside Fluera.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Not a tribute page. Each name links to a page that names the principle they're associated with, the Fluera features that implement it, and the papers we cite.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none p-0">
+        {authors.map((a) => (
+          <li>
+            <a href={`/science/authors/${a.id}`} class="block">
+              <AuthorCard name={a.data.name} contribution={a.data.shortBio.slice(0, 160) + (a.data.shortBio.length > 160 ? "…" : "")} year={a.data.years} nobel={a.data.nobelLaureate} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHY THIS MATTERS NOW -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Why this matters now</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">The bottleneck shifted.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          For most of history, the bottleneck of learning was access. Books were expensive, teachers were few, libraries were far. The question that mattered was: <em>can I get to the information at all?</em>
+        </p>
+        <p>
+          For the last generation, the bottleneck was navigation. Information was abundant; finding the right piece was the work. Google, Wikipedia, course catalogues — we built infrastructure for one question: <em>where is it?</em>
+        </p>
+        <p>
+          In 2026, neither question binds. Any fact is three seconds away. Any explanation is generable in whatever style suits you. The bottleneck has moved again, and we have not yet built infrastructure for the new shape: <em>how do I turn what I just read into something I actually keep?</em>
+        </p>
+        <p>
+          The cognitive science of that question has been answered for fifty years. Spaced repetition, retrieval practice, generation, desirable difficulties, embodied cognition, metacognitive calibration. The findings are robust. The meta-analyses are consistent. The problem has never been knowing what works — it has been building tools that make the right thing the easy thing.
+        </p>
+        <p>
+          The temptation of the LLM era is the opposite. It makes the wrong thing — passive consumption of fluent explanations — feel like the right thing. Three seconds of recognition, mistaken for encoding. We do not need another app that speeds up that mistake.
+        </p>
+        <p>
+          Fluera is built against the grain. Slow where speed is an illusion. Quiet where noise is the business model. Friction where friction is the mechanism. Not because we like the pain, but because the evidence is unambiguous — the pain <em>is</em> the learning.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DON'T CLAIM -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Transparency</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">What we don't claim.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          We cite evidence for each principle because the evidence is there. That does not mean Fluera itself has been tested against controls. It has not — not yet. When we say "evidence-based," we mean the underlying mechanism is. The specific implementation is an engineering bet informed by the evidence.
+        </p>
+        <p>
+          We are not a clinical tool. We are not a replacement for a competent tutor. We will not claim that using Fluera raises any particular learner's outcome by any particular percentage. Such a claim would be dishonest or unfalsifiable; either is worse than silence.
+        </p>
+        <p>
+          Some of the principles listed are contested in specific domains. Growth mindset interventions have mixed replication in controlled classroom trials. Flow is easier to recognise than to reliably engineer. Spatial cognition in digital environments does not always match spatial cognition in physical ones. We note these edges because flattening them is the fastest way to lose the trust of exactly the learners we care about.
+        </p>
+        <p>
+          The meta-analyses we cite are as close to consensus as cognitive science produces. The specific Fluera features built on them are, at this moment, hypotheses we are testing with the beta. If something does not work for you, we want to know — that signal is more valuable than any landing-page claim.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Try the cycle.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Reading about retrieval practice is not retrieval practice. Join the private beta and put the cycle through its paces on a canvas of your own.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Join the beta →</a>
+        <a href="/research" class="btn-secondary">Read the bibliography</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,113 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const processors = [
+  {
+    name: "Supabase Inc.",
+    purpose: "Database, authentication, encrypted cloud storage, realtime signalling, AI proxy Edge Functions.",
+    dataTypes: "Account email, hashed user ID, canvas ciphertext (E2E encrypted), sync metadata.",
+    region: "Frankfurt, EU (default region for Fluera instances).",
+    privacy: "https://supabase.com/privacy",
+  },
+  {
+    name: "Google LLC",
+    purpose: "Google Generative AI (Gemini) for Socratic mode, Ghost Map, LaTeX OCR, and exam-session generation.",
+    dataTypes: "Selected canvas text portions (only when AI features are consented and used). Never the full notebook.",
+    region: "US, EU via Google Cloud regions; SCC + EU-US DPF.",
+    privacy: "https://policies.google.com/privacy",
+  },
+  {
+    name: "Apple Inc.",
+    purpose: "Sign in with Apple authentication; App Store in-app purchases on iOS and macOS.",
+    dataTypes: "Apple ID email relay, receipt identifiers. No canvas data.",
+    region: "US; SCC + EU-US DPF.",
+    privacy: "https://www.apple.com/legal/privacy/",
+  },
+  {
+    name: "RevenueCat Inc.",
+    purpose: "Subscription management and receipt validation across iOS, Android, and web.",
+    dataTypes: "Anonymised RevenueCat user ID, subscription status, receipt metadata. No payment card data.",
+    region: "US; SCC + EU-US DPF.",
+    privacy: "https://www.revenuecat.com/privacy",
+  },
+  {
+    name: "Functional Software Inc. (Sentry)",
+    purpose: "Crash reporting and error monitoring.",
+    dataTypes: "Stack traces, OS version, device model, app version. sendDefaultPii is explicitly disabled — no user content.",
+    region: "US, EU options available.",
+    privacy: "https://sentry.io/privacy/",
+  },
+  {
+    name: "Vercel Inc.",
+    purpose: "Hosting of fluera.dev marketing site and /docs.",
+    dataTypes: "Standard web access logs (IP, user-agent). No account content.",
+    region: "Global edge; origin region configurable.",
+    privacy: "https://vercel.com/legal/privacy-policy",
+  },
+];
+
+const lastUpdated = "2026-04-20";
+---
+
+<BaseLayout
+  title="Sub-processors"
+  description="The third-party services Fluera relies on to deliver the product. Purpose, data shared, region, and link to each sub-processor's privacy policy."
+>
+
+  <PageHero
+    kicker="Sub-processors"
+    title="Every third party we rely on."
+    description="Under GDPR Art. 28, every sub-processor that handles personal data on our behalf is listed here — what we share, why, and where it lives. We notify customers of changes before they take effect."
+    breadcrumb={{ label: "Security", href: "/security" }}
+  >
+    <p slot="copy" class="mt-6 text-sm text-ink-500 font-mono">Last updated: {lastUpdated}</p>
+  </PageHero>
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-5xl">
+        {processors.map((p) => (
+          <li class="card p-6 md:p-7">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <h2 class="font-serif text-xl text-paper-50 mb-2">{p.name}</h2>
+                <a href={p.privacy} class="text-xs text-accent-glow underline underline-offset-4 font-mono" rel="noopener">
+                  Privacy policy ↗
+                </a>
+              </div>
+              <dl class="md:col-span-3 grid gap-3 text-sm">
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Purpose</dt>
+                  <dd class="text-paper-200">{p.purpose}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Data shared</dt>
+                  <dd class="text-paper-200">{p.dataTypes}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Region</dt>
+                  <dd class="text-paper-200">{p.region}</dd>
+                </div>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">Changes and notifications</h2>
+      <p class="prose-ink text-sm mb-4">
+        We update this list whenever a sub-processor is added, changed, or removed. Education and enterprise customers receive email notice at least 30 days before the change takes effect, per Art. 28(2) GDPR.
+      </p>
+      <p class="prose-ink text-sm">
+        To subscribe to sub-processor change notifications, email <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a> from the address on your account.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

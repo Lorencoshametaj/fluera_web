@@ -1,0 +1,46 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { buildEngineDocsSections } from "@/lib/docs-nav";
+
+const sections = await buildEngineDocsSections();
+---
+
+<DocLayout
+  title="fluera_engine SDK"
+  description="The developer reference for fluera_engine. Quickstart, API, adapter contracts, and advanced topics for everyone building on the Flutter 2D engine."
+  sections={sections}
+  rootHref="/engine/docs"
+  rootLabel="SDK docs"
+  sectionLabel="Overview"
+>
+  <p>The fluera_engine SDK is a 2D rendering engine for Flutter. It runs on six native platforms (Vulkan on Android, Metal on iOS/macOS, OpenGL on Linux, Direct3D 11 on Windows, WebGPU on the web) with sub-15-millisecond stroke latency.</p>
+
+  <p>This is the developer documentation. For the marketing page, see <a href="/engine">the engine overview</a>.</p>
+
+  <h2>Start here</h2>
+
+  <p><a href="/engine/docs/quickstart">Quickstart</a> — drop the canvas into a Flutter widget tree in five lines. If this doesn't work, nothing else will, so we make sure it does.</p>
+
+  <h2>By section</h2>
+
+  {sections.map((sec) => (
+    <section class="mt-8">
+      <h3 id={sec.slug}>{sec.label}</h3>
+      <ul>
+        {sec.links.map((link) => (
+          <li><a href={link.href}>{link.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <h2>Philosophy</h2>
+
+  <p>Everything is opt-in. <code>FlueraCanvasConfig.defaults()</code> gives you a working local-first canvas with nothing else wired. You add adapters (storage, cloud, realtime, P2P, voice, PDF) only when you need them. The binary size, the permissions surface, and the attack surface scale linearly with what you opt into — not with what the engine supports in total.</p>
+
+  <p>Nothing is global. Every <code>FlueraCanvasScreen</code> gets its own <code>config</code>. You can have a preview canvas with minimal config and a main canvas with full feature parity in the same app. No singletons, no static state, no surprise across-screen interactions.</p>
+
+  <h2>Support</h2>
+
+  <p>Open an issue on the GitHub repo for bugs, feature requests, and questions that can be answered publicly. For private questions (licensing, commercial deployment), email <a href="/contact">the team</a>.</p>
+</DocLayout>

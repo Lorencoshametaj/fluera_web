@@ -1,0 +1,180 @@
+---
+import LegalLayout from "@/layouts/LegalLayout.astro";
+
+const placeholders = [
+  { key: "NOME LEGALE AZIENDA", note: "ragione sociale completa" },
+  { key: "INDIRIZZO COMPLETO", note: "sede legale" },
+  { key: "PARTITA IVA / CODICE FISCALE", note: "" },
+  { key: "REGIONE SUPABASE SCELTA", note: "verifica dashboard Supabase" },
+  { key: "DATA ULTIMO AGGIORNAMENTO", note: "data effettiva pubblicazione" },
+];
+
+const summary = `Informativa sul trattamento dei dati personali degli utenti dell'applicazione Fluera, redatta ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (<strong>GDPR</strong>) e del D.Lgs. 196/2003 come novellato dal D.Lgs. 101/2018.`;
+---
+
+<LegalLayout
+  title="Privacy Policy"
+  kicker="Legale"
+  summary={summary}
+  version="1.0"
+  updatedAt="[DATA ULTIMO AGGIORNAMENTO — es. 19 aprile 2026]"
+  locale="it"
+  placeholders={placeholders}
+>
+  <h2 id="titolare">1. Titolare del trattamento</h2>
+  <p>Il Titolare del trattamento dei dati personali è:</p>
+  <ul>
+    <li><strong>Ragione sociale:</strong> <span class="legal-placeholder">[NOME LEGALE AZIENDA — es. Looponia S.r.l.]</span></li>
+    <li><strong>Sede legale:</strong> <span class="legal-placeholder">[INDIRIZZO COMPLETO — via, CAP, città, provincia, paese]</span></li>
+    <li><strong>P.IVA / C.F.:</strong> <span class="legal-placeholder">[PARTITA IVA / CODICE FISCALE]</span></li>
+    <li><strong>Email di contatto privacy:</strong> <a href="mailto:privacy@fluera.dev">privacy@fluera.dev</a></li>
+    <li><strong>Email di supporto generale:</strong> <a href="mailto:support@fluera.dev">support@fluera.dev</a></li>
+  </ul>
+  <p>
+    Non è stato nominato un Data Protection Officer (DPO) in quanto non ricorrono i presupposti dell'art. 37 GDPR. Per qualsiasi questione relativa al trattamento dei propri dati, l'utente può comunque contattare il Titolare agli indirizzi indicati sopra.
+  </p>
+
+  <h2 id="dati-raccolti">2. Dati personali trattati</h2>
+  <p>
+    Fluera tratta le seguenti categorie di dati personali, esclusivamente nella misura necessaria alle finalità dichiarate e previo consenso granulare dell'utente ove richiesto.
+  </p>
+
+  <h3>2.1 Dati di account</h3>
+  <ul>
+    <li>Indirizzo email, se l'utente crea un account (Supabase Auth)</li>
+    <li>Identificativo utente (<code>user_id</code>) generato da Supabase — anche per le sessioni anonime</li>
+    <li>Dati del provider di autenticazione se utilizzato (Google Sign-In, Sign in with Apple): email, nome, identificativo univoco del provider</li>
+  </ul>
+
+  <h3>2.2 Contenuti prodotti dall'utente</h3>
+  <ul>
+    <li>Canvas, tratti, note, annotazioni PDF, immagini inserite</li>
+    <li>Registrazioni audio delle sessioni di studio (solo se la funzione Time Travel è attiva)</li>
+    <li>Questi contenuti sono cifrati at-rest nel database locale mediante SQLCipher (art. 32 GDPR) e trasmessi al server solo se l'utente attiva il Cloud Sync</li>
+  </ul>
+
+  <h3>2.3 Dati di utilizzo (telemetria)</h3>
+  <p>Solo se l'utente ha prestato consenso alla categoria <strong>Analytics di prodotto</strong>:</p>
+  <ul>
+    <li><code>session_id</code> anonimo generato casualmente per sessione</li>
+    <li>Hash SHA-256 dello <code>user_id</code> (mai l'identificativo in chiaro)</li>
+    <li>Piattaforma (iOS, Android, macOS, Windows, Linux, Web), versione dell'app, tier di abbonamento, lingua del dispositivo</li>
+    <li>Eventi di prodotto appartenenti a una lista chiusa ("whitelist" lato server) — ad esempio: inizio/fine sessione, avvio/completamento di Ghost Map, avvio/completamento di Socratic Mode, review SRS, chiamate AI con durata e token consumati</li>
+    <li><strong>Non sono raccolti:</strong> contenuto degli appunti, testo delle domande, informazioni identificative personali.</li>
+  </ul>
+
+  <h3>2.4 Dati per funzioni AI</h3>
+  <p>Solo se l'utente ha prestato consenso alla categoria <strong>Funzioni AI</strong>:</p>
+  <ul>
+    <li>Porzioni selezionate di testo del canvas (es. testo OCR di cluster) inviate a Google Gemini per Socratic Mode, Ghost Map, LaTeX OCR, Exam Session</li>
+    <li>Token di utilizzo per l'enforcement dei limiti di piano</li>
+    <li>In modalità produzione le chiamate transitano attraverso un proxy Supabase Edge Function che mantiene la chiave API lato server</li>
+  </ul>
+
+  <h3>2.5 Dati per Cloud Sync</h3>
+  <p>Solo se l'utente ha prestato consenso alla categoria <strong>Cloud Sync</strong>:</p>
+  <ul>
+    <li>Copia cifrata dei canvas sincronizzata su Supabase Storage</li>
+    <li>Metadati di sincronizzazione (hash, timestamp, dimensione)</li>
+  </ul>
+
+  <h3>2.6 Dati di diagnostica e crash</h3>
+  <p>Solo se l'utente ha prestato consenso alla categoria <strong>Report dei crash</strong>:</p>
+  <ul>
+    <li>Stack trace dell'errore, versione OS, modello dispositivo, versione app</li>
+    <li>Nessun contenuto dell'utente è incluso nei report (<code>sendDefaultPii: false</code>)</li>
+    <li>Processati tramite Sentry (<a href="https://sentry.io/privacy/" rel="noopener">Privacy Policy Sentry</a>)</li>
+  </ul>
+
+  <h3>2.7 Dati di abbonamento</h3>
+  <ul>
+    <li>Stato dell'abbonamento (free / essential / plus / pro), data di attivazione, rinnovo, scadenza</li>
+    <li>Identificativi generati da RevenueCat, Apple e Google per il matching delle ricevute</li>
+    <li>Nessun dato di pagamento (numeri di carta, IBAN) viene mai memorizzato dai nostri sistemi: le transazioni sono gestite interamente da Apple, Google e RevenueCat</li>
+  </ul>
+
+  <h2 id="finalita">3. Finalità e basi giuridiche</h2>
+  <p>Il trattamento dei dati personali avviene esclusivamente per le seguenti finalità:</p>
+  <ul>
+    <li><strong>Erogazione del servizio</strong> (account, creazione e lettura canvas locali): esecuzione del contratto o di misure pre-contrattuali (art. 6.1.b GDPR).</li>
+    <li><strong>Funzioni AI</strong> (Socratic, Ghost Map, LaTeX OCR, Exam): consenso esplicito e revocabile dell'utente (art. 6.1.a GDPR).</li>
+    <li><strong>Cloud Sync</strong>: consenso esplicito e revocabile dell'utente (art. 6.1.a GDPR).</li>
+    <li><strong>Analytics di prodotto</strong>: consenso esplicito e revocabile dell'utente (art. 6.1.a GDPR). I dati servono a misurare l'efficacia pedagogica delle funzioni e a migliorare il prodotto.</li>
+    <li><strong>Report dei crash</strong>: consenso esplicito e revocabile dell'utente (art. 6.1.a GDPR).</li>
+    <li><strong>Gestione abbonamenti</strong>: esecuzione del contratto (art. 6.1.b GDPR).</li>
+    <li><strong>Sicurezza e prevenzione abusi</strong> (enforcement quote AI lato server): legittimo interesse del Titolare (art. 6.1.f GDPR) a prevenire consumo abusivo delle risorse.</li>
+  </ul>
+
+  <h2 id="destinatari">4. Destinatari dei dati</h2>
+  <p>I dati personali possono essere comunicati ai seguenti responsabili del trattamento, tutti vincolati da contratto ex art. 28 GDPR:</p>
+  <ul>
+    <li><strong>Supabase Inc.</strong> — database, autenticazione, storage cloud, telemetria, Edge Functions. <a href="https://supabase.com/privacy" rel="noopener">Privacy Policy</a></li>
+    <li><strong>Google LLC</strong> — Google Generative AI (Gemini) per le funzioni AI, Google Sign-In. <a href="https://policies.google.com/privacy" rel="noopener">Privacy Policy</a></li>
+    <li><strong>Apple Inc.</strong> — Sign in with Apple, App Store, in-app purchases. <a href="https://www.apple.com/legal/privacy/" rel="noopener">Privacy Policy</a></li>
+    <li><strong>RevenueCat Inc.</strong> — gestione abbonamenti e ricevute. <a href="https://www.revenuecat.com/privacy" rel="noopener">Privacy Policy</a></li>
+    <li><strong>Functional Software Inc. (Sentry)</strong> — crash reporting. <a href="https://sentry.io/privacy/" rel="noopener">Privacy Policy</a></li>
+  </ul>
+  <p>
+    Non vendiamo, non cediamo e non mettiamo in comunicazione i dati personali con parti diverse da quelle sopra indicate. Nessuna attività di profilazione pubblicitaria viene effettuata.
+  </p>
+
+  <h2 id="trasferimenti">5. Trasferimenti extra-UE</h2>
+  <p>
+    Alcuni responsabili del trattamento (Google, Apple, Sentry, RevenueCat) hanno sede negli Stati Uniti. Il trasferimento è effettuato sulla base delle Clausole Contrattuali Standard approvate dalla Commissione Europea (art. 46 GDPR) e, ove applicabile, dell'adesione del fornitore al <em>EU-US Data Privacy Framework</em>.
+  </p>
+  <p>
+    Supabase consente di scegliere la regione del database: utilizziamo la regione <span class="legal-placeholder">[REGIONE SUPABASE SCELTA — es. eu-central-1 / Frankfurt]</span> all'interno dell'area SEE.
+  </p>
+
+  <h2 id="conservazione">6. Periodi di conservazione</h2>
+  <ul>
+    <li><strong>Account e contenuti utente:</strong> per tutta la durata del rapporto contrattuale e fino alla richiesta di cancellazione da parte dell'utente</li>
+    <li><strong>Eventi di telemetria:</strong> 180 giorni dalla raccolta, dopodiché vengono aggregati in forma anonima o cancellati</li>
+    <li><strong>Report dei crash:</strong> 90 giorni</li>
+    <li><strong>Log di utilizzo AI (<code>ai_usage_events</code>):</strong> 24 mesi, per esigenze contabili e di controllo dei costi</li>
+    <li><strong>Dati di abbonamento:</strong> 10 anni a fini fiscali (art. 2220 c.c.)</li>
+    <li><strong>Audit trail del consenso:</strong> fino alla revoca + 3 anni per dimostrare la conformità ai sensi dell'art. 7.1 GDPR</li>
+  </ul>
+
+  <h2 id="diritti">7. Diritti dell'utente</h2>
+  <p>In ogni momento, l'utente può esercitare i seguenti diritti ai sensi degli artt. 15-22 GDPR:</p>
+  <ul>
+    <li><strong>Accesso</strong> (art. 15): ottenere conferma del trattamento e una copia dei propri dati</li>
+    <li><strong>Rettifica</strong> (art. 16): correggere dati inesatti o incompleti</li>
+    <li><strong>Cancellazione</strong> (art. 17, "diritto all'oblio"): ottenere la cancellazione dei propri dati, salvo obblighi di legge</li>
+    <li><strong>Limitazione</strong> (art. 18): chiedere la sospensione del trattamento</li>
+    <li><strong>Portabilità</strong> (art. 20): ricevere i dati in formato strutturato e interoperabile (JSON). L'app offre una funzione nativa di export</li>
+    <li><strong>Opposizione</strong> (art. 21): opporsi al trattamento basato su legittimo interesse</li>
+    <li><strong>Revoca del consenso</strong> (art. 7.3): revocare in qualsiasi momento il consenso prestato, senza pregiudicare la liceità del trattamento effettuato prima della revoca. La revoca è immediatamente disponibile nella schermata <em>Impostazioni → Privacy</em> dell'app</li>
+  </ul>
+
+  <h2 id="esercizio-diritti">8. Come esercitare i diritti</h2>
+  <p>Per esercitare i diritti di cui al punto 7, è sufficiente:</p>
+  <ul>
+    <li>Utilizzare i toggle dedicati in <em>Impostazioni → Privacy</em> dell'app (revoca consenso, disattivazione telemetria)</li>
+    <li>Utilizzare la funzione <em>Esporta i miei dati</em> integrata nell'app (art. 20 GDPR)</li>
+    <li>Scrivere a <a href="mailto:privacy@fluera.dev">privacy@fluera.dev</a> per richieste che richiedono intervento manuale (cancellazione account completo, rettifica, ecc.)</li>
+  </ul>
+  <p>Il Titolare si impegna a rispondere entro il termine di 30 giorni dalla ricezione della richiesta (art. 12.3 GDPR), salvo proroga motivata.</p>
+
+  <h2 id="reclami">9. Reclami all'autorità di controllo</h2>
+  <p>
+    Qualora l'utente ritenga che il trattamento violi il GDPR, ha diritto di proporre reclamo all'autorità di controllo competente. Per l'Italia:
+  </p>
+  <ul>
+    <li><strong>Garante per la protezione dei dati personali</strong></li>
+    <li>Piazza Venezia 11, 00187 Roma</li>
+    <li>Sito web: <a href="https://www.garanteprivacy.it" rel="noopener">www.garanteprivacy.it</a></li>
+  </ul>
+
+  <h2 id="minori">10. Utenti minorenni</h2>
+  <p>
+    Fluera non è destinata a utenti di età inferiore ai 14 anni. Per gli utenti di età compresa tra 14 e 18 anni il trattamento dei dati è consentito ai sensi dell'art. 2-quinquies del D.Lgs. 196/2003. Per età inferiori è richiesto il consenso di chi esercita la responsabilità genitoriale.
+  </p>
+
+  <h2 id="modifiche">11. Modifiche alla presente informativa</h2>
+  <p>
+    La presente informativa può essere aggiornata per riflettere evoluzioni del servizio o modifiche normative. In caso di modifiche sostanziali l'utente verrà informato tramite notifica in-app e, se registrato, via email. Gli utenti dovranno riconfermare il consenso alle categorie interessate dalla modifica.
+  </p>
+  <p>La versione storica dei consensi e delle modifiche è conservata nell'audit trail interno.</p>
+</LegalLayout>
