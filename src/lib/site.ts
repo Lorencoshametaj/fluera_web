@@ -46,7 +46,6 @@ export const IT_AVAILABLE_PATHS = new Set<string>([
   "/contact",
   "/contact/sales",
   "/download",
-  "/engine",
   "/security",
   "/security/architecture",
   "/security/sub-processors",
@@ -98,7 +97,7 @@ export const FOOTER_NAV = {
     { label: "Download",           href: "/download" },
     { label: "Pricing",            href: "/pricing" },
     { label: "Live demo",          href: "/demo", external: true },
-    { label: "Engine SDK",         href: "/engine" },
+    { label: "Engine SDK",         href: "https://engine.fluera.dev/", external: true },
     { label: "Changelog",          href: "/changelog" },
   ],
   science: [

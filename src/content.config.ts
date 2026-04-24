@@ -172,26 +172,6 @@ const docs = defineCollection({
   }),
 });
 
-// ─── Engine docs (developer-facing SDK reference) ─────────────────────────
-const engineDocs = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/engine-docs", generateId: preserveDotsId }),
-  schema: z.object({
-    lang: langField,
-    title: z.string(),
-    description: z.string(),
-    section: z.enum([
-      "getting-started",
-      "api",
-      "adapters",
-      "advanced",
-    ]),
-    sectionLabel: z.string(),
-    order: z.number().default(100),
-    apiSignature: z.string().optional(),
-    since: z.string().optional(),
-  }),
-});
-
 export const collections = {
   authors,
   principles,
@@ -200,5 +180,4 @@ export const collections = {
   blog,
   changelog,
   docs,
-  engineDocs,
 };

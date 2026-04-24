@@ -121,8 +121,10 @@ const enHref = basePath === "/" ? "/" : basePath;
       ))}
 
       <a
-        href={href("/engine")}
-        class={`nav-link text-ink-500 ${isActive("/engine") ? "nav-link-active" : ""}`}
+        href="https://engine.fluera.dev/"
+        target="_blank"
+        rel="noopener"
+        class="nav-link text-ink-500"
       >
         {t("nav.engine", locale)}
       </a>
@@ -180,7 +182,7 @@ const enHref = basePath === "/" ? "/" : basePath;
           {t(item.key, locale)}
         </a>
       ))}
-      <a href={href("/engine")} class="px-3 py-3 rounded-lg text-paper-200 hover:bg-white/5">{t("nav.engineSDK", locale)}</a>
+      <a href="https://engine.fluera.dev/" target="_blank" rel="noopener" class="px-3 py-3 rounded-lg text-paper-200 hover:bg-white/5">{t("nav.engineSDK", locale)}</a>
       <a href={href("/blog")} class="px-3 py-3 rounded-lg text-paper-200 hover:bg-white/5">{t("nav.blog", locale)}</a>
       <a href={href("/changelog")} class="px-3 py-3 rounded-lg text-paper-200 hover:bg-white/5">{t("nav.changelog", locale)}</a>
       <a href={href("/docs")} class="px-3 py-3 rounded-lg text-paper-200 hover:bg-white/5">{t("nav.documentation", locale)}</a>
