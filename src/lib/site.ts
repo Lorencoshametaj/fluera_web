@@ -15,11 +15,11 @@ export const SITE = {
     securityEmail: "security@fluera.dev",
     supportEmail: "support@fluera.dev",
     twitter: "fluera_app",
-    github: "looponia/fluera_engine",
+    github: "Lorencoshametaj/fluera_engine",
   },
   social: {
     twitter: "https://twitter.com/fluera_app",
-    github: "https://github.com/looponia/fluera_engine",
+    github: "https://github.com/Lorencoshametaj/fluera_engine",
   },
 };
 
