@@ -1,0 +1,89 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getCollection } from "astro:content";
+
+const citations = (await getCollection("citations"))
+  .map((c) => c.data)
+  .sort((a, b) => b.year - a.year);
+
+const typeLabel: Record<string, string> = {
+  paper: "पेपर",
+  book: "पुस्तक",
+  chapter: "अध्याय",
+  preprint: "प्रीप्रिंट",
+  dataset: "डेटासेट",
+};
+
+function primaryAuthor(authors: string[]) {
+  if (authors.length === 0) return "";
+  if (authors.length === 1) return authors[0];
+  if (authors.length === 2) return `${authors[0]} और ${authors[1]}`;
+  return `${authors[0]} et al.`;
+}
+
+function apaLike(c: typeof citations[number]) {
+  const author = c.authors.length > 3
+    ? `${c.authors[0]}, ${c.authors[1]}, & ${c.authors[c.authors.length - 1]}`
+    : c.authors.join(", ");
+  const venue = c.journal ?? c.publisher ?? "";
+  return `${author} (${c.year}). ${c.title}${venue ? `. ${venue}` : ""}.`;
+}
+---
+
+<BaseLayout
+  title="शोध — ग्रंथसूची संग्रह"
+  description="Fluera के मार्केटिंग और विज्ञान पृष्ठों पर उद्धृत हर पेपर, पुस्तक और अध्याय। जब संभव हो ओपन एक्सेस। उपलब्ध होने पर DOI लिंक।"
+  locale="hi"
+>
+  <PageHero
+    kicker="शोध"
+    title="ग्रंथसूची संग्रह।"
+    description="Fluera पर कहीं भी उद्धृत हर पेपर, पुस्तक और अध्याय — सिद्धांत पृष्ठ, लेखक पृष्ठ, ब्लॉग, मार्केटिंग कॉपी। उपलब्ध होने पर DOI और ओपन एक्सेस लिंक। संग्रह हाथ से क्यूरेट किया गया है क्योंकि उद्धरण दावे हैं और दावों को सत्यापित किया जाना चाहिए।"
+  />
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-3 list-none p-0 max-w-4xl">
+        {citations.map((c) => (
+          <li class="card p-6">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h2 class="font-serif text-lg text-paper-50 leading-snug">{c.title}</h2>
+              <span class="shrink-0 pill text-[10px]">{typeLabel[c.type]}</span>
+            </div>
+            <p class="text-sm text-paper-300 mb-2">{apaLike(c)}</p>
+            {c.notes && <p class="text-sm text-paper-200 italic mb-3">{c.notes}</p>}
+            <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-ink-500 mt-3">
+              <span>{primaryAuthor(c.authors)} · {c.year}</span>
+              {c.doi && (
+                <a href={`https://doi.org/${c.doi}`} class="text-accent-glow underline underline-offset-4 hover:text-paper-50" rel="noopener">
+                  doi.org/{c.doi}
+                </a>
+              )}
+              {c.url && !c.doi && (
+                <a href={c.url} class="text-accent-glow underline underline-offset-4 hover:text-paper-50" rel="noopener">
+                  पूर्ण पाठ ↗
+                </a>
+              )}
+              {c.relatedPrinciples.length > 0 && (
+                <span class="text-ink-500">
+                  सिद्धांत: {c.relatedPrinciples.map((p) => p.id).join(", ")}
+                </span>
+              )}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        अपेक्षित कोई उद्धरण गायब है? टूटा हुआ DOI मिला? हमें लिखें — संग्रह एक जीवित दस्तावेज़ है।
+      </p>
+      <a href="/hi/contact" class="btn-secondary">उद्धरण की रिपोर्ट करें</a>
+    </div>
+  </section>
+
+</BaseLayout>

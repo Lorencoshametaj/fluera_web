@@ -1,0 +1,161 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const principles = await getCollection("principles", ({ data }) => data.lang === "ko");
+  return principles.map((p) => ({
+    params: { slug: p.id.replace(/\.ko$/, "") },
+    props: { principle: p },
+  }));
+}
+
+const { principle } = Astro.props;
+const { Content } = await render(principle);
+
+async function resolveLocalized<T extends "authors" | "features" | "citations">(
+  collection: T,
+  ref: { id: string },
+) {
+  const koId = ref.id.endsWith(".ko") ? ref.id : `${ref.id}.ko`;
+  return (await getEntry(collection, koId)) ?? (await getEntry(collection, ref.id));
+}
+
+const authors = (
+  await Promise.all(principle.data.primaryAuthors.map((r) => resolveLocalized("authors", r)))
+).filter(Boolean);
+const features = (
+  await Promise.all(principle.data.appliedInFeatures.map((r) => resolveLocalized("features", r)))
+).filter(Boolean);
+const citations = (
+  await Promise.all(principle.data.keyCitations.map((r) => resolveLocalized("citations", r)))
+).filter(Boolean);
+
+const strengthLabel: Record<string, string> = {
+  strong:    "강력한 합의",
+  moderate:  "보통 증거",
+  emerging:  "신생 증거",
+  contested: "특정 영역에서 논쟁",
+};
+
+const statusLabel: Record<string, string> = {
+  stable: "이용 가능",
+  beta: "베타",
+  "coming-soon": "곧 출시",
+};
+---
+
+<BaseLayout
+  title={`${principle.data.title} — Fluera의 과학`}
+  description={principle.data.shortDescription}
+  locale="ko"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <nav class="mb-8 text-xs font-mono uppercase tracking-widest text-ink-500" aria-label="Breadcrumb">
+        <a href="/ko/science" class="hover:text-paper-200">과학</a>
+        <span class="mx-2 text-ink-600">/</span>
+        <a href="/ko/science#principles" class="hover:text-paper-200">원리</a>
+      </nav>
+
+      <p class="eyebrow mb-6 text-accent-glow">{principle.data.fieldOfStudy}</p>
+      <h1 class="font-serif text-display-xl text-paper-50 mb-6">{principle.data.title}</h1>
+      <p class="prose-ink text-xl mb-8">{principle.data.shortDescription}</p>
+
+      <dl class="grid sm:grid-cols-3 gap-6 py-6 border-t border-white/[0.06] text-sm">
+        <div>
+          <dt class="eyebrow mb-2 text-ink-500">주요 연도</dt>
+          <dd class="font-serif text-paper-50">{principle.data.keyYear}</dd>
+        </div>
+        <div>
+          <dt class="eyebrow mb-2 text-ink-500">증거</dt>
+          <dd class="text-paper-200">{strengthLabel[principle.data.evidenceStrength]}</dd>
+        </div>
+        <div>
+          <dt class="eyebrow mb-2 text-ink-500">분야</dt>
+          <dd class="text-paper-200 capitalize">{principle.data.fieldOfStudy}</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+      <Content />
+    </div>
+  </article>
+
+  {authors.length > 0 && (
+    <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+      <div class="container-prose">
+        <p class="eyebrow mb-6 text-accent-glow">주요 저자</p>
+        <h2 class="font-serif text-2xl text-paper-50 mb-6">거슬러 올라가는 마음들.</h2>
+        <ul class="grid sm:grid-cols-2 gap-3 list-none p-0">
+          {authors.map((a) => a && (
+            <li>
+              <a href={`/ko/science/authors/${a.id.replace(/\.ko$/, "")}`} class="block card p-5 hover:border-accent-glow/40 transition-colors">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-serif text-base font-medium text-paper-50">{a.data.name}</h3>
+                  {a.data.nobelLaureate && <span class="pill text-[10px] text-accent-glow border-accent-glow/30">Nobel</span>}
+                </div>
+                <p class="text-xs font-mono uppercase tracking-widest text-ink-500 mb-2">{a.data.years}</p>
+                <p class="text-sm text-paper-300 line-clamp-2">{a.data.shortBio}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {features.length > 0 && (
+    <section class="py-16 md:py-20 border-b border-white/[0.04]">
+      <div class="container-prose">
+        <p class="eyebrow mb-6 text-accent-glow">Fluera가 어떻게 적용하는가</p>
+        <h2 class="font-serif text-2xl text-paper-50 mb-6">이 원리 위에 구축된 기능.</h2>
+        <ul class="space-y-3 list-none p-0">
+          {features.map((f) => f && (
+            <li>
+              <a href={`/ko/features/${f.id.replace(/\.ko$/, "")}`} class="block card p-5 hover:border-accent-glow/40 transition-colors">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-serif text-lg text-paper-50">{f.data.title}</h3>
+                  <span class="pill text-[10px]">{statusLabel[f.data.status]}</span>
+                </div>
+                <p class="text-sm text-paper-300">{f.data.tagline}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {citations.length > 0 && (
+    <section class="py-16 border-b border-white/[0.04] bg-ink-900/40">
+      <div class="container-prose">
+        <p class="eyebrow mb-6 text-accent-glow">주요 인용</p>
+        <ul class="space-y-4 list-none p-0 text-sm">
+          {citations.map((c) => c && (
+            <li class="card p-5">
+              <p class="font-serif text-paper-50 mb-1">{c.data.title}</p>
+              <p class="text-xs text-ink-500 font-mono">{c.data.authors.join(", ")} · {c.data.year} {c.data.journal ? `· ${c.data.journal}` : ""}</p>
+              {c.data.doi && (
+                <a href={`https://doi.org/${c.data.doi}`} class="text-accent-glow text-xs underline underline-offset-4 mt-2 inline-block" rel="noopener">
+                  doi.org/{c.data.doi}
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <a href="/ko/science" class="btn-secondary">← 모든 원리로 돌아가기</a>
+    </div>
+  </section>
+
+</BaseLayout>

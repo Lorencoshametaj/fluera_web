@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+import home from "@/data/home/fi";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "Ääretön opiskelucanvas, joka rakentuu oppimisen kognitiotieteen päälle.",
+  url: `${SITE.url}/fi/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const { steps, authors, platforms } = home;
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="Ääretön opiskelucanvas, joka rakentuu oppimisen kognitiotieteen päälle. iOS, Android, macOS, Windows, Linux, Web."
+  jsonLd={jsonLd}
+  locale="fi"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          Yksityinen beta · Vain kutsulla
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          Opiskelutila,<br />joka rakennettu sille,<br /><span class="text-gradient">miten mieli toimii.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          Kirjoita käsin äärettömälle canvakselle. Anna tekoälyn kysyä sinulta vastausten antamisen sijaan. Palaa katsomaan omaa ajatteluasi ajan myötä. Kalibroitu sille, miten muisti todella muodostuu.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            Liity betaan
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            Kokeile demoa
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>Päästä päähän -salaus</span><span class="text-ink-600">·</span>
+          <span>GDPR oletuksena</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">Pullonkaula</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Voit kysyä mitä tahansa.<br />Vastaus ei silti jää päähäsi.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Vuonna 2026 tieto haetaan kolmessa sekunnissa ja unohdetaan kolmessa viikossa. Meillä on kymmenen sovellusta muistiinpanojen tekoon eikä yhtäkään oppimamme <em>säilyttämiseen</em>.
+        </p>
+        <p>
+          Korostaminen tuntuu opiskelulta. Uudelleenlukeminen tuntuu opiskelulta. LLM:ltä yhteenvedon pyytäminen tuntuu opiskelulta. Mikään näistä kolmesta ei ole — ja kognitiotiede on sanonut sen viisikymmentä vuotta.
+        </p>
+        <p>
+          Oppimisen pullonkaula ei ole enää saatavuus — se on <em>enkoodaus, konsolidaatio ja siirto</em>: kolme ongelmaa samaan aikaan.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera on rakennettu näille kolmelle.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Menetelmä</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Yksi canvas.<br />Kaksitoista kognitiivista liikettä.<br />Sykli, jolla aivosi oppivat.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Jokainen Flueran ominaisuus elää syklin yhdessä askeleessa, ja jokainen askel nojaa julkaistuun tutkimukseen. Hyppää yksi yli ja ketju katkeaa. Seuraa kaikkia ja muistikirjasta tulee pysyvä.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">Neljä kognitiivista erottajaa</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          Neljä tapaa rakentaa muisti.
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map · Askel 4"
+          title="Näe etäisyys siihen, mitä kirjoitit ja oikean ratkaisun välillä."
+          description="Palauttamisyrityksen jälkeen Fluera asettaa työsi ihanteellisen ratkaisun päälle. Erot sykkivät. Ne eivät syytä — ne herättävät muistin. Mitä enemmän erehdyit, sitä vahvemmin korjaus kiinnittyy."
+          citation="Hyperkorjausvaikutus — Butterfield ja Metcalfe, 2001."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode · Askel 3"
+          title="Tekoälymme ei vastaa. Se kysyy."
+          description="Ilmoita varmuutesi 1–5 ennen jokaista paljastusta. Metakognitio on puolet hallinnasta, ja varmuuden kalibrointi on tapa, jolla se rakentuu — yksi ennuste kerrallaan."
+          citation="Metakognitiivinen monitorointi — Flavell, 1979."
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War · Askel 10"
+          title="Tenttitila, joka piilottaa sen, minkä melkein muistat."
+          description="Peitä mikä tahansa canvaksen alue. Palauta muistista ennen paljastusta. Palautusponnistus — ei uudelleenlukeminen — on se, missä muisti kovettuu."
+          citation="Toivotut vaikeudet — Bjork, 1994."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Exam Session · Askel 11"
+          title="Simuloituja tenttejä canvaksestasi — Ghost Mapin korjaamia."
+          description="Varmuusvalitsin 1–5 ennen jokaista kysymystä. Suljettu kirja. Lähetyksen jälkeen Fluera asettaa vastauksesi ihanteellisen päälle ja soveltaa hyperkorjausta siihen, missä olit varmin ja väärässä. Mitä suurempi yllätys, sitä vahvemmin korjaus kiinnittyy."
+          citation="Hyperkorjaus — Butterfield ja Metcalfe, 2001 · Tuottava epäonnistuminen — Kapur, 2008."
+          href="/fi/features/exam-session"
+          status="beta"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">Kokeile betassa →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">Mustetta, ei näppäimistöä</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            Näppäileminen on nopeampaa.<br />Käsin kirjoittaminen on parempaa.<br />Aivoja ei ole optimoitu nopeudelle.
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller ja Oppenheimer, Princeton 2014 · van der Meer, NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            Kun Mueller ja Oppenheimer julkaisivat kuuluisan Princeton-tutkimuksensa vuonna 2014, käsin muistiinpanoja tehneet opiskelijat voittivat läppärillä kirjoittaneet käsitteellisissä kysymyksissä — <em>vaikka</em> läppärillä kirjoittaneet olivat tuottaneet paljon enemmän tekstiä. Käsi oli hitaampi. Mieli oli syvempi.
+          </p>
+          <p>
+            Kymmenen vuotta myöhemmin Audrey van der Meerin EEG NTNU:lla (2020) antoi <em>miksi</em>: käsin kirjoittaminen aktivoi laajempia aivoverkkoja kuin näppäileminen, etenkin alueilla, jotka liittyvät muistin muodostumiseen ja sensorimotoriseen integraatioon. Kynä on kognitiivinen instrumentti.
+          </p>
+          <p>
+            Fluera on rakennettu tämän ympärille. Kolmetoista sivellinmoottoria. Paine, kallistus, nopeus. Vedon viive alle 15 ms kaikilla tuetuilla laitteilla. Ääretön canvas ei ole estetiikkaa — se on substraatti, jota muistisi pyysi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Tieteellinen perusta</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Jättiläisten harteilla — nimeltä mainittuina.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Jokainen suunnittelupäätös palautuu paperiin, johon voimme linkata. Tässä kaksitoista mieltä, jotka asuvat Flueran sisällä. Täydellinen lähdeluettelo on julkinen.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Kuusi alustaa, yksi muste</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Kuusi alustaa. Yksi muste. Yksi mieli.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Natiivit renderöijät Vulkanin, Metalin, OpenGL:n, Direct3D 11:n ja WebGPU:n päällä. Muistikirjasi synkronoituu päästä päähän -salauksella tai pysyy offline. Sinä päätät.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        Statusmerkinnät ovat rehellisiä kunkin alustan kypsyydestä. "Alpha"- tai "Demo"-merkityt toimivat, mutta vaativat hiomista — liity betaan, jos haluat auttaa muotoilemaan niitä.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Sinun mielesi, sinun datasi</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Päästä päähän -salaus.<br />Avain pysyy sinulla.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">AES-256 levossa</h3>
+          <p class="text-sm text-paper-300">SQLCipher-salaus jokaisella laitteella. Paikallinen tietokanta on lukukelvoton ilman avaintasi.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">GDPR oletuksena</h3>
+          <p class="text-sm text-paper-300">EU-isännöinti, DPA saatavilla, täydellinen vienti ja poisto pyynnöstä.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Nolla ad-techia</h3>
+          <p class="text-sm text-paper-300">Ei seurantapikseleitä. Ei käyttäytymismainontaa. Emme kouluta mallejamme sisällölläsi.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Auditointiloki</h3>
+          <p class="text-sm text-paper-300">Education-tileillä jokainen pääsy kirjataan muuttumattomaan lokiin.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">Lue tietoturva-arkkitehtuuri →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Hinnoittelu</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Ilmainen oppimiseen. Plus ja Pro syvempään.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">Koko canvas. Kolme muistikirjaa. Ilmainen ikuisesti.</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5,99<span class="text-sm font-sans text-paper-300">/kk</span></p>
+          <p class="text-sm text-paper-300">Rajaton canvas, sync 2 laitteessa, perustekoäly. €49/v.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11,99<span class="text-sm font-sans text-paper-300">/kk</span></p>
+          <p class="text-sm text-paper-300">Exam Session, Atlas, koko AI-paketti, rajaton sync. €99/v.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19,99<span class="text-sm font-sans text-paper-300">/seat</span></p>
+          <p class="text-sm text-paper-300">Jaetut canvakset, tiimi-Atlas, ACL, auditointiloki. Vähintään 5 paikkaa.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        Vahvistetut opiskelijat saavat Plus- tai Pro-tilauksen 50 % alennuksella pilottiohjelman kautta. Nyt liittyvät lukitsevat hinnan tilauksen ajaksi.
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">Näytä kaikki hinnat →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">Liity</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Yksityinen beta.<br />Kohorttien onboarding.
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        Otamme sisään kohorteittain, jotta jokainen ryhmä — opiskelijat, tietotyöntekijät, opettajat — saa todellisen keskustelun, ei numeron jonossa. Jos olet kyllästynyt sovelluksiin, jotka lupaavat oppia puolestasi, pyydä pääsyä.
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        Pyydä pääsyä →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

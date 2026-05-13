@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+import home from "@/data/home/ar";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "مساحة دراسة لانهائية مبنيّة على علم الإدراك للتعلّم.",
+  url: `${SITE.url}/ar/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const { steps, authors, platforms } = home;
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="مساحة دراسة لانهائية مبنيّة على علم الإدراك للتعلّم. iOS، Android، macOS، Windows، Linux، Web."
+  jsonLd={jsonLd}
+  locale="ar"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          بيتا خاصّة · بدعوة حصريّة
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          مساحة دراسة<br />مُصمَّمة وفق<br /><span class="text-gradient">طريقة عمل الذاكرة.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          اكتب بخطّ يدك على لوحة لانهائية. اترك الذكاء الاصطناعي يطرح الأسئلة بدل أن يجيب. عُد بمرور الوقت إلى تفكيرك. كلّ شيء معايَر وفق الطريقة التي تتشكّل بها الذاكرة فعلًا.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            انضمّ إلى البيتا
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            جرّب العرض الحيّ
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>تشفير من طرف إلى طرف</span><span class="text-ink-600">·</span>
+          <span>متوافق مع GDPR منذ البداية</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">عنق الزجاجة</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        يمكنك أن تسأل عن أيّ شيء.<br />ومع ذلك، الجواب لا يبقى في رأسك.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          في عام 2026، تُستدعى المعرفة في ثلاث ثوانٍ وتُنسى في ثلاثة أسابيع. ثمّة عشرات التطبيقات لتدوين الملاحظات، ولا تطبيق واحد لِـ<em>الاحتفاظ</em> بما تعلّمناه.
+        </p>
+        <p>
+          التظليل يبدو دراسة. إعادة القراءة تبدو دراسة. سؤال نموذج لغوي عن ملخّص يبدو دراسة. لا شيء من هذه الثلاثة كذلك — علم الإدراك واضح في هذه المسألة منذ السبعينيات.
+        </p>
+        <p>
+          عنق الزجاجة للتعلّم لم يعد الوصول — بل <em>الترميز والاحتفاظ والانتقال</em>: ثلاث مشكلات في وقت واحد.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera بُنِيَت للثلاثة معًا.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">المنهج</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          لوحة واحدة.<br />اثنتا عشرة حركة معرفية.<br />الدورة التي يتعلّم بها دماغك.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          كلّ ميزة في Fluera تنتمي إلى خطوة من الدورة، وكلّ خطوة مرتكزة على أبحاث منشورة. تَجاوز خطوة واحدة وتنكسر السلسلة. اتّبعها كلّها وسيصبح دفترك دائمًا.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">أربعة فوارق معرفية</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          أربع طرق تتشكّل بها الذاكرة.
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map · الخطوة 4"
+          title="انظر إلى المسافة بين ما تكتبه وبين ما هو صحيح."
+          description="بعد محاولة الاسترجاع، تضع Fluera عملك فوق الحلّ المثالي. عدم التطابق ينبض. لا يُحرج — بل يوقظ الذاكرة. كلّما كبر الخطأ، رسخ التصحيح أكثر."
+          citation="تأثير المبالغة في التصحيح — Butterfield وMetcalfe، 2001."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode · الخطوة 3"
+          title="الذكاء الاصطناعي عندنا لا يجيب. يسأل."
+          description="قبل كلّ كشف، قيّم الثقة من 1 إلى 5. ما وراء المعرفة هي نصف الإتقان، ومعايرة الثقة وسيلة لبنائها — توقّعًا واحدًا في كلّ مرّة."
+          citation="مراقبة ما وراء المعرفة — Flavell، 1979."
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War · الخطوة 10"
+          title="وضع امتحان يُخفي ما تكاد تتذكّره."
+          description="غطِّ أيّ منطقة من اللوحة. استرجِع من الذاكرة قبل الكشف. صراع الاسترجاع — لا إعادة النظر — هو حيث تتصلّب الذاكرة."
+          citation="الصعوبات المرغوبة — Bjork، 1994."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Exam Session · الخطوة 11"
+          title="امتحانات محاكاة من لوحتك — يصحّحها Ghost Map."
+          description="منتقي ثقة من 1 إلى 5 قبل كلّ سؤال. الكتاب مغلق. بعد الإرسال، تضع Fluera إجابتك فوق المثالية ويطبّق المبالغة في التصحيح حيث كانت الثقة عالية والإجابة خاطئة."
+          citation="المبالغة في التصحيح — Butterfield وMetcalfe، 2001 · الفشل المنتج — Kapur، 2008."
+          href="/ar/features/exam-session"
+          status="beta"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">جرّبه في البيتا ←</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">حبر، لا لوحة مفاتيح</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            الكتابة على لوحة المفاتيح أسرع.<br />الكتابة باليد أفضل.<br />الدماغ غير مُحسَّن للسرعة.
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller وOppenheimer، Princeton 2014 · van der Meer، NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            حين أجرى Mueller وOppenheimer دراستهما الشهيرة في Princeton عام 2014، وجدا أنّ الطلّاب الذين يكتبون ملاحظاتهم باليد يتفوّقون على مستخدمي الحواسيب المحمولة في الأسئلة المفاهيمية — <em>رغم</em> أنّ مستخدمي الحواسيب كتبوا كلمات أكثر بكثير. اليد كانت أبطأ. والعقل كان أعمق.
+          </p>
+          <p>
+            بعد عقد، أعطانا عمل EEG لـAudrey van der Meer في NTNU (2020) <em>السبب</em>: الكتابة اليدوية تُنشّط شبكات دماغية أوسع من الكتابة على لوحة المفاتيح، خاصّة المناطق المرتبطة بتشكيل الذاكرة والتكامل الحسّي-الحركي. القلم أداة معرفية.
+          </p>
+          <p>
+            بُنيت Fluera حول هذا الاكتشاف. 13 محرّك فرشاة بفيزياء الضغط. ضغط، إمالة، سرعة. زمن استجابة الكرّاسة أقلّ من 15 مللي ثانية على كلّ جهاز مدعوم. اللوحة اللانهائية ليست مسألة جماليات — إنّها الركيزة التي تطلبها ذاكرتك.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">الأساس العلمي</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          على أكتاف العمالقة — بأسمائهم.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          كلّ قرار تصميمي يعود إلى مرجع يمكننا ربطه. اثنا عشر من تلك العقول أدناه. المراجع الكاملة تعيش في أرشيف عامّ.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">ستّ منصّات، حبر واحد</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          ستّ منصّات. حبر واحد. دماغ واحد.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          محرّكات رسم أصلية على Vulkan وMetal وOpenGL وDirect3D 11 وWebGPU. دفترك يُزامَن بتشفير من طرف إلى طرف، أو يبقى دون اتّصال. القرار قرارك.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        لافتات الحالة صادقة بشأن جاهزية الإصدار. المنصّات الموسومة بـ«ألفا» أو «عرض» تعمل لكنّها تحتاج إلى تلميع — انضمّ إلى البيتا إن أردت المساهمة في تشكيلها.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">دماغك، بياناتك</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          تشفير من طرف إلى طرف.<br />المفتاح يبقى عندك.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">AES-256 للبيانات في حالة سكون</h3>
+          <p class="text-sm text-paper-300">تشفير SQLCipher على كلّ جهاز. قاعدة بياناتك المحلّية لا يمكن قراءتها بدون مفتاحك.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">متوافق مع GDPR</h3>
+          <p class="text-sm text-paper-300">استضافة في الاتّحاد الأوروبي، اتفاقية معالجة بيانات متاحة، تصدير وحذف كاملان عند الطلب.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">صفر تتبّع إعلاني</h3>
+          <p class="text-sm text-paper-300">لا بكسلات تتبّع. لا إعلانات سلوكية. لا نُدرّب نماذجنا على محتواك.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">سجلّ تدقيق</h3>
+          <p class="text-sm text-paper-300">لحسابات التعليم، يُسجَّل كلّ وصول في أثر تدقيق غير قابل للتعديل.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">اقرأ بنية الأمان ←</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">الأسعار</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          مجّاني للتعلّم. Plus وPro للذهاب أعمق.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">اللوحة كاملة. ثلاثة دفاتر. مجّاني للأبد.</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5.99<span class="text-sm font-sans text-paper-300">/شهر</span></p>
+          <p class="text-sm text-paper-300">لوحة بلا حدود، مزامنة على جهازين، ذكاء اصطناعي أساسي. €49 سنويًّا.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11.99<span class="text-sm font-sans text-paper-300">/شهر</span></p>
+          <p class="text-sm text-paper-300">Exam Session، Atlas، حزمة AI كاملة، مزامنة بلا حدود. €99 سنويًّا.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19.99<span class="text-sm font-sans text-paper-300">/مقعد</span></p>
+          <p class="text-sm text-paper-300">لوحات مشتركة، Atlas جماعي، صلاحيات، سجلّ تدقيق. 5 مقاعد فأكثر.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        الطلّاب الموثَّقون يحصلون على Plus أو Pro بخصم 50٪ عبر برنامجنا التجريبي. كلّ من يشترك الآن يحتفظ بسعره طوال مدّة الاشتراك.
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">اطّلع على كامل الأسعار ←</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">انضمّ إلينا</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        بيتا خاصّة.<br />تأهيل على دفعات.
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        نُدخِل دفعات جديدة بالتدريج، حتى تحصل كلّ مجموعة — طلّاب، مختصّون، أساتذة — على محادثة حقيقية بدل رقم في طابور. إن كنت قد سئمت من تطبيقات تَعِد بأن تتعلّم بدلًا منك، اطلب الوصول.
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        اطلب وصولًا ←
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

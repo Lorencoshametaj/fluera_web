@@ -1,0 +1,44 @@
+---
+lang: "fi"
+title: Jaksottainen kertaus
+tagline: "Successive relearning — vahvimmin todistettu oppimisstrategia, canvasissasi."
+shortDescription: "Tekoäly suunnittelee paluut kasvavin välein. Jokainen paluu on palauttamista, ei uudelleenlukua. Yhdistettyinä spacing ja palauttaminen tuottavat superadditiivisia vaikutuksia."
+status: beta
+stepInCycle: 8
+relatedPrinciples:
+  - spacing-effect
+  - retrieval-practice
+  - successive-relearning
+  - interleaving
+relatedAuthors:
+  - roediger-karpicke
+  - robert-bjork
+  - albert-bandura
+order: 5
+---
+
+## Mitä se ratkaisee
+
+Useimmat jaksottaisen kertauksen työkalut ovat muistikorttisovelluksia. Ne dekontekstualisoivat tiedon atomisiksi korteiksi ja rekonstruoivat sitten välit itsearvioidun helppouden perusteella. Ne toimivat — mutta hintana on poistaa tilallinen ja rakenteellinen merkitys, joka teki tiedon ylipäätään palautettavaksi.
+
+Flueran jaksottainen kertaus elää canvasissasi. Solmu, jota kertaat, on solmu, jonka kirjoitit, sijainnissa, johon kirjoitit sen, yhdistettynä käsitteisiin, joihin piirsit reunoja. Mitään ei atomisoida.
+
+## Miten se toimii
+
+Jokaisen sokraattisen istunnon ja jokaisen Ghost Map -peittokuvan jälkeen Fluera päivittää muistinvahvuuden arvion per solmu. Se tietää, mihin käsitteisiin vastasit helposti, mitkä laukaisivat hyperkorjauksen ja mitä et ole nähnyt vähään aikaan.
+
+Jokaisella paluulla (päivä 3, 7, 14, 30, 60+) Fluera avaa canvasin niin, että erääntyvät solmut on renderoitu Fog of Wariin. Navigoit, palautat, paljastat. Ajastin päivittää. Seuraava väli levenee tai supistuu sen perusteella, mitä todella muistit — ei sen, mitä väitit muistavasi.
+
+**Henkilökohtainen FSRS.** Ajastin ei ole kiinteä algoritmi. Se kalibroi kahdeksan painoparametria per käyttäjä gradient descentillä kertaushistoriasi yli — sama menetelmä kuin viimeaikaisessa jaksottaisen kertauksen tutkimuksessa, sovitettuna Flueran rikkaampaan signaaliin (varmuus, vastausaika, hyperkorjauksen suuruus).
+
+## Taustalla oleva tiede
+
+Roediger ja Karpicke (2006) osoittivat, että palauttamisharjoittelu päihittää uudelleenluvun. Bjorkin vuosikymmenten työ on osoittanut, että jaksotettu harjoittelu päihittää keskittyneen. Vuonna 2011 Rawson ja Dunlosky yhdistivät molemmat — *successive relearning* — ja osoittivat **superadditiiviset** tulokset: jaksotettu palauttamisharjoittelu tuottaa vaikutuksia, jotka ovat suurempia kuin spacingin ja palauttamisen summa erikseen.
+
+Tämä on oppimistieteen vahvin yksittäinen evidenssipohja tietyn oppimisstrategian puolesta. Flueran tehtävä ei ole keksiä sitä uudelleen, vaan poistaa kaikki esteet harjoittelusta — ennen kaikkea suurin, joka on muistikorttien rakentamisen vaiva. Fluerassa canvasi, joka sinulla jo on, *on* kertausmateriaali.
+
+## Mitä tulee seuraavaksi
+
+- **Sekoitetut polut** — tekoäly valitsee kertausreitit, jotka ylittävät eri materiaalivyöhykkeet ja sammuttavat näin autopilotin.
+- **Per-aine-kalibrointi** — erilliset FSRS-painot kielille vs. matematiikalle vs. kliiniselle lääketieteelle, joissa muistidynamiikka eroaa mitattavasti.
+- **Anki-tuonti** — oppijoille, joilla on olemassa olevia pakkoja ja jotka haluavat migrata asteittain.

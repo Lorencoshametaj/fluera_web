@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft && data.lang === "pt-br"))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const categoryLabel: Record<string, string> = {
+  "cognitive-science": "Ciência cognitiva",
+  "product": "Produto",
+  "engineering": "Engenharia",
+  "field-notes": "Anotações de campo",
+};
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("pt-BR", { year: "numeric", month: "long", day: "numeric" });
+}
+---
+
+<BaseLayout
+  title="Blog"
+  description="Ciência cognitiva aplicada. Notas de produto. Detalhes de engenharia. Coisas que valia a pena escrever."
+  locale="pt-br"
+>
+  <PageHero
+    kicker="Blog"
+    title="Ciência cognitiva, aplicada."
+    description="Notas sobre o que estamos construindo e por quê. Curto o suficiente para ler, longo o suficiente para significar algo."
+  />
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-4xl">
+        {posts.map((p) => (
+          <li>
+            <a href={`/pt-br/blog/${p.id.replace(/\.pt-br$/, "")}`} class="block card p-6 md:p-8 hover:border-accent-glow/40 hover:bg-white/[0.04] transition-all">
+              <div class="flex items-center gap-3 mb-3 flex-wrap">
+                <span class="eyebrow text-accent-glow">{categoryLabel[p.data.category]}</span>
+                <span class="text-ink-600">·</span>
+                <span class="text-xs font-mono uppercase tracking-widest text-ink-500">{formatDate(p.data.publishedAt)}</span>
+              </div>
+              <h2 class="font-serif text-2xl md:text-3xl text-paper-50 mb-3 leading-tight">{p.data.title}</h2>
+              <p class="text-sm text-paper-300 leading-relaxed max-w-prose">{p.data.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {posts.length === 0 && (
+        <p class="mt-10 text-sm text-ink-500 italic max-w-prose">
+          Ainda sem posts em português. Os originais estão em <a href="/blog" class="text-accent-glow underline">/blog</a>.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 mb-4 max-w-xl mx-auto">
+        Posts novos a cada duas semanas, em média. Para os que mais importam, uma newsletter mensal.
+      </p>
+      <a href="/pt-br/contact" class="btn-secondary">Inscrição newsletter em breve</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,91 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getCollection, render } from "astro:content";
+
+const entries = (await getCollection("changelog", ({ data }) => data.lang === "ko"))
+  .sort((a, b) => b.data.releasedAt.valueOf() - a.data.releasedAt.valueOf());
+
+const rendered = await Promise.all(
+  entries.map(async (e) => ({ entry: e, ...(await render(e)) })),
+);
+
+const typeStyle: Record<string, string> = {
+  feature:      "text-accent-glow border-accent-glow/30",
+  improvement:  "text-signal-ok border-signal-ok/30",
+  fix:          "text-paper-300 border-white/15",
+  experiment:   "text-signal-warn border-signal-warn/30",
+  deprecation:  "text-signal-bad border-signal-bad/30",
+};
+
+const typeLabel: Record<string, string> = {
+  feature:      "기능",
+  improvement:  "개선",
+  fix:          "수정",
+  experiment:   "실험",
+  deprecation:  "사용 중단",
+};
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("ko-KR", { year: "numeric", month: "short", day: "2-digit" });
+}
+---
+
+<BaseLayout
+  title="변경 로그"
+  description="모든 Fluera 릴리스, 전문 용어 없이 설명. 출시된 것, 개선된 것, 깨진 것, 우리가 철회한 것."
+  locale="ko"
+>
+  <PageHero
+    kicker="변경 로그"
+    title="출시된 것, 정직하게."
+    description="모든 릴리스, 그것이 무엇을 포함하는지, 아직 무엇이 작동하지 않는지. 모든 것이 작동한다고 가장하기보다 무엇이 잘못되었는지 알려주는 것을 선호합니다."
+  />
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ol class="space-y-8 list-none p-0 max-w-4xl">
+        {rendered.map(({ entry, Content }) => (
+          <li class="card p-6 md:p-8">
+            <header class="flex flex-wrap items-center gap-3 mb-4">
+              <span class="font-mono text-lg text-paper-50">v{entry.data.version}</span>
+              <span class="text-ink-600">·</span>
+              <span class="text-xs font-mono uppercase tracking-widest text-ink-500">{formatDate(entry.data.releasedAt)}</span>
+              <span class={`pill text-[10px] ${typeStyle[entry.data.type]}`}>{typeLabel[entry.data.type]}</span>
+              {entry.data.breaking && (
+                <span class="pill text-[10px] text-signal-bad border-signal-bad/40">Breaking</span>
+              )}
+            </header>
+
+            <h2 class="font-serif text-2xl text-paper-50 mb-3 leading-tight">{entry.data.title}</h2>
+            <p class="prose-ink mb-6">{entry.data.summary}</p>
+
+            <div class="prose-v2 prose-v2-compact">
+              <Content />
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-2 text-[11px] font-mono uppercase tracking-widest text-ink-500">
+              {entry.data.platforms.map((p) => <span class="pill text-[10px] capitalize">{p}</span>)}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      {entries.length === 0 && (
+        <p class="text-sm text-ink-500 italic max-w-prose">
+          한국어 changelog 항목이 아직 없습니다. 영어 원본은 <a href="/changelog" class="text-accent-glow underline">/changelog</a>에 있습니다.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto mb-4">
+        여기를 스크롤하는 대신 받은편지함에서 릴리스 알림을 받고 싶습니까? 뉴스레터가 곧 출시됩니다.
+      </p>
+      <a href="/beta" class="btn-secondary">베타 참여</a>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,187 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import { getCollection } from "astro:content";
+
+const principles = (await getCollection("principles", ({ data }) => data.lang === "nl")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const authors = (await getCollection("authors", ({ data }) => data.lang === "nl")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const steps = [
+  { n: 1,  title: "Vastleggen",                verb: "Op de lesdag",         description: "Schrijf de concepten met de hand op tijdens de les. Plaats ze in de ruimte. De traagheid van de pen dwingt compressie af — en compressie is waar codering geboren wordt." },
+  { n: 2,  title: "Reconstructie",             verb: "Diezelfde avond",      description: "Sluit het boek. Reconstrueer wat je je herinnert op een leeg canvas. De rode knopen waar je aarzelt zijn de kaart van wat je moet bestuderen (Kapur, productief falen, 2008)." },
+  { n: 3,  title: "Socratisch",                verb: "Binnen 48 uur",        description: "De AI vraagt, jij antwoordt. Je verklaart je vertrouwen van 1 tot 5 vóór elke onthulling. Metacognitie expliciet gemaakt." },
+  { n: 4,  title: "Centaur",                   verb: "Kort daarna",          description: "Ghost Map legt jouw redenering over de ideale kaart. Hypercorrectie verankert de correcties in het geheugen (Butterfield en Metcalfe, 2001)." },
+  { n: 5,  title: "Slaap",                     verb: "Die nacht",            description: "Doe niets. De trage slaapgolven spelen de dag opnieuw af. De hippocampus geeft de sporen door aan de neocortex." },
+  { n: 6,  title: "Eerste terugkeer",          verb: "Dag 1",                description: "Open het canvas de volgende dag. Wat je bijna wist, vervaagt. Haal het op uit het geheugen voor je het onthult." },
+  { n: 7,  title: "Leren onder peers",         verb: "Dagen 2–3",            description: "Leg je canvas uit aan een medestudent — of aan een stille AI die vragen teruggeeft. Iemand iets leren is hoe je jezelf het laatste stuk leert." },
+  { n: 8,  title: "Gespreide terugkeer",       verb: "Dag 3 · 7 · 14…",      description: "Successieve herleren in groeiende intervallen. Naar effect size de studiestrategie met het sterkste bewijs (Rawson en Dunlosky, 2011)." },
+  { n: 9,  title: "Bruggen tussen domeinen",   verb: "Weken later",          description: "Trek pijlen tussen de vakken. Chemie ontmoet differentiaalvergelijkingen. Transfer is de echte test van leren." },
+  { n: 10, title: "Tentamenvoorbereiding",     verb: "7–14 dagen vooraf",    description: "Fog of War. Navigeer door de mist van je canvas. Groen, rood, blinde vlekken — de beheersingskaart tekent zichzelf." },
+  { n: 11, title: "Het tentamen",              verb: "De dag",               description: "Zet het apparaat uit. Loop door het memory palace dat je weken lang met je handen hebt gebouwd. Het canvas leeft nu in jou." },
+  { n: 12, title: "Permanente groei",          verb: "Voor altijd",          description: "Het canvas blijft als cognitieve autobiografie. Je keert er twee jaar later naar terug en ziet de tastbare vorm van hoeveel je gegroeid bent." },
+];
+---
+
+<BaseLayout
+  title="De wetenschap achter Fluera"
+  description="Fluera leunt op vijf decennia geheugenonderzoek — Bjork, Mueller, van der Meer, Roediger en de Nobel-bekroonde neurowetenschap van place cells. Verken de cyclus van 12 stappen en de principes achter elke functie."
+  locale="nl"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">De wetenschap</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Vijf decennia geheugenonderzoek<br />achter één enkele app.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Elke functie van Fluera verwijst naar gepubliceerd onderzoek. Hieronder: de leercyclus in 12 stappen, de 23 principes die de basis vormen, de twaalf denkers waarop we voortbouwen, en de grenzen van wat we nog niet pretenderen.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#learning-cycle" class="btn-secondary">Naar de cyclus</a>
+          <a href="#principles" class="btn-secondary">Index van principes</a>
+          <a href="#authors" class="btn-secondary">Auteurs</a>
+          <a href="/nl/research" class="btn-secondary">Bibliografie →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">De cyclus</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Eén canvas. Twaalf cognitieve bewegingen.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          De cyclus is sequentieel en iteratief. Stappen 1–4 bouwen de codering. Stap 5 (slaap) is onverhandelbare biologie. Stappen 6–9 consolideren over dagen en weken. Stappen 10–12 maken de kennis permanent en overdraagbaar.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Index van principes</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">De 23 principes achter Fluera.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Elk principe leidt naar een eigen pagina met de belangrijkste auteurs, de toegepaste functies en de papers die we citeren.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {principles.map((p) => (
+          <li>
+            <a
+              href={`/nl/science/principles/${p.id.replace(/\.nl$/, "")}`}
+              class="block card p-5 h-full transition-all hover:border-accent-glow/40 hover:bg-white/[0.04]"
+            >
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{p.data.title}</h3>
+                <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+              </div>
+              <p class="text-sm text-paper-300 leading-relaxed line-clamp-3">{p.data.shortDescription}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="authors" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">De geesten achter de methode</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Twaalf onderzoekers wier werk in Fluera leeft.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Geen eerbetoonpagina. Elke naam leidt naar een pagina die het principe noemt, de Fluera-functies die het implementeren en de papers die we citeren.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none p-0">
+        {authors.map((a) => (
+          <li>
+            <a href={`/nl/science/authors/${a.id.replace(/\.nl$/, "")}`} class="block">
+              <AuthorCard name={a.data.name} contribution={a.data.shortBio.slice(0, 160) + (a.data.shortBio.length > 160 ? "…" : "")} year={a.data.years} nobel={a.data.nobelLaureate} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Waarom nu</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Het knelpunt is verschoven.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Een groot deel van de geschiedenis was het knelpunt van leren toegang. Boeken kostten geld, leraren waren schaars, bibliotheken waren ver weg. De vraag was: <em>kan ik bij de informatie komen?</em>
+        </p>
+        <p>
+          Voor de vorige generatie was het knelpunt navigatie. Informatie was overvloedig; het juiste stuk vinden was het werk. Google, Wikipedia, cursuscatalogi — een hele infrastructuur voor één vraag: <em>waar staat het?</em>
+        </p>
+        <p>
+          In 2026 vormt geen van beide nog een beperking. Elk feit ligt op drie seconden afstand. Elke uitleg kan worden gegenereerd in de stijl die jij prefereert. Het knelpunt heeft van vorm veranderd, en voor de nieuwe vorm is de infrastructuur nog niet gebouwd: <em>hoe verander ik wat ik net heb gelezen in iets dat ik echt onthoud?</em>
+        </p>
+        <p>
+          De cognitieve wetenschap van die vraag is al vijftig jaar duidelijk. Gespreide herhaling, ophaalpraktijk, generatie, wenselijke moeilijkheden, belichaamde cognitie, metacognitieve kalibratie. De resultaten zijn robuust. De meta-analyses zijn consistent. Het probleem was nooit weten wat werkt — het was tools bouwen die het juiste tot het makkelijkste pad maken.
+        </p>
+        <p>
+          De verleiding van het LLM-tijdperk is het tegenovergestelde. Het laat het verkeerde — de passieve consumptie van vlotte uitleg — eruitzien als het juiste. Drie seconden herkenning, verward met codering. We hebben geen extra app nodig die die fout versnelt.
+        </p>
+        <p>
+          Fluera is tegen de stroom in gebouwd. Traag waar snelheid een illusie is. Stil waar lawaai het businessmodel is. Moeilijk waar moeilijkheid het mechanisme is. Niet omdat we van inspanning houden, maar omdat het bewijs ondubbelzinnig is — inspanning <em>is</em> leren.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Transparantie</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Wat we niet pretenderen.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          We citeren onderzoek bij elk principe omdat het onderzoek bestaat. Dat betekent niet dat Fluera zelf is getoetst tegen controles. Dat is nog niet zo. Wanneer we "evidence-based" zeggen, bedoelen we dat het onderliggende mechanisme dat is. De specifieke implementatie is een engineeringkeuze die is geïnformeerd door de literatuur.
+        </p>
+        <p>
+          We zijn geen klinische tool. We vervangen geen competente tutor. We zullen niet beweren dat het gebruik van Fluera het resultaat van een student met een specifiek percentage verhoogt. Zo'n claim zou oneerlijk of onfalsifieerbaar zijn; allebei erger dan stilte.
+        </p>
+        <p>
+          Sommige van de genoemde principes worden binnen specifieke domeinen betwist. Interventies rond groeimindset hebben gemengde replicatie in gecontroleerde studies. Flow is makkelijker te herkennen dan betrouwbaar te engineeren. Ruimtelijke cognitie in digitale omgevingen valt niet altijd samen met die in fysieke omgevingen. We signaleren die grenzen omdat ze platslaan de snelste manier is om het vertrouwen te verliezen van precies de lerenden die er voor ons toe doen.
+        </p>
+        <p>
+          De meta-analyses die we citeren zijn de dichtste consensus die de cognitieve wetenschap produceert. De Fluera-functies die erop voortbouwen zijn op dit moment hypotheses die we met de beta toetsen. Als iets voor jou niet werkt, willen we dat weten — dat signaal weegt zwaarder dan welke landingspagina-claim ook.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Test de cyclus.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Lezen over ophaalpraktijk is geen ophaalpraktijk. Word lid van de private beta en stel de cyclus op de proef op een eigen canvas.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Word lid van de beta →</a>
+        <a href="/nl/research" class="btn-secondary">Lees de bibliografie</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

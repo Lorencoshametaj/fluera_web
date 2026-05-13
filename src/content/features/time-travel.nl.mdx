@@ -1,0 +1,51 @@
+---
+lang: "nl"
+title: Time Travel
+tagline: "Speel elke streek opnieuw af. Gesynchroniseerd met de collegeaudio die je hem deed schrijven."
+shortDescription: "Tik op een aantekening van drie weken geleden en de audio gaat terug naar precies waar je pen aan het schrijven was. Beleef je eigen denken opnieuw."
+status: coming-soon
+stepInCycle: 5
+relatedPrinciples:
+  - spatial-cognition
+  - spacing-effect
+  - embodied-cognition
+  - levels-of-processing
+relatedAuthors:
+  - okeefe-moser
+  - van-der-meer
+order: 10
+---
+
+## Wat het oplost
+
+De traditionele tekortkoming van collegenotities is dat ze dood zijn. Weken later kijk je naar iets dat je hebt geschreven en weet je niet meer waarom. Wat zei de docent? Wat was de context? De notitie staat los van zijn context — en gedecontextualiseerde notities zijn vrijwel nutteloos.
+
+Time Travel houdt de context levend.
+
+## Hoe het werkt
+
+Je start een opname zodra het college begint. Je schrijft normaal. Elke streek die je tekent wordt via timestamp gekoppeld aan het opgenomen audiomoment.
+
+Later — dagen, weken of maanden — tik je op welke streek dan ook op je canvas. De audio spoelt terug naar het exacte moment waarop je het aan het schrijven was. Je hoort de stem van de docent, je eigen gedachte, de vraag van iemand achterin de zaal. De context komt in één klap terug.
+
+Je sleept door de audio en ziet het canvas streek voor streek opnieuw afspelen, op het oorspronkelijke tempo of versneld. Je ziet je geest aan het werk.
+
+Alle opslag is standaard lokaal, versleuteld met SQLCipher. Audiosynchronisatie is opt-in en wordt, indien geactiveerd, end-to-end versleuteld.
+
+## De wetenschap erachter
+
+Twee principes komen samen:
+
+- **Context-afhankelijk ophalen** (Tulving, 1972): het geheugen wordt beter opgehaald wanneer de ophaalcontext overeenkomt met de codeercontext. Fluera speelt de codeercontext op verzoek af — de stem van de docent, de sfeer in de zaal, de bewegingen van je hand.
+- **Ruimtelijke cognitie** (O'Keefe en Moser, Nobel 2014): de positie op het canvas is zelf een ophaalaanwijzing. Een streek aantikken combineert de ruimtelijke cue (positie) met de contextuele (audio) — twee ophaalroutes in plaats van één.
+
+Het EEG-werk van van der Meer (2020) voegt een derde laag toe: handschrift activeert brede sensorimotorische netwerken op het moment van schrijven. Time Travel laat de student weken later opnieuw door datzelfde netwerk lopen — zich er niet alleen aan herinnerend, maar de streek die het oorspronkelijk activeerde *opnieuw afspelend*.
+
+## Wat komt
+
+Time Travel is in private alpha. De volledige release omvat:
+
+- **Cross-device audio-sync** (vandaag alleen lokaal)
+- **Transcriptiezoek** — vind collegemomenten op basis van wat er gezegd is
+- **Auto-gegenereerde hoofdstukmarkeringen** door pauzes en onderwerpswissels
+- **Export als geannoteerde video** — om een college-walkthrough te delen

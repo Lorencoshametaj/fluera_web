@@ -1,0 +1,57 @@
+---
+lang: "de"
+title: "Warum wir 2026 eine Lern-App bauen"
+description: "Wenn jeder jede Frage stellen und in drei Sekunden eine Antwort bekommen kann, ist die interessante Frage nicht, was wir wissen. Sondern, was wir behalten."
+publishedAt: 2026-04-20
+author: "Lorenzo"
+category: cognitive-science
+tags: ["manifesto", "ia", "posicionamento"]
+relatedPrinciples: [automation-bias, illusion-of-competence, centaur-paradigm]
+---
+import Citation from "@/components/Citation.astro";
+
+Es gibt eine Version dieses Essays, die ich vor achtzehn Monaten geschrieben habe, und ich bin froh, sie nicht veröffentlicht zu haben.
+
+Sie hieß *Warum eine Lern-App in der ChatGPT-Ära?* und verbrauchte zweitausend Wörter darauf zu erklären, wie KI die Bildung umkrempeln würde, wie Fluera die App sein würde, die personalisiertes Tutoring endlich Realität werden lässt, und wie in fünf Jahren niemand mehr so lernen würde wie zuvor. Der Text war optimistisch. Er war selbstbewusst. Er war im Rückblick auch fast vollständig falsch.
+
+Was ich damals nicht sah, war, dass das Problem nie war, dass Studierende nicht an Information herankommen. Es war nie, dass Lehrende nicht personalisieren können. Das Problem war — und ist —, dass moderne Werkzeuge es unglaublich leicht machen zu *fühlen*, etwas gelernt zu haben, das man nicht gelernt hat. Und je besser das Werkzeug im *Gefühl* wird, desto schlechter wird es bei dem, was zählt.
+
+## Der Engpass hat sich verschoben
+
+Über weite Teile der Geschichte war die Frage, die das Studium von irgendetwas definierte, *Zugang*. Bücher kosteten Geld. Lehrer waren rar. Bibliotheken lagen weit weg. Eine gebildete Person war vor allem jemand, der es geschafft hatte, in die Nähe der Information zu kommen.
+
+Für meine Generation wurde die Frage zur *Navigation*. Information war im Überfluss da; das richtige Stück zu finden war die Arbeit. Google, Wikipedia, Stack Overflow — eine ganze Infrastruktur für eine einzige Frage: *Wo ist es?* 2015 gebildet zu sein hieß, gut suchen zu können.
+
+2026 begrenzt uns keine der beiden Fragen wirklich. Jede Tatsache ist drei Sekunden entfernt. Jede Erklärung lässt sich in dem Stil generieren, den du bevorzugst. Der Engpass hat sich erneut verschoben — und für die neue Form ist die Infrastruktur noch nicht gebaut.
+
+Der neue Engpass lautet: *Wie verwandle ich das, was ich gerade gelesen habe, in etwas, das ich wirklich behalte?*
+
+## Die alte Kognitionswissenschaft, im Stillen rehabilitiert
+
+Und hier kommt der lustige Teil. Die Antworten auf diese Frage liegen seit fünfzig Jahren in der Literatur. Verteilte Wiederholung, seit Ebbinghaus 1885. <Citation authors="Roediger und Karpicke" year="2006" href="/de/research">Abrufpraxis, seit Roediger und Karpicke 2006</Citation>. <Citation authors="Bjork" year="1994" href="/de/research">Erwünschte Schwierigkeiten, seit Bjork 1994</Citation>. <Citation authors="Novak und Gowin" year="1984" href="/de/research">Concept Mapping, seit Novak 1984</Citation>. Die Neurowissenschaft des räumlichen Gedächtnisses von O'Keefe und den Mosers, <Citation authors="Moser et al." year="2005" href="/de/research">die 2014 den Nobelpreis gewann</Citation>.
+
+Diese Befunde sind robust. Die Meta-Analysen sind konsistent. Die Effektstärken reichen von moderat bis *d = 0,88* — sehr groß für jeden Standard der Kognitionswissenschaft.
+
+Was wir nie hatten — kein einziges Mal in der gesamten Geschichte der Ed-Tech — sind Werkzeuge, die das Richtige zum einfachsten Weg machen. Anki macht Abrufpraxis möglich, allerdings um den Preis enormer Aufbauarbeit. Notion macht Notizen lesbar, aber nicht abrufbar. GoodNotes macht Handschrift schön, aber von jeder Gedächtnisplanung abgekoppelt. Jedes Werkzeug löst einen Schritt eines vielschrittigen Zyklus; keines löst den Zyklus.
+
+Und jetzt, oben auf diesem Mosaik, haben wir die LLMs. Die das Falsche — den passiven Konsum artikulierter Antworten — *fühlen* lassen wie das Richtige. Drei Sekunden Flüssigkeit, verwechselt mit Enkodierung. <Citation authors="Kahneman" year="2011" href="/de/research">Automation Bias im planetarischen Maßstab</Citation>.
+
+## Der Centaur, nicht die Substitution
+
+Die Versuchung, beim Bau eines KI-basierten Lernwerkzeugs, ist, die KI ins Zentrum zu stellen. Sie deine Notizen schreiben zu lassen, dir das Lehrbuch zusammenzufassen, dir die Prüfungsfragen zu erklären. Ich verstehe die Versuchung. Es ist das naheliegende Produkt. Und es ist auch, nach allem, was die Wissenschaft sagt, exakt falsch.
+
+Kasparovs Centaur-Framing ist das, was wirklich funktioniert. Der stärkste Schachspieler der Welt ist nicht Stockfish. Er ist auch nicht Carlsen. Er ist Carlsen *mit* Stockfish, in strukturierter Symbiose — jeder tut, was er am besten kann, keiner gibt vor, der andere zu sein.
+
+Beim Lernen ist der menschliche Beitrag Tiefe, Urteil und Generierung. Der Beitrag der KI ist Breite, Verifikation und Scaffolding. Ein Werkzeug, das das versteht, hat eine KI, die fragt, bevor sie antwortet, Gerüste baut, bevor sie löst, prüft, bevor sie sich anbietet. Ein Werkzeug, das es falsch macht, dreht das um, und der Studierende verlässt die Sitzung mit dem Gefühl, klüger zu sein, ohne etwas gelernt zu haben.
+
+Fluera ist unser Versuch der ersten Art.
+
+## Worauf wir wetten
+
+Wir wetten darauf, dass es eine Kohorte von Lernenden gibt — nicht alle, nicht die Mehrheit, aber genug —, die den Unterschied zwischen Flüssigkeit und Kompetenz spürt, wenn es darauf ankommt. Studierende, die sich auf mündliche Prüfungen vorbereiten, in denen man nicht bluffen kann. Lifelong-Learner, die merken, dass alles, was sie ChatGPT abfragen, in der Woche darauf verdunstet. Lehrende, die müde sind, Studierende artikulierte LLM-generierte Essays abgeben zu sehen, die der Studierende danach nicht verteidigen kann.
+
+Für diese Leute ist die Reibung kein Bug. Mit der Hand zu schreiben ist keine Nostalgie. Befragt zu werden, bevor man die Antwort bekommt, ist keine Strafe. Es sind Features. Es ist der Mechanismus.
+
+Wir bauen ein Lernwerkzeug, das langsamer, leiser und schwerer ist als die Alternativen. Weil die Evidenz sagt, dass es das ist, was funktioniert. Und weil die schnelleren, lauteren und einfacheren Werkzeuge inzwischen zu Werkzeugen für die Kompetenzillusion geworden sind.
+
+Wenn das in dir resoniert — [komm, mit uns in der Beta zu bauen](/beta). Wenn nicht, ist auch das in Ordnung. Nicht jedes Werkzeug ist für jeden Lernenden. Dieses ist für die, die den Unterschied erkennen.

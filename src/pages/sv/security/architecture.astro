@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Säkerhetsarkitektur"
+  description="Hur Fluera krypterar din anteckningsbok i vila, i transit och mellan enheter. SQLCipher, TLS 1.3, ände-till-ände-synk, opt-in-telemetri, revisionsspår för institutioner."
+  locale="sv"
+>
+  <PageHero
+    kicker="Arkitektur"
+    title="Så skyddar Fluera din anteckningsbok."
+    description={`Den här sidan beskriver säkerhetsmodellen på den nivå som en teknisk läsare — säkerhetsansvarig, universitets-CISO, nyfiken utvecklare — förväntar sig. För den icke-tekniska sammanfattningen, börja på <a href="/sv/security">/sv/security</a>.`}
+    breadcrumb={{ label: "Säkerhet", href: "/sv/security" }}
+  />
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+
+      <h2>Hotmodell</h2>
+      <p>
+        Vi antar stöld av enheten, nätverksavlyssning och oavsiktlig exponering via backup eller molnsynk. Vi antar att användarens autentiseringsuppgifter kan komprometteras. Vi antar <em>inte</em> statliga motståndare med fysisk åtkomst till olåsta enheter — Fluera är inget hemlighetsverktyg, det är ett studieverktyg.
+      </p>
+      <p>Inom den modellen, tre garantier:</p>
+      <ul>
+        <li><strong>Lokal data är oläsbar utan nyckeln.</strong> En stulen enhet producerar en krypterad blob.</li>
+        <li><strong>Synkroniserad data är oläsbar för oss.</strong> Molnet lagrar bara ciphertext. Härledningen sker på enheten.</li>
+        <li><strong>Telemetri är samtyckesbaserad och avidentifierad.</strong> Analyserna kan inte koppla en användare till hennes innehåll ens vid ett fullständigt intrång.</li>
+      </ul>
+
+      <h2>I vila: SQLCipher, AES-256</h2>
+      <p>
+        Varje anteckningsbok i Fluera lever i en lokal SQLite-databas krypterad med SQLCipher — en brett auditerad utökning som transparent krypterar varje sida i databasen med AES-256-CBC och integritetskontroll via HMAC-SHA512 per sida.
+      </p>
+      <p>
+        Nyckelhärledning använder PBKDF2 med SHA-256, 256 000 iterationer (i linje med OWASP). Lösenfrasen lagras i plattformens keychain — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows, libsecret på Linux. Den skickas aldrig till våra servrar.
+      </p>
+
+      <h2>I transit: TLS 1.3, certificate pinning</h2>
+      <p>
+        All nätverkstrafik är TLS 1.3 med moderna chiffer. På iOS och Android pinnar vi certifikat mot vår CA-kedja för att förhindra man-in-the-middle från företagsproxyer — med en dokumenterad override för nätverksadministratörer som behöver det.
+      </p>
+
+      <h2>Synk mellan enheter: ände till ände</h2>
+      <p>
+        Molnsynk, när den är aktiverad, använder en separat uppsättning nycklar härledda på enheten. Synkservern (Supabase Storage, EU-region) lagrar ciphertext och kan inte dekryptera. Synk är opt-in per anteckningsbok — du kan hålla vissa enbart lokalt medan andra synkas.
+      </p>
+      <p>
+        Nyckelrotation: att starta den från valfri enhet omkrypterar alla framtida payloads med en ny nyckel. Gammal ciphertext förblir läsbar för äldre klienter tills du bekräftat migrationen på alla enheter.
+      </p>
+
+      <h2>P2P-samarbete: direkt, krypterat</h2>
+      <p>
+        Realtidssamarbete använder WebRTC DataChannel med DTLS-SRTP-kryptering. Supabase Realtime fungerar enbart som signaleringsmäklare — uppsättning av anslutningen — inte som relay för den faktiska canvas-trafiken. Efter handskakningen flödar canvas-redigeringar peer-to-peer. Servern ser dem inte.
+      </p>
+      <p>
+        Vid restriktiva NAT:er går trafiken via TURN, i vilket fall reläet bara ser krypterade DTLS-paket som det inte kan dekryptera.
+      </p>
+
+      <h2>AI-anrop: via proxy, aldrig direkt</h2>
+      <p>
+        Anrop till Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) går via en Supabase Edge Function som håller API-nyckeln på servern. Klientenheterna ser aldrig nyckeln. Proxyn tillämpar rate limit per plan och loggar anropsdurationer för bokföring — aldrig canvas-innehållet.
+      </p>
+      <p>
+        Om du stänger av AI-funktionerna i <em>Inställningar → Integritet</em> skickas inget canvas-innehåll till Gemini, inte ens som fallback för OCR på enheten.
+      </p>
+
+      <h2>Telemetri: opt-in, hashad, allowlistad</h2>
+      <p>
+        Produktanalys är avstängd som standard. När den är på är händelserna begränsade till en whitelist på servern (sessionsstart/-slut, funktionsanrop, AI-anropsduration — aldrig innehåll). Användar-ID:t hashas med SHA-256 på enheten; ID:t i klartext lämnar aldrig klienten. Händelser sparas i 180 dagar och aggregeras eller raderas sedan.
+      </p>
+
+      <h2>Revisionsspår (Institutional-konton)</h2>
+      <p>
+        Varje åtkomst till delade anteckningsböcker — vem, från vilken enhet, när — skrivs till ett append-only-revisionsspår. Administratörer kan exportera spåret som CSV eller JSON för compliance-kontroller. Spåret är write-once: borttagning kräver en dokumenterad motivering och loggas i sin tur.
+      </p>
+
+      <h2>Recovery och nyckelförlust</h2>
+      <p>
+        Om du tappar lösenfrasen blir den krypterade datan oåterkallelig. Det är avsiktligt — alternativet vore en återställningsväg som med nödvändighet skulle försvaga krypteringsmodellen. För Institutional-konton är det möjligt att konfigurera en valfri recovery-nyckel som hålls av administratören; det är en dokumenterad trade-off där institutionen väljer medvetet.
+      </p>
+
+      <h2>Responsible disclosure</h2>
+      <p>
+        Säkerhetsforskare är välkomna. Rapportera sårbarheter till <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> med PGP-kryptering (nyckel publicerad i GitHub-profilen). Vi svarar inom 24 timmar, patchar kritiska problem inom 72 och krediterar rapportören i hall of fame om inte anonymitet begärs.
+      </p>
+      <p>
+        Omfattning: Fluera-appen (alla plattformar), synktjänsten, AI-proxyn och den här marknadssajten. Utanför omfattning: tredjepartstjänster (Supabase, Google, Apple, Sentry, RevenueCat) — rapportera till respektive leverantör.
+      </p>
+
+      <h2>Externa granskningar</h2>
+      <p>
+        Fluera har för närvarande varken SOC 2- eller ISO 27001-certifiering. De ligger på enterprise-roadmapen och kommer att tillkännages publikt när de är klara. Vi föredrar att inte deklarera kontroller vi inte verifierat oberoende.
+      </p>
+      <p>
+        <a href="/sv/security/sub-processors">Listan över underbiträden</a> är offentlig och hålls uppdaterad. Data Processing Agreement finns på begäran via <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a>.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/sv/security/sub-processors" class="btn-secondary">Underbiträden →</a>
+        <a href="/sv/contact" class="btn-primary">Prata om utrullning</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

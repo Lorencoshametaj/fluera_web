@@ -1,0 +1,44 @@
+---
+lang: "de"
+title: Verteilte Wiederholung
+tagline: "Successive Relearning — die evidenzstärkste Lernstrategie, in deinem Canvas."
+shortDescription: "Die KI plant Rückkehrungen in wachsenden Intervallen. Jede Rückkehr ist Abruf, nicht erneutes Lesen. Spacing und Abruf kombiniert ergeben superadditive Effekte."
+status: beta
+stepInCycle: 8
+relatedPrinciples:
+  - spacing-effect
+  - retrieval-practice
+  - successive-relearning
+  - interleaving
+relatedAuthors:
+  - roediger-karpicke
+  - robert-bjork
+  - albert-bandura
+order: 5
+---
+
+## Was es löst
+
+Die meisten Tools für verteilte Wiederholung sind Karteikarten-Apps. Sie dekontextualisieren Wissen in atomare Karten und rekonstruieren dann die Intervalle anhand der selbsterklärten Leichtigkeit. Sie funktionieren — aber um den Preis, die räumliche und strukturelle Bedeutung zu entfernen, die das Wissen überhaupt erst abrufbar machte.
+
+Flueras verteilte Wiederholung lebt in deinem Canvas. Der Knoten, den du wiederholst, ist der Knoten, den du geschrieben hast, an der Position, an der du ihn geschrieben hast, verbunden mit den Konzepten, zu denen du Kanten gezogen hast. Nichts wird atomisiert.
+
+## Wie es funktioniert
+
+Nach jeder sokratischen Sitzung und jeder Ghost-Map-Überlagerung aktualisiert Fluera eine Schätzung der Gedächtnisstärke pro Knoten. Es weiß, welche Konzepte du leicht beantwortet hast, welche Hyperkorrektur ausgelöst haben und welche du eine Weile nicht gesehen hast.
+
+Bei jeder Rückkehr (Tag 3, 7, 14, 30, 60+) öffnet Fluera das Canvas, wobei die fälligen Knoten in Fog of War gerendert sind. Du navigierst, rufst ab, deckst auf. Der Scheduler aktualisiert. Das nächste Intervall weitet sich oder zieht sich zusammen, basierend darauf, woran du dich tatsächlich erinnert hast — nicht darauf, woran du dich zu erinnern behauptet hast.
+
+**Personalisiertes FSRS.** Der Scheduler ist kein fester Algorithmus. Er kalibriert acht Gewichts-Parameter pro Nutzer per Gradient Descent über deine Review-Historie — dieselbe Methode wie in der modernsten Forschung zur verteilten Wiederholung, angepasst an Flueras reicheres Signal (Selbstsicherheit, Antwortzeit, Magnitude der Hyperkorrektur).
+
+## Die Wissenschaft dahinter
+
+Roediger und Karpicke (2006) haben gezeigt, dass Abrufpraxis das erneute Lesen schlägt. Bjorks jahrzehntelange Arbeit hat gezeigt, dass verteilte Praxis konzentrierte schlägt. 2011 kombinierten Rawson und Dunlosky beides — *Successive Relearning* — und zeigten **superadditive** Ergebnisse: verteilte Abrufpraxis erzeugt größere Effekte als die Summe aus Spacing und Abruf einzeln.
+
+Das ist die stärkste einzelne Evidenzbasis in der Lernwissenschaft für eine spezifische Lernstrategie. Flueras Aufgabe ist nicht, sie neu zu erfinden, sondern jedes Hindernis für die Praxis zu beseitigen — vor allem das größte, nämlich die Mühsal, überhaupt Karteikarten zu bauen. In Fluera *ist* das Canvas, das du bereits hast, das Wiederholungsmaterial.
+
+## Was als Nächstes kommt
+
+- **Verschachtelte Pfade** — die KI wählt Review-Routen, die verschiedene Stoffzonen durchqueren und so den Autopiloten deaktivieren.
+- **Kalibrierung pro Fach** — separate FSRS-Gewichte für Sprachen vs. Mathematik vs. klinische Medizin, in denen sich die Gedächtnisdynamik messbar unterscheidet.
+- **Anki-Import** — für Lernende mit bestehenden Decks, die schrittweise migrieren wollen.

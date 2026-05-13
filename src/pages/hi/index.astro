@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+import home from "@/data/home/hi";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "अधिगम के संज्ञानात्मक विज्ञान पर निर्मित अनंत अध्ययन कैनवास।",
+  url: `${SITE.url}/hi/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const { steps, authors, platforms } = home;
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="अधिगम के संज्ञानात्मक विज्ञान पर निर्मित अनंत अध्ययन कैनवास। iOS, Android, macOS, Windows, Linux, Web।"
+  jsonLd={jsonLd}
+  locale="hi"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          निजी बीटा · केवल आमंत्रण
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          स्मृति के काम करने के तरीके<br />के लिए डिज़ाइन किया गया<br /><span class="text-gradient">अध्ययन स्थान।</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          अनंत कैनवास पर हाथ से लिखें। AI को उत्तर देने के बजाय प्रश्न पूछने दें। समय के साथ अपनी सोच को फिर से देखें। स्मृति वास्तव में कैसे बनती है, उसके अनुसार समायोजित।
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            बीटा में शामिल हों
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            लाइव डेमो आज़माएं
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>एंड-टू-एंड एन्क्रिप्टेड</span><span class="text-ink-600">·</span>
+          <span>GDPR मूल</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">बाधा</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        आप कुछ भी पूछ सकते हैं।<br />फिर भी उत्तर सिर में नहीं रहता।
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          2026 में, ज्ञान तीन सेकंड में पुनर्प्राप्त होता है और तीन सप्ताह में भुला दिया जाता है। नोट्स लेने के लिए दस ऐप हैं और सीखी गई बात को <em>बनाए रखने</em> के लिए एक भी नहीं।
+        </p>
+        <p>
+          हाइलाइट करना अध्ययन जैसा लगता है। पुनः पढ़ना अध्ययन जैसा लगता है। LLM से सारांश पूछना अध्ययन जैसा लगता है। तीनों में से कोई नहीं है — संज्ञानात्मक विज्ञान 1970 के दशक से इस बारे में स्पष्ट है।
+        </p>
+        <p>
+          अधिगम की बाधा अब पहुंच नहीं है — यह <em>एन्कोडिंग, धारणा, और स्थानांतरण</em> है: एक साथ तीन समस्याएं।
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera इन तीनों के लिए बनाया गया है।
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">विधि</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          एक कैनवास।<br />बारह संज्ञानात्मक चालें।<br />वह चक्र जिससे आपका मस्तिष्क सीखता है।
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Fluera की प्रत्येक विशेषता चक्र के एक चरण में रहती है, और प्रत्येक चरण प्रकाशित अनुसंधान में आधारित है। एक छोड़ें, श्रृंखला टूट जाती है। सभी का पालन करें, नोटबुक स्थायी हो जाती है।
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">चार संज्ञानात्मक विभेदक</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          स्मृति बनने के चार तरीके।
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map · चरण 4"
+          title="आपने जो लिखा और जो सही था, उसके बीच की दूरी देखें।"
+          description="पुनर्प्राप्ति के प्रयास के बाद, Fluera आपके काम को आदर्श समाधान पर ओवरले करता है। बेमेल धड़कते हैं। शर्मिंदा नहीं करते — स्मृति को जगाते हैं। आप जितने अधिक गलत थे, सुधार उतना ही अधिक टिकता है।"
+          citation="हाइपरकरेक्शन प्रभाव — Butterfield और Metcalfe, 2001।"
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode · चरण 3"
+          title="हमारा AI उत्तर नहीं देता। पूछता है।"
+          description="प्रत्येक प्रकटीकरण से पहले 1 से 5 तक अपने आत्मविश्वास का मूल्यांकन करें। मेटाकॉग्निशन निपुणता का आधा है, और आत्मविश्वास अंशांकन इसे बनाने का तरीका है — एक बार में एक भविष्यवाणी।"
+          citation="मेटाकॉग्निटिव मॉनिटरिंग — Flavell, 1979।"
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War · चरण 10"
+          title="परीक्षा मोड जो छुपाता है जो आप लगभग याद रखते हैं।"
+          description="कैनवास के किसी भी क्षेत्र को मास्क करें। प्रकट करने से पहले स्मृति से वापस खींचें। पुनर्प्राप्ति का संघर्ष — फिर से देखना नहीं — वहीं स्मृति कठोर होती है।"
+          citation="वांछनीय कठिनाइयां — Bjork, 1994।"
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Exam Session · चरण 11"
+          title="आपके कैनवास से अनुकरण परीक्षाएं — Ghost Map द्वारा सुधारी।"
+          description="प्रत्येक प्रश्न से पहले 1 से 5 तक आत्मविश्वास पिकर। बंद-पुस्तक। सबमिट करने के बाद, Fluera आपके उत्तर को आदर्श पर ओवरले करता है और जहां आप सबसे अधिक आत्मविश्वासी और गलत थे वहां हाइपरकरेक्शन लागू करता है।"
+          citation="हाइपरकरेक्शन — Butterfield और Metcalfe, 2001 · उत्पादक विफलता — Kapur, 2008।"
+          href="/hi/features/exam-session"
+          status="beta"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">बीटा में आज़माएं →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">स्याही, कीबोर्ड नहीं</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            टाइप करना तेज़ है।<br />हाथ से लिखना बेहतर है।<br />मस्तिष्क गति के लिए अनुकूलित नहीं है।
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller और Oppenheimer, Princeton 2014 · van der Meer, NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            जब Mueller और Oppenheimer ने 2014 में अपना प्रसिद्ध Princeton अध्ययन किया, तो उन्होंने पाया कि हाथ से नोट्स लेने वाले छात्र अवधारणा संबंधी प्रश्नों पर लैपटॉप उपयोगकर्ताओं को पीछे छोड़ गए — <em>हालांकि</em> लैपटॉप उपयोगकर्ताओं ने काफी अधिक शब्द लिखे थे। हाथ धीमा था। मन गहरा था।
+          </p>
+          <p>
+            एक दशक बाद, NTNU में Audrey van der Meer के EEG कार्य (2020) ने हमें <em>कारण</em> दिया: हस्तलेखन टाइपिंग की तुलना में व्यापक मस्तिष्क नेटवर्क सक्रिय करता है, विशेष रूप से स्मृति निर्माण और संवेदी-मोटर एकीकरण से जुड़े क्षेत्रों में। पेन एक संज्ञानात्मक उपकरण है।
+          </p>
+          <p>
+            Fluera इस खोज के चारों ओर बनाया गया है। तेरह ब्रश इंजन। दबाव, झुकाव, गति। हर समर्थित डिवाइस पर 15-मिलीसेकंड से कम स्ट्रोक विलंबता। अनंत कैनवास सौंदर्य नहीं है — यह वह सब्सट्रेट है जिसके लिए आपकी स्मृति पूछ रही है।
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">वैज्ञानिक आधार</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          दिग्गजों के कंधों पर — नाम से।
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          प्रत्येक डिज़ाइन निर्णय एक पेपर पर वापस जाता है जिसे हम लिंक कर सकते हैं। उनमें से बारह दिमाग नीचे हैं। पूरी ग्रंथसूची एक सार्वजनिक संग्रह में रहती है।
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">छह प्लेटफॉर्म, एक स्याही</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          छह प्लेटफॉर्म। एक स्याही। एक मस्तिष्क।
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Vulkan, Metal, OpenGL, Direct3D 11 और WebGPU पर मूल रेंडरर। आपकी नोटबुक एंड-टू-एंड एन्क्रिप्टेड सिंक होती है, या ऑफ़लाइन रहती है। आपका निर्णय।
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        स्थिति लेबल रिलीज़ तत्परता के बारे में ईमानदार हैं। "अल्फा" या "डेमो" चिह्नित प्लेटफॉर्म काम करते हैं लेकिन पॉलिशिंग चाहिए — यदि आप उन्हें आकार देने में मदद करना चाहते हैं तो बीटा में शामिल हों।
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">आपका मस्तिष्क, आपका डेटा</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          एंड-टू-एंड एन्क्रिप्टेड।<br />कुंजी आप रखते हैं।
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">विश्राम पर AES-256</h3>
+          <p class="text-sm text-paper-300">हर डिवाइस पर SQLCipher एन्क्रिप्शन। आपका लोकल डेटाबेस आपकी कुंजी के बिना पठनीय नहीं है।</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">GDPR मूल</h3>
+          <p class="text-sm text-paper-300">EU-होस्टेड, डेटा प्रोसेसिंग समझौता उपलब्ध, अनुरोध पर पूर्ण निर्यात और विलोपन।</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">शून्य विज्ञापन-तकनीक</h3>
+          <p class="text-sm text-paper-300">कोई ट्रैकिंग पिक्सेल नहीं। कोई व्यवहार आधारित विज्ञापन नहीं। हम आपकी सामग्री पर अपने मॉडल को प्रशिक्षित नहीं करते।</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">ऑडिट लॉग</h3>
+          <p class="text-sm text-paper-300">शिक्षा खातों के लिए, हर एक्सेस अपरिवर्तनीय निशान में लॉग किया जाता है।</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">सुरक्षा वास्तुकला पढ़ें →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">मूल्य</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          सीखने के लिए मुफ़्त। गहराई में जाने के लिए Plus और Pro।
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">पूरा कैनवास। तीन नोटबुक। हमेशा के लिए मुफ़्त।</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5.99<span class="text-sm font-sans text-paper-300">/माह</span></p>
+          <p class="text-sm text-paper-300">असीमित कैनवास, 2-डिवाइस सिंक, बेसिक AI। €49/वर्ष।</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11.99<span class="text-sm font-sans text-paper-300">/माह</span></p>
+          <p class="text-sm text-paper-300">Exam Session, Atlas, पूर्ण AI सूट, असीमित सिंक। €99/वर्ष।</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19.99<span class="text-sm font-sans text-paper-300">/सीट</span></p>
+          <p class="text-sm text-paper-300">साझा कैनवास, team Atlas, ACL, ऑडिट लॉग। 5+ सीटें।</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        सत्यापित छात्रों को हमारे पायलट प्रोग्राम के माध्यम से Plus या Pro 50% छूट पर मिलता है। जो भी अभी सब्सक्राइब करता है वह सब्सक्रिप्शन की अवधि के लिए दर लॉक कर देता है।
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">पूरा मूल्य देखें →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">हमसे जुड़ें</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        निजी बीटा।<br />कोहोर्ट द्वारा ऑनबोर्डिंग।
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        हम कोहोर्ट द्वारा ऑनबोर्ड करते हैं ताकि हर समूह — छात्र, ज्ञान कार्यकर्ता, फैकल्टी — को कतार टिकट के बजाय एक वास्तविक बातचीत मिले। यदि आप ऐसे ऐप्स से थक गए हैं जो आपके लिए सीखने का वादा करते हैं, तो एक्सेस का अनुरोध करें।
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        एक्सेस का अनुरोध करें →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,187 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import { getCollection } from "astro:content";
+
+const principles = (await getCollection("principles", ({ data }) => data.lang === "en")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const authors = (await getCollection("authors", ({ data }) => data.lang === "en")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const steps = [
+  { n: 1,  title: "Uchwycenie",          verb: "Dzień wykładu",          description: "Pisz pojęcia ręcznie podczas wykładu. Umieszczaj je w przestrzeni. Spowolnienie pióra wymusza kompresję — a kompresja jest tam, gdzie rodzi się kodowanie." },
+  { n: 2,  title: "Rekonstrukcja",       verb: "Tego samego wieczoru",   description: "Zamknij książkę. Zrekonstruuj na pustej kanwie to, co pamiętasz. Czerwone węzły, na których się zacinasz, są mapą następnej sesji nauki (Kapur, produktywna porażka, 2008)." },
+  { n: 3,  title: "Sokratejski",         verb: "W ciągu 48 godzin",      description: "AI pyta, ty odpowiadasz. Przed każdym ujawnieniem oceń pewność od 1 do 5. Metakognicja staje się jawna." },
+  { n: 4,  title: "Centaur",             verb: "Natychmiast potem",      description: "Ghost Map nakłada Twoje rozumowanie na idealną mapę. Hiperkorekcja utrwala korekty w pamięci (Butterfield i Metcalfe, 2001)." },
+  { n: 5,  title: "Sen",                 verb: "Tej nocy",               description: "Nic nie rób. Sen wolnofalowy odtwarza dzień. Hipokamp przekazuje ślady do kory nowej." },
+  { n: 6,  title: "Pierwszy powrót",     verb: "Dzień 1",                description: "Następnego dnia otwórz kanwę. To, co prawie wiedziałeś, się rozmywa. Wydobądź z pamięci przed ujawnieniem." },
+  { n: 7,  title: "Nauka z partnerem",   verb: "Dzień 2-3",              description: "Wytłumacz swoją kanwę koledze — albo cichemu AI, które pyta o powtórki. Uczyć innych to sposób, by uczyć siebie." },
+  { n: 8,  title: "Powtórki rozłożone",  verb: "Dzień 3 · 7 · 14…",      description: "Skuteczne uczenie się ponowne w rosnących odstępach. Strategia o najsilniejszych dowodach według wielkości efektu (Rawson i Dunlosky, 2011)." },
+  { n: 9,  title: "Mosty międzydziedzinowe", verb: "Tygodnie później",   description: "Narysuj strzałki między tematami. Chemia spotyka się z równaniami różniczkowymi. Transfer to prawdziwy test uczenia się." },
+  { n: 10, title: "Przygotowanie do egzaminu", verb: "7-14 dni przed egzaminem", description: "Fog of War. Nawiguj przez mgłę swojego kanwy. Zielone, czerwone, ślepe punkty — mapa sprawności rysuje się sama." },
+  { n: 11, title: "Exam Session",        verb: "7 dni przed · Tego dnia", description: "Fluera generuje egzamin z zamkniętej księgi z Twojej kanwy. Oceń pewność od 1 do 5, odpowiedz ręcznie. Ghost Map nakłada lukę." },
+  { n: 12, title: "Trwały wzrost",       verb: "Na zawsze",              description: "Kanwa pozostaje jako autobiografia poznawcza. Wróć po dwóch latach i zobacz, jak bardzo urosłeś, w formie namacalnej." },
+];
+---
+
+<BaseLayout
+  title="Nauka stojąca za Fluerą"
+  description="Fluera opiera się na pięciu dekadach badań nad pamięcią — Bjork, Mueller, van der Meer, Roediger i neuronauka komórek miejsca z Nagrodą Nobla. Poznaj 12-stopniowy cykl i zasady stojące za każdą funkcją."
+  locale="pl"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Nauka</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Pięć dekad badań nad pamięcią<br />za jedną aplikacją.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Każda funkcja Fluery odsyła do opublikowanych badań. Poniżej: 12-stopniowy cykl nauki, 23 zasady, na których jest oparty, dwanaście umysłów, na których polegamy, oraz granice tego, czego jeszcze nie twierdzimy.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#learning-cycle" class="btn-secondary">Przejdź do cyklu</a>
+          <a href="#principles" class="btn-secondary">Indeks zasad</a>
+          <a href="#authors" class="btn-secondary">Autorzy</a>
+          <a href="/pl/research" class="btn-secondary">Bibliografia →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Cykl</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Jedna kanwa. Dwanaście ruchów poznawczych.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Cykl jest sekwencyjny i iteracyjny. Kroki 1-4 budują kodowanie. Krok 5 (sen) to nienegocjowalna biologia. Kroki 6-9 konsolidują przez dni i tygodnie. Kroki 10-12 czynią wiedzę trwałą i przenoszalną.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Indeks zasad</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">23 zasady stojące za Fluerą.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Każda zasada prowadzi do dedykowanej strony z głównymi autorami, zastosowanymi funkcjami i artykułami, które cytujemy.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {principles.map((p) => (
+          <li>
+            <a
+              href={`/pl/science/principles/${p.id}`}
+              class="block card p-5 h-full transition-all hover:border-accent-glow/40 hover:bg-white/[0.04]"
+            >
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{p.data.title}</h3>
+                <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+              </div>
+              <p class="text-sm text-paper-300 leading-relaxed line-clamp-3">{p.data.shortDescription}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="authors" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Umysły stojące za metodą</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Dwunastu badaczy, których praca żyje wewnątrz Fluery.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          To nie strona hołdu. Każde imię prowadzi do strony, która nazywa zasadę, funkcje Fluery, które ją stosują, oraz artykuły, które cytujemy.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none p-0">
+        {authors.map((a) => (
+          <li>
+            <a href={`/pl/science/authors/${a.id}`} class="block">
+              <AuthorCard name={a.data.name} contribution={a.data.shortBio.slice(0, 160) + (a.data.shortBio.length > 160 ? "…" : "")} year={a.data.years} nobel={a.data.nobelLaureate} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Dlaczego dziś</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Wąskie gardło się zmieniło.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Przez większość historii wąskim gardłem nauki był dostęp. Książki były drogie, nauczyciele rzadcy, biblioteki daleko. Pytanie brzmiało: <em>czy mogę dotrzeć do informacji?</em>
+        </p>
+        <p>
+          Dla ostatniego pokolenia wąskim gardłem była nawigacja. Informacja była obfita, znalezienie właściwego kawałka było pracą. Google, Wikipedia, katalogi kursów — cała infrastruktura dla jednego pytania: <em>gdzie to jest?</em>
+        </p>
+        <p>
+          W 2026 roku żadne z nich nie jest już wąskim gardłem. Każdy fakt jest oddalony o trzy sekundy. Każde wyjaśnienie można wygenerować w preferowanym stylu. Wąskie gardło zmieniło kształt, a dla nowego kształtu nie zbudowaliśmy jeszcze infrastruktury: <em>jak przekuć to, co właśnie przeczytaliśmy, w coś, co naprawdę zatrzymujemy?</em>
+        </p>
+        <p>
+          Nauka poznawcza tego pytania jest jasna od pięćdziesięciu lat. Powtórki rozłożone, praktyka wydobywania, generowanie, pożądane trudności, kognicja ucieleśniona, kalibracja metakognitywna. Wyniki są silne. Meta-analizy są spójne. Problemem nigdy nie było wiedzieć, co działa — chodziło o budowanie narzędzi, które czynią właściwą rzecz drogą najmniejszego oporu.
+        </p>
+        <p>
+          Pokusa ery LLM-ów jest odwrotna. Sprawia, że niewłaściwa rzecz — bierna konsumpcja płynnych wyjaśnień — wygląda na właściwą. Trzysekundowe rozpoznanie, mylone z kodowaniem. Nie potrzebujemy kolejnej aplikacji, by przyspieszyć ten błąd.
+        </p>
+        <p>
+          Fluera została zbudowana wbrew prądowi. Wolna tam, gdzie szybkość jest iluzją. Cicha tam, gdzie hałas jest modelem biznesowym. Trudna tam, gdzie trudność jest mechanizmem. Nie dlatego, że lubimy trud, ale dlatego, że dowody są jasne — trud <em>jest</em> uczeniem się.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Transparentność</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Czego nie twierdzimy.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Cytujemy badania dla każdej zasady, ponieważ badania tam są. Nie oznacza to, że Fluera została przetestowana w grupach kontrolnych. Nie była — jeszcze nie. Gdy mówimy „oparte na dowodach", mamy na myśli, że istnieje leżący u podstaw mechanizm. Konkretne wdrożenie jest decyzją inżynierską poinformowaną przez literaturę.
+        </p>
+        <p>
+          Nie jesteśmy narzędziem klinicznym. Nie zastępujemy kompetentnego korepetytora. Nie ogłosimy, że używanie Fluery zwiększa wynik dowolnego studenta o jakiś określony procent. Takie twierdzenie byłoby nieuczciwe lub nieudowodnione — oba gorsze niż milczenie.
+        </p>
+        <p>
+          Niektóre wymienione zasady są kwestionowane w określonych domenach. Interwencje nastawienia na rozwój pokazują mieszaną replikację w kontrolowanych próbach. Flow jest łatwiejszy do rozpoznania niż wiarygodnego inżynierowania. Kognicja przestrzenna w środowiskach cyfrowych nie zawsze odpowiada tej w środowiskach fizycznych.
+        </p>
+        <p>
+          Meta-analizy, które cytujemy, to najbliższy konsens, jaki nauka poznawcza wytworzyła. Funkcje Fluery na nich zbudowane są w tej chwili hipotezami, które testujemy z betą. Jeśli coś u Ciebie nie działa, chcemy to wiedzieć — ten sygnał jest cenniejszy niż jakiekolwiek twierdzenie strony lądowania.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Wypróbuj cykl.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Czytanie o praktyce wydobywania nie jest praktyką wydobywania. Dołącz do prywatnej bety i przetestuj cykl na własnej kanwie.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Dołącz do bety →</a>
+        <a href="/pl/research" class="btn-secondary">Przeczytaj bibliografię</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,70 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const channels = [
+  {
+    label: "Yleinen",
+    email: SITE.company.contactEmail,
+    body: "Palaute, kysymykset, pyynnöt. Luemme kaiken, mitä tänne tulee.",
+  },
+  {
+    label: "Instituutiot ja myynti",
+    email: SITE.company.contactEmail,
+    body: "Yliopistot, koulut, tutkimuslaboratoriot. Lähetämme DPA:n, hintatiedot ja pilottiohjelman yksityiskohdat.",
+  },
+  {
+    label: "Lehdistö",
+    email: SITE.company.contactEmail,
+    body: "Haastattelut, lainaukset, embargo. Press kit logoineen ja kuvakaappauksineen pyynnöstä.",
+  },
+  {
+    label: "Tietoturva",
+    email: SITE.company.securityEmail,
+    body: "Haavoittuvuusilmoitukset. Vastaamme 24 tunnin sisällä, paikkaamme kriittiset 72:ssa.",
+  },
+  {
+    label: "Yksityisyys ja tietopyynnöt",
+    email: SITE.company.privacyEmail,
+    body: "Tietojen tarkastelu, vienti ja poisto (GDPR). Vastaus 30 päivän sisällä — yleensä 48 tunnissa.",
+  },
+  {
+    label: "Tuki",
+    email: SITE.company.supportEmail,
+    body: "Käyttäjille, jotka ovat löytäneet bugin tai tarvitsevat apua jonkin ominaisuuden kanssa.",
+  },
+];
+---
+
+<BaseLayout
+  title="Yhteystiedot"
+  description="Ota yhteyttä Flueraan. Kanavat yleisille kysymyksille, myynnille, lehdistölle, tietoturvalle, yksityisyydelle ja tuelle."
+  locale="fi"
+>
+  <PageHero
+    kicker="Yhteystiedot"
+    title="Kuusi kanavaa. Yksi vastaus."
+    description="Ei ticket-järjestelmää. Jokainen alla oleva kanava tavoittaa oikean ihmisen — yleensä vastaamme parin päivän sisällä."
+  >
+    <div class="mt-16 grid md:grid-cols-2 gap-5 max-w-5xl">
+      {channels.map((c) => (
+        <article class="card p-6">
+          <p class="eyebrow text-accent-glow mb-3">{c.label}</p>
+          <a href={`mailto:${c.email}`} class="font-serif text-xl text-paper-50 block mb-3 hover:text-accent-glow transition-colors">
+            {c.email}
+          </a>
+          <p class="text-sm text-paper-300 leading-relaxed">{c.body}</p>
+        </article>
+      ))}
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Pääkonttori: {SITE.company.city}. Emme julkaise puhelinnumeroa: kirjallinen viestintä on jäljitettävissä ja pitää meidät keskittyneinä. Kiireellisiin tietoturva-asioihin PGP-avain on GitHub-profiilissa.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

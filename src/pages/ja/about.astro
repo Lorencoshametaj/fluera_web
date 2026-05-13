@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="私たちについて"
+  description="Fluera はイタリアの小さなチームで作られています。私たちのストーリー、信念、そして決して越えない一線。"
+  locale="ja"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">私たちについて</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
+          学生だった頃に<br />欲しかった学習アプリを<br />私たちは作りました。
+        </h1>
+        <div class="prose-ink text-lg">
+          <p>
+            Fluera は不満から生まれました。ひとりは10年のキャリアを持つフルスタック開発者、もうひとりはクラスメートが同じ罠 ― 生産的に見えるが誰の記憶にも残らないアプリ ― にはまっていくのを見ていた学生でした。
+          </p>
+          <p>
+            私たちは研究を読みました。<em>大量に</em>。Bjork、Mueller、Roediger、van der Meer、O'Keefe。認知科学は半世紀前から明確です: 手書きはタイピングを上回り、想起はリレクチャーを上回り、間隔を空けることは詰め込みを上回り、摩擦はリソースです。これらをまともに扱うアプリを見つけられませんでした。だから自分たちで作りました。
+          </p>
+          <p>
+            その過程で、2D レンダリングエンジンをゼロから書きました ― 既製のスタックでは、6つのネイティブプラットフォーム上で60 FPSの筆圧感応インクを実現できなかったからです。エンジンは、認知機能が乗る基盤です。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">一線</p>
+        <h2 class="font-serif text-display-lg text-paper-50 mb-8">私たちが引く一線。</h2>
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">あなたの代わりに試験に答える AI は作りません。</strong>
+              <p class="text-sm mt-1 text-paper-300">Fluera の AI は問いかけ、足場を組み、内省を促します。あなたの思考を閉じることはありません。AI に認知的な仕事をさせることは、本来鍛えるべき筋肉を萎縮させることです。</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">あなたのノートのデータを売りません。</strong>
+              <p class="text-sm mt-1 text-paper-300">あなたのノートは保存時に暗号化され、同期時はエンドツーエンドで暗号化されます。誰のモデルの訓練にも使われません ― 私たち自身のものを含めて。</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">広告、エンゲージメントループ、ストリークなし。</strong>
+              <p class="text-sm mt-1 text-paper-300">学習との関係性が、プッシュ通知に依存すべきではありません。Fluera を少なく使ってより多く学んでもらうことを、私たちは望みます。</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">引用で擁護できない機能はリリースしません。</strong>
+              <p class="text-sm mt-1 text-paper-300">機能が公開された研究結果、またはベータからの一貫したフィードバックに帰着しないなら、本番には出しません。Wow 効果は機能ではありません。新奇性は機能ではありません。</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        本社: {SITE.company.city}。私たちが何を拒否し、なぜそうするかについてのより長い声明は <a href="/ja/manifesto" class="text-paper-300 underline underline-offset-4">マニフェスト</a> にあります。
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/ja/contact" class="btn-secondary">お問い合わせ</a>
+        <a href="/beta" class="btn-primary">ベータに参加</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -15,7 +15,7 @@ relatedAuthors:
   - lev-vygotsky
   - roediger-karpicke
   - butterfield-metcalfe
-order: 2
+order: 3
 ---
 
 ## What it solves

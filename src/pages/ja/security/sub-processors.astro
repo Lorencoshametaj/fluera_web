@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const processors = [
+  {
+    name: "Supabase Inc.",
+    purpose: "データベース、認証、暗号化されたクラウドストレージ、リアルタイムシグナリング、AI プロキシ用 Edge Function。",
+    dataTypes: "アカウントのメールアドレス、ハッシュ化されたユーザー ID、キャンバスの暗号文 (E2E 暗号化済み)、同期メタデータ。",
+    region: "フランクフルト、EU (Fluera インスタンスのデフォルトリージョン)。",
+    privacy: "https://supabase.com/privacy",
+  },
+  {
+    name: "Google LLC",
+    purpose: "Google Generative AI (Gemini) を Socratic Mode、Ghost Map、LaTeX OCR、試験セッション生成に使用。",
+    dataTypes: "キャンバスから選択されたテキスト断片 (AI 機能が許可かつ有効な場合のみ)。ノート全体は決して送られません。",
+    region: "米国、EU (Google Cloud リージョン経由)。SCC + EU-US DPF。",
+    privacy: "https://policies.google.com/privacy",
+  },
+  {
+    name: "Apple Inc.",
+    purpose: "Sign in with Apple 認証。iOS および macOS の App Store 経由のアプリ内課金。",
+    dataTypes: "Apple ID リレーメール、レシート識別子。キャンバスデータは含まれません。",
+    region: "米国。SCC + EU-US DPF。",
+    privacy: "https://www.apple.com/legal/privacy/",
+  },
+  {
+    name: "RevenueCat Inc.",
+    purpose: "iOS、Android、Web でのサブスクリプション管理とレシート検証。",
+    dataTypes: "匿名化された RevenueCat ユーザー ID、サブスクリプションステータス、レシートメタデータ。カード情報は含まれません。",
+    region: "米国。SCC + EU-US DPF。",
+    privacy: "https://www.revenuecat.com/privacy",
+  },
+  {
+    name: "Functional Software Inc. (Sentry)",
+    purpose: "クラッシュレポートとエラー監視。",
+    dataTypes: "スタックトレース、OS バージョン、デバイスモデル、アプリバージョン。sendDefaultPii は明示的に無効化されており、ユーザーコンテンツは含まれません。",
+    region: "米国、EU オプション利用可能。",
+    privacy: "https://sentry.io/privacy/",
+  },
+  {
+    name: "Vercel Inc.",
+    purpose: "マーケティングサイト fluera.dev および /docs のホスティング。",
+    dataTypes: "標準的な Web アクセスログ (IP、user-agent)。アカウントコンテンツは含まれません。",
+    region: "グローバルエッジ。オリジンリージョンは設定可能。",
+    privacy: "https://vercel.com/legal/privacy-policy",
+  },
+];
+
+const lastUpdated = "2026-04-20";
+---
+
+<BaseLayout
+  title="サブプロセッサー"
+  description="Fluera が製品を提供するために依存しているサードパーティ。各サブプロセッサーの目的、共有されるデータ、リージョン、プライバシーポリシーへのリンク。"
+  locale="ja"
+>
+  <PageHero
+    kicker="サブプロセッサー"
+    title="私たちが依存するすべてのサードパーティ。"
+    description="GDPR 第28条に基づき、当社に代わって個人データを処理するすべてのサブプロセッサーをここに掲載しています。何を共有し、なぜ、どこに保存されるか。変更がある場合は事前にお客様へ通知します。"
+    breadcrumb={{ label: "セキュリティ", href: "/ja/security" }}
+  >
+    <p slot="copy" class="mt-6 text-sm text-ink-500 font-mono">最終更新: {lastUpdated}</p>
+  </PageHero>
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-5xl">
+        {processors.map((p) => (
+          <li class="card p-6 md:p-7">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <h2 class="font-serif text-xl text-paper-50 mb-2">{p.name}</h2>
+                <a href={p.privacy} class="text-xs text-accent-glow underline underline-offset-4 font-mono" rel="noopener">
+                  プライバシーポリシー ↗
+                </a>
+              </div>
+              <dl class="md:col-span-3 grid gap-3 text-sm">
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">目的</dt>
+                  <dd class="text-paper-200">{p.purpose}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">共有されるデータ</dt>
+                  <dd class="text-paper-200">{p.dataTypes}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">リージョン</dt>
+                  <dd class="text-paper-200">{p.region}</dd>
+                </div>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">変更と通知</h2>
+      <p class="prose-ink text-sm mb-4">
+        サブプロセッサーが追加、変更、削除されるたびにこのリストを更新します。機関およびエンタープライズのお客様には、GDPR 第28条(2)に基づき、変更の少なくとも30日前にメールで通知します。
+      </p>
+      <p class="prose-ink text-sm">
+        サブプロセッサー変更通知の購読をご希望の場合は、アカウントのメールアドレスから <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a> までご連絡ください。
+      </p>
+    </div>
+  </section>
+</BaseLayout>

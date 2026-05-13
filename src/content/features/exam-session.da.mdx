@@ -1,0 +1,56 @@
+---
+lang: "da"
+title: Exam Session
+tagline: "Simulerede eksamener fra dit eget canvas. Hyperkorrektion forvandler fejl til varig hukommelse."
+shortDescription: "Fluera genererer en closed-book-eksamen ud fra de begreber, du faktisk har tegnet. Sikkerheds-vælger før hvert svar. Efter aflevering lægger Ghost Map dit arbejde oven på — jo større overraskelse, jo stærkere rettelse."
+status: beta
+stepInCycle: 11
+relatedPrinciples:
+  - hypercorrection-effect
+  - productive-failure
+  - interleaving
+  - retrieval-practice
+  - metacognition
+relatedAuthors:
+  - butterfield-metcalfe
+  - robert-bjork
+  - roediger-karpicke
+order: 7
+---
+
+## Hvad det løser
+
+De fleste studerende forveksler *at føle sig forberedt* med *at være forberedt*. De genlæser deres noter, ser en video i 2×, lader en LLM opsummere kapitlet — og går til eksamen med en flydenhed, der intet har med genfindelse at gøre. Resultatet er det universelle chok bagefter: „Jeg vidste det. Hvorfor kunne jeg ikke skrive det ned?"
+
+Exam Session lukker det hul ved at lade eksamenen virkelig finde sted — privat, på dit canvas, dage før den rigtige.
+
+## Hvordan det fungerer
+
+Du afslutter en læringssession. Du åbner Atlas-menuen og trykker på **🎓 Interrogami** — eller du skriver *„interrogami"* i canvas-chatten. Fluera læser de begreber, du faktisk har tegnet (klynge-cache plus stroke-OCR), og genererer en closed-book-eksamen ud fra dem. Fem, syv eller ti spørgsmål. Blandede typer: åbne, multiple choice, sandt/falsk, formelgenfindelse.
+
+Før hvert svar spørger sikkerheds-vælgeren om én ting: **hvor sikker er du, fra 1 til 5?** Bevæg knappen. Bind dig til et tal.
+
+Svar nu — i hånden, på en mini-canvas-scratchpad, præcis som du ville skrive det til den rigtige eksamen. Ingen autocomplete. Ingen copy-paste. Intet „regenerér". Kun dig og siden.
+
+Ved aflevering vurderer Fluera svaret token for token og leverer feedbacken streamet. Hvis du tog fejl med høj sikkerhed, fyrer **Hypercorrection Shock-UI'en** — en bevidst, svært ignorerbar visuel effekt, der udløser den mest holdbare form for rettelse, hjernen kan producere. Bagefter beder Fluera dig om at omskrive det rigtige svar med dine egne ord: **genereringseffekten** forankrer det.
+
+Efter tre rigtige svar i træk stiger sværhedsgraden automatisk. Efter hver chunk på fire spørgsmål en kort feedback-pause før næste sæt — chunking og interleaving by design.
+
+Ved sessionens slutning opdaterer FSRS-planlæggeren review-intervallerne pr. begreb ud fra din faktiske præstation, ikke ud fra din selvevaluering. Blinde pletter flyder tilbage til Fog of War for kirurgisk genfindelsespraksis på dag 1, 3, 7, 14.
+
+## Videnskaben bag
+
+Tre årtiers evidens konvergerer på én erkendelse: de mest holdbare rettelser kommer fra de mest overraskende mislykker.
+
+**Hyperkorrektion-effekten** af Butterfield & Metcalfe (2001) er den centrale mekanisme. Fejl begået med høj sikkerhed bevares mere varigt efter rettelse end fejl med lav sikkerhed — overraskelsen over at have taget fejl, da man var sikker, modulerer den hippocampale indkodning via amygdalær aktivering. Sikkerheds-vælgeren er ikke æstetik; den er udløseren for denne mekanisme.
+
+Robert Bjorks **ønskværdige vanskeligheder** (1994) forklarer, hvorfor et åbent, håndskrevet svar slår multiple choice: friktionen ved generering er præcis det, der bygger hukommelse. Roediger & Karpicke (2006) afrunder billedet — et enkelt genfindelsesforsøg producerer stærkere langtidsretention end fire genlæsninger.
+
+Manu Kapurs forskning i **produktivt fejl** (2008) understøtter den hårdeste designbeslutning: spørgsmål, der starter en smule over dit aktuelle niveau, producerer mere holdbar læring end spørgsmål kalibreret til din komfortzone. Adaptiv sværhedsgrad eskalerer bevidst, ikke defensivt.
+
+## Hvad der kommer
+
+- **Post-Exam-Analytics** — sikkerhedskalibrering pr. klynge og grafer over hyperkorrektion-magnitude.
+- **Voice-Mode Exam** — talte spørgsmål med håndskrevne svar, til klinisk eller mundtlig eksamensforberedelse.
+- **Vedvarende Surgical-Path-Overlay** — efter eksamenen fremhæver Fog of War kun de missede begreber på live-canvasset, scoped til næste dags review.
+- **Multi-fag Exam Sessions** — en session, der interleaver klynger fra flere notesbøger og træner transfer.

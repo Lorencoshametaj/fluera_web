@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Turvallisuusarkkitehtuuri"
+  description="Miten Fluera salaa muistikirjasi lepotilassa, siirrossa ja laitteiden välillä. SQLCipher, TLS 1.3, päästä päähän -synkronointi, opt-in-telemetria, instituutioille tarkoitettu auditointiloki."
+  locale="fi"
+>
+  <PageHero
+    kicker="Arkkitehtuuri"
+    title="Miten Fluera suojaa muistikirjasi."
+    description={`Tämä sivu kuvaa turvallisuusmallin sillä tasolla, jota tekninen lukija — turvallisuuspäällikkö, yliopiston CISO, utelias kehittäjä — odottaa. Ei-tekninen yhteenveto alkaa osoitteesta <a href="/fi/security">/fi/security</a>.`}
+    breadcrumb={{ label: "Turvallisuus", href: "/fi/security" }}
+  />
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+
+      <h2>Threat Model</h2>
+      <p>
+        Oletamme laitteen varkauden, verkkoliikenteen sieppauksen ja tahattoman paljastumisen varmuuskopion tai pilvisynkronoinnin kautta. Oletamme, että käyttäjän tunnistetiedot voivat vaarantua. Emme oleta valtiollisia toimijoita, joilla on fyysinen pääsy avattuihin laitteisiin — Fluera ei ole salaisuustyökalu, se on oppimistyökalu.
+      </p>
+      <p>Tämän mallin sisällä kolme takuuta:</p>
+      <ul>
+        <li><strong>Paikallinen data on lukukelvotonta ilman avainta.</strong> Varastettu laite tuottaa salatun blobin.</li>
+        <li><strong>Synkronoitu data on meille lukukelvotonta.</strong> Pilvi säilyttää vain salatekstiä. Avaimen johtaminen tapahtuu laitteella.</li>
+        <li><strong>Telemetria on suostumukseen perustuvaa ja anonymisoitua.</strong> Analytiikka ei voi yhdistää käyttäjää sisältöön, ei edes täydellisen tietomurron tapauksessa.</li>
+      </ul>
+
+      <h2>Lepotilassa: SQLCipher, AES-256</h2>
+      <p>
+        Jokainen Flueran muistikirja elää paikallisessa, SQLCipher-salatussa SQLite-tietokannassa — laajasti auditoidussa laajennoksessa, joka salaa läpinäkyvästi jokaisen tietokannan sivun AES-256-CBC:llä ja varmistaa eheyden sivukohtaisesti HMAC-SHA512:lla.
+      </p>
+      <p>
+        Avaimen johtaminen käyttää PBKDF2:ta SHA-256:lla ja 256 000 iteraatiolla (OWASP-mukaisesti). Salalause säilytetään alustan avainsäilössä — Keychain iOS/macOS:ssa, Keystore Androidissa, DPAPI Windowsissa, libsecret Linuxissa. Sitä ei koskaan lähetetä palvelimillemme.
+      </p>
+
+      <h2>Siirrossa: TLS 1.3, sertifikaatin kiinnitys</h2>
+      <p>
+        Kaikki verkkoliikenne kulkee TLS 1.3:n yli moderneilla cipher suiteilla. iOS:ssä ja Androidissa kiinnitämme sertifikaatit CA-ketjuumme estääksemme yrityksen välityspalvelimien aiheuttamat man-in-the-middle-hyökkäykset — dokumentoidulla ohituksella verkonvalvojille, jotka sitä tarvitsevat.
+      </p>
+
+      <h2>Synkronointi laitteiden välillä: päästä päähän</h2>
+      <p>
+        Pilvisynkronointi, kun se on käytössä, käyttää erillistä, laitteella johdettua avainsarjaa. Synkronointipalvelin (Supabase Storage, EU-alue) säilyttää salatekstiä eikä voi purkaa sitä. Synkronointi on muistikirjakohtainen opt-in — voit pitää jotkin muistikirjat vain paikallisina samalla kun synkronoit toisia.
+      </p>
+      <p>
+        Avainten kierto: kun se käynnistetään miltä tahansa laitteelta, kaikki tulevat payloadit salataan uudella avaimella. Vanhat salatekstit pysyvät vanhempien klienttien luettavissa, kunnes vahvistat migraation kaikilla laitteilla.
+      </p>
+
+      <h2>P2P-yhteistyö: suora, salattu</h2>
+      <p>
+        Reaaliaikainen yhteistyö käyttää WebRTC DataChannelia DTLS-SRTP-salauksella. Supabase Realtime toimii vain signalointivälittäjänä — yhteyden muodostamisessa — ei varsinaisen canvas-liikenteen välityspalvelimena. Kättelyn jälkeen canvas-muokkaukset virtaavat peer-to-peer. Palvelin ei näe niitä.
+      </p>
+      <p>
+        Rajoittavien NAT:ien tapauksessa liikenne kulkee TURN:n kautta; tässä tapauksessa välityspalvelin näkee vain salattuja DTLS-paketteja, joita se ei pysty purkamaan.
+      </p>
+
+      <h2>Tekoälykutsut: välityspalvelimen kautta, ei koskaan suoraan</h2>
+      <p>
+        Kutsut Google Geminiin (Socratic Mode, Ghost Map, LaTeX-OCR, Exam Session) kulkevat Supabase Edge Functionin kautta, joka pitää API-avaimen palvelimella. Asiakaslaitteet eivät koskaan näe avainta. Välityspalvelin valvoo tilauskohtaisia rate limit -rajoja ja kirjaa kutsujen kestot laskutusta varten — ei koskaan canvas-sisältöä.
+      </p>
+      <p>
+        Jos poistat tekoälyominaisuudet käytöstä kohdassa <em>Asetukset → Yksityisyys</em>, mitään canvas-sisältöä ei lähetetä Geminille, ei myöskään laitepohjaisen OCR:n varatoimena.
+      </p>
+
+      <h2>Telemetria: opt-in, hashattu, sallittu lista</h2>
+      <p>
+        Tuoteanalytiikka on oletuksena pois päältä. Kun se on käytössä, tapahtumat rajoittuvat palvelinpuolen sallittuun listaan (istunnon alku/loppu, ominaisuuden kutsu, tekoälykutsun kesto — ei koskaan sisältöä). Käyttäjä-ID hashataan laitteella SHA-256:lla; selkokielinen ID ei koskaan poistu asiakkaalta. Tapahtumat säilytetään 180 päivää, minkä jälkeen ne aggregoidaan tai poistetaan.
+      </p>
+
+      <h2>Auditointiloki (institutionaaliset tilit)</h2>
+      <p>
+        Jokainen pääsy jaettuihin muistikirjoihin — kuka, miltä laitteelta, milloin — kirjoitetaan append-only-auditointilokiin. Pääkäyttäjät voivat viedä lokin CSV- tai JSON-muodossa compliance-tarkastuksia varten. Loki on write-once: poisto vaatii dokumentoidun perustelun ja kirjataan itse.
+      </p>
+
+      <h2>Palautus ja avaimen menetys</h2>
+      <p>
+        Jos kadotat salalauseen, salatusta datasta tulee palautumaton. Tämä on tarkoituksellista — vaihtoehto olisi palautuspolku, joka väistämättä heikentäisi salausmallia. Institutionaalisille tileille voidaan konfiguroida valinnainen pääkäyttäjän hallinnoima palautusavain; tämä on dokumentoitu trade-off, jonka instituutio valitsee tietoisesti.
+      </p>
+
+      <h2>Vastuullinen paljastus</h2>
+      <p>
+        Turvallisuustutkijat ovat tervetulleita. Ilmoita haavoittuvuuksista osoitteeseen <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> PGP-salauksella (avain julkaistu GitHub-profiilissa). Vastaamme 24 tunnin sisällä, paikkaamme kriittiset ongelmat 72 tunnin sisällä ja mainitsemme ilmoittajat Hall of Fameissa, ellei anonymiteettiä toivota.
+      </p>
+      <p>
+        Soveltamisala: Fluera-sovellus (kaikki alustat), synkronointipalvelu, tekoälyvälityspalvelin ja tämä markkinointisivusto. Soveltamisalan ulkopuolella: kolmannet osapuolet (Supabase, Google, Apple, Sentry, RevenueCat) — ilmoita kullekin toimittajalle erikseen.
+      </p>
+
+      <h2>Ulkoiset auditit</h2>
+      <p>
+        Fluera ei ole tällä hetkellä SOC-2- tai ISO-27001-sertifioitu. Ne ovat enterprise-roadmapilla ja ne ilmoitetaan julkisesti, kun ne valmistuvat. Mieluummin emme ilmoita kontrolleja, joita emme voi itsenäisesti todentaa.
+      </p>
+      <p>
+        <a href="/fi/security/sub-processors">Alikäsittelijöiden lista</a> on julkinen ja ajan tasalla. Tietojenkäsittelysopimus (DPA) on saatavilla pyynnöstä osoitteesta <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a>.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/fi/security/sub-processors" class="btn-secondary">Alikäsittelijät →</a>
+        <a href="/fi/contact" class="btn-primary">Keskustele käyttöönotosta</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

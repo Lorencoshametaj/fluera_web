@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+import home from "@/data/home/es";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "Un canvas de estudio infinito construido sobre la ciencia cognitiva del aprendizaje.",
+  url: `${SITE.url}/es/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const { steps, authors, platforms } = home;
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="Un canvas de estudio infinito construido sobre la ciencia cognitiva del aprendizaje. iOS, Android, macOS, Windows, Linux, Web."
+  jsonLd={jsonLd}
+  locale="es"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          Beta privada · Por invitación
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          El espacio de estudio<br />diseñado para<br /><span class="text-gradient">cómo funciona la mente.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          Escribe a mano sobre un canvas infinito. Deja que la IA te interrogue en lugar de darte respuestas. Revive tu propio pensamiento a lo largo del tiempo. Calibrado al modo en que la memoria se forma de verdad.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            Únete a la beta
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            Probar la demo
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>Cifrado de extremo a extremo</span><span class="text-ink-600">·</span>
+          <span>GDPR por defecto</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">El cuello de botella</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Puedes preguntar lo que quieras.<br />La respuesta no se queda.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          En 2026, el conocimiento se recupera en tres segundos y se olvida en tres semanas. Tenemos diez apps para tomar apuntes y ninguna para <em>retener</em> lo que aprendemos.
+        </p>
+        <p>
+          Subrayar parece estudiar. Releer parece estudiar. Pedir un resumen a un LLM parece estudiar. Ninguno de los tres lo es — la ciencia cognitiva lleva cincuenta años diciéndolo.
+        </p>
+        <p>
+          El cuello de botella del aprendizaje ya no es el acceso — es <em>la codificación, la consolidación y la transferencia</em>: tres problemas a la vez.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera está construido para esos tres.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">El método</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Un canvas.<br />Doce movimientos cognitivos.<br />El ciclo con el que aprende tu cerebro.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Cada función de Fluera vive en un paso del ciclo, y cada paso se apoya en investigación publicada. Sáltate uno y la cadena se rompe. Síguelos todos y el cuaderno se vuelve permanente.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">Cuatro diferenciadores cognitivos</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          Cuatro maneras en que se construye la memoria.
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map · Paso 4"
+          title="Ve la distancia entre lo que escribiste y la solución correcta."
+          description="Tras un intento de recuperación, Fluera superpone tu trabajo sobre una solución ideal. Las discrepancias palpitan. No avergüenzan — despiertan la memoria. Cuanto más te equivocaste, más se fija la corrección."
+          citation="Efecto de hipercorrección — Butterfield & Metcalfe, 2001."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode · Paso 3"
+          title="Nuestra IA no responde. Pregunta."
+          description="Declara tu confianza del 1 al 5 antes de cada revelación. La metacognición es la mitad del dominio, y la calibración de la confianza es como se construye — una predicción cada vez."
+          citation="Monitorización metacognitiva — Flavell, 1979."
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War · Paso 10"
+          title="Modo examen que oculta lo que casi recuerdas."
+          description="Enmascara cualquier región del canvas. Recupérala desde la memoria antes de revelarla. El esfuerzo del recuperar — no el volver a ver — es donde la memoria se endurece."
+          citation="Dificultades deseables — Bjork, 1994."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Exam Session · Paso 11"
+          title="Exámenes simulados desde tu canvas — corregidos por Ghost Map."
+          description="Selector de confianza del 1 al 5 antes de cada pregunta. Libro cerrado. Tras enviar, Fluera superpone tu respuesta a la ideal y aplica la hipercorrección donde más confiado y errado estabas. Cuanto mayor la sorpresa, más se fija la corrección."
+          citation="Hipercorrección — Butterfield & Metcalfe, 2001 · Fracaso productivo — Kapur, 2008."
+          href="/es/features/exam-session"
+          status="beta"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">Pruébalo en la beta →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">Tinta, no teclado</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            Teclear es más rápido.<br />Escribir a mano es mejor.<br />El cerebro no está optimizado para la velocidad.
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller y Oppenheimer, Princeton 2014 · van der Meer, NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            Cuando Mueller y Oppenheimer publicaron el famoso estudio de Princeton en 2014, los estudiantes que tomaban apuntes a mano superaban a los del portátil en preguntas conceptuales — <em>aunque</em> los segundos habían escrito mucho más texto. La mano era más lenta. La mente era más profunda.
+          </p>
+          <p>
+            Diez años después, el EEG de Audrey van der Meer en NTNU (2020) dio el <em>porqué</em>: la escritura a mano activa redes cerebrales más amplias que el teclado, sobre todo en regiones ligadas a la formación de memoria y a la integración sensorimotora. La pluma es un instrumento cognitivo.
+          </p>
+          <p>
+            Fluera está construido alrededor de esto. Trece motores de pincel. Presión, inclinación, velocidad. Latencia de trazo por debajo de 15 milisegundos en cada dispositivo soportado. El canvas infinito no es estética — es el sustrato que tu memoria estaba pidiendo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Fundamento científico</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Sobre los hombros de gigantes — citados por nombre.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Cada decisión de diseño se remonta a un paper que podemos enlazar. Aquí doce de las mentes que viven dentro de Fluera. La bibliografía completa es pública.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Seis plataformas, una tinta</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Seis plataformas. Una tinta. Una mente.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Renderizadores nativos sobre Vulkan, Metal, OpenGL, Direct3D 11 y WebGPU. Tu cuaderno se sincroniza cifrado de extremo a extremo, o se queda offline. Tú decides.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        Las etiquetas de estado son honestas sobre la madurez de cada plataforma. Las marcadas como "Alpha" o "Demo" funcionan pero necesitan pulido — únete a la beta si quieres ayudarnos a darles forma.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Tu mente, tus datos</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Cifrado de extremo a extremo.<br />La clave la tienes tú.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">AES-256 en reposo</h3>
+          <p class="text-sm text-paper-300">Cifrado SQLCipher en cada dispositivo. La base de datos local es ilegible sin tu clave.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">GDPR por defecto</h3>
+          <p class="text-sm text-paper-300">Hosting en la UE, DPA disponible, exportación y borrado completo bajo petición.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Cero ad-tech</h3>
+          <p class="text-sm text-paper-300">Sin píxeles de seguimiento. Sin publicidad comportamental. No entrenamos nuestros modelos con tu contenido.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Registro de auditoría</h3>
+          <p class="text-sm text-paper-300">Para cuentas Education, cada acceso queda registrado en un trail inmutable.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">Lee la arquitectura de seguridad →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Precios</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Gratis para aprender. Plus y Pro para profundizar.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">El canvas completo. Tres cuadernos. Gratis para siempre.</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5,99<span class="text-sm font-sans text-paper-300">/mes</span></p>
+          <p class="text-sm text-paper-300">Canvas ilimitado, sincronización en 2 dispositivos, IA básica. €49/año.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11,99<span class="text-sm font-sans text-paper-300">/mes</span></p>
+          <p class="text-sm text-paper-300">Exam Session, Atlas, suite IA completa, sync ilimitada. €99/año.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19,99<span class="text-sm font-sans text-paper-300">/asiento</span></p>
+          <p class="text-sm text-paper-300">Canvas compartidos, team Atlas, ACL, registro de auditoría. Desde 5 asientos.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        Estudiantes verificados obtienen Plus o Pro al 50% mediante el programa piloto. Quien se suscriba ahora bloquea la tarifa durante toda la duración de la suscripción.
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">Ver todos los precios →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">Únete</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Beta privada.<br />Onboarding por cohortes.
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        Incorporamos por cohortes para que cada grupo — estudiantes, profesionales del conocimiento, docentes — tenga una conversación real, no un número en cola. Si estás cansado de apps que prometen aprender por ti, solicita acceso.
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        Solicitar acceso →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

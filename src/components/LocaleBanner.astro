@@ -1,0 +1,145 @@
+---
+/**
+ * LocaleBanner — non-intrusive banner that suggests switching to the user's
+ * browser locale when it differs from the current page locale.
+ *
+ * Design: SSR-renders one hidden `<aside>` per available locale (each fully
+ * pre-translated). Client JS picks the right one based on navigator.languages
+ * and unhides it. This keeps the page static, SEO-clean, and works with
+ * Astro's `output: "static"` build.
+ *
+ * Pattern follows Apple/GitHub — visible suggestion, never auto-redirect.
+ *
+ * Dismissal is persisted in localStorage (key: "fluera.localeBanner.dismissed")
+ * so the banner only appears once per visitor per ~30 days.
+ *
+ * To localize for a new locale: add the four "localeBanner.*" keys to the
+ * locale's JSON file. The banner picks them up automatically.
+ */
+import { LOCALES, DEFAULT_LOCALE, t, localeFromPathname, type Locale } from "@/lib/i18n";
+import { languageSwitchHref } from "@/lib/site";
+
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const currentLocale = localeFromPathname(pathname);
+
+// Pre-render one banner per *non-current* locale. Each banner contains the
+// CTA, dismiss label, and language name in its own locale (so an Italian
+// visitor on /es sees the prompt phrased in Italian, not Spanish).
+const bannerVariants = LOCALES
+  .filter((l) => l !== currentLocale)
+  .map((l) => ({
+    code: l,
+    href: languageSwitchHref(pathname, l),
+    text: t("localeBanner.text", l).replace("{language}", t("localeBanner.languageName", l)),
+    cta: t("localeBanner.cta", l).replace("{language}", t("localeBanner.languageName", l)),
+    dismiss: t("localeBanner.dismiss", l),
+  }));
+---
+
+<aside
+  id="locale-banner"
+  hidden
+  class="locale-banner-root fixed top-16 inset-x-0 z-40 border-b border-white/[0.08] bg-ink-900/95 backdrop-blur-md"
+  data-current-locale={currentLocale}
+>
+  {bannerVariants.map((b) => (
+    <div
+      class="locale-banner-variant container-site py-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm"
+      data-locale={b.code}
+      hidden
+    >
+      <span class="text-paper-200 flex-1 min-w-[16rem]">{b.text}</span>
+      <a
+        href={b.href}
+        class="text-accent-glow hover:text-paper-50 underline-offset-4 hover:underline font-medium"
+        data-banner-cta
+      >
+        {b.cta} →
+      </a>
+      <button
+        type="button"
+        class="text-ink-500 hover:text-paper-200 px-2 py-1 -my-1 rounded-md text-xs"
+        data-banner-dismiss
+        aria-label={b.dismiss}
+      >
+        {b.dismiss}
+      </button>
+    </div>
+  ))}
+</aside>
+
+<style>
+  /* Tailwind's `flex` utility wins over the HTML `hidden` attribute by
+     specificity, so `<div class="flex" hidden>` would still render visible.
+     Force `hidden` to win for elements inside the locale banner. */
+  .locale-banner-root[hidden],
+  .locale-banner-variant[hidden] {
+    display: none !important;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const STORAGE_KEY = "fluera.localeBanner.dismissed";
+    const DISMISS_DAYS = 30;
+    const banner = document.getElementById("locale-banner");
+    if (!banner) return;
+
+    const currentLocale = banner.getAttribute("data-current-locale") || "en";
+    const variants = Array.from(banner.querySelectorAll(".locale-banner-variant"));
+    const availableLocales = variants.map((v) => v.getAttribute("data-locale"));
+
+    // Check dismissal: stored as ISO date string of last dismissal.
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const dismissedAt = new Date(raw).getTime();
+        const ageDays = (Date.now() - dismissedAt) / (1000 * 60 * 60 * 24);
+        if (ageDays < DISMISS_DAYS) return;
+      }
+    } catch (e) {
+      // localStorage blocked (private browsing) — show banner anyway.
+    }
+
+    // Match navigator.languages against available locales. Use language tag
+    // start-match (e.g. "it-IT" → "it"). First match wins.
+    const navLangs = (navigator.languages || [navigator.language || "en"])
+      .map((l) => (l || "").toLowerCase());
+
+    let preferred = null;
+    for (const navLang of navLangs) {
+      const base = navLang.split("-")[0];
+      if (availableLocales.includes(base)) {
+        preferred = base;
+        break;
+      }
+      // Also check region-specific (e.g. "pt-br" matches "pt-br").
+      if (availableLocales.includes(navLang)) {
+        preferred = navLang;
+        break;
+      }
+    }
+
+    if (!preferred || preferred === currentLocale) return;
+
+    const variant = variants.find((v) => v.getAttribute("data-locale") === preferred);
+    if (!variant) return;
+
+    variant.hidden = false;
+    banner.hidden = false;
+
+    // Wire dismiss button.
+    const dismissBtn = variant.querySelector("[data-banner-dismiss]");
+    dismissBtn && dismissBtn.addEventListener("click", () => {
+      banner.hidden = true;
+      try { localStorage.setItem(STORAGE_KEY, new Date().toISOString()); } catch (e) {}
+    });
+
+    // Also dismiss on CTA click — they're going to the new locale, no need
+    // to show this banner again on subsequent visits.
+    const ctaLink = variant.querySelector("[data-banner-cta]");
+    ctaLink && ctaLink.addEventListener("click", () => {
+      try { localStorage.setItem(STORAGE_KEY, new Date().toISOString()); } catch (e) {}
+    });
+  })();
+</script>

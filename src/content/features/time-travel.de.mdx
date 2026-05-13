@@ -1,0 +1,51 @@
+---
+lang: "de"
+title: Time Travel
+tagline: "Spiele jeden Strich erneut ab. Synchron mit dem Audio der Vorlesung, das dich dazu gebracht hat, ihn zu schreiben."
+shortDescription: "Tippe auf eine Notiz von vor drei Wochen, und das Audio setzt genau dort wieder ein, wo dein Stift schrieb. Erlebe dein eigenes Denken erneut."
+status: coming-soon
+stepInCycle: 5
+relatedPrinciples:
+  - spatial-cognition
+  - spacing-effect
+  - embodied-cognition
+  - levels-of-processing
+relatedAuthors:
+  - okeefe-moser
+  - van-der-meer
+order: 10
+---
+
+## Was es löst
+
+Der traditionelle Mangel von Vorlesungsnotizen ist, dass sie tot sind. Wochen später schaust du dir etwas an, das du geschrieben hast, und weißt nicht mehr, warum. Was hat der Dozent gerade gesagt? Was war der Kontext? Die Notiz ist dekontextualisiert — und dekontextualisierte Notizen sind nahezu nutzlos.
+
+Time Travel hält den Kontext lebendig.
+
+## Wie es funktioniert
+
+Du startest eine Aufnahme, wenn die Vorlesung beginnt. Du schreibst normal. Jeder Strich, den du zeichnest, ist per Timestamp an den aufgenommenen Audioframe gebunden.
+
+Später — Tage, Wochen oder Monate danach — tippst du auf einen beliebigen Strich auf deinem Canvas. Das Audio spult exakt zu dem Moment zurück, in dem du gerade schriebst. Du hörst die Stimme des Dozenten, dein eigenes Denken, die Frage von hinten im Raum. Der Kontext kommt auf einen Schlag zurück.
+
+Du verschiebst das Audio und siehst, wie sich das Canvas Strich für Strich neu abspielt, im Originaltempo oder beschleunigt. Du siehst deinem Geist bei der Arbeit zu.
+
+Die gesamte Speicherung ist standardmäßig lokal, mit SQLCipher verschlüsselt. Die Audio-Synchronisation ist opt-in und Ende-zu-Ende-verschlüsselt, wenn aktiviert.
+
+## Die Wissenschaft dahinter
+
+Zwei Prinzipien konvergieren:
+
+- **Kontextabhängiger Abruf** (Tulving, 1972): Erinnerung wird besser abgerufen, wenn der Abrufkontext dem Kodierungskontext entspricht. Fluera reproduziert den Kodierungskontext auf Abruf — die Stimme des Dozenten, die Atmosphäre des Raums, die Bewegungen deiner Hand.
+- **Räumliche Kognition** (O'Keefe und Moser, Nobelpreis 2014): Die Position auf dem Canvas ist selbst ein Abrufhinweis. Auf einen Strich zu tippen, kombiniert den räumlichen Hinweis (Position) mit dem kontextuellen (Audio) — zwei Abrufpfade statt einer.
+
+Van der Meers EEG-Arbeit (2020) ergänzt eine dritte Schicht: Handschrift aktiviert breite sensomotorische Netzwerke im Moment des Schreibens. Time Travel lässt die Lernenden Wochen später dasselbe Netzwerk wieder durchqueren — sie erinnern es nicht nur, sondern *spielen* den Strich, der es ursprünglich auslöste, erneut ab.
+
+## Was als Nächstes kommt
+
+Time Travel ist in privater Alpha. Der vollständige Launch umfasst:
+
+- **Cross-Device-Audio-Sync** (heute nur lokal)
+- **Suche im Transkript** — finde Vorlesungsmomente anhand des Gesagten
+- **Auto-generierte Kapitelmarken** durch Pausen und Themenwechsel
+- **Export als annotiertes Video** — um einen Walkthrough der Vorlesung zu teilen

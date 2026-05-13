@@ -1,0 +1,199 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const useCases = [
+  {
+    title: "Collegevastlegging",
+    body: "Studenten maken handgeschreven aantekeningen op een oneindig canvas tijdens het college, met optionele audiosynchronisatie via Time Travel. Het canvas wordt een levend archief dat het semester overleeft.",
+  },
+  {
+    title: "Tentamenvoorbereiding op schaal",
+    body: "Fog of War + gespreide herhaling veranderen het persoonlijke canvas van de student in een motor voor ophaalpraktijk. Docenten kunnen studieroutes per onderwerp voorstellen zonder de inhoud te dicteren.",
+  },
+  {
+    title: "STEM-labjournaals",
+    body: "LaTeX-rendering, drukgevoelige diagrammen, experimentlogboeken met audio-sync. Vervangt papieren labjournaals en behoudt het bewijs van handschrift dat vereist is bij beoordeling.",
+  },
+];
+
+const deployment = [
+  { label: "SSO",                 body: "SAML 2.0 en OIDC. Integreert met SURFconext, Azure AD, Okta, Google Workspace for Education." },
+  { label: "MDM-friendly",        body: "Standaard enterprise-distributie via App Store / Play. Windows en macOS als ondertekende installers. Geen sideloading." },
+  { label: "Audit-trail",         body: "Onveranderlijk toegangslogboek per account. Exporteerbaar voor compliance-audits." },
+  { label: "Dataresidentie",      body: "Standaard servers in Europa. Verwerkersovereenkomst beschikbaar op verzoek." },
+  { label: "Toegankelijkheid",    body: "WCAG 2.1 AA als doel op alle platforms. Schermlezerondersteuning, hoog-contrastmodus, kwastgevoeligheid aanpasbaar voor motorische verschillen." },
+  { label: "On-prem",             body: "Op de Enterprise-roadmap. Vandaag: alleen cloud met sterke versleuteling en regionale controles." },
+];
+---
+
+<BaseLayout
+  title="Fluera voor universiteiten — Cognitieve infrastructuur voor het hoger onderwijs"
+  description="Breng evidence-based studietools naar je faculteit. Multi-seat-licenties, SSO, audit-trail, docententraining over de cyclus van 12 stappen. Pilotprogramma's beschikbaar."
+  locale="nl"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Universiteiten en scholen</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Cognitieve infrastructuur<br />voor de moderne universiteit.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Evidence-based studietools voor je studenten. SSO voor je IT. Docententraining over de cognitieve wetenschap van leren. Pilots beginnen met één klas, één semester, gratis.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/nl/contact" class="btn-primary">Plan een academisch gesprek →</a>
+          <a href="/nl/" class="btn-secondary">De wetenschap erachter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Waarom docenten voor Fluera kiezen</p>
+        <h2 class="font-serif text-display-xl text-paper-50">Drie concrete patronen.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {useCases.map((u, i) => (
+          <article class="card p-7">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{u.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{u.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Licentiemodel</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-4">Drie niveaus. Eén gesprek volstaat.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          We publiceren geen seat-prijzen voor institutionele accounts: de juiste structuur hangt af van de perimeter die je wilt licentiëren — klas, faculteit of campus. Eén gesprek en we komen met een concreet voorstel.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 max-w-5xl">
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Klas</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Eén vak, één semester, tot 200 studenten. Pro-toegang voor elke student, docentdashboard en één trainingssessie.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Typische adoptie: pilot</p>
+        </article>
+        <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Faculteit</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Hele faculteit. Meerjarig contract. SSO, audit-trail, dedicated support-SLA. Docententraining voor elk vak dat instapt.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">Typische adoptie: tweede jaar</p>
+        </article>
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Campus</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Hele campus. Dedicated implementatieondersteuning, benoemd engineering-aanspreekpunt, mogelijkheden voor gezamenlijk onderzoek naar de cyclus van 12 stappen.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Typische adoptie: vanaf het derde jaar</p>
+        </article>
+      </div>
+
+      <div class="mt-10">
+        <a href="/nl/contact" class="btn-primary">Vraag prijzenoverzicht aan →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Docententraining</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">Twee uur. Cognitieve wetenschap, toegepast.</h2>
+          <p class="prose-ink mb-4">
+            De workshop behandelt de leercyclus in 12 stappen, de principes achter elke stap en concrete patronen om Fluera in het bestaande vak te integreren. Het is geen productdemonstratie.
+          </p>
+          <p class="prose-ink">
+            Op locatie of online te geven, met maximaal vijftien deelnemers per sessie, zodat elke docent met een concreet plan voor het eigen vak naar buiten gaat.
+          </p>
+        </div>
+        <div class="card p-7">
+          <h3 class="eyebrow text-accent-glow mb-4">Wat we behandelen</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0">
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">01</span><span>Spreiding, ophalen, generatie, wenselijke moeilijkheden — de vier pijlers</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">02</span><span>De cyclus van 12 stappen toegepast op de specifieke structuur van jouw vak</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">03</span><span>Wanneer Socratic gebruiken, wanneer Ghost Map, wanneer uit de weg gaan</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">04</span><span>Tentamenvoorbereiding ontwerpen met Fog of War zonder je beoordelingen te vervangen</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">05</span><span>Het onderzoek, de kracht van het bewijs en de grenzen van wat het bewijs draagt</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">06</span><span>Hands-on: elke docent bouwt vóór vertrek één college in Fluera</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Implementatie</p>
+        <h2 class="font-serif text-display-xl text-paper-50">Je IT-afdeling zal het ook waarderen.</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {deployment.map((d) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Pilotprogramma</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">Eén klas. Eén semester. Gratis.</h2>
+          <p class="prose-ink mb-4">
+            De snelste manier om te weten of Fluera voor jouw studenten werkt, is het uitproberen met dertig van hen, één semester lang, kosteloos. In ruil vragen we gestructureerde feedback — een check-in halverwege, een enquête aan het einde van het semester en de optie om geanonimiseerde resultaatgegevens te delen.
+          </p>
+          <p class="prose-ink">
+            Werkt het, dan praten we over een meerjarig contract. Werkt het niet, dan houd jij de gegevens en wij de les. Hoe dan ook: we komen er beiden beter uit.
+          </p>
+        </div>
+        <div class="card p-8 bg-accent-ink/[0.08] border-accent-ink/30">
+          <h3 class="eyebrow text-accent-glow mb-4">Wat je krijgt</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0 mb-6">
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Pro-toegang voor maximaal 30 studenten</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Docentenworkshop van twee uur</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Direct kanaal met de oprichters tijdens het semester</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Geanonimiseerde geaggregeerde analytics voor je rapport</span></li>
+          </ul>
+          <a href="/nl/contact" class="btn-primary w-full">Een pilot starten →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">AVG vanaf de basis. FERPA-aware. WCAG 2.1 AA als doel.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        De details staan op de beveiligingspagina — lijst van subverwerkers, verwerkersovereenkomst, versleutelingsarchitectuur, audit-trail-model.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/nl/security" class="btn-secondary">Lees de beveiligingsarchitectuur →</a>
+        <a href="/nl/contact" class="btn-primary">Laten we praten</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

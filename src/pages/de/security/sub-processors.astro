@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const processors = [
+  {
+    name: "Supabase Inc.",
+    purpose: "Datenbank, Authentifizierung, verschlüsselter Cloud-Storage, Realtime-Signaling, Edge Function für den KI-Proxy.",
+    dataTypes: "E-Mail des Kontos, gehashte Nutzer-ID, Canvas-Ciphertext (E2E-verschlüsselt), Synchronisierungs-Metadaten.",
+    region: "Frankfurt, EU (Standardregion für die Fluera-Instanzen).",
+    privacy: "https://supabase.com/privacy",
+  },
+  {
+    name: "Google LLC",
+    purpose: "Google Generative AI (Gemini) für Socratic Mode, Ghost Map, LaTeX-OCR und Generierung der Exam Sessions.",
+    dataTypes: "Ausgewählte Textausschnitte aus dem Canvas (nur wenn die KI-Funktionen erlaubt und aktiv sind). Niemals das gesamte Heft.",
+    region: "USA, EU über Google-Cloud-Regionen; SCCs + EU-US DPF.",
+    privacy: "https://policies.google.com/privacy",
+  },
+  {
+    name: "Apple Inc.",
+    purpose: "Authentifizierung Sign in with Apple; In-App-Käufe unter iOS und macOS über den App Store.",
+    dataTypes: "Apple-ID-Relay-E-Mail, Beleg-Identifikatoren. Keine Canvas-Daten.",
+    region: "USA; SCCs + EU-US DPF.",
+    privacy: "https://www.apple.com/legal/privacy/",
+  },
+  {
+    name: "RevenueCat Inc.",
+    purpose: "Verwaltung der Abonnements und Validierung der Belege unter iOS, Android und Web.",
+    dataTypes: "Anonymisierte Nutzer-ID in RevenueCat, Abonnement-Status, Beleg-Metadaten. Keine Kartendaten.",
+    region: "USA; SCCs + EU-US DPF.",
+    privacy: "https://www.revenuecat.com/privacy",
+  },
+  {
+    name: "Functional Software Inc. (Sentry)",
+    purpose: "Crash-Reporting und Fehler-Monitoring.",
+    dataTypes: "Stack-Traces, OS-Version, Gerätemodell, App-Version. sendDefaultPii ist explizit deaktiviert — keine Nutzerinhalte.",
+    region: "USA, EU-Optionen verfügbar.",
+    privacy: "https://sentry.io/privacy/",
+  },
+  {
+    name: "Vercel Inc.",
+    purpose: "Hosting der Marketing-Website fluera.dev und /docs.",
+    dataTypes: "Standard-Web-Zugriffslogs (IP, User-Agent). Keine Konto-Inhalte.",
+    region: "Globales Edge; Ursprungsregion konfigurierbar.",
+    privacy: "https://vercel.com/legal/privacy-policy",
+  },
+];
+
+const lastUpdated = "2026-04-20";
+---
+
+<BaseLayout
+  title="Auftragsverarbeiter"
+  description="Die Drittparteien, auf die sich Fluera stützt, um das Produkt zu liefern. Zweck, geteilte Daten, Region und Link zur Datenschutzerklärung jedes Auftragsverarbeiters."
+  locale="de"
+>
+  <PageHero
+    kicker="Auftragsverarbeiter"
+    title="Jede Drittpartei, auf die wir uns stützen."
+    description="Gemäß Art. 28 DSGVO ist hier jeder Auftragsverarbeiter aufgeführt, der personenbezogene Daten in unserem Auftrag verarbeitet — was wir teilen, warum und wo es lebt. Wir benachrichtigen die Kunden vor jeder Änderung."
+    breadcrumb={{ label: "Sicherheit", href: "/de/security" }}
+  >
+    <p slot="copy" class="mt-6 text-sm text-ink-500 font-mono">Letzte Aktualisierung: {lastUpdated}</p>
+  </PageHero>
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-5xl">
+        {processors.map((p) => (
+          <li class="card p-6 md:p-7">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <h2 class="font-serif text-xl text-paper-50 mb-2">{p.name}</h2>
+                <a href={p.privacy} class="text-xs text-accent-glow underline underline-offset-4 font-mono" rel="noopener">
+                  Datenschutzerklärung ↗
+                </a>
+              </div>
+              <dl class="md:col-span-3 grid gap-3 text-sm">
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Zweck</dt>
+                  <dd class="text-paper-200">{p.purpose}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Geteilte Daten</dt>
+                  <dd class="text-paper-200">{p.dataTypes}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Region</dt>
+                  <dd class="text-paper-200">{p.region}</dd>
+                </div>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">Änderungen und Benachrichtigungen</h2>
+      <p class="prose-ink text-sm mb-4">
+        Wir aktualisieren diese Liste, sobald ein Auftragsverarbeiter hinzugefügt, geändert oder entfernt wird. Institutionelle und Enterprise-Kunden erhalten eine E-Mail-Benachrichtigung mindestens 30 Tage vor der Änderung, gemäß Art. 28 Abs. 2 DSGVO.
+      </p>
+      <p class="prose-ink text-sm">
+        Um dich für die Benachrichtigungen zu Auftragsverarbeiter-Änderungen anzumelden, schreibe an <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a> von der E-Mail-Adresse deines Kontos aus.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

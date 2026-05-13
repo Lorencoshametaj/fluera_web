@@ -1,0 +1,57 @@
+---
+lang: "da"
+title: Reflow Physics
+tagline: "Træk i et begreb. Se canvasset omorganisere sig om det vigtige."
+shortDescription: "Reflow holder den rumlige indkodning i live, mens din forståelse udvikler sig. Du flytter en knude, og naboerne følger gradienten — håndskrift bliver, hvor din hånd tegnede den, struktur ånder."
+status: beta
+relatedPrinciples:
+  - spatial-cognition
+  - embodied-cognition
+  - generation-effect
+relatedAuthors:
+  - okeefe-moser
+  - mueller-oppenheimer
+  - van-der-meer
+order: 8
+---
+
+## Hvad det løser
+
+Et canvas bygget i et semesters første uge er ikke det canvas, du vil have i uge ti. Emner, du troede var adskilte, viser sig at være forbundet. Fjerne klynger kollapser til et enkelt kapitel. Nyt stof får en knude til at sprænge, der før var et enkelt ord.
+
+Uden Reflow er der to muligheder: lade canvasset stå frosset og progressivt forkert, eller tegne det om i hånden — spilde timer og bryde ethvert rumligt cue, din hippocampus allerede havde indkodet.
+
+Reflow Physics er den tredje mulighed. Canvasset omorganiserer sig selv, mens hver streg bliver præcis dér, hvor du tegnede den.
+
+## Hvordan det fungerer
+
+Træk i en hvilken som helst knude — et begreb, en klynge, et afsnit håndskrift. Mens din finger eller pen bevæger sig, reagerer nabo-elementer som et blødt fysisk system: nære knuder følger proportionalt, fjerne forskydes næsten ikke, og ghost-displacements viser det foreslåede endelige layout *før* du bekræfter.
+
+Slip. Reflowet sætter sig i en enkelt flydende animation. Under motorhjelmen beholder hver streg sit oprindelige ID, sin oprindelige timestamp, sin oprindelige lyd-kobling fra [Time Travel](/da/features/time-travel). Rumlige cues opdateres; identiteten gør ikke.
+
+Reflow respekterer håndtegnede pile og [Cross-Zone Bridges](/da/features/cross-zone-bridges): de strækker sig, krummer sig, ånder — men de brækker aldrig. Forbindelser er førsteklasses borgere i layoutet.
+
+Tre tilstande:
+
+- **Lokal Reflow** — du trækker en enkelt knude; kun dens umiddelbare klynge omorganiseres.
+- **Klynge-Reflow** — long-press på en klynge; hele regionen bliver trækbar som en enhed, mens den indre struktur bevares.
+- **Atlas-Reflow** — ved kontinent-zoom trækker du et helt canvas i [Atlas](/da/features/atlas)-visningen; fagene omorganiserer sig i forhold til hinanden.
+
+Undo og redo arbejder på reflow-niveau. En dårlig omordning er kun ét tap væk — hver layout-tilstand er et checkpoint.
+
+## Videnskaben bag
+
+Hippocampus indkoder mere end det, du har skrevet: den indkoder **hvor** du har skrevet det. O'Keefe og Mosers place cell-arbejde (Nobel 2014) viste, at den samme neurale population, der kortlægger din lejlighed, også kortlægger dine begreber — forudsat at begreberne har stabile rumlige koordinater. Statiske kort styrker disse celler; kaos ødelægger dem.
+
+Reflows designforskrift følger direkte: rumlig forandring skal være **flydende og bevidst**, aldrig brat. En knude, der teleporterer til en ny position, nulstiller place-cell-kortlægningen; en knude, der glider gennem mellempositioner, bevarer den. Fysikken er ikke dekorativ — den er, hvordan hukommelse overlever omorganisering.
+
+Mueller & Oppenheimer (2014) og van der Meer (2020) har fastslået, at **selve håndskriften** indkoder hukommelse via sensomotoriske spor. Reflow beskytter disse spor: stregerne re-renderes aldrig, re-rasteriseres aldrig, mister aldrig den tryk-/hældnings-/hastighedssignatur, det oprindelige skriveakt skabte. Du flytter et begreb; det motoriske spor følger med.
+
+Endelig skærer **genereringseffekten** (Slamecka & Graf, 1978) i begge retninger. Selve det at beslutte, *hvor* et begreb hører hjemme — og at revidere den beslutning, mens forståelsen bliver dybere — er i sig selv en generativ bevægelse, der styrker indkodning. Reflow gør den revision billig nok til at gøre hver uge.
+
+## Hvad der kommer
+
+- **Pr. zone-tyngdekraft** — forskellige reflow-styrker for forskellige fag (matematik vil have tætte klynger; historie vil have tidslinje-drift).
+- **Reflow Timeline** — scroll gennem et canvas' layout-historik; se, hvordan dit mentale kort har udviklet sig uge for uge.
+- **Auto-Reflow-forslag** — Atlas foreslår konsolideringer, når den ser klynger drive mod hinanden over flere sessioner.
+- **Reflow-bevidst eksport** — PDF'er og SVG'er, der bevarer det aktuelle layout og holder deep-links til historiske positioner.

@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "베타",   note: "베타 승인 후 TestFlight 초대." },
+  { name: "macOS",        status: "베타",   note: "승인 후 비공개 링크로 .dmg 파일." },
+  { name: "Android",      status: "알파",   note: "Google Play 내부 트랙으로 APK." },
+  { name: "Windows",      status: "알파",   note: "Microsoft Store를 통해 서명된 .exe 설치 프로그램." },
+  { name: "Linux",        status: "알파",   note: "AppImage + flatpak." },
+  { name: "Web",          status: "데모",   note: "/demo에서 지금 시도 — WebGPU가 있는 브라우저 필요." },
+];
+---
+
+<BaseLayout
+  title="다운로드"
+  description="Fluera는 iOS, Android, macOS, Windows, Linux 및 웹에서 네이티브로 실행됩니다. 비공개 베타에 참여하여 조기 액세스를 받으세요."
+  locale="ko"
+>
+  <PageHero
+    kicker="다운로드"
+    title="6개 플랫폼.<br />액세스를 위해 베타에 참여하세요."
+    description="Fluera는 비공개 베타 중입니다. 한 번 들어가면 설치 링크가 이메일로 도착합니다 — 모든 플랫폼에서 네이티브 앱, 축소된 웹 버전 없음."
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">베타 액세스 요청 →</a>
+      <a href="/demo" class="btn-secondary">웹 데모 시도</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        App Store 및 Google Play의 공개 출시는 비공개 베타 종료 시점에 도착합니다. 그 사이, 위의 상태 라벨은 각 플랫폼의 성숙도에 정직합니다 — 6개 플랫폼에 잘못 출시하기보다 하나에 잘 출시하는 것을 선호합니다.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

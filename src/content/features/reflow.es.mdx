@@ -1,0 +1,57 @@
+---
+lang: "es"
+title: Reflow Physics
+tagline: "Arrastra un concepto. Mira el canvas reorganizarse alrededor de lo que importa."
+shortDescription: "Reflow mantiene viva la codificación espacial mientras tu comprensión evoluciona. Mueves un nodo y los vecinos siguen el gradiente — la escritura permanece donde la trazaste, la estructura respira."
+status: beta
+relatedPrinciples:
+  - spatial-cognition
+  - embodied-cognition
+  - generation-effect
+relatedAuthors:
+  - okeefe-moser
+  - mueller-oppenheimer
+  - van-der-meer
+order: 8
+---
+
+## Qué resuelve
+
+Un canvas construido en la semana uno de un semestre no es el canvas que quieres en la semana diez. Temas separados resultan estar conectados. Clusters distantes colapsan en un único capítulo. Material nuevo hace estallar un nodo que era una sola palabra.
+
+Sin reflow, las opciones son dos: dejar el canvas congelado y progresivamente equivocado, o redibujarlo a mano — perdiendo horas y rompiendo cada pista espacial que tu hipocampo ya había codificado.
+
+Reflow Physics es la tercera opción. El canvas se reorganiza solo, manteniendo cada trazo exactamente donde lo escribiste.
+
+## Cómo funciona
+
+Arrastra cualquier nodo — un concepto, un cluster, un párrafo de escritura. Mientras tu dedo o lápiz se mueve, los elementos vecinos responden como un sistema físico suave: los nodos cercanos siguen proporcionalmente, los distantes apenas se desplazan, y los ghost displacements muestran el layout final propuesto *antes* de confirmar.
+
+Suelta. El reflow se asienta en una sola animación fluida. Bajo el capó, cada trazo conserva su ID original, su timestamp original, su enlace de audio de [Time Travel](/es/features/time-travel). Las pistas espaciales se actualizan; la identidad no.
+
+Reflow respeta las flechas dibujadas a mano y los [Cross-Zone Bridges](/es/features/cross-zone-bridges): se estiran, se curvan, respiran — pero nunca se rompen. Las conexiones son ciudadanos de primera clase del layout.
+
+Tres modos:
+
+- **Reflow local** — arrastras un solo nodo; solo su cluster inmediato se reorganiza.
+- **Reflow de cluster** — long-press sobre un cluster; toda la región se vuelve arrastrable como unidad mientras la estructura interna se preserva.
+- **Reflow Atlas** — a zoom continente, arrastras un canvas entero en la vista [Atlas](/es/features/atlas); las asignaturas se reordenan unas respecto a otras.
+
+Deshacer y rehacer funcionan a nivel de reflow. Una reorganización mala se revierte con un toque — cada estado de layout es un checkpoint.
+
+## La ciencia detrás
+
+El hipocampo codifica más que lo que escribiste: codifica **dónde** lo escribiste. El trabajo de O'Keefe y Moser sobre place cells (Nobel 2014) demostró que la misma población neural que mapea tu apartamento también mapea tus conceptos — siempre que los conceptos tengan coordenadas espaciales estables. Los mapas estáticos refuerzan estas células; el caos las destruye.
+
+La restricción de diseño de Reflow es consecuencia directa: el cambio espacial debe ser **fluido e intencional**, nunca abrupto. Un nodo que teleporta a una nueva posición resetea el mapeo de place cells; un nodo que se desliza por posiciones intermedias lo preserva. La física no es decorativa — es cómo la memoria sobrevive a la reorganización.
+
+Mueller y Oppenheimer (2014) y van der Meer (2020) establecieron que la **escritura a mano** codifica memoria mediante trazos sensoriomotores. Reflow protege esos trazos: los strokes nunca se re-renderizan, nunca se re-rasterizan, nunca pierden la firma de presión/inclinación/velocidad que el acto original de escribir produjo. Mueves un concepto; el rastro motor se mueve con él.
+
+Por último, el **generation effect** (Slamecka & Graf, 1978) corta en dos direcciones. El acto de decidir *dónde* pertenece un concepto — y revisar esa decisión a medida que la comprensión profundiza — es de por sí una jugada generativa que refuerza la codificación. Reflow hace esa revisión barata como para hacerla cada semana.
+
+## Lo que viene
+
+- **Gravedad por zona** — distintas fuerzas de reflow para distintas asignaturas (la matemática quiere clusters apretados; la historia quiere drift de timeline).
+- **Reflow timeline** — recorre la historia de layout de un canvas; ve cómo evolucionó tu mapa mental semana a semana.
+- **Sugerencias de auto-reflow** — Atlas propone consolidaciones cuando detecta clusters derivando entre sí en varias sesiones.
+- **Export con reflow consciente** — PDFs y SVGs que conservan el último layout manteniendo deep links a posiciones históricas.

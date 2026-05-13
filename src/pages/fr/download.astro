@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "Bêta",  note: "Invitation TestFlight après validation de la bêta." },
+  { name: "macOS",        status: "Bêta",  note: "Fichier .dmg via lien privé après validation." },
+  { name: "Android",      status: "Alpha", note: "APK via internal track du Google Play." },
+  { name: "Windows",      status: "Alpha", note: "Installeur .exe signé via Microsoft Store." },
+  { name: "Linux",        status: "Alpha", note: "AppImage + flatpak." },
+  { name: "Web",          status: "Démo",  note: "Teste maintenant sur /demo — exige un navigateur compatible WebGPU." },
+];
+---
+
+<BaseLayout
+  title="Télécharger"
+  description="Fluera tourne en natif sur iOS, Android, macOS, Windows, Linux et sur le web. Rejoins la bêta privée pour un accès anticipé."
+  locale="fr"
+>
+  <PageHero
+    kicker="Télécharger"
+    title="Six plateformes.<br />Rejoins la bêta pour y accéder."
+    description="Fluera est en bêta privée. Une fois admis, les liens d'installation arrivent par e-mail — app native sur chaque plateforme, pas de version web bridée."
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">Demander un accès bêta →</a>
+      <a href="/demo" class="btn-secondary">Tester la démo web</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Les sorties publiques sur l'App Store et Google Play arrivent à la fin de la bêta privée. En attendant, les statuts ci-dessus sont honnêtes sur la maturité de chaque plateforme — on préfère sortir bien sur une que mal sur six.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,199 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const useCases = [
+  {
+    title: "Forelæsningsnoter",
+    body: "Studerende tager håndskrevne noter på et uendeligt canvas under forelæsningen, med valgfri audio-synkronisering via Time Travel. Canvasset bliver et levende arkiv, der overlever semestret.",
+  },
+  {
+    title: "Eksamensforberedelse i stor skala",
+    body: "Fog of War + distribueret gentagelse forvandler de studerendes personlige canvas til en motor for genfindelsespraksis. Undervisere kan foreslå læringsstier efter emne uden at diktere indholdet.",
+  },
+  {
+    title: "STEM-laboratoriejournaler",
+    body: "LaTeX-rendering, tryksensitive diagrammer, eksperimentprotokoller med synkroniseret audio. Erstatter papirjournaler og bevarer samtidig den håndskrevne dokumentation, som bedømmelsen kræver.",
+  },
+];
+
+const deployment = [
+  { label: "SSO",              body: "SAML 2.0 og OIDC. Integreret med WAYF, Azure AD, Okta, Google Workspace for Education." },
+  { label: "MDM-venlig",        body: "Standardiseret enterprise-distribution via App Store / Play. Windows og macOS som signerede installere. Ingen sideloading." },
+  { label: "Audit-trail", body: "Uforanderlig adgangslog pr. konto. Eksporterbar til compliance-audit." },
+  { label: "Dataresidens", body: "Servere i Europa fra fabrikken. Databehandleraftale (DPA) tilgængelig på anmodning." },
+  { label: "Tilgængelighed",   body: "WCAG-2.1-AA-mål på alle platforme. Skærmlæser-understøttelse, høj kontrast-tilstand, justerbar pensel-præcision for motoriske forskelle." },
+  { label: "On-prem",          body: "På enterprise-roadmappen. I dag: udelukkende cloud med stærk kryptering og regionale kontroller." },
+];
+---
+
+<BaseLayout
+  title="Fluera til universiteter — Kognitiv infrastruktur for de videregående uddannelser"
+  description="Bring evidensbaserede læringsværktøjer til dit universitet. Multi-sæde-licenser, SSO, audit-trail, underviseruddannelse til 12-trins-cyklussen. Pilotprogrammer tilgængelige."
+  locale="da"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Universiteter og skoler</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Kognitiv infrastruktur<br />for det moderne universitet.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Evidensbaserede læringsværktøjer til dine studerende. SSO til din IT. Underviseruddannelse i den kognitive videnskab om læring. Pilotprogrammer starter med ét kursus, ét semester, gratis.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/da/contact" class="btn-primary">Aftal en akademisk samtale →</a>
+          <a href="/da/" class="btn-secondary">Videnskaben bag</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Hvorfor undervisere vælger Fluera</p>
+        <h2 class="font-serif text-display-xl text-paper-50">Tre konkrete mønstre.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {useCases.map((u, i) => (
+          <article class="card p-7">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{u.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{u.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Licensmodel</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-4">Tre niveauer. Én samtale er nok.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Vi offentliggør ikke pris pr. sæde for institutioner: den rigtige struktur afhænger af, hvilken perimeter du vil licensere — kursus, fakultet eller hele campus. Én samtale, og du får et konkret forslag.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 max-w-5xl">
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Kursus</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Ét kursus, ét semester, op til 200 studerende. Pro-adgang for hver studerende, dashboard til underviseren og én træningssession.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Typisk adoption: pilot</p>
+        </article>
+        <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Fakultet</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Hele fakultetet. Flerårig kontrakt. SSO, audit-trail, dedikeret support-SLA. Underviseruddannelse for hvert kursus, der kommer ind.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">Typisk adoption: andet år</p>
+        </article>
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Campus</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Hele campus. Dedikeret deployment-support, navngiven engineering-kontakt, mulighed for fælles forskning i 12-trins-cyklussen.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Typisk adoption: fra tredje år</p>
+        </article>
+      </div>
+
+      <div class="mt-10">
+        <a href="/da/contact" class="btn-primary">Anmod om prisoversigt →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Underviseruddannelse</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">To timer. Kognitiv videnskab, anvendt.</h2>
+          <p class="prose-ink mb-4">
+            Workshoppen dækker 12-trins-læringscyklussen, principperne bag hvert trin og konkrete mønstre til at integrere Fluera i det eksisterende kursus. Det er ikke en produktdemo.
+          </p>
+          <p class="prose-ink">
+            Afholdes på campus eller remote, med højst femten deltagere pr. session — så hver underviser går derfra med en konkret plan for sit eget kursus.
+          </p>
+        </div>
+        <div class="card p-7">
+          <h3 class="eyebrow text-accent-glow mb-4">Hvad vi dækker</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0">
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">01</span><span>Spacing, retrieval, generering, ønskværdige vanskeligheder — de fire søjler</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">02</span><span>12-trins-cyklussen kortlagt på den konkrete struktur i dit kursus</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">03</span><span>Hvornår Socratic, hvornår Ghost Map, hvornår at gå af vejen</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">04</span><span>At designe eksamensforberedelse med Fog of War uden at erstatte dine bedømmelser</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">05</span><span>Forskningen, evidensens styrke og grænserne for, hvad evidensen kan bære</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">06</span><span>Hands-on: hver underviser bygger en session i Fluera, før de går</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Deployment</p>
+        <h2 class="font-serif text-display-xl text-paper-50">Også din IT vil kunne lide det.</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {deployment.map((d) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Pilotprogram</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">Ét kursus. Ét semester. Gratis.</h2>
+          <p class="prose-ink mb-4">
+            Den hurtigste måde at finde ud af, om Fluera virker for dine studerende, er at teste det med tredive af dem i ét semester, uden omkostning. Til gengæld beder vi om struktureret feedback — én midtvejs-check-in, en undersøgelse i slutningen af semestret og muligheden for at dele anonymiserede resultatdata.
+          </p>
+          <p class="prose-ink">
+            Hvis det virker, taler vi om en flerårig kontrakt. Hvis ikke, beholder du dataene og vi læringen. Begge sider vinder uanset hvad.
+          </p>
+        </div>
+        <div class="card p-8 bg-accent-ink/[0.08] border-accent-ink/30">
+          <h3 class="eyebrow text-accent-glow mb-4">Det her får du</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0 mb-6">
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Pro-adgang til op til 30 studerende</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Totimers underviser-workshop</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Direkte kanal til grundlæggerne i løbet af semestret</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Anonymiserede aggregerede analytics til din rapport</span></li>
+          </ul>
+          <a href="/da/contact" class="btn-primary w-full">Start pilot →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">GDPR fra fabrikken. FERPA-aware. WCAG-2.1-AA-mål.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Detaljerne ligger på security-siden — listen over underdatabehandlere, databehandleraftalen, krypteringsarkitekturen, audit-trail-modellen.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/da/security" class="btn-secondary">Læs sikkerhedsarkitekturen →</a>
+        <a href="/da/contact" class="btn-primary">Lad os snakke</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

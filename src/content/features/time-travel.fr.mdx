@@ -1,0 +1,51 @@
+---
+lang: "fr"
+title: Time Travel
+tagline: "Rejoue n'importe quel trait. Synchronisé avec l'audio du cours qui te l'a fait écrire."
+shortDescription: "Touche une note d'il y a trois semaines et l'audio reprend exactement là où ton stylo écrivait. Revis ta propre pensée."
+status: coming-soon
+stepInCycle: 5
+relatedPrinciples:
+  - spatial-cognition
+  - spacing-effect
+  - embodied-cognition
+  - levels-of-processing
+relatedAuthors:
+  - okeefe-moser
+  - van-der-meer
+order: 10
+---
+
+## Ce que ça résout
+
+L'échec traditionnel des notes de cours, c'est qu'elles sont mortes. Des semaines plus tard, tu regardes quelque chose que tu as écrit et tu ne te rappelles pas pourquoi. Qu'est-ce que le prof disait ? Quel était le contexte ? La note est décontextualisée — et les notes décontextualisées sont presque inutiles.
+
+Time Travel garde le contexte vivant.
+
+## Comment ça marche
+
+Tu démarres un enregistrement quand le cours commence. Tu écris normalement. Chaque trait que tu dessines est lié par timestamp à la frame audio enregistrée.
+
+Plus tard — jours, semaines ou mois — tu touches n'importe quel trait sur ton canvas. L'audio se rembobine au moment exact où tu étais en train d'écrire. Tu entends la voix du prof, ta propre pensée, la question de quelqu'un au fond de la salle. Le contexte revient d'un coup.
+
+Tu fais glisser l'audio et tu vois le canvas se rejouer trait par trait, au rythme original ou accéléré. Tu vois ton esprit au travail.
+
+Tout le storage est local par défaut, chiffré avec SQLCipher. La synchronisation de l'audio est opt-in et chiffrée de bout en bout quand activée.
+
+## La science derrière
+
+Deux principes convergent :
+
+- **Récupération dépendante du contexte** (Tulving, 1972) : la mémoire se récupère mieux quand le contexte de récupération correspond à celui d'encodage. Fluera reproduit le contexte d'encodage à la demande — la voix du prof, l'ambiance de la salle, les mouvements de ta main.
+- **Cognition spatiale** (O'Keefe et Moser, Nobel 2014) : la position sur le canvas est, en elle-même, un indice de récupération. Toucher un trait combine l'indice spatial (position) avec l'indice contextuel (audio) — deux voies de récupération au lieu d'une.
+
+Le travail EEG de van der Meer (2020) ajoute une troisième couche : l'écriture à la main active de larges réseaux sensorimoteurs au moment de l'écriture. Time Travel laisse l'apprenant parcourir ce même réseau des semaines plus tard — non seulement en s'en souvenant, mais en *rejouant* le trait qui l'a originellement déclenché.
+
+## La suite
+
+Time Travel est en alpha privée. Le lancement complet inclut :
+
+- **Sync audio cross-device** (aujourd'hui local uniquement)
+- **Recherche dans la transcription** — trouve les moments du cours à partir de ce qui a été dit
+- **Marqueurs de chapitre** auto-générés par les pauses et les changements de sujet
+- **Export en vidéo annotée** — pour partager un walkthrough du cours

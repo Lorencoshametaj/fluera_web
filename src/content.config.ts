@@ -6,14 +6,18 @@ import { glob } from "astro/loaders";
  * its language. Routes filter by the current URL locale.
  *
  * Convention for translated entries:
- *   case-against-highlighters.mdx       → lang: "en"  (default)
- *   case-against-highlighters.it.mdx    → lang: "it"  (sibling)
+ *   case-against-highlighters.mdx          → lang: "en"     (default)
+ *   case-against-highlighters.it.mdx       → lang: "it"     (sibling)
+ *   case-against-highlighters.pt-br.mdx    → lang: "pt-br"  (sibling)
  *
- * Both files live in the same folder with the same base slug. The locale
- * suffix lets Astro's glob pick them up alongside each other. The [slug]
- * dynamic routes derive the base slug by stripping `.it` when present.
+ * All sibling files live in the same folder with the same base slug. The
+ * locale suffix lets Astro's glob pick them up alongside each other. The
+ * [slug] dynamic routes derive the base slug by stripping the locale suffix.
+ *
+ * To add a new locale's content collections, add the locale code to this enum
+ * (kept in sync with src/lib/i18n.ts LOCALES).
  */
-const langField = z.enum(["en", "it"]).default("en");
+const langField = z.enum(["en", "it", "es", "pt-br", "fr", "de", "ja", "ko", "hi", "pl", "ar", "nl", "sv", "da", "no", "fi"]).default("en");
 
 // Preserve dots in IDs so `foo.it.md` becomes `foo.it` (not `fooit`).
 // Astro's default generateId slugifies and strips dots.

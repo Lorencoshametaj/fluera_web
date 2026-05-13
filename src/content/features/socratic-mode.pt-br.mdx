@@ -1,0 +1,56 @@
+---
+lang: "pt-br"
+title: Socratic Mode
+tagline: "Nossa IA não responde. Pergunta."
+shortDescription: "O Fluera interroga o seu canvas em vez de resumi-lo. Você declara sua confiança de 1 a 5 antes de cada revelação. Porque metacognição é metade da maestria."
+status: beta
+stepInCycle: 3
+relatedPrinciples:
+  - system-1-2
+  - zone-proximal-development
+  - metacognition
+  - retrieval-practice
+  - illusion-of-competence
+relatedAuthors:
+  - daniel-kahneman
+  - lev-vygotsky
+  - roediger-karpicke
+  - butterfield-metcalfe
+order: 3
+---
+
+## O que resolve
+
+A maneira mais fácil de se sentir como se tivesse estudado é pedir a um LLM para explicar algo. A leitura é fluente. A explicação parece clara. Três segundos depois, você tem a sensação distinta de ter entendido — e três semanas depois, não consegue recuperar nada.
+
+Isso é a **ilusão de competência** em escala industrial. Socratic Mode é o antídoto.
+
+## Como funciona
+
+Você termina de escrever um conceito no seu canvas. Toca em Socratic Mode. O Fluera *não* te dá uma explicação, um resumo ou uma definição.
+
+Pergunta.
+
+"Você traçou uma seta da energia cinética para o momento. Em qual referencial essa relação é escalar em vez de vetorial?"
+
+Antes de você responder, a UI pede uma última coisa: **quanto você está seguro — de 1 a 5?** Você desliza o slider. Compromete-se com um número. Agora responde — escrevendo no seu canvas, não em uma chat box. A resposta vira parte do seu caderno daqui em diante.
+
+Só depois que você responde a IA reage. Se você acertou e estava seguro, segue em frente. Se você errou e estava seguro, ela não dá sermão — faz uma pergunta de follow-up que expõe o mismatch. Se você estava hesitante, faz scaffolding com uma cadeia de hints cada vez mais estreita até você chegar sozinho.
+
+O scaffolding se retira progressivamente à medida que a IA lê o seu canvas crescer. Perguntas que pareciam da dificuldade certa na semana um ficam fáceis demais na terceira — a IA recalibra sem você pedir.
+
+## A ciência por trás
+
+Três forças convergem aqui:
+
+- **Prática de recuperação** (Roediger e Karpicke, 2006): ser *testado* sobre o material produz memória muito mais forte do que receber o material *dito* — mesmo quando as tentativas de recuperação falham.
+- **Zona de Desenvolvimento Proximal** (Vygotsky, 1978): a aprendizagem acontece no gap calibrado entre o que você consegue fazer sozinho e o que consegue fazer com orientação scaffoldada. As perguntas socráticas vivem nessa zona por design.
+- **Calibração metacognitiva** (Butterfield e Metcalfe, 2001): declarar a confiança *antes* do feedback é uma intervenção metacognitiva por si só. Prepara o efeito de hipercorreção e te treina a separar *saber* de *reconhecer*.
+
+A dicotomia Sistema 1 / Sistema 2 de Kahneman enquadra o modo inteiro. Um LLM que te responde na hora fala com o Sistema 1. Uma IA que te força a parar, declarar a confiança e depois recuperar engaja o Sistema 2 — e o Sistema 2 é onde a aprendizagem mora.
+
+## O que vem por aí
+
+- **Modo voz** — sessões socráticas faladas para quando a caneta não é prática (caminhando, em viagem).
+- **Socratic cross-canvas** — a IA pesca perguntas que atravessam o seu tópico atual e canvas mais antigos, explorando o interleaving.
+- **Pacotes Socratic** de autores especialistas para campos específicos (medicina, direito, ML).

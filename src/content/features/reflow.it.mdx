@@ -1,0 +1,57 @@
+---
+lang: "it"
+title: Reflow Physics
+tagline: "Trascina un concetto. Guarda il canvas riorganizzarsi attorno a ciò che conta."
+shortDescription: "Reflow tiene viva la codifica spaziale mentre la comprensione evolve. Sposti un nodo e i vicini seguono il gradiente — la calligrafia resta dove l'hai scritta, la struttura respira."
+status: beta
+relatedPrinciples:
+  - spatial-cognition
+  - embodied-cognition
+  - generation-effect
+relatedAuthors:
+  - okeefe-moser
+  - mueller-oppenheimer
+  - van-der-meer
+order: 8
+---
+
+## Cosa risolve
+
+Un canvas costruito nella settimana uno di un semestre non è il canvas che vuoi nella settimana dieci. Argomenti che pensavi separati si rivelano collegati. Cluster distanti collassano in un singolo capitolo. Materiale nuovo fa esplodere un nodo che era una sola parola.
+
+Senza reflow, le opzioni sono solo due: lasciare il canvas congelato e progressivamente sbagliato, o ridisegnarlo a mano — sprecando ore e rompendo ogni indizio spaziale che il tuo ippocampo aveva già codificato.
+
+Reflow Physics è la terza opzione. Il canvas si riorganizza da solo, mantenendo ogni tratto esattamente dove l'hai scritto.
+
+## Come funziona
+
+Trascina un nodo qualsiasi — un concetto, un cluster, un paragrafo di calligrafia. Mentre il dito o la penna si muovono, gli elementi vicini rispondono come un sistema fisico soft: i nodi più vicini seguono in proporzione, quelli distanti si spostano appena, e ghost displacement mostrano il layout finale proposto *prima* che tu confermi.
+
+Rilascia. Il reflow si assesta in una sola animazione fluida. Sotto il cofano, ogni tratto mantiene il suo ID originale, il suo timestamp originale, il suo aggancio audio da [Time Travel](/it/features/time-travel). Gli indizi spaziali si aggiornano; l'identità no.
+
+Reflow rispetta le frecce disegnate a mano e i [Cross-Zone Bridges](/it/features/cross-zone-bridges): si stirano, si curvano, respirano — ma non si rompono mai. Le connessioni sono cittadini di prima classe del layout.
+
+Tre modalità:
+
+- **Reflow locale** — trascina un singolo nodo; solo il cluster immediato si riorganizza.
+- **Reflow di cluster** — long-press su un cluster; l'intera regione diventa trascinabile come unità mantenendo la struttura interna.
+- **Reflow Atlas** — al continente zoom, trascina un intero canvas nella vista [Atlas](/it/features/atlas); le materie si riassettano l'una rispetto all'altra.
+
+Undo e redo funzionano a livello di reflow. Una riorganizzazione sbagliata si annulla con un tap — ogni stato di layout è un checkpoint.
+
+## La scienza dietro
+
+L'ippocampo codifica più di ciò che hai scritto: codifica **dove** l'hai scritto. Il lavoro sulle place cell di O'Keefe e Moser (Nobel 2014) ha mostrato che la stessa popolazione neurale che mappa il tuo appartamento mappa anche i tuoi concetti — purché i concetti abbiano coordinate spaziali stabili. Le mappe statiche rinforzano queste cellule; il caos le distrugge.
+
+Il vincolo di design di Reflow è una conseguenza diretta: il cambiamento spaziale deve essere **fluido e intenzionale**, mai brusco. Un nodo che teleporta in una nuova posizione resetta la mappatura delle place cell; un nodo che scivola attraverso posizioni intermedie la preserva. La fisica non è decorativa — è il modo in cui la memoria sopravvive alla riorganizzazione.
+
+Mueller e Oppenheimer (2014) e van der Meer (2020) hanno stabilito che la **scrittura a mano in sé** codifica memoria attraverso tracce sensorimotorie. Reflow protegge queste tracce: i tratti non vengono mai re-renderizzati, mai ri-rasterizzati, mai privati della firma di pressione/tilt/velocità che l'atto originale di scrittura ha prodotto. Sposti un concetto; la traccia motoria si sposta con lui.
+
+Infine, il **generation effect** (Slamecka & Graf, 1978) taglia in due direzioni. L'atto di decidere *dove* un concetto appartiene — e di rivedere quella decisione mentre la comprensione si approfondisce — è di per sé una mossa generativa che rinforza la codifica. Reflow rende quella revisione abbastanza economica da farla ogni settimana.
+
+## Cosa arriva
+
+- **Gravità per zona** — diverse forze di reflow per diverse materie (la matematica vuole cluster stretti; la storia vuole drift di timeline).
+- **Reflow timeline** — scorri la cronologia di layout di un canvas; vedi come la tua mappa mentale è evoluta settimana dopo settimana.
+- **Suggerimenti di auto-reflow** — Atlas propone consolidamenti quando rileva cluster che derivano l'uno verso l'altro su più sessioni.
+- **Export consapevoli del reflow** — PDF e SVG che preservano l'ultimo layout mantenendo deep link alle posizioni storiche.

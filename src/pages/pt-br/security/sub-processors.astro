@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const processors = [
+  {
+    name: "Supabase Inc.",
+    purpose: "Banco de dados, autenticação, storage cloud criptografado, signaling realtime, Edge Function para o proxy de IA.",
+    dataTypes: "E-mail da conta, ID do usuário hasheado, ciphertext do canvas (criptografado E2E), metadados de sincronização.",
+    region: "Frankfurt, UE (região padrão para as instâncias do Fluera).",
+    privacy: "https://supabase.com/privacy",
+  },
+  {
+    name: "Google LLC",
+    purpose: "Google Generative AI (Gemini) para Socratic Mode, Ghost Map, OCR de LaTeX e geração das exam sessions.",
+    dataTypes: "Trechos selecionados de texto do canvas (apenas se as funções de IA estão permitidas e ativas). Nunca o caderno inteiro.",
+    region: "EUA, UE via regiões do Google Cloud; SCCs + EU-US DPF.",
+    privacy: "https://policies.google.com/privacy",
+  },
+  {
+    name: "Apple Inc.",
+    purpose: "Autenticação Sign in with Apple; compras in-app em iOS e macOS via App Store.",
+    dataTypes: "E-mail relay do Apple ID, identificadores de recibo. Nenhum dado do canvas.",
+    region: "EUA; SCCs + EU-US DPF.",
+    privacy: "https://www.apple.com/legal/privacy/",
+  },
+  {
+    name: "RevenueCat Inc.",
+    purpose: "Gestão de assinaturas e validação de recibos em iOS, Android e web.",
+    dataTypes: "ID do usuário no RevenueCat anonimizado, status de assinatura, metadados de recibo. Nenhum dado de cartão.",
+    region: "EUA; SCCs + EU-US DPF.",
+    privacy: "https://www.revenuecat.com/privacy",
+  },
+  {
+    name: "Functional Software Inc. (Sentry)",
+    purpose: "Crash reporting e monitoramento de erros.",
+    dataTypes: "Stack traces, versão do SO, modelo do dispositivo, versão do app. sendDefaultPii está explicitamente desabilitado — nenhum conteúdo do usuário.",
+    region: "EUA, opções UE disponíveis.",
+    privacy: "https://sentry.io/privacy/",
+  },
+  {
+    name: "Vercel Inc.",
+    purpose: "Hospedagem do site de marketing fluera.dev e /docs.",
+    dataTypes: "Logs de acesso web padrão (IP, user-agent). Nenhum conteúdo de conta.",
+    region: "Edge global; região de origem configurável.",
+    privacy: "https://vercel.com/legal/privacy-policy",
+  },
+];
+
+const lastUpdated = "2026-04-20";
+---
+
+<BaseLayout
+  title="Suboperadores"
+  description="As terceiras partes sobre as quais o Fluera se apoia para entregar o produto. Finalidade, dados compartilhados, região e link para a política de privacidade de cada suboperador."
+  locale="pt-br"
+>
+  <PageHero
+    kicker="Suboperadores"
+    title="Cada terceira parte sobre a qual nos apoiamos."
+    description="Nos termos do art. 28 GDPR, todo suboperador que trata dados pessoais por nossa conta está listado aqui — o que compartilhamos, por quê e onde vive. Notificamos os clientes antes de qualquer mudança."
+    breadcrumb={{ label: "Segurança", href: "/pt-br/security" }}
+  >
+    <p slot="copy" class="mt-6 text-sm text-ink-500 font-mono">Última atualização: {lastUpdated}</p>
+  </PageHero>
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-5xl">
+        {processors.map((p) => (
+          <li class="card p-6 md:p-7">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <h2 class="font-serif text-xl text-paper-50 mb-2">{p.name}</h2>
+                <a href={p.privacy} class="text-xs text-accent-glow underline underline-offset-4 font-mono" rel="noopener">
+                  Política de privacidade ↗
+                </a>
+              </div>
+              <dl class="md:col-span-3 grid gap-3 text-sm">
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Finalidade</dt>
+                  <dd class="text-paper-200">{p.purpose}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Dados compartilhados</dt>
+                  <dd class="text-paper-200">{p.dataTypes}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Região</dt>
+                  <dd class="text-paper-200">{p.region}</dd>
+                </div>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">Mudanças e notificações</h2>
+      <p class="prose-ink text-sm mb-4">
+        Atualizamos esta lista sempre que um suboperador é adicionado, alterado ou removido. Os clientes Institucionais e enterprise recebem notificação por e-mail com pelo menos 30 dias de antecedência da mudança, nos termos do art. 28(2) GDPR.
+      </p>
+      <p class="prose-ink text-sm">
+        Para se inscrever nas notificações de mudança de suboperador, escreva para <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a> a partir do endereço da sua conta.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

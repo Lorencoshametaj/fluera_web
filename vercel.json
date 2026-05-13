@@ -3,10 +3,12 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/index.html",   "destination": "/engine",         "permanent": true },
+    { "source": "/index.html",   "destination": "/",               "permanent": true },
     { "source": "/beta.html",    "destination": "/beta",           "permanent": true },
     { "source": "/privacy.html", "destination": "/legal/privacy",  "permanent": true },
-    { "source": "/terms.html",   "destination": "/legal/terms",    "permanent": true }
+    { "source": "/terms.html",   "destination": "/legal/terms",    "permanent": true },
+    { "source": "/engine",       "destination": "/",               "permanent": false },
+    { "source": "/engine/:path*","destination": "/",               "permanent": false }
   ],
   "headers": [
     {

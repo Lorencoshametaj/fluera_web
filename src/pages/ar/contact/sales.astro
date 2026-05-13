@@ -1,0 +1,103 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="تحدّث إلى المبيعات — Fluera للمؤسّسات"
+  description="احجز محادثة مع مؤسّسي Fluera لإحضار أداة دراسة قائمة على الأدلّة إلى فصلك أو قسمك أو حرمك الجامعي."
+  locale="ar"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">المبيعات المؤسّسية</p>
+      <h1 class="font-serif text-display-xl text-paper-50 mb-6">خطّط لطلّابك.</h1>
+      <p class="prose-ink text-lg mb-8">
+        املأ النموذج أدناه وسيُجيب مؤسّس (لا BDR) خلال 24 ساعة عمل. نُفضّل البدء بشكل غير متزامن — رسالة جيّدة الصياغة تُعادل أكثر من ثلاث جولات حجز مواعيد.
+      </p>
+
+      <form id="sales-form" class="card p-6 md:p-8 space-y-5" action={`mailto:${SITE.company.contactEmail}`} method="post" enctype="text/plain">
+        <div>
+          <label class="sales-label" for="s-name">اسمك <span class="text-signal-bad">*</span></label>
+          <input id="s-name" name="name" type="text" required class="sales-input" placeholder="الاسم الكامل" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-role">الدور <span class="text-signal-bad">*</span></label>
+          <select id="s-role" name="role" required class="sales-input">
+            <option value="" disabled selected>اختر…</option>
+            <option>معلّم</option>
+            <option>رئيس قسم</option>
+            <option>مدير / إداري</option>
+            <option>تقنية المعلومات / مشتريات</option>
+            <option>أمين مكتبة / مصمّم تعليمي</option>
+            <option>ممثّل طلّاب</option>
+            <option>غير ذلك</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-institution">المؤسّسة <span class="text-signal-bad">*</span></label>
+          <input id="s-institution" name="institution" type="text" required class="sales-input" placeholder="جامعة أو مدرسة" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-email">البريد المهني <span class="text-signal-bad">*</span></label>
+          <input id="s-email" name="email" type="email" required class="sales-input" placeholder="you@university.edu" />
+          <p class="sales-hint">استخدم بريد مؤسّستك لتسهيل التحقّق.</p>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-size">منطقة الاهتمام</label>
+          <select id="s-size" name="size" class="sales-input">
+            <option value="" selected>اختر…</option>
+            <option>تجريبي — فصل واحد، فصل دراسي واحد</option>
+            <option>ترخيص قسم</option>
+            <option>ترخيص جامعة</option>
+            <option>أستكشف — أحتاج موجزًا</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-context">ما الذي ينبغي أن نعرفه قبل الردّ؟ <span class="text-signal-bad">*</span></label>
+          <textarea id="s-context" name="context" rows="5" required minlength="20" maxlength="2000"
+            class="sales-input"
+            placeholder="اسم المقرّر، ملف الطلّاب، الجدول الزمني، الأدوات المستخدمة، قيود الالتزام — أيّ شيء مفيد."></textarea>
+          <p class="sales-hint">كلّما كنت أكثر تحديدًا، أمكننا الردّ بإيجاز.</p>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="btn-primary w-full py-3.5">إرسال ←</button>
+          <p class="sales-hint text-center mt-3">
+            يُرسَل النموذج عبر البريد. لا يُغادر شيء جهازك حتى تضغط على إرسال. تُفضّل الكتابة مباشرة؟ <a href={`mailto:${SITE.company.contactEmail}`} class="text-accent-glow underline">{SITE.company.contactEmail}</a>.
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">ماذا يحدث بعد الإرسال</h2>
+      <ol class="space-y-4 text-sm text-paper-200 list-none p-0">
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">01</span><span>يردّ مؤسّس خلال يوم عمل بأسئلة محدّدة عن وضعك — لا نصّ نمطيّ.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">02</span><span>نُرسل موجز تجربة (PDF) مكيَّفًا لحالتك، مع منهج نموذجي وقائمة أسئلة لطرحها على الطلّاب.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">03</span><span>مكالمة 30 دقيقة مع مؤسّس، وعند الحاجة مع جهة الاتّصال التقنية لديك. نُغطّي SSO واتفاقية معالجة البيانات والجدول الزمني بصدق — بما في ذلك القيود الحالية.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">04</span><span>تبدأ التجربة. عادة خلال 2-4 أسابيع من الاتّصال الأوّل.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <style>
+    .sales-label { display: block; font-size: 0.875rem; font-weight: 500; color: theme("colors.paper.200"); margin-bottom: 0.5rem; }
+    .sales-hint  { font-size: 0.75rem; color: theme("colors.ink.500"); margin-top: 0.375rem; }
+    .sales-input {
+      width: 100%; background: theme("colors.ink.900"); border: 1px solid rgb(255 255 255 / 0.08);
+      border-radius: 0.625rem; padding: 0.75rem 1rem; color: theme("colors.paper.50"); font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .sales-input:focus {
+      outline: none; border-color: theme("colors.accent.ink"); box-shadow: 0 0 0 3px rgb(45 74 222 / 0.18);
+    }
+  </style>
+</BaseLayout>

@@ -6,15 +6,15 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Cifratura",
-    body: "Ogni quaderno Fluera è cifrato at-rest con AES-256 via SQLCipher. Il traffico è TLS 1.3 in transito. Il sync tra i tuoi dispositivi è end-to-end cifrato con chiavi derivate dalla tua passphrase — custodite nel keychain della piattaforma, mai inviate ai nostri server.",
+    body: "Ogni quaderno Fluera è cifrato a riposo con AES-256 via SQLCipher. Il traffico è TLS 1.3 in transito. Il sync tra i tuoi dispositivi è end-to-end cifrato con chiavi derivate dalla tua passphrase — custodite nel keychain della piattaforma, mai inviate ai nostri server.",
   },
   {
     title: "Proprietà dei dati",
     body: "Ogni byte che scrivi è esportabile con un click: PNG, JPEG, WebP, SVG, PDF e il nostro formato aperto .fluera. I tuoi quaderni vivono prima sui tuoi dispositivi. Il cloud è una comodità, non una prigione — il lock-in è un modello di business che abbiamo scelto di rifiutare.",
   },
   {
-    title: "GDPR, nativamente",
-    body: "Fluera è EU-hosted e GDPR-nativo. Un Data Processing Agreement è disponibile su richiesta per qualsiasi istituzione educativa. Export completo dei dati e diritto all'oblio evasi entro 30 giorni (di solito 48 ore).",
+    title: "GDPR per default",
+    body: "Fluera è ospitata su server in Europa e progettata sui principi del GDPR. Un Data Processing Agreement è disponibile su richiesta per qualsiasi istituzione educativa. Export completo dei dati e diritto all'oblio evasi entro 30 giorni (di solito 48 ore).",
   },
   {
     title: "Local-first, sempre",
@@ -33,14 +33,14 @@ const pillars = [
 
 <BaseLayout
   title="Sicurezza e privacy"
-  description="Cifratura AES-256 at-rest, GDPR-nativo, EU-hosted, zero ad-tech. L'architettura di sicurezza e l'impegno sulla proprietà dei dati di Fluera."
+  description="Cifratura AES-256 a riposo, GDPR per default, server in Europa, zero ad-tech. L'architettura di sicurezza e l'impegno sulla proprietà dei dati di Fluera."
   locale="it"
 >
   <PageHero
     kicker="Sicurezza e privacy"
-    title="Il tuo quaderno è tuo.<br />Anche da noi."
+    title="End-to-end cifrato.<br />La chiave la tieni tu."
     titleSize="2xl"
-    description="Cifratura di default. Niente ad-tech. EU-hosted. Export completo. Trattiamo la privacy come un vincolo di design, non un compito di compliance."
+    description="Cifratura di default. Niente ad-tech. Server in Europa. Export completo. La privacy è un vincolo di design, non un compito di compliance."
     orbs
     noise
   />

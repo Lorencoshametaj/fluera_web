@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+import home from "@/data/home/de";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "Ein unendliches Lern-Canvas, gebaut auf der kognitiven Wissenschaft des Lernens.",
+  url: `${SITE.url}/de/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const { steps, authors, platforms } = home;
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="Ein unendliches Lern-Canvas, gebaut auf der kognitiven Wissenschaft des Lernens. iOS, Android, macOS, Windows, Linux, Web."
+  jsonLd={jsonLd}
+  locale="de"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          Private Beta · Auf Einladung
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          Der Lernraum,<br />gebaut für<br /><span class="text-gradient">wie das Gedächtnis funktioniert.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          Schreib mit der Hand auf einem unendlichen Canvas. Lass die KI dich befragen, statt dir Antworten zu geben. Komm im Lauf der Zeit auf dein eigenes Denken zurück. Kalibriert auf die Art, wie sich Gedächtnis tatsächlich bildet.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            Beta beitreten
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            Demo testen
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>Ende-zu-Ende verschlüsselt</span><span class="text-ink-600">·</span>
+          <span>DSGVO-konform</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">Der Engpass</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Du kannst alles fragen.<br />Die Antwort bleibt trotzdem nicht in deinem Kopf.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          2026 lässt sich Wissen in drei Sekunden abrufen und in drei Wochen vergessen. Wir haben zehn Apps zum Notieren und keine, um <em>zu behalten</em>, was wir lernen.
+        </p>
+        <p>
+          Markieren fühlt sich wie Lernen an. Wieder lesen fühlt sich wie Lernen an. Einen LLM um eine Zusammenfassung bitten fühlt sich wie Lernen an. Keines der drei ist es — und die kognitive Wissenschaft sagt das seit fünfzig Jahren.
+        </p>
+        <p>
+          Der Engpass des Lernens ist nicht mehr der Zugang — es sind <em>Encodierung, Konsolidierung und Transfer</em>: drei Probleme gleichzeitig.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera ist für diese drei gebaut.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Die Methode</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Ein Canvas.<br />Zwölf kognitive Bewegungen.<br />Der Zyklus, mit dem dein Gehirn lernt.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Jede Funktion von Fluera lebt in einem Schritt des Zyklus, und jeder Schritt stützt sich auf veröffentlichte Forschung. Lass einen aus und die Kette bricht. Folg ihnen allen und das Heft wird dauerhaft.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">Vier kognitive Differenzierer</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          Vier Wege, wie Gedächtnis aufgebaut wird.
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map · Schritt 4"
+          title="Sieh den Abstand zwischen dem, was du geschrieben hast, und der korrekten Lösung."
+          description="Nach einem Abrufversuch legt Fluera deine Arbeit über eine ideale Lösung. Die Abweichungen pulsieren. Sie klagen nicht an — sie wecken das Gedächtnis. Je mehr du danebenlagst, desto stärker verankert sich die Korrektur."
+          citation="Hyperkorrektur-Effekt — Butterfield und Metcalfe, 2001."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode · Schritt 3"
+          title="Unsere KI antwortet nicht. Sie fragt."
+          description="Bewerte deine Sicherheit von 1 bis 5 vor jeder Auflösung. Metakognition ist die Hälfte der Beherrschung, und Sicherheits-Kalibrierung ist, wie sie sich aufbaut — eine Vorhersage nach der anderen."
+          citation="Metakognitives Monitoring — Flavell, 1979."
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War · Schritt 10"
+          title="Prüfungsmodus, der versteckt, woran du dich fast erinnerst."
+          description="Maskiere jeden beliebigen Bereich des Canvas. Hol ihn aus dem Gedächtnis, bevor du aufdeckst. Die Anstrengung des Abrufens — nicht das erneute Lesen — ist der Ort, an dem das Gedächtnis verhärtet."
+          citation="Erwünschte Schwierigkeiten — Bjork, 1994."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Exam Session · Schritt 11"
+          title="Simulierte Prüfungen aus deinem Canvas — bewertet von Ghost Map."
+          description="Sicherheits-Picker von 1 bis 5 vor jeder Frage. Closed-Book. Nach dem Absenden überlagert Fluera deine Antwort der idealen und wendet Hyperkorrektur dort an, wo du am sichersten warst und falsch lagst. Je größer die Überraschung, desto stärker die Korrektur."
+          citation="Hyperkorrektur — Butterfield und Metcalfe, 2001 · Productive Failure — Kapur, 2008."
+          href="/de/features/exam-session"
+          status="beta"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">In der Beta testen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">Tinte, nicht Tastatur</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            Tippen ist schneller.<br />Handschrift ist besser.<br />Das Gehirn wurde nicht auf Geschwindigkeit optimiert.
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller und Oppenheimer, Princeton 2014 · van der Meer, NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            Als Mueller und Oppenheimer 2014 die berühmte Princeton-Studie veröffentlichten, schlugen Studierende, die handschriftlich Notizen machten, jene mit Laptop bei konzeptuellen Fragen — <em>obwohl</em> die Laptop-Gruppe deutlich mehr Text geschrieben hatte. Die Hand war langsamer. Der Geist war tiefer.
+          </p>
+          <p>
+            Zehn Jahre später lieferte das EEG von Audrey van der Meer an der NTNU (2020) das <em>Warum</em>: Handschrift aktiviert breitere Hirnnetzwerke als Tippen, vor allem in den Regionen, die mit Gedächtnisbildung und sensomotorischer Integration verbunden sind. Der Stift ist ein kognitives Instrument.
+          </p>
+          <p>
+            Fluera ist um diese Erkenntnis herum gebaut. Dreizehn Pinselengines. Druck, Neigung, Geschwindigkeit. Strich-Latenz unter 15 Millisekunden auf allen unterstützten Geräten. Das unendliche Canvas ist keine Ästhetik — es ist das Substrat, nach dem dein Gedächtnis gerufen hat.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Wissenschaftliche Grundlage</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Auf den Schultern von Riesen — namentlich zitiert.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Jede Designentscheidung verweist auf ein Paper, das wir verlinken können. Hier zwölf der Köpfe, die in Fluera leben. Die vollständige Bibliografie ist öffentlich.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Sechs Plattformen, eine Tinte</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Sechs Plattformen. Eine Tinte. Ein Geist.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Native Renderer auf Vulkan, Metal, OpenGL, Direct3D 11 und WebGPU. Dein Heft synchronisiert sich Ende-zu-Ende verschlüsselt — oder bleibt offline. Du entscheidest.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        Die Status-Labels sind ehrlich über die Reife jeder Plattform. Die mit „Alpha" oder „Demo" markierten funktionieren, brauchen aber noch Schliff — tritt der Beta bei, wenn du sie mitformen willst.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Dein Geist, deine Daten</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Ende-zu-Ende-Verschlüsselung.<br />Der Schlüssel bleibt bei dir.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">AES-256 im Ruhezustand</h3>
+          <p class="text-sm text-paper-300">SQLCipher-Verschlüsselung auf jedem Gerät. Die lokale Datenbank ist ohne deinen Schlüssel unlesbar.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">DSGVO ab Werk</h3>
+          <p class="text-sm text-paper-300">EU-Hosting, DPA verfügbar, vollständiger Export und Löschung auf Anfrage.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Null Ad-Tech</h3>
+          <p class="text-sm text-paper-300">Keine Tracking-Pixel. Keine verhaltensbasierte Werbung. Wir trainieren unsere Modelle nicht mit deinen Inhalten.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Audit-Trail</h3>
+          <p class="text-sm text-paper-300">Für Education-Konten wird jeder Zugriff in einem unveränderlichen Trail protokolliert.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">Sicherheitsarchitektur lesen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Preise</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Kostenlos zum Lernen. Plus und Pro, um tiefer einzusteigen.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">Das vollständige Canvas. Drei Hefte. Für immer kostenlos.</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5,99<span class="text-sm font-sans text-paper-300">/Monat</span></p>
+          <p class="text-sm text-paper-300">Unbegrenzte Canvases, Sync auf 2 Geräten, Basis-KI. €49/Jahr.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11,99<span class="text-sm font-sans text-paper-300">/Monat</span></p>
+          <p class="text-sm text-paper-300">Exam Session, Atlas, vollständige KI-Suite, unbegrenztes Sync. €99/Jahr.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19,99<span class="text-sm font-sans text-paper-300">/Seat</span></p>
+          <p class="text-sm text-paper-300">Geteilte Canvases, Team-Atlas, ACL, Audit-Trail. Ab 5 Seats.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        Verifizierte Studierende erhalten Plus oder Pro mit 50 % Rabatt über das Pilotprogramm. Wer jetzt abschließt, sichert sich den Tarif für die Dauer des Abonnements.
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">Alle Preise ansehen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">Mach mit</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Private Beta.<br />Onboarding in Kohorten.
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        Wir nehmen in Kohorten auf, damit jede Gruppe — Studierende, Knowledge Worker, Lehrende — ein echtes Gespräch bekommt, keine Nummer in der Warteschlange. Wenn du Apps satt hast, die versprechen, das Lernen für dich zu übernehmen, frag den Zugang an.
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        Zugang anfragen →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+import home from "@/data/home/da";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "Et uendeligt studie-canvas bygget oven på den kognitive videnskab om læring.",
+  url: `${SITE.url}/da/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const { steps, authors, platforms } = home;
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="Et uendeligt studie-canvas bygget oven på den kognitive videnskab om læring. iOS, Android, macOS, Windows, Linux, Web."
+  jsonLd={jsonLd}
+  locale="da"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          Privat beta · Efter invitation
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          Studierummet,<br />bygget til<br /><span class="text-gradient">hvordan hukommelsen virker.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          Skriv i hånden på et uendeligt canvas. Lad AI'en udspørge dig i stedet for at give dig svar. Vend tilbage til din egen tænkning over tid. Kalibreret til den måde, hukommelsen reelt dannes på.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            Kom med i betaen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            Prøv demoen
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>End-to-end-kryptering</span><span class="text-ink-600">·</span>
+          <span>GDPR fra fabrikken</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">Flaskehalsen</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Du kan spørge om alt.<br />Svaret bliver alligevel ikke i dit hoved.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          I 2026 hentes viden på tre sekunder og glemmes på tre uger. Vi har ti apps til at tage noter og ingen til at <em>fastholde</em> det, vi lærer.
+        </p>
+        <p>
+          At fremhæve føles som at studere. At genlæse føles som at studere. At bede en LLM om et resumé føles som at studere. Ingen af de tre er det — og den kognitive videnskab har sagt det i halvtreds år.
+        </p>
+        <p>
+          Læringens flaskehals er ikke længere adgang — det er <em>indkodning, konsolidering og transfer</em>: tre problemer på én gang.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera er bygget til de tre.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Metoden</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Ét canvas.<br />Tolv kognitive bevægelser.<br />Cyklussen, din hjerne lærer med.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Hver funktion i Fluera bor i et trin af cyklussen, og hvert trin hviler på publiceret forskning. Spring ét over, og kæden brister. Følg dem alle, og notesbogen bliver permanent.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">Fire kognitive differentiatorer</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          Fire måder at opbygge hukommelsen på.
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map · Trin 4"
+          title="Se afstanden mellem det, du skrev, og den korrekte løsning."
+          description="Efter et genfindelsesforsøg lægger Fluera dit arbejde oven på en ideel løsning. Afvigelserne pulserer. De anklager ikke — de vækker hukommelsen. Jo mere du tog fejl, jo stærkere fæstner rettelsen sig."
+          citation="Hyperkorrektion-effekten — Butterfield og Metcalfe, 2001."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode · Trin 3"
+          title="Vores AI svarer ikke. Den spørger."
+          description="Angiv din sikkerhed fra 1 til 5 før hver opklaring. Metakognition er halvdelen af mestringen, og sikkerheds-kalibrering er, hvordan den bygges op — én forudsigelse ad gangen."
+          citation="Metakognitiv monitorering — Flavell, 1979."
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War · Trin 10"
+          title="Eksamenstilstand, der skjuler det, du næsten husker."
+          description="Maskér enhver region af canvasset. Hent det fra hukommelsen, før du afslører. Anstrengelsen ved genfindelsen — ikke genlæsningen — er der, hvor hukommelsen hærdner."
+          citation="Ønskværdige vanskeligheder — Bjork, 1994."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Exam Session · Trin 11"
+          title="Simulerede eksamener fra dit canvas — rettet af Ghost Map."
+          description="Sikkerhedsvælger fra 1 til 5 før hvert spørgsmål. Closed book. Efter aflevering lægger Fluera dit svar oven på det ideelle og anvender hyperkorrektion dér, hvor du var mest sikker og tog fejl. Jo større overraskelsen, jo stærkere rettelsen."
+          citation="Hyperkorrektion — Butterfield og Metcalfe, 2001 · Productive failure — Kapur, 2008."
+          href="/da/features/exam-session"
+          status="beta"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">Test i betaen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">Blæk, ikke tastatur</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            At taste er hurtigere.<br />Håndskrift er bedre.<br />Hjernen er ikke optimeret til hastighed.
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller og Oppenheimer, Princeton 2014 · van der Meer, NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            Da Mueller og Oppenheimer offentliggjorde det berømte Princeton-studie i 2014, slog studerende, der tog noter i hånden, dem på laptop på konceptuelle spørgsmål — <em>på trods af</em> at laptop-gruppen havde skrevet markant mere tekst. Hånden var langsommere. Sindet var dybere.
+          </p>
+          <p>
+            Ti år senere leverede EEG'en fra Audrey van der Meer på NTNU (2020) <em>hvorfor</em>: håndskrift aktiverer bredere hjernenetværk end tastning, særligt i de regioner, der knyttes til hukommelsesdannelse og sensomotorisk integration. Pennen er et kognitivt instrument.
+          </p>
+          <p>
+            Fluera er bygget omkring den indsigt. Tretten penselmotorer. Tryk, hældning, hastighed. Stregelatens under 15 millisekunder på alle understøttede enheder. Det uendelige canvas er ikke æstetik — det er det substrat, din hukommelse har efterspurgt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Videnskabeligt fundament</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          På giganters skuldre — citeret ved navn.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Hver designbeslutning peger tilbage på et paper, vi kan linke til. Her er tolv af de hjerner, der bor inde i Fluera. Den fulde bibliografi er offentlig.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Seks platforme, ét blæk</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Seks platforme. Ét blæk. Ét sind.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Native renderere oven på Vulkan, Metal, OpenGL, Direct3D 11 og WebGPU. Din notesbog synkroniserer end-to-end-krypteret — eller bliver offline. Du bestemmer.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        Status-mærkaterne er ærlige om hver platforms modenhed. De, der er mærket "Alpha" eller "Demo", virker, men mangler finpudsning — kom med i betaen, hvis du vil hjælpe med at forme dem.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Dit sind, dine data</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          End-to-end-kryptering.<br />Nøglen bliver hos dig.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">AES-256 i hvile</h3>
+          <p class="text-sm text-paper-300">SQLCipher-kryptering på hver enhed. Den lokale database er ulæselig uden din nøgle.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">GDPR fra fabrikken</h3>
+          <p class="text-sm text-paper-300">EU-hosting, DPA tilgængelig, fuld eksport og sletning på anmodning.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Nul ad-tech</h3>
+          <p class="text-sm text-paper-300">Ingen tracking-pixler. Ingen adfærdsbaseret reklame. Vi træner ikke vores modeller på dit indhold.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Audit-trail</h3>
+          <p class="text-sm text-paper-300">For Education-konti logges hver adgang i et uforanderligt spor.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">Læs sikkerhedsarkitekturen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Priser</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Gratis at lære. Plus og Pro for at gå dybere.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">Det fulde canvas. Tre notesbøger. Gratis for altid.</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5,99<span class="text-sm font-sans text-paper-300">/måned</span></p>
+          <p class="text-sm text-paper-300">Ubegrænset canvas, sync på 2 enheder, basis-AI. €49/år.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11,99<span class="text-sm font-sans text-paper-300">/måned</span></p>
+          <p class="text-sm text-paper-300">Exam Session, Atlas, fuld AI-suite, ubegrænset sync. €99/år.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19,99<span class="text-sm font-sans text-paper-300">/sæde</span></p>
+          <p class="text-sm text-paper-300">Delte canvasser, team-Atlas, ACL, audit-trail. Fra 5 sæder.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        Verificerede studerende får Plus eller Pro med 50 % rabat via pilotprogrammet. Den, der tegner abonnement nu, låser taksten for hele abonnementsperioden.
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">Se alle priser →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">Vær med</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Privat beta.<br />Onboarding i kohorter.
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        Vi tager ind i kohorter, så hver gruppe — studerende, vidensarbejdere, undervisere — får en reel samtale, ikke et nummer i køen. Hvis du er træt af apps, der lover at lære for dig, så bed om adgang.
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        Anmod om adgang →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,199 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const useCases = [
+  {
+    title: "Luennon kaappaus",
+    body: "Opiskelijat kirjoittavat käsin äärettömälle canvakselle luennon aikana, valinnainen äänisynkronointi Time Travelilla. Canvas muuttuu eläväksi arkistoksi, joka säilyy yli lukukauden.",
+  },
+  {
+    title: "Tenttivalmistautuminen mittakaavassa",
+    body: "Fog of War + jaksottainen kertaus muuntavat opiskelijan henkilökohtaisen canvaksen palauttamisharjoittelun moottoriksi. Opettajat voivat ehdottaa opiskelupolkuja aiheittain määräämättä sisältöä.",
+  },
+  {
+    title: "STEM-laboratoriomuistikirjat",
+    body: "LaTeX-renderöinti, painearkaa diagrammit, kokeilurekisterit synkronoidulla äänellä. Korvaa paperimuistikirjat säilyttäen käsin kirjoittamisen näytön, jota arviointi vaatii.",
+  },
+];
+
+const deployment = [
+  { label: "SSO",              body: "SAML 2.0 ja OIDC. Integroituu Shibbolethin, Azure AD:n, Oktan ja Google Workspace for Educationin kanssa." },
+  { label: "MDM-yhteensopiva", body: "Vakiomuotoinen yritysjakelu App Storen / Playn kautta. Windows ja macOS allekirjoitettuina asentajina. Ei sideloadausta." },
+  { label: "Auditointiloki",   body: "Muuttumaton käyttölokit tileittäin. Vietävissä vaatimustenmukaisuusauditointeja varten." },
+  { label: "Tietojen sijainti", body: "Palvelimet Euroopassa oletuksena. Data Processing Agreement saatavilla pyynnöstä." },
+  { label: "Saavutettavuus",   body: "WCAG 2.1 AA -tavoite kaikilla alustoilla. Ruudunlukijatuki, korkean kontrastin tila, säädettävä siveltimien tarkkuus motorisia eroja varten." },
+  { label: "On-prem",          body: "Enterprise-tiekartalla. Tänään: vain pilvi vahvalla salauksella ja alueellisilla kontrolleilla." },
+];
+---
+
+<BaseLayout
+  title="Fluera yliopistoille — Kognitiivista infrastruktuuria korkeakoulutukseen"
+  description="Tuo näyttöön perustuvat opiskelutyökalut tiedekuntaasi. Multi-seat-lisenssit, SSO, auditointiloki, opettajien koulutus 12 askeleen syklistä. Pilottiohjelmia saatavilla."
+  locale="fi"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Yliopistot ja koulut</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Kognitiivinen infrastruktuuri<br />modernille yliopistolle.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Näyttöön perustuvat opiskelutyökalut opiskelijoillesi. SSO IT-osastollesi. Opettajien koulutus oppimisen kognitiotieteestä. Pilotit alkavat yhdellä kurssilla, yhdellä lukukaudella, ilmaiseksi.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/fi/contact" class="btn-primary">Varaa akateeminen keskustelu →</a>
+          <a href="/fi/" class="btn-secondary">Tausta-tiede</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Miksi opettajat valitsevat Flueran</p>
+        <h2 class="font-serif text-display-xl text-paper-50">Kolme konkreettista mallia.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {useCases.map((u, i) => (
+          <article class="card p-7">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{u.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{u.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Lisenssimalli</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-4">Kolme tasoa. Yksi keskustelu riittää.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Emme julkaise per-paikka-hintoja institutionaalisille tileille: oikea rakenne riippuu siitä, minkä kehän haluat lisensoida — kurssin, laitoksen vai kampuksen. Yksi keskustelu ja saamme konkreettisen ehdotuksen.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 max-w-5xl">
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Kurssi</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Yksi kurssi, yksi lukukausi, korkeintaan 200 opiskelijaa. Pro-pääsy jokaiselle opiskelijalle, opettajan koontinäyttö ja yksi koulutussessio.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Tyypillinen käyttöönotto: pilotti</p>
+        </article>
+        <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Laitos</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Koko laitos. Monivuotinen sopimus. SSO, auditointiloki, omistettu tuen SLA. Opettajakoulutus jokaiselle mukaan tulevalle oppiaineelle.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">Tyypillinen käyttöönotto: toinen vuosi</p>
+        </article>
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Kampus</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Koko kampus. Omistettu käyttöönottotuki, nimetty insinöörikontaktipiste, mahdollisuudet yhteiseen tutkimukseen 12 askeleen syklistä.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Tyypillinen käyttöönotto: kolmannesta vuodesta</p>
+        </article>
+      </div>
+
+      <div class="mt-10">
+        <a href="/fi/contact" class="btn-primary">Pyydä hintatiedot →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Opettajakoulutus</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">Kaksi tuntia. Kognitiotiedettä, sovellettuna.</h2>
+          <p class="prose-ink mb-4">
+            Työpaja kattaa 12 askeleen oppimissyklin, kunkin askeleen taustaperiaatteet ja konkreettisia malleja Flueran integroimiseksi olemassa olevaan kurssiin. Tämä ei ole tuotedemo.
+          </p>
+          <p class="prose-ink">
+            Toimitetaan paikan päällä tai etänä, korkeintaan viisitoista osallistujaa per sessio, jotta jokainen opettaja lähtee konkreettisen suunnitelman kanssa omaa oppiainettaan varten.
+          </p>
+        </div>
+        <div class="card p-7">
+          <h3 class="eyebrow text-accent-glow mb-4">Mitä käsittelemme</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0">
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">01</span><span>Jaksotus, palautus, tuottaminen, toivotut vaikeudet — neljä pilaria</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">02</span><span>12 askeleen sykli kartoitettuna kurssisi erityiseen rakenteeseen</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">03</span><span>Milloin käyttää Socraticia, milloin Ghost Mapia, milloin pysyä poissa tieltä</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">04</span><span>Tenttiin valmistautumisen suunnittelu Fog of Warilla korvaamatta arviointejasi</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">05</span><span>Tutkimus, näytön vahvuus ja sen rajat, mitä näyttö tukee</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">06</span><span>Hands-on: jokainen opettaja rakentaa luennon Flueraan ennen lähtöä</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Käyttöönotto</p>
+        <h2 class="font-serif text-display-xl text-paper-50">IT-osastosi pitää myös tästä.</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {deployment.map((d) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Pilottiohjelma</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">Yksi kurssi. Yksi lukukausi. Ilmaiseksi.</h2>
+          <p class="prose-ink mb-4">
+            Nopein tapa selvittää, toimiiko Fluera opiskelijoillesi, on testata kolmellakymmenellä heistä yhden lukukauden ajan ilman kustannuksia. Vastineeksi pyydämme jäsenneltyä palautetta — yksi väliraportti, yksi kysely lukukauden lopussa ja vaihtoehto jakaa anonymisoitua tulosaineistoa.
+          </p>
+          <p class="prose-ink">
+            Jos toimii, keskustelemme monivuotisesta sopimuksesta. Jos ei toimi, sinä saat datan ja me opetuksen. Joka tapauksessa molemmat voittavat.
+          </p>
+        </div>
+        <div class="card p-8 bg-accent-ink/[0.08] border-accent-ink/30">
+          <h3 class="eyebrow text-accent-glow mb-4">Mitä saat</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0 mb-6">
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Pro-pääsy enintään 30 opiskelijalle</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Kahden tunnin opettajien työpaja</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Suora kanava perustajien kanssa lukukauden ajan</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Anonymisoidut aggregoidut analytiikat raporttiasi varten</span></li>
+          </ul>
+          <a href="/fi/contact" class="btn-primary w-full">Aloita pilotti →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">GDPR oletuksena. FERPA-tietoinen. WCAG 2.1 AA -tavoite.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Yksityiskohdat löytyvät tietoturvasivulta — alikäsittelijöiden lista, Data Processing Agreement, salausarkkitehtuuri, auditointilokin malli.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/fi/security" class="btn-secondary">Lue tietoturva-arkkitehtuuri →</a>
+        <a href="/fi/contact" class="btn-primary">Keskustellaan</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

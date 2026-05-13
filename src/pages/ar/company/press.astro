@@ -1,0 +1,146 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const factBullets = [
+  "تطبيق دراسة معرفي في بيتا خاصّة، أُطلِق في أبريل 2026 على iOS وmacOS.",
+  "لوحة لانهائية بخطّ يد، 13 فرشاة حسّاسة للضغط، وزمن استجابة كرّاسة أقلّ من 15 مللي ثانية على ستّ منصّات.",
+  "ميزات ذكاء اصطناعي مصمَّمة لطرح الأسئلة بدل الإجابة — مبنيّة على خمسة عقود من أبحاث الذاكرة.",
+  "مبنيّ على fluera_engine، محرّك رسم 2D خاصّ لـFlutter، متاح أيضًا للمطوّرين الخارجيين.",
+  "فريق من شخصين مقرّه في ميلانو. لا استثمار خارجي حتى تاريخ النشر.",
+];
+
+const imageAssets = [
+  { name: "الشعار — ألوان كاملة",       path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
+  { name: "الشعار — أحادي فاتح",         path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
+  { name: "الشعار — أحادي داكن",         path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
+  { name: "لقطة شاشة — iPad",           path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
+  { name: "لقطة شاشة — macOS",          path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
+  { name: "صورة المؤسّس",               path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
+];
+
+const quotables = [
+  {
+    context: "حول المنطلق",
+    quote: "في عام 2026، تُستدعى المعرفة في ثلاث ثوانٍ وتُنسى في ثلاثة أسابيع. ثمّة عشرات التطبيقات لتدوين الملاحظات، ولا تطبيق واحد للاحتفاظ بما تعلّمناه.",
+  },
+  {
+    context: "حول الذكاء الاصطناعي",
+    quote: "ذكاء اصطناعي يجيب على امتحاناتك بدلًا منك ذكاء لا يُعلّمك شيئًا. ذكاء Fluera يسأل، يَسند، يعكس — لا يستبدل فعل التفكير.",
+  },
+  {
+    context: "حول الأدلّة",
+    quote: "علم الإدراك واضح منذ خمسين عامًا. لم نَملك يومًا أداة تجعل الفعل الصحيح طريق المقاومة الأقلّ. نحاول بناء بالضبط ذلك.",
+  },
+  {
+    context: "حول الجمهور",
+    quote: "Fluera ليست للجميع. الاحتكاك حقيقي. مبنيّة لمجموعة متعلّمين تعرف كيف تُميّز السلاسة من الكفاءة حين يكون لذلك أهمّية — أطبّاء يخوضون امتحانات شفهية، طلّاب دكتوراه، محامون، عُصاميّون من أمد طويل.",
+  },
+];
+---
+
+<BaseLayout
+  title="حقيبة صحفية"
+  description="شعارات ولقطات شاشة وسير ذاتية للمؤسّسين وعبارات قابلة للاقتباس للصحفيين والكتّاب الذين يُغطّون Fluera."
+  locale="ar"
+>
+
+  <PageHero
+    kicker="الصحافة"
+    title="تكتب عن Fluera؟<br />هنا كلّ ما تحتاجه."
+    description={`شعارات ولقطات شاشة وصور للمؤسّسين وموجز قصير. كلّ ما في هذه الصفحة مجّاني للاستخدام التحريري — مع نسبة <em>Fluera</em> ورابط إلى <a href="/">fluera.dev</a>.`}
+  >
+    <div slot="copy" class="mt-8 flex flex-wrap gap-4">
+      <a href="/press/fluera-press-kit.zip" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        حمّل الحقيبة الصحفية الكاملة (.zip)
+      </a>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Press%20request`} class="btn-secondary">
+        راسل الفريق ←
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">الموجز</p>
+        <h2 class="font-serif text-display-lg text-paper-50">قراءة دقيقة واحدة.</h2>
+      </div>
+
+      <ul class="space-y-4 list-none p-0 max-w-3xl">
+        {factBullets.map((f) => (
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <span class="text-paper-200 text-lg leading-relaxed">{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">اقتباسات</p>
+        <h2 class="font-serif text-display-lg text-paper-50">عبارات للاقتباس مباشرة.</h2>
+        <p class="prose-ink text-sm mt-4">
+          كلّ الاقتباسات منسوبة إلى فريق Fluera، إلّا إن أجريت مقابلة مع مؤسّس بعينه — في تلك الحالة تحقّق معنا قبل النسبة لأحد بالاسم.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 max-w-5xl">
+        {quotables.map((q) => (
+          <figure class="card p-7">
+            <p class="eyebrow text-accent-glow mb-4">{q.context}</p>
+            <blockquote class="font-serif text-lg text-paper-50 leading-relaxed italic">
+              "{q.quote}"
+            </blockquote>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">الموادّ البصرية</p>
+        <h2 class="font-serif text-display-lg text-paper-50">شعارات، لقطات شاشة، صور.</h2>
+        <p class="prose-ink text-sm mt-4">
+          منفردة في الأسفل، أو مجمَّعة عبر رابط الحقيبة الصحفية في الأعلى.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {imageAssets.map((a) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{a.name}</h3>
+            <p class="text-xs font-mono text-ink-500 mb-4">{a.size}</p>
+            <a href={a.path} class="text-accent-glow text-sm underline underline-offset-4 hover:text-paper-50" download>
+              تحميل ←
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-xl">
+        ملاحظة: ملفّات الموادّ المنفردة عناصر نائبة حتى نشر الحقيبة الصحفية النهائية. الروابط حاليًّا تُعيد 404 — سنملأها عند الخروج من البيتا الخاصّة.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">قناة مباشرة مع الفريق.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        طلبات الصحافة تصل مباشرة إلى مؤسّس، لا إلى وكالة علاقات عامّة. ردّ خلال 24 ساعة عمل — عادة خلال ساعة.
+      </p>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Press%20request`} class="btn-primary">
+        {SITE.company.contactEmail}
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

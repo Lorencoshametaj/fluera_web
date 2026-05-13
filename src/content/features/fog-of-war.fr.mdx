@@ -1,0 +1,51 @@
+---
+lang: "fr"
+title: Fog of War
+tagline: "Mode examen qui cache ce que tu te rappelles presque."
+shortDescription: "Masque des régions du canvas. Récupère-les de mémoire. L'effort de la récupération — pas la relecture — est ce qui durcit la mémoire."
+status: beta
+stepInCycle: 10
+relatedPrinciples:
+  - desirable-difficulties
+  - retrieval-practice
+  - spatial-cognition
+  - spacing-effect
+relatedAuthors:
+  - robert-bjork
+  - roediger-karpicke
+  - okeefe-moser
+order: 4
+---
+
+## Ce que ça résout
+
+La préparation aux examens dégénère souvent dans l'un des deux modes erronés : la relecture (qui semble productive, qui enseigne peu) ou le bachotage de panique (qui enseigne brièvement, puis s'effondre). Les deux évitent la chose qui construit vraiment la mémoire durable — la *lutte* d'essayer de récupérer sans support.
+
+Fog of War fait de cette lutte l'état par défaut de ton canvas.
+
+## Comment ça marche
+
+Sept à quatorze jours avant un examen, tu actives Fog of War sur la région du canvas que tu veux tester. La zone est masquée — un flou semi-opaque qui cache le contenu jusqu'à ce que tu le récupères de mémoire ou que tu le révèles explicitement.
+
+Tu navigues le canvas. Tu t'arrêtes sur un nœud masqué. Tu essaies de te rappeler ce qu'il y avait. Tu le dis à voix haute ou tu l'écris sur une surface annexe. Seulement après, tu touches pour révéler.
+
+Trois issues :
+- **Vert** — récupéré correctement. Le masque s'amincit définitivement.
+- **Ambre** — saisi en partie. Le masque devient transparent mais le nœud reste mis en évidence pour une revisite.
+- **Rouge** — perdu complètement. Fluera planifie un retour immédiat et te demande de réécrire le nœud à la main — renforcement par génération, pas par relecture.
+
+Tu fais tourner la boucle jusqu'à ce que la majeure partie du canvas passe au vert. Ce qui reste rouge est la carte de ce que tu ne sais pas — exactement la carte dont tu avais besoin.
+
+## La science derrière
+
+Le cadre des **difficultés désirables** de Robert Bjork est l'idée structurelle. La fluidité pendant l'étude est un mauvais signal — un avertissement que l'encodage est superficiel. La friction de la récupération sous occlusion est l'opposé : non-fluide, lente, frustrante *et* exactement ce qui cimente la mémoire.
+
+Le travail de 2006 de Roediger et Karpicke a montré qu'une seule tentative de récupération produit une mémoire à long terme plus forte que quatre sessions de relecture. Fog of War, ce sont des tentatives de récupération à grande échelle, sur tout le canvas, sans friction par question.
+
+L'élément spatial compte aussi. Comme ton canvas est un palais de la mémoire (O'Keefe et Moser, Nobel 2014), récupérer à partir de la position renforce non seulement le concept mais l'index spatial qui y mène. À l'examen, tu ne te rappelles pas le fait — tu *navigues* jusqu'à lui.
+
+## La suite
+
+- **Planification automatique du masque** — brouillard guidé par FSRS qui s'épaissit sur les items dont la révision arrive à échéance.
+- **Simulation d'examen chronométrée** — pression réaliste avec contraintes configurables.
+- **Carte post-mortem** — après l'examen réel, tu notes les questions réussies et celles ratées, et Fluera met à jour le scheduler avec cette vérité de terrain.

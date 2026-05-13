@@ -52,7 +52,7 @@ const {
       {placeholders.length > 0 && (
         <div class="mt-16 card p-6 border-signal-bad/30 bg-signal-bad/[0.05]">
           <p class="text-sm font-semibold text-red-300 mb-3">⚠️ Dati da sostituire prima della pubblicazione</p>
-          <ul class="text-xs text-paper-300 space-y-1.5 list-disc pl-5">
+          <ul class="text-xs text-paper-300 space-y-1.5 list-disc ps-5">
             {placeholders.map((p) => (
               <li><code class="font-mono text-accent-glow">[{p.key}]</code> — {p.note}</li>
             ))}

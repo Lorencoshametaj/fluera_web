@@ -1,0 +1,50 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import { buildDocsSections } from "@/lib/docs-nav";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs", ({ data }) => data.lang === "da");
+  return docs.map((d) => ({
+    params: { slug: d.id.replace(/\.da$/, "") },
+    props: { doc: d },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+const sections = await buildDocsSections("da");
+
+async function resolveLocalized(ref: { collection: "docs"; id: string }) {
+  const localizedId = ref.id.endsWith(".da") ? ref.id : `${ref.id}.da`;
+  return (await getEntry(ref.collection, localizedId)) ?? (await getEntry(ref));
+}
+
+const relatedDocs = (
+  await Promise.all(doc.data.relatedDocs.map(resolveLocalized))
+).filter(Boolean);
+---
+
+<DocLayout
+  title={doc.data.title}
+  description={doc.data.description}
+  sections={sections}
+  rootHref="/da/docs"
+  rootLabel="Dokumentation"
+  sectionLabel={doc.data.sectionLabel}
+  updatedAt={doc.data.updatedAt}
+  locale="da"
+>
+  <Content />
+
+  {relatedDocs.length > 0 && (
+    <section class="mt-16 pt-8 border-t border-white/[0.06]">
+      <h3 class="font-serif text-lg text-paper-50 mb-3">Relateret</h3>
+      <ul>
+        {relatedDocs.map((d) => d && (
+          <li><a href={`/da/docs/${d.id.replace(/\.da$/, "")}`}>{d.data.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  )}
+</DocLayout>

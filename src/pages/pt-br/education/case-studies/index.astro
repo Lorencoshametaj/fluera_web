@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Estudos de caso institucionais"
+  description="Histórias reais de universidades, faculdades e turmas usando o Fluera. Por enquanto vazia: os programas piloto estão completando os primeiros semestres."
+  locale="pt-br"
+>
+
+  <PageHero
+    kicker="Estudos de caso"
+    title="Os pilotos estão rodando.<br />As histórias vêm depois."
+    description="Não publicamos um estudo de caso enquanto um piloto não tiver completado pelo menos um semestre, a faculdade não tiver assinado e os dados anonimizados dos estudantes não tiverem sido revisados quanto à acurácia. As coortes do segundo semestre de 2026 e do primeiro de 2027 estão em andamento — esta página vai se preencher conforme elas terminam."
+    breadcrumb={{ label: "Educação", href: "/pt-br/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2º semestre de 2026 · Em andamento</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Uma turma pré-clínica de medicina</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            ~30 estudantes do primeiro ano de medicina usando Fluera por um semestre de anatomia e bioquímica. Publicação no fim do semestre.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Previsto Q1 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2º semestre de 2026 · Em andamento</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Microeconomia da graduação</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Uma disciplina de microeconomia densa em conceitos. Foco: como o ciclo de 12 passos se sustenta quando o material é abstrato em vez de factual.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Previsto Q2 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">1º semestre de 2027 · Começando</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Um seminário de pós em direito</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Interpretação constitucional. Coorte menor, engajamento mais profundo. Foco em Ghost Map para comparação de jurisprudência.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Previsto Q3 2027</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Quer iniciar um piloto?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          Rodamos um piloto por semestre — uma turma, trinta estudantes, um semestre, sem custo. Em troca pedimos feedback estruturado e a opção de publicar um estudo de caso anonimizado no final.
+        </p>
+        <a href="/pt-br/contact/sales" class="btn-primary">Iniciar uma conversa de piloto →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        Por que esperar? Porque um estudo de caso com números reais leva tempo para ser coletado honestamente — e publicar "estudos de caso" de marketing baseados em anedotas selecionadas pelo vendor é exatamente o gênero de conteúdo que não queremos produzir.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

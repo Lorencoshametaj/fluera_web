@@ -1,6 +1,8 @@
 # Legacy HTML paths (from fluera-landing/) → new Astro routes
 # Format: Netlify / Cloudflare Pages
-/index.html      /engine         301
-/beta.html       /beta           301
-/privacy.html    /legal/privacy  301
-/terms.html      /legal/terms    301
+/index.html      /                 301
+/beta.html       /beta             301
+/privacy.html    /legal/privacy    301
+/terms.html      /legal/terms      301
+/engine          /                 302
+/engine/*        /                 302

@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Institutionaaliset tapaustutkimukset"
+  description="Aitoja tarinoita yliopistoista, korkeakouluista ja kursseista, jotka käyttävät Flueraa. Toistaiseksi tyhjä: pilotit ovat juuri saamassa ensimmäisiä lukukausiaan päätökseen."
+  locale="fi"
+>
+
+  <PageHero
+    kicker="Tapaustutkimukset"
+    title="Pilotit ovat käynnissä.<br />Tarinat tulevat myöhemmin."
+    description="Emme julkaise tapaustutkimusta ennen kuin pilotti on suorittanut vähintään yhden lukukauden, korkeakoulu on allekirjoittanut ja opiskelijoiden anonymisoitu data on tarkistettu tarkkuuden osalta. Syksyn 2026 ja kevään 2027 kohortit ovat käynnissä — tämä sivu täyttyy heti kun ne päättyvät."
+    breadcrumb={{ label: "Koulutus", href: "/fi/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Syksy 2026 · Käynnissä</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Esikliininen lääketieteen kohortti</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Noin 30 lääketieteen ensimmäisen vuoden opiskelijaa, jotka käyttävät Flueraa anatomian ja biokemian lukukauden ajan. Julkaisu lukukauden lopussa.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Suunniteltu Q1 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Syksy 2026 · Käynnissä</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Mikrotaloustiede kandidaatti­tasolla</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Käsitteellisesti tiivis mikrotaloustieteen kurssi. Fokus: miten 12-vaiheinen sykli kantaa, kun materiaali on abstraktia eikä faktapohjaista.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Suunniteltu Q2 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Kevät 2027 · Alkamassa</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Oikeustieteen maisteriseminaari</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Perustuslain tulkinta. Pienempi kohortti, syvempi osallistuminen. Fokus Ghost Mapiin oikeuskäytännön vertailussa.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Suunniteltu Q3 2027</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Haluatko aloittaa pilotin?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          Toteutamme yhden pilotin lukukaudessa — yksi luokka, kolmekymmentä opiskelijaa, yksi lukukausi, maksutta. Vastineeksi pyydämme jäsenneltyä palautetta ja mahdollisuuden julkaista anonymisoitu tapaustutkimus lopussa.
+        </p>
+        <a href="/fi/contact/sales" class="btn-primary">Aloita pilottikeskustelu →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        Miksi odottaa? Koska oikeisiin lukuihin perustuva tapaustutkimus vaatii aikaa rehellisesti kerättynä — ja "tapaustutkimusten" julkaiseminen toimittajan itse valitsemista anekdooteista on juuri sitä sisältöä, jota emme halua tuottaa.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,187 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import { getCollection } from "astro:content";
+
+const principles = (await getCollection("principles", ({ data }) => data.lang === "da")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const authors = (await getCollection("authors", ({ data }) => data.lang === "da")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const steps = [
+  { n: 1,  title: "Indfange",                  verb: "Forelæsningens dag",   description: "Skriv begreberne ned i hånden under forelæsningen. Placér dem i rummet. Pennens langsomhed tvinger til kompression — og kompression er der, hvor indkodning opstår." },
+  { n: 2,  title: "Rekonstruktion",            verb: "Samme aften",          description: "Luk bogen. Rekonstruér det, du husker, på et tomt canvas. De røde knuder, hvor du tøver, er kortet over, hvad der skal læres (Kapur, Productive Failure, 2008)." },
+  { n: 3,  title: "Sokratisk",                 verb: "Inden for 48 t",       description: "AI'en spørger, du svarer. Du oplyser din sikkerhed fra 1 til 5 før hver opklaring. Metakognition gjort eksplicit." },
+  { n: 4,  title: "Centaur",                   verb: "Lige efter",           description: "Ghost Map overlejrer din tænkning oven på det ideelle kort. Hyperkorrektion fæstner rettelserne i hukommelsen (Butterfield og Metcalfe, 2001)." },
+  { n: 5,  title: "Søvn",                      verb: "Den nat",              description: "Gør ingenting. Slow-wave-søvnen spiller dagen om. Hippocampus afleverer sporene til neocortex." },
+  { n: 6,  title: "Første tilbagevenden",      verb: "Dag 1",                description: "Åbn canvasset næste dag. Det, du næsten vidste, falmer. Genkald fra hukommelsen, før du afslører." },
+  { n: 7,  title: "Læring blandt peers",       verb: "Dag 2–3",              description: "Forklar dit canvas til en studiekammerat — eller til en tavs AI, der returnerer spørgsmål. At lære nogen noget er, hvordan du lærer dig selv noget til ende." },
+  { n: 8,  title: "Distribuerede tilbagevenden", verb: "Dag 3 · 7 · 14 …",  description: "Successiv genindlæring i stigende intervaller. Efter effektstørrelse den læringsstrategi med den stærkeste evidens (Rawson og Dunlosky, 2011)." },
+  { n: 9,  title: "Broer mellem domæner",      verb: "Uger senere",          description: "Tegn pile mellem fagene. Kemi møder differentialligninger. Transfer er læringens egentlige prøve." },
+  { n: 10, title: "Eksamensforberedelse",      verb: "7–14 dage før",        description: "Fog of War. Navigér gennem tågen på dit canvas. Grøn, rød, blinde pletter — mestringskortet tegner sig selv." },
+  { n: 11, title: "Eksamenen",                 verb: "Dagen",                description: "Sluk for enheden. Vandr gennem det Memory Palace, du har bygget i ugevis med hænderne. Canvasset lever nu i dig." },
+  { n: 12, title: "Permanent vækst",           verb: "For altid",            description: "Canvasset bliver som kognitiv selvbiografi. Du vender tilbage to år senere og ser den håndgribelige form af, hvor meget du er vokset." },
+];
+---
+
+<BaseLayout
+  title="Videnskaben bag Fluera"
+  description="Fluera hviler på fem årtiers hukommelsesforskning — Bjork, Mueller, van der Meer, Roediger og den Nobelpris-belønnede neurovidenskab om place cells. Udforsk 12-trins-cyklussen og principperne bag hver funktion."
+  locale="da"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Videnskaben</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Fem årtiers hukommelsesforskning<br />bag én app.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Hver funktion i Fluera henviser til publiceret forskning. Herunder: læringscyklussen i 12 trin, de 23 principper i bunden, de tolv hjerner, vi bygger på, og grænserne for det, vi endnu ikke hævder.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#learning-cycle" class="btn-secondary">Til cyklussen</a>
+          <a href="#principles" class="btn-secondary">Princip-indeks</a>
+          <a href="#authors" class="btn-secondary">Forfattere</a>
+          <a href="/da/research" class="btn-secondary">Bibliografi →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Cyklussen</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Ét canvas. Tolv kognitive bevægelser.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Cyklussen er sekventiel og iterativ. Trin 1–4 opbygger indkodningen. Trin 5 (søvn) er ikke-forhandlelig biologi. Trin 6–9 konsoliderer over dage og uger. Trin 10–12 gør viden permanent og overførbar.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Princip-indeks</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">De 23 principper bag Fluera.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Hvert princip fører til sin egen side med hovedforfattere, anvendte funktioner og de papers, vi citerer.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {principles.map((p) => (
+          <li>
+            <a
+              href={`/da/science/principles/${p.id.replace(/\.da$/, "")}`}
+              class="block card p-5 h-full transition-all hover:border-accent-glow/40 hover:bg-white/[0.04]"
+            >
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{p.data.title}</h3>
+                <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+              </div>
+              <p class="text-sm text-paper-300 leading-relaxed line-clamp-3">{p.data.shortDescription}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="authors" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Hjernerne bag metoden</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Tolv forskere, hvis arbejde lever i Fluera.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Det er ikke en hyldestside. Hvert navn fører til en side, der nævner princippet, de Fluera-funktioner, der omsætter det, og de papers, vi citerer.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none p-0">
+        {authors.map((a) => (
+          <li>
+            <a href={`/da/science/authors/${a.id.replace(/\.da$/, "")}`} class="block">
+              <AuthorCard name={a.data.name} contribution={a.data.shortBio.slice(0, 160) + (a.data.shortBio.length > 160 ? "…" : "")} year={a.data.years} nobel={a.data.nobelLaureate} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Hvorfor nu</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Flaskehalsen har flyttet sig.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          I lang tid var læringens flaskehals adgang. Bøger kostede, lærere var sjældne, biblioteker lå langt væk. Spørgsmålet var: <em>Kan jeg få fat i informationen?</em>
+        </p>
+        <p>
+          For den seneste generation var flaskehalsen navigation. Information var i overflod; at finde det rigtige stykke var arbejdet. Google, Wikipedia, kursuskataloger — en hel infrastruktur til ét spørgsmål: <em>Hvor er det?</em>
+        </p>
+        <p>
+          I 2026 begrænser ingen af de to mere. Ethvert faktum er tre sekunder væk. Enhver forklaring kan genskabes i den stil, du foretrækker. Flaskehalsen har skiftet form, og for den nye form er infrastrukturen endnu ikke bygget: <em>Hvordan forvandler jeg det, jeg lige har læst, til noget, jeg faktisk beholder?</em>
+        </p>
+        <p>
+          Den kognitive videnskab om det spørgsmål har været klar i halvtreds år. Distribueret gentagelse, genfindelsespraksis, generering, ønskværdige vanskeligheder, kropsliggjort kognition, metakognitiv kalibrering. Resultaterne er robuste. Metaanalyserne er konsistente. Problemet har aldrig været at vide, hvad der virker — det har været at bygge værktøjer, der gør det rigtige til den letteste vej.
+        </p>
+        <p>
+          LLM-æraens fristelse er det modsatte. Den får det forkerte — passivt forbrug af flydende forklaringer — til at ligne det rigtige. Tre sekunders genkendelse forvekslet med indkodning. Vi har ikke brug for endnu en app, der accelererer den fejl.
+        </p>
+        <p>
+          Fluera er bygget mod strømmen. Langsom, hvor hastighed er en illusion. Stille, hvor støj er forretningsmodellen. Svær, hvor svaghed er mekanismen. Ikke fordi vi kan lide anstrengelse, men fordi evidensen er utvetydig — anstrengelse <em>er</em> læringen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Gennemsigtighed</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Hvad vi ikke hævder.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Vi citerer forskning for hvert princip, fordi forskningen findes. Det betyder ikke, at Fluera selv er testet mod kontrolgrupper. Det er ikke — endnu ikke. Når vi siger „evidensbaseret", mener vi, at den underliggende mekanisme er det. Den konkrete implementering er et engineering-væddemål, informeret af litteraturen.
+        </p>
+        <p>
+          Vi er ikke et klinisk værktøj. Vi erstatter ikke en kompetent vejleder. Vi vil ikke påstå, at brugen af Fluera forbedrer nogen studerendes resultater med nogen specifik procentdel. En sådan påstand ville være enten uærlig eller ufalsificerbar; begge værre end stilhed.
+        </p>
+        <p>
+          Nogle af de oplistede principper er omstridte på specifikke områder. Vækst-mindset-interventioner har blandet replikation i kontrollerede studier. Flow er lettere at genkende end pålideligt at konstruere. Rumlig kognition i digitale miljøer overlapper ikke altid med rumlig kognition i fysiske miljøer. Vi signalerer disse grænser, fordi det at glatte dem ud er den hurtigste vej til at miste tilliden hos netop de lærende, der betyder noget for os.
+        </p>
+        <p>
+          De metaanalyser, vi citerer, er den nærmeste konsensus, kognitionsforskningen producerer. De Fluera-funktioner, der bygger på dem, er i dette øjeblik hypoteser, vi tester med betaen. Hvis noget ikke virker for dig, vil vi gerne vide det — det signal er mere værd end ethvert landing-page-claim.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Test cyklussen.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        At læse om genfindelsespraksis er ikke genfindelsespraksis. Kom med i den private beta og sæt cyklussen på prøve på dit eget canvas.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Kom med i betaen →</a>
+        <a href="/da/research" class="btn-secondary">Læs bibliografien</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const processors = [
+  {
+    name: "Supabase Inc.",
+    purpose: "Database, authenticatie, versleutelde cloud storage, realtime signaling, Edge Function voor de AI-proxy.",
+    dataTypes: "Account-e-mail, gehashte gebruikers-ID, canvas-ciphertext (E2E versleuteld), sync-metadata.",
+    region: "Frankfurt, EU (standaardregio voor Fluera-instances).",
+    privacy: "https://supabase.com/privacy",
+  },
+  {
+    name: "Google LLC",
+    purpose: "Google Generative AI (Gemini) voor Socratic Mode, Ghost Map, LaTeX OCR en het genereren van exam sessions.",
+    dataTypes: "Geselecteerde tekstfragmenten van het canvas (alleen als de AI-functies zijn toegestaan en actief). Nooit het hele notitieboek.",
+    region: "VS, EU via regio's van Google Cloud; SCC's + EU-US DPF.",
+    privacy: "https://policies.google.com/privacy",
+  },
+  {
+    name: "Apple Inc.",
+    purpose: "Sign in with Apple-authenticatie; in-app purchases op iOS en macOS via de App Store.",
+    dataTypes: "Apple ID-relay-e-mail, ontvangst-identifiers. Geen canvasdata.",
+    region: "VS; SCC's + EU-US DPF.",
+    privacy: "https://www.apple.com/legal/privacy/",
+  },
+  {
+    name: "RevenueCat Inc.",
+    purpose: "Beheer van abonnementen en validatie van ontvangsten op iOS, Android en web.",
+    dataTypes: "Geanonimiseerde RevenueCat-gebruikers-ID, abonnementsstatus, ontvangstmetadata. Geen kaartgegevens.",
+    region: "VS; SCC's + EU-US DPF.",
+    privacy: "https://www.revenuecat.com/privacy",
+  },
+  {
+    name: "Functional Software Inc. (Sentry)",
+    purpose: "Crash reporting en foutmonitoring.",
+    dataTypes: "Stack traces, OS-versie, apparaatmodel, app-versie. sendDefaultPii is expliciet uitgeschakeld — geen gebruikersinhoud.",
+    region: "VS, EU-opties beschikbaar.",
+    privacy: "https://sentry.io/privacy/",
+  },
+  {
+    name: "Vercel Inc.",
+    purpose: "Hosting van de marketingsite fluera.dev en /docs.",
+    dataTypes: "Standaard webtoegangslogs (IP, user-agent). Geen accountinhoud.",
+    region: "Globale edge; herkomstregio configureerbaar.",
+    privacy: "https://vercel.com/legal/privacy-policy",
+  },
+];
+
+const lastUpdated = "2026-04-20";
+---
+
+<BaseLayout
+  title="Subverwerkers"
+  description="De derde partijen waarop Fluera leunt om het product te leveren. Doel, gedeelde data, regio en link naar het privacybeleid van elke subverwerker."
+  locale="nl"
+>
+  <PageHero
+    kicker="Subverwerkers"
+    title="Elke derde partij waarop we leunen."
+    description="Conform art. 28 AVG staat elke subverwerker die persoonsgegevens namens ons verwerkt hier vermeld — wat we delen, waarom en waar het draait. We informeren klanten vóór elke wijziging."
+    breadcrumb={{ label: "Beveiliging", href: "/nl/security" }}
+  >
+    <p slot="copy" class="mt-6 text-sm text-ink-500 font-mono">Laatst bijgewerkt: {lastUpdated}</p>
+  </PageHero>
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-5xl">
+        {processors.map((p) => (
+          <li class="card p-6 md:p-7">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <h2 class="font-serif text-xl text-paper-50 mb-2">{p.name}</h2>
+                <a href={p.privacy} class="text-xs text-accent-glow underline underline-offset-4 font-mono" rel="noopener">
+                  Privacybeleid ↗
+                </a>
+              </div>
+              <dl class="md:col-span-3 grid gap-3 text-sm">
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Doel</dt>
+                  <dd class="text-paper-200">{p.purpose}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Gedeelde data</dt>
+                  <dd class="text-paper-200">{p.dataTypes}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Regio</dt>
+                  <dd class="text-paper-200">{p.region}</dd>
+                </div>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">Wijzigingen en notificaties</h2>
+      <p class="prose-ink text-sm mb-4">
+        We werken deze lijst bij telkens wanneer een subverwerker wordt toegevoegd, gewijzigd of verwijderd. Institutionele en enterprise klanten ontvangen ten minste 30 dagen vooraf een e-mailmelding van de wijziging, conform art. 28(2) AVG.
+      </p>
+      <p class="prose-ink text-sm">
+        Schrijf je in voor wijzigingsmeldingen van subverwerkers door te mailen naar <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a> vanaf het adres van je account.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

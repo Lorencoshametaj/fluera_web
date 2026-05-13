@@ -1,0 +1,187 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import { getCollection } from "astro:content";
+
+const principles = (await getCollection("principles", ({ data }) => data.lang === "de")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const authors = (await getCollection("authors", ({ data }) => data.lang === "de")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const steps = [
+  { n: 1,  title: "Erfassen",                  verb: "Tag der Vorlesung",   description: "Schreibe die Konzepte während der Vorlesung von Hand. Positioniere sie im Raum. Die Langsamkeit des Stifts erzwingt Kompression — und Kompression ist der Ort, an dem Enkodierung entsteht." },
+  { n: 2,  title: "Rekonstruktion",            verb: "Am selben Abend",     description: "Schließe das Buch. Rekonstruiere, was du erinnerst, auf einem leeren Canvas. Die roten Knoten, an denen du zögerst, sind die Karte dessen, was zu lernen ist (Kapur, Productive Failure, 2008)." },
+  { n: 3,  title: "Sokratisch",                verb: "Innerhalb von 48 h",  description: "Die KI fragt, du antwortest. Du erklärst deine Konfidenz von 1 bis 5 vor jeder Auflösung. Metakognition explizit gemacht." },
+  { n: 4,  title: "Centaur",                   verb: "Direkt danach",       description: "Ghost Map überlagert dein Denken auf die ideale Karte. Hyperkorrektur fixiert die Korrekturen im Gedächtnis (Butterfield und Metcalfe, 2001)." },
+  { n: 5,  title: "Schlaf",                    verb: "In jener Nacht",      description: "Tu nichts. Der Slow-Wave-Schlaf spielt den Tag erneut ab. Der Hippocampus übergibt die Spuren an den Neokortex." },
+  { n: 6,  title: "Erste Rückkehr",            verb: "Tag 1",               description: "Öffne das Canvas am nächsten Tag. Was du fast wusstest, verblasst. Rufe aus dem Gedächtnis ab, bevor du enthüllst." },
+  { n: 7,  title: "Lernen unter Peers",        verb: "Tag 2–3",             description: "Erkläre dein Canvas einem Studienkollegen — oder einer stillen KI, die Fragen zurückgibt. Jemandem etwas beizubringen ist, wie du es dir selbst zu Ende beibringst." },
+  { n: 8,  title: "Verteilte Rückkehrungen",   verb: "Tag 3 · 7 · 14 …",    description: "Successive Relearning in zunehmenden Intervallen. Nach Effektgröße die Lernstrategie mit der stärksten Evidenz (Rawson und Dunlosky, 2011)." },
+  { n: 9,  title: "Brücken zwischen Domänen",  verb: "Wochen später",       description: "Zeichne Pfeile zwischen den Fächern. Chemie trifft auf Differentialgleichungen. Transfer ist der echte Test des Lernens." },
+  { n: 10, title: "Prüfungsvorbereitung",      verb: "7–14 Tage davor",     description: "Fog of War. Navigiere durch den Nebel deines Canvas. Grün, rot, blinde Flecken — die Beherrschungskarte zeichnet sich von selbst." },
+  { n: 11, title: "Die Prüfung",               verb: "Der Tag",             description: "Schalte das Gerät aus. Wandere durch das Memory Palace, das du wochenlang mit den Händen gebaut hast. Das Canvas lebt jetzt in dir." },
+  { n: 12, title: "Permanentes Wachstum",      verb: "Für immer",           description: "Das Canvas bleibt als kognitive Autobiografie. Du kehrst zwei Jahre später zurück und siehst die greifbare Form dessen, wie sehr du gewachsen bist." },
+];
+---
+
+<BaseLayout
+  title="Die Wissenschaft hinter Fluera"
+  description="Fluera stützt sich auf fünf Jahrzehnte Forschung über das Gedächtnis — Bjork, Mueller, van der Meer, Roediger und die mit dem Nobelpreis ausgezeichnete Neurowissenschaft der Place Cells. Erkunde den 12-Schritte-Zyklus und die Prinzipien hinter jeder Funktion."
+  locale="de"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Die Wissenschaft</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Fünf Jahrzehnte Gedächtnisforschung<br />hinter einer einzigen App.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Jede Funktion in Fluera verweist auf publizierte Forschung. Hier unten: der Lernzyklus in 12 Schritten, die 23 Prinzipien an der Basis, die zwölf Köpfe, auf denen wir aufbauen, und die Grenzen dessen, was wir noch nicht beanspruchen.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#learning-cycle" class="btn-secondary">Zum Zyklus</a>
+          <a href="#principles" class="btn-secondary">Index der Prinzipien</a>
+          <a href="#authors" class="btn-secondary">Autoren</a>
+          <a href="/de/research" class="btn-secondary">Bibliografie →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Der Zyklus</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Ein Canvas. Zwölf kognitive Bewegungen.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Der Zyklus ist sequenziell und iterativ. Schritte 1–4 bauen die Enkodierung auf. Schritt 5 (Schlaf) ist nicht verhandelbare Biologie. Schritte 6–9 konsolidieren über Tage und Wochen. Schritte 10–12 machen das Wissen permanent und übertragbar.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Index der Prinzipien</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Die 23 Prinzipien hinter Fluera.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Jedes Prinzip führt zu einer eigenen Seite mit Hauptautoren, angewandten Funktionen und den Papers, die wir zitieren.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {principles.map((p) => (
+          <li>
+            <a
+              href={`/de/science/principles/${p.id.replace(/\.de$/, "")}`}
+              class="block card p-5 h-full transition-all hover:border-accent-glow/40 hover:bg-white/[0.04]"
+            >
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{p.data.title}</h3>
+                <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+              </div>
+              <p class="text-sm text-paper-300 leading-relaxed line-clamp-3">{p.data.shortDescription}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="authors" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Die Köpfe hinter der Methode</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Zwölf Forscher, deren Arbeit in Fluera lebt.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Das ist keine Tributseite. Jeder Name führt zu einer Seite, die das Prinzip benennt, die Funktionen von Fluera, die es umsetzen, und die Papers, die wir zitieren.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none p-0">
+        {authors.map((a) => (
+          <li>
+            <a href={`/de/science/authors/${a.id.replace(/\.de$/, "")}`} class="block">
+              <AuthorCard name={a.data.name} contribution={a.data.shortBio.slice(0, 160) + (a.data.shortBio.length > 160 ? "…" : "")} year={a.data.years} nobel={a.data.nobelLaureate} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Warum jetzt</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Der Engpass hat sich verschoben.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Lange Zeit war der Engpass des Lernens der Zugang. Bücher kosteten, Lehrer waren rar, Bibliotheken waren weit weg. Die Frage war: <em>Komme ich an die Information heran?</em>
+        </p>
+        <p>
+          Für die letzte Generation war der Engpass die Navigation. Information war im Überfluss vorhanden; das richtige Stück zu finden war die Arbeit. Google, Wikipedia, Kurskataloge — eine ganze Infrastruktur für eine Frage: <em>Wo ist es?</em>
+        </p>
+        <p>
+          Im Jahr 2026 schränkt keine der beiden mehr ein. Jeder Fakt ist drei Sekunden entfernt. Jede Erklärung kann in dem Stil generiert werden, den du bevorzugst. Der Engpass hat seine Form verändert, und für die neue Form ist die Infrastruktur noch nicht gebaut: <em>Wie verwandle ich das, was ich gerade gelesen habe, in etwas, das ich wirklich behalte?</em>
+        </p>
+        <p>
+          Die kognitive Wissenschaft zu dieser Frage ist seit fünfzig Jahren klar. Verteiltes Wiederholen, Abrufpraxis, Generierung, erwünschte Schwierigkeiten, verkörperte Kognition, metakognitive Kalibrierung. Die Ergebnisse sind robust. Die Meta-Analysen sind konsistent. Das Problem war nie zu wissen, was funktioniert — es war, Werkzeuge zu bauen, die das Richtige zum leichtesten Weg machen.
+        </p>
+        <p>
+          Die Versuchung der LLM-Ära ist das Gegenteil. Sie lässt das Falsche — den passiven Konsum flüssiger Erklärungen — wie das Richtige aussehen. Drei Sekunden Wiedererkennen, verwechselt mit Enkodierung. Wir brauchen keine weitere App, die diesen Fehler beschleunigt.
+        </p>
+        <p>
+          Fluera ist gegen den Strom gebaut. Langsam, wo Geschwindigkeit eine Illusion ist. Still, wo Lärm das Geschäftsmodell ist. Schwer, wo Schwierigkeit der Mechanismus ist. Nicht weil wir Anstrengung mögen, sondern weil die Evidenz unmissverständlich ist — Anstrengung <em>ist</em> das Lernen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Transparenz</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Was wir nicht beanspruchen.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Wir zitieren Forschung für jedes Prinzip, weil die Forschung existiert. Das heißt nicht, dass Fluera selbst gegen Kontrollgruppen getestet wurde. Wurde es nicht — noch nicht. Wenn wir „evidenzbasiert" sagen, meinen wir, dass der zugrundeliegende Mechanismus es ist. Die spezifische Implementierung ist eine Engineering-Wette, informiert durch die Literatur.
+        </p>
+        <p>
+          Wir sind kein klinisches Werkzeug. Wir ersetzen keinen kompetenten Tutor. Wir werden nicht erklären, dass die Nutzung von Fluera das Ergebnis irgendeines Studierenden um irgendeinen spezifischen Prozentsatz verbessert. Eine solche Behauptung wäre entweder unehrlich oder unfalsifizierbar; beides schlimmer als Schweigen.
+        </p>
+        <p>
+          Einige der aufgelisteten Prinzipien sind in spezifischen Bereichen umstritten. Wachstumsdenken-Interventionen haben gemischte Replikation in kontrollierten Studien. Flow ist leichter zu erkennen als zuverlässig zu konstruieren. Räumliche Kognition in digitalen Umgebungen deckt sich nicht immer mit jener in physischen Umgebungen. Wir signalisieren diese Grenzen, weil sie zu glätten der schnellste Weg ist, das Vertrauen genau jener Lernenden zu verlieren, die uns wichtig sind.
+        </p>
+        <p>
+          Die Meta-Analysen, die wir zitieren, sind der nächste Konsens, den die kognitive Wissenschaft produziert. Die Funktionen von Fluera, die darauf aufbauen, sind in diesem Moment Hypothesen, die wir mit der Beta testen. Wenn etwas für dich nicht funktioniert, möchten wir es wissen — dieses Signal ist mehr wert als jeder Landing-Page-Claim.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Teste den Zyklus.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Über Abrufpraxis zu lesen ist keine Abrufpraxis. Tritt der privaten Beta bei und stelle den Zyklus auf einem eigenen Canvas auf die Probe.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Tritt der Beta bei →</a>
+        <a href="/de/research" class="btn-secondary">Lies die Bibliografie</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Beveiligingsarchitectuur"
+  description="Hoe Fluera je notitieboek versleutelt in rust, in transit en tussen apparaten. SQLCipher, TLS 1.3, end-to-end synchronisatie, opt-in telemetrie, audittrail voor instellingen."
+  locale="nl"
+>
+  <PageHero
+    kicker="Architectuur"
+    title="Hoe Fluera je notitieboek beschermt."
+    description={`Deze pagina beschrijft het beveiligingsmodel op het niveau dat een technisch lezer — security officer, CISO van een universiteit, nieuwsgierige dev — verwacht. Voor de niet-technische samenvatting: begin op <a href="/nl/security">/nl/security</a>.`}
+    breadcrumb={{ label: "Beveiliging", href: "/nl/security" }}
+  />
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+
+      <h2>Threat model</h2>
+      <p>
+        We gaan uit van diefstal van het apparaat, netwerkonderschepping en accidentele blootstelling via backup of cloud sync. We gaan ervan uit dat gebruikersgegevens gecompromitteerd kunnen raken. We gaan <em>niet</em> uit van statelijke tegenstanders met fysieke toegang tot ontgrendelde apparaten — Fluera is geen geheimhoudingstool, het is een studietool.
+      </p>
+      <p>Binnen dat model gelden drie garanties:</p>
+      <ul>
+        <li><strong>Lokale data zijn onleesbaar zonder de sleutel.</strong> Een gestolen apparaat levert een versleutelde blob op.</li>
+        <li><strong>Gesynchroniseerde data zijn voor ons onleesbaar.</strong> De cloud bewaart alleen ciphertext. De afleiding gebeurt op het apparaat.</li>
+        <li><strong>Telemetrie is consensueel en gedeïdentificeerd.</strong> De analytics kunnen een gebruiker zelfs bij een volledige breach niet aan zijn content koppelen.</li>
+      </ul>
+
+      <h2>In rust: SQLCipher, AES-256</h2>
+      <p>
+        Elk Fluera-notitieboek leeft in een lokale SQLite-database, versleuteld met SQLCipher — een breed geaudit ed extensie die elke pagina van de database transparant versleutelt met AES-256-CBC en HMAC-SHA512-integriteitscontroles per pagina.
+      </p>
+      <p>
+        De sleutelafleiding gebruikt PBKDF2 met SHA-256, 256.000 iteraties (conform OWASP). De passphrase wordt bewaard in de keychain van het platform — Keychain op iOS/macOS, Keystore op Android, DPAPI op Windows, libsecret op Linux. Het wordt nooit naar onze servers gestuurd.
+      </p>
+
+      <h2>In transit: TLS 1.3, certificate pinning</h2>
+      <p>
+        Al het netwerkverkeer is TLS 1.3 met moderne ciphers. Op iOS en Android pinnen we de certificaten aan onze CA-keten om man-in-the-middle door corporate proxies te voorkomen — met gedocumenteerde override voor netwerkbeheerders die dat nodig hebben.
+      </p>
+
+      <h2>Synchronisatie tussen apparaten: end-to-end</h2>
+      <p>
+        Cloud sync, indien ingeschakeld, gebruikt een aparte set sleutels die op het apparaat wordt afgeleid. De sync-server (Supabase Storage, EU-regio) bewaart ciphertext en kan niet ontsleutelen. De synchronisatie is opt-in per notitieboek — je kunt sommige alleen lokaal houden terwijl je andere synchroniseert.
+      </p>
+      <p>
+        Sleutelrotatie: vanaf elk apparaat starten versleutelt alle toekomstige payloads opnieuw met een nieuwe sleutel. Oude ciphertexts blijven leesbaar voor oudere clients totdat je de migratie op alle apparaten bevestigt.
+      </p>
+
+      <h2>P2P-samenwerking: direct, versleuteld</h2>
+      <p>
+        Realtime samenwerking gebruikt WebRTC DataChannel met DTLS-SRTP-versleuteling. Supabase Realtime fungeert alleen als signaling-broker — voor het opzetten van de verbinding — niet als relay van het werkelijke canvasverkeer. Na de handshake stromen canvasbewerkingen peer-to-peer. De server ziet ze niet.
+      </p>
+      <p>
+        Bij restrictieve NAT's gaan we via TURN; in dat geval ziet de relay alleen versleutelde DTLS-pakketten die hij niet kan ontsleutelen.
+      </p>
+
+      <h2>AI-aanroepen: via proxy, nooit direct</h2>
+      <p>
+        Aanroepen naar Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) lopen via een Supabase Edge Function die de API key op de server bewaart. Cliënt-apparaten zien de sleutel nooit. De proxy past rate limiting toe per plan en logt de duur van de calls voor accounting — nooit de inhoud van het canvas.
+      </p>
+      <p>
+        Als je de AI-functies uitschakelt in <em>Instellingen → Privacy</em>, wordt geen canvasinhoud naar Gemini gestuurd, ook niet als fallback voor on-device OCR.
+      </p>
+
+      <h2>Telemetrie: opt-in, gehasht, allowlisted</h2>
+      <p>
+        Productanalytics staan standaard uit. Wanneer ze ingeschakeld zijn, zijn de events beperkt tot een server-side whitelist (sessie start/einde, aanroep van een functie, duur van AI-call — nooit inhoud). De gebruikers-ID wordt op het apparaat met SHA-256 gehasht; de plaintext-ID verlaat de client nooit. Events worden 180 dagen bewaard, daarna geaggregeerd of verwijderd.
+      </p>
+
+      <h2>Audittrail (institutionele accounts)</h2>
+      <p>
+        Elke toegang tot gedeelde notitieboeken — wie, vanaf welk apparaat, wanneer — wordt geschreven naar een append-only audittrail. Beheerders kunnen de trail exporteren als CSV of JSON voor compliance-controles. De trail is write-once: verwijderen vereist een gedocumenteerde motivatie en wordt zelf ook gelogd.
+      </p>
+
+      <h2>Recovery en sleutelverlies</h2>
+      <p>
+        Als je je passphrase verliest, worden de versleutelde data onherstelbaar. Dat is opzettelijk — het alternatief zou een herstelpad zijn dat het versleutelingsmodel noodzakelijkerwijs zou verzwakken. Voor institutionele accounts kan een optionele recovery-sleutel worden geconfigureerd die de beheerder bewaart; het is een gedocumenteerde trade-off die de instelling bewust kiest.
+      </p>
+
+      <h2>Responsible disclosure</h2>
+      <p>
+        Beveiligingsonderzoekers zijn welkom. Meld kwetsbaarheden aan <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> met PGP-versleuteling (sleutel gepubliceerd op het GitHub-profiel). We reageren binnen 24 uur, patchen kritieke issues binnen 72 uur, en crediteren melders in de hall of fame, tenzij om anonimiteit wordt gevraagd.
+      </p>
+      <p>
+        Scope: de Fluera-app (alle platformen), de sync-service, de AI-proxy en deze marketingsite. Buiten scope: third-party services (Supabase, Google, Apple, Sentry, RevenueCat) — meld die bij de betreffende vendors.
+      </p>
+
+      <h2>Externe audits</h2>
+      <p>
+        Fluera heeft op dit moment geen SOC 2- of ISO 27001-certificering. Beide staan op de enterprise roadmap en worden publiekelijk aangekondigd zodra ze afgerond zijn. We verklaren liever geen controles die we niet onafhankelijk hebben geverifieerd.
+      </p>
+      <p>
+        De <a href="/nl/security/sub-processors">lijst met subverwerkers</a> is openbaar en up-to-date. De Data Processing Agreement is op aanvraag beschikbaar via <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a>.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/nl/security/sub-processors" class="btn-secondary">Subverwerkers →</a>
+        <a href="/nl/contact" class="btn-primary">Praat over implementatie</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

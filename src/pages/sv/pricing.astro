@@ -1,0 +1,104 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import pricing from "@/data/pricing/sv";
+
+const { tiers, faq } = pricing;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Priser"
+  description="Free, Plus, Pro och Education. Hela canvasen gratis för alltid. Plus för €5,99/månad, Pro för €11,99/månad. Education-licenser skräddarsydda."
+  locale="sv"
+  jsonLd={jsonLd}
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-16">
+        <p class="eyebrow mb-6 text-accent-glow">Priser</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-6">
+          Gratis för att lära.<br />Plus och Pro för att gå djupare.
+        </h1>
+        <p class="prose-ink text-lg max-w-prose">
+          En canvas. Fyra sätt att använda den. Free-nivån är hela canvasen — använd den så länge du vill. Den som tecknar nu fryser tariffen för prenumerationens längd.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {tiers.map((t) => (
+          <article class={`card p-6 flex flex-col ${t.highlighted ? "border-accent-ink/40 bg-accent-ink/[0.05]" : ""}`}>
+            <div class="flex items-start justify-between mb-4">
+              <h2 class="font-serif text-xl text-paper-50">{t.name}</h2>
+              {t.badge && <span class="pill text-[10px] text-accent-glow border-accent-glow/40">{t.badge}</span>}
+            </div>
+
+            <div class="mb-5">
+              <p class="font-serif text-3xl text-paper-50 mb-1">{t.price}</p>
+              <p class="text-xs text-ink-500 font-mono uppercase tracking-widest">{t.period}</p>
+            </div>
+
+            <p class="text-sm text-paper-300 mb-6 leading-relaxed">{t.tagline}</p>
+
+            <ul class="space-y-2.5 text-sm mb-8 flex-grow">
+              {t.features.map((f) => (
+                <li class="flex items-start gap-2.5 text-paper-200">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="shrink-0 mt-0.5 text-accent-glow" aria-hidden="true">
+                    <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={t.cta.href}
+              class={t.highlighted ? "btn-primary" : "btn-secondary"}
+            >
+              {t.cta.label}
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-12 text-xs text-ink-500 max-w-2xl italic">
+        Listpriserna kan komma att utvecklas. Den som tecknar nu fryser tariffen för prenumerationens längd. Inga dark patterns, inga överraskande förlängningar: vi aviserar varje fakturering i förväg.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-3 gap-12">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Vanliga frågor</p>
+          <h2 class="font-serif text-display-lg text-paper-50">Frågor och svar.</h2>
+        </div>
+        <div class="md:col-span-2 divide-y divide-white/[0.06]">
+          {faq.map((item) => (
+            <details class="group py-5 first:pt-0">
+              <summary class="cursor-pointer flex items-start justify-between gap-4 font-serif text-lg text-paper-50 list-none [&::-webkit-details-marker]:hidden">
+                <span>{item.q}</span>
+                <span class="mt-1.5 text-ink-500 transition-transform group-open:rotate-45" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <p class="mt-3 text-sm text-paper-300 leading-relaxed max-w-prose">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

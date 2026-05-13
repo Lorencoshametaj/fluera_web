@@ -1,0 +1,56 @@
+---
+lang: "sv"
+title: Socratic Mode
+tagline: "Vår AI svarar inte. Den frågar."
+shortDescription: "Fluera förhör din canvas i stället för att sammanfatta den. Du anger din självsäkerhet från 1 till 5 före varje avslöjande. För metakognition är halva mästerskapet."
+status: beta
+stepInCycle: 3
+relatedPrinciples:
+  - system-1-2
+  - zone-proximal-development
+  - metacognition
+  - retrieval-practice
+  - illusion-of-competence
+relatedAuthors:
+  - daniel-kahneman
+  - lev-vygotsky
+  - roediger-karpicke
+  - butterfield-metcalfe
+order: 3
+---
+
+## Vad det löser
+
+Det enklaste sättet att känna sig som om man har studerat är att be en LLM förklara något. Läsningen är flytande. Förklaringen verkar tydlig. Tre sekunder senare har du den distinkta känslan av att ha förstått — och tre veckor senare kan du inte återkalla något.
+
+Det är **kompetensillusionen** i industriell skala. Socratic Mode är motgiftet.
+
+## Hur det fungerar
+
+Du skriver klart ett begrepp på din canvas. Trycker på Socratic Mode. Fluera ger dig *inte* en förklaring, en sammanfattning eller en definition.
+
+Den frågar.
+
+"Du drog en pil från kinetisk energi till rörelsemängd. I vilket referenssystem är den relationen skalär i stället för vektoriell?"
+
+Innan du svarar ber UI:n om en sista sak: **hur säker är du — från 1 till 5?** Du drar reglaget. Förbinder dig till en siffra. Nu svarar du — genom att skriva på din canvas, inte i en chattruta. Svaret blir en del av din anteckningsbok härefter.
+
+Först efter att du svarat reagerar AI:n. Om du hade rätt och var säker går den vidare. Om du hade fel och var säker förmanar den inte — den ställer en följdfråga som exponerar mismatchen. Om du var tveksam scaffoldar den med en kedja av allt smalare ledtrådar tills du kommer fram själv.
+
+Scaffoldingen drar sig progressivt tillbaka i takt med att AI:n läser din canvas växa. Frågor som kändes på rätt svårighet vecka ett blir för lätta vecka tre — AI:n omkalibrerar utan att du ber.
+
+## Vetenskapen bakom
+
+Tre krafter konvergerar här:
+
+- **Återkallelsepraktik** (Roediger och Karpicke, 2006): att bli *testad* om materialet producerar mycket starkare minne än att få materialet *berättat* — även när återkallelseförsöken misslyckas.
+- **Zon för proximal utveckling** (Vygotsky, 1978): lärande sker i det kalibrerade gapet mellan vad du kan göra ensam och vad du kan göra med scaffoldat stöd. Sokratiska frågor bor i den zonen genom design.
+- **Metakognitiv kalibrering** (Butterfield och Metcalfe, 2001): att deklarera självsäkerhet *före* återkoppling är i sig en metakognitiv intervention. Den förbereder hyperkorrigering-effekten och tränar dig att skilja *att veta* från *att känna igen*.
+
+Kahnemans System 1 / System 2-dikotomi ramar in hela läget. En LLM som svarar dig direkt talar till System 1. En AI som tvingar dig att stanna, deklarera självsäkerhet och sedan återkalla engagerar System 2 — och System 2 är där lärande bor.
+
+## Vad som kommer
+
+- **Röstläge** — talade sokratiska sessioner för när pennan inte är praktisk (på promenad, på resa).
+- **Tvärs-canvas Socratic** — AI:n fiskar fram frågor som överlappar ditt aktuella ämne och äldre canvasar och utnyttjar interleaving.
+- **Sokratiska paket** från expertförfattare för specifika fält (medicin, juridik, ML).

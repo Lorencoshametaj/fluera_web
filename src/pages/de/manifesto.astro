@@ -1,0 +1,155 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Manifest — Eine Lern-App im Jahr 2026 bauen"
+  description="Eine ausführliche Erklärung dessen, was Fluera ist, was Fluera sich weigert zu sein, und warum das offensichtliche Produkt das falsche war."
+  locale="de"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Manifest</p>
+      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">Der Lernraum, gebaut auf der Funktionsweise des Verstandes.</h1>
+      <p class="prose-ink text-xl italic">
+        Eine ausführliche Erklärung dessen, was Fluera ist, was Fluera sich weigert zu sein, und warum das offensichtliche Produkt das falsche war.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-16 md:py-20">
+    <div class="container-prose prose-v2 prose-v2-essay">
+
+      <h2>Die Prämisse</h2>
+      <p>
+        Im Jahr 2026 ist jeder Fakt drei Sekunden entfernt. Jede Erklärung lässt sich in dem Stil neu generieren, den du bevorzugst. Die Grenzkosten für den Zugriff auf Wissen sind erstmals in der Geschichte unserer Spezies praktisch auf null gesunken.
+      </p>
+      <p>
+        Trotzdem berichten Lernende — Studierende, Berufstätige, neugierige Erwachsene — sich in dem, was sie konsumieren, weniger kompetent zu fühlen als noch vor zehn Jahren. Nicht weil die Inhalte schwieriger geworden wären. Sondern weil der Konsum reibungslos geworden ist, und reibungsloser Konsum hinterlässt keine Spur.
+      </p>
+      <p>
+        Der Engpass des Lernens hat sich verschoben. Lange Zeit war es der Zugang. Für meine Generation war es die Suche. Im Jahr 2026 ist es etwas anderes, schwerer zu benennen: <em>die Verwandlung von flüssigem Wiedererkennen in dauerhafte Kompetenz</em>. Und für diesen neuen Engpass haben wir noch keine Infrastruktur gebaut.
+      </p>
+
+      <h2>Was die Wissenschaft sagt</h2>
+      <p>
+        Seit fünfzig Jahren konvergiert die kognitive Wissenschaft des Lernens auf eine kleine Gruppe von Befunden mit der ungewöhnlichen Eigenschaft, gleichzeitig kontraintuitiv und außerordentlich robust zu sein.
+      </p>
+      <p>
+        Ebbinghaus zeigte 1885, dass die Vergessenskurve exponentiell verläuft und dass verteiltes Wiederholen sie zurücksetzt. Slamecka und Graf zeigten 1978, dass selbst generierte Information unendlich besser erinnert wird als dieselbe Information, die passiv gelesen wird. Bjork dokumentierte über vier Jahrzehnte hinweg, dass jene Bedingungen, die während des Lernens am leichtesten erscheinen, fast genau jene Bedingungen sind, die das schlechteste Langzeitgedächtnis erzeugen — das Framework der <em>desirable difficulties</em>, der erwünschten Schwierigkeiten. Butterfield und Metcalfe zeigten 2001, dass Fehler, die mit hoher Konfidenz begangen und dann korrigiert werden, dauerhaftere Spuren hinterlassen als Fehler mit niedriger Konfidenz — der Hyperkorrektureffekt. Roediger und Karpicke etablierten 2006, dass Geprüftwerden keine Messung des Gedächtnisses ist, sondern ein Akt, der es erschafft.
+      </p>
+      <p>
+        Meta-Analysen haben diese Ergebnisse wiederholt bestätigt, über Disziplinen, Altersgruppen und Kulturen hinweg. Im Ranking der Lernstrategien nach Evidenzstärke steht successive relearning — verteiltes Lernen kombiniert mit Abrufpraxis in zunehmenden Intervallen — an der Spitze. Wiederlesen liegt nahe am Boden. Markieren ist praktisch nutzlos.
+      </p>
+      <p>
+        Die praktische Konsequenz ist scharf: Die Standard-Lernverhalten, die produktiv wirken, sind laut Evidenz die unproduktivsten. Und die Verhalten, die die besten Ergebnisse liefern, fühlen sich im Moment schwieriger, langsamer und weniger befriedigend an.
+      </p>
+      <p>
+        Das ist kein methodisches Detail. Es ist das Wichtigste, was man über Lernen verstehen kann, und es fehlt fast vollständig im Design jedes Lernwerkzeugs auf dem Markt.
+      </p>
+
+      <h2>Was die LLMs zerbrochen haben</h2>
+      <p>
+        Die Ankunft großer Sprachmodelle hat keinen einzigen der obigen Befunde geändert. Sie hat die Textur verändert, mit der Lernende ihnen begegnen.
+      </p>
+      <p>
+        Ein LLM, das in drei Sekunden antwortet, in dem Stil, den du anforderst, in perfekter Sprachflüssigkeit, löst genau das Muster aus, vor dem die Wissenschaft warnt. Wiedererkennen, verwechselt mit Enkodierung. Die Konfidenz von System 1 ohne das Engagement von System 2. Der Automation Bias, verstärkt durch die oberflächliche Flüssigkeit des Outputs. Die Illusion von Kompetenz, in planetarem Maßstab.
+      </p>
+      <p>
+        Kognitionswissenschaftler, die vierzig Jahre lang vor dem Textmarker gewarnt hatten, fanden plötzlich einen ernsthafteren Gegner: ein Werkzeug, das so gut darin ist, das Falsche richtig erscheinen zu lassen, dass selbst sie in ihrem eigenen Lernen Mühe hatten zu widerstehen.
+      </p>
+      <p>
+        Schlimmer: Das Standardmuster der LLM-Schnittstelle — <em>frage, erhalte eine flüssige Antwort, stimme zu, mach weiter</em> — ist fast perfekt darauf ausgelegt, die Abrufpraxis, den Generation Effect und die erwünschten Schwierigkeiten zu umgehen, die dauerhaftes Gedächtnis verlangt. Die Schnittstelle prämiert Passivität. Das zugrundeliegende Modell verstärkt sie. Die resultierende lernende Person fühlt sich unterrichtet, ist es aber nicht.
+      </p>
+
+      <h2>Die Centaur-Prämisse</h2>
+      <p>
+        Nachdem Deep Blue 1997 Kasparov besiegt hatte, nahm die Welt kurz an, das Schach sei am Ende — die Maschinen hätten gewonnen, menschliche Anstrengung sei obsolet. Dann schlug Kasparov selbst eine merkwürdigere Beobachtung vor: Der stärkste Schachspieler der Welt ist weder Mensch noch Maschine. Es ist ein Mensch <em>mit</em> einer Maschine, in strukturierter Symbiose. Er nannte das <em>Centaur</em>.
+      </p>
+      <p>
+        Die Intuition verallgemeinert sich weit über das Schach hinaus. In jedem Bereich, in dem menschliches Urteil unverzichtbar ist — Strategie, Kontext, Werte, Geschmack, Bedeutungstiefe — heißt das Muster, das gewinnt, weder Mensch gegen KI noch Mensch durch KI ersetzt. Es heißt Mensch durch KI verstärkt, wobei der Mensch die kognitive Arbeit hält, die Wachstum erzeugt.
+      </p>
+      <p>
+        Auf das Lernen angewandt, kehrt das Centaur-Muster den verbreiteten Gebrauch von 2026 um. Der heutige Default — <em>frag das LLM, lies die Antwort, mach weiter</em> — ist anti-Centaur. Der Mensch lagert genau jene kognitive Aktivität aus, die Gedächtnis und Verständnis erzeugt.
+      </p>
+      <p>
+        Die Centaur-Variante ist das Gegenteil. Die KI fragt, statt zu antworten. Sie überprüft, statt sich anzubieten. Sie gibt Gerüst, statt zu lösen. Der Mensch macht den Abruf, die Generierung, das räumliche Positionieren, die handschriftliche Enkodierung. Die KI bringt Wissensbreite ein, Echtzeitkalibrierung und die sokratischen Impulse, die ein guter Tutor liefern würde, wenn du dir einen leisten könntest.
+      </p>
+
+      <h2>Was Fluera ist</h2>
+      <p>
+        Fluera ist der Centaur, gebaut als Lernwerkzeug.
+      </p>
+      <p>
+        Das Canvas ist unendlich, leer, von Hand. Jedes Konzept, das du darauf platzierst, wird von deiner Hand erzeugt — paraphrasiert, komprimiert, im Raum positioniert. Die Leere ist beabsichtigt. Templates würden den Generierungsschritt überspringen.
+      </p>
+      <p>
+        Die KI verhört das Canvas. Sie stellt Fragen, die auf den aktuellen Stand deines Wissens kalibriert sind, innerhalb der Zone der nächsten Entwicklung — zu leicht lehrt nichts, zu schwer lässt sich nicht lernen. Vor jeder Auflösung fragt Fluera nach deiner Konfidenz auf einer Skala von eins bis fünf. Das ist kein UI-Schmuck. Es löst den Hyperkorrektureffekt aus: eine falsche Antwort mit Konfidenz 5, einmal korrigiert, hinterlässt eine viel tiefere Spur als beliebig viele passive Wiederlesungen.
+      </p>
+      <p>
+        Ghost Map — die Funktion, die das Centaur-Muster am saubersten ausdrückt — überlagert eine ideale Rekonstruktion über deine. Die Diskrepanzen pulsieren visuell. Du korrigierst durch Schreiben, nicht durch Klicken. Je mehr du daneben lagst, desto dauerhafter die Korrektur.
+      </p>
+      <p>
+        Fog of War, für die Prüfungsvorbereitung, verbirgt Regionen des Canvas und verlangt Abruf, bevor es enthüllt. Die erste Sitzung ist frustrierend. Genau das ist der Punkt. Abruf unter Verdeckung ist die wirksamste Lernaktivität, die die kognitionswissenschaftliche Literatur dokumentiert hat, und Frustration ist der Mechanismus.
+      </p>
+      <p>
+        Der Scheduler für verteiltes Wiederholen plant Rückkehrungen in zunehmenden Intervallen, mit pädagogischen Modifikatoren — Hyperkorrektur-Bonus, Peek-Malus, Antwortzeit-Signal — überlagert auf einem personalisierten FSRS-Modell, das auf deiner echten Review-Historie kalibriert ist. Es funktioniert mit dem Canvas, das du bereits hast, nicht mit einem Paralleluniversum aus Karteikarten, das du erst aufbauen müsstest.
+      </p>
+      <p>
+        Time Travel hält das Audio der Vorlesung mit jedem Strich deiner Schrift synchron, sodass du Wochen später eine Notiz antippen und den Moment hören kannst, in dem du sie geschrieben hast. Kontextabhängiger Abruf besagt, dass die Übereinstimmung des Abruf- mit dem Enkodierungskontext die Erinnerung stärkt. Time Travel ist dieses Prinzip wörtlich gemacht.
+      </p>
+
+      <h2>Was Fluera sich weigert zu sein</h2>
+      <p>
+        Es gibt vier Dinge, die Fluera nicht tun wird, in ungefähr absteigender Versuchungsreihenfolge.
+      </p>
+      <p>
+        <strong>Wir werden keine KI haben, die deine Prüfungen für dich beantwortet.</strong> Die unmittelbare Nutzerzufriedenheit wäre enorm. Das langfristige Ergebnis — die Atrophie der kognitiven Muskeln, die das Werkzeug stärken sollte — wäre ein Verrat am erklärten Ziel. Eine KI, die die Arbeit für dich erledigt, ist eine KI, die dich nichts lehrt.
+      </p>
+      <p>
+        <strong>Wir werden die Daten deiner Hefte nicht verkaufen.</strong> Jedes Heft ist im Ruhezustand mit AES-256 verschlüsselt. Die Synchronisierung, wenn sie aktiviert ist, ist Ende-zu-Ende verschlüsselt. Wir trainieren unsere Modelle nicht auf deinen Inhalten. Deine Handschrift, dein Denken, deine Fehler und dein Wachstum gehören dir. Dass „deine Daten sind das Produkt" der Default der EdTech im Jahr 2026 ist, macht das nicht erträglich.
+      </p>
+      <p>
+        <strong>Wir werden keine Engagement-Loops, keine Werbung und keine Streaks haben.</strong> Das stärkste Signal, das wir optimieren könnten — tägliche aktive Nutzer, Sitzungsdauer, Click-Through bei Benachrichtigungen — ist auch jenes, das das Produkt am wahrscheinlichsten korrumpiert. Deine Beziehung zum Lernen sollte nicht von einer Push-Benachrichtigung abhängen. Wir hätten lieber, dass du Fluera weniger nutzt und mehr lernst.
+      </p>
+      <p>
+        <strong>Wir werden keine Funktionen veröffentlichen, die wir nicht mit einem Zitat verteidigen können.</strong> Entweder die Funktion bezieht sich auf einen publizierten Befund, oder auf konsistentes Beta-Feedback, oder sie geht nicht in Produktion. Neuheit ist keine Funktion. Wir haben zu mehr Ideen Nein gesagt, als wir gebaut haben, und das Verhältnis ist das Produkt.
+      </p>
+
+      <h2>Für wen wir bauen</h2>
+      <p>
+        Fluera ist nicht für alle. Die Reibung ist real. Die Designentscheidungen sind gegenüber dem offensichtlichen Produkt umgekehrt. Der Abbruch in der ersten Sitzung ist höher, als uns lieb wäre, und wir werden das nicht beheben, indem wir die Reibung entfernen — denn die Reibung ist das, was das Produkt funktionieren lässt.
+      </p>
+      <p>
+        Wir bauen für eine spezifische Kohorte. Medizinstudierende, die mündliche Prüfungen vorbereiten, die niemand vortäuscht. Doktorierende in Bereichen, in denen leere Flüssigkeit von der Kommission bestraft wird. Berufstätige, die das Staatsexamen vorbereiten. Autodidakten und Fachkräfte mitten in der Karriere, die merken, dass alles, was sie an ChatGPT delegieren, in der folgenden Woche verdunstet. Universitätsstudierende in konzeptlastigen Fächern, die gemerkt haben, dass ihre Textmarker Flüssigkeit erzeugen, nicht Kompetenz.
+      </p>
+      <p>
+        Wenn du zu dieser Kohorte gehörst, glauben wir, dass du den Unterschied schnell spüren wirst. Wenn nicht, ist das in Ordnung — es gibt andere Produkte für andere Probleme, und wir werden nicht so tun, als wäre Fluera universell.
+      </p>
+
+      <h2>Worauf wir wetten</h2>
+      <p>
+        Die Wette ist, dass es in einem Feld, in dem jeder Wettbewerber sich der unmittelbaren Nutzerpräferenz ergeben hat und Werkzeuge gebaut hat, die sich gut anfühlen und fast nichts lehren, Platz gibt für ein Werkzeug, das sich schlechter anfühlt und besser lehrt. Der Markt ist kleiner als das, was die EdTech-Platzhirsche kommandieren. Die kulturelle Anpassung an die Zeit ist schwieriger. Das Produkt ist langsamer zu bauen.
+      </p>
+      <p>
+        Im Gegenzug: eine reale Chance, etwas zu bauen, das hält, was es verspricht. Eine reale Chance, einer realen Kohorte von Lernenden zu helfen, dauerhafte Kompetenz in einem Jahrzehnt zu erzeugen, das Dauerhaftigkeit selten gemacht hat. Und eine reale Chance, festzuhalten, dass es im Jahr 2026 einen anderen Weg gab, dieses Produkt zu bauen — anders als den offensichtlichen.
+      </p>
+      <p>
+        Das ist das Produkt. Das ist das Team. Das ist die Verpflichtung.
+      </p>
+      <p>
+        Wenn etwas davon resoniert — die Beta ist offen unter <a href="/beta">/beta</a>, und wir würden dich gerne kennenlernen.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Tritt der Beta bei →</a>
+        <a href="/de/science" class="btn-secondary">Lies die Wissenschaft</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

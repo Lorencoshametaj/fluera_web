@@ -1,0 +1,173 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const factBullets = [
+  "Cognitieve studie-app in private beta, gelanceerd op iOS en macOS in april 2026.",
+  "Oneindig handgeschreven canvas met 13 drukgevoelige kwasten en streek-latentie onder de 15 milliseconden, op zes platformen.",
+  "AI-functies ontworpen om vragen te stellen, niet om antwoorden te geven — verankerd in vijftig jaar geheugenonderzoek.",
+  "Gebouwd op fluera_engine, een proprietary 2D-renderengine voor Flutter, ook beschikbaar voor externe ontwikkelaars.",
+  "Tweepersoonsteam gevestigd in Milaan. Geen externe investering tot publicatiedatum.",
+];
+
+const imageAssets = [
+  { name: "Logo — kleur",            path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
+  { name: "Logo — mono licht",       path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
+  { name: "Logo — mono donker",      path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
+  { name: "App-screenshot — iPad",   path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
+  { name: "App-screenshot — macOS",  path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
+  { name: "Portret oprichter",       path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
+];
+
+const quotables = [
+  {
+    context: "Over de premisse",
+    quote: "In 2026 wordt kennis in drie seconden opgehaald en in drie weken vergeten. We hebben tien apps om aantekeningen te maken en geen één om vast te houden wat we leren.",
+  },
+  {
+    context: "Over AI",
+    quote: "Een AI die je tentamens in jouw plaats beantwoordt is een AI die je niets leert. De AI van Fluera vraagt, biedt steigerwerk, reflecteert — vervangt de daad van het denken niet.",
+  },
+  {
+    context: "Over bewijs",
+    quote: "De cognitieve wetenschap is al vijftig jaar duidelijk. Wat we nooit hadden was een tool die het juiste tot het makkelijkste pad maakt. Dat is wat we proberen te bouwen.",
+  },
+  {
+    context: "Over het publiek",
+    quote: "Fluera is niet voor iedereen. De wrijving is echt. Het is gebouwd voor de cohort lerenden die vlotheid en competentie van elkaar weet te onderscheiden wanneer het ertoe doet — artsen op het mondeling, promovendi, juristen, autodidacten op de lange termijn.",
+  },
+];
+---
+
+<BaseLayout
+  title="Press kit"
+  description="Logo's, screenshots, oprichter-bio's en citeerbare quotes voor journalisten en auteurs die over Fluera schrijven."
+  locale="nl"
+>
+
+  <PageHero
+    kicker="Pers"
+    title="Schrijf je over Fluera?<br />Hier vind je alles wat je nodig hebt."
+    description={`Logo's, screenshots, oprichterfoto's en een beknopte factsheet. Alles op deze pagina is vrij voor redactioneel gebruik — met naamsvermelding van <em>Fluera</em> en een link naar <a href="/">fluera.dev</a>.`}
+  >
+    <div slot="copy" class="mt-8 flex flex-wrap gap-4">
+      <a href="/press/fluera-press-kit.zip" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download de volledige press kit (.zip)
+      </a>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Persaanvraag`} class="btn-secondary">
+        Schrijf het team →
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Factsheet</p>
+        <h2 class="font-serif text-display-lg text-paper-50">De leestijd van één minuut.</h2>
+      </div>
+
+      <ul class="space-y-4 list-none p-0 max-w-3xl">
+        {factBullets.map((f) => (
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <span class="text-paper-200 text-lg leading-relaxed">{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Citeerbaar</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Quotes die je rechtstreeks kunt overnemen.</h2>
+        <p class="prose-ink text-sm mt-4">
+          Alle quotes worden toegeschreven aan het Fluera-team, tenzij je een specifieke oprichter hebt geïnterviewd — controleer in dat geval bij ons voordat je iets aan een persoon toeschrijft.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 max-w-5xl">
+        {quotables.map((q) => (
+          <figure class="card p-7">
+            <p class="eyebrow text-accent-glow mb-4">{q.context}</p>
+            <blockquote class="font-serif text-lg text-paper-50 leading-relaxed italic">
+              "{q.quote}"
+            </blockquote>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Visuele assets</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Logo's, screenshots, portretten.</h2>
+        <p class="prose-ink text-sm mt-4">
+          Hieronder afzonderlijk beschikbaar, of allemaal samen via de press kit-link hierboven.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {imageAssets.map((a) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{a.name}</h3>
+            <p class="text-xs font-mono text-ink-500 mb-4">{a.size}</p>
+            <a href={a.path} class="text-accent-glow text-sm underline underline-offset-4 hover:text-paper-50" download>
+              Download →
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-xl">
+        Let op: de individuele assetbestanden zijn placeholders totdat we de definitieve press kit publiceren. De links geven voorlopig 404 — we vullen ze in zodra we uit de private beta zijn.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Wat je mag doen</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Ja, ga je gang.</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Logo's en screenshots in het artikel gebruiken</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>De citeerbare quotes met naamsvermelding overnemen</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Screenshots bijsnijden of schalen (logo's niet wijzigen)</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>De oprichters interviewen (mail om af te stemmen)</li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Wat je beter niet doet</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Bedankt voor het vragen.</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Het logo wijzigen of herkleuren</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Endorsement suggereren voor producten die we niet onderschrijven</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Fluera-assets gebruiken in AI-trainingsdatasets</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Ons logo naast dat van een concurrent plaatsen zonder duidelijke redactionele aanleiding</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Directe lijn met het team.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Persaanvragen komen rechtstreeks bij een oprichter binnen, niet bij een PR-bureau. Reactie binnen 24 uur op werkdagen — meestal binnen een uur.
+      </p>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Persaanvraag`} class="btn-primary">
+        {SITE.company.contactEmail}
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

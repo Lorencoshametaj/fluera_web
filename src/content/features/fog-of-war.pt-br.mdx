@@ -1,0 +1,51 @@
+---
+lang: "pt-br"
+title: Fog of War
+tagline: "Modo prova que esconde o que você quase lembra."
+shortDescription: "Mascare regiões do canvas. Recupere-as da memória. O esforço da recuperação — não a re-leitura — é onde a memória endurece."
+status: beta
+stepInCycle: 10
+relatedPrinciples:
+  - desirable-difficulties
+  - retrieval-practice
+  - spatial-cognition
+  - spacing-effect
+relatedAuthors:
+  - robert-bjork
+  - roediger-karpicke
+  - okeefe-moser
+order: 4
+---
+
+## O que resolve
+
+A preparação de prova costuma degenerar em um de dois modos errados: releitura (parece produtiva, ensina pouco) ou cramming de pânico (ensina brevemente, depois desaba). Ambos evitam a coisa que de fato constrói memória duradoura — a *luta* de tentar recuperar sem suporte.
+
+Fog of War torna essa luta o estado padrão do seu canvas.
+
+## Como funciona
+
+Sete a quatorze dias antes de uma prova, você ativa o Fog of War na região do canvas que quer testar. A área é mascarada — um borrão semiopaco que esconde o conteúdo até você recuperar de memória ou revelar explicitamente.
+
+Você navega o canvas. Para num nó mascarado. Tenta lembrar o que estava lá. Diz em voz alta ou escreve numa superfície de apoio. Só então toca para revelar.
+
+Três desfechos:
+- **Verde** — recuperado corretamente. A máscara afina permanentemente.
+- **Âmbar** — pego em parte. A máscara fica transparente mas o nó permanece destacado para revisita.
+- **Vermelho** — perdeu por completo. O Fluera agenda um retorno imediato e te pede para reescrever o nó à mão — reforçando via geração, não releitura.
+
+Você roda o loop até a maior parte do canvas passar para o verde. O que ficar vermelho é o mapa do que você não sabe — exatamente o mapa de que precisava.
+
+## A ciência por trás
+
+O framework das **dificuldades desejáveis** de Robert Bjork é a ideia estrutural. A fluência durante o estudo é um sinal ruim — um aviso de que a codificação é superficial. O atrito da recuperação sob oclusão é o oposto: não-fluente, lento, frustrante *e* exatamente o que cimenta a memória.
+
+O trabalho de 2006 de Roediger e Karpicke mostrou que uma única tentativa de recuperação produz memória de longo prazo mais forte do que quatro sessões de releitura. Fog of War é tentativas de recuperação em escala, no canvas inteiro, sem atrito por pergunta.
+
+O elemento espacial também conta. Como o seu canvas é um palácio da memória (O'Keefe e Moser, Nobel 2014), recuperar a partir da posição reforça não só o conceito mas o índice espacial que leva até ele. Na prova você não lembra o fato — você *navega* até ele.
+
+## O que vem por aí
+
+- **Agendamento automático da máscara** — névoa guiada pelo FSRS que adensa nos itens com revisão vencendo.
+- **Simulação de prova com tempo** — pressão realista com restrições configuráveis.
+- **Mapa post-mortem** — depois da prova real, você anota quais questões acertou e quais errou, e o Fluera atualiza o scheduler com essa verdade de campo.

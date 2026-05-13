@@ -1,0 +1,56 @@
+---
+lang: "nl"
+title: Exam Session
+tagline: "Gesimuleerde tentamens uit je eigen canvas. Hypercorrectie maakt van fouten permanent geheugen."
+shortDescription: "Fluera genereert een gesloten-boek tentamen uit de concepten die je daadwerkelijk hebt getekend. Vertrouwensschuif vóór elk antwoord. Na inzending legt Ghost Map je werk eroverheen — hoe groter de verrassing, hoe sterker de correctie zich vasthecht."
+status: beta
+stepInCycle: 11
+relatedPrinciples:
+  - hypercorrection-effect
+  - productive-failure
+  - interleaving
+  - retrieval-practice
+  - metacognition
+relatedAuthors:
+  - butterfield-metcalfe
+  - robert-bjork
+  - roediger-karpicke
+order: 7
+---
+
+## Wat het oplost
+
+De meeste studenten verwarren *zich voorbereid voelen* met *voorbereid zijn*. Ze herlezen aantekeningen, kijken een video op 2×, vragen een LLM het hoofdstuk samen te vatten — en arriveren bij het tentamen met een vlotheid die niets met ophalen te maken heeft. Het resultaat is de universele post-tentamen schok: "Ik wist dit. Waarom kon ik het niet opschrijven?"
+
+De Exam Session dicht dat gat door het tentamen te laten plaatsvinden — privé, op je canvas, dagen vóór het echte.
+
+## Hoe het werkt
+
+Je rondt een studiesessie af. Open het Atlas-menu en tik op **🎓 Ondervraag mij** — of typ *"ondervraag mij"* in de canvas-chat. Fluera leest de concepten die je werkelijk hebt getekend (clustercache plus streek-OCR) en genereert een gesloten-boek tentamen uit hen. Vijf, zeven of tien vragen. Gemengde typen: open, meerkeuze, juist/onjuist, formule-recall.
+
+Vóór elk antwoord vraagt de vertrouwensschuif één ding: **hoe zeker ben je, van 1 tot 5?** Beweeg de dial. Verbind je aan een nummer.
+
+Antwoord nu — met de hand, op een mini-canvas scratchpad, precies zoals je het op het echte tentamen zou schrijven. Geen autocomplete. Geen kopieer-plakken. Geen "regenereer". Alleen jij en de pagina.
+
+Bij verzending evalueert Fluera het antwoord token per token en geeft streaming feedback. Heb je het fout met hoog vertrouwen, dan triggert de **hypercorrection shock UI** — een bewust en onmogelijk te negeren visueel effect dat de duurzaamste vorm van correctie activeert die het brein produceert. Vervolgens vraagt Fluera je om het juiste antwoord in je eigen woorden te herschrijven: het **generatie-effect** verankert het geheugen.
+
+Na drie achtereenvolgende correcte antwoorden stijgt de moeilijkheid automatisch. Na elke chunk van vier vragen een korte feedbackpauze voor de volgende set — chunking en interleaving by design.
+
+Aan het einde van de sessie update de FSRS-scheduler de review-intervallen per concept op basis van je werkelijke prestaties, niet de zelfgerapporteerde moeilijkheid. De blinde vlekken keren terug naar Fog of War voor chirurgische ophaalpraktijk op dagen 1, 3, 7, 14.
+
+## De wetenschap erachter
+
+Drie decennia bewijs convergeren naar één enkele bevinding: de duurzaamste correcties komen uit de meest verrassende mislukkingen.
+
+Het **hypercorrectie-effect** van Butterfield en Metcalfe (2001) is het centrale mechanisme. Fouten gemaakt met hoog vertrouwen worden, eenmaal gecorrigeerd, permanenter vastgehouden dan die met laag vertrouwen — de verrassing van het ongelijk hebben wanneer je gelijk dacht te hebben moduleert de hippocampale codering via amygdala-activatie. De vertrouwensschuif is geen esthetiek; ze is de trigger van dat mechanisme.
+
+De **wenselijke moeilijkheden** van Robert Bjork (1994) verklaren waarom een open handgeschreven antwoord meerkeuze overtreft: de wrijving van het genereren is precies wat geheugen bouwt. Roediger en Karpicke (2006) sluiten het beeld — één enkele ophaalpoging produceert sterkere langetermijnretentie dan vier herleessessies.
+
+Het onderzoek van Manu Kapur naar **productief falen** (2008) ondersteunt de hardste ontwerpkeuze: vragen iets boven je huidige niveau produceren duurzamer leren dan vragen gekalibreerd op de comfortzone. De adaptieve moeilijkheid schaalt bewust, niet defensief.
+
+## Wat komt
+
+- **Post-tentamen analytics** — vertrouwenskalibratie per cluster en grafieken van hypercorrectie-magnitude.
+- **Voice-mode Exam** — gesproken vragen met handgeschreven antwoorden, om klinische of mondelinge tentamens voor te bereiden.
+- **Persistente surgical path overlay** — na het tentamen markeert Fog of War op het live canvas alleen de gemiste concepten, met scope op de review van de volgende dag.
+- **Multi-vak Exam Sessions** — een sessie die clusters uit verschillende notitieboeken interleavet en transfer traint.

@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="기관 사례 연구"
+  description="Fluera를 사용하는 대학, 학부 및 클래스의 실제 이야기. 현재는 비어 있음: 파일럿 프로그램이 첫 학기를 완료하고 있습니다."
+  locale="ko"
+>
+
+  <PageHero
+    kicker="사례 연구"
+    title="파일럿이 진행 중입니다.<br />이야기는 나중에 옵니다."
+    description="파일럿이 최소 한 학기를 완료하고, 학부가 서명하고, 익명 학생 데이터가 검증되기 전에는 사례 연구를 게시하지 않습니다. 2026년 가을 학기와 2027년 봄 학기 그룹이 진행 중입니다 — 이 페이지는 그들이 끝나면서 채워집니다."
+    breadcrumb={{ label: "기관", href: "/ko/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2026년 가을 ・ 진행 중</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">의대 임상 전 코호트</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            해부학과 생화학 사이의 한 학기 동안 Fluera를 사용하는 ~30명의 1학년 의대생. 학기 말에 게시.
+          </p>
+          <p class="text-xs font-mono text-ink-500">2027년 1분기 예상</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2026년 가을 ・ 진행 중</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">학부 미시 경제학</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            개념이 풍부한 미시 경제학 강좌. 초점: 자료가 추상적이고 사실적이지 않을 때 12단계 사이클이 어떻게 견디는가.
+          </p>
+          <p class="text-xs font-mono text-ink-500">2027년 2분기 예상</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2027년 봄 ・ 시작 예정</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">법학 대학원 세미나</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            헌법 해석. 더 작은 코호트, 더 깊은 참여. 판례법 비교를 위한 Ghost Map에 초점.
+          </p>
+          <p class="text-xs font-mono text-ink-500">2027년 3분기 예상</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">파일럿을 시작하시겠습니까?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          학기당 한 파일럿을 합니다 — 한 클래스, 30명 학생, 한 학기, 비용 없이. 그 대가로 구조화된 피드백과 강좌 종료 시 익명 사례 연구를 게시할 옵션을 요청합니다.
+        </p>
+        <a href="/ko/contact/sales" class="btn-primary">파일럿 시작 →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        왜 기다리나? 진짜 숫자가 있는 사례 연구는 정직하게 수집하는 데 시간이 걸리기 때문입니다 — 그리고 벤더가 선택한 브로셔 같은 "사례 연구"를 게시하는 것은 정확히 우리가 만들고 싶지 않은 콘텐츠입니다.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

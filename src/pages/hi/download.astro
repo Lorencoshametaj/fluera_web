@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "बीटा",  note: "बीटा में अनुमोदन के बाद TestFlight आमंत्रण।" },
+  { name: "macOS",        status: "बीटा",  note: "अनुमोदन के बाद निजी लिंक के माध्यम से .dmg फ़ाइल।" },
+  { name: "Android",      status: "अल्फा", note: "Google Play आंतरिक ट्रैक के माध्यम से APK।" },
+  { name: "Windows",      status: "अल्फा", note: "Microsoft Store के माध्यम से हस्ताक्षरित .exe इंस्टॉलर।" },
+  { name: "Linux",        status: "अल्फा", note: "AppImage + flatpak।" },
+  { name: "Web",          status: "डेमो",  note: "अभी /demo पर आज़माएं — WebGPU के साथ ब्राउज़र की आवश्यकता है।" },
+];
+---
+
+<BaseLayout
+  title="डाउनलोड"
+  description="Fluera iOS, Android, macOS, Windows, Linux और वेब पर मूल रूप से चलता है। प्रारंभिक एक्सेस के लिए निजी बीटा में शामिल हों।"
+  locale="hi"
+>
+  <PageHero
+    kicker="डाउनलोड"
+    title="छह प्लेटफॉर्म।<br />एक्सेस के लिए बीटा में शामिल हों।"
+    description="Fluera निजी बीटा में है। एक बार अंदर, इंस्टॉल लिंक ईमेल द्वारा आते हैं — हर प्लेटफॉर्म पर मूल ऐप, कोई कम वेब संस्करण नहीं।"
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">बीटा एक्सेस का अनुरोध करें →</a>
+      <a href="/demo" class="btn-secondary">वेब डेमो आज़माएं</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        App Store और Google Play पर सार्वजनिक रिलीज़ निजी बीटा के अंत में आते हैं। इस बीच, ऊपर के स्टेटस लेबल हर प्लेटफॉर्म की परिपक्वता के बारे में सच कहते हैं — हम छह पर खराब रिलीज़ करने के बजाय एक पर अच्छी रिलीज़ करना पसंद करते हैं।
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,67 @@
+---
+lang: "fi"
+title: "Miten 'toivotut vaikeudet' näkyvät sovelluksessa"
+description: "Bjorkin viitekehys on Flueran selkäranka. Näin vastaintuitiivisesta tutkimustuloksesta tulee konkreettisia suunnittelupäätöksiä — ja nämä ovat vaikeimmat trade-offit."
+publishedAt: 2026-04-10
+author: "Lorenzo"
+category: product
+tags: ["bjork", "design", "toivotut-vaikeudet"]
+relatedPrinciples: [desirable-difficulties, retrieval-practice, productive-failure]
+---
+import Citation from "@/components/Citation.astro";
+
+Kun esittelemme Fluerasta skeptisille tarkkailijoille, eniten työtä tekevä yksittäinen idea on <Citation authors="Bjork" year="1994" href="/fi/research">Robert Bjorkin *toivotut vaikeudet*</Citation>. Heti kun ihmiset omaksuvat sen, että helpoimmat oppimisolosuhteet tuottavat lähes aina huonoimmat tulokset, suunnittelupäätöksemme lakkaa vaikuttamasta omituiselta ja alkaa vaikuttaa väistämättömältä.
+
+Mutta "väistämätön" tekee tässä paljon työtä. Tutkimustuloksen muuntaminen tuotepinnaksi tuo trade-offeja, joita ei näy yhdessäkään meta-analyysissä. Tässä osaraportti.
+
+## Tyhjä canvas
+
+Standardi oppimissovellus on mallipohjainen. Avaat sen, ja siellä on ehdotettu rakenne — mindmap-luuranko, aiheluettelo, Cornell-asettelu. Mallipohja laskee aktivoitumiskynnystä. Se vaikuttaa hyödylliseltä.
+
+Ei ole. Mallipohja antaa sinun ohittaa tuottamisvaiheen — kognitiivisen teon päättää, mikä kuuluu mihinkin, mikä yhdistyy mihinkin, mikä on keskeinen käsite. Tuottamisvaihe *on* oppimista. Sen ohittaminen on muistikirjan syyn ohittamista.
+
+Flueran canvas on tyhjä. Ääretön, tyhjä, ei pelottava. Hinta on, että uudet käyttäjät tuntevat kitkan heti. Jotkut menevät pois. Hyväksymme sen. Vaihtoehto on työkalu, joka houkuttelee enemmän käyttäjiä ja opettaa vähemmän.
+
+## Tekoäly, joka kysyy vastaamisen sijaan
+
+Jokainen tekemämme käyttäjätutkimusistunto sisälsi vähintään yhden henkilön, joka sanoi: "Olisi hyödyllistä, jos tekoäly kirjoittaisi minulle tiivistelmän." Jokainen istunto, poikkeuksetta.
+
+He ovat oikeassa siinä, että se olisi hyödyllistä. He erehtyvät pitämään hyödyllisyyttä tavoitteena. Tekoäly, joka tiivistää sinulle luennon, on tekoäly, joka ottaa haltuunsa sen osan oppimisesta, joka oli *sinun* työsi. Saat tiivistelmän. Tunnet oppineesi. Et muista mitään.
+
+Socratic Mode on olemassa juuri siksi, että se ei tee sitä mitä käyttäjät pyytävät. Se kuulustelee canvasiasi sen tiivistämisen sijaan. Välittömän tyytyväisyyden akselilla, ensimmäisessä vuorovaikutuksessa, se häviää tekoälylle joka selittää. <Citation authors="Roediger ja Karpicke" year="2006" href="/fi/research">Viikkojen päässä olevan retention akselilla</Citation> se voittaa eroilla, joiden rinnalla lyhyen aikavälin mieltymys on merkityksetön.
+
+Trade-off on todellinen. Jotkut käyttäjät eivät koskaan ylitä kynnystä. Niille jotka ylittävät, ero on tuote.
+
+## Varmuusliukuri
+
+Olet kirjoittanut vastauksen valmiiksi. Napautat "näytä ratkaisu". Fluera pyytää sinulta vielä yhden asian: arvioi varmuutesi 1–5.
+
+Se on pieni keskeytys. Per yritys lisää kaksi tai kolme sekuntia. Koko istunnon yli nämä sekunnit summautuvat. Käyttäjät pyytävät kytkemään sen pois.
+
+Liukuri on rakenteellinen. <Citation authors="Butterfield ja Metcalfe" year="2001" href="/fi/research">Butterfieldin ja Metcalfen hyperkorjausvaikutus</Citation> — virheet, jotka tehdään korkealla varmuudella ja sitten korjataan, istuvat paremmin kuin matalan varmuuden virheet — vaatii että olet *nimennyt* varmuutesi ennen kuin korjaus saapuu. Ilman liukuria korjaat sumussa ja korjaus haalistuu. Liukurin kanssa kontrasti tehdään näkyväksi ja korjaus laskeutuu.
+
+Pidämme liukurin. Kitka on mekanismi.
+
+## Fog of War tenttiin valmistautumiseen
+
+Ilmeisin tapa valmistautua tenttiin on lukea muistiinpanot uudelleen. Sujuvuus nousee. Koettu valmius nousee. Tenttipäivänä suoritus romahtaa — sillä tunnistaminen ei ole palauttamista, ja tentti vaatii palauttamista.
+
+Fog of War kääntää vuorovaikutuksen ympäri. Tenttitilassa Fluera *piilottaa* canvasisi — se peittää alueet, jotka olet jo käsitellyt, ja pyytää sinua palauttamaan ne muistista ennen kuin ne paljastuvat uudelleen. Ensimmäinen istunto on hirveä. Istut peitetyn canvasin edessä ja löydät, kuinka paljon siitä mistä luulit tietäväsi et pysty tuottamaan.
+
+Käyttäjät vihaavat ensimmäistä istuntoa. He rakastavat tenttituloksia. Ensimmäisen istunnon kitka on se, mikä tekee nuo tulokset mahdollisiksi.
+
+## Mitä emme tee (ja josta pyydämme anteeksi)
+
+Todistusaineisto tukee myös joitakin interventioita, joita emme ole rakentaneet. <Citation authors="Rohrer ja Taylor" year="2007">Interleaving — aihejärjestyksen satunnaistaminen harjoittelun aikana blokkien sijaan</Citation> — on vahvasti todistettu parantavan siirtoa. Haluamme rakentaa syvempiä interleaving-ominaisuuksia. Esteenä on, että satunnaisen aihejärjestyksen *tuotetuntuma* voi ilman huolellista suunnittelua olla syvästi disorientoiva. Käyttäjäkokemus romahtaa ennen kuin kognitiivinen hyöty iskee.
+
+Tämän trade-offin hallinta — flow'n säilyttäminen ja samalla toivotun kitkan tuominen — on vaikein suunnitteluongelmamme.
+
+## Kuvio
+
+Kuvio, joka kulkee kaikkien näiden päätösten läpi, on: **välitön käyttäjämieltymys on systemaattisesti harhaanjohtava signaali.** Käyttäjät suosivat helppoa versiota. Helppo versio on huonompi. Vaikeamman version rakentaminen palkitaan usein jälkikäteen — retentioilla, tenttituloksilla, harvinaisella käyttäjällä joka palaa ja sanoo: "Pidin teitä hulluina, nyt ymmärrän." Mutta sitä rangaistaan lähes aina etukäteen — churnilla, huonoilla arvosteluilla, kiusauksella toimittaa ensi kerralla helpompi versio.
+
+Yritämme vastustaa tätä kiusausta. Joskus epäonnistumme. Toimitamme, vedämme takaisin, toimitamme uudelleen.
+
+Veto on, että alalla — EdTech — jolla jokainen kilpailija on antanut periksi käyttäjämieltymykselle ja rakentanut työkaluja, jotka tuntuvat hyviltä ja opettavat vähän, on tilaa työkalulle, joka tuntuu huonommalta ja opettaa paremmin.
+
+Jos haluat auttaa meitä selvittämään tämän, [beta on auki](/beta).

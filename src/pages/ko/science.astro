@@ -1,0 +1,189 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import { getCollection } from "astro:content";
+
+// Use EN principles/authors (KO MDX content not yet translated; URL routes
+// to /ko/science/principles/{slug} fall back to EN via Astro rewrite).
+const principles = (await getCollection("principles", ({ data }) => data.lang === "en")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const authors = (await getCollection("authors", ({ data }) => data.lang === "en")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const steps = [
+  { n: 1,  title: "캡처",                  verb: "강의 당일",          description: "강의 중에 개념을 손으로 적으세요. 공간에 배치하세요. 펜의 느림이 강요하는 압축 — 거기서 부호화가 시작됩니다." },
+  { n: 2,  title: "재구성",                 verb: "그날 저녁",          description: "책을 덮으세요. 기억나는 것을 빈 캔버스에 다시 만드세요. 망설이는 빨간 노드가 다음에 공부할 것의 지도입니다 (Kapur, 생산적 실패, 2008)." },
+  { n: 3,  title: "소크라테스식",            verb: "48시간 이내",         description: "AI가 묻고 당신이 답합니다. 각 공개 전에 1부터 5까지 확신도를 평가하세요. 메타인지를 명시화합니다." },
+  { n: 4,  title: "켄타우로스",              verb: "직후",              description: "Ghost Map이 당신의 추론을 이상적인 지도와 겹쳐 보여줍니다. 하이퍼코렉션이 격차를 영속적으로 만듭니다 (Butterfield와 Metcalfe, 2001)." },
+  { n: 5,  title: "수면",                    verb: "그날 밤",            description: "아무것도 하지 마세요. 서파 수면이 하루를 재생합니다. 해마가 흔적을 신피질에 넘겨줍니다." },
+  { n: 6,  title: "첫 회상",                 verb: "1일째",              description: "다음 날 캔버스를 여세요. 거의 알았던 것이 흐려집니다. 공개하기 전에 기억에서 끌어냅니다." },
+  { n: 7,  title: "동료 학습",                verb: "2-3일째",            description: "동급생이나 — 반향 질문을 하는 조용한 AI에게 — 캔버스를 설명합니다. 다른 사람을 가르치는 것이 자신을 가르치는 방법입니다." },
+  { n: 8,  title: "간격 회상",                verb: "3일 · 7일 · 14일…", description: "점점 넓어지는 간격에서 성공적인 재학습. 효과 크기 기준, 가장 강력한 증거의 학습 전략 (Rawson과 Dunlosky, 2011)." },
+  { n: 9,  title: "영역 간 다리",             verb: "몇 주 후",           description: "과목 간에 화살표를 그립니다. 화학이 미분 방정식을 만납니다. 전이는 학습의 진짜 시험입니다." },
+  { n: 10, title: "시험 준비",                verb: "시험 7-14일 전",     description: "Fog of War. 자신의 캔버스의 안개를 탐색합니다. 녹색, 빨강, 사각지대 — 숙달의 지도가 스스로 만들어집니다." },
+  { n: 11, title: "Exam Session",            verb: "7일 전 ・ 당일",      description: "Fluera가 당신의 캔버스에서 폐쇄형 시험을 생성합니다. 1부터 5까지 확신도를 평가하고 손으로 답하세요. Ghost Map이 격차를 겹쳐 보여줍니다." },
+  { n: 12, title: "지속적인 성장",            verb: "영원히",             description: "캔버스는 인지의 자서전으로 남습니다. 2년 후에 돌아와서 자신이 얼마나 성장했는지의 형체 있는 모습을 볼 수 있습니다." },
+];
+---
+
+<BaseLayout
+  title="Fluera의 과학"
+  description="Fluera는 50년의 기억 연구 위에 있습니다 — Bjork, Mueller, van der Meer, Roediger, 그리고 노벨상 수상 place cell 신경과학. 12단계 사이클과 모든 기능 뒤의 원리를 탐색합니다."
+  locale="ko"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">과학</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          하나의 앱 뒤에 있는<br />50년의 기억 연구.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Fluera의 모든 기능은 게재된 연구로 거슬러 올라갑니다. 아래: 12단계 학습 사이클, 그 기반의 23개 원리, 우리가 의지하는 12명의 마음, 그리고 우리가 아직 주장하지 않는 것의 한계.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#learning-cycle" class="btn-secondary">사이클로 이동</a>
+          <a href="#principles" class="btn-secondary">원리 인덱스</a>
+          <a href="#authors" class="btn-secondary">저자</a>
+          <a href="/ko/research" class="btn-secondary">참고 문헌 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">사이클</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">하나의 캔버스. 12개 인지적 동작.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          사이클은 순차적이고 반복적입니다. 1-4단계는 부호화를 구축합니다. 5단계 (수면)은 비협상의 생물학입니다. 6-9단계는 며칠과 몇 주에 걸쳐 통합합니다. 10-12단계는 지식을 영구적이고 전이 가능하게 만듭니다.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">원리 인덱스</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Fluera 뒤의 23개 원리.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          각 원리는 주요 저자, 적용 기능, 인용한 논문이 있는 전용 페이지로 연결됩니다.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {principles.map((p) => (
+          <li>
+            <a
+              href={`/ko/science/principles/${p.id}`}
+              class="block card p-5 h-full transition-all hover:border-accent-glow/40 hover:bg-white/[0.04]"
+            >
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{p.data.title}</h3>
+                <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+              </div>
+              <p class="text-sm text-paper-300 leading-relaxed line-clamp-3">{p.data.shortDescription}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="authors" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">방법론을 만든 연구자들</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Fluera 안에 작품이 살고 있는 12명의 연구자.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          헌정 페이지가 아닙니다. 각 이름은 원리, 그것을 구현하는 Fluera 기능, 인용한 논문을 명명하는 페이지로 연결됩니다.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none p-0">
+        {authors.map((a) => (
+          <li>
+            <a href={`/ko/science/authors/${a.id}`} class="block">
+              <AuthorCard name={a.data.name} contribution={a.data.shortBio.slice(0, 160) + (a.data.shortBio.length > 160 ? "…" : "")} year={a.data.years} nobel={a.data.nobelLaureate} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">왜 지금</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">병목이 이동했습니다.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          역사 대부분 동안, 학습의 병목은 접근이었습니다. 책은 비쌌고, 교사는 적었고, 도서관은 멀었습니다. 질문은: <em>정보에 도달할 수 있는가?</em>
+        </p>
+        <p>
+          지난 세대 동안, 병목은 탐색이었습니다. 정보는 풍부했고, 올바른 조각을 찾는 것이 일이었습니다. Google, Wikipedia, 강의 카탈로그 — 한 가지 질문을 위한 전체 인프라: <em>어디에 있나?</em>
+        </p>
+        <p>
+          2026년에는 둘 다 더 이상 제약이 아닙니다. 어떤 사실도 3초 거리에 있습니다. 어떤 설명도 원하는 스타일로 생성될 수 있습니다. 병목이 형태를 바꿨고, 새 형태를 위한 인프라를 우리는 아직 구축하지 못했습니다: <em>방금 읽은 것을 진정으로 가지고 있는 것으로 어떻게 변환하나?</em>
+        </p>
+        <p>
+          이 질문의 인지 과학은 50년 동안 명확합니다. 간격 반복, 회상 연습, 생성, 바람직한 어려움, 체화된 인지, 메타인지 보정. 결과는 강력합니다. 메타 분석은 일관됩니다. 문제는 무엇이 작동하는지 아는 것이 아니었습니다 — 올바른 일을 가장 쉬운 길로 만드는 도구를 구축하는 것이었습니다.
+        </p>
+        <p>
+          LLM 시대의 유혹은 그 반대입니다. 잘못된 일을 — 유창한 설명의 수동적 소비 — 마치 올바른 일인 것처럼 느끼게 합니다. 부호화로 잘못 해석되는 3초의 인식. 그 실수를 가속화할 또 다른 앱이 필요하지 않습니다.
+        </p>
+        <p>
+          Fluera는 흐름에 반대로 만들어졌습니다. 속도가 환상인 곳에서 느립니다. 노이즈가 비즈니스 모델인 곳에서 조용합니다. 어려움이 메커니즘인 곳에서 어렵습니다. 우리가 노력을 좋아해서가 아니라, 증거가 명확하기 때문입니다 — 노력 <em>이</em> 학습입니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">투명성</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">우리가 주장하지 않는 것.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          연구가 있기 때문에 모든 원리에 대해 연구를 인용합니다. 이는 Fluera 자체가 통제 그룹에 대해 테스트되었다는 것을 의미하지 않습니다. 그렇지 않습니다 — 아직. "증거 기반"이라고 말할 때, 기본 메커니즘이 그렇다는 의미입니다. 특정 구현은 문헌으로부터 정보를 받은 엔지니어링 도박입니다.
+        </p>
+        <p>
+          우리는 임상 도구가 아닙니다. 유능한 튜터를 대체하지 않습니다. Fluera 사용이 어떤 학생의 결과를 어떤 특정 비율만큼 올린다고 선언하지 않을 것입니다. 그러한 주장은 부정직하거나 반증 불가능합니다 — 둘 다 침묵보다 나쁩니다.
+        </p>
+        <p>
+          나열된 원리 중 일부는 특정 영역에서 논쟁의 여지가 있습니다. 성장 마인드셋 개입은 통제된 시험에서 혼합된 복제를 보입니다. 플로우는 신뢰성 있게 엔지니어링하는 것보다 인식하기가 더 쉽습니다. 디지털 환경에서의 공간 인지는 항상 물리적 환경의 인지와 일치하지는 않습니다.
+        </p>
+        <p>
+          우리가 인용하는 메타 분석은 인지 과학이 생산하는 가장 가까운 합의입니다. 그 위에 구축된 Fluera 기능은, 지금 이 순간, 우리가 베타로 테스트하는 가설입니다. 무언가 당신에게 작동하지 않으면, 알고 싶습니다 — 그 신호는 어떤 랜딩 페이지 주장보다 가치가 있습니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">사이클을 시도하세요.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        회상 연습에 대해 읽는 것은 회상 연습이 아닙니다. 비공개 베타에 참여하고 자신의 캔버스에서 사이클을 테스트해 보세요.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">베타 참여 →</a>
+        <a href="/ko/research" class="btn-secondary">참고 문헌 읽기</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

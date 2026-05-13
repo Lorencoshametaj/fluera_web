@@ -1,0 +1,187 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import { getCollection } from "astro:content";
+
+const principles = (await getCollection("principles", ({ data }) => data.lang === "ja")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const authors = (await getCollection("authors", ({ data }) => data.lang === "ja")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const steps = [
+  { n: 1,  title: "キャプチャ",                   verb: "授業当日",          description: "授業中に概念を手で書きます。空間に配置します。ペンの遅さが圧縮を強制します。圧縮こそが符号化が生まれる場所です。" },
+  { n: 2,  title: "再構築",                       verb: "同じ夜",            description: "本を閉じます。覚えていることを白紙のキャンバス上に再構築します。ためらった赤いノードが、何を学ぶべきかの地図です (Kapur, 生産的失敗, 2008)。" },
+  { n: 3,  title: "ソクラティック",               verb: "48時間以内",        description: "AI が問い、あなたが答えます。各回答が明かされる前に、確信度を1〜5で宣言します。メタ認知を明示化します。" },
+  { n: 4,  title: "ケンタウロス",                 verb: "その直後",          description: "Ghost Map があなたの推論を理想的なマップに重ねます。ハイパーコレクションが訂正を記憶に固定します (Butterfield & Metcalfe, 2001)。" },
+  { n: 5,  title: "睡眠",                         verb: "その夜",            description: "何もしないでください。徐波睡眠が一日を再生します。海馬が痕跡を新皮質へ渡します。" },
+  { n: 6,  title: "最初の振り返り",               verb: "1日目",             description: "翌日にキャンバスを開きます。ほぼ覚えていたものが薄れています。表示する前に記憶から想起してください。" },
+  { n: 7,  title: "ピアラーニング",               verb: "2〜3日目",          description: "キャンバスを同僚に説明します。あるいは問いを返してくる無口な AI に。誰かに教えることは、自分に教え終える方法です。" },
+  { n: 8,  title: "間隔を空けた振り返り",         verb: "3日 · 7日 · 14日…", description: "間隔を伸ばしながらの継続的再学習。効果量で見ると、最も強力なエビデンスを持つ学習戦略です (Rawson & Dunlosky, 2011)。" },
+  { n: 9,  title: "領域間の橋渡し",               verb: "数週間後",          description: "教科の間に矢印を引きます。化学が微分方程式と出会います。転移こそが学習の真の試験です。" },
+  { n: 10, title: "試験準備",                     verb: "7〜14日前",         description: "Fog of War。キャンバスの霧の中を航行します。緑、赤、盲点 — 習熟度マップが自ずと描かれます。" },
+  { n: 11, title: "試験",                         verb: "当日",              description: "デバイスをオフにします。何週間も自分の手で築いた記憶の宮殿を歩きます。キャンバスは今、あなたの中に生きています。" },
+  { n: 12, title: "永続的な成長",                 verb: "ずっと",            description: "キャンバスは認知の自伝として残ります。2年後に戻ったとき、自分がどれだけ成長したかの具体的な形が見えます。" },
+];
+---
+
+<BaseLayout
+  title="Fluera のサイエンス"
+  description="Fluera は記憶に関する50年の研究 — Bjork、Mueller、van der Meer、Roediger、ノーベル賞を受賞した place cells の神経科学 — に立脚します。12ステップサイクルと、各機能の背後にある原則をご覧ください。"
+  locale="ja"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">サイエンス</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          記憶に関する50年の研究を、<br />一つのアプリの背後に。
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Fluera のあらゆる機能は、公開された研究に紐づいています。以下に: 12ステップの学習サイクル、土台となる23の原則、私たちが拠って立つ12の知性、そして私たちがまだ手を出さない領域。
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#learning-cycle" class="btn-secondary">サイクルを見る</a>
+          <a href="#principles" class="btn-secondary">原則の索引</a>
+          <a href="#authors" class="btn-secondary">著者</a>
+          <a href="/ja/research" class="btn-secondary">文献 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">サイクル</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">一つのキャンバス。12の認知的動作。</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          サイクルは順序的かつ反復的です。ステップ1〜4は符号化を構築します。ステップ5 (睡眠) は譲れない生物学です。ステップ6〜9は数日から数週間にわたって定着させます。ステップ10〜12は知識を永続的かつ転移可能にします。
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">原則の索引</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Fluera の背後にある23の原則。</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          各原則には、主な著者、適用された機能、引用した論文を載せた専用ページがあります。
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {principles.map((p) => (
+          <li>
+            <a
+              href={`/ja/science/principles/${p.id.replace(/\.ja$/, "")}`}
+              class="block card p-5 h-full transition-all hover:border-accent-glow/40 hover:bg-white/[0.04]"
+            >
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{p.data.title}</h3>
+                <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+              </div>
+              <p class="text-sm text-paper-300 leading-relaxed line-clamp-3">{p.data.shortDescription}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="authors" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">この方法を支える知性</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Fluera の中に生きている12人の研究者。</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          献辞ページではありません。各名前から、その原則、それを実装している Fluera の機能、引用した論文を示すページに飛びます。
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none p-0">
+        {authors.map((a) => (
+          <li>
+            <a href={`/ja/science/authors/${a.id.replace(/\.ja$/, "")}`} class="block">
+              <AuthorCard name={a.data.name} contribution={a.data.shortBio.slice(0, 160) + (a.data.shortBio.length > 160 ? "…" : "")} year={a.data.years} nobel={a.data.nobelLaureate} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">なぜ今か</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">ボトルネックは移動した。</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          歴史の大部分において、学習のボトルネックはアクセスでした。本は高価で、教師は少なく、図書館は遠かった。問いは: <em>情報にたどり着けるか？</em>
+        </p>
+        <p>
+          前の世代では、ボトルネックはナビゲーションでした。情報は豊富で、正しい一片を見つけることが仕事でした。Google、Wikipedia、コースカタログ — すべてが一つの問いのためのインフラ: <em>どこにあるか？</em>
+        </p>
+        <p>
+          2026年、どちらも制約ではなくなりました。あらゆる事実は3秒の距離にあります。あらゆる説明は好みのスタイルで生成できます。ボトルネックは形を変え、その新しい形に対するインフラはまだ建てられていません: <em>読んだばかりのものを、本当に保持できるものへとどう変えるか？</em>
+        </p>
+        <p>
+          この問いに対する認知科学の答えは50年前から明快です。間隔反復、想起練習、生成、望ましい困難、身体化された認知、メタ認知的キャリブレーション。結果は頑健です。メタ分析は一貫しています。問題は何が効くかを知ることではなく、正しいことを最も簡単な道にするツールを作ることでした。
+        </p>
+        <p>
+          LLM 時代の誘惑は逆方向を向きます。間違ったこと — 流暢な説明の受動的消費 — を正しいことのように見せます。3秒の認識を符号化と取り違える。この誤りを加速させるアプリがもう一つ必要なわけではありません。
+        </p>
+        <p>
+          Fluera は流れに逆らって作られています。速度が幻想であるところでは遅く。ノイズがビジネスモデルであるところでは静かに。困難が機構であるところでは難しく。努力が好きだからではなく、エビデンスが明白だからです — 努力 <em>こそが</em> 学習なのです。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">透明性</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">私たちが主張しないこと。</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          各原則について研究を引用するのは、研究が存在するからです。Fluera 自体が対照群と比較してテストされたという意味ではありません。まだそれはしていません。「エビデンスベース」と言うとき、私たちは基礎となるメカニズムがそうであることを意味しています。具体的な実装は、文献に基づいたエンジニアリングの賭けです。
+        </p>
+        <p>
+          私たちは臨床ツールではありません。有能なチューターを置き換えません。Fluera を使うとどの学生のどの結果が何パーセント上がる、といった主張はしません。そうした主張は不誠実か反証不可能か、いずれも沈黙より悪いものです。
+        </p>
+        <p>
+          挙げた原則のいくつかは特定の領域で議論があります。成長マインドセットの介入は対照試験で再現性が混在しています。フローは認識するより信頼性をもって設計するほうが難しい。デジタル環境における空間認知は、必ずしも物理環境のそれと一致しません。これらの限界を明示するのは、平らに塗りつぶすことが、私たちが最も大切にする学習者の信頼を最も早く失う方法だからです。
+        </p>
+        <p>
+          引用するメタ分析は、認知科学が生み出す最も近いコンセンサスです。それらの上に作られた Fluera の機能は、現時点では、ベータでテストしている仮説です。あなたにとって機能しないものがあれば、ぜひ教えてください。そのシグナルは、いかなるランディングページの主張よりも価値があります。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">サイクルを試す。</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        想起練習について読むことは、想起練習ではありません。プライベートベータに参加し、自分のキャンバスでサイクルを試してください。
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">ベータに参加する →</a>
+        <a href="/ja/research" class="btn-secondary">文献を読む</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

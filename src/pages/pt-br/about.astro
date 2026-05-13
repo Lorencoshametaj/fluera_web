@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Sobre"
+  description="Fluera é construído por um pequeno time na Itália. Nossa história, nossas convicções, a linha que não vamos cruzar."
+  locale="pt-br"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Sobre</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
+          Construímos o app de estudo<br />que gostaríamos de ter tido<br />quando éramos estudantes.
+        </h1>
+        <div class="prose-ink text-lg">
+          <p>
+            Fluera nasceu de uma frustração. Um de nós, dev full-stack com dez anos de estrada; o outro, estudante vendo seus colegas caírem na mesma armadilha — apps que pareciam produtivos mas não ajudavam ninguém a lembrar de nada.
+          </p>
+          <p>
+            Lemos a pesquisa. <em>Muita</em> pesquisa. Bjork, Mueller, Roediger, van der Meer, O'Keefe. A ciência cognitiva é clara há meio século: escrever à mão bate digitar, recuperar bate reler, espaçar bate enfiar, atrito é um recurso. Não encontramos um app que levasse nada disso a sério. Então construímos um.
+          </p>
+          <p>
+            No caminho, escrevemos do zero um motor de renderização 2D — porque nenhum stack pronto conseguia entregar tinta sensível à pressão a 60 FPS em seis plataformas nativas. O motor é o substrato sobre o qual as funções cognitivas vivem.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">A linha</p>
+        <h2 class="font-serif text-display-lg text-paper-50 mb-8">Onde traçamos a linha.</h2>
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Não vamos ter uma IA que responde às provas no seu lugar.</strong>
+              <p class="text-sm mt-1 text-paper-300">A IA do Fluera questiona, faz andaime, reflete. Nunca fecha o seu pensamento. Usar IA para fazer o trabalho cognitivo é usá-la para atrofiar o músculo que deveríamos estar treinando.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Não vamos vender os dados dos seus cadernos.</strong>
+              <p class="text-sm mt-1 text-paper-300">Suas anotações são criptografadas em repouso, ponta a ponta quando sincronizadas, e nunca usadas para treinar modelos de ninguém. Os nossos inclusive.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Sem publicidade, engagement loop, streak.</strong>
+              <p class="text-sm mt-1 text-paper-300">Sua relação com o estudo não deveria depender de uma push notification. Preferimos que você use o Fluera menos e aprenda mais.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Não vamos lançar recursos que não conseguimos defender com uma citação.</strong>
+              <p class="text-sm mt-1 text-paper-300">Se um recurso não remete a uma descoberta publicada, ou a feedback consistente da nossa beta, não vai para produção. Efeito uau não é recurso. Novidade não é recurso.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        Sede em {SITE.company.city}. Uma declaração mais longa do que recusamos e por quê vive no <a href="/pt-br/manifesto" class="text-paper-300 underline underline-offset-4">manifesto</a>.
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/pt-br/contact" class="btn-secondary">Fale com a gente</a>
+        <a href="/beta" class="btn-primary">Entre na beta</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

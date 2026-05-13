@@ -2,10 +2,8 @@ export const SITE = {
   name: "Fluera",
   domain: "fluera.dev",
   url: "https://fluera.dev",
-  defaultLocale: "en" as const,
-  locales: ["en", "it"] as const,
   description:
-    "An infinite handwriting canvas with a cognitive engine inside. iOS, Android, macOS, Windows, Linux, Web. Built on memory science, not on note-taking habits.",
+    "An infinite handwriting canvas built on cognitive science. iOS, Android, macOS, Windows, Linux, Web. Built on memory research, not on note-taking habits.",
   tagline: "The study space your brain was built for.",
   company: {
     legalName: "Fluera srl",
@@ -36,12 +34,20 @@ export const PRIMARY_CTA = {
 };
 
 // ── Locale routing ────────────────────────────────────────────────────
-// Paths that have an Italian translation at `/it/<path>`.
-// Used by the Nav language switcher + by localizedHref() to keep
-// IT visitors inside IT when navigating between pages that exist in both.
-export const IT_AVAILABLE_PATHS = new Set<string>([
+import { LOCALES, DEFAULT_LOCALE, type Locale } from "@/lib/i18n";
+
+/**
+ * Paths that have a localized version at `/{locale}/{path}` for at least
+ * one non-default locale. The same set is shared across all locales — when
+ * a locale doesn't have a translation, Astro's `fallbackType: "rewrite"`
+ * (configured in astro.config.mjs) serves the default locale content.
+ *
+ * To register a new translatable path: add it here.
+ */
+export const LOCALE_AVAILABLE_PATHS = new Set<string>([
   "/",
   "/about",
+  "/beta",
   "/pricing",
   "/contact",
   "/contact/sales",
@@ -60,35 +66,78 @@ export const IT_AVAILABLE_PATHS = new Set<string>([
   "/company/press",
 ]);
 
-/** `/beta` is IT-native at root, not under /it/. */
-export const IT_NATIVE_PATHS = new Set<string>([
-  "/beta",
+/**
+ * Paths served only at the unprefixed root (no per-locale variant).
+ * Useful for legal pages where we maintain one copy with inline localization.
+ */
+export const LOCALE_NATIVE_PATHS = new Set<string>([
   "/legal/privacy",
   "/legal/terms",
 ]);
 
+/** @deprecated use LOCALE_AVAILABLE_PATHS — kept for backwards compatibility. */
+export const IT_AVAILABLE_PATHS = LOCALE_AVAILABLE_PATHS;
+
 /**
- * Rewrite an internal href to its Italian version when the visitor is on an
- * IT page AND the target has an Italian translation at /it/<path>.
- * Falls back to the EN href otherwise (we don't have IT for every page).
+ * Rewrite an internal href to its localized version when the visitor is on
+ * a non-default locale AND the target has a translation. Falls back to the
+ * unprefixed (default-locale) href otherwise.
+ *
+ * Accepts either a `Locale` string (preferred) or the legacy `boolean`
+ * (true = "it") for backwards compatibility with existing call sites.
  */
-export function localizedHref(href: string, isItalian: boolean): string {
-  if (!isItalian) return href;
+export function localizedHref(href: string, locale: Locale | boolean): string {
+  const targetLocale: Locale = typeof locale === "boolean"
+    ? (locale ? "it" : DEFAULT_LOCALE)
+    : locale;
+
+  if (targetLocale === DEFAULT_LOCALE) return href;
   if (!href.startsWith("/") || href.startsWith("//")) return href;
 
-  // Already prefixed, IT-native, or external hash — leave as-is.
-  if (href.startsWith("/it/") || href === "/it") return href;
+  // Already prefixed under any known locale, or an external hash — leave as-is.
+  for (const code of LOCALES) {
+    if (code === DEFAULT_LOCALE) continue;
+    if (href === `/${code}` || href.startsWith(`/${code}/`)) return href;
+  }
 
   // Split off hash + query for matching the bare path.
   const [bare, ...rest] = href.split(/([#?])/);
   const path = bare === "" ? "/" : bare;
 
-  if (IT_NATIVE_PATHS.has(path)) return href;
-  if (IT_AVAILABLE_PATHS.has(path)) {
-    const prefix = path === "/" ? "/it/" : `/it${path}`;
+  if (LOCALE_NATIVE_PATHS.has(path)) return href;
+  if (LOCALE_AVAILABLE_PATHS.has(path)) {
+    const prefix = path === "/" ? `/${targetLocale}/` : `/${targetLocale}${path}`;
     return prefix + rest.join("");
   }
   return href;
+}
+
+/**
+ * Strip a locale prefix from a pathname, returning the canonical default-locale
+ * path. Used by the Nav language switcher to jump between the same logical
+ * page across locales.
+ */
+export function basePathFromPathname(pathname: string): string {
+  for (const code of LOCALES) {
+    if (code === DEFAULT_LOCALE) continue;
+    if (pathname === `/${code}` || pathname === `/${code}/`) return "/";
+    if (pathname.startsWith(`/${code}/`)) return pathname.slice(`/${code}`.length);
+  }
+  return pathname || "/";
+}
+
+/**
+ * Build the href to switch the current page to a target locale.
+ * If the page exists in the target locale, returns the localized URL.
+ * If not, falls back to the locale's homepage.
+ */
+export function languageSwitchHref(currentPathname: string, targetLocale: Locale): string {
+  const basePath = basePathFromPathname(currentPathname);
+  if (targetLocale === DEFAULT_LOCALE) return basePath;
+  if (LOCALE_AVAILABLE_PATHS.has(basePath)) {
+    return basePath === "/" ? `/${targetLocale}/` : `/${targetLocale}${basePath}`;
+  }
+  return `/${targetLocale}/`;
 }
 
 export const FOOTER_NAV = {
@@ -97,7 +146,6 @@ export const FOOTER_NAV = {
     { label: "Download",           href: "/download" },
     { label: "Pricing",            href: "/pricing" },
     { label: "Live demo",          href: "/demo", external: true },
-    { label: "Engine SDK",         href: "https://engine.fluera.dev/", external: true },
     { label: "Changelog",          href: "/changelog" },
   ],
   science: [

@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Studia przypadków instytucji"
+  description="Prawdziwe historie uniwersytetów, wydziałów i klas używających Fluery. Obecnie puste: programy pilotażowe kończą pierwsze semestry."
+  locale="pl"
+>
+
+  <PageHero
+    kicker="Studia przypadków"
+    title="Pilotaże w toku.<br />Historie przyjdą później."
+    description="Nie publikujemy studiów przypadków, dopóki pilotaż nie ukończy co najmniej jednego semestru, kadra nie podpisze i zanonimizowane dane studentów nie zostaną zweryfikowane. Kohorty jesieni 2026 i wiosny 2027 są w toku — ta strona zapełni się, gdy się zakończą."
+    breadcrumb={{ label: "Edukacja", href: "/pl/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Jesień 2026 · w toku</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Kohorta przedkliniczna medycyny</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            ~30 studentów pierwszego roku medycyny używa Fluery przez semestr w anatomii i biochemii. Publikacja na koniec semestru.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Spodziewane Q1 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Jesień 2026 · w toku</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Mikroekonomia licencjacka</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Pojęciowo gęsty kurs mikroekonomii. Fokus: jak utrzymuje się 12-stopniowy cykl, gdy materiał jest abstrakcyjny, a nie faktograficzny.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Spodziewane Q2 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Wiosna 2027 · wstępny</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Seminarium magisterskie z prawa</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Wykładnia konstytucyjna. Mała kohorta, głębokie zaangażowanie. Fokus na Ghost Map dla porównań orzecznictwa.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Spodziewane Q3 2027</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Chcesz rozpocząć pilotaż?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          Prowadzimy jeden pilotaż na semestr — jedna klasa, trzydziestu studentów, jeden semestr, bez kosztów. W zamian prosimy o ustrukturyzowaną informację zwrotną i opcjonalnie publikację zanonimizowanego studium przypadku po zakończeniu kursu.
+        </p>
+        <a href="/pl/contact/sales" class="btn-primary">Rozpocznij pilotaż →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        Dlaczego czekać? Bo szczere zebranie studium przypadku z prawdziwymi liczbami zajmuje czas — a publikowanie wybranych przez sprzedawcę „studiów przypadku" w broszurach to dokładnie ten rodzaj treści, którego nie chcemy produkować.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

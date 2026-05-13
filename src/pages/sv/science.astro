@@ -1,0 +1,187 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import { getCollection } from "astro:content";
+
+const principles = (await getCollection("principles", ({ data }) => data.lang === "sv")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const authors = (await getCollection("authors", ({ data }) => data.lang === "sv")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const steps = [
+  { n: 1,  title: "Fånga upp",                 verb: "Föreläsningsdagen",     description: "Skriv begreppen för hand under föreläsningen. Placera dem i rummet. Pennans långsamhet tvingar fram komprimering — och i komprimeringen föds inkodningen." },
+  { n: 2,  title: "Rekonstruktion",            verb: "Samma kväll",           description: "Stäng boken. Rekonstruera det du minns på en tom canvas. De röda noderna där du tvekar är kartan över vad som ska pluggas (Kapur, produktivt misslyckande, 2008)." },
+  { n: 3,  title: "Sokratiskt",                verb: "Inom 48 timmar",        description: "AI:n frågar, du svarar. Du anger din säkerhet från 1 till 5 före varje avslöjande. Metakognition gjord explicit." },
+  { n: 4,  title: "Centaur",                   verb: "Strax efter",           description: "Ghost Map lägger ditt resonemang över den ideala kartan. Hyperkorrigeringen fäster rättningarna i minnet (Butterfield och Metcalfe, 2001)." },
+  { n: 5,  title: "Sömn",                      verb: "Den natten",            description: "Gör ingenting. Slow-wave-sömnen spelar upp dagen igen. Hippocampus lämnar över spåren till neocortex." },
+  { n: 6,  title: "Första återbesöket",        verb: "Dag 1",                 description: "Öppna canvasen dagen därpå. Det du nästan kunde har bleknat. Hämta från minnet innan du avslöjar." },
+  { n: 7,  title: "Lärande mellan kamrater",   verb: "Dag 2–3",               description: "Förklara din canvas för en kursare — eller för en tyst AI som ger tillbaka frågor. Att lära någon annan är hur du gör klart att lära dig själv." },
+  { n: 8,  title: "Distribuerade återbesök",   verb: "Dag 3 · 7 · 14…",       description: "Successivt återinlärande i växande intervall. Efter effect size den studiestrategi med starkast evidens (Rawson och Dunlosky, 2011)." },
+  { n: 9,  title: "Broar mellan domäner",      verb: "Veckor senare",         description: "Dra pilar mellan ämnena. Kemin möter differentialekvationerna. Transfer är lärandets verkliga test." },
+  { n: 10, title: "Tentaförberedelse",         verb: "7–14 dagar innan",      description: "Fog of War. Navigera genom dimman på din canvas. Grönt, rött, blinda fläckar — behärskningskartan ritar sig själv." },
+  { n: 11, title: "Tentan",                    verb: "Dagen",                 description: "Stäng av enheten. Vandra genom det memory palace du byggt med händerna i veckor. Canvasen lever i dig nu." },
+  { n: 12, title: "Permanent växande",         verb: "För alltid",            description: "Canvasen består som kognitiv självbiografi. Du återvänder två år senare och ser den påtagliga formen av hur mycket du växt." },
+];
+---
+
+<BaseLayout
+  title="Vetenskapen bakom Fluera"
+  description="Fluera vilar på fem decenniers minnesforskning — Bjork, Mueller, van der Meer, Roediger och den nobelprisbelönta neurovetenskapen om place cells. Utforska den 12-stegs-cykeln och principerna bakom varje funktion."
+  locale="sv"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Vetenskapen</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Fem decenniers minnesforskning<br />bakom en enda app.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Varje funktion i Fluera pekar tillbaka på publicerad forskning. Här nedan: lärandecykeln i 12 steg, de 23 principerna i botten, de tolv namnen vi bygger på och gränserna för vad vi ännu inte påstår.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#learning-cycle" class="btn-secondary">Till cykeln</a>
+          <a href="#principles" class="btn-secondary">Principindex</a>
+          <a href="#authors" class="btn-secondary">Författare</a>
+          <a href="/sv/research" class="btn-secondary">Bibliografi →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Cykeln</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">En canvas. Tolv kognitiva rörelser.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Cykeln är sekventiell och iterativ. Steg 1–4 bygger inkodningen. Steg 5 (sömn) är icke förhandlingsbar biologi. Steg 6–9 konsoliderar över dagar och veckor. Steg 10–12 gör kunskapen permanent och överförbar.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Principindex</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">De 23 principerna bakom Fluera.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Varje princip leder till en dedikerad sida med huvudförfattare, tillämpade funktioner och de papper vi citerar.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {principles.map((p) => (
+          <li>
+            <a
+              href={`/sv/science/principles/${p.id.replace(/\.sv$/, "")}`}
+              class="block card p-5 h-full transition-all hover:border-accent-glow/40 hover:bg-white/[0.04]"
+            >
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{p.data.title}</h3>
+                <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+              </div>
+              <p class="text-sm text-paper-300 leading-relaxed line-clamp-3">{p.data.shortDescription}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="authors" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Tänkarna bakom metoden</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Tolv forskare vars arbete lever inuti Fluera.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Det är ingen hyllningssida. Varje namn leder till en sida som namnger principen, de funktioner i Fluera som implementerar den och de papper vi citerar.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none p-0">
+        {authors.map((a) => (
+          <li>
+            <a href={`/sv/science/authors/${a.id.replace(/\.sv$/, "")}`} class="block">
+              <AuthorCard name={a.data.name} contribution={a.data.shortBio.slice(0, 160) + (a.data.shortBio.length > 160 ? "…" : "")} year={a.data.years} nobel={a.data.nobelLaureate} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Varför nu</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Flaskhalsen har förflyttats.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Under större delen av historien var lärandets flaskhals tillgång. Böcker kostade, lärare var få, biblioteken låg långt borta. Frågan var: <em>kan jag nå informationen?</em>
+        </p>
+        <p>
+          För den senaste generationen var flaskhalsen navigation. Informationen var riklig; att hitta rätt bit var jobbet. Google, Wikipedia, kurskataloger — en hel infrastruktur kring en enda fråga: <em>var ligger den?</em>
+        </p>
+        <p>
+          År 2026 begränsar ingetdera längre. Vilket faktum som helst är tre sekunder bort. Vilken förklaring som helst kan genereras i den stil du föredrar. Flaskhalsen har bytt form, och för den nya formen är infrastrukturen ännu inte byggd: <em>hur omvandlar jag det jag just läste till något jag faktiskt behåller?</em>
+        </p>
+        <p>
+          Den kognitiva vetenskapen kring den frågan har varit tydlig i femtio år. Distribuerad repetition, återkallelsepraktik, generering, önskvärda svårigheter, förkroppsligad kognition, metakognitiv kalibrering. Resultaten är robusta. Metaanalyserna är konsekventa. Problemet var aldrig att veta vad som fungerar — det var att bygga verktyg som gör det rätta till den lättaste vägen.
+        </p>
+        <p>
+          LLM-erans frestelse är motsatsen. Den får det fel — passiv konsumtion av flytande förklaringar — att se rätt ut. Tre sekunders igenkänning, förväxlad med inkodning. Vi behöver inte ännu en app som påskyndar det misstaget.
+        </p>
+        <p>
+          Fluera är byggd mot strömmen. Långsam där hastigheten är en illusion. Tyst där bruset är affärsmodellen. Svår där svårigheten är mekanismen. Inte för att vi tycker om ansträngning, utan för att evidensen är entydig — ansträngningen <em>är</em> lärandet.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Transparens</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Vad vi inte påstår.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Vi citerar forskning för varje princip eftersom forskningen finns. Det betyder inte att Fluera självt har testats mot kontrollgrupper. Det har det inte — ännu inte. När vi säger "evidensbaserad" menar vi att den underliggande mekanismen är det. Den specifika implementationen är en ingenjörsmässig satsning informerad av litteraturen.
+        </p>
+        <p>
+          Vi är inte ett kliniskt verktyg. Vi ersätter inte en kompetent handledare. Vi kommer inte påstå att Fluera höjer någon students resultat med någon specifik procent. Ett sådant påstående vore antingen oärligt eller ofalsifierbart; båda värre än tystnad.
+        </p>
+        <p>
+          Vissa av principerna i listan är ifrågasatta i specifika domäner. Interventioner för växande tankesätt har blandad replikation i kontrollerade studier. Flow är lättare att känna igen än att tillförlitligt iscensätta. Spatial kognition i digitala miljöer matchar inte alltid den i fysiska miljöer. Vi flaggar dessa gränser, för att platta ut dem är det snabbaste sättet att förlora förtroendet hos exakt de learners vi bryr oss om.
+        </p>
+        <p>
+          Metaanalyserna vi citerar är den närmaste konsensus den kognitiva vetenskapen producerar. Funktionerna i Fluera som bygger på dem är, just nu, hypoteser vi testar med betan. Om något inte fungerar för dig vill vi veta det — den signalen är värd mer än vilket landningssideanspråk som helst.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Testa cykeln.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Att läsa om återkallelsepraktik är inte återkallelsepraktik. Gå med i den slutna betan och sätt cykeln på prov i en canvas som är din.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Gå med i betan →</a>
+        <a href="/sv/research" class="btn-secondary">Läs bibliografin</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

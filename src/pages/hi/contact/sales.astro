@@ -1,0 +1,103 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="बिक्री से बात करें — संस्थानों के लिए Fluera"
+  description="अपनी कक्षा, फैकल्टी या कैम्पस में साक्ष्य-आधारित अध्ययन उपकरण लाने के लिए Fluera संस्थापकों के साथ चैट बुक करें।"
+  locale="hi"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">संस्थागत बिक्री</p>
+      <h1 class="font-serif text-display-xl text-paper-50 mb-6">अपने छात्रों के लिए योजना बनाएं।</h1>
+      <p class="prose-ink text-lg mb-8">
+        नीचे भरें और एक संस्थापक (BDR नहीं) 24 कार्य घंटे के भीतर जवाब देता है। हम एसिंक्रोनस से शुरू करना पसंद करते हैं — एक अच्छा-लिखा ईमेल तीन शेड्यूलिंग राउंड से अधिक मूल्य का है।
+      </p>
+
+      <form id="sales-form" class="card p-6 md:p-8 space-y-5" action={`mailto:${SITE.company.contactEmail}`} method="post" enctype="text/plain">
+        <div>
+          <label class="sales-label" for="s-name">आपका नाम <span class="text-signal-bad">*</span></label>
+          <input id="s-name" name="name" type="text" required class="sales-input" placeholder="नाम और उपनाम" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-role">भूमिका <span class="text-signal-bad">*</span></label>
+          <select id="s-role" name="role" required class="sales-input">
+            <option value="" disabled selected>चुनें…</option>
+            <option>शिक्षक</option>
+            <option>विभागाध्यक्ष</option>
+            <option>प्रिंसिपल / प्रबंधक</option>
+            <option>IT / खरीद</option>
+            <option>लाइब्रेरियन / निर्देशात्मक डिज़ाइनर</option>
+            <option>छात्र प्रतिनिधि</option>
+            <option>अन्य</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-institution">संस्थान <span class="text-signal-bad">*</span></label>
+          <input id="s-institution" name="institution" type="text" required class="sales-input" placeholder="विश्वविद्यालय या स्कूल" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-email">कार्य ईमेल <span class="text-signal-bad">*</span></label>
+          <input id="s-email" name="email" type="email" required class="sales-input" placeholder="you@university.edu" />
+          <p class="sales-hint">सत्यापन में आसानी के लिए अपने संस्थान ईमेल का उपयोग करें।</p>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-size">रुचि का क्षेत्र</label>
+          <select id="s-size" name="size" class="sales-input">
+            <option value="" selected>चुनें…</option>
+            <option>पायलट — एक कक्षा, एक सेमेस्टर</option>
+            <option>फैकल्टी लाइसेंस</option>
+            <option>विश्वविद्यालय लाइसेंस</option>
+            <option>खोज रहा हूं — मुझे ब्रीफिंग चाहिए</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-context">जवाब देने से पहले हमें क्या जानना चाहिए? <span class="text-signal-bad">*</span></label>
+          <textarea id="s-context" name="context" rows="5" required minlength="20" maxlength="2000"
+            class="sales-input"
+            placeholder="पाठ्यक्रम का नाम, छात्र प्रोफ़ाइल, समय-सीमा, उपयोग में आने वाले उपकरण, अनुपालन बाधाएं — जो भी उपयोगी हो।"></textarea>
+          <p class="sales-hint">आप जितने अधिक विशिष्ट होंगे, हम उतना ही संक्षिप्त जवाब दे सकते हैं।</p>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="btn-primary w-full py-3.5">भेजें →</button>
+          <p class="sales-hint text-center mt-3">
+            फॉर्म ईमेल के माध्यम से भेजा जाता है। आप भेजें दबाएं तब तक कुछ भी आपकी मशीन नहीं छोड़ता। सीधे लिखना पसंद करते हैं? <a href={`mailto:${SITE.company.contactEmail}`} class="text-accent-glow underline">{SITE.company.contactEmail}</a>।
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">सबमिट करने के बाद क्या होता है</h2>
+      <ol class="space-y-4 text-sm text-paper-200 list-none p-0">
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">01</span><span>एक संस्थापक 1 कार्य दिवस के भीतर आपकी स्थिति के बारे में विशिष्ट प्रश्नों के साथ जवाब देता है — कभी सामान्य स्क्रिप्ट नहीं।</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">02</span><span>हम आपके उपयोग मामले के अनुरूप एक पायलट ब्रीफ (PDF) भेजते हैं, सिलेबस उदाहरण और अपने छात्रों से पूछने के लिए प्रश्नों की सूची के साथ।</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">03</span><span>संस्थापक के साथ 30 मिनट की कॉल और, यदि आवश्यक हो, आपके IT संदर्भ। हम SSO, DPA और समय-सीमा को ईमानदारी से कवर करते हैं — वर्तमान सीमाओं सहित।</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">04</span><span>पायलट शुरू होता है। आमतौर पर पहले संपर्क के 2-4 सप्ताह के भीतर।</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <style>
+    .sales-label { display: block; font-size: 0.875rem; font-weight: 500; color: theme("colors.paper.200"); margin-bottom: 0.5rem; }
+    .sales-hint  { font-size: 0.75rem; color: theme("colors.ink.500"); margin-top: 0.375rem; }
+    .sales-input {
+      width: 100%; background: theme("colors.ink.900"); border: 1px solid rgb(255 255 255 / 0.08);
+      border-radius: 0.625rem; padding: 0.75rem 1rem; color: theme("colors.paper.50"); font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .sales-input:focus {
+      outline: none; border-color: theme("colors.accent.ink"); box-shadow: 0 0 0 3px rgb(45 74 222 / 0.18);
+    }
+  </style>
+</BaseLayout>

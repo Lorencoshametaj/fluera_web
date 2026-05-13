@@ -1,7 +1,7 @@
 ---
 lang: "it"
 title: "Difficoltà desiderabili"
-shortDescription: "L'attrito cognitivo intenzionale — spacing, recupero, interleaving, contesti variati — rallenta la prestazione sul momento ma produce una ritenzione a lungo termine molto più alta."
+shortDescription: "L'attrito cognitivo intenzionale — spacing, recupero, interleaving, contesti variati — rallenta la prestazione sul momento ma produce una memoria a lungo termine molto più alta."
 keyYear: "1994"
 fieldOfStudy: pedagogy
 primaryAuthors: [robert-bjork]

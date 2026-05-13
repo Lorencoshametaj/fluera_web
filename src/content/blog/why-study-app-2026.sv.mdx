@@ -1,0 +1,57 @@
+---
+lang: "sv"
+title: "Varför vi bygger en studieapp år 2026"
+description: "Om vem som helst kan ställa vilken fråga som helst och få svar på tre sekunder, är den intressanta frågan inte vad vi vet. Det är vad vi behåller."
+publishedAt: 2026-04-20
+author: "Lorenzo"
+category: cognitive-science
+tags: ["manifest", "ai", "positionering"]
+relatedPrinciples: [automation-bias, illusion-of-competence, centaur-paradigm]
+---
+import Citation from "@/components/Citation.astro";
+
+Det finns en version av den här essän som jag skrev för arton månader sedan och som jag är glad att jag inte publicerade.
+
+Den hette *Varför en studieapp i ChatGPT-eran?* och spenderade tvåtusen ord på att förklara hur AI skulle förvandla utbildningen, hur Fluera skulle vara appen som äntligen gjorde personlig tutoring verklig och hur ingen om fem år skulle studera som förut. Den var optimistisk. Den var självsäker. Den var också, i efterhand, nästan helt fel.
+
+Det jag inte såg då var att problemet aldrig var att studenter inte kunde nå informationen. Det var aldrig att lärare inte kunde personifiera. Problemet var — och är — att moderna verktyg gör det otroligt lätt att *känna* att man har lärt sig något när man inte har det. Och ju bättre verktyget blir på *känslan*, desto sämre blir det på det som spelar roll.
+
+## Flaskhalsen har flyttat
+
+Under större delen av historien var frågan som definierade studierna av vad som helst *tillgång*. Böcker kostade. Lärare var få. Bibliotek låg långt bort. En bildad person var, framför allt, någon som lyckats komma nära informationen.
+
+För min generation blev frågan *navigering*. Information var överflödig; att hitta rätt bit var arbetet. Google, Wikipedia, Stack Overflow — en hel infrastruktur för en enda fråga: *var finns den?* Att vara bildad 2015 betydde att kunna söka väl.
+
+År 2026 begränsar oss ingen av de två frågorna på riktigt. Varje fakta är tre sekunder bort. Varje förklaring kan genereras i den stil du föredrar. Flaskhalsen har flyttat igen och — här är delen jag missade — för den nya formen är infrastrukturen inte byggd än.
+
+Den nya flaskhalsen är: *hur förvandlar jag det jag just läst till något jag faktiskt behåller?*
+
+## Den gamla kognitionsvetenskapen, diskret upprättad
+
+Och här är det roliga. Svaren på den frågan har funnits i litteraturen i femtio år. Distribuerad repetition, sedan Ebbinghaus 1885. <Citation authors="Roediger och Karpicke" year="2006" href="/sv/research">Återkallelsepraktik, sedan Roediger och Karpicke 2006</Citation>. <Citation authors="Bjork" year="1994" href="/sv/research">Önskvärda svårigheter, sedan Bjork 1994</Citation>. <Citation authors="Novak och Gowin" year="1984" href="/sv/research">Begreppskartor, sedan Novak 1984</Citation>. Neurovetenskapen om rumsligt minne från O'Keefe och Moser, <Citation authors="Moser et al." year="2005" href="/sv/research">som vann Nobel 2014</Citation>.
+
+Resultaten är robusta. Metaanalyserna är konsekventa. Effect sizes går från måttliga till *d = 0,88* — mycket stora för någon kognitionsvetenskaplig standard.
+
+Det vi aldrig haft — inte en gång, i hela ed-techs historia — är verktyg som gör det rätta till den lättaste vägen. Anki gör återkallelsepraktik möjlig, men till priset av enorm konstruktion. Notion gör anteckningar läsbara men inte återhämtningsbara. GoodNotes gör handskrift vacker men frånkopplad från någon minnesschemaläggning. Varje verktyg löser ett steg av en cykel med många steg; ingen löser hela cykeln.
+
+Och nu, ovanpå den mosaiken, har vi LLM:erna. Som får det felaktiga — passivt konsumtion av artikulerade svar — att *kännas* som det rätta. Tre sekunder av flyt, förväxlat med inkodning. <Citation authors="Kahneman" year="2011" href="/sv/research">Automation bias i planetär skala</Citation>.
+
+## Centauren, inte ersättningen
+
+Frestelsen, när man bygger ett AI-baserat studieverktyg, är att placera AI:n i centrum. Låta den generera dina anteckningar, sammanfatta läroboken, förklara provfrågorna. Jag förstår frestelsen. Det är den uppenbara produkten. Och det är också, enligt allt vetenskapen säger, exakt fel.
+
+Kasparovs Centaur-framing är det som faktiskt fungerar. Världens starkaste schackspelare är inte Stockfish. Det är inte ens Carlsen. Det är Carlsen *med* Stockfish, i strukturerad symbios — var och en gör det den gör bäst, ingen av dem låtsas vara den andra.
+
+För studier är den mänskliga insatsen djup, omdöme och generering. AI:ns insats är bredd, verifiering och scaffolding. Ett verktyg som förstår det har AI:n som frågar innan den svarar, scaffolding innan den löser, verifierar innan den erbjuder. Ett verktyg som har fel gör tvärtom, och studenten lämnar sessionen och känner sig smartare utan att ha lärt sig något.
+
+Fluera är vårt försök på den första typen.
+
+## Vad vi satsar på
+
+Vi satsar på att det finns en kohort av learners — inte alla, inte de flesta, men tillräckligt — som vet hur man känner skillnaden mellan flyt och kompetens när det spelar roll. Studenter som förbereder muntliga examinationer som inte kan bluffas. Långkurs-learners som märker att allt de ber ChatGPT om avdunstar veckan därpå. Lärare som är trötta på att se studenter lämna in artikulerade LLM-genererade essäer som studenten sedan inte kan försvara.
+
+För dem är friktion inte en bugg. Att skriva för hand är inte nostalgi. Att bli förhörd innan man får svaret är inte straff. Det är funktioner. Det är mekanismen.
+
+Vi bygger ett studieverktyg som är långsammare, tystare och svårare än alternativen. Eftersom evidensen säger att det är vad som fungerar. Och eftersom de snabbare, högljuddare och lättare verktygen vid det här laget har blivit verktyg för illusionen av kompetens.
+
+Om det resonerar i dig — [kom och bygg med oss i betan](/beta). Om det inte resonerar är det också okej. Inte varje verktyg är för varje learner. Det här är för dem som vet hur man särskiljer skillnaden.

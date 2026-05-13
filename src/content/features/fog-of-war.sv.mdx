@@ -1,0 +1,51 @@
+---
+lang: "sv"
+title: Fog of War
+tagline: "Provläge som döljer det du nästan minns."
+shortDescription: "Maska regioner av canvasen. Återkalla dem ur minnet. Ansträngningen i återkallelsen — inte omläsningen — är där minnet hårdnar."
+status: beta
+stepInCycle: 10
+relatedPrinciples:
+  - desirable-difficulties
+  - retrieval-practice
+  - spatial-cognition
+  - spacing-effect
+relatedAuthors:
+  - robert-bjork
+  - roediger-karpicke
+  - okeefe-moser
+order: 4
+---
+
+## Vad det löser
+
+Provförberedelser tenderar att urarta i ett av två fellsläge: omläsning (känns produktivt, lär ut lite) eller paniks-cramming (lär ut kort, sedan kollapsar). Båda undviker det som faktiskt bygger varaktigt minne — *kampen* att försöka återkalla utan stöd.
+
+Fog of War gör den kampen till din canvas standardläge.
+
+## Hur det fungerar
+
+Sju till fjorton dagar före ett prov aktiverar du Fog of War i den canvas-region du vill testa. Området maskeras — en halvopak suddighet som döljer innehållet tills du återkallar ur minnet eller explicit avslöjar.
+
+Du navigerar canvasen. Stannar vid en maskerad nod. Försöker minnas vad som var där. Säger det högt eller skriver det på en stödyta. Först då trycker du för att avslöja.
+
+Tre utfall:
+- **Grön** — korrekt återkallad. Masken tunnas permanent.
+- **Bärnsten** — delvis fångad. Masken blir transparent men noden förblir markerad för återbesök.
+- **Röd** — helt missad. Fluera schemalägger ett omedelbart återbesök och ber dig skriva om noden för hand — förstärkning via generering, inte omläsning.
+
+Du kör loopen tills större delen av canvasen blir grön. Det som förblir rött är kartan över vad du inte vet — exakt den karta du behövde.
+
+## Vetenskapen bakom
+
+Robert Bjorks ramverk för **önskvärda svårigheter** är den strukturella idén. Flyt under studier är en dålig signal — en varning om att kodningen är ytlig. Friktionen i återkallelse under ocklusion är motsatsen: ofly­tande, långsam, frustrerande *och* exakt det som cementerar minnet.
+
+Roediger och Karpickes arbete från 2006 visade att ett enda återkallelseförsök producerar starkare långsiktigt minne än fyra omläsningssessioner. Fog of War är återkallelseförsök i skala, över hela canvasen, utan friktion per fråga.
+
+Det rumsliga elementet räknas också. Eftersom din canvas är ett minnespalats (O'Keefe och Moser, Nobel 2014) förstärker återkallelse från positionen inte bara begreppet utan det rumsliga indexet som leder till det. På provet minns du inte fakta — du *navigerar* till det.
+
+## Vad som kommer
+
+- **Automatisk maskschemaläggning** — FSRS-styrd dimma som tätnar på objekt med förfallande genomgång.
+- **Tidsbegränsad provsimulering** — realistisk press med konfigurerbara begränsningar.
+- **Post-mortem-karta** — efter det riktiga provet noterar du vilka frågor du hade rätt och fel på, och Fluera uppdaterar schemaläggaren med den faktiska sanningen.

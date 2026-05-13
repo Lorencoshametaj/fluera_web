@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="संस्थागत केस स्टडीज़"
+  description="Fluera का उपयोग करने वाले विश्वविद्यालयों, फैकल्टी और कक्षाओं की वास्तविक कहानियां। अभी खाली: पायलट प्रोग्राम पहले सेमेस्टर पूरे कर रहे हैं।"
+  locale="hi"
+>
+
+  <PageHero
+    kicker="केस स्टडीज़"
+    title="पायलट जारी हैं।<br />कहानियां बाद में आती हैं।"
+    description="हम तब तक केस स्टडी प्रकाशित नहीं करते जब तक एक पायलट कम से कम एक सेमेस्टर पूरा नहीं कर लेता, फैकल्टी ने हस्ताक्षर नहीं कर दिए, और गुमनाम छात्र डेटा सत्यापित नहीं हो जाता। 2026 शरद ऋतु और 2027 वसंत सेमेस्टर समूह जारी हैं — यह पृष्ठ खत्म होने पर भर जाएगा।"
+    breadcrumb={{ label: "संस्थान", href: "/hi/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">शरद 2026 · जारी</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">मेडिसिन प्री-क्लिनिकल कोहोर्ट</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            ~30 प्रथम वर्ष के मेडिकल छात्र शरीर रचना और जैव रसायन में एक सेमेस्टर के लिए Fluera का उपयोग कर रहे हैं। सेमेस्टर के अंत में प्रकाशन।
+          </p>
+          <p class="text-xs font-mono text-ink-500">अपेक्षित Q1 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">शरद 2026 · जारी</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">स्नातक माइक्रोइकोनॉमिक्स</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            अवधारणा-घना माइक्रोइकोनॉमिक्स पाठ्यक्रम। फोकस: 12-चरण चक्र कैसे टिकता है जब सामग्री अमूर्त है, तथ्यात्मक नहीं।
+          </p>
+          <p class="text-xs font-mono text-ink-500">अपेक्षित Q2 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">वसंत 2027 · प्रारंभिक</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">कानून मास्टर्स सेमिनार</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            संवैधानिक व्याख्या। छोटा कोहोर्ट, गहरी सहभागिता। केस लॉ तुलना के लिए Ghost Map पर फोकस।
+          </p>
+          <p class="text-xs font-mono text-ink-500">अपेक्षित Q3 2027</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">पायलट शुरू करना चाहते हैं?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          हम प्रति सेमेस्टर एक पायलट चलाते हैं — एक कक्षा, तीस छात्र, एक सेमेस्टर, बिना लागत। बदले में हम संरचित प्रतिक्रिया मांगते हैं और पाठ्यक्रम के अंत में गुमनाम केस स्टडी प्रकाशित करने का विकल्प।
+        </p>
+        <a href="/hi/contact/sales" class="btn-primary">पायलट शुरू करें →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        क्यों इंतज़ार करें? क्योंकि वास्तविक संख्याओं के साथ केस स्टडी को ईमानदारी से एकत्र करने में समय लगता है — और विक्रेता-चयनित ब्रोशर "केस स्टडी" प्रकाशित करना ठीक वही प्रकार की सामग्री है जो हम उत्पादन नहीं करना चाहते।
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

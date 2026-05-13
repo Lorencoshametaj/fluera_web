@@ -1,0 +1,70 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const channels = [
+  {
+    label: "Allmänt",
+    email: SITE.company.contactEmail,
+    body: "Feedback, frågor, önskemål. Vi läser allt som kommer in här.",
+  },
+  {
+    label: "Institutioner och försäljning",
+    email: SITE.company.contactEmail,
+    body: "Universitet, skolor, forskningslabb. Vi skickar DPA, prissammanfattning och detaljer om pilotprogrammet.",
+  },
+  {
+    label: "Press",
+    email: SITE.company.contactEmail,
+    body: "Intervjuer, citat, embargo. Press kit med logotyper och skärmbilder på begäran.",
+  },
+  {
+    label: "Säkerhet",
+    email: SITE.company.securityEmail,
+    body: "Sårbarhetsrapporter. Vi svarar inom 24 timmar och patchar kritiska fall inom 72.",
+  },
+  {
+    label: "Integritet och dataförfrågningar",
+    email: SITE.company.privacyEmail,
+    body: "Åtkomst, export och radering av data (GDPR). Svar inom 30 dagar — oftast inom 48 timmar.",
+  },
+  {
+    label: "Support",
+    email: SITE.company.supportEmail,
+    body: "Användare som hittat en bugg eller behöver hjälp med en funktion.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kontakt"
+  description="Kontakta Fluera. Kanaler för allmänt, säljteam, press, säkerhet, integritet och support."
+  locale="sv"
+>
+  <PageHero
+    kicker="Kontakt"
+    title="Sex kanaler. Ett svar."
+    description="Inget ärendesystem. Varje kanal nedan går till en riktig människa — vi svarar oftast inom en till två dagar."
+  >
+    <div class="mt-16 grid md:grid-cols-2 gap-5 max-w-5xl">
+      {channels.map((c) => (
+        <article class="card p-6">
+          <p class="eyebrow text-accent-glow mb-3">{c.label}</p>
+          <a href={`mailto:${c.email}`} class="font-serif text-xl text-paper-50 block mb-3 hover:text-accent-glow transition-colors">
+            {c.email}
+          </a>
+          <p class="text-sm text-paper-300 leading-relaxed">{c.body}</p>
+        </article>
+      ))}
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Säte i {SITE.company.city}. Vi publicerar inget telefonnummer: skriftlig kommunikation är spårbar och håller oss fokuserade. För akuta säkerhetsproblem ligger PGP-nyckeln på GitHub-profilen.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

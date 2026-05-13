@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const pillars = [
+  {
+    title: "Versleuteling",
+    body: "Elk Fluera-notitieboek wordt in rust versleuteld met AES-256 via SQLCipher. Het verkeer is TLS 1.3 onderweg. De synchronisatie tussen jouw apparaten is end-to-end versleuteld met sleutels die uit jouw wachtzin worden afgeleid — opgeslagen in de keychain van het platform, nooit naar onze servers gestuurd.",
+  },
+  {
+    title: "Eigenaarschap van data",
+    body: "Elke byte die je schrijft is met één klik te exporteren: PNG, JPEG, WebP, SVG, PDF en ons open .fluera-formaat. Je notitieboeken leven primair op je apparaten. De cloud is een gemak, geen gevangenis — lock-in is een verdienmodel dat we ervoor kiezen af te wijzen.",
+  },
+  {
+    title: "AVG vanaf de basis",
+    body: "Fluera wordt gehost op servers in Europa en is ontworpen rond de principes van de AVG. Een verwerkersovereenkomst is op verzoek beschikbaar voor elke onderwijsinstelling. Volledige data-export en het recht om vergeten te worden worden binnen 30 dagen afgehandeld (meestal binnen 48 uur).",
+  },
+  {
+    title: "Local-first, altijd",
+    body: "Je kunt Fluera volledig offline gebruiken. Synchronisatie is opt-in per notitieboek, niet op accountniveau. Zet je sync uit, dan verlaten je gegevens het apparaat niet — inclusief de telemetrie, die op toestemming gebaseerd en anoniem is.",
+  },
+  {
+    title: "Audit-trail (instellingen)",
+    body: "Voor Education-accounts wordt elke toegang tot gedeelde notitieboeken vastgelegd in een onveranderlijke trail, exporteerbaar voor compliance-audits. Beheerders kunnen SSO (SAML, OIDC) en MDM-uitrol afdwingen.",
+  },
+  {
+    title: "Wat we niet doen",
+    body: "Geen advertenties. Geen verkoop van data. We trainen onze modellen niet op jouw inhoud. We volgen je niet over het web. We delen geen data met derden buiten de gedeclareerde subverwerkers (Supabase, Vercel, Stripe) — allen onder verwerkersovereenkomst.",
+  },
+];
+---
+
+<BaseLayout
+  title="Beveiliging en privacy"
+  description="AES-256-versleuteling in rust, AVG vanaf de basis, servers in Europa, geen ad-tech. De beveiligingsarchitectuur en de Fluera-belofte rond eigenaarschap van jouw data."
+  locale="nl"
+>
+  <PageHero
+    kicker="Beveiliging en privacy"
+    title="End-to-end-versleuteling.<br />De sleutel blijft bij jou."
+    titleSize="2xl"
+    description="Versleuteling als standaard. Geen ad-tech. Servers in Europa. Volledige export. Privacy is een ontwerpbeperking, geen compliance-taakje."
+    orbs
+    noise
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {pillars.map((p, i) => (
+          <article class="card p-8">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
+            <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Responsible disclosure</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Iets gevonden?</h2>
+          <p class="prose-ink mb-6">
+            Beveiligingsonderzoekers zijn welkom. Meld kwetsbaarheden bij
+            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
+            We reageren binnen 24 uur, patchen kritieke problemen binnen 72, en vermelden de melder in onze hall of fame — tenzij anonimiteit de voorkeur heeft.
+          </p>
+          <p class="text-sm text-ink-500 italic">
+            De PGP-sleutel voor versleutelde rapporten staat op ons GitHub-profiel.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Compliance en uitrol</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Fluera in een instelling uitrollen?</h2>
+          <p class="prose-ink mb-6">
+            Universiteiten, scholen, onderzoekslabs: we kunnen je begeleiden bij de verwerkersovereenkomst, lijst van subverwerkers, SSO-setup en het audit-trail-model. Pilots beginnen meestal met één klas, één semester, kosteloos.
+          </p>
+          <a href="/nl/contact" class="btn-primary">Praat over uitrol →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Deze pagina dekt het essentiële. De volledige architectuur, het register van subverwerkers en het verwerkersovereenkomst-template staan op
+        <a href="/nl/security/architecture" class="text-paper-300 underline">/nl/security/architecture</a> en
+        <a href="/nl/security/sub-processors" class="text-paper-300 underline">/nl/security/sub-processors</a>. Specifieke compliance-vragen? Schrijf naar
+        <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

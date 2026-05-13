@@ -12,7 +12,7 @@ relatedPrinciples:
 relatedAuthors:
   - okeefe-moser
   - van-der-meer
-order: 4
+order: 10
 ---
 
 ## What it solves

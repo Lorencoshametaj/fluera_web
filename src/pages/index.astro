@@ -4,57 +4,25 @@ import AuthorCard from "@/components/AuthorCard.astro";
 import LearningStep from "@/components/LearningStep.astro";
 import PillarFeature from "@/components/PillarFeature.astro";
 import { SITE, PRIMARY_CTA } from "@/lib/site";
+import home from "@/data/home/en";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: SITE.name,
-  applicationCategory: "EducationalApplication",
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
   operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
   description: SITE.description,
   url: SITE.url,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
 };
 
-const steps = [
-  { n: 1,  title: "Capture",              verb: "Lecture day",    description: "Write concepts by hand during the lecture. Position them in space. Compression — forced by the slowness of the pen — is where encoding begins." },
-  { n: 2,  title: "Reconstruct",          verb: "Same evening",   description: "Close the book. Rebuild what you remember on a blank canvas. The red nodes where you falter are the map of what to study next (Kapur, productive failure, 2008)." },
-  { n: 3,  title: "Socratic",             verb: "Within 48h",     description: "The AI asks; you answer. Rate your confidence one to five before each reveal. Metacognition made explicit." },
-  { n: 4,  title: "Centaur",              verb: "Right after",    description: "Ghost Map overlays your reasoning against the ideal. Hypercorrection makes the gaps permanent (Butterfield & Metcalfe, 2001)." },
-  { n: 5,  title: "Sleep",                verb: "That night",     description: "Do nothing. Slow-wave sleep replays the day. The hippocampus hands traces to the neocortex. Our job is to get out of the way." },
-  { n: 6,  title: "First Return",         verb: "Day 1",          description: "Come back the next day. The canvas fades what you almost knew. Pull it back from memory, then rewrite what slipped." },
-  { n: 7,  title: "Peer Learning",        verb: "Days 2–3",       description: "Visit a classmate's canvas. Teach. Be taught. Recall duels. Organising for others cements it for you (protégé effect)." },
-  { n: 8,  title: "Spaced Returns",       verb: "Day 3 · 7 · 14…",description: "Successive relearning at widening intervals. The gold-standard evidence-based strategy (Rawson & Dunlosky, 2011)." },
-  { n: 9,  title: "Cross-Domain Bridges", verb: "Weeks later",    description: "Zoom out to continent view. Draw arrows between chemistry and differential equations. Transfer is the real test of learning." },
-  { n: 10, title: "Exam Prep",            verb: "7–14 days before",description: "Fog of War mode. Navigate the mist of your own canvas. Green, red, blind spots — the mastery map makes itself." },
-  { n: 11, title: "The Exam",             verb: "The day",        description: "Close the device. Walk the memory palace you built with your hands over weeks. The canvas lives in you now." },
-  { n: 12, title: "Lasting Growth",       verb: "Forever after",  description: "The canvas persists as a cognitive autobiography. Return in two years and see the tangible shape of how much you've grown." },
-];
-
-const authors = [
-  { name: "Robert A. Bjork", contribution: "Desirable difficulties — the counterintuitive finding that harder study produces better retention.", year: "1994" },
-  { name: "Butterfield & Metcalfe", contribution: "Hypercorrection Effect — confident errors are remembered most permanently once corrected.", year: "2001" },
-  { name: "Daniel Kahneman", contribution: "System 1 vs System 2 — fast intuition versus slow deliberation in thinking and memory.", year: "2011" },
-  { name: "Lev Vygotsky", contribution: "Zone of Proximal Development — the narrow band where scaffolded practice beats solo practice.", year: "1978" },
-  { name: "Albert Bandura", contribution: "Self-efficacy — the single strongest predictor of academic success, stronger than IQ.", year: "1977" },
-  { name: "Carol Dweck", contribution: "Growth mindset — praising effort over talent changes how learners respond to difficulty.", year: "2006" },
-  { name: "Mihaly Csikszentmihalyi", contribution: "Flow — peak cognitive performance when challenge matches skill and feedback is immediate.", year: "1990" },
-  { name: "Joseph Novak", contribution: "Concept mapping — building a map beats studying a pre-built one, across disciplines.", year: "1984" },
-  { name: "O'Keefe & Moser", contribution: "Place and grid cells — the brain's built-in GPS. Why memory palaces work.", year: "Nobel 2014", nobel: true },
-  { name: "Mueller & Oppenheimer", contribution: "Handwritten notes beat laptop notes on conceptual recall — even when the laptop notes were more complete.", year: "2014" },
-  { name: "Audrey van der Meer", contribution: "EEG evidence that handwriting recruits broader brain networks than typing.", year: "2020" },
-  { name: "Roediger & Karpicke", contribution: "Retrieval practice — testing does not measure memory, it creates it.", year: "2006" },
-];
-
-const platforms = [
-  { name: "iOS",     api: "Metal",    status: "Beta" },
-  { name: "iPadOS",  api: "Metal",    status: "Beta" },
-  { name: "macOS",   api: "Metal",    status: "Beta" },
-  { name: "Windows", api: "Direct3D 11", status: "Alpha" },
-  { name: "Android", api: "Vulkan",   status: "Alpha" },
-  { name: "Linux",   api: "OpenGL",   status: "Alpha" },
-  { name: "Web",     api: "WebGPU",   status: "Demo" },
-];
+const { steps, authors, platforms } = home;
 ---
 
 <BaseLayout
@@ -65,14 +33,14 @@ const platforms = [
 
   <!-- ═══════════ 1 · HERO ═══════════ -->
   <section class="relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-40 -left-40 bg-accent-ink/30 animate-orb-pulse"></div>
-    <div class="glow-orb h-[420px] w-[420px] top-32 -right-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
 
     <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
       <div class="max-w-3xl">
         <div class="pill mb-8">
           <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
-          Private beta · First cohort
+          Private beta · By invitation
         </div>
 
         <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
@@ -80,7 +48,7 @@ const platforms = [
         </h1>
 
         <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
-          Handwrite on an infinite canvas. Be quizzed instead of answered. Replay your own thinking in time. Built for the way memory actually works.
+          Handwrite on an infinite canvas. Get quizzed into memory. Replay your own thinking over time. Built for the way memory actually works.
         </p>
 
         <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
@@ -122,7 +90,7 @@ const platforms = [
           Highlighting feels like studying. Re-reading feels like studying. Asking an LLM for a summary feels like studying. None of them are — and the cognitive science has been clear about this since the 1970s.
         </p>
         <p>
-          The bottleneck of learning is no longer access. It's <em>encoding</em>. It's <em>retention</em>. It's <em>transfer</em>.
+          The bottleneck of learning is no longer access — it's <em>encoding, retention, and transfer</em>: three problems at once.
         </p>
         <p class="font-serif text-paper-50 text-xl">
           Fluera is built for those three.
@@ -162,7 +130,7 @@ const platforms = [
       <div class="max-w-3xl mb-20">
         <p class="eyebrow mb-6 text-accent-glow">Four cognitive differentiators</p>
         <h2 class="font-serif text-display-xl text-paper-50">
-          Four ways Fluera makes you actually remember.
+          Four ways memory gets built.
         </h2>
       </div>
 
@@ -193,18 +161,18 @@ const platforms = [
           status="beta"
         />
         <PillarFeature
-          label="Time Travel · Step 5+"
-          title="Replay any stroke synced to the lecture audio."
-          description="Touch a note from three weeks ago. The lecture audio picks up exactly where your pen was moving. Re-experience your own thinking. The notebook becomes a time machine for context."
-          citation="Cue-dependent retrieval — Tulving, 1972."
-          href="/beta"
-          status="coming-soon"
+          label="Exam Session · Step 11"
+          title="Simulated exams from your own canvas — graded by Ghost Map."
+          description="Confidence picker one to five before each question. Closed-book. After you submit, Fluera overlays your answer against the ideal and applies hypercorrection where you were most overconfident. The bigger the surprise, the harder it sticks."
+          citation="Hypercorrection — Butterfield & Metcalfe, 2001 · Productive failure — Kapur, 2008."
+          href="/features/exam-session"
+          status="beta"
           reverse
         />
       </div>
 
       <div class="mt-24 max-w-3xl">
-        <a href="/beta" class="btn-primary">See it all in the beta →</a>
+        <a href="/beta" class="btn-primary">Try the four pillars →</a>
       </div>
     </div>
   </section>
@@ -257,8 +225,11 @@ const platforms = [
 
       <div class="mt-12 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] max-w-2xl">
         <h3 class="font-serif text-lg text-paper-50 mb-2">What we don't claim</h3>
-        <p class="text-sm text-paper-300 leading-relaxed">
+        <p class="text-sm text-paper-300 leading-relaxed mb-3">
           We cite five decades of memory research. We have not run our own randomized trials on Fluera itself — not yet. When we say "evidence-based," we mean the underlying principles are; our specific implementation is an engineering bet informed by the evidence.
+        </p>
+        <p class="text-sm text-paper-300 leading-relaxed">
+          We also don't promise expertise. Meta-analyses (Macnamara, Hambrick &amp; Moreau, 2014) found that deliberate practice accounts for roughly 4% of the variance in educational performance — the rest is prior knowledge, motivation, working memory capacity, and opportunity. Fluera optimizes the practice loop. The hours, the focus, and the curiosity are still yours.
         </p>
       </div>
     </div>
@@ -299,7 +270,7 @@ const platforms = [
       <div class="max-w-3xl mb-14">
         <p class="eyebrow mb-6 text-accent-glow">Your mind, your data</p>
         <h2 class="font-serif text-display-xl text-paper-50 mb-6">
-          Your notebook belongs to you.<br />Even from us.
+          End-to-end encrypted.<br />You hold the key.
         </h2>
       </div>
 
@@ -338,7 +309,7 @@ const platforms = [
       <div class="max-w-3xl mb-14">
         <p class="eyebrow mb-6 text-accent-glow">Pricing</p>
         <h2 class="font-serif text-display-xl text-paper-50 mb-6">
-          Free to learn. Pro to go deeper.
+          Free to learn. Plus and Pro to go deeper.
         </h2>
       </div>
 
@@ -349,24 +320,24 @@ const platforms = [
           <p class="text-sm text-paper-300">The full canvas. Three notebooks. Forever free.</p>
         </div>
         <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
-          <h3 class="eyebrow text-paper-50 mb-3">Student</h3>
-          <p class="font-serif text-2xl text-paper-50 mb-2">~€4/mo</p>
-          <p class="text-sm text-paper-300">Everything in Fluera, half the price, verified .edu.</p>
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5.99<span class="text-sm font-sans text-paper-300">/mo</span></p>
+          <p class="text-sm text-paper-300">Unlimited canvas, 2-device sync, baseline AI. €49/year.</p>
         </div>
         <div class="card p-6">
           <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
-          <p class="font-serif text-2xl text-paper-50 mb-2">~€9/mo</p>
-          <p class="text-sm text-paper-300">Unlimited notebooks, full AI suite, sync across all six platforms.</p>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11.99<span class="text-sm font-sans text-paper-300">/mo</span></p>
+          <p class="text-sm text-paper-300">Exam Session, Atlas, full AI suite, unlimited sync. €99/year.</p>
         </div>
         <div class="card p-6">
-          <h3 class="eyebrow text-paper-50 mb-3">Education</h3>
-          <p class="font-serif text-2xl text-paper-50 mb-2">Custom</p>
-          <p class="text-sm text-paper-300">Campus-wide license, faculty training, audit log, SSO.</p>
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19.99<span class="text-sm font-sans text-paper-300">/seat</span></p>
+          <p class="text-sm text-paper-300">Shared canvases, team Atlas, ACL, audit log. 5+ seats.</p>
         </div>
       </div>
 
       <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
-        Built by two people in Italy. Prices may evolve as we grow — whoever joins now keeps their tier rate for life.
+        Verified students get Plus or Pro at 50% off through our pilot program. Whoever subscribes now locks the rate for the lifetime of the subscription.
       </p>
 
       <div class="mt-8">
@@ -377,15 +348,15 @@ const platforms = [
 
   <!-- ═══════════ 10 · BETA CTA ═══════════ -->
   <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
-    <div class="glow-orb h-[400px] w-[400px] top-0 left-1/2 -translate-x-1/2 bg-accent-ink/20 animate-orb-pulse"></div>
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
 
     <div class="container-narrow relative text-center">
       <p class="eyebrow mb-6 text-accent-glow">Join us</p>
       <h2 class="font-serif text-display-xl text-paper-50 mb-8">
-        We're in private beta.<br />Slow on purpose.
+        Private beta.<br />Onboarding by cohort.
       </h2>
       <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
-        We let learners in a few hundred at a time so we can listen to every one. If you're tired of apps that promise to learn for you, write to us.
+        We onboard by cohort so every team — students, knowledge workers, faculty — gets a real conversation, not a queue ticket. If you're tired of apps that promise to learn for you, request access.
       </p>
       <a href="/beta" class="btn-primary text-base px-6 py-3.5">
         Request access →
@@ -393,25 +364,5 @@ const platforms = [
     </div>
   </section>
 
-  <!-- ═══════════ 11 · ENGINE TEASER ═══════════ -->
-  <section id="engine-teaser" class="section-tight border-t border-white/[0.04] bg-ink-900/40">
-    <div class="container-site">
-      <div class="grid md:grid-cols-3 gap-8 items-start">
-        <div>
-          <p class="eyebrow mb-4 text-accent-glow">For developers</p>
-          <h2 class="font-serif text-2xl text-paper-50">Building something that needs ink? Use our engine.</h2>
-        </div>
-        <div class="md:col-span-2">
-          <p class="prose-ink mb-5">
-            Fluera runs on <code class="font-mono text-sm text-accent-glow">fluera_canvas</code> — a 2D rendering engine for Flutter with pressure-sensitive input, scene graph, and GPU rendering across six platforms. Available as an SDK for builders of creative tools.
-          </p>
-          <div class="flex flex-wrap gap-4 items-center">
-            <a href="https://engine.fluera.dev/" target="_blank" rel="noopener" class="btn-secondary">Explore the engine →</a>
-            <a href={SITE.social.github} class="btn-ghost" rel="noopener">View on GitHub</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
 </BaseLayout>

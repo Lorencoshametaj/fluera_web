@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const pillars = [
+  {
+    title: "Szyfrowanie",
+    body: "Każdy notatnik Fluery jest szyfrowany w spoczynku za pomocą AES-256 przez SQLCipher. Ruch w tranzycie ma TLS 1.3. Synchronizacja między Twoimi urządzeniami jest szyfrowana end-to-end kluczami pochodzącymi z Twojego hasła — przechowywanymi w pęku kluczy Twojej platformy, nigdy wysłanymi na nasze serwery.",
+  },
+  {
+    title: "Własność danych",
+    body: "Każdy bajt, który napiszesz, można wyeksportować jednym kliknięciem: PNG, JPEG, WebP, SVG, PDF i nasz otwarty format .fluera. Twoje notatniki najpierw mieszkają na Twoim urządzeniu. Chmura jest udogodnieniem, nie więzieniem — lock-in to model biznesowy, przeciwko któremu się opowiedzieliśmy.",
+  },
+  {
+    title: "GDPR-native",
+    body: "Fluera jest hostowana w UE i GDPR-native. Umowa o przetwarzaniu danych dostępna na żądanie dla każdej instytucji edukacyjnej. Pełny eksport danych i prawo do bycia zapomnianym honorowane w ciągu 30 dni (zwykle w ciągu 48 godzin).",
+  },
+  {
+    title: "Local-first, zawsze",
+    body: "Możesz uruchomić Fluerę całkowicie offline. Synchronizacja jest opt-in dla notatnika, nie dla całego konta. Jeśli wyłączysz synchronizację, Twoje dane nie opuszczają urządzenia — łącznie z opartą na zgodzie i anonimową telemetrią.",
+  },
+  {
+    title: "Dziennik audytu (Edukacja)",
+    body: "Dla kont edukacyjnych każdy dostęp do współdzielonych notatników jest rejestrowany w niezmiennym śladzie audytowym, eksportowalnym do przeglądów zgodności. Administratorzy mogą wymuszać SSO (SAML, OIDC) i wdrożenia zarządzane przez MDM.",
+  },
+  {
+    title: "Czego nie robimy",
+    body: "Nie wyświetlamy reklam. Nie sprzedajemy danych. Nie trenujemy naszych modeli na Twoich treściach. Nie śledzimy Cię w sieci. Nie przekazujemy danych stronom trzecim poza wymienionymi podwykonawcami (Supabase, Vercel, Stripe) — wszyscy w ramach DPA.",
+  },
+];
+---
+
+<BaseLayout
+  title="Bezpieczeństwo i prywatność"
+  description="Szyfrowanie AES-256 w spoczynku, GDPR-native, hosting w UE, zero ad-tech. Przeczytaj pełną architekturę bezpieczeństwa Fluery i zobowiązanie własności danych."
+  locale="pl"
+>
+  <PageHero
+    kicker="Bezpieczeństwo i prywatność"
+    title="Szyfrowanie end-to-end.<br />Klucz zostaje u Ciebie."
+    titleSize="2xl"
+    description="Szyfrowanie domyślnie. Brak ad-tech. Hosting w UE. Pełny eksport. Prywatność jest ograniczeniem projektowym, a nie zadaniem zgodności."
+    orbs
+    noise
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {pillars.map((p, i) => (
+          <article class="card p-8">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
+            <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Odpowiedzialne ujawnianie</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Coś znalazłeś?</h2>
+          <p class="prose-ink mb-6">
+            Badacze bezpieczeństwa są tu mile widziani. Zgłoś podatność na
+            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
+            Potwierdzamy w ciągu 24 godzin, łatamy krytyczne problemy w ciągu 72 i wyróżniamy zgłaszających w naszej hall of fame, chyba że wolisz pozostać anonimowy.
+          </p>
+          <p class="text-sm text-ink-500 italic">
+            Klucz PGP do zaszyfrowanych zgłoszeń jest opublikowany na naszym GitHubie.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Zgodność i wdrożenie</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Wdrażasz Fluerę w swojej instytucji?</h2>
+          <p class="prose-ink mb-6">
+            Uniwersytety, szkoły i laboratoria badawcze: opowiadamy o naszym DPA, liście podwykonawców, konfiguracji SSO i modelu dziennika audytu. Pilotaże zwykle zaczynają się od jednej klasy, jednego semestru, bez opłat.
+          </p>
+          <a href="/pl/contact" class="btn-primary">Porozmawiaj o wdrożeniu →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Ta strona obejmuje podstawy. Pełna architektura, rejestr podwykonawców i szablon DPA mieszkają na
+        <a href="/pl/security/architecture" class="text-paper-300 underline">/pl/security/architecture</a> i
+        <a href="/pl/security/sub-processors" class="text-paper-300 underline">/pl/security/sub-processors</a>. Konkretne pytania o zgodność?
+        Napisz na <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

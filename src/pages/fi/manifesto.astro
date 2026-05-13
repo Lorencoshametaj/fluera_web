@@ -1,0 +1,155 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Manifesti — Oppimissovelluksen rakentaminen vuonna 2026"
+  description="Pitkä selitys siitä, mikä Fluera on, mitä Fluera kieltäytyy olemasta, ja miksi ilmeinen tuote oli väärä."
+  locale="fi"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Manifesti</p>
+      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">Oppimistila, joka on rakennettu sille, miten mieli toimii.</h1>
+      <p class="prose-ink text-xl italic">
+        Pitkä selitys siitä, mikä Fluera on, mitä Fluera kieltäytyy olemasta, ja miksi ilmeinen tuote oli väärä.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-16 md:py-20">
+    <div class="container-prose prose-v2 prose-v2-essay">
+
+      <h2>Lähtökohta</h2>
+      <p>
+        Vuonna 2026 jokainen fakta on kolmen sekunnin päässä. Jokaisen selityksen voi generoida uudestaan haluamassasi tyylissä. Tiedon saatavuuden rajakustannus on ensimmäistä kertaa lajimme historiassa pudonnut käytännössä nollaan.
+      </p>
+      <p>
+        Silti oppijat — opiskelijat, ammattilaiset, uteliaat aikuiset — kertovat tuntevansa itsensä vähemmän osaaviksi kuluttamassaan sisällössä kuin kymmenen vuotta sitten. Ei siksi, että sisältö olisi vaikeampaa. Vaan siksi, että kuluttaminen on muuttunut kitkattomaksi, ja kitkaton kuluttaminen ei jätä jälkeä.
+      </p>
+      <p>
+        Oppimisen pullonkaula on siirtynyt. Pitkään se oli pääsy. Minun sukupolveni kohdalla se oli haku. Vuonna 2026 se on jokin muu, vaikeammin nimettävä: <em>sujuvan tunnistamisen muuntaminen pysyväksi osaamiseksi</em>. Tälle uudelle pullonkaulalle emme ole vielä rakentaneet infrastruktuuria.
+      </p>
+
+      <h2>Mitä tiede sanoo</h2>
+      <p>
+        Viisikymmentä vuotta oppimisen kognitiotiedettä on lähestynyt pientä joukkoa tuloksia, joilla on epätavallinen ominaisuus olla samaan aikaan vastaintuitiivisia ja poikkeuksellisen vankkoja.
+      </p>
+      <p>
+        Ebbinghaus osoitti vuonna 1885, että unohtamiskäyrä on eksponentiaalinen ja että jaksotettu kertaaminen nollaa sen. Slamecka ja Graf osoittivat vuonna 1978, että itse tuotettu tieto muistetaan rajattomasti paremmin kuin sama tieto passiivisesti luettuna. Bjork dokumentoi neljän vuosikymmenen ajan, että ne olosuhteet, jotka tuntuvat helpoimmilta oppimisen aikana, ovat lähes täsmälleen samat olosuhteet, jotka tuottavat huonointa pitkäaikaismuistia — <em>desirable difficulties</em>, toivottujen vaikeuksien viitekehys. Butterfield ja Metcalfe osoittivat vuonna 2001, että suurella varmuudella tehdyt ja sitten korjatut virheet jättävät pysyvämpiä jälkiä kuin matalan varmuuden virheet — hyperkorjausvaikutus. Roediger ja Karpicke vakiinnuttivat vuonna 2006, että tentattavana oleminen ei ole muistin mittaamista, vaan teko, joka luo sitä.
+      </p>
+      <p>
+        Meta-analyysit ovat toistuvasti vahvistaneet nämä tulokset eri tieteenaloilla, ikäryhmissä ja kulttuureissa. Oppimisstrategioiden rankingissa todistusaineiston vahvuuden mukaan kärjessä on successive relearning — jaksotettu oppiminen yhdistettynä palauttamisharjoitteluun kasvavin välein. Uudelleenluku on lähellä pohjaa. Korostaminen on käytännössä hyödytöntä.
+      </p>
+      <p>
+        Käytännön seuraus on terävä: tavanomaiset oppimiskäyttäytymiset, jotka tuntuvat tuottavilta, ovat todisteiden mukaan vähiten tuottavia. Ja käyttäytymiset, jotka tuottavat parhaita tuloksia, tuntuvat hetkessä vaikeammilta, hitaammilta ja vähemmän tyydyttäviltä.
+      </p>
+      <p>
+        Tämä ei ole metodologinen yksityiskohta. Se on tärkein asia, jonka oppimisesta voi ymmärtää, ja se puuttuu lähes täysin jokaisen markkinoilla olevan oppimistyökalun suunnittelusta.
+      </p>
+
+      <h2>Mitä LLM:t rikkoivat</h2>
+      <p>
+        Suurten kielimallien saapuminen ei muuttanut yhtäkään yllä olevista tuloksista. Se muutti tekstuurin, jolla oppijat niitä kohtaavat.
+      </p>
+      <p>
+        LLM, joka vastaa kolmessa sekunnissa pyytämässäsi tyylissä täydellisen sujuvalla kielellä, laukaisee täsmälleen sen kuvion, jolta tiede varoittaa. Tunnistaminen sekoittuu enkoodaukseen. Järjestelmän 1 varmuus ilman järjestelmän 2 sitoutumista. Automaatiovinouma, vahvistettuna ulosannin pinnallisella sujuvuudella. Osaamisen illuusio planetaarisessa mittakaavassa.
+      </p>
+      <p>
+        Kognitiotieteilijät, jotka olivat neljäkymmentä vuotta varoittaneet korostuskynästä, löysivät yhtäkkiä vakavamman vastustajan: työkalun, joka on niin hyvä saamaan väärät asiat näyttämään oikeilta, että jopa heillä oli omassa oppimisessaan vaikeuksia vastustaa.
+      </p>
+      <p>
+        Pahempaa: LLM-rajapinnan oletuskuvio — <em>kysy, saa sujuva vastaus, hyväksy, jatka</em> — on lähes täydellisesti suunniteltu ohittamaan palauttamisharjoittelu, tuottamisvaikutus ja toivotut vaikeudet, joita pysyvä muisti vaatii. Käyttöliittymä palkitsee passiivisuutta. Taustalla oleva malli vahvistaa sitä. Tuloksena syntyvä oppija tuntee saaneensa opetusta, mutta ei ole saanut.
+      </p>
+
+      <h2>Centaur-lähtökohta</h2>
+      <p>
+        Sen jälkeen kun Deep Blue voitti Kasparovin vuonna 1997, maailma oletti hetken aikaa, että šakki oli ohi — koneet olivat voittaneet, ihmisen vaivannäkö oli vanhentunut. Sitten Kasparov itse ehdotti omituisempaa havaintoa: maailman vahvin šakinpelaaja ei ole ihminen eikä kone. Se on ihminen <em>koneen kanssa</em> jäsennellyssä symbioosissa. Hän kutsui sitä <em>Centaur</em>iksi.
+      </p>
+      <p>
+        Intuitio yleistyy paljon šakin ulkopuolelle. Jokaisella alueella, jolla inhimillinen arviointikyky on välttämätön — strategia, konteksti, arvot, maku, merkityksen syvyys — voittava kuvio ei ole ihminen vastaan tekoäly eikä ihminen tekoälyn korvaamana. Se on ihminen tekoälyn vahvistamana, jossa ihminen pitää kiinni kognitiivisesta työstä, joka tuottaa kasvua.
+      </p>
+      <p>
+        Oppimiseen sovellettuna Centaur-kuvio kääntää vuoden 2026 yleisen käytön päinvastaiseksi. Nykypäivän oletus — <em>kysy LLM:ltä, lue vastaus, jatka</em> — on anti-Centaur. Ihminen ulkoistaa juuri sen kognitiivisen toiminnan, joka tuottaa muistia ja ymmärrystä.
+      </p>
+      <p>
+        Centaur-variantti on päinvastainen. Tekoäly kysyy vastaamisen sijaan. Se tarkistaa sen sijaan, että tarjoutuisi. Se rakentaa tukirakenteita sen sijaan, että ratkaisisi. Ihminen tekee palauttamisen, tuottamisen, tilallisen sijoittamisen, käsinkirjoitetun enkoodauksen. Tekoäly tuo tiedon leveyden, reaaliaikaisen kalibroinnin ja sokraattiset herätteet, joita hyvä tutor antaisi, jos sellaiseen olisi varaa.
+      </p>
+
+      <h2>Mitä Fluera on</h2>
+      <p>
+        Fluera on Centaur, rakennettu oppimistyökaluna.
+      </p>
+      <p>
+        Canvas on ääretön, tyhjä, käsin tehty. Jokainen sille sijoittamasi käsite syntyy kättesi kautta — parafrasoituna, tiivistettynä, tilaan sijoitettuna. Tyhjyys on tarkoituksellinen. Mallipohjat ohittaisivat tuottamisvaiheen.
+      </p>
+      <p>
+        Tekoäly kuulustelee canvasta. Se esittää kysymyksiä, jotka on kalibroitu nykyisen tietämyksesi tilaan, lähikehityksen vyöhykkeellä — liian helppo ei opeta mitään, liian vaikea ei mahdollista oppimista. Ennen jokaista paljastusta Fluera kysyy varmuuttasi asteikolla yhdestä viiteen. Tämä ei ole käyttöliittymäkoristelua. Se laukaisee hyperkorjausvaikutuksen: väärä vastaus varmuudella 5, kerran korjattuna, jättää paljon syvemmän jäljen kuin mikä tahansa määrä passiivista uudelleenlukua.
+      </p>
+      <p>
+        Ghost Map — ominaisuus, joka ilmaisee Centaur-kuvion puhtaimmin — peittää ihanteellisen rekonstruktion omasi päälle. Erot pulssaavat visuaalisesti. Korjaat kirjoittamalla, et klikkaamalla. Mitä enemmän olit pielessä, sitä pysyvämpi korjaus.
+      </p>
+      <p>
+        Fog of War, tenttiin valmistautumiseen, piilottaa canvasin alueita ja vaatii palauttamista ennen paljastusta. Ensimmäinen istunto on turhauttava. Juuri se on pointti. Palauttaminen peiton alta on tehokkain oppimisaktiviteetti, jonka kognitiotieteen kirjallisuus on dokumentoinut, ja turhautuminen on mekanismi.
+      </p>
+      <p>
+        Jaksottaisen kertauksen ajastin suunnittelee paluut kasvavin välein, pedagogisten muuntimien — hyperkorjausbonus, peek-malus, vastausaikasignaali — kanssa, päällekkäin henkilökohtaisen FSRS-mallin kanssa, joka on kalibroitu todelliseen kertaushistoriaasi. Se toimii canvasin kanssa, joka sinulla jo on, ei rinnakkaisuniversumin muistikorttien kanssa, jotka pitäisi ensin rakentaa.
+      </p>
+      <p>
+        Time Travel pitää luennon äänen synkronissa jokaisen käsialakaareasi kanssa, joten viikkoja myöhemmin voit napauttaa muistiinpanoa ja kuulla hetken, jolloin kirjoitit sen. Konteksti-riippuvainen palauttaminen kertoo, että palauttamis- ja enkoodauskontekstin yhteensopivuus vahvistaa muistia. Time Travel on tämä periaate kirjaimellisesti toteutettuna.
+      </p>
+
+      <h2>Mitä Fluera kieltäytyy olemasta</h2>
+      <p>
+        On neljä asiaa, joita Fluera ei tee, suunnilleen laskevassa kiusausjärjestyksessä.
+      </p>
+      <p>
+        <strong>Meillä ei ole tekoälyä, joka vastaa tenteistäsi puolestasi.</strong> Välittömän käyttäjätyytyväisyyden voitto olisi valtava. Pitkän aikavälin lopputulos — niiden kognitiivisten lihasten surkastuminen, joita työkalun pitäisi vahvistaa — olisi petos ilmoitetulle tavoitteelle. Tekoäly, joka tekee työn puolestasi, on tekoäly, joka ei opeta sinulle mitään.
+      </p>
+      <p>
+        <strong>Emme myy muistikirjojesi dataa.</strong> Jokainen muistikirja on lepotilassa AES-256-salattu. Synkronointi on, jos käytössä, päästä päähän salattu. Emme kouluta mallejamme sisällölläsi. Käsialasi, ajattelusi, virheesi ja kasvusi kuuluvat sinulle. Se että "datasi on tuote" on EdTechin oletus vuonna 2026 ei tee siitä siedettävää.
+      </p>
+      <p>
+        <strong>Meillä ei ole engagement-silmukoita, mainoksia eikä streakeja.</strong> Vahvin signaali, jota voisimme optimoida — päivittäiset aktiiviset käyttäjät, istunnon kesto, ilmoitusten klikkaus — on myös se, joka todennäköisimmin turmelee tuotteen. Suhteesi oppimiseen ei pitäisi riippua push-ilmoituksesta. Toivomme mieluummin, että käytät Flueraa vähemmän ja opit enemmän.
+      </p>
+      <p>
+        <strong>Emme julkaise ominaisuuksia, joita emme voi puolustaa lähteellä.</strong> Joko ominaisuus viittaa julkaistuun tulokseen, johdonmukaiseen beta-palautteeseen, tai se ei mene tuotantoon. Uutuus ei ole ominaisuus. Olemme sanoneet ei useammalle idealle kuin olemme rakentaneet, ja suhde on tuote.
+      </p>
+
+      <h2>Kenelle rakennamme</h2>
+      <p>
+        Fluera ei ole kaikille. Kitka on todellista. Suunnittelupäätökset ovat käänteisiä ilmeiseen tuotteeseen nähden. Ensimmäisen istunnon poistuma on korkeampi kuin haluaisimme, emmekä korjaa sitä poistamalla kitkaa — sillä kitka on se, mikä saa tuotteen toimimaan.
+      </p>
+      <p>
+        Rakennamme tietylle kohortille. Lääketieteen opiskelijat, jotka valmistautuvat suullisiin tentteihin, joita kukaan ei teeskentele. Tohtorikoulutettavat aloilla, joilla tyhjä sujuvuus saa rangaistuksen lautakunnalta. Ammattilaiset, jotka valmistautuvat valtion tentteihin. Itseoppineet ja keski-uran ammattilaiset, jotka huomaavat että kaikki minkä he delegoivat ChatGPT:lle haihtuu seuraavalla viikolla. Yliopisto-opiskelijat käsitteellisesti tiheissä aineissa, jotka ovat huomanneet, että korostuskynät tuottavat sujuvuutta, eivät osaamista.
+      </p>
+      <p>
+        Jos kuulut tähän kohorttiin, uskomme että tunnet eron nopeasti. Jos et, se on okei — on muita tuotteita muille ongelmille, emmekä teeskentele että Fluera olisi universaali.
+      </p>
+
+      <h2>Mihin lyömme vetoa</h2>
+      <p>
+        Veto on, että alalla, jolla jokainen kilpailija on antanut periksi välittömälle käyttäjämieltymykselle ja rakentanut työkaluja, jotka tuntuvat hyviltä ja opettavat lähes mitään, on tilaa työkalulle, joka tuntuu huonommalta ja opettaa paremmin. Markkina on pienempi kuin se, mitä EdTech-suurfirmat komentavat. Kulttuurinen sovitus ajankohtaan on vaikeampi. Tuote on hitaampi rakentaa.
+      </p>
+      <p>
+        Vastineeksi: todellinen mahdollisuus rakentaa jotain, mikä pitää lupauksensa. Todellinen mahdollisuus auttaa todellista oppijoiden kohorttia tuottamaan pysyvää osaamista vuosikymmenellä, joka on tehnyt pysyvyydestä harvinaista. Ja todellinen mahdollisuus kirjata, että vuonna 2026 oli toinen tapa rakentaa tämä tuote — erilainen kuin ilmeinen.
+      </p>
+      <p>
+        Se on tuote. Se on tiimi. Se on sitoumus.
+      </p>
+      <p>
+        Jos jokin tästä resonoi — beta on auki osoitteessa <a href="/beta">/beta</a>, ja haluaisimme tutustua.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Liity betaan →</a>
+        <a href="/fi/science" class="btn-secondary">Lue tiede</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

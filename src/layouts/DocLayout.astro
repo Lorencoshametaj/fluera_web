@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import DocSidebar, { type DocSection } from "@/components/DocSidebar.astro";
+import type { Locale } from "@/lib/i18n";
 
 export interface Props {
   title: string;
@@ -11,6 +12,7 @@ export interface Props {
   sectionLabel?: string;
   updatedAt?: Date;
   noIndex?: boolean;
+  locale?: Locale;
 }
 
 const {
@@ -22,10 +24,59 @@ const {
   sectionLabel,
   updatedAt,
   noIndex = false,
+  locale,
 } = Astro.props;
+
+const DATE_FORMAT: Partial<Record<Locale, string>> = {
+  en: "en-GB",
+  it: "it-IT",
+  es: "es-ES",
+  "pt-br": "pt-BR",
+  fr: "fr-FR",
+  de: "de-DE",
+  ja: "ja-JP",
+  nl: "nl-NL",
+  sv: "sv-SE",
+  da: "da-DK",
+  no: "nb-NO",
+  fi: "fi-FI",
+};
+const UPDATED_LABEL: Partial<Record<Locale, string>> = {
+  en: "Updated",
+  it: "Aggiornato il",
+  es: "Actualizado",
+  "pt-br": "Atualizado em",
+  fr: "Mis à jour",
+  de: "Aktualisiert",
+  ja: "更新日",
+  nl: "Bijgewerkt",
+  sv: "Uppdaterad",
+  da: "Opdateret",
+  no: "Oppdatert",
+  fi: "Päivitetty",
+};
+const BROWSE_LABEL: Partial<Record<Locale, string>> = {
+  en: "Browse",
+  it: "Sfoglia",
+  es: "Explorar",
+  "pt-br": "Navegar",
+  fr: "Parcourir",
+  de: "Durchsuchen",
+  ja: "閲覧",
+  nl: "Bladeren",
+  sv: "Bläddra",
+  da: "Gennemse",
+  no: "Bla gjennom",
+  fi: "Selaa",
+};
+
+const activeLocale: Locale = locale ?? "en";
+const dateFormat = DATE_FORMAT[activeLocale] ?? "en-GB";
+const updatedLabel = UPDATED_LABEL[activeLocale] ?? "Updated";
+const browseLabel = BROWSE_LABEL[activeLocale] ?? "Browse";
 ---
 
-<BaseLayout title={title} description={description} noIndex={noIndex}>
+<BaseLayout title={title} description={description} noIndex={noIndex} locale={locale}>
   <!-- Mobile nav toggle -->
   <div class="md:hidden sticky top-16 z-30 border-b border-white/[0.06] bg-ink-950/85 backdrop-blur-xl">
     <button
@@ -39,7 +90,7 @@ const {
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
         </svg>
-        Browse {rootLabel.toLowerCase()}
+        {browseLabel} {rootLabel.toLowerCase()}
       </span>
       <span id="docs-sidebar-chev" class="text-ink-500 transition-transform">▾</span>
     </button>
@@ -65,7 +116,7 @@ const {
           <p class="prose-ink text-lg max-w-prose">{description}</p>
           {updatedAt && (
             <p class="mt-4 text-xs font-mono uppercase tracking-widest text-ink-500">
-              Updated {updatedAt.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}
+              {updatedLabel} {updatedAt.toLocaleDateString(dateFormat, { year: "numeric", month: "long", day: "numeric" })}
             </p>
           )}
         </header>

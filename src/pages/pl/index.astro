@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+import home from "@/data/home/pl";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "Nieskończona kanwa do nauki zbudowane na nauce poznawczej uczenia się.",
+  url: `${SITE.url}/pl/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const { steps, authors, platforms } = home;
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="Nieskończona kanwa do nauki zbudowane na nauce poznawczej uczenia się. iOS, Android, macOS, Windows, Linux, Web."
+  jsonLd={jsonLd}
+  locale="pl"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          Prywatna beta · tylko za zaproszeniem
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          Przestrzeń do nauki<br />stworzona z myślą o tym,<br /><span class="text-gradient">jak działa pamięć.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          Pisz ręcznie na nieskończonej kanwie. Pozwól AI zadawać pytania zamiast odpowiadać. Z czasem wracaj do własnego toku myślenia. Wszystko dopasowane do tego, jak naprawdę powstaje pamięć.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            Dołącz do bety
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            Wypróbuj demo na żywo
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>Szyfrowanie end-to-end</span><span class="text-ink-600">·</span>
+          <span>GDPR-native</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">Wąskie gardło</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Możesz zapytać o wszystko.<br />Ale odpowiedź nie zostaje w głowie.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          W 2026 roku wiedza jest przywoływana w trzy sekundy i zapominana w trzy tygodnie. Jest dziesięć aplikacji do robienia notatek i ani jednej do <em>zatrzymania</em> tego, czego się nauczyło.
+        </p>
+        <p>
+          Podświetlanie wygląda jak nauka. Ponowne czytanie wygląda jak nauka. Pytanie LLM o streszczenie wygląda jak nauka. Żadne z nich nią nie jest — nauka poznawcza jest w tej kwestii jasna od lat 70.
+        </p>
+        <p>
+          Wąskim gardłem nauki nie jest już dostęp — to <em>kodowanie, retencja i transfer</em>: trzy problemy naraz.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera została zbudowana dla wszystkich trzech.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Metoda</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Jedna kanwa.<br />Dwanaście ruchów poznawczych.<br />Cykl, dzięki któremu Twój mózg się uczy.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Każda funkcja Fluery mieści się w jednym kroku cyklu, a każdy krok jest zakorzeniony w opublikowanych badaniach. Pomiń jeden, a łańcuch się zerwie. Przejdź przez wszystkie, a notatnik stanie się trwały.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">Cztery wyróżniki poznawcze</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          Cztery sposoby, w jakie powstaje pamięć.
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map · Krok 4"
+          title="Zobacz odległość między tym, co zapisujesz, a tym, co było prawidłowe."
+          description="Po próbie wydobycia Fluera nakłada Twoją pracę na idealne rozwiązanie. Niezgodności pulsują. Nie zawstydzają — budzą pamięć. Im większa pomyłka, tym mocniej trzyma się korekta."
+          citation="Efekt hiperkorekcji — Butterfield i Metcalfe, 2001."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode · Krok 3"
+          title="Nasze AI nie odpowiada. Pyta."
+          description="Przed każdym ujawnieniem oceń pewność od 1 do 5. Metakognicja to połowa sprawności, a kalibracja pewności jest sposobem na jej budowanie — jedno przewidywanie na raz."
+          citation="Monitoring metakognitywny — Flavell, 1979."
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War · Krok 10"
+          title="Tryb egzaminu, który ukrywa to, co prawie pamiętasz."
+          description="Zasłoń dowolny obszar kanwy. Wydobądź z pamięci przed odsłonięciem. Walka wydobywania — nie ponowne patrzenie — to miejsce, gdzie pamięć twardnieje."
+          citation="Pożądane trudności — Bjork, 1994."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Exam Session · Krok 11"
+          title="Symulowane egzaminy z Twojej kanwy — oceniane przez Ghost Map."
+          description="Wybór pewności od 1 do 5 przed każdym pytaniem. Książka zamknięta. Po wysłaniu Fluera nakłada Twoją odpowiedź na idealną i stosuje hiperkorekcję tam, gdzie pewność była największa, a odpowiedź najbardziej błędna."
+          citation="Hiperkorekcja — Butterfield i Metcalfe, 2001 · Produktywna porażka — Kapur, 2008."
+          href="/pl/features/exam-session"
+          status="beta"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">Wypróbuj w becie →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">Pióro, nie klawiatura</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            Pisanie na klawiaturze jest szybsze.<br />Pisanie ręczne jest lepsze.<br />Mózg nie jest zoptymalizowany pod kątem prędkości.
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller i Oppenheimer, Princeton 2014 · van der Meer, NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            Gdy Mueller i Oppenheimer przeprowadzili w 2014 roku swoje słynne badanie w Princeton, odkryli, że studenci robiący notatki ręcznie pokonali użytkowników laptopów w pytaniach pojęciowych — <em>mimo że</em> użytkownicy laptopów napisali znacznie więcej słów. Ręka była wolniejsza. Umysł był głębszy.
+          </p>
+          <p>
+            Dekadę później praca EEG Audrey van der Meer w NTNU (2020) dała nam <em>dlaczego</em>: pisanie ręczne aktywuje szersze sieci mózgowe niż pisanie na klawiaturze, szczególnie obszary związane z formowaniem pamięci i integracją sensoryczno-ruchową. Pióro jest narzędziem poznawczym.
+          </p>
+          <p>
+            Fluera jest zbudowana wokół tego odkrycia. 13 pędzli z fizyką nacisku. Nacisk, nachylenie, prędkość. Opóźnienie kreski poniżej 15 milisekund na każdym wspieranym urządzeniu. Nieskończona kanwa nie jest estetyką — to substrat, o który prosi Twoja pamięć.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Fundament naukowy</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Na ramionach gigantów — wskazanych z imienia.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Każda decyzja projektowa odsyła do publikacji, do której potrafimy podać link. Poniżej dwanaście z tych umysłów. Pełna bibliografia znajduje się w publicznym archiwum.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Sześć platform, jedno pióro</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Sześć platform. Jedno pióro. Jeden mózg.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Natywne renderery na Vulkan, Metal, OpenGL, Direct3D 11 i WebGPU. Twój notatnik synchronizuje się z szyfrowaniem end-to-end lub pozostaje offline. Twoja decyzja.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        Etykiety statusu są szczere co do gotowości do wydania. Platformy oznaczone „alpha" lub „demo" działają, ale wymagają dopracowania — dołącz do bety, jeśli chcesz pomóc je ukształtować.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Twój mózg, Twoje dane</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Szyfrowanie end-to-end.<br />Klucz zostaje u Ciebie.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">AES-256 w spoczynku</h3>
+          <p class="text-sm text-paper-300">Szyfrowanie SQLCipher na każdym urządzeniu. Twojej lokalnej bazy nie da się odczytać bez Twojego klucza.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">GDPR-native</h3>
+          <p class="text-sm text-paper-300">Hosting w UE, dostępna umowa o przetwarzaniu danych, pełny eksport i usunięcie na żądanie.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Zero ad-tech</h3>
+          <p class="text-sm text-paper-300">Brak pikseli śledzących. Brak reklam behawioralnych. Nie trenujemy naszych modeli na Twoich treściach.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Dziennik audytu</h3>
+          <p class="text-sm text-paper-300">Dla kont edukacyjnych każdy dostęp jest rejestrowany w niezmiennym śladzie audytowym.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">Przeczytaj architekturę bezpieczeństwa →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Cennik</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Darmowe, by się uczyć. Plus i Pro, by pójść głębiej.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">Pełna kanwa. Trzy notatniki. Darmowe na zawsze.</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5,99<span class="text-sm font-sans text-paper-300">/mies.</span></p>
+          <p class="text-sm text-paper-300">Nieograniczona kanwa, sync 2 urządzeń, podstawowe AI. €49/rok.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11,99<span class="text-sm font-sans text-paper-300">/mies.</span></p>
+          <p class="text-sm text-paper-300">Exam Session, Atlas, pełny pakiet AI, nielimitowany sync. €99/rok.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19,99<span class="text-sm font-sans text-paper-300">/stanowisko</span></p>
+          <p class="text-sm text-paper-300">Wspólne kanwy, team Atlas, ACL, dziennik audytu. 5+ stanowisk.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        Zweryfikowani studenci otrzymują Plus lub Pro z 50% zniżki przez nasz program pilotażowy. Każdy, kto zarejestruje się teraz, zachowuje stawkę na czas trwania subskrypcji.
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">Zobacz pełny cennik →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">Dołącz do nas</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Prywatna beta.<br />Onboarding kohortowy.
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        Przyjmujemy nowe kohorty stopniowo, aby każda grupa — studenci, specjaliści, wykładowcy — otrzymała prawdziwą rozmowę zamiast numerka w kolejce. Jeśli masz dość aplikacji, które obiecują uczyć się za Ciebie, poproś o dostęp.
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        Poproś o dostęp →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft && data.lang === "hi"))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const categoryLabel: Record<string, string> = {
+  "cognitive-science": "संज्ञानात्मक विज्ञान",
+  "product": "उत्पाद",
+  "engineering": "इंजीनियरिंग",
+  "field-notes": "फील्ड नोट्स",
+};
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("hi-IN", { year: "numeric", month: "long", day: "numeric" });
+}
+---
+
+<BaseLayout
+  title="ब्लॉग"
+  description="अनुप्रयुक्त संज्ञानात्मक विज्ञान। उत्पाद नोट्स। इंजीनियरिंग विवरण। लिखने योग्य चीजें।"
+  locale="hi"
+>
+  <PageHero
+    kicker="ब्लॉग"
+    title="अनुप्रयुक्त संज्ञानात्मक विज्ञान।"
+    description="हम क्या बना रहे हैं और क्यों, इस पर नोट्स। कोई सूची लेख नहीं। कोई विचार नेतृत्व नहीं। पढ़ने योग्य काफी छोटा, कुछ कहने के लिए काफी लंबा।"
+  />
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-4xl">
+        {posts.map((p) => (
+          <li>
+            <a href={`/hi/blog/${p.id.replace(/\.hi$/, "")}`} class="block card p-6 md:p-8 hover:border-accent-glow/40 hover:bg-white/[0.04] transition-all">
+              <div class="flex items-center gap-3 mb-3 flex-wrap">
+                <span class="eyebrow text-accent-glow">{categoryLabel[p.data.category]}</span>
+                <span class="text-ink-600">·</span>
+                <span class="text-xs font-mono uppercase tracking-widest text-ink-500">{formatDate(p.data.publishedAt)}</span>
+              </div>
+              <h2 class="font-serif text-2xl md:text-3xl text-paper-50 mb-3 leading-tight">{p.data.title}</h2>
+              <p class="text-sm text-paper-300 leading-relaxed max-w-prose">{p.data.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {posts.length === 0 && (
+        <p class="mt-10 text-sm text-ink-500 italic max-w-prose">
+          अभी तक कोई हिंदी पोस्ट नहीं। मूल अंग्रेजी पोस्ट <a href="/blog" class="text-accent-glow underline">/blog</a> पर हैं।
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 mb-4 max-w-xl mx-auto">
+        लगभग हर दो सप्ताह में नई पोस्ट। सबसे महत्वपूर्ण के लिए, मासिक न्यूज़लेटर।
+      </p>
+      <a href="/hi/contact" class="btn-secondary">न्यूज़लेटर सदस्यता जल्द आ रही है</a>
+    </div>
+  </section>
+</BaseLayout>

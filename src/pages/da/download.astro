@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "Beta",  note: "TestFlight-invitation efter optagelse i betaen." },
+  { name: "macOS",        status: "Beta",  note: ".dmg-fil via privat link efter optagelse." },
+  { name: "Android",      status: "Alpha", note: "APK gennem Google Plays internal track." },
+  { name: "Windows",      status: "Alpha", note: "Signeret .exe-installer via Microsoft Store." },
+  { name: "Linux",        status: "Alpha", note: "AppImage + Flatpak." },
+  { name: "Web",          status: "Demo",  note: "Test nu på /demo — browser med WebGPU kræves." },
+];
+---
+
+<BaseLayout
+  title="Download"
+  description="Fluera kører nativt på iOS, Android, macOS, Windows, Linux og web. Kom med i closed beta for tidlig adgang."
+  locale="da"
+>
+  <PageHero
+    kicker="Download"
+    title="Seks platforme.<br />Kom med i betaen for adgang."
+    description="Fluera er i closed beta. Så snart du er inde, kommer installationslinkene på mail — native app på hver platform, ingen reduceret web-version."
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">Anmod om beta-adgang →</a>
+      <a href="/demo" class="btn-secondary">Test web-demoen</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        De offentlige releases i App Store og på Google Play kommer ved afslutningen af closed beta. Indtil da er status ovenfor ærlige om hver platforms modenhed — vi launcher hellere godt på én end dårligt på seks.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

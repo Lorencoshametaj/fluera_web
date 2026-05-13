@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const pillars = [
+  {
+    title: "Criptografia",
+    body: "Cada caderno do Fluera é criptografado em repouso com AES-256 via SQLCipher. O tráfego é TLS 1.3 em trânsito. A sincronização entre os seus dispositivos é criptografada ponta a ponta com chaves derivadas da sua passphrase — guardadas no keychain da plataforma, nunca enviadas aos nossos servidores.",
+  },
+  {
+    title: "Propriedade dos dados",
+    body: "Cada byte que você escreve é exportável com um clique: PNG, JPEG, WebP, SVG, PDF e o nosso formato aberto .fluera. Seus cadernos vivem antes nos seus dispositivos. A nuvem é uma conveniência, não uma prisão — o lock-in é um modelo de negócio que escolhemos rejeitar.",
+  },
+  {
+    title: "GDPR por padrão",
+    body: "Fluera é hospedada em servidores na Europa e desenhada sobre os princípios do GDPR. Um Data Processing Agreement está disponível sob solicitação para qualquer instituição educacional. Exportação completa dos dados e direito ao esquecimento atendidos em até 30 dias (geralmente em 48 horas).",
+  },
+  {
+    title: "Local-first, sempre",
+    body: "Você pode usar o Fluera totalmente offline. A sincronização é opt-in por caderno, não em nível de conta. Se desligar a sincronização, seus dados não saem do dispositivo — incluindo a telemetria, que é baseada em consentimento e anônima.",
+  },
+  {
+    title: "Trilha de auditoria (Instituições)",
+    body: "Para contas Education, cada acesso aos cadernos compartilhados é registrado em uma trilha imutável, exportável para auditorias de conformidade. Os administradores podem impor SSO (SAML, OIDC) e implantação MDM.",
+  },
+  {
+    title: "O que não fazemos",
+    body: "Sem publicidade. Sem venda de dados. Não treinamos nossos modelos no seu conteúdo. Não te rastreamos pela web. Não passamos dados a terceiros além dos suboperadores declarados (Supabase, Vercel, Stripe) — todos sob DPA.",
+  },
+];
+---
+
+<BaseLayout
+  title="Segurança e privacidade"
+  description="Criptografia AES-256 em repouso, GDPR por padrão, servidores na Europa, zero ad-tech. A arquitetura de segurança e o compromisso do Fluera com a propriedade dos seus dados."
+  locale="pt-br"
+>
+  <PageHero
+    kicker="Segurança e privacidade"
+    title="Criptografia ponta a ponta.<br />A chave fica com você."
+    titleSize="2xl"
+    description="Criptografia por padrão. Sem ad-tech. Servidores na Europa. Exportação completa. A privacidade é uma restrição de design, não uma tarefa de compliance."
+    orbs
+    noise
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {pillars.map((p, i) => (
+          <article class="card p-8">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
+            <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Responsible disclosure</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Encontrou alguma coisa?</h2>
+          <p class="prose-ink mb-6">
+            Pesquisadores de segurança são bem-vindos. Reporte vulnerabilidades para
+            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
+            Damos retorno em 24 horas, fazemos patch dos problemas críticos em 72, e creditamos quem reporta no nosso hall of fame — salvo preferência por anonimato.
+          </p>
+          <p class="text-sm text-ink-500 italic">
+            A chave PGP para reports criptografados está publicada no nosso perfil do GitHub.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Compliance e implantação</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Vai adotar o Fluera em uma instituição?</h2>
+          <p class="prose-ink mb-6">
+            Universidades, escolas, laboratórios de pesquisa: podemos te guiar no DPA, lista de suboperadores, setup de SSO e modelo de trilha de auditoria. Os pilotos costumam começar com uma turma, um semestre, sem custo.
+          </p>
+          <a href="/pt-br/contact" class="btn-primary">Conversar sobre implantação →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Esta página cobre o essencial. A arquitetura completa, o registro de suboperadores e o template de DPA vivem em
+        <a href="/pt-br/security/architecture" class="text-paper-300 underline">/pt-br/security/architecture</a> e
+        <a href="/pt-br/security/sub-processors" class="text-paper-300 underline">/pt-br/security/sub-processors</a>. Dúvidas específicas de compliance? Escreva para
+        <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

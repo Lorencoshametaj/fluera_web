@@ -1,0 +1,173 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const factBullets = [
+  "비공개 베타의 인지 학습 앱, 2026년 4월 iOS와 macOS에서 출시.",
+  "6개 플랫폼에서 13개의 압력 감지 브러시와 15ms 이하 스트로크 지연이 있는 손글씨 무한 캔버스.",
+  "답을 주는 것이 아니라 질문하도록 설계된 AI 기능 — 50년의 기억 연구에 닻을 내림.",
+  "fluera_engine, Flutter용 독점 2D 렌더링 엔진 위에 구축, 외부 개발자에게도 사용 가능.",
+  "밀라노 본사 2인 팀. 출판일 기준 외부 투자 없음.",
+];
+
+const imageAssets = [
+  { name: "로고 — 풀 컬러",         path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
+  { name: "로고 — 모노크롬 라이트",  path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
+  { name: "로고 — 모노크롬 다크",    path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
+  { name: "앱 스크린샷 — iPad",     path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
+  { name: "앱 스크린샷 — macOS",    path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
+  { name: "창립자 초상화",          path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
+];
+
+const quotables = [
+  {
+    context: "전제에 대해",
+    quote: "2026년에 지식은 3초 만에 검색되고 3주 만에 잊힙니다. 노트를 작성하는 앱은 10개가 있지만 배운 것을 유지하는 앱은 하나도 없습니다.",
+  },
+  {
+    context: "AI에 대해",
+    quote: "당신을 대신해서 시험에 답하는 AI는 당신에게 아무것도 가르치지 않는 AI입니다. Fluera의 AI는 묻고, 비계 역할을 하고, 반영합니다 — 사고의 행위를 대체하지 않습니다.",
+  },
+  {
+    context: "증거에 대해",
+    quote: "인지 과학은 50년 동안 명확합니다. 우리가 결코 가지지 못한 것은 올바른 일을 가장 쉬운 길로 만드는 도구입니다. 그것이 우리가 만들려는 것입니다.",
+  },
+  {
+    context: "대상에 대해",
+    quote: "Fluera는 모든 사람을 위한 것이 아닙니다. 마찰은 실제입니다. 중요한 곳에서 유창함과 능력을 구별할 수 있는 학습자 코호트를 위해 만들어졌습니다 — 구술 시험을 보는 의사, 박사 과정, 변호사, 평생 자가 학습자.",
+  },
+];
+---
+
+<BaseLayout
+  title="프레스 키트"
+  description="Fluera를 다루는 기자와 작가를 위한 로고, 스크린샷, 창립자 약력, 인용 가능한 문구."
+  locale="ko"
+>
+
+  <PageHero
+    kicker="프레스"
+    title="Fluera에 대해 글을 쓰고 있나요?<br />여기에 필요한 모든 것이 있습니다."
+    description={`로고, 스크린샷, 창립자 사진, 간결한 팩트시트. 이 페이지의 모든 것은 편집 사용에 자유롭습니다 — <em>Fluera</em>에 대한 귀속과 <a href="/">fluera.dev</a>에 대한 링크 포함.`}
+  >
+    <div slot="copy" class="mt-8 flex flex-wrap gap-4">
+      <a href="/press/fluera-press-kit.zip" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        전체 프레스 키트 다운로드 (.zip)
+      </a>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=프레스%20문의`} class="btn-secondary">
+        팀에 작성 →
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">팩트시트</p>
+        <h2 class="font-serif text-display-lg text-paper-50">1분 읽기.</h2>
+      </div>
+
+      <ul class="space-y-4 list-none p-0 max-w-3xl">
+        {factBullets.map((f) => (
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <span class="text-paper-200 text-lg leading-relaxed">{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">인용 가능</p>
+        <h2 class="font-serif text-display-lg text-paper-50">직접 인용할 수 있는 문구.</h2>
+        <p class="prose-ink text-sm mt-4">
+          모든 인용은 특정 창립자를 인터뷰하지 않은 한 Fluera 팀에 귀속됩니다 — 그 경우, 개인에게 귀속하기 전에 우리와 확인하세요.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 max-w-5xl">
+        {quotables.map((q) => (
+          <figure class="card p-7">
+            <p class="eyebrow text-accent-glow mb-4">{q.context}</p>
+            <blockquote class="font-serif text-lg text-paper-50 leading-relaxed italic">
+              "{q.quote}"
+            </blockquote>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">시각 자산</p>
+        <h2 class="font-serif text-display-lg text-paper-50">로고, 스크린샷, 초상화.</h2>
+        <p class="prose-ink text-sm mt-4">
+          아래에서 개별적으로 사용 가능하거나 위의 프레스 키트 링크를 통해 모두 함께.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {imageAssets.map((a) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{a.name}</h3>
+            <p class="text-xs font-mono text-ink-500 mb-4">{a.size}</p>
+            <a href={a.path} class="text-accent-glow text-sm underline underline-offset-4 hover:text-paper-50" download>
+              다운로드 →
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-xl">
+        참고: 개별 자산 파일은 최종 프레스 키트를 게시할 때까지 자리 표시자입니다. 링크는 지금은 404를 반환합니다 — 비공개 베타를 떠날 때 채울 것입니다.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">할 수 있는 것</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">예, 자유롭습니다.</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>기사에서 로고와 스크린샷 사용</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>귀속과 함께 인용 가능한 문구 통합</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>스크린샷 자르기 또는 크기 조정 (로고 변경 안 함)</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>창립자 인터뷰 (조직을 위해 작성)</li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">하지 말아 주세요</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">물어봐 주셔서 감사합니다.</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>로고 수정 또는 색상 변경</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>승인하지 않은 제품에 대한 보증 암시</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>AI 훈련 데이터셋에 Fluera 자산 사용</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>명확한 편집 정당성 없이 경쟁사 로고 옆에 우리 로고 배치</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">팀과의 직접 라인.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        프레스 요청은 PR 에이전시가 아닌 창립자에게 직접 도착합니다. 영업일 24시간 이내 응답 — 일반적으로 1시간 이내.
+      </p>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=프레스%20문의`} class="btn-primary">
+        {SITE.company.contactEmail}
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

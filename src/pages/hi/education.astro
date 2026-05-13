@@ -1,0 +1,199 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const useCases = [
+  {
+    title: "व्याख्यान कैप्चर",
+    body: "छात्र Time Travel के माध्यम से वैकल्पिक ऑडियो-सिंक के साथ व्याख्यान के दौरान अनंत कैनवास पर हाथ से नोट्स लेते हैं। कैनवास एक जीवित संग्रह बन जाता है जो सेमेस्टर से बच जाता है।",
+  },
+  {
+    title: "पैमाने पर परीक्षा तैयारी",
+    body: "Fog of War + अंतराल पुनरावृत्ति छात्र के व्यक्तिगत कैनवास को पुनर्प्राप्ति अभ्यास इंजन में बदल देती है। शिक्षक सामग्री निर्धारित किए बिना विषय द्वारा अध्ययन पथों की सिफारिश कर सकते हैं।",
+  },
+  {
+    title: "STEM प्रयोगशाला नोटबुक्स",
+    body: "LaTeX रेंडरिंग, दबाव-संवेदनशील आरेख, ऑडियो-सिंक प्रयोग लॉग। कागज नोटबुक्स को बदलता है, मूल्यांकन के लिए आवश्यक हस्तलेखन साक्ष्य को संरक्षित करता है।",
+  },
+];
+
+const deployment = [
+  { label: "SSO",              body: "SAML 2.0 और OIDC। Shibboleth, Azure AD, Okta, Google Workspace for Education के साथ एकीकृत होता है।" },
+  { label: "MDM-friendly",     body: "App Store / Play के माध्यम से मानक एंटरप्राइज़ वितरण। Windows और macOS हस्ताक्षरित इंस्टॉलर के रूप में। कोई साइडलोडिंग नहीं।" },
+  { label: "ऑडिट लॉग",         body: "खाता प्रति अपरिवर्तनीय एक्सेस ट्रेल। अनुपालन ऑडिट के लिए निर्यात योग्य।" },
+  { label: "डेटा निवास",       body: "डिफ़ॉल्ट रूप से EU सर्वर। अनुरोध पर डेटा प्रोसेसिंग समझौता उपलब्ध।" },
+  { label: "पहुंच",            body: "सभी प्लेटफ़ॉर्म पर WCAG 2.1 AA लक्ष्य। स्क्रीन रीडर समर्थन, उच्च कंट्रास्ट मोड, मोटर अंतर के लिए समायोज्य ब्रश निष्ठा।" },
+  { label: "ऑन-प्रिमाइसेस",     body: "एंटरप्राइज़ रोडमैप पर आ रहा है। आज: मजबूत एन्क्रिप्शन और क्षेत्रीय नियंत्रण के साथ केवल क्लाउड।" },
+];
+---
+
+<BaseLayout
+  title="विश्वविद्यालयों के लिए Fluera — उच्च शिक्षा के लिए संज्ञानात्मक बुनियादी ढांचा"
+  description="अपनी फैकल्टी में साक्ष्य-आधारित अध्ययन उपकरण लाएं। बहु-सीट लाइसेंस, SSO, ऑडिट लॉग, 12-चरण चक्र पर फैकल्टी प्रशिक्षण। पायलट प्रोग्राम उपलब्ध।"
+  locale="hi"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">विश्वविद्यालय और स्कूल</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          आधुनिक विश्वविद्यालय के लिए<br />संज्ञानात्मक बुनियादी ढांचा।
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          आपके छात्रों के लिए साक्ष्य-आधारित अध्ययन उपकरण। आपकी IT के लिए SSO। अधिगम के संज्ञानात्मक विज्ञान पर फैकल्टी प्रशिक्षण। पायलट एक कक्षा, एक सेमेस्टर, मुफ़्त शुरू होते हैं।
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/hi/contact" class="btn-primary">शैक्षणिक कॉल बुक करें →</a>
+          <a href="/hi/" class="btn-secondary">आधार विज्ञान</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">शिक्षक Fluera क्यों चुन रहे हैं</p>
+        <h2 class="font-serif text-display-xl text-paper-50">तीन ठोस पैटर्न।</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {useCases.map((u, i) => (
+          <article class="card p-7">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{u.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{u.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">लाइसेंस मॉडल</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-4">तीन स्तर। बस एक कॉल।</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          हम संस्थागत खातों के लिए प्रति-सीट मूल्य प्रकाशित नहीं करते: सही संरचना उस परिधि पर निर्भर करती है जिसे आप लाइसेंस करना चाहते हैं — कक्षा, फैकल्टी या विश्वविद्यालय। एक कॉल और हम एक ठोस परिकल्पना के साथ बाहर निकलते हैं।
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 max-w-5xl">
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">कक्षा</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            एक पाठ्यक्रम, एक सेमेस्टर, 200 छात्रों तक। हर छात्र के लिए Pro एक्सेस, शिक्षक डैशबोर्ड, और एक प्रशिक्षण सत्र।
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">सामान्य अपनाव: पायलट</p>
+        </article>
+        <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">फैकल्टी</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            पूरा विभाग। बहु-वर्षीय अनुबंध। SSO, ऑडिट लॉग, समर्पित समर्थन SLA। प्रत्येक पाठ्यक्रम के लिए फैकल्टी प्रशिक्षण।
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">सामान्य अपनाव: दूसरा वर्ष</p>
+        </article>
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">विश्वविद्यालय</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            पूरा कैम्पस। समर्पित परिनियोजन समर्थन, नामित इंजीनियरिंग संपर्क, 12-चरण चक्र पर संयुक्त शोध अवसर।
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">सामान्य अपनाव: तीसरे वर्ष से</p>
+        </article>
+      </div>
+
+      <div class="mt-10">
+        <a href="/hi/contact" class="btn-primary">मूल्य ब्रीफ का अनुरोध करें →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">फैकल्टी प्रशिक्षण</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">दो घंटे। संज्ञानात्मक विज्ञान, अनुप्रयुक्त।</h2>
+          <p class="prose-ink mb-4">
+            कार्यशाला 12-चरण अधिगम चक्र, हर चरण के पीछे सिद्धांतों, और मौजूदा पाठ्यक्रम में Fluera को एकीकृत करने के लिए ठोस पैटर्न को कवर करती है। यह उत्पाद डेमो नहीं है।
+          </p>
+          <p class="prose-ink">
+            व्यक्तिगत रूप से या दूरस्थ रूप से वितरित, प्रति सत्र अधिकतम पंद्रह प्रतिभागी। हर शिक्षक अपने पाठ्यक्रम के लिए ठोस योजना के साथ बाहर निकलता है।
+          </p>
+        </div>
+        <div class="card p-7">
+          <h3 class="eyebrow text-accent-glow mb-4">हम क्या कवर करते हैं</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0">
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">01</span><span>अंतराल, पुनर्प्राप्ति, उत्पादन, वांछनीय कठिनाइयां — चार स्तंभ</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">02</span><span>आपके पाठ्यक्रम की विशिष्ट संरचना पर मैप किया गया 12-चरण चक्र</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">03</span><span>कब Socratic का उपयोग करें, कब Ghost Map, कब रास्ते से हटें</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">04</span><span>आपके मूल्यांकन को बदले बिना Fog of War के साथ परीक्षा तैयारी डिज़ाइन करना</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">05</span><span>अनुसंधान, साक्ष्य की ताकत, और साक्ष्य क्या समर्थन करता है उसकी सीमाएं</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">06</span><span>हाथ से: हर शिक्षक बाहर निकलने से पहले Fluera में एक पाठ बनाता है</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">परिनियोजन</p>
+        <h2 class="font-serif text-display-xl text-paper-50">आपकी IT भी हमें पसंद करेगी।</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {deployment.map((d) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">पायलट प्रोग्राम</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">एक कक्षा। एक सेमेस्टर। मुफ़्त।</h2>
+          <p class="prose-ink mb-4">
+            यह जानने का सबसे तेज़ तरीका है कि Fluera आपके छात्रों के लिए काम करता है या नहीं, उनमें से तीस के साथ, एक सेमेस्टर के लिए, बिना किसी लागत के इसे आज़माना है। बदले में हम संरचित प्रतिक्रिया मांगते हैं — एक मध्य-चेक-इन, सेमेस्टर के अंत में सर्वेक्षण, और गुमनाम परिणाम डेटा साझा करने का विकल्प।
+          </p>
+          <p class="prose-ink">
+            यदि यह काम करता है, हम बहु-वर्षीय अनुबंध के बारे में बात करते हैं। यदि यह काम नहीं करता, आप डेटा रखते हैं और हम सबक। दोनों ही तरह से हम दोनों लाभ कमाते हैं।
+          </p>
+        </div>
+        <div class="card p-8 bg-accent-ink/[0.08] border-accent-ink/30">
+          <h3 class="eyebrow text-accent-glow mb-4">आपको क्या मिलता है</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0 mb-6">
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>30 छात्रों तक के लिए Pro एक्सेस</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>दो घंटे की फैकल्टी कार्यशाला</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>सेमेस्टर के लिए संस्थापकों के साथ सीधा चैनल</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>आपकी रिपोर्टिंग के लिए गुमनाम समग्र विश्लेषण</span></li>
+          </ul>
+          <a href="/hi/contact" class="btn-primary w-full">पायलट शुरू करें →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">GDPR मूल। FERPA-aware। WCAG 2.1 AA लक्ष्य।</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        विवरण सुरक्षा पृष्ठ पर रहते हैं — उप-प्रोसेसर सूची, डेटा प्रोसेसिंग समझौता, एन्क्रिप्शन वास्तुकला, ऑडिट लॉग मॉडल।
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/hi/security" class="btn-secondary">सुरक्षा वास्तुकला पढ़ें →</a>
+        <a href="/hi/contact" class="btn-primary">हमसे बात करें</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

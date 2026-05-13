@@ -1,0 +1,146 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const factBullets = [
+  "अप्रैल 2026 में iOS और macOS पर लॉन्च की गई निजी बीटा में संज्ञानात्मक अध्ययन ऐप।",
+  "13 दबाव-संवेदनशील ब्रशों और 15-मिलीसेकंड से कम स्ट्रोक विलंबता के साथ अनंत हस्तलिखित कैनवास, छह प्लेटफ़ॉर्म पर।",
+  "AI विशेषताएं उत्तर देने के बजाय प्रश्न पूछने के लिए डिज़ाइन की गईं — पचास वर्षों के स्मृति अनुसंधान पर आधारित।",
+  "fluera_engine पर निर्मित, Flutter के लिए एक स्वामित्व 2D रेंडरिंग इंजन, बाहरी डेवलपर्स के लिए भी उपलब्ध।",
+  "मिलान में स्थित दो-व्यक्ति टीम। प्रकाशन तिथि तक कोई बाहरी निवेश नहीं।",
+];
+
+const imageAssets = [
+  { name: "लोगो — पूर्ण रंग",          path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
+  { name: "लोगो — हल्का मोनोक्रोम",     path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
+  { name: "लोगो — गहरा मोनोक्रोम",      path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
+  { name: "ऐप स्क्रीनशॉट — iPad",     path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
+  { name: "ऐप स्क्रीनशॉट — macOS",    path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
+  { name: "संस्थापक चित्र",            path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
+];
+
+const quotables = [
+  {
+    context: "आधार पर",
+    quote: "2026 में, ज्ञान तीन सेकंड में पुनर्प्राप्त होता है और तीन सप्ताह में भुला दिया जाता है। नोट्स लेने के लिए दस ऐप हैं और सीखी गई बात को बनाए रखने के लिए एक भी नहीं।",
+  },
+  {
+    context: "AI पर",
+    quote: "एक AI जो आपकी जगह आपकी परीक्षाओं के उत्तर देता है, वह AI है जो आपको कुछ नहीं सिखाता। Fluera का AI पूछता है, स्कैफोल्डिंग करता है, परावर्तित करता है — सोचने के कार्य को प्रतिस्थापित नहीं करता।",
+  },
+  {
+    context: "साक्ष्य पर",
+    quote: "संज्ञानात्मक विज्ञान पचास वर्षों से स्पष्ट है। हमारे पास कभी जो नहीं रहा वह एक उपकरण है जो सही चीज़ को आसान रास्ता बनाता है। हम वही बनाने की कोशिश कर रहे हैं।",
+  },
+  {
+    context: "दर्शकों पर",
+    quote: "Fluera सभी के लिए नहीं है। घर्षण वास्तविक है। यह उन शिक्षार्थी कोहोर्ट के लिए बना है जो जानते हैं कि जब महत्वपूर्ण हो तब प्रवाह को क्षमता से कैसे अलग किया जाए — मौखिक परीक्षा देने वाले डॉक्टर, पीएचडी, वकील, लंबे समय के स्व-शिक्षित।",
+  },
+];
+---
+
+<BaseLayout
+  title="प्रेस किट"
+  description="Fluera कवर करने वाले पत्रकारों और लेखकों के लिए लोगो, स्क्रीनशॉट, संस्थापक बायोस और उद्धरण योग्य वाक्यांश।"
+  locale="hi"
+>
+
+  <PageHero
+    kicker="प्रेस"
+    title="Fluera के बारे में लिख रहे हैं?<br />यहां वह सब कुछ है जो चाहिए।"
+    description={`लोगो, स्क्रीनशॉट, संस्थापक तस्वीरें और एक संक्षिप्त factsheet। इस पृष्ठ पर सब कुछ संपादकीय उपयोग के लिए मुक्त है — <em>Fluera</em> को क्रेडिट और <a href="/">fluera.dev</a> पर लिंक के साथ।`}
+  >
+    <div slot="copy" class="mt-8 flex flex-wrap gap-4">
+      <a href="/press/fluera-press-kit.zip" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        पूर्ण प्रेस किट डाउनलोड करें (.zip)
+      </a>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Press%20request`} class="btn-secondary">
+        टीम को लिखें →
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Factsheet</p>
+        <h2 class="font-serif text-display-lg text-paper-50">एक मिनट का पठन।</h2>
+      </div>
+
+      <ul class="space-y-4 list-none p-0 max-w-3xl">
+        {factBullets.map((f) => (
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <span class="text-paper-200 text-lg leading-relaxed">{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">उद्धरण योग्य</p>
+        <h2 class="font-serif text-display-lg text-paper-50">सीधे उद्धृत करने योग्य वाक्यांश।</h2>
+        <p class="prose-ink text-sm mt-4">
+          सभी उद्धरण Fluera टीम को दिए गए हैं जब तक कि आपने किसी विशिष्ट संस्थापक का साक्षात्कार नहीं किया है — उस मामले में, किसी एक को श्रेय देने से पहले हमारे साथ सत्यापित करें।
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 max-w-5xl">
+        {quotables.map((q) => (
+          <figure class="card p-7">
+            <p class="eyebrow text-accent-glow mb-4">{q.context}</p>
+            <blockquote class="font-serif text-lg text-paper-50 leading-relaxed italic">
+              "{q.quote}"
+            </blockquote>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">दृश्य संपत्ति</p>
+        <h2 class="font-serif text-display-lg text-paper-50">लोगो, स्क्रीनशॉट, चित्र।</h2>
+        <p class="prose-ink text-sm mt-4">
+          नीचे व्यक्तिगत रूप से उपलब्ध, या शीर्ष पर प्रेस किट लिंक के माध्यम से सभी एक साथ।
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {imageAssets.map((a) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{a.name}</h3>
+            <p class="text-xs font-mono text-ink-500 mb-4">{a.size}</p>
+            <a href={a.path} class="text-accent-glow text-sm underline underline-offset-4 hover:text-paper-50" download>
+              डाउनलोड →
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-xl">
+        नोट: अंतिम प्रेस किट प्रकाशित होने तक व्यक्तिगत संपत्ति फ़ाइलें प्लेसहोल्डर हैं। लिंक अभी 404 लौटाते हैं — हम निजी बीटा से बाहर निकलने पर उन्हें भर देंगे।
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">टीम के साथ सीधी लाइन।</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        प्रेस अनुरोध सीधे एक संस्थापक तक पहुंचते हैं, PR एजेंसी नहीं। 24 कार्य घंटे के भीतर प्रतिक्रिया — आमतौर पर एक घंटे के भीतर।
+      </p>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Press%20request`} class="btn-primary">
+        {SITE.company.contactEmail}
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

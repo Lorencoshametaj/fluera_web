@@ -1,0 +1,161 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const principles = await getCollection("principles", ({ data }) => data.lang === "pt-br");
+  return principles.map((p) => ({
+    params: { slug: p.id.replace(/\.pt-br$/, "") },
+    props: { principle: p },
+  }));
+}
+
+const { principle } = Astro.props;
+const { Content } = await render(principle);
+
+async function resolveLocalized<T extends "authors" | "features" | "citations">(
+  collection: T,
+  ref: { id: string },
+) {
+  const localizedId = ref.id.endsWith(".pt-br") ? ref.id : `${ref.id}.pt-br`;
+  return (await getEntry(collection, localizedId)) ?? (await getEntry(collection, ref.id));
+}
+
+const authors = (
+  await Promise.all(principle.data.primaryAuthors.map((r) => resolveLocalized("authors", r)))
+).filter(Boolean);
+const features = (
+  await Promise.all(principle.data.appliedInFeatures.map((r) => resolveLocalized("features", r)))
+).filter(Boolean);
+const citations = (
+  await Promise.all(principle.data.keyCitations.map((r) => resolveLocalized("citations", r)))
+).filter(Boolean);
+
+const strengthLabel: Record<string, string> = {
+  strong:    "Consenso robusto",
+  moderate:  "Evidência moderada",
+  emerging:  "Evidência emergente",
+  contested: "Contestado em domínios específicos",
+};
+
+const statusLabel: Record<string, string> = {
+  stable: "Disponível",
+  beta: "Em beta",
+  "coming-soon": "Em breve",
+};
+---
+
+<BaseLayout
+  title={`${principle.data.title} — A ciência do Fluera`}
+  description={principle.data.shortDescription}
+  locale="pt-br"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <nav class="mb-8 text-xs font-mono uppercase tracking-widest text-ink-500" aria-label="Breadcrumb">
+        <a href="/pt-br/science" class="hover:text-paper-200">Ciência</a>
+        <span class="mx-2 text-ink-600">/</span>
+        <a href="/pt-br/science#principles" class="hover:text-paper-200">Princípios</a>
+      </nav>
+
+      <p class="eyebrow mb-6 text-accent-glow">{principle.data.fieldOfStudy}</p>
+      <h1 class="font-serif text-display-xl text-paper-50 mb-6">{principle.data.title}</h1>
+      <p class="prose-ink text-xl mb-8">{principle.data.shortDescription}</p>
+
+      <dl class="grid sm:grid-cols-3 gap-6 py-6 border-t border-white/[0.06] text-sm">
+        <div>
+          <dt class="eyebrow mb-2 text-ink-500">Ano-chave</dt>
+          <dd class="font-serif text-paper-50">{principle.data.keyYear}</dd>
+        </div>
+        <div>
+          <dt class="eyebrow mb-2 text-ink-500">Evidência</dt>
+          <dd class="text-paper-200">{strengthLabel[principle.data.evidenceStrength]}</dd>
+        </div>
+        <div>
+          <dt class="eyebrow mb-2 text-ink-500">Campo</dt>
+          <dd class="text-paper-200 capitalize">{principle.data.fieldOfStudy}</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+      <Content />
+    </div>
+  </article>
+
+  {authors.length > 0 && (
+    <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+      <div class="container-prose">
+        <p class="eyebrow mb-6 text-accent-glow">Autores principais</p>
+        <h2 class="font-serif text-2xl text-paper-50 mb-6">As mentes a que isso remete.</h2>
+        <ul class="grid sm:grid-cols-2 gap-3 list-none p-0">
+          {authors.map((a) => a && (
+            <li>
+              <a href={`/pt-br/science/authors/${a.id.replace(/\.pt-br$/, "")}`} class="block card p-5 hover:border-accent-glow/40 transition-colors">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-serif text-base font-medium text-paper-50">{a.data.name}</h3>
+                  {a.data.nobelLaureate && <span class="pill text-[10px] text-accent-glow border-accent-glow/30">Nobel</span>}
+                </div>
+                <p class="text-xs font-mono uppercase tracking-widest text-ink-500 mb-2">{a.data.years}</p>
+                <p class="text-sm text-paper-300 line-clamp-2">{a.data.shortBio}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {features.length > 0 && (
+    <section class="py-16 md:py-20 border-b border-white/[0.04]">
+      <div class="container-prose">
+        <p class="eyebrow mb-6 text-accent-glow">Como o Fluera aplica</p>
+        <h2 class="font-serif text-2xl text-paper-50 mb-6">Recursos construídos sobre esse princípio.</h2>
+        <ul class="space-y-3 list-none p-0">
+          {features.map((f) => f && (
+            <li>
+              <a href={`/pt-br/features/${f.id.replace(/\.pt-br$/, "")}`} class="block card p-5 hover:border-accent-glow/40 transition-colors">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-serif text-lg text-paper-50">{f.data.title}</h3>
+                  <span class="pill text-[10px]">{statusLabel[f.data.status]}</span>
+                </div>
+                <p class="text-sm text-paper-300">{f.data.tagline}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {citations.length > 0 && (
+    <section class="py-16 border-b border-white/[0.04] bg-ink-900/40">
+      <div class="container-prose">
+        <p class="eyebrow mb-6 text-accent-glow">Citações principais</p>
+        <ul class="space-y-4 list-none p-0 text-sm">
+          {citations.map((c) => c && (
+            <li class="card p-5">
+              <p class="font-serif text-paper-50 mb-1">{c.data.title}</p>
+              <p class="text-xs text-ink-500 font-mono">{c.data.authors.join(", ")} · {c.data.year} {c.data.journal ? `· ${c.data.journal}` : ""}</p>
+              {c.data.doi && (
+                <a href={`https://doi.org/${c.data.doi}`} class="text-accent-glow text-xs underline underline-offset-4 mt-2 inline-block" rel="noopener">
+                  doi.org/{c.data.doi}
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <a href="/pt-br/science" class="btn-secondary">← Voltar para todos os princípios</a>
+    </div>
+  </section>
+
+</BaseLayout>

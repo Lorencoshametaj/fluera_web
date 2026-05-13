@@ -1,0 +1,56 @@
+---
+lang: "de"
+title: Exam Session
+tagline: "Simulierte Prüfungen aus deinem eigenen Canvas. Hyperkorrektur verwandelt Fehler in dauerhaftes Gedächtnis."
+shortDescription: "Fluera erzeugt eine Closed-Book-Prüfung aus den Konzepten, die du tatsächlich gezeichnet hast. Confidence-Picker vor jeder Antwort. Nach dem Absenden überlagert Ghost Map deine Arbeit — je größer die Überraschung, desto stärker die Korrektur."
+status: beta
+stepInCycle: 11
+relatedPrinciples:
+  - hypercorrection-effect
+  - productive-failure
+  - interleaving
+  - retrieval-practice
+  - metacognition
+relatedAuthors:
+  - butterfield-metcalfe
+  - robert-bjork
+  - roediger-karpicke
+order: 7
+---
+
+## Was es löst
+
+Die meisten Studierenden verwechseln *sich vorbereitet fühlen* mit *vorbereitet sein*. Sie lesen ihre Notizen erneut, schauen ein Video in 2×, lassen ein LLM das Kapitel zusammenfassen — und gehen mit einer Geläufigkeit in die Prüfung, die nichts mit Abruf zu tun hat. Das Ergebnis ist der universelle Schock danach: „Ich wusste es. Warum konnte ich es nicht aufschreiben?"
+
+Exam Session schließt diese Lücke, indem die Prüfung wirklich stattfindet — privat, auf deinem Canvas, Tage vor der echten.
+
+## Wie es funktioniert
+
+Du beendest eine Lernsession. Du öffnest das Atlas-Menü und tippst auf **🎓 Interrogami** — oder du tippst *„interrogami"* in den Canvas-Chat. Fluera liest die Konzepte, die du tatsächlich gezeichnet hast (Cluster-Cache plus Stroke-OCR), und erzeugt daraus eine Closed-Book-Prüfung. Fünf, sieben oder zehn Fragen. Gemischte Typen: offen, Multiple-Choice, Wahr/Falsch, Formelabruf.
+
+Vor jeder Antwort fragt der Confidence-Picker eine einzige Sache: **wie sicher bist du, von 1 bis 5?** Bewege das Dial. Lege dich auf eine Zahl fest.
+
+Jetzt antworte — von Hand, auf einem Mini-Canvas-Scratchpad, genau so, wie du es in der echten Prüfung schreiben würdest. Kein Autocomplete. Kein Copy-Paste. Kein „neu generieren". Nur du und die Seite.
+
+Beim Absenden bewertet Fluera die Antwort Token für Token und liefert das Feedback im Streaming. Wenn du bei hoher Confidence falsch lagst, feuert die **Hypercorrection-Shock-UI** — ein bewusster, schwer ignorierbarer visueller Effekt, der die haltbarste Form von Korrektur auslöst, die das Gehirn produzieren kann. Anschließend bittet Fluera dich, die richtige Antwort in eigenen Worten neu zu schreiben: der **Generation Effect** verankert sie.
+
+Nach drei richtigen Antworten in Folge steigt die Schwierigkeit automatisch. Nach jedem Chunk von vier Fragen eine kurze Feedback-Pause vor dem nächsten Set — Chunking und Interleaving by design.
+
+Am Ende der Session aktualisiert der FSRS-Scheduler die Review-Intervalle pro Konzept aus deiner tatsächlichen Performance, nicht aus deiner Selbsteinschätzung. Blinde Flecken fließen zurück in Fog of War für chirurgische Retrieval Practice an Tag 1, 3, 7, 14.
+
+## Die Wissenschaft dahinter
+
+Drei Jahrzehnte Evidenz konvergieren auf eine Erkenntnis: Die haltbarsten Korrekturen kommen aus den überraschendsten Misserfolgen.
+
+Der **Hyperkorrektur-Effekt** von Butterfield & Metcalfe (2001) ist der zentrale Mechanismus. Fehler, die mit hoher Confidence begangen wurden, bleiben nach Korrektur dauerhafter erhalten als Fehler mit niedriger Confidence — die Überraschung, sich geirrt zu haben, obwohl man sicher war, moduliert die hippocampale Kodierung über amygdalare Aktivierung. Der Confidence-Picker ist nicht Ästhetik; er ist der Auslöser dieses Mechanismus.
+
+Robert Bjorks **Desirable Difficulties** (1994) erklären, warum eine offene, von Hand geschriebene Antwort eine Multiple-Choice schlägt: die Reibung der Generierung ist genau das, was Gedächtnis baut. Roediger & Karpicke (2006) runden das Bild ab — ein einziger Abrufversuch erzeugt stärkere Langzeitretention als vier Wiederholungs-Lesungen.
+
+Manu Kapurs Forschung zu **Productive Failure** (2008) stützt die härteste Designentscheidung: Fragen, die leicht oberhalb deines aktuellen Niveaus starten, produzieren haltbareres Lernen als Fragen, die auf deine Komfortzone kalibriert sind. Adaptive Schwierigkeit eskaliert bewusst, nicht defensiv.
+
+## Was kommt
+
+- **Post-Exam-Analytics** — Confidence-Kalibrierung pro Cluster und Graphen der Hyperkorrektur-Magnitude.
+- **Voice-Mode-Exam** — gesprochene Fragen mit handgeschriebenen Antworten, für klinische oder mündliche Prüfungsvorbereitung.
+- **Persistentes Surgical-Path-Overlay** — nach der Prüfung hebt Fog of War nur die verfehlten Konzepte auf dem Live-Canvas hervor, scoped für die Review am nächsten Tag.
+- **Multi-Fach Exam Sessions** — eine Session, die Cluster aus mehreren Notebooks interleavet und Transfer trainiert.

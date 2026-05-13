@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Over ons"
+  description="Fluera wordt gebouwd door een klein team in Italië. Ons verhaal, onze overtuigingen, de lijn die we niet zullen overschrijden."
+  locale="nl"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Over ons</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
+          We bouwden de studieapp<br />die we zelf hadden willen hebben<br />toen we student waren.
+        </h1>
+        <div class="prose-ink text-lg">
+          <p>
+            Fluera is geboren uit frustratie. Een van ons is full-stack-developer met tien jaar ervaring; de ander, student die zijn medestudenten in dezelfde val zag trappen — apps die er productief uitzagen, maar niemand iets hielpen onthouden.
+          </p>
+          <p>
+            We lazen het onderzoek. <em>Veel</em> onderzoek. Bjork, Mueller, Roediger, van der Meer, O'Keefe. De cognitieve wetenschap is al een halve eeuw helder: handschrift verslaat typen, ophalen verslaat herlezen, spreiden verslaat stampen, wrijving is een feature. We vonden geen app die iets daarvan serieus nam. Dus bouwden we er een.
+          </p>
+          <p>
+            Onderweg schreven we vanaf nul een 2D-renderengine — omdat geen enkele kant-en-klare stack drukgevoelige inkt op 60 FPS over zes native platforms kon leveren. De engine is het substraat waarop de cognitieve functies leven.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">De lijn</p>
+        <h2 class="font-serif text-display-lg text-paper-50 mb-8">Waar we de lijn trekken.</h2>
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">We zullen geen AI hebben die de tentamens voor je maakt.</strong>
+              <p class="text-sm mt-1 text-paper-300">De AI van Fluera bevraagt, biedt steigerwerk, reflecteert. Ze sluit nooit jouw denken af. AI gebruiken om het cognitieve werk te doen is haar gebruiken om de spier te laten verschrompelen die we juist zouden moeten trainen.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">We zullen de data uit je notitieboeken niet verkopen.</strong>
+              <p class="text-sm mt-1 text-paper-300">Je aantekeningen zijn in rust versleuteld, end-to-end bij synchronisatie, en worden nooit gebruikt om wiens model dan ook te trainen. Het onze inbegrepen.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Geen advertenties, engagement loops, streaks.</strong>
+              <p class="text-sm mt-1 text-paper-300">Jouw relatie met studeren zou niet van een pushmelding mogen afhangen. We hebben liever dat je Fluera minder gebruikt en meer leert.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">We zullen geen functies uitbrengen die we niet met een citaat kunnen verdedigen.</strong>
+              <p class="text-sm mt-1 text-paper-300">Als een functie niet verwijst naar een gepubliceerd onderzoek of consistente feedback uit onze beta, gaat ze niet in productie. Wow-effect is geen functie. Nieuwheid is geen functie.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        Hoofdkantoor in {SITE.company.city}. Een langere verklaring van wat we afwijzen en waarom staat in het <a href="/nl/manifesto" class="text-paper-300 underline underline-offset-4">manifest</a>.
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/nl/contact" class="btn-secondary">Neem contact op</a>
+        <a href="/beta" class="btn-primary">Word lid van de beta</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

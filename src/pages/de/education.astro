@@ -1,0 +1,199 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const useCases = [
+  {
+    title: "Vorlesungsmitschrift",
+    body: "Die Studierenden machen handschriftliche Notizen auf einem unendlichen Canvas während der Vorlesung, mit optionaler Audio-Synchronisation via Time Travel. Das Canvas wird zu einem lebendigen Archiv, das das Semester überdauert.",
+  },
+  {
+    title: "Prüfungsvorbereitung im großen Stil",
+    body: "Fog of War + Spaced Repetition verwandeln das persönliche Canvas der Studierenden in eine Retrieval-Practice-Engine. Dozierende können Lernpfade nach Thema vorschlagen, ohne den Inhalt zu diktieren.",
+  },
+  {
+    title: "MINT-Laborhefte",
+    body: "LaTeX-Rendering, drucksensitive Diagramme, Experimentprotokolle mit synchronem Audio. Ersetzt Papierhefte und bewahrt zugleich den handschriftlichen Nachweis, der in der Bewertung verlangt wird.",
+  },
+];
+
+const deployment = [
+  { label: "SSO",              body: "SAML 2.0 und OIDC. Integriert mit Shibboleth, Azure AD, Okta, Google Workspace for Education." },
+  { label: "MDM-freundlich",     body: "Standardisierte Enterprise-Verteilung über App Store / Play. Windows und macOS als signierte Installer. Kein Sideloading." },
+  { label: "Audit-Trail", body: "Unveränderliches Zugriffslog pro Konto. Exportierbar für Compliance-Audits." },
+  { label: "Datenresidenz", body: "Server in Europa ab Werk. Data Processing Agreement auf Anfrage verfügbar." },
+  { label: "Barrierefreiheit",   body: "WCAG-2.1-AA-Ziel auf allen Plattformen. Screenreader-Unterstützung, Modus mit hohem Kontrast, einstellbare Pinsel-Treue für motorische Unterschiede." },
+  { label: "On-Prem",          body: "Auf der Enterprise-Roadmap. Heute: ausschließlich Cloud mit starker Verschlüsselung und regionalen Kontrollen." },
+];
+---
+
+<BaseLayout
+  title="Fluera für Universitäten — Kognitive Infrastruktur für die Hochschule"
+  description="Bring evidenzbasierte Lernwerkzeuge an deine Hochschule. Multi-Seat-Lizenzen, SSO, Audit-Trail, Dozentenschulung zum 12-Schritt-Zyklus. Pilotprogramme verfügbar."
+  locale="de"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Universitäten und Schulen</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Kognitive Infrastruktur<br />für die moderne Universität.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Evidenzbasierte Lernwerkzeuge für deine Studierenden. SSO für deine IT. Dozentenschulung zur kognitiven Wissenschaft des Lernens. Pilotprogramme starten mit einem Kurs, einem Semester, kostenlos.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/de/contact" class="btn-primary">Akademisches Gespräch vereinbaren →</a>
+          <a href="/de/" class="btn-secondary">Die Wissenschaft dahinter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Warum Dozierende sich für Fluera entscheiden</p>
+        <h2 class="font-serif text-display-xl text-paper-50">Drei konkrete Muster.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {useCases.map((u, i) => (
+          <article class="card p-7">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{u.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{u.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Lizenzmodell</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-4">Drei Stufen. Ein Gespräch genügt.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Wir veröffentlichen für Institutionen kein Pricing pro Seat: die richtige Struktur hängt vom Perimeter ab, den du lizenzieren willst — Kurs, Fachbereich oder Campus. Ein Gespräch und du bekommst einen konkreten Vorschlag.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 max-w-5xl">
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Kurs</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Ein Kurs, ein Semester, bis zu 200 Studierende. Pro-Zugang für jede/n Studierende/n, Dozenten-Dashboard und eine Schulungssitzung.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Typische Adoption: Pilot</p>
+        </article>
+        <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Fachbereich</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Gesamter Fachbereich. Mehrjähriger Vertrag. SSO, Audit-Trail, dediziertes Support-SLA. Dozentenschulung für jede Lehrveranstaltung, die einsteigt.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">Typische Adoption: zweites Jahr</p>
+        </article>
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Campus</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Gesamter Campus. Dediziertes Deployment-Support, benannter Engineering-Ansprechpartner, Möglichkeiten gemeinsamer Forschung zum 12-Schritt-Zyklus.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Typische Adoption: ab dem dritten Jahr</p>
+        </article>
+      </div>
+
+      <div class="mt-10">
+        <a href="/de/contact" class="btn-primary">Preisübersicht anfragen →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Dozentenschulung</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">Zwei Stunden. Kognitive Wissenschaft, angewandt.</h2>
+          <p class="prose-ink mb-4">
+            Der Workshop deckt den 12-Schritt-Lernzyklus ab, die Prinzipien hinter jedem Schritt und konkrete Muster, um Fluera in die bestehende Lehrveranstaltung zu integrieren. Es ist keine Produktdemo.
+          </p>
+          <p class="prose-ink">
+            Vor Ort oder remote durchgeführt, höchstens fünfzehn Teilnehmende pro Sitzung — damit jede/r Dozierende mit einem konkreten Plan für die eigene Lehrveranstaltung herausgeht.
+          </p>
+        </div>
+        <div class="card p-7">
+          <h3 class="eyebrow text-accent-glow mb-4">Was wir abdecken</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0">
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">01</span><span>Spacing, Retrieval, Generation, erwünschte Schwierigkeiten — die vier Säulen</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">02</span><span>Der 12-Schritt-Zyklus, abgebildet auf die konkrete Struktur deiner Lehrveranstaltung</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">03</span><span>Wann Socratic, wann Ghost Map, wann aus dem Weg gehen</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">04</span><span>Prüfungsvorbereitung mit Fog of War gestalten, ohne deine Bewertungen zu ersetzen</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">05</span><span>Die Forschung, die Stärke der Evidenz und die Grenzen dessen, was die Evidenz trägt</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">06</span><span>Hands-on: jede/r Dozierende baut vor dem Verlassen eine Sitzung in Fluera</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Deployment</p>
+        <h2 class="font-serif text-display-xl text-paper-50">Auch deine IT wird es mögen.</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {deployment.map((d) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Pilotprogramm</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">Ein Kurs. Ein Semester. Kostenlos.</h2>
+          <p class="prose-ink mb-4">
+            Der schnellste Weg herauszufinden, ob Fluera für deine Studierenden funktioniert, ist es ein Semester lang mit dreißig von ihnen zu testen, ohne Kosten. Im Tausch bitten wir um strukturiertes Feedback — einen Check-in in der Mitte, eine Befragung am Ende des Semesters und die Option, anonymisierte Ergebnisdaten zu teilen.
+          </p>
+          <p class="prose-ink">
+            Wenn es funktioniert, sprechen wir über einen mehrjährigen Vertrag. Wenn nicht, behältst du die Daten und wir die Lektion. So oder so gewinnen beide Seiten.
+          </p>
+        </div>
+        <div class="card p-8 bg-accent-ink/[0.08] border-accent-ink/30">
+          <h3 class="eyebrow text-accent-glow mb-4">Was du bekommst</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0 mb-6">
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Pro-Zugang für bis zu 30 Studierende</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Zweistündiger Dozenten-Workshop</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Direkter Kanal mit den Gründern während des Semesters</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Anonymisierte aggregierte Analytics für deinen Bericht</span></li>
+          </ul>
+          <a href="/de/contact" class="btn-primary w-full">Pilot starten →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">DSGVO ab Werk. FERPA-aware. WCAG-2.1-AA-Ziel.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Die Details leben auf der Security-Seite — Liste der Subauftragsverarbeiter, Data Processing Agreement, Verschlüsselungsarchitektur, Audit-Trail-Modell.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/de/security" class="btn-secondary">Security-Architektur lesen →</a>
+        <a href="/de/contact" class="btn-primary">Lass uns reden</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

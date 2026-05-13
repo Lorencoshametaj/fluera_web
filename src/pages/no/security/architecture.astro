@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Sikkerhetsarkitektur"
+  description="Hvordan Fluera krypterer notatboken din i ro, i transitt og mellom enheter. SQLCipher, TLS 1.3, ende-til-ende-synkronisering, opt-in-telemetri, audit-spor for institusjoner."
+  locale="no"
+>
+  <PageHero
+    kicker="Arkitektur"
+    title="Slik beskytter Fluera notatboken din."
+    description={`Denne siden beskriver sikkerhetsmodellen på det nivået en teknisk leser — sikkerhetsansvarlig, CISO på et universitet, nysgjerrig utvikler — forventer. For det ikke-tekniske sammendraget, start på <a href="/no/security">/no/security</a>.`}
+    breadcrumb={{ label: "Sikkerhet", href: "/no/security" }}
+  />
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+
+      <h2>Trusselmodell</h2>
+      <p>
+        Vi antar tyveri av enheten, avskjæring i nettverket og utilsiktet eksponering via backup eller skysynkronisering. Vi antar at brukerens innloggingsinformasjon kan kompromitteres. Vi antar <em>ikke</em> statlige aktører med fysisk tilgang til ulåste enheter — Fluera er ikke et hemmelighetsverktøy, det er et læringsverktøy.
+      </p>
+      <p>Innenfor denne modellen gir vi tre garantier:</p>
+      <ul>
+        <li><strong>Lokale data er uleselige uten nøkkelen.</strong> En stjålet enhet produserer en kryptert blob.</li>
+        <li><strong>Synkroniserte data er uleselige for oss.</strong> Skyen lagrer kun chiffertekst. Avledningen skjer på enheten.</li>
+        <li><strong>Telemetri er samtykkebasert og avidentifisert.</strong> Analytikken kan ikke knytte en bruker til innholdet, ikke engang ved et fullstendig brudd.</li>
+      </ul>
+
+      <h2>I ro: SQLCipher, AES-256</h2>
+      <p>
+        Hver notatbok i Fluera bor i en lokal, SQLCipher-kryptert SQLite-database — en bredt auditert utvidelse som transparent krypterer hver side av databasen med AES-256-CBC og kontrollerer integriteten per side med HMAC-SHA512.
+      </p>
+      <p>
+        Nøkkelavledningen bruker PBKDF2 med SHA-256 og 256 000 iterasjoner (i tråd med OWASP). Passfrasen oppbevares i plattformens keychain — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows, libsecret på Linux. Den sendes aldri til våre servere.
+      </p>
+
+      <h2>I transitt: TLS 1.3, certificate pinning</h2>
+      <p>
+        All nettverkstrafikk går over TLS 1.3 med moderne cipher suites. På iOS og Android pinner vi sertifikatene til vår CA-kjede for å hindre man-in-the-middle gjennom bedriftsproxyer — med dokumentert override for nettverksadministratorer som trenger det.
+      </p>
+
+      <h2>Synkronisering mellom enheter: ende-til-ende</h2>
+      <p>
+        Skysynkronisering, når aktivert, bruker et separat sett med nøkler avledet på enheten. Synkserveren (Supabase Storage, region EU) lagrer chiffertekst og kan ikke dekryptere. Synkronisering er opt-in per notatbok — du kan beholde enkelte notatbøker kun lokalt mens du synker andre.
+      </p>
+      <p>
+        Nøkkelrotasjon: når den startes fra en hvilken som helst enhet, krypterer den alle framtidige nyttelaster med en ny nøkkel. Gamle chiffertekster forblir lesbare for eldre klienter inntil du bekrefter migrasjonen på alle enheter.
+      </p>
+
+      <h2>P2P-samarbeid: direkte, kryptert</h2>
+      <p>
+        Sanntidssamarbeid bruker WebRTC DataChannel med DTLS-SRTP-kryptering. Supabase Realtime fungerer kun som signaling-broker — forbindelsesoppretting — ikke som relay for selve canvas-trafikken. Etter handshake flyter canvas-redigeringene peer-to-peer. Serveren ser dem ikke.
+      </p>
+      <p>
+        Ved restriktive NAT-er går trafikken via TURN; i det tilfellet ser relayet bare krypterte DTLS-pakker som det ikke kan dekryptere.
+      </p>
+
+      <h2>KI-kall: via proxy, aldri direkte</h2>
+      <p>
+        Kallene til Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) går gjennom en Supabase Edge Function som holder API-nøkkelen på serveren. Klientenhetene ser aldri nøkkelen. Proxyen håndhever ratebegrensning per plan og logger varigheten på kallene for fakturering — aldri canvas-innholdet.
+      </p>
+      <p>
+        Hvis du deaktiverer KI-funksjonene under <em>Innstillinger → Personvern</em>, sendes ikke noe canvas-innhold til Gemini, heller ikke som fallback for on-device OCR.
+      </p>
+
+      <h2>Telemetri: opt-in, hashet, allowlistet</h2>
+      <p>
+        Produktanalytikken er deaktivert som standard. Når aktivert, er hendelsene begrenset til en serverside-whitelist (øktstart/-slutt, kall av en funksjon, varighet på et KI-kall — aldri innhold). Bruker-ID-en hashes på enheten med SHA-256; klartekst-ID-en forlater aldri klienten. Hendelsene oppbevares i 180 dager og aggregeres eller slettes etterpå.
+      </p>
+
+      <h2>Audit-spor (institusjonelle kontoer)</h2>
+      <p>
+        All tilgang til delte notatbøker — hvem, fra hvilken enhet, når — skrives til et append-only audit-spor. Administratorer kan eksportere sporet som CSV eller JSON for compliance-kontroller. Sporet er write-once: fjerning krever en dokumentert begrunnelse og logges selv.
+      </p>
+
+      <h2>Gjenoppretting og nøkkeltap</h2>
+      <p>
+        Hvis du mister passfrasen, blir de krypterte dataene ugjenopprettelige. Det er bevisst — alternativet ville være en gjenopprettingssti som nødvendigvis svekker krypteringsmodellen. For institusjonelle kontoer kan en valgfri, administrator-forvaltet gjenopprettingsnøkkel konfigureres; det er en dokumentert avveining som institusjonen velger bevisst.
+      </p>
+
+      <h2>Responsible disclosure</h2>
+      <p>
+        Sikkerhetsforskere er velkomne. Rapporter sårbarheter til <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> med PGP-kryptering (nøkkel publisert på GitHub-profilen). Vi svarer innen 24 timer, patcher kritiske problemer innen 72, og navngir varslerne i en Hall of Fame med mindre anonymitet ønskes.
+      </p>
+      <p>
+        Scope: Fluera-appen (alle plattformer), synkroniseringstjenesten, KI-proxyen og denne markedsføringsnettsiden. Utenfor scope: tredjeparter (Supabase, Google, Apple, Sentry, RevenueCat) — rapporter dem til de respektive leverandørene.
+      </p>
+
+      <h2>Eksterne audits</h2>
+      <p>
+        Fluera har for tiden verken SOC-2- eller ISO-27001-sertifiseringer. De ligger på enterprise-roadmapen og vil kunngjøres offentlig når de er fullført. Vi foretrekker å ikke deklarere kontroller vi ikke kan verifisere uavhengig.
+      </p>
+      <p>
+        <a href="/no/security/sub-processors">Underleverandør-listen</a> er offentlig og oppdatert. Databehandleravtalen er tilgjengelig på forespørsel til <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a>.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/no/security/sub-processors" class="btn-secondary">Underleverandører →</a>
+        <a href="/no/contact" class="btn-primary">Snakk om innføring</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

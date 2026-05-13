@@ -1,0 +1,130 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const authors = await getCollection("authors", ({ data }) => data.lang === "ko");
+  return authors.map((a) => ({
+    params: { slug: a.id.replace(/\.ko$/, "") },
+    props: { author: a },
+  }));
+}
+
+const { author } = Astro.props;
+const { Content } = await render(author);
+
+async function resolveLocalized<T extends "principles" | "features">(
+  collection: T,
+  ref: { id: string },
+) {
+  const koId = ref.id.endsWith(".ko") ? ref.id : `${ref.id}.ko`;
+  return (await getEntry(collection, koId)) ?? (await getEntry(collection, ref.id));
+}
+
+const principles = (
+  await Promise.all(author.data.keyPrinciples.map((r) => resolveLocalized("principles", r)))
+).filter(Boolean);
+const features = (
+  await Promise.all(author.data.appliedInFeatures.map((r) => resolveLocalized("features", r)))
+).filter(Boolean);
+
+const statusLabel: Record<string, string> = {
+  stable: "이용 가능",
+  beta: "베타",
+  "coming-soon": "곧 출시",
+};
+---
+
+<BaseLayout
+  title={`${author.data.name} — Fluera의 과학`}
+  description={author.data.shortBio}
+  locale="ko"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <nav class="mb-8 text-xs font-mono uppercase tracking-widest text-ink-500" aria-label="Breadcrumb">
+        <a href="/ko/science" class="hover:text-paper-200">과학</a>
+        <span class="mx-2 text-ink-600">/</span>
+        <a href="/ko/science#authors" class="hover:text-paper-200">연구자</a>
+      </nav>
+
+      <div class="flex items-start justify-between gap-4 mb-6">
+        <p class="eyebrow text-accent-glow">{author.data.fields.join(" · ")}</p>
+        {author.data.nobelLaureate && <span class="pill text-[11px] text-accent-glow border-accent-glow/30">노벨상 수상</span>}
+      </div>
+
+      <h1 class="font-serif text-display-xl text-paper-50 mb-4">{author.data.name}</h1>
+      <p class="font-mono text-sm text-ink-500 uppercase tracking-widest mb-6">{author.data.years}</p>
+      <p class="prose-ink text-xl mb-8">{author.data.shortBio}</p>
+
+      <dl class="py-6 border-t border-white/[0.06]">
+        <dt class="eyebrow mb-2 text-ink-500">대표 작품</dt>
+        <dd class="font-serif text-paper-100 text-base italic">{author.data.notableWork}</dd>
+      </dl>
+
+      {author.data.externalProfile && (
+        <a href={author.data.externalProfile} class="btn-secondary text-sm mt-2" rel="noopener">
+          학술 프로필 ↗
+        </a>
+      )}
+    </div>
+  </section>
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+      <Content />
+    </div>
+  </article>
+
+  {principles.length > 0 && (
+    <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+      <div class="container-prose">
+        <p class="eyebrow mb-6 text-accent-glow">관련 원리</p>
+        <h2 class="font-serif text-2xl text-paper-50 mb-6">이들의 작업이 기여한 아이디어.</h2>
+        <ul class="grid sm:grid-cols-2 gap-3 list-none p-0">
+          {principles.map((p) => p && (
+            <li>
+              <a href={`/ko/science/principles/${p.id.replace(/\.ko$/, "")}`} class="block card p-5 hover:border-accent-glow/40 transition-colors">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-serif text-base font-medium text-paper-50">{p.data.title}</h3>
+                  <span class="text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+                </div>
+                <p class="text-sm text-paper-300 line-clamp-2">{p.data.shortDescription}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {features.length > 0 && (
+    <section class="py-16 border-b border-white/[0.04]">
+      <div class="container-prose">
+        <p class="eyebrow mb-6 text-accent-glow">Fluera에 적용</p>
+        <h2 class="font-serif text-2xl text-paper-50 mb-6">이 작업 위에 구축된 기능.</h2>
+        <ul class="space-y-3 list-none p-0">
+          {features.map((f) => f && (
+            <li>
+              <a href={`/ko/features/${f.id.replace(/\.ko$/, "")}`} class="block card p-5 hover:border-accent-glow/40 transition-colors">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-serif text-lg text-paper-50">{f.data.title}</h3>
+                  <span class="pill text-[10px]">{statusLabel[f.data.status]}</span>
+                </div>
+                <p class="text-sm text-paper-300">{f.data.tagline}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="py-16 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <a href="/ko/science" class="btn-secondary">← 과학으로 돌아가기</a>
+    </div>
+  </section>
+
+</BaseLayout>

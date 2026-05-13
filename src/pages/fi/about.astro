@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Tietoa meistä"
+  description="Flueran rakentaa pieni tiimi Italiassa. Tarinamme, vakaumuksemme ja raja, jota emme ylitä."
+  locale="fi"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Tietoa meistä</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
+          Rakensimme opiskelusovelluksen,<br />jonka olisimme halunneet,<br />kun olimme opiskelijoita.
+        </h1>
+        <div class="prose-ink text-lg">
+          <p>
+            Fluera syntyi turhautumisesta. Toinen meistä, kymmenen vuoden kokemus full-stack-kehittäjänä; toinen, opiskelija, joka näki kavereidensa lankeavan samaan ansaan — sovelluksiin, jotka tuntuivat tuottavilta mutta eivät auttaneet ketään muistamaan mitään.
+          </p>
+          <p>
+            Luimme tutkimuksen. <em>Paljon</em> tutkimusta. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Kognitiotiede on ollut selkeä puoli vuosisataa: käsin kirjoittaminen voittaa näppäilyn, palauttaminen voittaa uudelleenlukemisen, jaksottaminen voittaa pänttäämisen, kitka on voimavara. Emme löytäneet yhtäkään sovellusta, joka olisi ottanut tämän vakavasti. Joten rakensimme sellaisen.
+          </p>
+          <p>
+            Matkan varrella kirjoitimme tyhjästä 2D-renderöintimoottorin — koska mikään valmis stack ei pystynyt toimittamaan painearkaa mustetta 60 FPS:llä kuudella natiivilla alustalla. Moottori on substraatti, jonka päällä kognitiiviset toiminnot elävät.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Raja</p>
+        <h2 class="font-serif text-display-lg text-paper-50 mb-8">Mihin vedämme rajan.</h2>
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Emme tee tekoälyä, joka vastaa tentteihin puolestasi.</strong>
+              <p class="text-sm mt-1 text-paper-300">Flueran tekoäly kysyy, tukee, peilaa. Ei koskaan sulje ajatteluasi. Tekoälyn käyttäminen kognitiivisen työn tekemiseen on sen käyttämistä lihaksen surkastuttamiseen, jota meidän pitäisi treenata.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Emme myy muistikirjojesi dataa.</strong>
+              <p class="text-sm mt-1 text-paper-300">Muistiinpanosi on salattu levossa, päästä päähän synkronoituna, eikä koskaan käytetä kenenkään mallien koulutukseen. Myöskään meidän.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Ei mainontaa, engagement-loopeja eikä streakeja.</strong>
+              <p class="text-sm mt-1 text-paper-300">Suhteesi opiskeluun ei pitäisi riippua push-ilmoituksesta. Mieluummin käytät Flueraa vähemmän ja opit enemmän.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Emme julkaise ominaisuuksia, joita emme voi puolustaa lähteellä.</strong>
+              <p class="text-sm mt-1 text-paper-300">Jos ominaisuus ei palaudu julkaistuun löydökseen tai johdonmukaiseen palautteeseen betastamme, se ei mene tuotantoon. Wow-efekti ei ole ominaisuus. Uutuus ei ole ominaisuus.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        Pääkonttori: {SITE.company.city}. Pidempi julistus siitä, mitä kieltäydymme tekemästä ja miksi, elää <a href="/fi/manifesto" class="text-paper-300 underline underline-offset-4">manifestissa</a>.
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/fi/contact" class="btn-secondary">Ota yhteyttä</a>
+        <a href="/beta" class="btn-primary">Liity betaan</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

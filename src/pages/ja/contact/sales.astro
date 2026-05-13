@@ -1,0 +1,120 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="セールス窓口 ― 教育機関向け Fluera"
+  description="エビデンスに基づく学習ツールをクラス、学部、キャンパスへ。Fluera のファウンダーとの相談を予約。"
+  locale="ja"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">教育機関向けセールス</p>
+      <h1 class="font-serif text-display-xl text-paper-50 mb-6">あなたの学生のためのプランを一緒に作りましょう。</h1>
+      <p class="prose-ink text-lg mb-8">
+        こちらにご記入いただければ、平日24時間以内にファウンダーから返信します。私たちは非同期で始めることを好みます ― 丁寧に書かれた1通のメールは、3往復のスケジューリングよりも価値があります。
+      </p>
+
+      <form id="sales-form" class="card p-6 md:p-8 space-y-5" action={`mailto:${SITE.company.contactEmail}`} method="post" enctype="text/plain">
+        <div>
+          <label class="sales-label" for="s-name">お名前 <span class="text-signal-bad">*</span></label>
+          <input id="s-name" name="name" type="text" required class="sales-input" placeholder="氏名" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-role">役職 <span class="text-signal-bad">*</span></label>
+          <select id="s-role" name="role" required class="sales-input">
+            <option value="" disabled selected>選択してください…</option>
+            <option>教員</option>
+            <option>学部長 / 学科主任</option>
+            <option>学長 / 副学長</option>
+            <option>情報システム / 調達</option>
+            <option>図書館員 / インストラクショナルデザイナー</option>
+            <option>学生代表</option>
+            <option>その他</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-institution">所属機関 <span class="text-signal-bad">*</span></label>
+          <input id="s-institution" name="institution" type="text" required class="sales-input" placeholder="大学または学校名" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-email">仕事用メール <span class="text-signal-bad">*</span></label>
+          <input id="s-email" name="email" type="email" required class="sales-input" placeholder="you@university.ac.jp" />
+          <p class="sales-hint">機関のメールアドレスをお使いいただくと、認証がスムーズです。</p>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-size">ご関心</label>
+          <select id="s-size" name="size" class="sales-input">
+            <option value="" selected>選択してください…</option>
+            <option>パイロット ― 1クラス、1学期</option>
+            <option>学部ライセンス</option>
+            <option>キャンパスライセンス</option>
+            <option>検討中 ― ブリーフィング希望</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-context">返信前に知っておくべきことは何ですか? <span class="text-signal-bad">*</span></label>
+          <textarea id="s-context" name="context" rows="5" required minlength="20" maxlength="2000"
+            class="sales-input"
+            placeholder="授業名、学生プロフィール、スケジュール、現在使用中のツール、コンプライアンス上の制約 ― 役立つことを何でも。"></textarea>
+          <p class="sales-hint">具体的であるほど、私たちの返信は短くて済みます。</p>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="btn-primary w-full py-3.5">送信 →</button>
+          <p class="sales-hint text-center mt-3">
+            このフォームはメールで送信されます。送信ボタンを押すまで、何もあなたのマシンから出ません。直接書きたい方は <a href={`mailto:${SITE.company.contactEmail}`} class="text-accent-glow underline">{SITE.company.contactEmail}</a> までどうぞ。
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">送信後の流れ</h2>
+      <ol class="space-y-4 text-sm text-paper-200 list-none p-0">
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">01</span><span>ファウンダーが平日1日以内に返信し、あなたの状況に対する具体的な質問をお伝えします ― 定型スクリプトではなく。</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">02</span><span>あなたのケースに合わせたパイロット・ブリーフィング (PDF) をお送りします。授業計画の例と、学生に投げかける質問のリスト付き。</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">03</span><span>ファウンダーとの30分の通話、必要に応じて情報システム担当者との通話。SSO、DPA、スケジュールを正直にカバーします ― 現時点での限界も含めて。</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">04</span><span>パイロット開始。通常、初回コンタクトから2〜4週間後。</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <style>
+    .sales-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: theme("colors.paper.200");
+      margin-bottom: 0.5rem;
+    }
+    .sales-hint {
+      font-size: 0.75rem;
+      color: theme("colors.ink.500");
+      margin-top: 0.375rem;
+    }
+    .sales-input {
+      width: 100%;
+      background: theme("colors.ink.900");
+      border: 1px solid rgb(255 255 255 / 0.08);
+      border-radius: 0.625rem;
+      padding: 0.75rem 1rem;
+      color: theme("colors.paper.50");
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .sales-input:focus {
+      outline: none;
+      border-color: theme("colors.accent.ink");
+      box-shadow: 0 0 0 3px rgb(45 74 222 / 0.18);
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,67 @@
+---
+lang: "pl"
+title: "Jak 'pożądane trudności' pojawiają się wewnątrz aplikacji"
+description: "Framework Bjorka jest kręgosłupem Fluery. Oto jak kontrintuicyjne odkrycie badawcze staje się konkretnymi decyzjami designu — i jakie są najtwardsze kompromisy."
+publishedAt: 2026-04-10
+author: "Lorenzo"
+category: product
+tags: ["bjork", "design", "dificuldades-desejáveis"]
+relatedPrinciples: [desirable-difficulties, retrieval-practice, productive-failure]
+---
+import Citation from "@/components/Citation.astro";
+
+Kiedy pokazujemy Fluerę sceptycznym obserwatorom, najmocniej pracującą pojedynczą ideą są <Citation authors="Bjork" year="1994" href="/pl/research">*pożądane trudności* Roberta Bjorka</Citation>. Gdy ludzie wchłoną fakt, że najłatwiejsze warunki nauki niemal zawsze produkują gorsze wyniki, reszta naszych decyzji projektowych przestaje wydawać się dziwna i zaczyna wydawać się nieuchronna.
+
+Ale "nieuchronna" robi tu sporo pracy. Przekształcenie odkrycia badawczego w interfejs produktu wiąże się z kompromisami, które nie pojawiają się w metaanalizach. Oto częściowy bilans.
+
+## Pusty canvas
+
+Standardowa aplikacja do nauki ma szablon. Otwierasz ją i jest sugerowana struktura — szkielet mind-mapy, lista tematów, układ Cornell. Szablon obniża energię aktywacji. Wydaje się przydatny.
+
+Nie jest. Szablon pozwala ci pominąć krok generacji — poznawczy akt decydowania, co gdzie należy, co z czym się łączy, jakie jest centralne pojęcie. Krok generacji jest uczeniem się. Pominąć go to pominąć powód, dla którego masz notatnik.
+
+Canvas Fluery jest pusty. Nieskończony, pusty, nieonieśmielający. Kosztem jest to, że nowi użytkownicy od razu odczuwają tarcie. Niektórzy odchodzą. Akceptujemy to. Alternatywą jest narzędzie, które przyciąga więcej użytkowników, a uczy mniej.
+
+## AI, które pyta, nie odpowiada
+
+Każda sesja user research, jaką zrobiliśmy, zawierała przynajmniej jedną osobę mówiącą: "byłoby przydatne, gdyby AI mogło napisać mi podsumowanie". Każda sesja bez wyjątku.
+
+Mają rację, że byłoby przydatne. Mylą się, sądząc, że przydatność jest celem. AI, które streszcza ci wykład, to AI, które zajmuje się tą częścią uczenia się, która była *twoim* zadaniem. Dostajesz podsumowanie. Czujesz, że studiowałeś. Niczego nie pamiętasz.
+
+Socratic Mode istnieje konkretnie po to, by nie robić tego, o co proszą użytkownicy. Wypytuje canvas, zamiast go streszczać. Na osi natychmiastowej satysfakcji, w pierwszej interakcji, przegrywa z AI, które wyjaśnia. <Citation authors="Roediger i Karpicke" year="2006" href="/pl/research">Na osi retencji tygodnie później</Citation> wygrywa z marginesami, które sprawiają, że krótkoterminowa preferencja wydaje się nieistotna.
+
+Kompromis jest realny. Niektórzy użytkownicy nigdy nie przekraczają progu. Dla tych, którzy przekraczają, różnica to produkt.
+
+## Suwak pewności
+
+Kończysz pisać odpowiedź. Stukasz "ujawnij rozwiązanie". Fluera prosi cię najpierw o jedną ostatnią rzecz: oceń swoją pewność, od 1 do 5.
+
+To małe przerwanie. Każdy trial dodaje dwie albo trzy sekundy. W trakcie sesji te sekundy się sumują. Użytkownicy proszą, żeby to wyłączyć.
+
+Suwak jest strukturalny. <Citation authors="Butterfield i Metcalfe" year="2001" href="/pl/research">Efekt nadkorekcji Butterfielda i Metcalfe</Citation> — błędy popełnione z wysoką pewnością, raz skorygowane, utrwalają się mocniej niż błędy z niską pewnością — wymaga, żebyś *nazwał* swoją pewność, zanim nadejdzie korekta. Bez suwaka korygujesz we mgle i korekta blaknie. Z suwakiem kontrast staje się jawny i korekta ląduje.
+
+Zostawiamy suwak. Niedogodność jest mechanizmem.
+
+## Fog of War do przygotowania na egzamin
+
+Oczywistym sposobem przygotowania się na egzamin jest ponowne czytanie notatek. Płynność rośnie. Postrzegane przygotowanie rośnie. W dniu egzaminu wynik się załamuje — bo rozpoznanie nie jest przypominaniem, a egzamin wymaga przypominania.
+
+Fog of War odwraca interakcję. W trybie egzaminu Fluera *ukrywa* twój canvas — maskuje obszary, które już pokryłeś, i prosi, żebyś przypomniał je sobie z pamięci, zanim ujawni. Pierwsza sesja jest okropna. Stoisz przed zamglonym canvasem i odkrywasz, ile z tego, co myślałeś, że wiesz, nie potrafisz wyprodukować.
+
+Użytkownicy nienawidzą pierwszej sesji. Uwielbiają wyniki na egzaminie. Tarcie pierwszej sesji jest tym, co czyni te wyniki możliwymi.
+
+## Czego nie robimy (i przepraszamy, że nie robimy)
+
+Dowody wspierają też niektóre interwencje, których nie zbudowaliśmy. <Citation authors="Rohrer i Taylor" year="2007">Interleaving — randomizacja kolejności tematów podczas praktyki, zamiast praktyki w blokach</Citation> — jest mocno udokumentowany jako poprawiający transfer. Chcemy zbudować głębsze funkcje interleavingu. Przeszkodą jest to, że *odczucie produktu* losowej kolejności tematów, bez uważnego designu, może być głęboko dezorientujące. Doświadczenie użytkownika załamuje się, zanim wkroczy korzyść poznawcza.
+
+Zarządzanie tym kompromisem — zachowanie flow przy jednoczesnym wprowadzaniu pożądanego tarcia — to najtwardszy problem projektowy, jaki mamy.
+
+## Wzorzec
+
+Wzorzec, który przecina te wszystkie decyzje, brzmi: **natychmiastowa preferencja użytkownika jest systematycznie mylącym sygnałem.** Użytkownicy wolą łatwą wersję. Łatwa wersja jest gorsza. Budowanie trudniejszej wersji zwykle zostaje nagrodzone potem — przez retencję, przez wyniki egzaminów, przez rzadkiego użytkownika, który wraca i mówi: "myślałem, że jesteście stuknięci, teraz rozumiem". Ale niemal zawsze zostaje ukarane wcześniej — przez churn, przez złe oceny, przez pokusę wydania łatwiejszej wersji następnym razem.
+
+Próbujemy oprzeć się tej pokusie. Czasem zawodzimy. Wydajemy i wycofujemy się i wydajemy znów.
+
+Zakład jest taki, że w branży — ed-techu — w której każdy konkurent poddał się preferencjom użytkownika i zbudował narzędzia, które dają dobre uczucie i uczą mało, jest miejsce na narzędzie gorsze w odczuciu i lepsze w nauczaniu.
+
+Jeśli chcesz pomóc nam to odkryć, [beta jest otwarta](/beta).

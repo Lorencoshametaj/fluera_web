@@ -1,105 +1,8 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import pricing from "@/data/pricing/it";
 
-const tiers = [
-  {
-    name: "Free",
-    price: "€0",
-    period: "per sempre",
-    tagline: "Il canvas completo. Tre quaderni. Gratis per sempre.",
-    features: [
-      "Canvas infinito, 13 pennelli, motore di scrittura a mano completo",
-      "3 quaderni, pagine illimitate",
-      "Local-first — completamente offline",
-      "Export in PNG e PDF",
-      "Socratic mode base",
-    ],
-    cta: { label: "Inizia gratis", href: "/beta" },
-    highlighted: false,
-  },
-  {
-    name: "Student",
-    price: "~€4",
-    period: "al mese · .edu verificata",
-    tagline: "Tutto Fluera a metà prezzo, con email .edu verificata.",
-    features: [
-      "Tutto il piano Pro",
-      "Metà del prezzo Pro",
-      "Fatturazione annuale, verificata ogni anno",
-      "Prova: .edu / .ac.uk / tessera accademica ISIC",
-    ],
-    cta: { label: "Accesso studenti", href: "/beta" },
-    highlighted: true,
-    badge: "Consigliato",
-  },
-  {
-    name: "Pro",
-    price: "~€9",
-    period: "al mese",
-    tagline: "Quaderni illimitati, suite AI completa, sync su tutte e sei le piattaforme.",
-    features: [
-      "Quaderni illimitati",
-      "Suite AI completa (Atlas, Ghost Map, Socratic, Fog of War)",
-      "Sync end-to-end cifrato multi-device",
-      "Time Travel con replay audio-sincronizzato",
-      "Tutti i formati di export (PNG, JPEG, WebP, SVG, PDF, .fluera)",
-      "Supporto email prioritario",
-    ],
-    cta: { label: "Diventa Pro", href: "/beta" },
-    highlighted: false,
-  },
-  {
-    name: "Education",
-    price: "Su misura",
-    period: "campus-wide",
-    tagline: "Costruito per le istituzioni. Parliamone.",
-    features: [
-      "Licenze per classe / dipartimento / intero ateneo",
-      "SSO (SAML, OIDC), deploy MDM-friendly",
-      "Audit log immutabile per account",
-      "Formazione docenti sul ciclo dei 12 passi (workshop 2h)",
-      "Data processing agreement, GDPR-nativo",
-      "Programma pilota: un semestre gratis con una classe di 30+",
-    ],
-    cta: { label: "Parliamone", href: "/contact" },
-    highlighted: false,
-  },
-];
-
-const faq = [
-  {
-    q: "Perché c'è un pricing se siete in beta privata?",
-    a: "Stiamo finalizzando il modello di prezzo col feedback della prima coorte. Questi numeri sono la nostra stima attuale — chi entra ora blocca il prezzo del proprio tier a vita.",
-  },
-  {
-    q: "Come funziona la verifica studente?",
-    a: "Ti registri con un'email .edu o accademica verificata. Se la tua università non usa .edu (comune in Europa), accettiamo tessera studente scansionata, tessera ISIC o una email una-tantum dalla segreteria della facoltà.",
-  },
-  {
-    q: "Cosa succede ai miei quaderni se cancello Pro?",
-    a: "I quaderni restano sul tuo dispositivo e nel tier Free. Mantieni i primi tre; gli altri diventano sola lettura finché non riattivi o li esporti. Niente viene mai cancellato senza un'azione esplicita da parte tua.",
-  },
-  {
-    q: "C'è una politica di rimborso?",
-    a: "Sì — 30 giorni, senza domande, su piani mensili e annuali. Scrivi a support@fluera.dev dall'indirizzo con cui ti sei iscritto.",
-  },
-  {
-    q: "Posso fare self-hosting di Fluera?",
-    a: "La parte local-first gira già completamente offline su tutte e sei le piattaforme. Il self-hosting del cloud sync è sulla roadmap Education (on-prem, SSO, audit log), non ancora disponibile oggi.",
-  },
-  {
-    q: "Offrite sconti per ricercatori o no-profit?",
-    a: "Sì. Laboratori di ricerca, programmi di dottorato e no-profit registrati possono richiederlo da /contact — di solito concediamo Pro al prezzo Student o gratis in cambio di feedback.",
-  },
-  {
-    q: "Perché nessuna prova gratuita del Pro?",
-    a: "Il tier Free non è marketing mutilato — è il canvas completo. Usalo finché vuoi. Il Pro apre AI e sync, che hanno costi cloud ricorrenti che non possiamo regalare.",
-  },
-  {
-    q: "Quali metodi di pagamento accettate?",
-    a: "Carte di credito/debito via Stripe (tutti i brand principali), SEPA per clienti EU, Apple Pay e Google Pay. I clienti Education possono pagare per bonifico o ordine di acquisto.",
-  },
-];
+const { tiers, faq } = pricing;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -114,7 +17,7 @@ const jsonLd = {
 
 <BaseLayout
   title="Pricing"
-  description="Free, Student, Pro e Education. Canvas completo gratis per sempre. Sconto studenti verificato. Licenze Education su misura."
+  description="Free, Plus, Pro e Education. Canvas completo gratis per sempre. Plus a €5,99/mese, Pro a €11,99/mese. Licenze Education su misura."
   locale="it"
   jsonLd={jsonLd}
 >
@@ -124,10 +27,10 @@ const jsonLd = {
       <div class="max-w-3xl mb-16">
         <p class="eyebrow mb-6 text-accent-glow">Prezzi</p>
         <h1 class="font-serif text-display-xl text-paper-50 mb-6">
-          Gratis per imparare.<br />Pro per andare a fondo.
+          Gratis per imparare.<br />Plus e Pro per andare a fondo.
         </h1>
         <p class="prose-ink text-lg max-w-prose">
-          Un canvas. Quattro modi di pagarlo — o di non farlo. Siamo in due, i prezzi sono onesti, e chi entra ora mantiene il proprio tier a vita.
+          Un canvas. Quattro modi per usarlo. Il tier Free è il canvas completo — usalo finché ti basta. Chi sottoscrive ora blocca la tariffa per la durata dell'abbonamento.
         </p>
       </div>
 
@@ -168,7 +71,7 @@ const jsonLd = {
       </div>
 
       <p class="mt-12 text-xs text-ink-500 max-w-2xl italic">
-        Costruito da due persone in Italia. I prezzi potranno evolvere mentre cresciamo — chi entra ora mantiene il prezzo del proprio tier a vita. Niente dark pattern, niente rinnovi a sorpresa: ti avvisiamo prima di ogni addebito.
+        I prezzi di listino possono evolvere. Chi sottoscrive ora blocca la tariffa per la durata dell'abbonamento. Niente dark pattern, niente rinnovi a sorpresa: avvisiamo prima di ogni addebito.
       </p>
     </div>
   </section>
@@ -198,14 +101,4 @@ const jsonLd = {
     </div>
   </section>
 
-  <!-- Enterprise CTA -->
-  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
-    <div class="container-narrow text-center">
-      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Stai insegnando una classe? Dirigi una facoltà?</h2>
-      <p class="prose-ink text-lg mb-8 max-w-2xl mx-auto">
-        Facciamo programmi pilota con le università, una classe alla volta. Gratis per il primo semestre, in cambio di feedback strutturato dagli studenti.
-      </p>
-      <a href="/it/contact" class="btn-primary">Prenota una chiacchierata →</a>
-    </div>
-  </section>
 </BaseLayout>

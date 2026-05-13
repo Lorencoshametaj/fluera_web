@@ -1,0 +1,56 @@
+---
+lang: "fi"
+title: Exam Session
+tagline: "Simuloituja tenttejä omalta canvasiltasi. Hyperkorjaus muuttaa virheet pysyväksi muistiksi."
+shortDescription: "Fluera generoi closed-book-tentin käsitteistä, jotka olet itse piirtänyt. Confidence-valitsin ennen jokaista vastausta. Lähettämisen jälkeen Ghost Map peittää työsi — mitä suurempi yllätys, sitä vahvempi korjaus."
+status: beta
+stepInCycle: 11
+relatedPrinciples:
+  - hypercorrection-effect
+  - productive-failure
+  - interleaving
+  - retrieval-practice
+  - metacognition
+relatedAuthors:
+  - butterfield-metcalfe
+  - robert-bjork
+  - roediger-karpicke
+order: 7
+---
+
+## Mitä se ratkaisee
+
+Useimmat opiskelijat sekoittavat *valmiilta tuntumisen* ja *valmiina olemisen*. He uudelleenlukevat muistiinpanonsa, katsovat videon 2× nopeudella, antavat LLM:n tiivistää luvun — ja menevät tenttiin sujuvuudella, jolla ei ole mitään tekemistä palauttamisen kanssa. Tulos on universaali shokki jälkeenpäin: "Tiesin sen. Miksi en saanut sitä paperille?"
+
+Exam Session sulkee tämän aukon antamalla tentin todella tapahtua — yksityisesti, canvasillasi, päiviä ennen oikeaa.
+
+## Miten se toimii
+
+Päätät opiskelusession. Avaat Atlaksen valikon ja napautat **🎓 Kuulustele minua** — tai kirjoitat *"kuulustele minua"* canvas-chattiin. Fluera lukee käsitteet, jotka olet todella piirtänyt (klusterivälimuisti plus vetojen OCR), ja generoi siitä closed-book-tentin. Viisi, seitsemän tai kymmenen kysymystä. Sekoitettuja tyyppejä: avoin, monivalinta, tosi/epätosi, kaavan palauttaminen.
+
+Ennen jokaista vastausta confidence-valitsin kysyy yhden asian: **kuinka varma olet, 1–5?** Liikuta kiekkoa. Sitoudu lukuun.
+
+Vastaa nyt — käsin, mini-canvas-luonnoslehtiöllä, juuri samalla tavalla kuin kirjoittaisit oikeassa tentissä. Ei autocomplete. Ei copy-paste. Ei "generoi uudelleen". Vain sinä ja sivu.
+
+Lähetettäessä Fluera arvioi vastauksen token tokenilta ja toimittaa palautteen streamingina. Jos olit korkealla varmuudella väärässä, **Hypercorrection Shock UI** laukeaa — tarkoituksellinen, vaikeasti sivuutettava visuaalinen efekti, joka laukaisee kestävimmän korjauksen muodon, jonka aivot voivat tuottaa. Tämän jälkeen Fluera pyytää sinua kirjoittamaan oikean vastauksen omin sanoin uudelleen: **tuottamisvaikutus** ankkuroi sen.
+
+Kolmen peräkkäisen oikean vastauksen jälkeen vaikeustaso nousee automaattisesti. Jokaisen neljän kysymyksen palan jälkeen lyhyt palautetauko ennen seuraavaa settiä — chunking ja interleaving suunnittelusta.
+
+Sessionin lopussa FSRS-ajastin päivittää kertausvälit per käsite todellisesta suorituksestasi, ei itsearvioinnistasi. Sokeat pisteet virtaavat takaisin Fog of Wariin kirurgista palauttamisharjoittelua varten päivänä 1, 3, 7, 14.
+
+## Taustalla oleva tiede
+
+Kolme vuosikymmentä todistusaineistoa lähestyy yhtä oivallusta: kestävimmät korjaukset tulevat yllättävimmistä epäonnistumisista.
+
+Butterfieldin & Metcalfen (2001) **hyperkorjausvaikutus** on keskeinen mekanismi. Suurella varmuudella tehdyt virheet säilyvät korjauksen jälkeen pysyvämpinä kuin matalan varmuuden virheet — yllätys siitä, että erehtyi vaikka oli varma, moduloi hippokampaalista enkoodausta amygdala-aktivaation kautta. Confidence-valitsin ei ole estetiikkaa; se on tämän mekanismin laukaisija.
+
+Robert Bjorkin **Desirable Difficulties** (1994) selittää, miksi avoin, käsin kirjoitettu vastaus voittaa monivalinnan: tuottamisen kitka on juuri se, mikä rakentaa muistia. Roediger & Karpicke (2006) täydentävät kuvan — yksittäinen palautusyritys tuottaa vahvemman pitkäaikaisretention kuin neljä uudelleenlukukertausta.
+
+Manu Kapurin tutkimus **tuottavasta epäonnistumisesta** (2008) tukee vaikeinta suunnittelupäätöstä: kysymykset, jotka alkavat juuri nykyisen tasosi yläpuolelta, tuottavat kestävämpää oppimista kuin kysymykset, jotka on kalibroitu mukavuusalueellesi. Adaptiivinen vaikeustaso eskaloituu tarkoituksellisesti, ei defensiivisesti.
+
+## Mitä tulee
+
+- **Post-Exam Analytics** — varmuuden kalibrointi per klusteri ja hyperkorjauksen suuruuden graafit.
+- **Voice Mode -tentti** — puhutut kysymykset käsinkirjoitetuilla vastauksilla, kliiniseen tai suulliseen tenttivalmistautumiseen.
+- **Pysyvä Surgical Path -peittokuva** — tentin jälkeen Fog of War korostaa vain epäonnistuneet käsitteet live-canvasilla, rajattuna seuraavan päivän kertaukseen.
+- **Multi-aine Exam Sessions** — istunto, joka interleavetaa klustereita useista muistikirjoista ja harjoittaa siirtoa.

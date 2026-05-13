@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Institutionella fallstudier"
+  description="Verkliga historier från universitet, fakulteter och klasser som använder Fluera. Tom så länge: pilotprogrammen avslutar sina första terminer."
+  locale="sv"
+>
+
+  <PageHero
+    kicker="Fallstudier"
+    title="Piloterna pågår.<br />Historierna kommer senare."
+    description="Vi publicerar ingen fallstudie förrän en pilot avslutat minst en termin, fakulteten skrivit på och de anonymiserade studentdatan granskats för korrekthet. Höstterminen 2026 och vårterminen 2027 är i gång — den här sidan fylls i takt med att de avslutas."
+    breadcrumb={{ label: "Utbildning", href: "/sv/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Höst 2026 · Pågår</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">En preklinisk medicinklass</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            ~30 förstaårsmedicinare som använder Fluera under en termin av anatomi och biokemi. Publicering vid terminens slut.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Planerad Q1 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Höst 2026 · Pågår</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Mikroekonomi på grundnivå</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            En begreppstung mikroekonomikurs. Fokus: hur 12-stegs-cykeln håller när materialet är abstrakt snarare än faktabaserat.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Planerad Q2 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">Vår 2027 · Startar</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Ett doktorandseminarium i juridik</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Konstitutionell tolkning. Mindre kohort, djupare engagemang. Fokus på Ghost Map för rättspraxis-jämförelse.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Planerad Q3 2027</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Vill du starta en pilot?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          Vi kör en pilot per termin — en klass, trettio studenter, en termin, utan kostnad. I utbyte ber vi om strukturerad feedback och möjligheten att publicera en anonymiserad fallstudie i slutet.
+        </p>
+        <a href="/sv/contact/sales" class="btn-primary">Starta ett pilotsamtal →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        Varför vänta? För att en fallstudie med riktiga siffror tar tid att samla in ärligt — och att publicera "fallstudier" av marknadstyp baserade på anekdoter handplockade av leverantören är precis den sortens innehåll vi inte vill producera.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

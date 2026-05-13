@@ -13,7 +13,7 @@ relatedAuthors:
   - robert-bjork
   - roediger-karpicke
   - okeefe-moser
-order: 3
+order: 4
 ---
 
 ## What it solves

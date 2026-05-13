@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="회사 소개"
+  description="Fluera는 이탈리아의 작은 팀이 만들었습니다. 우리의 이야기, 신념, 넘지 않을 선."
+  locale="ko"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">회사 소개</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
+          학생 시절 갖고 싶었던<br />학습 앱을<br />우리가 만들었습니다.
+        </h1>
+        <div class="prose-ink text-lg">
+          <p>
+            Fluera는 좌절감에서 태어났습니다. 우리 중 한 명은 10년 경력의 풀스택 개발자, 다른 한 명은 동기들이 같은 함정에 빠지는 것을 보던 학생이었습니다 — 생산적으로 보이지만 아무것도 기억하는 데 도움이 되지 않는 앱들.
+          </p>
+          <p>
+            우리는 연구를 읽었습니다. <em>많은</em> 연구를. Bjork, Mueller, Roediger, van der Meer, O'Keefe. 인지 과학은 반세기 동안 명확했습니다: 손글씨가 타이핑을 이기고, 회상이 재독을 이기며, 간격이 벼락치기를 이기고, 마찰은 기능입니다. 이 중 어느 것도 진지하게 받아들이는 앱을 찾을 수 없었습니다. 그래서 우리가 만들었습니다.
+          </p>
+          <p>
+            그 과정에서 처음부터 2D 렌더링 엔진을 작성했습니다 — 어떤 기성 스택도 6개의 네이티브 플랫폼에서 60 FPS로 압력 감지 잉크를 처리할 수 없었기 때문입니다. 엔진은 인지 기능이 살고 있는 기질입니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">선</p>
+        <h2 class="font-serif text-display-lg text-paper-50 mb-8">우리가 하지 않을 것.</h2>
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">당신을 대신해서 시험에 답하는 AI를 만들지 않습니다.</strong>
+              <p class="text-sm mt-1 text-paper-300">Fluera의 AI는 묻고, 비계 역할을 하고, 반영합니다. 당신의 사고를 결코 닫지 않습니다. 인지 작업을 위해 AI를 사용하는 것은 우리가 훈련해야 할 근육을 위축시키는 것입니다.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">당신의 노트북 데이터를 팔지 않습니다.</strong>
+              <p class="text-sm mt-1 text-paper-300">당신의 노트는 정지 시 암호화되고, 동기화 시 종단 간 암호화되며, 누구의 모델도 훈련하는 데 사용되지 않습니다. 우리 모델 포함.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">광고, 참여 루프, 스트릭 없음.</strong>
+              <p class="text-sm mt-1 text-paper-300">학습과의 관계가 푸시 알림에 의존하지 않아야 합니다. Fluera를 적게 사용하고 더 많이 배우는 것을 선호합니다.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">인용으로 변호할 수 없는 기능을 출시하지 않습니다.</strong>
+              <p class="text-sm mt-1 text-paper-300">기능이 게재된 발견이나 베타의 일관된 피드백으로 거슬러 올라가지 않으면 프로덕션에 들어가지 않습니다. 와우 효과는 기능이 아닙니다. 새로움은 기능이 아닙니다.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        본사는 {SITE.company.city}. 우리가 거부하는 것과 그 이유에 대한 더 긴 선언은 <a href="/ko/manifesto" class="text-paper-300 underline underline-offset-4">매니페스토</a>에 있습니다.
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/ko/contact" class="btn-secondary">문의하기</a>
+        <a href="/beta" class="btn-primary">베타 참여</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

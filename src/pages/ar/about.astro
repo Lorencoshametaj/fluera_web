@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="من نحن"
+  description="Fluera يبنيها فريق صغير في إيطاليا. قصّتنا، قناعاتنا، الخطّ الذي لن نعبره."
+  locale="ar"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">من نحن</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
+          بنينا تطبيق الدراسة<br />الذي تمنّيناه<br />حين كنّا طلّابًا.
+        </h1>
+        <div class="prose-ink text-lg">
+          <p>
+            وُلدت Fluera من إحباط. أحدنا مطوّر بخبرة عقد كامل-المكدّس؛ والآخر طالب يرى أقرانه يقعون في الفخّ نفسه — تطبيقات تبدو منتجة لكنّها لا تساعد على تذكّر شيء.
+          </p>
+          <p>
+            قرأنا الأبحاث. <em>الكثير</em> من الأبحاث. Bjork وMueller وRoediger وvan der Meer وO'Keefe. علم الإدراك واضح منذ نصف قرن: الكتابة اليدوية تتفوّق على الآلية، الاسترجاع يتفوّق على إعادة القراءة، التباعد يتفوّق على الحفظ المكثّف، الاحتكاك ميزة لا عيب. لم نجد تطبيقًا واحدًا يأخذ أيًّا من ذلك بجدّية. فبنينا واحدًا.
+          </p>
+          <p>
+            في الطريق، كتبنا محرّك رسم ثنائي الأبعاد من الصفر — لأنّ أيّ مكدّس جاهز لا يستطيع التعامل مع حبر حسّاس للضغط بمعدّل 60 إطارًا في الثانية على ستّ منصّات أصلية. المحرّك هو الركيزة التي تعيش عليها الميزات المعرفية.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">الخطّ</p>
+        <h2 class="font-serif text-display-lg text-paper-50 mb-8">ما لن نفعله.</h2>
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">لن نملك ذكاءً اصطناعيًّا يجيب على امتحانك بدلًا منك.</strong>
+              <p class="text-sm mt-1 text-paper-300">الذكاء الاصطناعي في Fluera يسأل، يَسند، يعكس. لا يُطفئ تفكيرك أبدًا. استخدام AI للعمل المعرفي ضمور للعضلة التي ينبغي أن نُدرّبها.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">لن نبيع بيانات دفاترك.</strong>
+              <p class="text-sm mt-1 text-paper-300">ملاحظاتك مشفّرة في حالة سكون، ومن طرف إلى طرف عند المزامنة، ولا تُستخدم أبدًا لتدريب نماذج أحد. بما فينا.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">لا إعلانات، لا حلقات تفاعل، لا سلاسل أيّام متتالية.</strong>
+              <p class="text-sm mt-1 text-paper-300">علاقتك بالدراسة ينبغي ألّا تعتمد على إشعارات. نريدك أن تستخدم Fluera أقلّ وأن تتعلّم أكثر.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">لن نُصدر ميزات لا نستطيع الدفاع عنها بمرجع.</strong>
+              <p class="text-sm mt-1 text-paper-300">إن لم تَعُد ميزة إلى نتيجة منشورة أو إلى تغذية راجعة متّسقة من البيتا، فلن تذهب إلى الإنتاج. الدهشة ليست ميزة. والجدّة ليست ميزة.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        المقرّ في {SITE.company.city}. النصّ الأطول حول ما نرفضه ولماذا، يعيش في <a href="/ar/manifesto" class="text-paper-300 underline underline-offset-4">البيان</a>.
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/ar/contact" class="btn-secondary">تواصل معنا</a>
+        <a href="/beta" class="btn-primary">انضمّ إلى البيتا</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

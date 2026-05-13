@@ -1,0 +1,57 @@
+---
+lang: "fr"
+title: "Pourquoi nous construisons une app d'étude en 2026"
+description: "Si n'importe qui peut poser n'importe quelle question et recevoir une réponse en trois secondes, la question intéressante n'est pas ce que nous savons. C'est ce que nous retenons."
+publishedAt: 2026-04-20
+author: "Lorenzo"
+category: cognitive-science
+tags: ["manifesto", "ia", "posicionamento"]
+relatedPrinciples: [automation-bias, illusion-of-competence, centaur-paradigm]
+---
+import Citation from "@/components/Citation.astro";
+
+Il existe une version de cet essai que j'ai écrite il y a dix-huit mois et je suis content de ne pas l'avoir publiée.
+
+Elle s'appelait *Pourquoi une app d'étude à l'ère de ChatGPT ?*, et passait deux mille mots à expliquer comment l'IA transformerait l'éducation, comment Fluera serait l'app qui rendrait enfin réel le tutorat personnalisé et comment, dans cinq ans, plus personne n'étudierait comme avant. C'était optimiste. C'était confiant. C'était aussi, rétrospectivement, presque entièrement faux.
+
+Ce que je ne voyais pas, à l'époque, c'est que le problème n'a jamais été que les étudiants ne pouvaient pas atteindre l'information. Ça n'a jamais été que les enseignants ne pouvaient pas personnaliser. Le problème était — et est — que les outils modernes rendent incroyablement facile la *sensation* d'avoir appris quelque chose alors qu'on n'a rien appris. Et plus l'outil devient bon sur la *sensation*, plus il devient mauvais sur la chose qui compte.
+
+## Le goulot d'étranglement s'est déplacé
+
+Pendant une grande partie de l'histoire, la question qui définissait l'étude de quoi que ce soit était l'*accès*. Les livres coûtaient cher. Les professeurs étaient rares. Les bibliothèques étaient loin. Une personne instruite était, avant tout, quelqu'un qui avait réussi à s'approcher de l'information.
+
+Pour ma génération, la question est devenue la *navigation*. L'information était abondante ; trouver le bon morceau était le travail. Google, Wikipédia, Stack Overflow — toute une infrastructure pour une seule question : *où est-ce ?* Être instruit en 2015, ça voulait dire savoir bien chercher.
+
+En 2026, aucune des deux questions ne nous contraint vraiment. N'importe quel fait est à trois secondes. N'importe quelle explication peut être générée dans le style que tu préfères. Le goulot s'est encore déplacé et — voici la part qui m'avait échappé — pour la nouvelle forme, l'infrastructure n'a pas encore été construite.
+
+Le nouveau goulot est : *comment je transforme ce que je viens de lire en quelque chose que je retiens vraiment ?*
+
+## La vieille science cognitive, discrètement vengée
+
+Et voici la chose drôle. Les réponses à cette question sont dans la littérature depuis cinquante ans. La répétition espacée, depuis Ebbinghaus en 1885. <Citation authors="Roediger et Karpicke" year="2006" href="/fr/research">Pratique de récupération, depuis Roediger et Karpicke en 2006</Citation>. <Citation authors="Bjork" year="1994" href="/fr/research">Difficultés désirables, depuis Bjork en 1994</Citation>. <Citation authors="Novak et Gowin" year="1984" href="/fr/research">Cartographie conceptuelle, depuis Novak en 1984</Citation>. La neuroscience de la mémoire spatiale d'O'Keefe et des Moser, <Citation authors="Moser et al." year="2005" href="/fr/research">qui a remporté le Nobel en 2014</Citation>.
+
+Ces résultats sont robustes. Les méta-analyses sont cohérentes. Les effect sizes vont de modérés à *d = 0,88* — très grand pour n'importe quel standard des sciences cognitives.
+
+Ce que nous n'avons jamais eu — pas une seule fois, dans toute l'histoire de l'ed-tech — ce sont des outils qui rendent la bonne chose le chemin le plus facile. Anki rend la pratique de récupération possible, mais au prix d'une construction énorme. Notion rend les notes lisibles mais pas récupérables. GoodNotes rend l'écriture à la main jolie mais déconnectée de tout planning de mémoire. Chaque outil résout une étape d'un cycle qui en compte beaucoup ; aucun ne résout le cycle.
+
+Et maintenant, par-dessus cette mosaïque, nous avons les LLM. Qui rendent la mauvaise chose — la consommation passive de réponses articulées — *ressentie* comme si c'était la bonne. Trois secondes de fluidité, confondues avec de l'encodage. <Citation authors="Kahneman" year="2011" href="/fr/research">Biais d'automatisation à l'échelle planétaire</Citation>.
+
+## Le Centaure, pas la substitution
+
+La tentation, quand on construit un outil d'étude basé sur l'IA, c'est de mettre l'IA au centre. La faire générer tes notes, te résumer le manuel, t'expliquer les questions d'examen. Je comprends la tentation. C'est le produit évident. Et c'est aussi, selon tout ce que dit la science, exactement faux.
+
+Le framing Centaure de Kasparov est ce qui marche vraiment. Le joueur d'échecs le plus fort du monde n'est pas Stockfish. Ce n'est même pas Carlsen. C'est Carlsen *avec* Stockfish, en symbiose structurée — chacun faisant ce qu'il sait faire le mieux, aucun des deux ne faisant semblant d'être l'autre.
+
+Pour l'étude, la contribution humaine est la profondeur, le jugement et la génération. La contribution de l'IA est l'amplitude, la vérification et le scaffolding. Un outil qui comprend ça a une IA qui interroge avant de répondre, qui pose des étais avant de résoudre, qui vérifie avant de proposer. Un outil qui se trompe fait l'inverse, et l'étudiant sort de la session en se sentant plus intelligent sans avoir rien appris.
+
+Fluera est notre tentative du premier type.
+
+## Sur quoi nous parions
+
+Nous parions qu'il existe une cohorte de learners — pas tous, pas la majorité, mais suffisamment — qui sait sentir la différence entre fluidité et compétence quand cela compte. Étudiants qui préparent des oraux qu'on ne peut pas feindre. Learners au long cours qui s'aperçoivent que tout ce qu'ils demandent à ChatGPT s'évapore la semaine suivante. Enseignants fatigués de voir des étudiants rendre des essais générés par LLM articulés que l'étudiant ne sait ensuite pas défendre.
+
+Pour eux, la friction n'est pas un bug. Écrire à la main n'est pas de la nostalgie. Être interrogé avant de recevoir la réponse n'est pas une punition. Ce sont des fonctionnalités. C'est le mécanisme.
+
+Nous construisons un outil d'étude plus lent, plus silencieux et plus difficile que les alternatives. Parce que les preuves disent que c'est ce qui marche. Et parce que les outils plus rapides, plus bruyants et plus faciles sont devenus, à ce stade, des outils pour l'illusion de compétence.
+
+Si cela résonne en toi — [viens construire avec nous dans la beta](/beta). Sinon, c'est très bien aussi. Tous les outils ne sont pas pour tous les learners. Celui-ci est pour ceux qui savent distinguer la différence.

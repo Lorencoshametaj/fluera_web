@@ -1,0 +1,57 @@
+---
+lang: "pl"
+title: "Dlaczego budujemy aplikację do nauki w 2026 roku"
+description: "Jeśli każdy może zadać każde pytanie i dostać odpowiedź w trzy sekundy, ciekawym pytaniem nie jest, co wiemy. Jest, co utrzymujemy."
+publishedAt: 2026-04-20
+author: "Lorenzo"
+category: cognitive-science
+tags: ["manifesto", "ia", "posicionamento"]
+relatedPrinciples: [automation-bias, illusion-of-competence, centaur-paradigm]
+---
+import Citation from "@/components/Citation.astro";
+
+Jest wersja tego eseju, którą napisałem osiemnaście miesięcy temu i jestem zadowolony, że jej nie opublikowałem.
+
+Nazywała się *Po co aplikacja do nauki w erze ChatGPT?* i zużywała dwa tysiące słów na wyjaśnianie, jak AI zmieni edukację, jak Fluera będzie aplikacją, która w końcu uczyni personalizowany tutoring rzeczywistym, i jak za pięć lat nikt nie będzie się już uczył tak, jak wcześniej. Była optymistyczna. Była pewna siebie. Była też, z perspektywy czasu, niemal całkowicie błędna.
+
+Czego nie widziałem wtedy, to to, że problemem nigdy nie było to, że studenci nie potrafili dosięgnąć informacji. Nigdy nie było to, że nauczyciele nie potrafili personalizować. Problemem było — i jest — że nowoczesne narzędzia czynią niesamowicie łatwym *poczucie*, że się czegoś nauczyłeś, kiedy się nie nauczyłeś. A im lepsze staje się narzędzie w *odczuciu*, tym gorsze w tym, co naprawdę się liczy.
+
+## Wąskie gardło się przesunęło
+
+Przez dużą część historii pytaniem, które definiowało naukę czegokolwiek, był *dostęp*. Książki kosztowały. Nauczycieli było mało. Biblioteki znajdowały się daleko. Osoba wykształcona była przede wszystkim kimś, komu udało się zbliżyć do informacji.
+
+Dla mojego pokolenia pytanie zmieniło się w *nawigację*. Informacja była obfita; znalezienie właściwego kawałka było zadaniem. Google, Wikipedia, Stack Overflow — cała infrastruktura na jedno pytanie: *gdzie to jest?* Być wykształconym w 2015 oznaczało umieć dobrze szukać.
+
+W 2026 żadne z tych dwóch pytań nas już naprawdę nie ogranicza. Każdy fakt jest o trzy sekundy. Każde wyjaśnienie można wygenerować w stylu, który wolisz. Wąskie gardło przesunęło się znów i — oto część, która mi umknęła — dla nowej formy infrastruktura jeszcze nie została zbudowana.
+
+Nowe wąskie gardło to: *jak przekształcam to, co właśnie przeczytałem, w coś, co naprawdę utrzymuję?*
+
+## Stara kognitywistyka, po cichu zrehabilitowana
+
+I oto śmieszna rzecz. Odpowiedzi na to pytanie są w literaturze od pięćdziesięciu lat. Powtórki rozłożone w czasie, od Ebbinghausa w 1885 roku. <Citation authors="Roediger i Karpicke" year="2006" href="/pl/research">Praktyka przypominania, od Roedigera i Karpicke w 2006</Citation>. <Citation authors="Bjork" year="1994" href="/pl/research">Pożądane trudności, od Bjorka w 1994</Citation>. <Citation authors="Novak i Gowin" year="1984" href="/pl/research">Concept mapping, od Novaka w 1984</Citation>. Neuronauki pamięci przestrzennej O'Keefe'a i Moserów, <Citation authors="Moser et al." year="2005" href="/pl/research">które zdobyły Nobla w 2014</Citation>.
+
+Te wyniki są odporne. Metaanalizy są spójne. Wielkości efektów sięgają od umiarkowanych do *d = 0,88* — bardzo dużych jak na standardy kognitywistyki.
+
+Czego nigdy nie mieliśmy — ani razu w całej historii ed-techu — to narzędzi, które uczyniłyby właściwą rzecz najłatwiejszą drogą. Anki czyni praktykę przypominania możliwą, ale kosztem ogromnej budowy. Notion czyni notatki czytelnymi, ale nie odzyskiwalnymi. GoodNotes czyni pismo ręczne ładnym, ale odłączonym od jakiegokolwiek harmonogramu pamięci. Każde narzędzie rozwiązuje jeden krok wieloetapowego cyklu; żadne nie rozwiązuje cyklu.
+
+A teraz, na tym mozaiku, mamy LLM-y. Które sprawiają, że niewłaściwa rzecz — bierna konsumpcja artykułowanych odpowiedzi — *wydaje się* właściwą rzeczą. Trzy sekundy płynności mylone z kodowaniem. <Citation authors="Kahneman" year="2011" href="/pl/research">Błąd automatyzacji w skali planetarnej</Citation>.
+
+## Centaur, nie zastąpienie
+
+Pokusą przy budowaniu narzędzia do nauki opartego na AI jest postawienie AI w centrum. Niech generuje twoje notatki, streszcza ci podręcznik, wyjaśnia ci pytania egzaminacyjne. Rozumiem pokusę. To oczywisty produkt. I jest to także, według wszystkiego, co mówi nauka, dokładnie błędne.
+
+Framing Centaura Kasparowa to to, co naprawdę działa. Najsilniejszym szachistą świata nie jest Stockfish. Nie jest też Carlsen. To Carlsen *ze* Stockfishem, w ustrukturyzowanej symbiozie — każdy robi to, co umie najlepiej, żaden z nich nie udaje drugiego.
+
+Dla nauki ludzkim wkładem jest głębia, osąd i generacja. Wkładem AI jest szerokość, weryfikacja i scaffolding. Narzędzie, które to rozumie, ma AI pytające, zanim odpowie, stawiające rusztowanie, zanim rozwiąże, weryfikujące, zanim się zaoferuje. Narzędzie, które się myli, robi odwrotnie, a student wychodzi z sesji czując się mądrzejszym, choć niczego się nie nauczył.
+
+Fluera jest naszą próbą tego pierwszego rodzaju.
+
+## Na co stawiamy
+
+Stawiamy na to, że istnieje grupa uczących się — nie wszyscy, nie większość, ale wystarczająco wielu — którzy potrafią wyczuć różnicę między płynnością a kompetencją, kiedy się to liczy. Studenci przygotowujący się do egzaminów ustnych, których nie da się udawać. Uczący się długoterminowo, którzy zauważają, że wszystko, o co proszą ChatGPT, paruje w następnym tygodniu. Wykładowcy zmęczeni patrzeniem, jak studenci oddają eseje wygenerowane przez LLM-y, których potem nie potrafią obronić.
+
+Dla nich tarcie nie jest bugiem. Pisanie ręczne nie jest nostalgią. Bycie wypytywanym przed otrzymaniem odpowiedzi nie jest karą. To są funkcje. To jest mechanizm.
+
+Budujemy narzędzie do nauki wolniejsze, cichsze i trudniejsze niż alternatywy. Bo dowody mówią, że to działa. I bo szybsze, głośniejsze i łatwiejsze narzędzia stały się, w tym momencie, narzędziami iluzji kompetencji.
+
+Jeśli to ci rezonuje — [chodź budować z nami w becie](/beta). Jeśli nie rezonuje, też dobrze. Nie każde narzędzie jest dla każdego uczącego się. To jest dla tych, którzy potrafią rozróżnić.

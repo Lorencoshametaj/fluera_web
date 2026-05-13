@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft && data.lang === "ar"))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const categoryLabel: Record<string, string> = {
+  "cognitive-science": "علم الإدراك",
+  "product": "المنتج",
+  "engineering": "الهندسة",
+  "field-notes": "ملاحظات ميدانية",
+};
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("ar", { year: "numeric", month: "long", day: "numeric" });
+}
+---
+
+<BaseLayout
+  title="المدوّنة"
+  description="علم إدراك مُطبَّق. ملاحظات منتج. تفاصيل هندسية. أشياء تستحقّ أن تُكتَب."
+  locale="ar"
+>
+  <PageHero
+    kicker="المدوّنة"
+    title="علم إدراك مُطبَّق."
+    description="ملاحظات حول ما نَبنيه ولماذا. لا قوائم. لا قيادة فكرية. قصيرة بما يكفي لتُقرأ، طويلة بما يكفي لتقول شيئًا."
+  />
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-4xl">
+        {posts.map((p) => (
+          <li>
+            <a href={`/ar/blog/${p.id.replace(/\.ar$/, "")}`} class="block card p-6 md:p-8 hover:border-accent-glow/40 hover:bg-white/[0.04] transition-all">
+              <div class="flex items-center gap-3 mb-3 flex-wrap">
+                <span class="eyebrow text-accent-glow">{categoryLabel[p.data.category]}</span>
+                <span class="text-ink-600">·</span>
+                <span class="text-xs font-mono uppercase tracking-widest text-ink-500">{formatDate(p.data.publishedAt)}</span>
+              </div>
+              <h2 class="font-serif text-2xl md:text-3xl text-paper-50 mb-3 leading-tight">{p.data.title}</h2>
+              <p class="text-sm text-paper-300 leading-relaxed max-w-prose">{p.data.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {posts.length === 0 && (
+        <p class="mt-10 text-sm text-ink-500 italic max-w-prose">
+          لا توجد بعد مقالات بالعربية. المقالات الأصلية بالإنكليزية على <a href="/blog" class="text-accent-glow underline">/blog</a>.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 mb-4 max-w-xl mx-auto">
+        مقال جديد كلّ أسبوعين تقريبًا. ولأهمّها، نشرة شهرية.
+      </p>
+      <a href="/ar/contact" class="btn-secondary">الاشتراك في النشرة قريبًا</a>
+    </div>
+  </section>
+</BaseLayout>

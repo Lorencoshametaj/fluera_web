@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "Beta",  note: "Zaproszenie TestFlight po zatwierdzeniu w becie." },
+  { name: "macOS",        status: "Beta",  note: "Plik .dmg przez prywatny link po zatwierdzeniu." },
+  { name: "Android",      status: "Alpha", note: "APK przez ścieżkę wewnętrzną Google Play." },
+  { name: "Windows",      status: "Alpha", note: "Podpisany instalator .exe przez Microsoft Store." },
+  { name: "Linux",        status: "Alpha", note: "AppImage + flatpak." },
+  { name: "Web",          status: "Demo",  note: "Wypróbuj na /demo teraz — wymagana przeglądarka z WebGPU." },
+];
+---
+
+<BaseLayout
+  title="Pobierz"
+  description="Fluera działa natywnie na iOS, Androidzie, macOS, Windows, Linuksie i w sieci. Dołącz do prywatnej bety, by uzyskać wczesny dostęp."
+  locale="pl"
+>
+  <PageHero
+    kicker="Pobierz"
+    title="Sześć platform.<br />Dołącz do bety, by uzyskać dostęp."
+    description="Fluera jest w prywatnej becie. Po wpuszczeniu linki instalacyjne przychodzą e-mailem — natywna aplikacja na każdej platformie, bez okrojonej wersji webowej."
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">Poproś o dostęp do bety →</a>
+      <a href="/demo" class="btn-secondary">Wypróbuj demo webowe</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Publiczne wydania w App Store i Google Play pojawiają się pod koniec prywatnej bety. Tymczasem etykiety statusu powyżej mówią prawdę o dojrzałości każdej platformy — wolimy zrobić jedno dobre wydanie niż sześć złych.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,5 +1,6 @@
 import { getCollection } from "astro:content";
 import type { DocSection } from "@/components/DocSidebar.astro";
+import type { Locale } from "@/lib/i18n";
 
 const SECTION_ORDER: Record<string, number> = {
   "getting-started": 1,
@@ -12,9 +13,20 @@ const SECTION_ORDER: Record<string, number> = {
   advanced: 4,
 };
 
-export async function buildDocsSections(): Promise<DocSection[]> {
-  const docs = await getCollection("docs");
+/**
+ * Build the docs sidebar sections for a given locale. Filters by `lang` and
+ * emits `/docs` or `/{locale}/docs` hrefs accordingly.
+ *
+ * Slug ids include the locale suffix (e.g. `welcome.it`); we strip it so
+ * `/it/docs/welcome` and `/docs/welcome` share the base slug in URLs.
+ */
+export async function buildDocsSections(locale: Locale = "en"): Promise<DocSection[]> {
+  const docs = await getCollection("docs", ({ data }) => data.lang === locale);
   const bySection = new Map<string, { label: string; links: { title: string; href: string; order: number }[] }>();
+
+  const localePrefix = locale === "en" ? "" : `/${locale}`;
+  const stripLocaleSuffix = (id: string) =>
+    locale === "en" ? id : id.replace(new RegExp(`\\.${locale}$`), "");
 
   for (const doc of docs) {
     const bucket = bySection.get(doc.data.section) ?? {
@@ -23,7 +35,7 @@ export async function buildDocsSections(): Promise<DocSection[]> {
     };
     bucket.links.push({
       title: doc.data.title,
-      href: `/docs/${doc.id}`,
+      href: `${localePrefix}/docs/${stripLocaleSuffix(doc.id)}`,
       order: doc.data.order,
     });
     bySection.set(doc.data.section, bucket);

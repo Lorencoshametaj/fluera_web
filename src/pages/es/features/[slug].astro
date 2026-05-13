@@ -1,0 +1,149 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const features = await getCollection("features", ({ data }) => data.lang === "es");
+  return features.map((f) => ({
+    params: { slug: f.id.replace(/\.es$/, "") },
+    props: { feature: f },
+  }));
+}
+
+const { feature } = Astro.props;
+const { Content } = await render(feature);
+
+// Related entries: prefer es sibling if it exists, fall back to EN.
+async function resolveLocalized<T extends "principles" | "authors">(
+  collection: T,
+  ref: { id: string },
+) {
+  const localizedId = ref.id.endsWith(".es") ? ref.id : `${ref.id}.es`;
+  return (await getEntry(collection, localizedId)) ?? (await getEntry(collection, ref.id));
+}
+
+const principles = (
+  await Promise.all(feature.data.relatedPrinciples.map((r) => resolveLocalized("principles", r)))
+).filter(Boolean);
+const authors = (
+  await Promise.all(feature.data.relatedAuthors.map((r) => resolveLocalized("authors", r)))
+).filter(Boolean);
+
+const statusLabel: Record<string, string> = {
+  stable: "Disponible",
+  beta: "En beta",
+  "coming-soon": "Próximamente",
+};
+
+const statusStyle: Record<string, string> = {
+  stable:         "text-signal-ok border-signal-ok/30",
+  beta:           "text-accent-glow border-accent-glow/30",
+  "coming-soon":  "text-signal-warn border-signal-warn/30",
+};
+---
+
+<BaseLayout
+  title={`${feature.data.title} — Fluera`}
+  description={feature.data.shortDescription}
+  locale="es"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] -top-24 -end-24 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <nav class="mb-8 text-xs font-mono uppercase tracking-widest text-ink-500" aria-label="Breadcrumb">
+        <a href="/es/features" class="hover:text-paper-200">Características</a>
+      </nav>
+
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-6 flex-wrap">
+          {feature.data.stepInCycle && (
+            <span class="eyebrow text-accent-glow">Paso {feature.data.stepInCycle} · El ciclo</span>
+          )}
+          <span class={`pill text-[11px] capitalize ${statusStyle[feature.data.status]}`}>
+            {statusLabel[feature.data.status]}
+          </span>
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">{feature.data.title}</h1>
+        <p class="prose-ink text-2xl font-serif italic max-w-2xl mb-6">{feature.data.tagline}</p>
+        <p class="prose-ink text-lg max-w-2xl">{feature.data.shortDescription}</p>
+      </div>
+
+      <div class="mt-12 aspect-[16/9] max-w-4xl rounded-2xl border border-white/[0.08] bg-gradient-to-br from-ink-800 via-ink-850 to-ink-900 relative overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="font-mono text-xs text-ink-500 uppercase tracking-widest">[ Demo loop · {feature.data.title} ]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+      <Content />
+    </div>
+  </article>
+
+  {principles.length > 0 && (
+    <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+      <div class="container-site">
+        <div class="max-w-3xl mb-10">
+          <p class="eyebrow mb-6 text-accent-glow">La ciencia detrás</p>
+          <h2 class="font-serif text-display-lg text-paper-50">Principios sobre los que se apoya esta característica.</h2>
+        </div>
+        <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 list-none p-0">
+          {principles.map((p) => p && (
+            <li>
+              <a href={`/es/science/principles/${p.id.replace(/\.es$/, "")}`} class="block card p-5 h-full hover:border-accent-glow/40 transition-colors">
+                <div class="flex items-start justify-between gap-3 mb-2">
+                  <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{p.data.title}</h3>
+                  <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+                </div>
+                <p class="text-sm text-paper-300 line-clamp-3">{p.data.shortDescription}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {authors.length > 0 && (
+    <section class="py-16 md:py-20 border-b border-white/[0.04]">
+      <div class="container-site">
+        <div class="max-w-3xl mb-10">
+          <p class="eyebrow mb-6 text-accent-glow">Quién está detrás</p>
+          <h2 class="font-serif text-display-lg text-paper-50">Las mentes detrás de la evidencia.</h2>
+        </div>
+        <ul class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 list-none p-0">
+          {authors.map((a) => a && (
+            <li>
+              <a href={`/es/science/authors/${a.id.replace(/\.es$/, "")}`} class="block card p-5 h-full hover:border-accent-glow/40 transition-colors">
+                <div class="flex items-start justify-between gap-3 mb-2">
+                  <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{a.data.name}</h3>
+                  {a.data.nobelLaureate && <span class="shrink-0 pill text-[10px] text-accent-glow border-accent-glow/30">Nobel</span>}
+                </div>
+                <p class="text-[11px] font-mono uppercase tracking-widest text-ink-500 mb-2">{a.data.years}</p>
+                <p class="text-sm text-paper-300 line-clamp-3">{a.data.shortBio}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Pruébalo en la beta.</h2>
+      <p class="prose-ink mb-8 max-w-xl mx-auto">
+        Las características llegan primero a iOS y macOS, luego Android y desktop. Entra en la beta privada para recibir acceso en cuanto caiga el release de tu dispositivo.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Solicitar acceso →</a>
+        <a href="/es/features" class="btn-secondary">← Volver a las características</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

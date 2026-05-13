@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Institutionele case studies"
+  description="Echte verhalen van universiteiten, faculteiten en klassen die Fluera gebruiken. Voorlopig leeg: de pilots ronden hun eerste semesters af."
+  locale="nl"
+>
+
+  <PageHero
+    kicker="Case studies"
+    title="De pilots draaien.<br />De verhalen volgen later."
+    description="We publiceren geen case study totdat een pilot ten minste één semester heeft afgerond, de faculteit heeft getekend en de geanonimiseerde studentdata zijn gecontroleerd op nauwkeurigheid. De cohorten van het tweede semester van 2026 en het eerste van 2027 lopen — deze pagina vult zich naarmate ze afronden."
+    breadcrumb={{ label: "Onderwijs", href: "/nl/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2e semester 2026 · Loopt</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Een preklinische geneeskundeklas</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            ~30 eerstejaars geneeskundestudenten gebruiken Fluera tijdens een semester anatomie en biochemie. Publicatie aan het einde van het semester.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Verwacht Q1 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2e semester 2026 · Loopt</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Bachelor micro-economie</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Een conceptueel dichte micro-economiecursus. Focus: hoe de cyclus van 12 stappen standhoudt wanneer het materiaal abstract is in plaats van feitelijk.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Verwacht Q2 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">1e semester 2027 · Start</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Een masterseminar in rechten</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Constitutionele interpretatie. Kleinere cohort, diepere betrokkenheid. Focus op Ghost Map voor het vergelijken van jurisprudentie.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Verwacht Q3 2027</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Wil je een pilot starten?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          We draaien één pilot per semester — één klas, dertig studenten, één semester, kosteloos. In ruil vragen we gestructureerde feedback en de optie om aan het einde een geanonimiseerde case study te publiceren.
+        </p>
+        <a href="/nl/contact/sales" class="btn-primary">Start een pilotgesprek →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        Waarom wachten? Omdat een case study met echte cijfers tijd kost om eerlijk te verzamelen — en het publiceren van marketing-"case studies" op basis van door de vendor uitgekozen anekdotes is precies het soort content dat we niet willen produceren.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

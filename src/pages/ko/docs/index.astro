@@ -1,0 +1,37 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { buildDocsSections } from "@/lib/docs-nav";
+
+const sections = await buildDocsSections("ko");
+---
+
+<DocLayout
+  title="사용자 문서"
+  description="Fluera를 설계된 방식대로 사용하기 위한 실용적인 가이드. 첫 방문이라면 환영합니다부터 시작하세요."
+  sections={sections}
+  rootHref="/ko/docs"
+  rootLabel="문서"
+  sectionLabel="개요"
+  locale="ko"
+>
+  <p>Fluera 사용자 문서에 오신 것을 환영합니다. 왼쪽 사이드바는 새 사용자가 일반적으로 따르는 흐름을 따라 정렬되어 있습니다 — <a href="/ko/docs/welcome">환영</a>으로 시작하고, <a href="/ko/docs/first-canvas">첫 캔버스</a>로 진행한 다음, 필요한 경우에만 트러블슈팅에 도달하세요.</p>
+
+  <p><em>왜</em>를 찾고 있다면 — 인지 과학, 연구, 제품이 구축된 12단계 사이클 — <a href="/ko/science">사이언스 페이지</a>에 살고 있습니다. 여기 문서는 실용적인 <em>방법</em>입니다.</p>
+
+  <h2>섹션별</h2>
+
+  {sections.map((sec) => (
+    <section class="mt-8">
+      <h3 id={sec.slug}>{sec.label}</h3>
+      <ul>
+        {sec.links.map((link) => (
+          <li><a href={link.href}>{link.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <h2>필요한 것을 찾을 수 없습니까?</h2>
+
+  <p><a href="mailto:support@fluera.dev">support@fluera.dev</a>로 작성하세요. 창립자가 영업일 1일 이내에 답합니다 — 일반적으로 1시간 이내. 문서에 공백이 보이면 알려주시고 우리가 채우겠습니다.</p>
+</DocLayout>

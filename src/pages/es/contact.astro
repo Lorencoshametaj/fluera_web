@@ -1,0 +1,70 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const channels = [
+  {
+    label: "General",
+    email: SITE.company.contactEmail,
+    body: "Feedback, dudas, peticiones. Leemos todo lo que llega aquí.",
+  },
+  {
+    label: "Instituciones y ventas",
+    email: SITE.company.contactEmail,
+    body: "Universidades, escuelas, laboratorios de investigación. Te enviamos DPA, resumen de precios y detalles del programa piloto.",
+  },
+  {
+    label: "Prensa",
+    email: SITE.company.contactEmail,
+    body: "Entrevistas, citas, embargo. Press kit con logos y screenshots bajo solicitud.",
+  },
+  {
+    label: "Seguridad",
+    email: SITE.company.securityEmail,
+    body: "Reports de vulnerabilidad. Damos respuesta en 24 horas, patch de los casos críticos en 72.",
+  },
+  {
+    label: "Privacidad y solicitudes de datos",
+    email: SITE.company.privacyEmail,
+    body: "Acceso, exportación y supresión de datos (GDPR). Respuesta en 30 días — normalmente en 48 horas.",
+  },
+  {
+    label: "Soporte",
+    email: SITE.company.supportEmail,
+    body: "Usuarios que han encontrado un bug o necesitan ayuda con alguna función.",
+  },
+];
+---
+
+<BaseLayout
+  title="Contacto"
+  description="Ponte en contacto con Fluera. Canales para general, ventas, prensa, seguridad, privacidad y soporte."
+  locale="es"
+>
+  <PageHero
+    kicker="Contacto"
+    title="Seis canales. Una respuesta."
+    description="Sin sistema de tickets. Cada canal de abajo llega a una persona real — normalmente respondemos en uno o dos días."
+  >
+    <div class="mt-16 grid md:grid-cols-2 gap-5 max-w-5xl">
+      {channels.map((c) => (
+        <article class="card p-6">
+          <p class="eyebrow text-accent-glow mb-3">{c.label}</p>
+          <a href={`mailto:${c.email}`} class="font-serif text-xl text-paper-50 block mb-3 hover:text-accent-glow transition-colors">
+            {c.email}
+          </a>
+          <p class="text-sm text-paper-300 leading-relaxed">{c.body}</p>
+        </article>
+      ))}
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Sede en {SITE.company.city}. No publicamos número de teléfono: la comunicación por escrito queda trazable y nos mantiene concentrados. Para problemas urgentes de seguridad, la clave PGP está en el perfil de GitHub.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

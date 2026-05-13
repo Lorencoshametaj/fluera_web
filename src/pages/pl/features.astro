@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const features = (await getCollection("features", ({ data }) => data.lang === "en")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const statusLabel: Record<string, string> = {
+  stable: "Dostępne",
+  beta: "Beta",
+  "coming-soon": "Wkrótce",
+};
+
+const statusStyle: Record<string, string> = {
+  stable:        "text-signal-ok border-signal-ok/30",
+  beta:          "text-accent-glow border-accent-glow/30",
+  "coming-soon": "text-signal-warn border-signal-warn/30",
+};
+---
+
+<BaseLayout
+  title="Funkcje"
+  description="Ghost Map, Atlas, Socratic Mode, Fog of War, Cross-Zone Bridges, Exam Session, Reflow, powtórki rozłożone. Każda funkcja odsyła do cytowanej zasady."
+  locale="pl"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[420px] w-[420px] -top-40 -end-32 bg-accent-glow/20 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Funkcje</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Osiem sposobów,<br />w jakie powstaje pamięć.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl">
+          Każda funkcja jest umiejscowiona w konkretnym kroku 12-stopniowego cyklu nauki. Każda odsyła do jednej lub więcej zasad na stronie nauki. Każda funkcja broni się cytatem.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <ul class="space-y-6 list-none p-0 max-w-5xl">
+        {features.map((f) => (
+          <li>
+            <a href={`/pl/features/${f.id}`} class="block card p-8 md:p-10 hover:border-accent-glow/40 hover:bg-white/[0.04] transition-all">
+              <div class="grid md:grid-cols-3 gap-8 items-start">
+                <div class="md:col-span-2">
+                  <div class="flex items-center gap-3 mb-4 flex-wrap">
+                    {f.data.stepInCycle && (
+                      <span class="eyebrow text-accent-glow">Krok {f.data.stepInCycle}</span>
+                    )}
+                    <span class={`pill text-[10px] capitalize ${statusStyle[f.data.status]}`}>
+                      {statusLabel[f.data.status]}
+                    </span>
+                  </div>
+                  <h2 class="font-serif text-display-lg text-paper-50 mb-4">{f.data.title}</h2>
+                  <p class="prose-ink text-lg mb-4 max-w-prose">{f.data.tagline}</p>
+                  <p class="text-sm text-paper-300 max-w-prose">{f.data.shortDescription}</p>
+                </div>
+                <div class="flex md:justify-end items-start">
+                  <span class="text-accent-glow text-sm font-mono uppercase tracking-widest">Zagłęb się →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Wypróbuj wszystkie w becie.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Funkcje pojawiają się najpierw na iOS i macOS, następnie na Androidzie i pulpitach. Dołącz do prywatnej bety i wybierz platformę, na której chcesz uzyskać wcześniejszy dostęp.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Poproś o dostęp →</a>
+        <a href="/pl/" class="btn-secondary">Wróć do strony głównej</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

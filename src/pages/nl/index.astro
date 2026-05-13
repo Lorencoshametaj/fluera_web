@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+import home from "@/data/home/nl";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "Een oneindig studiecanvas, gebouwd op de cognitieve wetenschap van leren.",
+  url: `${SITE.url}/nl/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const { steps, authors, platforms } = home;
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="Een oneindig studiecanvas, gebouwd op de cognitieve wetenschap van leren. iOS, Android, macOS, Windows, Linux, Web."
+  jsonLd={jsonLd}
+  locale="nl"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          Private beta · Op uitnodiging
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          De studieruimte<br />gebouwd voor<br /><span class="text-gradient">hoe het geheugen werkt.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          Schrijf met de hand op een oneindig canvas. Laat de AI je bevragen in plaats van antwoorden geven. Kom door de tijd terug op je eigen denken. Gekalibreerd op de manier waarop het geheugen daadwerkelijk wordt gevormd.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            Word lid van de beta
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            Probeer de demo
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>End-to-end versleuteld</span><span class="text-ink-600">·</span>
+          <span>AVG-conform</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">Het knelpunt</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Je kunt alles vragen.<br />Het antwoord blijft toch niet in je hoofd zitten.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          In 2026 wordt kennis in drie seconden opgehaald en in drie weken vergeten. We hebben tien apps om aantekeningen te maken en geen één om te <em>onthouden</em> wat we leren.
+        </p>
+        <p>
+          Markeren voelt als studeren. Herlezen voelt als studeren. Een LLM om een samenvatting vragen voelt als studeren. Geen van de drie is dat — en de cognitieve wetenschap zegt dat al vijftig jaar.
+        </p>
+        <p>
+          Het knelpunt van leren is niet langer toegang — het zijn <em>codering, consolidatie en transfer</em>: drie problemen tegelijk.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera is gebouwd voor die drie.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">De methode</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Eén canvas.<br />Twaalf cognitieve bewegingen.<br />De cyclus waarmee je brein leert.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Elke functie van Fluera leeft in een stap van de cyclus, en elke stap steunt op gepubliceerd onderzoek. Sla er één over en de keten breekt. Volg ze allemaal en het notitieboek wordt blijvend.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">Vier cognitieve onderscheiders</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          Vier manieren waarop geheugen wordt opgebouwd.
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map · Stap 4"
+          title="Zie de afstand tussen wat je hebt geschreven en de juiste oplossing."
+          description="Na een ophaalpoging legt Fluera je werk over een ideale oplossing. De afwijkingen pulseren. Ze beschuldigen niet — ze wekken het geheugen. Hoe meer je ernaast zat, hoe sterker de correctie zich verankert."
+          citation="Hypercorrectie-effect — Butterfield en Metcalfe, 2001."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode · Stap 3"
+          title="Onze AI antwoordt niet. Hij vraagt."
+          description="Geef je zekerheid van 1 tot 5 op vóór elke onthulling. Metacognitie is de helft van beheersing, en zekerheidskalibratie is hoe ze zich opbouwt — één voorspelling per keer."
+          citation="Metacognitief monitoren — Flavell, 1979."
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War · Stap 10"
+          title="Tentamenmodus die verbergt wat je je bijna herinnert."
+          description="Maskeer elke gewenste regio van het canvas. Haal het uit je geheugen voor je onthult. De inspanning van het ophalen — niet het herlezen — is waar het geheugen verhardt."
+          citation="Wenselijke moeilijkheden — Bjork, 1994."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Exam Session · Stap 11"
+          title="Gesimuleerde tentamens uit je canvas — beoordeeld door Ghost Map."
+          description="Zekerheidskiezer van 1 tot 5 vóór elke vraag. Closed-book. Na het inleveren legt Fluera je antwoord over het ideale en past hypercorrectie toe daar waar je het zekerst was en het mis had. Hoe groter de verrassing, hoe sterker de correctie."
+          citation="Hypercorrectie — Butterfield en Metcalfe, 2001 · Productief falen — Kapur, 2008."
+          href="/nl/features/exam-session"
+          status="beta"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">Test in de beta →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">Inkt, geen toetsenbord</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            Typen is sneller.<br />Handschrift is beter.<br />Het brein is niet geoptimaliseerd voor snelheid.
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller en Oppenheimer, Princeton 2014 · van der Meer, NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            Toen Mueller en Oppenheimer in 2014 het beroemde Princeton-onderzoek publiceerden, versloegen studenten die met de hand aantekeningen maakten degenen met een laptop bij conceptuele vragen — <em>ondanks</em> dat de laptopgroep aanzienlijk meer tekst had geschreven. De hand was trager. De geest ging dieper.
+          </p>
+          <p>
+            Tien jaar later leverde het EEG-onderzoek van Audrey van der Meer aan de NTNU (2020) het <em>waarom</em>: handschrift activeert bredere hersennetwerken dan typen, vooral in de regio's verbonden met geheugenvorming en sensomotorische integratie. De pen is een cognitief instrument.
+          </p>
+          <p>
+            Fluera is daaromheen gebouwd. Dertien kwastengines. Druk, helling, snelheid. Streeklatentie onder 15 milliseconden op alle ondersteunde apparaten. Het oneindige canvas is geen esthetiek — het is het substraat waar je geheugen om vroeg.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Wetenschappelijke grondslag</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Op de schouders van reuzen — bij naam genoemd.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Elke ontwerpkeuze verwijst naar een paper dat we kunnen linken. Hier twaalf van de geesten die in Fluera leven. De volledige bibliografie is openbaar.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Zes platforms, één inkt</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Zes platforms. Eén inkt. Eén geest.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Native renderers op Vulkan, Metal, OpenGL, Direct3D 11 en WebGPU. Je notitieboek synchroniseert end-to-end versleuteld — of blijft offline. Jij beslist.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        De statuslabels zijn eerlijk over de rijpheid van elk platform. Die met "Alpha" of "Demo" werken, maar moeten nog worden bijgeschaafd — word lid van de beta als je ze mee wilt vormgeven.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Jouw geest, jouw data</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          End-to-end-versleuteling.<br />De sleutel blijft bij jou.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">AES-256 in rust</h3>
+          <p class="text-sm text-paper-300">SQLCipher-versleuteling op elk apparaat. De lokale database is onleesbaar zonder jouw sleutel.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">AVG vanaf de basis</h3>
+          <p class="text-sm text-paper-300">EU-hosting, DPA beschikbaar, volledige export en verwijdering op verzoek.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Geen ad-tech</h3>
+          <p class="text-sm text-paper-300">Geen tracking-pixels. Geen gedragsgerichte advertenties. We trainen onze modellen niet op jouw inhoud.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Audit-trail</h3>
+          <p class="text-sm text-paper-300">Voor Education-accounts wordt elke toegang vastgelegd in een onveranderlijke trail.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">Lees de beveiligingsarchitectuur →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Prijzen</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Gratis om te leren. Plus en Pro om dieper te gaan.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">Het volledige canvas. Drie notitieboeken. Voor altijd gratis.</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5,99<span class="text-sm font-sans text-paper-300">/maand</span></p>
+          <p class="text-sm text-paper-300">Onbeperkte canvases, sync op 2 apparaten, basis-AI. €49/jaar.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11,99<span class="text-sm font-sans text-paper-300">/maand</span></p>
+          <p class="text-sm text-paper-300">Exam Session, Atlas, volledige AI-suite, onbeperkte sync. €99/jaar.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19,99<span class="text-sm font-sans text-paper-300">/seat</span></p>
+          <p class="text-sm text-paper-300">Gedeelde canvases, team-Atlas, ACL, audit-trail. Vanaf 5 seats.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        Geverifieerde studenten krijgen Plus of Pro met 50% korting via het pilotprogramma. Wie nu intekent, zet het tarief vast voor de duur van het abonnement.
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">Bekijk alle prijzen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">Doe mee</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Private beta.<br />Onboarding in cohorten.
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        We nemen op in cohorten zodat elke groep — studenten, kenniswerkers, docenten — een echt gesprek krijgt, geen nummer in de wachtrij. Als je apps zat bent die beloven het leren voor je over te nemen, vraag dan toegang aan.
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        Toegang aanvragen →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

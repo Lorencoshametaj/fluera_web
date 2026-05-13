@@ -1,0 +1,120 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Mit dem Vertrieb sprechen — Fluera für Institutionen"
+  description="Vereinbare ein Gespräch mit den Gründern von Fluera, um evidenzbasierte Lernwerkzeuge in deinen Kurs, deinen Fachbereich oder deinen Campus zu bringen."
+  locale="de"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">Vertrieb für Institutionen</p>
+      <h1 class="font-serif text-display-xl text-paper-50 mb-6">Wir bauen einen Plan für deine Studierenden.</h1>
+      <p class="prose-ink text-lg mb-8">
+        Fülle das Formular aus, ein Gründer antwortet innerhalb von 24 Stunden an Werktagen. Wir starten lieber asynchron — eine gut geschriebene E-Mail ist mehr wert als drei Termin-Pingpongs.
+      </p>
+
+      <form id="sales-form" class="card p-6 md:p-8 space-y-5" action={`mailto:${SITE.company.contactEmail}`} method="post" enctype="text/plain">
+        <div>
+          <label class="sales-label" for="s-name">Dein Name <span class="text-signal-bad">*</span></label>
+          <input id="s-name" name="name" type="text" required class="sales-input" placeholder="Vor- und Nachname" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-role">Rolle <span class="text-signal-bad">*</span></label>
+          <select id="s-role" name="role" required class="sales-input">
+            <option value="" disabled selected>Auswählen…</option>
+            <option>Dozent/in</option>
+            <option>Fachbereichsleitung</option>
+            <option>Direktor/in / Prorektor/in</option>
+            <option>IT / Beschaffung</option>
+            <option>Bibliothekar/in / Instructional Designer</option>
+            <option>Studierendenvertretung</option>
+            <option>Sonstiges</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-institution">Institution <span class="text-signal-bad">*</span></label>
+          <input id="s-institution" name="institution" type="text" required class="sales-input" placeholder="Name der Universität oder Schule" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-email">Berufliche E-Mail <span class="text-signal-bad">*</span></label>
+          <input id="s-email" name="email" type="email" required class="sales-input" placeholder="du@hochschule.de" />
+          <p class="sales-hint">Nutze deine institutionelle E-Mail, das vereinfacht die Verifizierung.</p>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-size">Interesse an</label>
+          <select id="s-size" name="size" class="sales-input">
+            <option value="" selected>Auswählen…</option>
+            <option>Pilot — ein Kurs, ein Semester</option>
+            <option>Lizenz für Fachbereich</option>
+            <option>Lizenz für Campus</option>
+            <option>Ich erkunde — ich brauche ein Briefing</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-context">Was sollten wir wissen, bevor wir antworten? <span class="text-signal-bad">*</span></label>
+          <textarea id="s-context" name="context" rows="5" required minlength="20" maxlength="2000"
+            class="sales-input"
+            placeholder="Name der Lehrveranstaltung, Profil der Studierenden, Fristen, eingesetzte Tools, Compliance-Vorgaben — was auch immer hilft."></textarea>
+          <p class="sales-hint">Je konkreter, desto kürzer kann unsere Antwort ausfallen.</p>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="btn-primary w-full py-3.5">Senden →</button>
+          <p class="sales-hint text-center mt-3">
+            Das Formular wird per E-Mail gesendet. Bis du auf Senden klickst, verlässt nichts dein Gerät. Lieber direkt schreiben? <a href={`mailto:${SITE.company.contactEmail}`} class="text-accent-glow underline">{SITE.company.contactEmail}</a>.
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">Was nach dem Absenden passiert</h2>
+      <ol class="space-y-4 text-sm text-paper-200 list-none p-0">
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">01</span><span>Ein Gründer antwortet innerhalb von 1 Werktag mit konkreten Fragen zu deiner Situation — niemals ein generisches Skript.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">02</span><span>Wir schicken dir ein Pilot-Briefing (PDF), zugeschnitten auf deinen Fall, mit Beispielen für Sitzungspläne und einer Frageliste für deine Studierenden.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">03</span><span>Ein 30-minütiger Call mit dem Gründer und, falls sinnvoll, deinem IT-Ansprechpartner. Wir gehen SSO, DPA und Fristen ehrlich durch — inklusive der aktuellen Grenzen.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">04</span><span>Der Pilot startet. Meist 2–4 Wochen nach dem ersten Kontakt.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <style>
+    .sales-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: theme("colors.paper.200");
+      margin-bottom: 0.5rem;
+    }
+    .sales-hint {
+      font-size: 0.75rem;
+      color: theme("colors.ink.500");
+      margin-top: 0.375rem;
+    }
+    .sales-input {
+      width: 100%;
+      background: theme("colors.ink.900");
+      border: 1px solid rgb(255 255 255 / 0.08);
+      border-radius: 0.625rem;
+      padding: 0.75rem 1rem;
+      color: theme("colors.paper.50");
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .sales-input:focus {
+      outline: none;
+      border-color: theme("colors.accent.ink");
+      box-shadow: 0 0 0 3px rgb(45 74 222 / 0.18);
+    }
+  </style>
+</BaseLayout>

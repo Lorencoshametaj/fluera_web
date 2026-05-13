@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const pillars = [
+  {
+    title: "Kryptering",
+    body: "Hver notatbok i Fluera er kryptert i hvile med AES-256 via SQLCipher. Trafikken går over TLS 1.3 i transit. Sync mellom enhetene dine er ende-til-ende-kryptert med nøkler avledet fra passfrasen din — lagret i plattformens keychain, aldri sendt til serverne våre.",
+  },
+  {
+    title: "Eierskap til dataene dine",
+    body: "Hver byte du skriver, kan eksporteres med ett klikk: PNG, JPEG, WebP, SVG, PDF og vårt åpne .fluera-format. Notatbøkene dine bor først på enhetene dine. Skyen er en bekvemmelighet, ikke et fengsel — lock-in er en forretningsmodell vi avviser bevisst.",
+  },
+  {
+    title: "GDPR fra start",
+    body: "Fluera kjører på servere i Europa og er bygd etter GDPR-prinsippene. En Data Processing Agreement er tilgjengelig for hver utdanningsinstitusjon på forespørsel. Full dataeksport og rett til å bli glemt oppfylles innen 30 dager (vanligvis innen 48 timer).",
+  },
+  {
+    title: "Local-first, alltid",
+    body: "Du kan bruke Fluera helt offline. Sync er opt-in per notatbok, ikke på kontonivå. Slår du av sync, forlater dataene aldri enheten — inkludert telemetri, som er samtykkebasert og anonym.",
+  },
+  {
+    title: "Audit-spor (institusjoner)",
+    body: "For Education-kontoer registreres hver tilgang til delte notatbøker i et uforanderlig spor, eksporterbart for compliance-revisjoner. Administratorer kan håndheve SSO (SAML, OIDC) og MDM-deployment.",
+  },
+  {
+    title: "Det vi ikke gjør",
+    body: "Ingen annonser. Ingen datasalg. Vi trener ikke modellene våre på innholdet ditt. Vi sporer deg ikke på nettet. Vi deler ikke data med noen utenfor de erklærte underleverandørene (Supabase, Vercel, Stripe) — alle under DPA.",
+  },
+];
+---
+
+<BaseLayout
+  title="Sikkerhet og personvern"
+  description="AES-256 i hvile, GDPR fra start, servere i Europa, null ad-tech. Fluera sin sikkerhetsarkitektur og forpliktelse til at du eier dataene dine."
+  locale="no"
+>
+  <PageHero
+    kicker="Sikkerhet og personvern"
+    title="Ende-til-ende-kryptering.<br />Nøkkelen blir hos deg."
+    titleSize="2xl"
+    description="Kryptering fra start. Ingen ad-tech. Servere i Europa. Full eksport. Personvern er en designbegrensning, ikke en compliance-oppgave."
+    orbs
+    noise
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {pillars.map((p, i) => (
+          <article class="card p-8">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
+            <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Responsible disclosure</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Funnet noe?</h2>
+          <p class="prose-ink mb-6">
+            Sikkerhetsforskere er velkomne. Rapporter sårbarheter til
+            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
+            Vi svarer innen 24 timer, patcher kritiske problemer innen 72, og nevner rapportøren i hall of fame — med mindre du foretrekker anonymitet.
+          </p>
+          <p class="text-sm text-ink-500 italic">
+            PGP-nøkkelen for krypterte rapporter er publisert i GitHub-profilen vår.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Compliance og deployment</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Planlegger adopsjon på en institusjon?</h2>
+          <p class="prose-ink mb-6">
+            Universiteter, skoler, forskningslabber: vi kan ta deg gjennom DPA, listen over underleverandører, SSO-oppsett og audit-spor-modell. Pilotprogrammer starter som regel med ett emne, ett semester, kostnadsfritt.
+          </p>
+          <a href="/no/contact" class="btn-primary">Snakk om deployment →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Denne siden dekker det vesentlige. Hele arkitekturen, registeret over underleverandører og DPA-malen ligger på
+        <a href="/no/security/architecture" class="text-paper-300 underline">/no/security/architecture</a> og
+        <a href="/no/security/sub-processors" class="text-paper-300 underline">/no/security/sub-processors</a>. Spesifikke compliance-spørsmål? Skriv til
+        <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

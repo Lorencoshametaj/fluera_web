@@ -1,0 +1,70 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const channels = [
+  {
+    label: "一般",
+    email: SITE.company.contactEmail,
+    body: "フィードバック、質問、ご要望。ここに届くものはすべて読んでいます。",
+  },
+  {
+    label: "教育機関・セールス",
+    email: SITE.company.contactEmail,
+    body: "大学、学校、研究機関の方へ。DPA、料金概要、パイロットプログラムの詳細をお送りします。",
+  },
+  {
+    label: "プレス",
+    email: SITE.company.contactEmail,
+    body: "インタビュー、引用、エンバーゴ。ロゴとスクリーンショットを含むプレスキットはご請求ください。",
+  },
+  {
+    label: "セキュリティ",
+    email: SITE.company.securityEmail,
+    body: "脆弱性報告。24時間以内に返信し、重大な問題は72時間以内にパッチを当てます。",
+  },
+  {
+    label: "プライバシーとデータ請求",
+    email: SITE.company.privacyEmail,
+    body: "データのアクセス、エクスポート、削除 (GDPR)。最大30日以内 ― 通常48時間以内に対応します。",
+  },
+  {
+    label: "サポート",
+    email: SITE.company.supportEmail,
+    body: "バグを発見した、または機能の使い方でサポートが必要なユーザーの方へ。",
+  },
+];
+---
+
+<BaseLayout
+  title="お問い合わせ"
+  description="Fluera にお問い合わせください。一般、セールス、プレス、セキュリティ、プライバシー、サポート向けの窓口があります。"
+  locale="ja"
+>
+  <PageHero
+    kicker="お問い合わせ"
+    title="6つの窓口。ひとつの返信。"
+    description="チケットシステムはありません。下記の各窓口は実在の人間に届きます ― 通常、1〜2日以内にお返事します。"
+  >
+    <div class="mt-16 grid md:grid-cols-2 gap-5 max-w-5xl">
+      {channels.map((c) => (
+        <article class="card p-6">
+          <p class="eyebrow text-accent-glow mb-3">{c.label}</p>
+          <a href={`mailto:${c.email}`} class="font-serif text-xl text-paper-50 block mb-3 hover:text-accent-glow transition-colors">
+            {c.email}
+          </a>
+          <p class="text-sm text-paper-300 leading-relaxed">{c.body}</p>
+        </article>
+      ))}
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        本社: {SITE.company.city}。電話番号は公開していません: 書面でのコミュニケーションは追跡可能で、私たちの集中も保てます。緊急のセキュリティ問題については、PGP 鍵を GitHub プロフィールで公開しています。
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const processors = [
+  {
+    name: "Supabase Inc.",
+    purpose: "Database, autentificering, krypteret cloud-storage, realtime-signaling, Edge Function til AI-proxyen.",
+    dataTypes: "Konto-e-mail, hashet bruger-ID, canvas-chiffertekst (E2E-krypteret), synkroniseringsmetadata.",
+    region: "Frankfurt, EU (standardregion for Fluera-instanserne).",
+    privacy: "https://supabase.com/privacy",
+  },
+  {
+    name: "Google LLC",
+    purpose: "Google Generative AI (Gemini) til Socratic Mode, Ghost Map, LaTeX-OCR og generering af Exam Sessions.",
+    dataTypes: "Udvalgte tekstuddrag fra canvasset (kun når AI-funktionerne er tilladt og aktive). Aldrig hele notesbogen.",
+    region: "USA, EU via Google Cloud-regioner; SCC + EU-US DPF.",
+    privacy: "https://policies.google.com/privacy",
+  },
+  {
+    name: "Apple Inc.",
+    purpose: "Autentificering Sign in with Apple; in-app-køb på iOS og macOS via App Store.",
+    dataTypes: "Apple-ID-relæ-e-mail, kvitteringsidentifikatorer. Ingen canvas-data.",
+    region: "USA; SCC + EU-US DPF.",
+    privacy: "https://www.apple.com/legal/privacy/",
+  },
+  {
+    name: "RevenueCat Inc.",
+    purpose: "Administration af abonnementer og validering af kvitteringer på iOS, Android og web.",
+    dataTypes: "Anonymiseret bruger-ID i RevenueCat, abonnementsstatus, kvitterings-metadata. Ingen kortdata.",
+    region: "USA; SCC + EU-US DPF.",
+    privacy: "https://www.revenuecat.com/privacy",
+  },
+  {
+    name: "Functional Software Inc. (Sentry)",
+    purpose: "Crash-rapportering og fejl-monitoring.",
+    dataTypes: "Stack-traces, OS-version, enhedsmodel, app-version. sendDefaultPii er eksplicit deaktiveret — intet brugerindhold.",
+    region: "USA, EU-muligheder tilgængelige.",
+    privacy: "https://sentry.io/privacy/",
+  },
+  {
+    name: "Vercel Inc.",
+    purpose: "Hosting af marketing-siden fluera.dev og /docs.",
+    dataTypes: "Standard-webadgangslogs (IP, user-agent). Intet kontoindhold.",
+    region: "Globalt edge; oprindelsesregion konfigurerbar.",
+    privacy: "https://vercel.com/legal/privacy-policy",
+  },
+];
+
+const lastUpdated = "2026-04-20";
+---
+
+<BaseLayout
+  title="Underdatabehandlere"
+  description="De tredjeparter, Fluera er afhængig af for at levere produktet. Formål, delte data, region og link til hver underdatabehandlers privatlivserklæring."
+  locale="da"
+>
+  <PageHero
+    kicker="Underdatabehandlere"
+    title="Hver tredjepart, vi læner os op ad."
+    description="I henhold til GDPR Art. 28 er hver underdatabehandler, der behandler persondata på vores vegne, anført her — hvad vi deler, hvorfor, og hvor det bor. Vi underretter kunderne før enhver ændring."
+    breadcrumb={{ label: "Sikkerhed", href: "/da/security" }}
+  >
+    <p slot="copy" class="mt-6 text-sm text-ink-500 font-mono">Senest opdateret: {lastUpdated}</p>
+  </PageHero>
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-5xl">
+        {processors.map((p) => (
+          <li class="card p-6 md:p-7">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <h2 class="font-serif text-xl text-paper-50 mb-2">{p.name}</h2>
+                <a href={p.privacy} class="text-xs text-accent-glow underline underline-offset-4 font-mono" rel="noopener">
+                  Privatlivserklæring ↗
+                </a>
+              </div>
+              <dl class="md:col-span-3 grid gap-3 text-sm">
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Formål</dt>
+                  <dd class="text-paper-200">{p.purpose}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Delte data</dt>
+                  <dd class="text-paper-200">{p.dataTypes}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Region</dt>
+                  <dd class="text-paper-200">{p.region}</dd>
+                </div>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">Ændringer og underretninger</h2>
+      <p class="prose-ink text-sm mb-4">
+        Vi opdaterer denne liste, så snart en underdatabehandler tilføjes, ændres eller fjernes. Institutionelle og enterprise-kunder modtager en e-mail-underretning mindst 30 dage før ændringen, i henhold til GDPR Art. 28 stk. 2.
+      </p>
+      <p class="prose-ink text-sm">
+        For at tilmelde dig underretninger om ændringer i underdatabehandlere, skriv til <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a> fra e-mail-adressen på din konto.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "Beta",  note: "ベータ承認後に TestFlight 招待をお送りします。" },
+  { name: "macOS",        status: "Beta",  note: "ベータ承認後に .dmg ファイルをプライベートリンクで配布します。" },
+  { name: "Android",      status: "Alpha", note: "Google Play の internal track で APK 配布。" },
+  { name: "Windows",      status: "Alpha", note: "Microsoft Store 経由で署名済み .exe インストーラ。" },
+  { name: "Linux",        status: "Alpha", note: "AppImage および flatpak。" },
+  { name: "Web",          status: "Demo",  note: "/demo で今すぐお試しください ― WebGPU 対応ブラウザが必要です。" },
+];
+---
+
+<BaseLayout
+  title="ダウンロード"
+  description="Fluera は iOS、Android、macOS、Windows、Linux、ウェブでネイティブ動作します。プライベートベータに参加して早期アクセスを。"
+  locale="ja"
+>
+  <PageHero
+    kicker="ダウンロード"
+    title="6つのプラットフォーム。<br />ベータに参加してアクセスを。"
+    description="Fluera はプライベートベータ中です。承認後、各プラットフォームのネイティブアプリのインストールリンクをメールでお送りします ― 機能を削減したウェブ版ではありません。"
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">ベータアクセスを申請 →</a>
+      <a href="/demo" class="btn-secondary">ウェブデモを試す</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        App Store と Google Play での一般リリースは、プライベートベータ終了時に行います。それまで、上記の各プラットフォームのステータスは、その成熟度を正直に示しています ― 6つで中途半端に出すよりも、1つでしっかり出す方を選びます。
+      </p>
+    </div>
+  </section>
+</BaseLayout>

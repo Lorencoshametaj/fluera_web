@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="O nas"
+  description="Fluera jest tworzona przez mały zespół we Włoszech. Nasza historia, nasze przekonania, linia, której nie przekroczymy."
+  locale="pl"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">O nas</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
+          Zbudowaliśmy aplikację<br />do nauki, której chcieliśmy<br />jako studenci.
+        </h1>
+        <div class="prose-ink text-lg">
+          <p>
+            Fluera narodziła się z frustracji. Jeden z nas, deweloper full-stack z dziesięcioletnim doświadczeniem; drugi, student obserwujący, jak jego rówieśnicy wpadają w tę samą pułapkę — aplikacje, które wyglądają na produktywne, ale nie pomagają niczego zapamiętać.
+          </p>
+          <p>
+            Czytaliśmy badania. <em>Wiele</em> badań. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Nauka poznawcza jest jasna od pół wieku: pisanie ręczne pokonuje pisanie na klawiaturze, wydobywanie pokonuje ponowne czytanie, rozłożenie pokonuje zakuwanie, tarcie jest cechą. Nie znaleźliśmy żadnej aplikacji, która brałaby cokolwiek z tego na poważnie. Więc zbudowaliśmy taką.
+          </p>
+          <p>
+            Po drodze napisaliśmy silnik renderowania 2D od zera — bo żaden gotowy stos nie poradziłby sobie z czułym na nacisk atramentem przy 60 FPS na sześciu natywnych platformach. Silnik to substrat, na którym żyją funkcje poznawcze.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Linia</p>
+        <h2 class="font-serif text-display-lg text-paper-50 mb-8">Czego nie zrobimy.</h2>
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Nie będziemy mieli AI, które odpowiada na egzamin za Ciebie.</strong>
+              <p class="text-sm mt-1 text-paper-300">AI Fluery pyta, podpowiada, odzwierciedla. Nigdy nie wyłącza Twojego myślenia. Używanie AI do pracy poznawczej oznacza atrofię mięśnia, który powinniśmy trenować.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Nie sprzedamy danych Twoich notatników.</strong>
+              <p class="text-sm mt-1 text-paper-300">Twoje notatki są szyfrowane w spoczynku, end-to-end podczas synchronizacji i nigdy nie są używane do trenowania niczyich modeli. Łącznie z naszymi.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Bez reklam, pętli zaangażowania, streaków.</strong>
+              <p class="text-sm mt-1 text-paper-300">Twoja relacja z nauką nie powinna zależeć od powiadomień push. Chcemy, żebyś używał Fluery mniej, a uczył się więcej.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Nie wydamy funkcji, których nie umiemy obronić cytatem.</strong>
+              <p class="text-sm mt-1 text-paper-300">Jeśli funkcja nie odsyła do opublikowanych ustaleń lub spójnej informacji zwrotnej z naszej bety, nie trafia do produkcji. Efekt wow nie jest funkcją. Nowość nie jest funkcją.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        Siedziba w {SITE.company.city}. Dłuższe oświadczenie o tym, co odrzucamy i dlaczego, żyje w <a href="/pl/manifesto" class="text-paper-300 underline underline-offset-4">manifeście</a>.
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/pl/contact" class="btn-secondary">Skontaktuj się</a>
+        <a href="/beta" class="btn-primary">Dołącz do bety</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

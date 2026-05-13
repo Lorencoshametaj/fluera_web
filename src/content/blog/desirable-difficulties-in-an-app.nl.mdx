@@ -1,0 +1,67 @@
+---
+lang: "nl"
+title: "Hoe 'wenselijke moeilijkheden' zich vertalen in een app"
+description: "Het framework van Bjork is de ruggengraat van Fluera. Hier lees je hoe een contra-intuïtieve onderzoeksbevinding concrete ontwerpkeuzes wordt — en wat de hardste trade-offs zijn."
+publishedAt: 2026-04-10
+author: "Lorenzo"
+category: product
+tags: ["bjork", "ontwerp", "wenselijke-moeilijkheden"]
+relatedPrinciples: [desirable-difficulties, retrieval-practice, productive-failure]
+---
+import Citation from "@/components/Citation.astro";
+
+Wanneer we Fluera aan sceptische waarnemers presenteren, is het ene idee dat het hardst werkt <Citation authors="Bjork" year="1994" href="/nl/research">de *wenselijke moeilijkheden* van Robert Bjork</Citation>. Zodra mensen opnemen dat de makkelijkste studieomstandigheden bijna altijd de slechtste resultaten produceren, houden onze andere ontwerpkeuzes op vreemd te lijken en beginnen ze onvermijdelijk te lijken.
+
+Maar "onvermijdelijk" doet daar veel werk. Een onderzoeksbevinding vertalen naar een productinterface brengt trade-offs met zich mee die niet in meta-analyses verschijnen. Hier is een gedeeltelijke balans.
+
+## Het lege canvas
+
+De standaard studie-app heeft een template. Je opent hem en er is een gesuggereerde structuur — een mind-map-skelet, een onderwerpenlijst, een Cornell-layout. Het template verlaagt de activeringsenergie. Het lijkt behulpzaam.
+
+Dat is het niet. Een template laat je de generatiestap overslaan — de cognitieve daad van beslissen wat waar hoort, wat zich met wat verbindt, wat het centrale concept is. De generatiestap is het leren. Hem overslaan is de reden om het notitieboek te hebben overslaan.
+
+Het canvas van Fluera is leeg. Oneindig, leeg, niet intimiderend. De kost is dat nieuwe gebruikers de wrijving meteen voelen. Sommigen vertrekken. Dat accepteren we. Het alternatief is een tool die meer gebruikers aantrekt en minder leert.
+
+## De AI die vraagt, niet antwoordt
+
+Elke user research-sessie die we deden bevatte minstens één persoon die zei "het zou handig zijn als de AI me een samenvatting kon schrijven". Elke sessie zonder uitzondering.
+
+Ze hebben gelijk dat het handig zou zijn. Ze vergissen zich door te denken dat handigheid het doel is. Een AI die je het college samenvat is een AI die het stuk van het leren overneemt dat *jouw* werk was. Je krijgt een samenvatting. Je voelt je alsof je hebt gestudeerd. Je onthoudt niets.
+
+Socratic Mode bestaat specifiek om niet te doen wat gebruikers vragen. Ze ondervraagt het canvas in plaats van het samen te vatten. Op de as van onmiddellijke tevredenheid, bij de eerste interactie, verliest ze van een AI die uitlegt. <Citation authors="Roediger en Karpicke" year="2006" href="/nl/research">Op de as van retentie weken later</Citation> wint ze met marges die de kortetermijnvoorkeur verwaarloosbaar laten lijken.
+
+De trade-off is reëel. Sommige gebruikers passeren de drempel nooit. Voor wie dat wel doet, is het verschil het product.
+
+## De vertrouwensschuif
+
+Je hebt een antwoord geschreven. Je tikt op "oplossing onthullen". Fluera vraagt nog één ding daarvoor: beoordeel je vertrouwen, van 1 tot 5.
+
+Het is een kleine onderbreking. Per trial komt er twee à drie seconden bij. Over een sessie tellen die seconden op. Gebruikers vragen om hem uit te zetten.
+
+De schuif is structureel. <Citation authors="Butterfield en Metcalfe" year="2001" href="/nl/research">Het hypercorrectie-effect van Butterfield en Metcalfe</Citation> — fouten gemaakt met hoog vertrouwen beklijven, eenmaal gecorrigeerd, sterker dan fouten met laag vertrouwen — vereist dat je je vertrouwen hebt *benoemd* voordat de correctie aankomt. Zonder de schuif corrigeer je in de mist en vervaagt de correctie. Met de schuif wordt het contrast expliciet en de correctie landt.
+
+We houden de schuif. Het ongemak is het mechanisme.
+
+## Fog of War voor tentamenvoorbereiding
+
+De voor de hand liggende manier om je op een tentamen voor te bereiden is je aantekeningen herlezen. Vlotheid neemt toe. De gevoelde voorbereiding neemt toe. Op de dag van het tentamen stort de prestatie in — want herkenning is geen ophalen, en het tentamen vraagt ophalen.
+
+Fog of War keert de interactie om. In tentamenmodus *verbergt* Fluera je canvas — ze maskeert de regio's die je hebt bedekt en vraagt je ze uit het geheugen op te halen voordat ze worden onthuld. De eerste sessie is verschrikkelijk. Je staat tegenover een vernevelend canvas en ontdekt hoeveel van wat je dacht te weten je niet kunt produceren.
+
+Gebruikers haten de eerste sessie. Ze houden van de tentamenresultaten. De wrijving van de eerste sessie is wat die resultaten mogelijk maakt.
+
+## Wat we niet doen (en waarvoor we ons excuseren)
+
+Het bewijs ondersteunt ook enkele interventies die we niet hebben gebouwd. <Citation authors="Rohrer en Taylor" year="2007">Interleaving — onderwerpen tijdens het oefenen in willekeurige volgorde zetten in plaats van te blokken</Citation> — is robuust aangetoond om transfer te verbeteren. We willen diepere interleaving-functies bouwen. Het obstakel is dat de *productervaring* van een willekeurige onderwerpsvolgorde, zonder zorgvuldig ontwerp, diep desoriënterend kan zijn. De gebruikerservaring stort in voordat de cognitieve winst in werking treedt.
+
+Die trade-off beheren — flow behouden terwijl je wenselijke wrijving introduceert — is het zwaarste ontwerpprobleem dat we hebben.
+
+## Het patroon
+
+Het patroon dat door al deze beslissingen heen loopt is: **de directe voorkeur van de gebruiker is een systematisch misleidend signaal.** Gebruikers verkiezen de makkelijke versie. De makkelijke versie is slechter. De moeilijkere versie bouwen wordt meestal later beloond — door retentie, door tentamenresultaten, door de zeldzame gebruiker die terugkomt en zegt "ik vond jullie gek, nu begrijp ik het". Maar bijna altijd wordt het meteen gestraft — door churn, door slechte reviews, door de verleiding om de makkelijkere versie de volgende keer wel uit te brengen.
+
+We proberen die verleiding te weerstaan. Soms falen we. We brengen uit, trekken terug, brengen opnieuw uit.
+
+De inzet is dat er in een veld — ed-tech — waarin elke concurrent zich aan de gebruikersvoorkeur heeft overgegeven en tools heeft gebouwd die goed voelen en weinig leren, ruimte is voor een tool die in gevoel slechter en in onderwijs beter is.
+
+Wil je ons helpen ontdekken, dan [staat de beta open](/beta).

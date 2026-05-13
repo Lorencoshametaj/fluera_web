@@ -1,0 +1,173 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const factBullets = [
+  "認知科学に基づく学習アプリ。プライベートベータ。2026年4月に iOS と macOS でリリース。",
+  "13種類の筆圧対応ブラシを備えた手書きの無限キャンバス。6プラットフォームでストロークレイテンシ15ミリ秒以下。",
+  "答えを与えるのではなく問いを発するために設計された AI 機能。50年にわたる記憶研究に基づく。",
+  "fluera_engine 上に構築。Flutter 向け独自の2D レンダリングエンジンで、外部の開発者にも提供。",
+  "ミラノ拠点の2人チーム。公開時点で外部投資なし。",
+];
+
+const imageAssets = [
+  { name: "ロゴ — カラー",                path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
+  { name: "ロゴ — モノクロ (ライト)",    path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
+  { name: "ロゴ — モノクロ (ダーク)",    path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
+  { name: "アプリスクリーンショット — iPad",  path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
+  { name: "アプリスクリーンショット — macOS", path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
+  { name: "創業者ポートレート",            path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
+];
+
+const quotables = [
+  {
+    context: "前提について",
+    quote: "2026年、知識は3秒で取り出せて3週間で忘れられる。ノートを取るアプリは10個あるが、学んだことを定着させるアプリは1つもない。",
+  },
+  {
+    context: "AI について",
+    quote: "あなたの代わりに試験に答える AI は、あなたに何も教えない AI です。Fluera の AI は問いを発し、足場を作り、振り返りを促す — 考える行為を肩代わりはしません。",
+  },
+  {
+    context: "エビデンスについて",
+    quote: "認知科学は50年前から明快です。欠けていたのは、正しいことを最も簡単な道にするツールでした。私たちが作ろうとしているのはそれです。",
+  },
+  {
+    context: "対象について",
+    quote: "Fluera はすべての人のためではありません。摩擦は本物です。流暢さと能力を見分ける必要がある学習者のコホート — 口頭試問前の医学生、博士課程、弁護士、長距離走の独学者 — のために作られています。",
+  },
+];
+---
+
+<BaseLayout
+  title="プレスキット"
+  description="Fluera を取材するジャーナリストや著者向けの、ロゴ、スクリーンショット、創業者バイオ、引用可能なフレーズ。"
+  locale="ja"
+>
+
+  <PageHero
+    kicker="プレス"
+    title="Fluera について書いていますか？<br />必要なものはここにすべてあります。"
+    description={`ロゴ、スクリーンショット、創業者の写真、簡潔なファクトシート。このページの内容はすべて編集目的での使用は自由です。<em>Fluera</em> へのクレジットと <a href="/">fluera.dev</a> へのリンクをお願いします。`}
+  >
+    <div slot="copy" class="mt-8 flex flex-wrap gap-4">
+      <a href="/press/fluera-press-kit.zip" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        プレスキット一式をダウンロード (.zip)
+      </a>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=%E3%83%97%E3%83%AC%E3%82%B9%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B`} class="btn-secondary">
+        チームに連絡する →
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">ファクトシート</p>
+        <h2 class="font-serif text-display-lg text-paper-50">1分で読める要約。</h2>
+      </div>
+
+      <ul class="space-y-4 list-none p-0 max-w-3xl">
+        {factBullets.map((f) => (
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <span class="text-paper-200 text-lg leading-relaxed">{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">引用</p>
+        <h2 class="font-serif text-display-lg text-paper-50">そのまま引用できるフレーズ。</h2>
+        <p class="prose-ink text-sm mt-4">
+          すべての引用は Fluera チームに帰属させてください。特定の創業者にインタビューした場合は、個人に帰属させる前に必ず確認をお願いします。
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 max-w-5xl">
+        {quotables.map((q) => (
+          <figure class="card p-7">
+            <p class="eyebrow text-accent-glow mb-4">{q.context}</p>
+            <blockquote class="font-serif text-lg text-paper-50 leading-relaxed italic">
+              "{q.quote}"
+            </blockquote>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">ビジュアルアセット</p>
+        <h2 class="font-serif text-display-lg text-paper-50">ロゴ、スクリーンショット、ポートレート。</h2>
+        <p class="prose-ink text-sm mt-4">
+          以下から個別にダウンロードできます。あるいは上記のプレスキットリンクからまとめて取得できます。
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {imageAssets.map((a) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{a.name}</h3>
+            <p class="text-xs font-mono text-ink-500 mb-4">{a.size}</p>
+            <a href={a.path} class="text-accent-glow text-sm underline underline-offset-4 hover:text-paper-50" download>
+              ダウンロード →
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-xl">
+        注: 個別のアセットファイルは、プレスキットを正式公開するまでのプレースホルダーです。リンクは現時点では404を返します。プライベートベータを終えるタイミングで本物に差し替えます。
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">できること</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">どうぞご自由に。</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>記事内でロゴとスクリーンショットを使用する</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>引用フレーズをクレジット付きで掲載する</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>スクリーンショットをトリミング/リサイズする (ロゴは変更不可)</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>創業者にインタビューする (調整のためご連絡ください)</li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">避けてほしいこと</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">ご配慮ありがとうございます。</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>ロゴを改変または再着色する</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>当社が支持していない製品の推薦を示唆する</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Fluera のアセットを AI トレーニングデータセットに使用する</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>明確な編集理由なく当社のロゴを競合のロゴと並べる</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">チームへの直通窓口。</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        プレスのお問い合わせは PR エージェンシーではなく、創業者本人に直接届きます。営業日24時間以内に返信します。多くは1時間以内です。
+      </p>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=%E3%83%97%E3%83%AC%E3%82%B9%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B`} class="btn-primary">
+        {SITE.company.contactEmail}
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

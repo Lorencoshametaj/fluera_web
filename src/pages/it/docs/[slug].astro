@@ -1,0 +1,50 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import { buildDocsSections } from "@/lib/docs-nav";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs", ({ data }) => data.lang === "it");
+  return docs.map((d) => ({
+    params: { slug: d.id.replace(/\.it$/, "") },
+    props: { doc: d },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+const sections = await buildDocsSections("it");
+
+async function resolveLocalized(ref: { collection: "docs"; id: string }) {
+  const itId = ref.id.endsWith(".it") ? ref.id : `${ref.id}.it`;
+  return (await getEntry(ref.collection, itId)) ?? (await getEntry(ref));
+}
+
+const relatedDocs = (
+  await Promise.all(doc.data.relatedDocs.map(resolveLocalized))
+).filter(Boolean);
+---
+
+<DocLayout
+  title={doc.data.title}
+  description={doc.data.description}
+  sections={sections}
+  rootHref="/it/docs"
+  rootLabel="Documentazione"
+  sectionLabel={doc.data.sectionLabel}
+  updatedAt={doc.data.updatedAt}
+  locale="it"
+>
+  <Content />
+
+  {relatedDocs.length > 0 && (
+    <section class="mt-16 pt-8 border-t border-white/[0.06]">
+      <h3 class="font-serif text-lg text-paper-50 mb-3">Correlati</h3>
+      <ul>
+        {relatedDocs.map((d) => d && (
+          <li><a href={`/it/docs/${d.id.replace(/\.it$/, "")}`}>{d.data.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  )}
+</DocLayout>

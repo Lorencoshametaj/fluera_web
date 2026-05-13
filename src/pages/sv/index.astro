@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+import home from "@/data/home/sv";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "En oändlig studiecanvas byggd på den kognitiva vetenskapen om lärande.",
+  url: `${SITE.url}/sv/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const { steps, authors, platforms } = home;
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="En oändlig studiecanvas byggd på den kognitiva vetenskapen om lärande. iOS, Android, macOS, Windows, Linux, Web."
+  jsonLd={jsonLd}
+  locale="sv"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          Sluten beta · Endast med inbjudan
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          Studieutrymmet<br />byggt för<br /><span class="text-gradient">hur minnet faktiskt fungerar.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          Skriv för hand på en oändlig canvas. Låt AI:n ställa frågor i stället för att ge svar. Återvänd till ditt eget tänkande över tid. Kalibrerad efter hur minnet verkligen byggs.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            Gå med i betan
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            Testa demon
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>Kryptering ände till ände</span><span class="text-ink-600">·</span>
+          <span>GDPR från grunden</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">Flaskhalsen</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Du kan fråga vad som helst.<br />Svaret stannar inte i ditt huvud ändå.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          År 2026 hämtar man kunskap på tre sekunder och glömmer den på tre veckor. Vi har tio appar för att anteckna och ingen för att <em>behålla</em> det vi lär oss.
+        </p>
+        <p>
+          Att överstryka känns som att studera. Att läsa om känns som att studera. Att be en LLM om en sammanfattning känns som att studera. Inget av de tre är det — och den kognitiva vetenskapen har sagt det i femtio år.
+        </p>
+        <p>
+          Lärandets flaskhals är inte längre tillgång — det är <em>inkodning, konsolidering och transfer</em>: tre problem på en gång.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera är byggd för dessa tre.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Metoden</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          En canvas.<br />Tolv kognitiva rörelser.<br />Cykeln som din hjärna lär sig med.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Varje funktion i Fluera bor i ett steg av cykeln, och varje steg vilar på publicerad forskning. Hoppa över ett och kedjan brister. Följ alla och anteckningsboken blir bestående.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">Fyra kognitiva särdrag</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          Fyra sätt som minnet byggs på.
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map · Steg 4"
+          title="Se avståndet mellan det du skrev och den korrekta lösningen."
+          description="Efter ett återkallandeförsök lägger Fluera ditt arbete över en idealisk lösning. Avvikelserna pulserar. De anklagar inte — de väcker minnet. Ju mer du tog fel, desto starkare förankras rättningen."
+          citation="Hyperkorrigeringseffekten — Butterfield och Metcalfe, 2001."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode · Steg 3"
+          title="Vår AI svarar inte. Den frågar."
+          description="Ange din säkerhet från 1 till 5 före varje avslöjande. Metakognition är halva mästerskapet, och säkerhetskalibrering är hur det byggs upp — en förutsägelse i taget."
+          citation="Metakognitiv övervakning — Flavell, 1979."
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War · Steg 10"
+          title="Tentaläge som döljer det du nästan minns."
+          description="Maskera vilken region av canvasen som helst. Hämta ur minnet innan du avslöjar. Återkallandets ansträngning — inte omläsningen — är där minnet hårdnar."
+          citation="Önskvärda svårigheter — Bjork, 1994."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Exam Session · Steg 11"
+          title="Simulerade tentor från din canvas — rättade av Ghost Map."
+          description="Säkerhetsväljare från 1 till 5 före varje fråga. Closed-book. Efter att du skickat in lägger Fluera ditt svar över det ideala och tillämpar hyperkorrigering där du var som säkrast och hade fel. Ju större överraskning, desto starkare rättning."
+          citation="Hyperkorrigering — Butterfield och Metcalfe, 2001 · Produktivt misslyckande — Kapur, 2008."
+          href="/sv/features/exam-session"
+          status="beta"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">Testa i betan →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">Bläck, inte tangentbord</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            Att skriva på tangentbord är snabbare.<br />Att skriva för hand är bättre.<br />Hjärnan är inte optimerad för hastighet.
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller och Oppenheimer, Princeton 2014 · van der Meer, NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            När Mueller och Oppenheimer publicerade den berömda Princeton-studien 2014 slog studenter som antecknade för hand laptop-användarna på konceptuella frågor — <em>trots</em> att laptop-gruppen skrivit betydligt mer text. Handen var långsammare. Sinnet var djupare.
+          </p>
+          <p>
+            Tio år senare gav Audrey van der Meers EEG vid NTNU (2020) <em>varför</em>: handskrift aktiverar bredare hjärnnätverk än att skriva på tangentbord, särskilt i regioner kopplade till minnesbildning och sensorimotorisk integration. Pennan är ett kognitivt instrument.
+          </p>
+          <p>
+            Fluera är byggt kring detta. Tretton penselmotorer. Tryck, lutning, hastighet. Strecklatens under 15 millisekunder på alla stödda enheter. Den oändliga canvasen är inte estetik — den är substratet ditt minne ropade efter.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Vetenskaplig grund</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          På giganternas axlar — citerade vid namn.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Varje designbeslut hänvisar till en artikel vi kan länka. Här tolv av sinnena som bor inuti Fluera. Den fullständiga bibliografin är offentlig.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Sex plattformar, ett bläck</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Sex plattformar. Ett bläck. Ett sinne.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Native renderare på Vulkan, Metal, OpenGL, Direct3D 11 och WebGPU. Din anteckningsbok synkar med kryptering ände till ände, eller stannar offline. Du bestämmer.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        Status-etiketterna är ärliga om mognadsgraden för varje plattform. De märkta "Alpha" eller "Demo" fungerar men behöver polering — gå med i betan om du vill hjälpa till att forma dem.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Ditt sinne, dina data</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Kryptering ände till ände.<br />Nyckeln stannar hos dig.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">AES-256 i vila</h3>
+          <p class="text-sm text-paper-300">SQLCipher-kryptering på varje enhet. Den lokala databasen är oläsbar utan din nyckel.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">GDPR från grunden</h3>
+          <p class="text-sm text-paper-300">Hosting i EU, DPA tillgängligt, full export och radering på begäran.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Noll ad-tech</h3>
+          <p class="text-sm text-paper-300">Inga spårningspixlar. Ingen beteendebaserad reklam. Vi tränar inte våra modeller på ditt innehåll.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Revisionsspår</h3>
+          <p class="text-sm text-paper-300">För Education-konton loggas varje åtkomst i ett oföränderligt spår.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">Läs säkerhetsarkitekturen →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Priser</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Gratis för att lära. Plus och Pro för att gå djupare.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">Hela canvasen. Tre anteckningsböcker. Gratis för alltid.</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5,99<span class="text-sm font-sans text-paper-300">/månad</span></p>
+          <p class="text-sm text-paper-300">Obegränsade canvases, sync på 2 enheter, AI bas. €49/år.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11,99<span class="text-sm font-sans text-paper-300">/månad</span></p>
+          <p class="text-sm text-paper-300">Exam Session, Atlas, hela AI-sviten, obegränsad sync. €99/år.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19,99<span class="text-sm font-sans text-paper-300">/seat</span></p>
+          <p class="text-sm text-paper-300">Delade canvases, team-Atlas, ACL, revisionsspår. Från 5 seats.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        Verifierade studenter får Plus eller Pro med 50 % rabatt via pilotprogrammet. Den som tecknar nu låser priset för prenumerationens längd.
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">Se alla priser →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">Var med</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        Sluten beta.<br />Onboarding i kohorter.
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        Vi tar in i kohorter så att varje grupp — studenter, kunskapsarbetare, lärare — får ett verkligt samtal, inte ett nummer i kön. Om du är trött på appar som lovar att lära åt dig, be om åtkomst.
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        Begär åtkomst →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

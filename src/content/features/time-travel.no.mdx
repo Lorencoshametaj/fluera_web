@@ -1,0 +1,51 @@
+---
+lang: "no"
+title: Time Travel
+tagline: "Spill av hver strek på nytt. Synkronisert med forelesningens lyd som fikk deg til å skrive den."
+shortDescription: "Trykk på en notat fra tre uker tilbake, og lyden starter igjen nøyaktig der pennen din skrev. Opplev din egen tenkning på nytt."
+status: coming-soon
+stepInCycle: 5
+relatedPrinciples:
+  - spatial-cognition
+  - spacing-effect
+  - embodied-cognition
+  - levels-of-processing
+relatedAuthors:
+  - okeefe-moser
+  - van-der-meer
+order: 10
+---
+
+## Hva det løser
+
+Den tradisjonelle mangelen ved forelesningsnotater er at de er døde. Uker senere ser du på noe du har skrevet, og du husker ikke lenger hvorfor. Hva sa foreleseren akkurat? Hva var konteksten? Notatet er dekontekstualisert — og dekontekstualiserte notater er nesten verdiløse.
+
+Time Travel holder konteksten levende.
+
+## Hvordan det fungerer
+
+Du starter et opptak når forelesningen begynner. Du skriver normalt. Hver strek du tegner er tidsstemplet til det opptatte lydframet.
+
+Senere — dager, uker eller måneder etterpå — trykker du på en hvilken som helst strek på canvaset ditt. Lyden spoler nøyaktig til øyeblikket du nettopp skrev. Du hører forelesers stemme, din egen tenkning, spørsmålet bakerst i rommet. Konteksten kommer tilbake i ett slag.
+
+Du flytter på lyden og ser canvaset spille seg om strek for strek, i originalt tempo eller akselerert. Du ser sinnet ditt arbeide.
+
+All lagring er lokal som standard, kryptert med SQLCipher. Lyd-synkronisering er opt-in og ende-til-ende-kryptert når aktivert.
+
+## Vitenskapen bak
+
+To prinsipper konvergerer:
+
+- **Kontekstavhengig gjenkalling** (Tulving, 1972): minnet hentes bedre fram når gjenkallings-konteksten samsvarer med innkodings-konteksten. Fluera reproduserer innkodings-konteksten på forespørsel — forelesers stemme, romstemningen, håndbevegelsene dine.
+- **Romlig kognisjon** (O'Keefe og Moser, Nobelprisen 2014): posisjonen på canvaset er i seg selv et gjenkallings-hint. Å trykke på en strek kombinerer det romlige hintet (posisjon) med det kontekstuelle (lyd) — to gjenkallings-stier i stedet for én.
+
+Van der Meers EEG-arbeid (2020) legger til et tredje lag: håndskrift aktiverer brede sensomotoriske nettverk i skriveøyeblikket. Time Travel lar studentene krysse det samme nettverket på nytt uker senere — de bare husker det ikke, de *spiller* om streken som opprinnelig utløste det.
+
+## Hva som kommer
+
+Time Travel er i privat alfa. Den fullstendige lanseringen omfatter:
+
+- **Cross-Device-lyd-sync** (kun lokalt i dag)
+- **Søk i transkripsjonen** — finn forelesnings-øyeblikk basert på det som ble sagt
+- **Auto-genererte kapittelmarkeringer** via pauser og tema-skift
+- **Eksport som annotert video** — for å dele en walkthrough av forelesningen

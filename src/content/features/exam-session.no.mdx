@@ -1,0 +1,56 @@
+---
+lang: "no"
+title: Exam Session
+tagline: "Simulerte eksamener fra ditt eget canvas. Hyperkorreksjon forvandler feil til varig hukommelse."
+shortDescription: "Fluera genererer en closed-book-eksamen fra konseptene du faktisk har tegnet. Tillit-velger før hvert svar. Etter innsending legger Ghost Map seg over arbeidet ditt — jo større overraskelsen, jo sterkere korrigeringen."
+status: beta
+stepInCycle: 11
+relatedPrinciples:
+  - hypercorrection-effect
+  - productive-failure
+  - interleaving
+  - retrieval-practice
+  - metacognition
+relatedAuthors:
+  - butterfield-metcalfe
+  - robert-bjork
+  - roediger-karpicke
+order: 7
+---
+
+## Hva det løser
+
+De fleste studenter forveksler *å føle seg forberedt* med *å være forberedt*. De leser notatene sine på nytt, ser en video i 2×, lar en LLM oppsummere kapittelet — og går inn i eksamen med en flyt som ikke har noe med gjenkalling å gjøre. Resultatet er det universelle sjokket etterpå: "Jeg kunne det. Hvorfor klarte jeg ikke å skrive det ned?"
+
+Exam Session lukker dette hullet ved at eksamen virkelig finner sted — privat, på canvaset ditt, dager før den ekte.
+
+## Hvordan det fungerer
+
+Du avslutter en læringsøkt. Du åpner Atlas-menyen og trykker **🎓 Interrogami** — eller du skriver *"interrogami"* i canvas-chatten. Fluera leser konseptene du faktisk har tegnet (klynge-cache pluss strek-OCR) og genererer en closed-book-eksamen ut fra dem. Fem, sju eller ti spørsmål. Blandete typer: åpne, flervalg, sant/usant, formelgjenkalling.
+
+Før hvert svar spør tillit-velgeren én eneste ting: **hvor sikker er du, fra 1 til 5?** Beveg ringen. Forplikt deg til et tall.
+
+Nå svarer du — for hånd, på en mini-canvas-scratchpad, akkurat slik du ville skrevet det på den ekte eksamenen. Ingen autocomplete. Ingen kopier-lim. Ingen "regenerer". Bare du og siden.
+
+Ved innsending vurderer Fluera svaret token for token og leverer tilbakemeldingen i streaming. Hvis du tok feil med høy tillit, fyrer **Hypercorrection Shock-UI-en** — en bevisst, vanskelig å ignorere visuell effekt som utløser den varigste formen for korrigering hjernen kan produsere. Etterpå ber Fluera deg skrive det riktige svaret med egne ord på nytt: **genereringseffekten** forankrer det.
+
+Etter tre riktige svar på rad øker vanskeligheten automatisk. Etter hver chunk på fire spørsmål en kort tilbakemeldings-pause før neste sett — chunking og interleaving by design.
+
+Ved øktens slutt oppdaterer FSRS-planleggeren review-intervallene per konsept ut fra din faktiske prestasjon, ikke ut fra selvvurderingen din. Blinde flekker flyter tilbake i Fog of War for kirurgisk gjenkalling-praksis på dag 1, 3, 7, 14.
+
+## Vitenskapen bak
+
+Tre tiår med evidens konvergerer mot én innsikt: de varigste korrigeringene kommer fra de mest overraskende feilene.
+
+**Hyperkorreksjon-effekten** av Butterfield & Metcalfe (2001) er den sentrale mekanismen. Feil begått med høy tillit beholdes etter korrigering varigere enn feil med lav tillit — overraskelsen over å ha tatt feil når man var sikker, modulerer hippocampal innkoding via amygdala-aktivering. Tillit-velgeren er ikke estetikk; den er utløseren for denne mekanismen.
+
+Robert Bjorks **ønskede vanskeligheter** (1994) forklarer hvorfor et åpent, håndskrevet svar slår flervalg: friksjonen ved generering er nettopp det som bygger hukommelse. Roediger & Karpicke (2006) avrunder bildet — et enkelt gjenkallingsforsøk skaper sterkere langtidsretensjon enn fire repetisjons-lesinger.
+
+Manu Kapurs forskning på **produktiv feil** (2008) støtter den hardeste designbeslutningen: spørsmål som starter litt over ditt nåværende nivå, gir varigere læring enn spørsmål kalibrert mot komfortsonen din. Adaptiv vanskelighet eskalerer bevisst, ikke defensivt.
+
+## Hva som kommer
+
+- **Post-Exam-analyse** — tillit-kalibrering per klynge og grafer over hyperkorreksjons-magnitude.
+- **Voice Mode Exam** — talte spørsmål med håndskrevne svar, for kliniske eller muntlige eksamensforberedelser.
+- **Vedvarende Surgical-Path-overlegg** — etter eksamen fremhever Fog of War kun de bommede konseptene på live-canvaset, scoped for review dagen etter.
+- **Multi-fag Exam Sessions** — én økt som interleaver klynger fra flere notatbøker og trener overføring.

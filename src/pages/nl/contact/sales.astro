@@ -1,0 +1,120 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Praat met sales — Fluera voor instellingen"
+  description="Plan een gesprek met de oprichters van Fluera om evidence-based studietools naar je klas, faculteit of campus te brengen."
+  locale="nl"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">Sales voor instellingen</p>
+      <h1 class="font-serif text-display-xl text-paper-50 mb-6">Laten we een plan maken voor je studenten.</h1>
+      <p class="prose-ink text-lg mb-8">
+        Vul dit hieronder in en een oprichter antwoordt binnen 24 uur op werkdagen. We beginnen liever asynchroon — een goed geschreven mail telt voor meer dan drie rondes plannen.
+      </p>
+
+      <form id="sales-form" class="card p-6 md:p-8 space-y-5" action={`mailto:${SITE.company.contactEmail}`} method="post" enctype="text/plain">
+        <div>
+          <label class="sales-label" for="s-name">Je naam <span class="text-signal-bad">*</span></label>
+          <input id="s-name" name="name" type="text" required class="sales-input" placeholder="Volledige naam" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-role">Functie <span class="text-signal-bad">*</span></label>
+          <select id="s-role" name="role" required class="sales-input">
+            <option value="" disabled selected>Selecteer…</option>
+            <option>Docent</option>
+            <option>Faculteitscoördinator</option>
+            <option>Decaan / vicerector</option>
+            <option>IT / inkoop</option>
+            <option>Bibliothecaris / instructional designer</option>
+            <option>Studentvertegenwoordiger</option>
+            <option>Anders</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-institution">Instelling <span class="text-signal-bad">*</span></label>
+          <input id="s-institution" name="institution" type="text" required class="sales-input" placeholder="Naam van de universiteit of school" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-email">Werk-e-mail <span class="text-signal-bad">*</span></label>
+          <input id="s-email" name="email" type="email" required class="sales-input" placeholder="jij@universiteit.nl" />
+          <p class="sales-hint">Gebruik je institutionele e-mail om verificatie eenvoudiger te maken.</p>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-size">Interesse in</label>
+          <select id="s-size" name="size" class="sales-input">
+            <option value="" selected>Selecteer…</option>
+            <option>Pilot — één klas, één semester</option>
+            <option>Faculteitslicentie</option>
+            <option>Campuslicentie</option>
+            <option>Ik ben aan het verkennen — ik heb een briefing nodig</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-context">Wat moeten we weten voordat we antwoorden? <span class="text-signal-bad">*</span></label>
+          <textarea id="s-context" name="context" rows="5" required minlength="20" maxlength="2000"
+            class="sales-input"
+            placeholder="Vaknaam, profiel van de studenten, deadlines, tools die al worden gebruikt, compliance-restricties — alles wat nuttig is."></textarea>
+          <p class="sales-hint">Hoe specifieker, hoe korter ons antwoord kan zijn.</p>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="btn-primary w-full py-3.5">Versturen →</button>
+          <p class="sales-hint text-center mt-3">
+            Het formulier verstuurt via e-mail. Niets verlaat je apparaat tot je op verzenden drukt. Liever direct schrijven? <a href={`mailto:${SITE.company.contactEmail}`} class="text-accent-glow underline">{SITE.company.contactEmail}</a>.
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">Wat er gebeurt na het versturen</h2>
+      <ol class="space-y-4 text-sm text-paper-200 list-none p-0">
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">01</span><span>Een oprichter antwoordt binnen één werkdag met specifieke vragen over jouw situatie — nooit een generiek script.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">02</span><span>We sturen een pilot-briefing (PDF) op maat van jouw geval, met voorbeelden van lesplannen en een lijst vragen om aan studenten te stellen.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">03</span><span>Een gesprek van 30 minuten met de oprichter en, als het zinvol is, met je IT-aanspreekpunt. We dekken eerlijk SSO, verwerkersovereenkomst en deadlines — inclusief de huidige grenzen.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">04</span><span>De pilot start. Doorgaans 2–4 weken na het eerste contact.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <style>
+    .sales-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: theme("colors.paper.200");
+      margin-bottom: 0.5rem;
+    }
+    .sales-hint {
+      font-size: 0.75rem;
+      color: theme("colors.ink.500");
+      margin-top: 0.375rem;
+    }
+    .sales-input {
+      width: 100%;
+      background: theme("colors.ink.900");
+      border: 1px solid rgb(255 255 255 / 0.08);
+      border-radius: 0.625rem;
+      padding: 0.75rem 1rem;
+      color: theme("colors.paper.50");
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .sales-input:focus {
+      outline: none;
+      border-color: theme("colors.accent.ink");
+      box-shadow: 0 0 0 3px rgb(45 74 222 / 0.18);
+    }
+  </style>
+</BaseLayout>

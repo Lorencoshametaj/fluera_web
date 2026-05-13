@@ -1,0 +1,155 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Manifest — Å bygge en lærings-app i 2026"
+  description="En grundig forklaring av hva Fluera er, hva Fluera nekter å være, og hvorfor det opplagte produktet var det feile."
+  locale="no"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Manifest</p>
+      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">Læringsrommet, bygd på hvordan sinnet faktisk fungerer.</h1>
+      <p class="prose-ink text-xl italic">
+        En grundig forklaring av hva Fluera er, hva Fluera nekter å være, og hvorfor det opplagte produktet var det feile.
+      </p>
+    </div>
+  </section>
+
+  <article class="py-16 md:py-20">
+    <div class="container-prose prose-v2 prose-v2-essay">
+
+      <h2>Premisset</h2>
+      <p>
+        I 2026 er hvert faktum tre sekunder unna. Hver forklaring kan genereres på nytt i den stilen du foretrekker. Marginalkostnaden for å få tilgang til kunnskap har for første gang i artens historie falt nær null.
+      </p>
+      <p>
+        Likevel rapporterer de som lærer — studenter, profesjonelle, nysgjerrige voksne — at de føler seg mindre kompetente i det de konsumerer enn for ti år siden. Ikke fordi innholdet har blitt vanskeligere. Men fordi konsumet har blitt friksjonsfritt, og friksjonsfritt konsum etterlater ingen spor.
+      </p>
+      <p>
+        Læringens flaskehals har flyttet seg. Lenge var det tilgang. For min generasjon var det søk. I 2026 er det noe annet, vanskeligere å sette navn på: <em>forvandlingen av flytende gjenkjenning til varig kompetanse</em>. Og for denne nye flaskehalsen har vi enda ikke bygd infrastrukturen.
+      </p>
+
+      <h2>Hva vitenskapen sier</h2>
+      <p>
+        I femti år har den kognitive læringsvitenskapen konvergert mot en liten gruppe funn med den uvanlige egenskapen at de samtidig er kontraintuitive og ekstraordinært robuste.
+      </p>
+      <p>
+        Ebbinghaus viste i 1885 at glemselskurven er eksponentiell, og at distribuert repetisjon nullstiller den. Slamecka og Graf viste i 1978 at selvgenerert informasjon huskes uendelig mye bedre enn den samme informasjonen lest passivt. Bjork dokumenterte over fire tiår at de betingelsene som virker letteste under læring, nesten er nøyaktig de samme betingelsene som produserer dårligst langtidshukommelse — rammeverket om <em>ønskede vanskeligheter</em>. Butterfield og Metcalfe viste i 2001 at feil begått med høy tillit og deretter korrigert etterlater varigere spor enn feil med lav tillit — hyperkorreksjon-effekten. Roediger og Karpicke fastslo i 2006 at å bli testet ikke er en måling av hukommelsen, men en handling som skaper den.
+      </p>
+      <p>
+        Metaanalyser har gjentatte ganger bekreftet disse resultatene på tvers av fagfelt, aldersgrupper og kulturer. I rangeringen av læringsstrategier etter evidensstyrke står suksessiv gjeninnlæring — distribuert læring kombinert med gjenkalling-praksis i økende intervaller — på toppen. Gjenlesing ligger nær bunnen. Markering er praktisk talt verdiløst.
+      </p>
+      <p>
+        Den praktiske konsekvensen er skarp: standardatferden ved læring som virker produktiv, er ifølge evidensen den minst produktive. Og atferden som leverer de beste resultatene, føles vanskeligere, tregere og mindre tilfredsstillende i øyeblikket.
+      </p>
+      <p>
+        Dette er ikke et metodisk detalj. Det er det viktigste man kan forstå om læring, og det mangler nesten fullstendig i designet av alle læringsverktøy på markedet.
+      </p>
+
+      <h2>Hva LLM-ene har brutt i stykker</h2>
+      <p>
+        Ankomsten av store språkmodeller har ikke endret et eneste av funnene over. Den har endret teksturen som de som lærer møter dem med.
+      </p>
+      <p>
+        En LLM som svarer på tre sekunder, i den stilen du ber om, med perfekt språkflyt, utløser nøyaktig det mønsteret vitenskapen advarer mot. Gjenkjenning, forvekslet med innkoding. Tilliten fra system 1 uten engasjementet fra system 2. Automatiseringsbias, forsterket av outputens overflateflyt. Kompetanseillusjonen, i planetarisk skala.
+      </p>
+      <p>
+        Kognitive forskere som i førti år hadde advart mot tekstmarkeren, fant plutselig en alvorligere motstander: et verktøy så godt til å få det feile til å virke riktig at selv de slet med å motstå det i sin egen læring.
+      </p>
+      <p>
+        Verre: standardmønsteret i LLM-grensesnittet — <em>spør, få et flytende svar, godta, gå videre</em> — er nesten perfekt designet for å omgå gjenkalling-praksisen, genereringseffekten og de ønskede vanskelighetene som varig hukommelse krever. Grensesnittet premierer passivitet. Den underliggende modellen forsterker den. Den resulterende læreren føler seg undervist, men er det ikke.
+      </p>
+
+      <h2>Centaur-premisset</h2>
+      <p>
+        Etter at Deep Blue beseiret Kasparov i 1997, antok verden et kort øyeblikk at sjakken var ferdig — at maskinene hadde vunnet, at menneskelig anstrengelse var foreldet. Så foreslo Kasparov selv en merkeligere observasjon: verdens sterkeste sjakkspiller er verken menneske eller maskin. Det er et menneske <em>med</em> en maskin, i strukturert symbiose. Han kalte det <em>Centaur</em>.
+      </p>
+      <p>
+        Intuisjonen generaliserer langt utover sjakk. På ethvert område der menneskelig dømmekraft er uunnværlig — strategi, kontekst, verdier, smak, dybde av mening — er mønsteret som vinner verken menneske mot KI eller menneske erstattet av KI. Det er menneske forsterket av KI, der mennesket beholder det kognitive arbeidet som skaper vekst.
+      </p>
+      <p>
+        Anvendt på læring inverterer Centaur-mønsteret den vanlige bruken i 2026. Dagens standard — <em>spør LLM-en, les svaret, gå videre</em> — er anti-Centaur. Mennesket outsourcer akkurat den kognitive aktiviteten som skaper hukommelse og forståelse.
+      </p>
+      <p>
+        Centaur-varianten er det motsatte. KI-en spør i stedet for å svare. Den verifiserer i stedet for å tilby. Den gir stillas i stedet for å løse. Mennesket gjør gjenkallingen, genereringen, den romlige plasseringen, den håndskrevne innkodingen. KI-en bidrar med kunnskapsbredde, sanntidskalibrering og de sokratiske impulsene en god veileder ville levert, hvis du hadde råd til en.
+      </p>
+
+      <h2>Hva Fluera er</h2>
+      <p>
+        Fluera er Centauren, bygd som et læringsverktøy.
+      </p>
+      <p>
+        Canvaset er uendelig, tomt, håndskrevet. Hvert konsept du plasserer på det er generert av din hånd — parafrasert, komprimert, plassert i rommet. Tomheten er bevisst. Maler ville hoppet over genereringssteget.
+      </p>
+      <p>
+        KI-en utspør canvaset. Den stiller spørsmål kalibrert mot din nåværende kunnskapstilstand, innenfor den proksimale utviklingssonen — for lett lærer ingenting, for vanskelig kan ikke læres. Før hver oppløsning spør Fluera om din tillit på en skala fra én til fem. Dette er ikke UI-pynt. Det utløser hyperkorreksjon-effekten: et galt svar med tillit 5, én gang korrigert, etterlater et mye dypere spor enn et vilkårlig antall passive gjenlesinger.
+      </p>
+      <p>
+        Ghost Map — funksjonen som uttrykker Centaur-mønsteret renest — legger en ideell rekonstruksjon over din. Avvikene pulserer visuelt. Du korrigerer ved å skrive, ikke ved å klikke. Jo lenger du var fra målet, desto varigere blir korrigeringen.
+      </p>
+      <p>
+        Fog of War, for eksamensforberedelse, skjuler regioner av canvaset og krever gjenkalling før den avslører. Den første økten er frustrerende. Det er nettopp poenget. Gjenkalling under tildekking er den mest effektive læringsaktiviteten den kognitive vitenskapelige litteraturen har dokumentert, og frustrasjon er mekanismen.
+      </p>
+      <p>
+        Planleggeren for distribuert repetisjon planlegger tilbakekomster i økende intervaller, med pedagogiske modifikatorer — hyperkorreksjons-bonus, peek-malus, svartid-signal — lagt over en personlig FSRS-modell kalibrert mot din ekte review-historikk. Den fungerer med canvaset du allerede har, ikke med et parallelt univers av flashkort du må bygge først.
+      </p>
+      <p>
+        Time Travel holder forelesningens lyd synkronisert med hvert strek i håndskriften din, slik at du uker senere kan trykke på en notat og høre øyeblikket du skrev den. Kontekstavhengig gjenkalling sier at en sammenfallende kontekst mellom gjenkalling og innkoding styrker minnet. Time Travel er det prinsippet gjort bokstavelig.
+      </p>
+
+      <h2>Hva Fluera nekter å være</h2>
+      <p>
+        Det er fire ting Fluera ikke vil gjøre, i omtrent synkende fristelsesrekkefølge.
+      </p>
+      <p>
+        <strong>Vi vil ikke ha en KI som besvarer eksamenene dine for deg.</strong> Den umiddelbare brukertilfredsheten ville vært enorm. Det langsiktige utfallet — atrofien av de kognitive musklene verktøyet skal styrke — ville vært et svik mot det erklærte målet. En KI som gjør arbeidet for deg er en KI som ikke lærer deg noe.
+      </p>
+      <p>
+        <strong>Vi vil ikke selge dataene fra notatbøkene dine.</strong> Hver notatbok er kryptert i ro med AES-256. Synkronisering, når den er aktivert, er ende-til-ende-kryptert. Vi trener ikke modellene våre på innholdet ditt. Håndskriften din, tenkningen din, feilene dine og veksten din tilhører deg. At "dataene dine er produktet" er standard i edtech i 2026, gjør det ikke tålelig.
+      </p>
+      <p>
+        <strong>Vi vil ikke ha engasjementsløkker, reklame eller streaks.</strong> Det sterkeste signalet vi kunne optimalisert for — daglige aktive brukere, øktvarighet, klikkrate på varsler — er også det som mest sannsynlig vil korrumpere produktet. Forholdet ditt til læring skal ikke avhenge av en push-varsling. Vi vil heller at du bruker Fluera mindre og lærer mer.
+      </p>
+      <p>
+        <strong>Vi vil ikke lansere funksjoner vi ikke kan forsvare med en sitering.</strong> Enten viser funksjonen til et publisert funn, eller til konsistent betatilbakemelding, eller så går den ikke i produksjon. Nyhet er ikke en funksjon. Vi har sagt nei til flere ideer enn vi har bygd, og forholdet er produktet.
+      </p>
+
+      <h2>For hvem vi bygger</h2>
+      <p>
+        Fluera er ikke for alle. Friksjonen er ekte. Designvalgene er inverterte i forhold til det opplagte produktet. Frafallet i første økt er høyere enn vi skulle ønske, og vi vil ikke fikse det ved å fjerne friksjonen — for friksjonen er det som gjør at produktet virker.
+      </p>
+      <p>
+        Vi bygger for en spesifikk kohort. Medisinstudenter som forbereder muntlige eksamener ingen later som de tar. Doktorgradsstudenter på felt der tom flyt straffes av kommisjonen. Profesjonelle som forbereder seg til statlige eksamener. Autodidakter og fagfolk midt i karrieren som merker at alt de delegerer til ChatGPT fordamper uken etter. Universitetsstudenter på konsepttunge fag som har skjønt at tekstmarkørene deres skaper flyt, ikke kompetanse.
+      </p>
+      <p>
+        Hvis du tilhører den kohorten, tror vi du vil kjenne forskjellen raskt. Hvis ikke, er det greit — det finnes andre produkter for andre problemer, og vi vil ikke late som om Fluera er universelt.
+      </p>
+
+      <h2>Hva vi satser på</h2>
+      <p>
+        Innsatsen er at på et felt der hver konkurrent har overgitt seg til umiddelbar brukerpreferanse og bygd verktøy som føles godt og lærer nesten ingenting, er det plass til et verktøy som føles verre og lærer bedre. Markedet er mindre enn det edtech-kjempene rår over. Den kulturelle tilpasningen til tiden er vanskeligere. Produktet er tregere å bygge.
+      </p>
+      <p>
+        Til gjengjeld: en reell mulighet til å bygge noe som holder det det lover. En reell mulighet til å hjelpe en ekte kohort av lærere å skape varig kompetanse i et tiår som har gjort varighet sjelden. Og en reell mulighet til å fastslå at det i 2026 fantes en annen måte å bygge dette produktet på — en annen enn den opplagte.
+      </p>
+      <p>
+        Dette er produktet. Dette er teamet. Dette er forpliktelsen.
+      </p>
+      <p>
+        Hvis noe av dette resonnerer — betaen er åpen på <a href="/beta">/beta</a>, og vi vil gjerne bli kjent med deg.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Bli med i betaen →</a>
+        <a href="/no/science" class="btn-secondary">Les vitenskapen</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

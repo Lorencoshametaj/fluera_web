@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const processors = [
+  {
+    name: "Supabase Inc.",
+    purpose: "डेटाबेस, प्रमाणीकरण, एन्क्रिप्टेड क्लाउड स्टोरेज, रीयलटाइम सिग्नलिंग, AI प्रॉक्सी के लिए Edge Function।",
+    dataTypes: "खाता ईमेल, हैश किया गया उपयोगकर्ता ID, कैनवास साइफरटेक्स्ट (E2E एन्क्रिप्टेड), सिंक मेटाडेटा।",
+    region: "फ्रैंकफर्ट, EU (Fluera इंस्टेंसेस के लिए डिफ़ॉल्ट क्षेत्र)।",
+    privacy: "https://supabase.com/privacy",
+  },
+  {
+    name: "Google LLC",
+    purpose: "Socratic Mode, Ghost Map, LaTeX OCR और exam session निर्माण के लिए Google Generative AI (Gemini)।",
+    dataTypes: "कैनवास टेक्स्ट के चयनित भाग (केवल यदि AI सुविधाएं अनुमत और सक्रिय हैं)। पूरी नोटबुक कभी नहीं।",
+    region: "US, Google Cloud क्षेत्रों के माध्यम से EU; SCC + EU-US DPF।",
+    privacy: "https://policies.google.com/privacy",
+  },
+  {
+    name: "Apple Inc.",
+    purpose: "Apple के साथ साइन इन प्रमाणीकरण; iOS और macOS पर App Store के माध्यम से इन-ऐप खरीदारी।",
+    dataTypes: "Apple ID रिले ईमेल, रसीद पहचानकर्ता। कोई कैनवास डेटा नहीं।",
+    region: "US; SCC + EU-US DPF।",
+    privacy: "https://www.apple.com/legal/privacy/",
+  },
+  {
+    name: "RevenueCat Inc.",
+    purpose: "iOS, Android और वेब पर सदस्यता प्रबंधन और रसीद सत्यापन।",
+    dataTypes: "अनामीकृत RevenueCat उपयोगकर्ता ID, सदस्यता स्थिति, रसीद मेटाडेटा। कोई भुगतान कार्ड डेटा नहीं।",
+    region: "US; SCC + EU-US DPF।",
+    privacy: "https://www.revenuecat.com/privacy",
+  },
+  {
+    name: "Functional Software Inc. (Sentry)",
+    purpose: "क्रैश रिपोर्टिंग और त्रुटि निगरानी।",
+    dataTypes: "स्टैक ट्रेस, OS संस्करण, डिवाइस मॉडल, ऐप संस्करण। sendDefaultPii स्पष्ट रूप से अक्षम है — कोई उपयोगकर्ता सामग्री नहीं।",
+    region: "US, EU विकल्प उपलब्ध।",
+    privacy: "https://sentry.io/privacy/",
+  },
+  {
+    name: "Vercel Inc.",
+    purpose: "मार्केटिंग साइट fluera.dev और /docs होस्टिंग।",
+    dataTypes: "मानक वेब एक्सेस लॉग (IP, user-agent)। कोई खाता सामग्री नहीं।",
+    region: "वैश्विक एज; कॉन्फ़िगर करने योग्य मूल क्षेत्र।",
+    privacy: "https://vercel.com/legal/privacy-policy",
+  },
+];
+
+const lastUpdated = "2026-04-20";
+---
+
+<BaseLayout
+  title="सब-प्रोसेसर"
+  description="वे तृतीय पक्ष जिन पर Fluera उत्पाद वितरित करने के लिए निर्भर है। प्रत्येक सब-प्रोसेसर के लिए उद्देश्य, साझा डेटा, क्षेत्र, और गोपनीयता नीति लिंक।"
+  locale="hi"
+>
+  <PageHero
+    kicker="सब-प्रोसेसर"
+    title="हर तृतीय पक्ष जिस पर हम निर्भर हैं।"
+    description="GDPR अनुच्छेद 28 के अनुसार, हमारी ओर से व्यक्तिगत डेटा संसाधित करने वाला प्रत्येक सब-प्रोसेसर यहां सूचीबद्ध है — हम क्या साझा करते हैं, क्यों, और यह कहां रहता है। हम हर परिवर्तन से पहले ग्राहकों को सूचित करते हैं।"
+    breadcrumb={{ label: "सुरक्षा", href: "/hi/security" }}
+  >
+    <p slot="copy" class="mt-6 text-sm text-ink-500 font-mono">अंतिम अपडेट: {lastUpdated}</p>
+  </PageHero>
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-5xl">
+        {processors.map((p) => (
+          <li class="card p-6 md:p-7">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <h2 class="font-serif text-xl text-paper-50 mb-2">{p.name}</h2>
+                <a href={p.privacy} class="text-xs text-accent-glow underline underline-offset-4 font-mono" rel="noopener">
+                  गोपनीयता नीति ↗
+                </a>
+              </div>
+              <dl class="md:col-span-3 grid gap-3 text-sm">
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">उद्देश्य</dt>
+                  <dd class="text-paper-200">{p.purpose}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">साझा डेटा</dt>
+                  <dd class="text-paper-200">{p.dataTypes}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">क्षेत्र</dt>
+                  <dd class="text-paper-200">{p.region}</dd>
+                </div>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">परिवर्तन और सूचनाएं</h2>
+      <p class="prose-ink text-sm mb-4">
+        जब भी कोई सब-प्रोसेसर जोड़ा, बदला या हटाया जाता है हम इस सूची को अपडेट करते हैं। GDPR अनुच्छेद 28(2) के अनुसार, संस्थागत और एंटरप्राइज़ ग्राहकों को परिवर्तन से कम से कम 30 दिन पहले ईमेल अधिसूचना मिलती है।
+      </p>
+      <p class="prose-ink text-sm">
+        सब-प्रोसेसर परिवर्तन सूचनाओं की सदस्यता लेने के लिए, अपने खाता पते से <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a> पर लिखें।
+      </p>
+    </div>
+  </section>
+</BaseLayout>

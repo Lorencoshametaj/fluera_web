@@ -1,0 +1,51 @@
+---
+lang: "fi"
+title: Fog of War
+tagline: "Tenttitila, joka piilottaa sen, minkä lähes muistat."
+shortDescription: "Peitä canvasin alueita. Hae ne takaisin muistista. Palauttamisen ponnistus — ei uudelleenluku — on se, mikä lujittaa muistoja."
+status: beta
+stepInCycle: 10
+relatedPrinciples:
+  - desirable-difficulties
+  - retrieval-practice
+  - spatial-cognition
+  - spacing-effect
+relatedAuthors:
+  - robert-bjork
+  - roediger-karpicke
+  - okeefe-moser
+order: 4
+---
+
+## Mitä se ratkaisee
+
+Tenttiin valmistautuminen rapautuu usein toiseen kahdesta vääränlaisesta tilasta: uudelleenluku (tuntuu tuottavalta, opettaa vähän) tai paniikkipänttäys (opettaa lyhyesti, romahtaa jälkeenpäin). Molemmat välttävät juuri sitä, mikä todella rakentaa pysyvää muistia — *kamppailua* palauttaa ilman apua.
+
+Fog of War tekee tästä kamppailusta canvasisi oletustilan.
+
+## Miten se toimii
+
+Seitsemän–neljätoista päivää ennen tenttiä aktivoit Fog of Warin canvasin alueella, jonka haluat testata. Alue peitetään — puoliläpinäkyvä sumeus peittää sisällön, kunnes palautat sen muistista tai paljastat sen nimenomaisesti.
+
+Navigoit canvasilla. Pysähdyt peitetyn solmun kohdalla. Yrität muistaa, mitä siellä luki. Sanot sen ääneen tai kirjoitat aputilaan. Vasta sitten napautat paljastaaksesi.
+
+Kolme lopputulosta:
+- **Vihreä** — palautettu oikein. Peite ohenee pysyvästi.
+- **Keltainen** — osittain napattu. Peite muuttuu läpinäkyväksi, mutta solmu jää merkityksi kertausta varten.
+- **Punainen** — kokonaan kadoksissa. Fluera suunnittelee välittömän paluun ja pyytää sinua kirjoittamaan solmun käsin uudelleen — vahvistus tuottamisen, ei uudelleenluvun, kautta.
+
+Toistat silmukan, kunnes suurin osa canvasista on vihreä. Mikä jää punaiseksi, on kartta siitä mitä et tiedä — täsmälleen kartta, jota tarvitsit.
+
+## Taustalla oleva tiede
+
+Robert Bjorkin käsite **toivotuista vaikeuksista** on rakenteellinen idea. Sujuvuus oppimisen aikana on huono signaali — varoitus siitä, että enkoodaus on pinnallista. Palauttamisen kitka peiton alta on päinvastainen: ei-sujuva, hidas, turhauttava *ja* juuri se, mikä sementoi muistin.
+
+Roedigerin ja Karpicken vuoden 2006 työ osoitti, että yksi palautusyritys tuottaa vahvemman pitkäaikaismuistin kuin neljä uudelleenlukuistuntoa. Fog of War on palauttamisharjoittelua suuressa mittakaavassa, koko canvasin yli, ilman per-kysymys-kitkaa.
+
+Myös tilallisella elementillä on merkitystä. Koska canvasisi on muistipalatsi (O'Keefe ja Moser, Nobel 2014), palauttaminen sijainnista vahvistaa paitsi käsitteen, myös sinne johtavan tilallisen indeksin. Tentissä et muista faktaa — sinä *navigoit* siihen.
+
+## Mitä tulee seuraavaksi
+
+- **Automaattinen peitteen suunnittelu** — FSRS-vetoinen sumu, joka tihenee erääntyvissä kohteissa.
+- **Aikarajoitettu tenttisimulaatio** — realistista painetta konfiguroitavilla rajoituksilla.
+- **Post-mortem-kartta** — oikean tentin jälkeen merkitset, mitkä kysymykset menivät oikein tai väärin, ja Fluera päivittää ajastimen tällä kenttätotuudella.

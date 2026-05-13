@@ -1,0 +1,57 @@
+---
+lang: "fi"
+title: Reflow Physics
+tagline: "Vedä käsitettä. Näe canvasin järjestäytyvän uudelleen tärkeän ympärille."
+shortDescription: "Reflow pitää tilallisen enkoodauksen elossa ymmärryksesi kehittyessä. Siirrät solmua, ja naapurit seuraavat gradienttia — käsinkirjoitus jää sinne, missä kätesi piirsi sen, rakenne hengittää."
+status: beta
+relatedPrinciples:
+  - spatial-cognition
+  - embodied-cognition
+  - generation-effect
+relatedAuthors:
+  - okeefe-moser
+  - mueller-oppenheimer
+  - van-der-meer
+order: 8
+---
+
+## Mitä se ratkaisee
+
+Lukukauden viikolla yksi rakennettu canvas ei ole canvas, jonka haluat viikolla kymmenen. Aiheet, joita pidit erillisinä, osoittautuvat yhdistyneiksi. Kaukaiset klusterit romahtavat yhdeksi luvuksi. Uusi materiaali räjäyttää solmun, joka aikaisemmin oli yksittäinen sana.
+
+Ilman Reflowia jää kaksi vaihtoehtoa: jättää canvas jäätyneeksi ja asteittain vääräksi, tai piirtää se uudelleen käsin — tunteja menetettynä ja jokaisen tilavihjeen rikottuna, jonka hippokampuksesi oli jo enkoodannut.
+
+Reflow Physics on kolmas vaihtoehto. Canvas järjestäytyy uudelleen samalla kun jokainen veto pysyy täsmälleen siellä, missä piirsit sen.
+
+## Miten se toimii
+
+Vedä mitä tahansa solmua — käsitettä, klusteria, käsinkirjoituksen kappaletta. Kun sormesi tai kynäsi liikkuu, viereiset elementit reagoivat kuin pehmeä fysikaalinen järjestelmä: lähellä olevat solmut seuraavat suhteellisesti, kaukana olevat siirtyvät tuskin lainkaan, ja Ghost-siirtymät näyttävät ehdotetun lopullisen layoutin *ennen* kuin vahvistat.
+
+Päästä irti. Reflow asettuu yhteen sujuvaan animaatioon. Kapotin alla jokainen veto säilyttää alkuperäisen ID:nsä, alkuperäisen aikaleimansa, alkuperäisen [Time Travel](/fi/features/time-travel) -ääniyhteytensä. Tilavihjeet päivittyvät; identiteetti ei.
+
+Reflow kunnioittaa käsinpiirrettyjä nuolia ja [Cross-Zone Bridges](/fi/features/cross-zone-bridges) -siltoja: ne venyvät, kaareutuvat, hengittävät — mutta eivät koskaan katkea. Yhteydet ovat layoutin ensiluokkaisia kansalaisia.
+
+Kolme tilaa:
+
+- **Paikallinen Reflow** — vedät yksittäistä solmua; vain sen välitön klusteri järjestyy uudelleen.
+- **Klusteri-Reflow** — long-press klusterilla; koko alue muuttuu vedettäväksi yksikkönä, samalla kun sisäinen rakenne säilyy.
+- **Atlas-Reflow** — mantereen zoomilla vedät kokonaista canvasia [Atlas](/fi/features/atlas)-näkymässä; aineet järjestyvät uudelleen toisiinsa nähden.
+
+Undo ja Redo toimivat Reflow-tasolla. Huono uudelleenjärjestely on vain napautuksen päässä — jokainen layout-tila on tarkistuspiste.
+
+## Taustalla oleva tiede
+
+Hippokampus enkoodaa enemmän kuin sen, mitä kirjoitit: se enkoodaa **missä** kirjoitit sen. O'Keefen ja Moserin place cell -työ (Nobel 2014) osoitti, että sama neuraalinen populaatio, joka kartoittaa kotisi, kartoittaa myös käsitteesi — edellyttäen, että käsitteillä on vakaat tilakoordinaatit. Staattiset kartat vahvistavat näitä soluja; kaaos tuhoaa ne.
+
+Reflow'n suunnitteluvaatimus seuraa suoraan: tilamuutoksen on oltava **sujuvaa ja tarkoituksellista**, ei koskaan äkillistä. Solmu, joka teleporttaa uuteen sijaintiin, nollaa place cell -kartoituksen; solmu, joka liukuu välipositioiden läpi, säilyttää sen. Fysiikka ei ole koristelua — se on tapa, jolla muisti selviää uudelleenjärjestelystä.
+
+Mueller & Oppenheimer (2014) ja van der Meer (2020) ovat todenneet, että **käsinkirjoitus itsessään** enkoodaa muistia sensomotoristen jälkien kautta. Reflow suojaa nämä jäljet: vetoja ei koskaan renderoida uudelleen, ei koskaan rasteroida uudelleen, eivätkä ne koskaan menetä paine-/kallistus-/nopeussignaalia, jonka alkuperäinen kirjoitustapahtuma tuotti. Siirrät käsitettä; motorinen jälki seuraa mukana.
+
+Lopuksi **tuottamisvaikutus** (Slamecka & Graf, 1978) leikkaa molempiin suuntiin. Päättäminen siitä *missä* käsite kuuluu — ja tämän päätöksen revisointi ymmärryksen syvetessä — on itsessään tuottava liike, joka vahvistaa enkoodausta. Reflow tekee tästä revisiosta tarpeeksi halvan, jotta sen voi tehdä joka viikko.
+
+## Mitä tulee
+
+- **Per-vyöhyke-painovoima** — eri Reflow-vahvuudet eri aineille (matematiikka haluaa tiukat klusterit; historia haluaa aikajanan ajautumisen).
+- **Reflow Timeline** — vieritä canvasin layout-historian läpi; näe, miten mentaalikarttasi on kehittynyt viikko viikolta.
+- **Auto-Reflow-ehdotukset** — Atlas ehdottaa konsolidointeja, kun se huomaa klustereiden ajautuvan toisiaan kohti useissa istunnoissa.
+- **Reflow-tietoinen vienti** — PDF:t ja SVG:t, jotka säilyttävät nykyisen layoutin ja pitävät syvälinkit historiallisiin sijainteihin.

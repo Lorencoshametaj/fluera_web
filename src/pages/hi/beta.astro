@@ -1,0 +1,392 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL ?? "";
+const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? "";
+const configured =
+  supabaseUrl &&
+  supabaseKey &&
+  !supabaseUrl.includes("YOUR-PROJECT-REF") &&
+  !supabaseKey.includes("YOUR_ANON");
+
+const description =
+  "Fluera निजी बीटा में शामिल हों: अनंत कैनवास + AI + अधिगम का संज्ञानात्मक विज्ञान। कोहोर्ट-आधारित एक्सेस।";
+---
+
+<BaseLayout
+  title="Fluera बीटा — संज्ञानात्मक विज्ञान आधारित अध्ययन"
+  description={description}
+  locale="hi"
+>
+
+  <section class="relative py-20 md:py-28 overflow-hidden noise">
+    <div class="glow-orb h-[400px] w-[400px] -top-24 -start-36 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[350px] w-[350px] top-24 -end-24 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -2s"></div>
+
+    <div class="container-narrow relative text-center">
+      <div class="pill mb-6">
+        <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+        निजी बीटा · कोहोर्ट-आधारित एक्सेस
+      </div>
+      <h1 class="font-serif text-display-xl text-paper-50 mb-6">
+        संज्ञानात्मक विज्ञान<br />
+        <span class="text-gradient">द्वारा निर्देशित अध्ययन</span>
+      </h1>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        अनंत कैनवास, एकीकृत AI, <em>अंतराल पुनरावृत्ति</em>, <em>पुनर्प्राप्ति अभ्यास</em>, और <em>उत्पादक विफलता</em> पर आधारित 12-चरण अधिगम चक्र।
+        ड्राइंग ऐप नहीं और न ही Anki का विकल्प: यह वह बिंदु है जहां दोनों मिलते हैं।
+      </p>
+
+      <div class="grid sm:grid-cols-3 gap-4 text-start max-w-2xl mx-auto">
+        <div class="card p-4">
+          <p class="font-serif text-sm font-medium text-paper-50 mb-1.5">Ghost Map</p>
+          <p class="text-xs text-paper-300 leading-relaxed">
+            AI आपके साथ अवधारणा मानचित्र बनाता है और आपको दिखाता है क्या छूट गया।
+          </p>
+        </div>
+        <div class="card p-4">
+          <p class="font-serif text-sm font-medium text-paper-50 mb-1.5">वैयक्तिकृत FSRS</p>
+          <p class="text-xs text-paper-300 leading-relaxed">
+            आधुनिक अंतराल पुनरावृत्ति, आपके वास्तविक रिव्यू पर अंशांकित।
+          </p>
+        </div>
+        <div class="card p-4">
+          <p class="font-serif text-sm font-medium text-paper-50 mb-1.5">Socratic Mode</p>
+          <p class="text-xs text-paper-300 leading-relaxed">
+            AI आपको उत्तर देने के बजाय प्रश्न पूछता है। आप वास्तव में सोचते हैं।
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-24">
+    <div class="container-narrow max-w-xl">
+
+      {!configured && (
+        <div class="mb-6 rounded-xl border border-dashed border-signal-bad/40 bg-signal-bad/[0.08] px-4 py-3 text-xs font-mono text-red-300">
+          ⚠️ डिप्लॉय से पहले <code>.env</code> में <code>PUBLIC_SUPABASE_URL</code> और <code>PUBLIC_SUPABASE_ANON_KEY</code> कॉन्फ़िगर करें।
+        </div>
+      )}
+
+      <div class="card p-6 md:p-8">
+        <h2 class="font-serif text-xl text-paper-50 mb-1">एक्सेस का अनुरोध करें</h2>
+        <p class="text-sm text-ink-500 mb-6">
+          यहां उत्तर हमें यह समझने में मदद करते हैं कि <em>किसे</em> पहले आमंत्रित करें। जितना अधिक ईमानदार, उतना बेहतर।
+        </p>
+
+        <form id="waitlist-form" novalidate>
+          <div class="honeypot" aria-hidden="true">
+            <label>नहीं भरें: <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
+          <div class="space-y-5">
+            <div>
+              <label class="field-label" for="f-name">नाम (वैकल्पिक)</label>
+              <input id="f-name" name="name" type="text" class="field-input" placeholder="आपको क्या कहकर बुलाएं?" maxlength="80" autocomplete="given-name" />
+            </div>
+
+            <div>
+              <label class="field-label" for="f-email">ईमेल <span class="text-signal-bad">*</span></label>
+              <input id="f-email" name="email" type="email" class="field-input" placeholder="you@university.edu" required maxlength="254" autocomplete="email" />
+              <p class="field-hint">वह उपयोग करें जो आप नियंत्रित करते हैं — हम वहां लिखेंगे।</p>
+            </div>
+
+            <div>
+              <span class="field-label">पढ़ रहे हैं या काम करते हैं? <span class="text-signal-bad">*</span></span>
+              <div class="flex flex-wrap gap-2 mt-1">
+                <label class="role-pill"><input type="radio" name="role" value="student" required> छात्र</label>
+                <label class="role-pill"><input type="radio" name="role" value="professional"> पेशेवर / ज्ञान कार्यकर्ता</label>
+                <label class="role-pill"><input type="radio" name="role" value="educator"> शिक्षक / फैकल्टी</label>
+                <label class="role-pill"><input type="radio" name="role" value="other"> अन्य</label>
+              </div>
+            </div>
+
+            <div data-show-when-role="student educator">
+              <label class="field-label" for="f-faculty">फैकल्टी या अध्ययन क्षेत्र</label>
+              <input id="f-faculty" name="faculty" type="text" class="field-input" placeholder="उदा. चिकित्सा, कंप्यूटर इंजीनियरिंग…" minlength="2" maxlength="120" />
+              <p class="field-hint">यदि आप छात्र या शिक्षक हैं तो आवश्यक।</p>
+            </div>
+
+            <div data-show-when-role="professional">
+              <label class="field-label" for="f-domain">कार्य क्षेत्र</label>
+              <input id="f-domain" name="work_domain" type="text" class="field-input" placeholder="उदा. प्रोडक्ट डिज़ाइनर, बायोटेक शोधकर्ता, वकील…" minlength="2" maxlength="120" />
+              <p class="field-hint">आप दिन भर क्या सोचते हैं।</p>
+            </div>
+
+            <div data-show-when-role="student">
+              <label class="field-label" for="f-year">अध्ययन वर्ष</label>
+              <select id="f-year" name="study_year" class="field-select">
+                <option value="" disabled selected>चुनें…</option>
+                <option value="0">हाई स्कूल / पूर्व-विश्वविद्यालय</option>
+                <option value="1">पहला वर्ष</option>
+                <option value="2">दूसरा वर्ष</option>
+                <option value="3">तीसरा वर्ष</option>
+                <option value="4">चौथा वर्ष</option>
+                <option value="5">पांचवां वर्ष</option>
+                <option value="6">छठा वर्ष</option>
+                <option value="7">पाठ्यक्रम से बाहर</option>
+                <option value="8">विशेषज्ञता / PhD</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="field-label" for="f-device">मुख्य डिवाइस <span class="text-signal-bad">*</span></label>
+              <select id="f-device" name="device" class="field-select" required>
+                <option value="" disabled selected>चुनें…</option>
+                <option value="ipad">iPad + Apple Pencil</option>
+                <option value="iphone">iPhone</option>
+                <option value="android_tablet">Android टैबलेट + स्टाइलस</option>
+                <option value="android_phone">Android स्मार्टफोन</option>
+                <option value="macos">Mac (MacBook / iMac)</option>
+                <option value="windows">Windows PC</option>
+                <option value="linux">Linux डेस्कटॉप</option>
+                <option value="web">वेब ब्राउज़र</option>
+                <option value="altro">अन्य</option>
+              </select>
+              <p class="field-hint">आप हर दिन कहां सोचते हैं।</p>
+            </div>
+
+            <div>
+              <span class="field-label">आज क्या उपयोग करते हैं? <span class="text-ink-500 font-normal">(जितने चाहें चुनें)</span></span>
+              <div class="flex flex-wrap gap-2 mt-1">
+                <label class="tool-pill"><input type="checkbox" name="current_tools" value="anki"> Anki</label>
+                <label class="tool-pill"><input type="checkbox" name="current_tools" value="notability"> Notability</label>
+                <label class="tool-pill"><input type="checkbox" name="current_tools" value="goodnotes"> GoodNotes</label>
+                <label class="tool-pill"><input type="checkbox" name="current_tools" value="onenote"> OneNote</label>
+                <label class="tool-pill"><input type="checkbox" name="current_tools" value="obsidian"> Obsidian</label>
+                <label class="tool-pill"><input type="checkbox" name="current_tools" value="notion"> Notion</label>
+                <label class="tool-pill"><input type="checkbox" name="current_tools" value="paper"> कागज और कलम</label>
+                <label class="tool-pill"><input type="checkbox" name="current_tools" value="pdf_reader"> PDF रीडर</label>
+                <label class="tool-pill"><input type="checkbox" name="current_tools" value="nessuno"> कुछ नहीं</label>
+                <label class="tool-pill"><input type="checkbox" name="current_tools" value="altro"> अन्य</label>
+              </div>
+            </div>
+
+            <div>
+              <label class="field-label" for="f-pain">
+                आज जिस तरह आप पढ़ते या सोचते हैं उसमें सबसे निराशाजनक क्षण क्या है? <span class="text-signal-bad">*</span>
+              </label>
+              <textarea id="f-pain" name="main_pain" rows="4" class="field-textarea"
+                placeholder="अच्छी तरह बताएं। 2-3 पंक्तियां पर्याप्त हैं — सोचें कि आप क्या हल करना चाहते हैं।"
+                required minlength="10" maxlength="2000"></textarea>
+              <p class="field-hint">यह फ़ील्ड चयन में अन्य की तुलना में अधिक भार रखता है।</p>
+            </div>
+
+            <div>
+              <label class="field-label" for="f-referral">हमें कैसे जाना?</label>
+              <select id="f-referral" name="referral_source" class="field-select">
+                <option value="">नहीं बताना पसंद करूंगा</option>
+                <option value="reddit">Reddit</option>
+                <option value="twitter">Twitter / X</option>
+                <option value="tiktok">TikTok</option>
+                <option value="instagram">Instagram</option>
+                <option value="youtube">YouTube</option>
+                <option value="telegram">Telegram / WhatsApp</option>
+                <option value="amici">शब्द-दर-मुंह / दोस्त</option>
+                <option value="google">Google खोज</option>
+                <option value="hn">Hacker News</option>
+                <option value="altro">अन्य</option>
+              </select>
+            </div>
+
+            <div class="pt-2">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input id="f-consent" type="checkbox" name="consent_privacy" required
+                  class="mt-0.5 w-4 h-4 rounded border-white/20 bg-ink-900 text-accent-ink focus:ring-accent-ink" />
+                <span class="text-sm text-paper-300 leading-relaxed">
+                  मैंने <a href="/legal/privacy" class="text-accent-glow underline">गोपनीयता नीति</a>
+                  और <a href="/legal/terms" class="text-accent-glow underline">उपयोग की शर्तें</a> पढ़ी और स्वीकार कीं।
+                  Fluera निजी बीटा के बारे में संपर्क के लिए डेटा प्रसंस्करण के लिए सहमत हूं।
+                </span>
+              </label>
+            </div>
+
+            <div class="pt-2">
+              <button id="submit-btn" type="submit" class="btn-primary w-full py-3.5">
+                <span id="submit-label">वेटलिस्ट में शामिल हों</span>
+                <svg id="submit-spinner" class="hidden w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-opacity="0.25"></circle>
+                  <path d="M12 2a10 10 0 0110 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                </svg>
+              </button>
+
+              <div id="status-success" class="hidden mt-5 p-4 rounded-xl border border-signal-ok/30 bg-signal-ok/10">
+                <p class="text-sm text-emerald-300 font-medium">✓ आप सूची में हैं।</p>
+                <p class="text-xs text-emerald-200/70 mt-1">
+                  जैसे ही हम अगला स्थान खोलते हैं, हम <code>{SITE.company.privacyEmail}</code> से लिखेंगे।
+                </p>
+              </div>
+
+              <div id="status-already" class="hidden mt-5 p-4 rounded-xl border border-accent-ink/30 bg-accent-ink/10">
+                <p class="text-sm text-blue-200">यह ईमेल पहले से सूची में है। सब ठीक है 🙂</p>
+              </div>
+
+              <div id="status-error" class="hidden mt-5 p-4 rounded-xl border border-signal-bad/30 bg-signal-bad/10">
+                <p class="text-sm text-red-300 font-medium">कुछ गलत हो गया।</p>
+                <p id="status-error-detail" class="text-xs text-red-200/70 mt-1"></p>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <p class="text-xs text-ink-500 text-center mt-6">
+        उत्तर <a href="/legal/privacy" class="text-paper-300 underline">गोपनीयता नीति</a> के अनुसार संसाधित किए जाते हैं।
+        हम उन्हें तीसरे पक्ष के साथ साझा नहीं करते या विज्ञापन के लिए उपयोग नहीं करते।
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .field-label { display: block; font-size: 0.875rem; font-weight: 500; color: theme("colors.paper.200"); margin-bottom: 0.5rem; }
+    .field-hint  { font-size: 0.75rem; color: theme("colors.ink.500"); margin-top: 0.375rem; }
+    .field-input, .field-select, .field-textarea {
+      width: 100%; background: theme("colors.ink.900"); border: 1px solid rgb(255 255 255 / 0.08);
+      border-radius: 0.625rem; padding: 0.75rem 1rem; color: theme("colors.paper.50"); font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .field-input:focus, .field-select:focus, .field-textarea:focus {
+      outline: none; border-color: theme("colors.accent.ink"); box-shadow: 0 0 0 3px rgb(45 74 222 / 0.18);
+    }
+    .field-input:invalid:not(:placeholder-shown),
+    .field-textarea:invalid:not(:placeholder-shown) {
+      border-color: rgb(239 68 68 / 0.5);
+    }
+    .tool-pill, .role-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 0.875rem; border: 1px solid rgb(255 255 255 / 0.08);
+      border-radius: 999px; cursor: pointer; user-select: none;
+      background: theme("colors.ink.900"); font-size: 0.875rem; color: theme("colors.paper.200");
+      transition: all 0.15s;
+    }
+    .tool-pill:hover, .role-pill:hover { border-color: rgb(56 189 248 / 0.4); color: theme("colors.paper.50"); }
+    .tool-pill input, .role-pill input { display: none; }
+    .tool-pill:has(input:checked),
+    .role-pill:has(input:checked) {
+      background: rgb(45 74 222 / 0.15); border-color: theme("colors.accent.ink"); color: theme("colors.accent.glow");
+    }
+    [data-show-when-role] { display: none; }
+    [data-show-when-role].is-visible { display: block; }
+    .honeypot {
+      position: absolute; inset-inline-start: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;
+    }
+  </style>
+
+  <script is:inline define:vars={{ supabaseUrl, supabaseKey, configured }}>
+    const form       = document.getElementById("waitlist-form");
+    const btn        = document.getElementById("submit-btn");
+    const btnLabel   = document.getElementById("submit-label");
+    const btnSpinner = document.getElementById("submit-spinner");
+    const okBox      = document.getElementById("status-success");
+    const dupeBox    = document.getElementById("status-already");
+    const errBox     = document.getElementById("status-error");
+    const errDetail  = document.getElementById("status-error-detail");
+    const renderedAt = Date.now();
+
+    const conditionalBlocks = Array.from(form.querySelectorAll("[data-show-when-role]"));
+    const facultyInput = form.querySelector('input[name="faculty"]');
+    const domainInput  = form.querySelector('input[name="work_domain"]');
+    const yearSelect   = form.querySelector('select[name="study_year"]');
+
+    function applyRoleVisibility() {
+      const role = (form.querySelector('input[name="role"]:checked') || {}).value || "";
+      conditionalBlocks.forEach((el) => {
+        const allowed = (el.getAttribute("data-show-when-role") || "").split(/\s+/);
+        const visible = allowed.includes(role);
+        el.classList.toggle("is-visible", visible);
+        el.querySelectorAll("input, select, textarea").forEach((field) => {
+          field.disabled = !visible;
+          if (!visible) field.required = false;
+        });
+      });
+      if (facultyInput) facultyInput.required = (role === "student" || role === "educator");
+      if (domainInput)  domainInput.required  = (role === "professional");
+      if (yearSelect)   yearSelect.required   = (role === "student");
+    }
+    form.querySelectorAll('input[name="role"]').forEach((r) => r.addEventListener("change", applyRoleVisibility));
+    applyRoleVisibility();
+
+    function hideStatuses() {
+      okBox.classList.add("hidden");
+      dupeBox.classList.add("hidden");
+      errBox.classList.add("hidden");
+    }
+    function setLoading(loading) {
+      btn.disabled = loading;
+      btnLabel.textContent = loading ? "भेजा जा रहा है…" : "वेटलिस्ट में शामिल हों";
+      btnSpinner.classList.toggle("hidden", !loading);
+    }
+    function showError(msg) { errDetail.textContent = msg; errBox.classList.remove("hidden"); }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      hideStatuses();
+
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (!configured) {
+        showError("बैकएंड कॉन्फ़िगर नहीं किया गया। .env में PUBLIC_SUPABASE_URL + anon key सेट करें।");
+        return;
+      }
+      if (Date.now() - renderedAt < 2000) {
+        okBox.classList.remove("hidden"); form.reset(); return;
+      }
+
+      const formData = new FormData(form);
+      const tools = Array.from(
+        form.querySelectorAll('input[name="current_tools"]:checked')
+      ).map(i => i.value);
+
+      const role = formData.get("role") || "";
+      const facultyVal = (formData.get("faculty") || "").trim();
+      const domainVal  = (formData.get("work_domain") || "").trim();
+      const yearRaw    = formData.get("study_year");
+      const yearVal    = yearRaw ? parseInt(yearRaw, 10) : null;
+
+      const payload = {
+        p_email:           (formData.get("email") || "").trim(),
+        p_faculty:         facultyVal || domainVal || role,
+        p_study_year:      Number.isFinite(yearVal) ? yearVal : 9,
+        p_device:          formData.get("device"),
+        p_current_tools:   tools,
+        p_main_pain:       (formData.get("main_pain") || "").trim(),
+        p_consent_privacy: formData.get("consent_privacy") === "on",
+        p_name:            (formData.get("name") || "").trim() || null,
+        p_referral_source: formData.get("referral_source") || null,
+        p_locale:          navigator.language || null,
+        p_user_agent:      navigator.userAgent.slice(0, 500),
+        p_honeypot:        (formData.get("website") || "").trim() || null,
+      };
+
+      setLoading(true);
+      try {
+        const resp = await fetch(`${supabaseUrl}/rest/v1/rpc/submit_waitlist`, {
+          method: "POST",
+          headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${supabaseKey}`,
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+        if (!resp.ok) throw new Error((await resp.text()) || `HTTP ${resp.status}`);
+        const result = await resp.json();
+        if (result && result.already_signed) {
+          dupeBox.classList.remove("hidden");
+        } else {
+          okBox.classList.remove("hidden");
+          form.reset();
+          applyRoleVisibility();
+        }
+      } catch (err) {
+        console.error("Waitlist submit failed:", err);
+        showError("कुछ सेकंड बाद पुनः प्रयास करें। यदि समस्या बनी रहे, support@fluera.dev पर लिखें।");
+      } finally {
+        setLoading(false);
+      }
+    });
+  </script>
+
+</BaseLayout>

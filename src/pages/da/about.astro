@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Om os"
+  description="Fluera bygges af et lille team i Italien. Vores historie, vores overbevisninger, den linje vi ikke krydser."
+  locale="da"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Om os</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
+          Vi bygger den læringsapp,<br />vi gerne ville have haft,<br />da vi var studerende.
+        </h1>
+        <div class="prose-ink text-lg">
+          <p>
+            Fluera opstod af frustration. Den ene af os er full-stack-udvikler med ti års erfaring; den anden var studerende, som så sine medstuderende lande i samme fælde — apps, der virkede produktive, men ikke hjalp nogen med at huske noget.
+          </p>
+          <p>
+            Vi læste forskningen. <em>Meget</em> forskning. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Den kognitive videnskab har været entydig i et halvt århundrede: håndskrift slår tastning, genfinding slår læsning, spacing slår natoplæsning, friktion er en ressource. Vi fandt ingen app, der tog noget af det alvorligt. Så vi byggede en.
+          </p>
+          <p>
+            Undervejs skrev vi en 2D-rendering-engine fra bunden — fordi ingen færdig stack kunne levere tryksensitivt blæk med 60 FPS på seks native platforme. Engine'en er det substrat, de kognitive funktioner bor på.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Linjen</p>
+        <h2 class="font-serif text-display-lg text-paper-50 mb-8">Hvor vi trækker linjen.</h2>
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Vi får ikke en AI, der besvarer dine eksamener for dig.</strong>
+              <p class="text-sm mt-1 text-paper-300">Flueras AI spørger, scaffolder, reflekterer. Den afslutter aldrig din tanke. At bruge AI til det kognitive arbejde er at bruge den til at svække den muskel, vi egentlig skulle træne.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Vi sælger ikke data fra dine notesbøger.</strong>
+              <p class="text-sm mt-1 text-paper-300">Dine noter er krypteret i hvile, end-to-end ved synkronisering, og bliver aldrig brugt til at træne nogens modeller. Heller ikke vores.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Ingen reklamer, ingen engagement-loops, ingen streaks.</strong>
+              <p class="text-sm mt-1 text-paper-300">Dit forhold til læring bør ikke afhænge af en push-notifikation. Vi vil hellere have, at du bruger Fluera mindre og lærer mere.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Vi sender ikke funktioner, vi ikke kan forsvare med en kilde.</strong>
+              <p class="text-sm mt-1 text-paper-300">Hvis en funktion ikke kan føres tilbage til en publiceret indsigt eller konsistent feedback fra vores beta, kommer den ikke i produktion. Wow-faktor er ikke en funktion. Nyhedsværdi er ikke en funktion.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        Hjemsted i {SITE.company.city}. En længere redegørelse for, hvad vi afviser og hvorfor, ligger i <a href="/da/manifesto" class="text-paper-300 underline underline-offset-4">manifestet</a>.
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/da/contact" class="btn-secondary">Skriv til os</a>
+        <a href="/beta" class="btn-primary">Kom med i betaen</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

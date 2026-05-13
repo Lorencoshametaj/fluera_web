@@ -1,0 +1,199 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const useCases = [
+  {
+    title: "Capture en cours",
+    body: "Les étudiants prennent leurs notes à la main sur un canvas infini pendant le cours, avec sync optionnelle à l'audio via Time Travel. Le canvas devient une archive vivante qui survit au semestre.",
+  },
+  {
+    title: "Préparation aux examens à grande échelle",
+    body: "Fog of War + répétition espacée transforment le canvas personnel de l'étudiant en moteur de pratique de récupération. Les enseignants peuvent suggérer des parcours d'étude par sujet sans dicter le contenu.",
+  },
+  {
+    title: "Cahiers de laboratoire STEM",
+    body: "Rendu LaTeX, schémas sensibles à la pression, journaux d'expérience avec audio synchronisé. Remplace les cahiers papier en préservant la trace manuscrite exigée à l'évaluation.",
+  },
+];
+
+const deployment = [
+  { label: "SSO",              body: "SAML 2.0 et OIDC. S'intègre à Shibboleth, Azure AD, Okta, Google Workspace for Education." },
+  { label: "MDM-friendly",     body: "Distribution enterprise standard via App Store / Play. Windows et macOS sous forme d'installeurs signés. Pas de sideloading." },
+  { label: "Piste d'audit",    body: "Log d'accès immuable par compte. Exportable pour les audits de conformité." },
+  { label: "Résidence des données", body: "Serveurs en Europe par défaut. Data Processing Agreement disponible sur demande." },
+  { label: "Accessibilité",    body: "Cible WCAG 2.1 AA sur toutes les plateformes. Support lecteur d'écran, mode contraste élevé, fidélité des pinceaux ajustable pour les différences motrices." },
+  { label: "On-prem",          body: "Sur la roadmap Enterprise. Aujourd'hui : uniquement cloud avec chiffrement fort et contrôles régionaux." },
+];
+---
+
+<BaseLayout
+  title="Fluera pour les universités — Infrastructure cognitive pour l'enseignement supérieur"
+  description="Apporte des outils d'étude basés sur les preuves à ta faculté. Licences multi-seat, SSO, piste d'audit, formation des enseignants au cycle en 12 étapes. Programmes pilotes disponibles."
+  locale="fr"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Universités et écoles</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Infrastructure cognitive<br />pour l'université moderne.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Des outils d'étude basés sur les preuves pour tes étudiants. Du SSO pour ta DSI. Une formation des enseignants à la science cognitive de l'apprentissage. Les pilotes commencent par une classe, un semestre, gratuit.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/fr/contact" class="btn-primary">Planifier un échange académique →</a>
+          <a href="/fr/" class="btn-secondary">La science derrière</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Pourquoi des enseignants choisissent Fluera</p>
+        <h2 class="font-serif text-display-xl text-paper-50">Trois schémas concrets.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {useCases.map((u, i) => (
+          <article class="card p-7">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{u.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{u.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Modèle de licence</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-4">Trois niveaux. Un seul échange.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          On ne publie pas de pricing par seat pour les comptes Institutionnels : la bonne structure dépend du périmètre que tu veux licencier — classe, département ou campus. Un échange et on en sort avec une proposition concrète.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 max-w-5xl">
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Classe</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Un cours, un semestre, jusqu'à 200 étudiants. Accès Pro pour chaque étudiant, dashboard enseignant et une session de formation.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Adoption typique : pilote</p>
+        </article>
+        <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Département</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Département entier. Contrat pluriannuel. SSO, piste d'audit, SLA de support dédié. Formation enseignants pour chaque discipline qui rejoint.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">Adoption typique : deuxième année</p>
+        </article>
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">Campus</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            Campus entier. Support de déploiement dédié, point focal ingénierie nommé, opportunités de recherche conjointe sur le cycle en 12 étapes.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Adoption typique : à partir de la troisième année</p>
+        </article>
+      </div>
+
+      <div class="mt-10">
+        <a href="/fr/contact" class="btn-primary">Demander un récapitulatif tarifaire →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Formation des enseignants</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">Deux heures. Science cognitive, appliquée.</h2>
+          <p class="prose-ink mb-4">
+            L'atelier couvre le cycle d'apprentissage en 12 étapes, les principes derrière chaque étape et des schémas concrets pour intégrer Fluera au cours existant. Ce n'est pas une démo produit.
+          </p>
+          <p class="prose-ink">
+            Livré en présentiel ou à distance, quinze participants maximum par session, pour que chaque enseignant reparte avec un plan concret pour sa propre discipline.
+          </p>
+        </div>
+        <div class="card p-7">
+          <h3 class="eyebrow text-accent-glow mb-4">Ce qu'on couvre</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0">
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">01</span><span>Espacement, récupération, génération, difficultés désirables — les quatre piliers</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">02</span><span>Le cycle en 12 étapes mappé à la structure spécifique de ton cours</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">03</span><span>Quand utiliser Socratic, quand utiliser Ghost Map, quand sortir du chemin</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">04</span><span>Concevoir la préparation à l'examen avec Fog of War sans remplacer tes évaluations</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">05</span><span>La recherche, la force de la preuve et les limites de ce qu'elle soutient</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">06</span><span>Hands-on : chaque enseignant construit un cours dans Fluera avant de partir</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Déploiement</p>
+        <h2 class="font-serif text-display-xl text-paper-50">Ta DSI va aussi apprécier.</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {deployment.map((d) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Programme pilote</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">Une classe. Un semestre. Gratuit.</h2>
+          <p class="prose-ink mb-4">
+            La façon la plus rapide de savoir si Fluera marche pour tes étudiants, c'est de tester avec trente d'entre eux, sur un semestre, sans frais. En échange, on demande un feedback structuré — un check-in à mi-parcours, un questionnaire en fin de semestre et l'option de partager des données de résultat anonymisées.
+          </p>
+          <p class="prose-ink">
+            Si ça marche, on parle d'un contrat pluriannuel. Si ça ne marche pas, tu repars avec les données et nous avec la leçon. Dans les deux cas, on en sort gagnants.
+          </p>
+        </div>
+        <div class="card p-8 bg-accent-ink/[0.08] border-accent-ink/30">
+          <h3 class="eyebrow text-accent-glow mb-4">Ce que tu reçois</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0 mb-6">
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Accès Pro pour jusqu'à 30 étudiants</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Atelier enseignant de deux heures</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Canal direct avec les fondateurs pendant le semestre</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Analytics agrégées anonymisées pour ton rapport</span></li>
+          </ul>
+          <a href="/fr/contact" class="btn-primary w-full">Démarrer un pilote →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">RGPD par défaut. FERPA-aware. Cible WCAG 2.1 AA.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Les détails vivent sur la page de sécurité — liste des sous-traitants, Data Processing Agreement, architecture de chiffrement, modèle de piste d'audit.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/fr/security" class="btn-secondary">Lire l'architecture de sécurité →</a>
+        <a href="/fr/contact" class="btn-primary">Parlons-en</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

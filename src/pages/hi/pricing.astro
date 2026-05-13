@@ -1,0 +1,103 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import pricing from "@/data/pricing/hi";
+
+const { tiers, faq } = pricing;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+---
+
+<BaseLayout
+  title="मूल्य"
+  description="Free, Plus, Pro, Team. पूरा कैनवास हमेशा के लिए मुफ़्त। Plus €5.99/माह, Pro €11.99/माह। Team €19.99/सीट।"
+  locale="hi"
+  jsonLd={jsonLd}
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-16">
+        <p class="eyebrow mb-6 text-accent-glow">मूल्य</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-6">
+          सीखने के लिए मुफ़्त।<br />गहराई में जाने के लिए Plus और Pro।
+        </h1>
+        <p class="prose-ink text-lg max-w-prose">
+          एक कैनवास। चार उपयोग के तरीके। Free टियर पूरा कैनवास है — जब तक चाहिए तब तक उपयोग करें। जो अभी सब्सक्राइब करता है वह सब्सक्रिप्शन अवधि के लिए दर लॉक कर देता है।
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {tiers.map((t) => (
+          <article class={`card p-6 flex flex-col ${t.highlighted ? "border-accent-ink/40 bg-accent-ink/[0.05]" : ""}`}>
+            <div class="flex items-start justify-between mb-4">
+              <h2 class="font-serif text-xl text-paper-50">{t.name}</h2>
+              {t.badge && <span class="pill text-[10px] text-accent-glow border-accent-glow/40">{t.badge}</span>}
+            </div>
+
+            <div class="mb-5">
+              <p class="font-serif text-3xl text-paper-50 mb-1">{t.price}</p>
+              <p class="text-xs text-ink-500 font-mono uppercase tracking-widest">{t.period}</p>
+            </div>
+
+            <p class="text-sm text-paper-300 mb-6 leading-relaxed">{t.tagline}</p>
+
+            <ul class="space-y-2.5 text-sm mb-8 flex-grow">
+              {t.features.map((f) => (
+                <li class="flex items-start gap-2.5 text-paper-200">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="shrink-0 mt-0.5 text-accent-glow" aria-hidden="true">
+                    <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={t.cta.href}
+              class={t.highlighted ? "btn-primary" : "btn-secondary"}
+            >
+              {t.cta.label}
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-12 text-xs text-ink-500 max-w-2xl italic">
+        प्रदर्शित मूल्य भविष्य में बदल सकते हैं। जो अभी सब्सक्राइब करता है वह सब्सक्रिप्शन अवधि के लिए दर लॉक कर देता है। कोई डार्क पैटर्न नहीं, कोई अप्रत्याशित नवीकरण नहीं: हर शुल्क से पहले सूचित करते हैं।
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-3 gap-12">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">अक्सर पूछे जाने वाले प्रश्न</p>
+          <h2 class="font-serif text-display-lg text-paper-50">प्रश्न और उत्तर।</h2>
+        </div>
+        <div class="md:col-span-2 divide-y divide-white/[0.06]">
+          {faq.map((item) => (
+            <details class="group py-5 first:pt-0">
+              <summary class="cursor-pointer flex items-start justify-between gap-4 font-serif text-lg text-paper-50 list-none [&::-webkit-details-marker]:hidden">
+                <span>{item.q}</span>
+                <span class="mt-1.5 text-ink-500 transition-transform group-open:rotate-45" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <p class="mt-3 text-sm text-paper-300 leading-relaxed max-w-prose">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

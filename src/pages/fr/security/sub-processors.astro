@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const processors = [
+  {
+    name: "Supabase Inc.",
+    purpose: "Base de données, authentification, storage cloud chiffré, signaling realtime, Edge Function pour le proxy d'IA.",
+    dataTypes: "E-mail du compte, ID utilisateur hashé, ciphertext du canvas (chiffré E2E), métadonnées de synchronisation.",
+    region: "Francfort, UE (région par défaut pour les instances Fluera).",
+    privacy: "https://supabase.com/privacy",
+  },
+  {
+    name: "Google LLC",
+    purpose: "Google Generative AI (Gemini) pour Socratic Mode, Ghost Map, OCR de LaTeX et génération des exam sessions.",
+    dataTypes: "Extraits sélectionnés de texte du canvas (uniquement si les fonctionnalités d'IA sont autorisées et actives). Jamais le cahier entier.",
+    region: "USA, UE via les régions Google Cloud ; SCCs + EU-US DPF.",
+    privacy: "https://policies.google.com/privacy",
+  },
+  {
+    name: "Apple Inc.",
+    purpose: "Authentification Sign in with Apple ; achats in-app sur iOS et macOS via l'App Store.",
+    dataTypes: "E-mail relay de l'Apple ID, identifiants de reçu. Aucune donnée du canvas.",
+    region: "USA ; SCCs + EU-US DPF.",
+    privacy: "https://www.apple.com/legal/privacy/",
+  },
+  {
+    name: "RevenueCat Inc.",
+    purpose: "Gestion des abonnements et validation des reçus sur iOS, Android et web.",
+    dataTypes: "ID utilisateur RevenueCat anonymisé, statut d'abonnement, métadonnées de reçu. Aucune donnée de carte.",
+    region: "USA ; SCCs + EU-US DPF.",
+    privacy: "https://www.revenuecat.com/privacy",
+  },
+  {
+    name: "Functional Software Inc. (Sentry)",
+    purpose: "Crash reporting et monitoring d'erreurs.",
+    dataTypes: "Stack traces, version de l'OS, modèle de l'appareil, version de l'app. sendDefaultPii est explicitement désactivé — aucun contenu utilisateur.",
+    region: "USA, options UE disponibles.",
+    privacy: "https://sentry.io/privacy/",
+  },
+  {
+    name: "Vercel Inc.",
+    purpose: "Hébergement du site marketing fluera.dev et /docs.",
+    dataTypes: "Logs d'accès web standard (IP, user-agent). Aucun contenu de compte.",
+    region: "Edge mondial ; région d'origine configurable.",
+    privacy: "https://vercel.com/legal/privacy-policy",
+  },
+];
+
+const lastUpdated = "2026-04-20";
+---
+
+<BaseLayout
+  title="Sous-traitants"
+  description="Les tierces parties sur lesquelles Fluera s'appuie pour livrer le produit. Finalité, données partagées, région et lien vers la politique de confidentialité de chaque sous-traitant."
+  locale="fr"
+>
+  <PageHero
+    kicker="Sous-traitants"
+    title="Chaque tierce partie sur laquelle nous nous appuyons."
+    description="Au sens de l'art. 28 RGPD, tout sous-traitant qui traite des données personnelles pour notre compte est listé ici — ce que nous partageons, pourquoi et où il vit. Nous notifions les clients avant tout changement."
+    breadcrumb={{ label: "Sécurité", href: "/fr/security" }}
+  >
+    <p slot="copy" class="mt-6 text-sm text-ink-500 font-mono">Dernière mise à jour : {lastUpdated}</p>
+  </PageHero>
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-5xl">
+        {processors.map((p) => (
+          <li class="card p-6 md:p-7">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <h2 class="font-serif text-xl text-paper-50 mb-2">{p.name}</h2>
+                <a href={p.privacy} class="text-xs text-accent-glow underline underline-offset-4 font-mono" rel="noopener">
+                  Politique de confidentialité ↗
+                </a>
+              </div>
+              <dl class="md:col-span-3 grid gap-3 text-sm">
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Finalité</dt>
+                  <dd class="text-paper-200">{p.purpose}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Données partagées</dt>
+                  <dd class="text-paper-200">{p.dataTypes}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Région</dt>
+                  <dd class="text-paper-200">{p.region}</dd>
+                </div>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">Changements et notifications</h2>
+      <p class="prose-ink text-sm mb-4">
+        Nous mettons cette liste à jour chaque fois qu'un sous-traitant est ajouté, modifié ou retiré. Les clients Institutionnels et entreprise reçoivent une notification par e-mail au moins 30 jours avant le changement, au sens de l'art. 28(2) RGPD.
+      </p>
+      <p class="prose-ink text-sm">
+        Pour t'inscrire aux notifications de changement de sous-traitant, écris à <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a> depuis l'adresse de ton compte.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

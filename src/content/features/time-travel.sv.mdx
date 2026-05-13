@@ -1,0 +1,51 @@
+---
+lang: "sv"
+title: Time Travel
+tagline: "Spela upp vilket streck som helst. Synkat med ljudet från föreläsningen som fick dig att skriva det."
+shortDescription: "Tryck på en anteckning från tre veckor sedan och ljudet återupptas exakt där din penna skrev. Återupplev ditt eget tänkande."
+status: coming-soon
+stepInCycle: 5
+relatedPrinciples:
+  - spatial-cognition
+  - spacing-effect
+  - embodied-cognition
+  - levels-of-processing
+relatedAuthors:
+  - okeefe-moser
+  - van-der-meer
+order: 10
+---
+
+## Vad det löser
+
+Det traditionella misslyckandet med föreläsningsanteckningar är att de är döda. Veckor senare tittar du på något du skrivit och minns inte varför. Vad sa läraren? Vad var kontexten? Anteckningen är avkontextualiserad — och avkontextualiserade anteckningar är nästan oanvändbara.
+
+Time Travel håller kontexten levande.
+
+## Hur det fungerar
+
+Du startar en inspelning när föreläsningen börjar. Skriver normalt. Varje streck du ritar länkas via tidsstämpel till den inspelade ljudramen.
+
+Senare — dagar, veckor eller månader — trycker du på vilket streck som helst på din canvas. Ljudet spolar tillbaka till det exakta ögonblick du skrev. Du hör lärarens röst, ditt eget tänkande, frågan från någon längst bak i salen. Kontexten kommer tillbaka på en gång.
+
+Du drar i ljudet och ser canvasen spelas upp streck för streck, i ursprungstempo eller snabbare. Du ser ditt sinne i arbete.
+
+All lagring är lokal som standard, krypterad med SQLCipher. Ljudsynkronisering är opt-in och end-to-end-krypterad när den är aktiverad.
+
+## Vetenskapen bakom
+
+Två principer konvergerar:
+
+- **Kontextberoende återkallelse** (Tulving, 1972): minne återkallas bättre när återkallelsekontexten matchar kodningen. Fluera spelar upp kodningskontexten på begäran — lärarens röst, salens omgivning, dina handrörelser.
+- **Rumslig kognition** (O'Keefe och Moser, Nobel 2014): positionen på canvasen är i sig en återkallelseledtråd. Att trycka på ett streck kombinerar den rumsliga ledtråden (position) med den kontextuella (ljud) — två återkallelsevägar i stället för en.
+
+Van der Meers EEG-arbete (2020) lägger till ett tredje lager: handskrift aktiverar breda sensomotoriska nätverk i skrivögonblicket. Time Travel låter studenten gå genom samma nätverk veckor senare — inte bara minnas det, utan *spela upp* spåret som ursprungligen utlöste det.
+
+## Vad som kommer
+
+Time Travel är i privat alpha. Den fullständiga lanseringen inkluderar:
+
+- **Tvärs-enhet ljudsynk** (idag endast lokalt)
+- **Sökning i transkription** — hitta ögonblick i föreläsningen utifrån vad som sades
+- **Auto-genererade kapitelmarkörer** baserat på pauser och ämnesbyten
+- **Export som annoterad video** — för att dela en walkthrough av föreläsningen

@@ -4,14 +4,13 @@ import logo from "@/assets/fluera_logo.png";
 import {
   PRIMARY_CTA,
   SITE,
-  IT_AVAILABLE_PATHS,
   localizedHref,
+  languageSwitchHref,
 } from "@/lib/site";
-import { localeFromPathname, t } from "@/lib/i18n";
+import { LOCALES, DEFAULT_LOCALE, localeFromPathname, t, type Locale } from "@/lib/i18n";
 
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 const locale = localeFromPathname(pathname);
-const isItalian = locale === "it";
 
 function isActive(href: string) {
   if (href.startsWith("/#")) return false;
@@ -21,40 +20,77 @@ function isActive(href: string) {
 }
 
 /** Locale-aware href helper. */
-const href = (target: string) => localizedHref(target, isItalian);
+const href = (target: string) => localizedHref(target, locale);
+
+/** Display label for a locale (uppercase ISO code). */
+function localeLabel(l: Locale): string {
+  return l.toUpperCase().replace("-", "-");
+}
+
+/** Native endonym for each locale — shown in the language dropdown. */
+const LOCALE_ENDONYM: Record<Locale, string> = {
+  en: "English",
+  it: "italiano",
+  es: "español",
+  "pt-br": "português",
+  fr: "français",
+  de: "Deutsch",
+  ja: "日本語",
+  ko: "한국어",
+  hi: "हिन्दी",
+  ar: "العربية",
+  pl: "polski",
+  nl: "Nederlands",
+  sv: "svenska",
+  da: "dansk",
+  no: "norsk",
+  fi: "suomi",
+};
 
 const featureLinks = [
   { key: "nav.features.ghostMap",         href: "/features/ghost-map" },
+  { key: "nav.features.atlas",            href: "/features/atlas" },
   { key: "nav.features.socratic",         href: "/features/socratic-mode" },
   { key: "nav.features.fogOfWar",         href: "/features/fog-of-war" },
-  { key: "nav.features.timeTravel",       href: "/features/time-travel" },
   { key: "nav.features.spacedRepetition", href: "/features/spaced-repetition" },
+  { key: "nav.features.crossZoneBridges", href: "/features/cross-zone-bridges" },
+  { key: "nav.features.examSession",      href: "/features/exam-session" },
+  { key: "nav.features.reflow",           href: "/features/reflow" },
+] as const;
+const featureLinksLegacy = [
   { key: "nav.features.memoryPalace",     href: "/features/memory-palace" },
-];
+  { key: "nav.features.timeTravel",       href: "/features/time-travel" },
+] as const;
 const scienceLinks = [
   { key: "nav.science.cycle",        href: "/science#learning-cycle" },
   { key: "nav.science.principles",   href: "/science#principles" },
   { key: "nav.science.authors",      href: "/science#authors" },
   { key: "nav.science.bibliography", href: "/research" },
-];
+] as const;
 
 const primaryLinks = [
   { key: "nav.science",    href: "/science" },
   { key: "nav.features",   href: "/features" },
-  { key: "nav.education",  href: "/education" },
   { key: "nav.pricing",    href: "/pricing" },
-];
+] as const;
 
-// ── Language switcher hrefs ───────────────────────────────────────────
-const basePath = isItalian ? (pathname.replace(/^\/it/, "") || "/") : pathname;
-const hasIt = IT_AVAILABLE_PATHS.has(basePath);
-const itHref = hasIt ? (basePath === "/" ? "/it/" : `/it${basePath}`) : "/it/";
-const enHref = basePath === "/" ? "/" : basePath;
+// ── Language switcher hrefs (data-driven across all registered locales) ──
+// Sorted alphabetically by endonym (locale-aware collation; non-Latin scripts
+// group at the end by Unicode codepoint order — the conventional pattern).
+const collator = new Intl.Collator("en", { sensitivity: "base" });
+const localeSwitcher = LOCALES.map((l) => ({
+  code: l,
+  label: localeLabel(l),
+  endonym: LOCALE_ENDONYM[l] ?? l.toUpperCase(),
+  href: languageSwitchHref(pathname, l),
+  isCurrent: l === locale,
+})).sort((a, b) => collator.compare(a.endonym, b.endonym));
+const currentLocaleEndonym = LOCALE_ENDONYM[locale] ?? locale.toUpperCase();
 ---
 
 <header class="fixed top-0 inset-x-0 z-50 border-b border-white/[0.06] bg-ink-950/70 backdrop-blur-xl">
   <div class="container-site flex h-16 items-center justify-between gap-4">
-    <a href={isItalian ? "/it/" : "/"} class="flex items-center gap-2.5 group shrink-0" aria-label={`${SITE.name} home`}>
+    <a href={languageSwitchHref("/", locale)} class="flex items-center gap-2.5 group shrink-0" aria-label={`${SITE.name} home`}>
       <Image
         src={logo}
         alt=""
@@ -79,7 +115,7 @@ const enHref = basePath === "/" ? "/" : basePath;
           aria-haspopup="true"
         >
           {t("nav.science", locale)}
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-1 opacity-60" aria-hidden="true">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ms-1 opacity-60" aria-hidden="true">
             <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
@@ -98,12 +134,16 @@ const enHref = basePath === "/" ? "/" : basePath;
           aria-haspopup="true"
         >
           {t("nav.features", locale)}
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ml-1 opacity-60" aria-hidden="true">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="ms-1 opacity-60" aria-hidden="true">
             <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
         <div class="nav-dropdown nav-dropdown-wide">
           {featureLinks.map((l) => (
+            <a href={href(l.href)} class="nav-dropdown-item">{t(l.key, locale)}</a>
+          ))}
+          <div class="nav-dropdown-divider"></div>
+          {featureLinksLegacy.map((l) => (
             <a href={href(l.href)} class="nav-dropdown-item">{t(l.key, locale)}</a>
           ))}
           <div class="nav-dropdown-divider"></div>
@@ -119,37 +159,41 @@ const enHref = basePath === "/" ? "/" : basePath;
           {t(item.key, locale)}
         </a>
       ))}
-
-      <a
-        href="https://engine.fluera.dev/"
-        target="_blank"
-        rel="noopener"
-        class="nav-link text-ink-500"
-      >
-        {t("nav.engine", locale)}
-      </a>
     </nav>
 
     <div class="flex items-center gap-2 shrink-0">
-      <!-- Language switcher -->
-      <div class="hidden sm:flex items-center text-[11px] font-mono uppercase tracking-widest text-ink-500 mr-1" role="group" aria-label={t("nav.language", locale)}>
-        <a
-          href={enHref}
-          class={`px-2 py-1 rounded-md transition-colors ${!isItalian ? "text-paper-50 bg-white/5" : "hover:text-paper-200"}`}
-          hreflang="en"
-          aria-current={!isItalian ? "true" : undefined}
+      <!-- Language switcher (dropdown — data-driven across all registered locales) -->
+      <div class="nav-group relative hidden sm:block me-1">
+        <button
+          type="button"
+          class="lang-trigger"
+          aria-haspopup="listbox"
+          aria-label={t("nav.language", locale)}
         >
-          EN
-        </a>
-        <span aria-hidden="true" class="text-ink-600 px-0.5">/</span>
-        <a
-          href={itHref}
-          class={`px-2 py-1 rounded-md transition-colors ${isItalian ? "text-paper-50 bg-white/5" : "hover:text-paper-200"}`}
-          hreflang="it"
-          aria-current={isItalian ? "true" : undefined}
-        >
-          IT
-        </a>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" stroke-linecap="round"/>
+          </svg>
+          <span class="font-mono uppercase tracking-widest text-[11px]">{localeLabel(locale)}</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="opacity-60" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="nav-dropdown lang-dropdown" role="listbox" aria-label={t("nav.language", locale)}>
+          {localeSwitcher.map((l) => (
+            <a
+              href={l.href}
+              class={`lang-dropdown-item ${l.isCurrent ? "lang-dropdown-item-current" : ""}`}
+              hreflang={l.code}
+              aria-current={l.isCurrent ? "true" : undefined}
+              role="option"
+              aria-selected={l.isCurrent ? "true" : "false"}
+            >
+              <span class="lang-code">{l.label}</span>
+              <span class="lang-endonym">{l.endonym}</span>
+            </a>
+          ))}
+        </div>
       </div>
 
       <a href={href(PRIMARY_CTA.href)} class="hidden sm:inline-flex btn-primary text-sm px-4 py-2">
@@ -182,16 +226,25 @@ const enHref = basePath === "/" ? "/" : basePath;
           {t(item.key, locale)}
         </a>
       ))}
-      <a href="https://engine.fluera.dev/" target="_blank" rel="noopener" class="px-3 py-3 rounded-lg text-paper-200 hover:bg-white/5">{t("nav.engineSDK", locale)}</a>
       <a href={href("/blog")} class="px-3 py-3 rounded-lg text-paper-200 hover:bg-white/5">{t("nav.blog", locale)}</a>
       <a href={href("/changelog")} class="px-3 py-3 rounded-lg text-paper-200 hover:bg-white/5">{t("nav.changelog", locale)}</a>
       <a href={href("/docs")} class="px-3 py-3 rounded-lg text-paper-200 hover:bg-white/5">{t("nav.documentation", locale)}</a>
 
-      <div class="flex items-center gap-2 pt-3 border-t border-white/[0.06] mt-2 text-[11px] font-mono uppercase tracking-widest text-ink-500">
-        <span class="px-3 py-1">{t("nav.language", locale)}</span>
-        <a href={enHref} class={`px-2 py-1 rounded-md ${!isItalian ? "text-paper-50 bg-white/5" : ""}`} hreflang="en">EN</a>
-        <span class="text-ink-600">/</span>
-        <a href={itHref} class={`px-2 py-1 rounded-md ${isItalian ? "text-paper-50 bg-white/5" : ""}`} hreflang="it">IT</a>
+      <div class="pt-3 border-t border-white/[0.06] mt-2">
+        <p class="px-3 py-1 text-[11px] font-mono uppercase tracking-widest text-ink-500 mb-1">{t("nav.language", locale)}</p>
+        <div class="grid grid-cols-2 gap-1">
+          {localeSwitcher.map((l) => (
+            <a
+              href={l.href}
+              class={`flex items-baseline gap-2 px-3 py-2 rounded-md ${l.isCurrent ? "text-paper-50 bg-white/5" : "text-paper-200 hover:bg-white/[0.03]"}`}
+              hreflang={l.code}
+              aria-current={l.isCurrent ? "true" : undefined}
+            >
+              <span class="text-[10px] font-mono uppercase tracking-widest text-ink-500 shrink-0">{l.label}</span>
+              <span class="text-sm">{l.endonym}</span>
+            </a>
+          ))}
+        </div>
       </div>
 
       <a href={href(PRIMARY_CTA.href)} class="btn-primary mt-3">
@@ -220,7 +273,7 @@ const enHref = basePath === "/" ? "/" : basePath;
     .nav-group > .nav-dropdown {
       position: absolute;
       top: calc(100% + 0.5rem);
-      left: 0;
+      inset-inline-start: 0;
       min-width: 14rem;
       background: theme("colors.ink.850");
       border: 1px solid rgb(255 255 255 / 0.08);
@@ -260,6 +313,70 @@ const enHref = basePath === "/" ? "/" : basePath;
       height: 1px;
       background: rgb(255 255 255 / 0.06);
       margin: 0.5rem 0.35rem;
+    }
+
+    /* Language switcher trigger */
+    .lang-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.65rem;
+      border-radius: 9999px;
+      color: theme("colors.paper.300");
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .lang-trigger:hover,
+    .nav-group:hover > .lang-trigger,
+    .nav-group:focus-within > .lang-trigger {
+      color: theme("colors.paper.50");
+      background: rgb(255 255 255 / 0.04);
+    }
+
+    /* Language dropdown — two-column grid to fit 16 locales without a tall scroll */
+    .lang-dropdown {
+      inset-inline-start: auto;
+      inset-inline-end: 0;
+      width: max-content;
+      min-width: 30rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.125rem;
+    }
+    .lang-dropdown-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.875rem;
+      color: theme("colors.paper.200");
+      border-radius: 0.5rem;
+      transition: all 0.1s;
+      white-space: nowrap;
+    }
+    .lang-dropdown-item:hover {
+      background: rgb(255 255 255 / 0.05);
+      color: theme("colors.paper.50");
+    }
+    .lang-dropdown-item-current {
+      background: rgb(255 255 255 / 0.06);
+      color: theme("colors.paper.50");
+    }
+    .lang-code {
+      font-family: theme("fontFamily.mono");
+      font-size: 0.625rem;
+      letter-spacing: 0.1em;
+      color: theme("colors.ink.500");
+      text-transform: uppercase;
+      min-width: 2.75rem;
+      flex-shrink: 0;
+    }
+    .lang-dropdown-item:hover .lang-code,
+    .lang-dropdown-item-current .lang-code {
+      color: theme("colors.accent.glow");
+    }
+    .lang-endonym {
+      flex: 1;
     }
   </style>
 </header>

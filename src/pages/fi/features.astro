@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const features = (await getCollection("features", ({ data }) => data.lang === "fi")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const statusLabel: Record<string, string> = {
+  stable: "Saatavilla",
+  beta: "Betassa",
+  "coming-soon": "Pian",
+};
+
+const statusStyle: Record<string, string> = {
+  stable:        "text-signal-ok border-signal-ok/30",
+  beta:          "text-accent-glow border-accent-glow/30",
+  "coming-soon": "text-signal-warn border-signal-warn/30",
+};
+---
+
+<BaseLayout
+  title="Ominaisuudet"
+  description="Ghost Map, Atlas, Socratic Mode, Fog of War, Cross-Zone Bridges, Exam Session, Reflow, jaksottainen kertaus. Jokainen ominaisuus palautuu nimettyyn periaatteeseen."
+  locale="fi"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[420px] w-[420px] -top-40 -end-32 bg-accent-glow/20 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Ominaisuudet</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Kahdeksan tapaa<br />rakentaa muisti.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl">
+          Jokainen ominaisuus elää 12 vaiheen oppimissyklin tietyssä askeleessa. Jokainen palautuu yhteen tai useampaan tieteen sivun periaatteeseen. Jokainen ominaisuus puolustaa itsensä lähteellä.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <ul class="space-y-6 list-none p-0 max-w-5xl">
+        {features.map((f) => (
+          <li>
+            <a href={`/fi/features/${f.id.replace(/\.fi$/, "")}`} class="block card p-8 md:p-10 hover:border-accent-glow/40 hover:bg-white/[0.04] transition-all">
+              <div class="grid md:grid-cols-3 gap-8 items-start">
+                <div class="md:col-span-2">
+                  <div class="flex items-center gap-3 mb-4 flex-wrap">
+                    {f.data.stepInCycle && (
+                      <span class="eyebrow text-accent-glow">Askel {f.data.stepInCycle}</span>
+                    )}
+                    <span class={`pill text-[10px] capitalize ${statusStyle[f.data.status]}`}>
+                      {statusLabel[f.data.status]}
+                    </span>
+                  </div>
+                  <h2 class="font-serif text-display-lg text-paper-50 mb-4">{f.data.title}</h2>
+                  <p class="prose-ink text-lg mb-4 max-w-prose">{f.data.tagline}</p>
+                  <p class="text-sm text-paper-300 max-w-prose">{f.data.shortDescription}</p>
+                </div>
+                <div class="flex md:justify-end items-start">
+                  <span class="text-accent-glow text-sm font-mono uppercase tracking-widest">Sukella syvemmälle →</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Kokeile kaikkia betassa.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Ominaisuudet saapuvat ensin iOS:lle ja macOS:lle, sitten Androidille ja työpöydälle. Liity yksityiseen betaan ja valitse alusta, jolla haluat varhaisen pääsyn.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Pyydä pääsyä →</a>
+        <a href="/fi/" class="btn-secondary">Takaisin etusivulle</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

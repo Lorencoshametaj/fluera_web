@@ -1,0 +1,44 @@
+---
+lang: "no"
+title: Distribuert repetisjon
+tagline: "Suksessiv gjeninnlæring — læringsstrategien med sterkest evidens, i canvaset ditt."
+shortDescription: "KI-en planlegger tilbakekomster i økende intervaller. Hver tilbakekomst er gjenkalling, ikke gjenlesing. Spacing og gjenkalling kombinert gir superadditive effekter."
+status: beta
+stepInCycle: 8
+relatedPrinciples:
+  - spacing-effect
+  - retrieval-practice
+  - successive-relearning
+  - interleaving
+relatedAuthors:
+  - roediger-karpicke
+  - robert-bjork
+  - albert-bandura
+order: 5
+---
+
+## Hva det løser
+
+De fleste verktøy for distribuert repetisjon er flashcard-apper. De dekontekstualiserer kunnskap til atomære kort og rekonstruerer deretter intervallene basert på selvrapportert lette. De fungerer — men på bekostning av å fjerne den romlige og strukturelle betydningen som gjorde kunnskapen mulig å gjenkalle i utgangspunktet.
+
+Fluera sin distribuerte repetisjon bor i canvaset ditt. Noden du repeterer er noden du har skrevet, i posisjonen du skrev den, koblet til konseptene du trakk kanter til. Ingenting atomiseres.
+
+## Hvordan det fungerer
+
+Etter hver sokratisk økt og hvert Ghost Map-overlegg oppdaterer Fluera et estimat på hukommelses-styrke per node. Den vet hvilke konsepter du svarte lett på, hvilke som utløste hyperkorreksjon, og hvilke du ikke har sett på en stund.
+
+Ved hver tilbakekomst (dag 3, 7, 14, 30, 60+) åpner Fluera canvaset, med de forfalte nodene rendret i Fog of War. Du navigerer, gjenkaller, avslører. Planleggeren oppdaterer. Neste intervall utvides eller trekkes sammen, basert på det du faktisk husket — ikke det du hevdet å huske.
+
+**Personalisert FSRS.** Planleggeren er ikke en fast algoritme. Den kalibrerer åtte vekt-parametre per bruker via gradient descent over review-historikken din — samme metode som i den mest moderne forskningen på distribuert repetisjon, tilpasset Fluera sitt rikere signal (tillit, svartid, hyperkorreksjons-magnitude).
+
+## Vitenskapen bak
+
+Roediger og Karpicke (2006) viste at gjenkalling-praksis slår gjenlesing. Bjorks tiår med arbeid har vist at distribuert øving slår konsentrert. I 2011 kombinerte Rawson og Dunlosky de to — *suksessiv gjeninnlæring* — og viste **superadditive** resultater: distribuert gjenkalling-praksis skaper effekter større enn summen av spacing og gjenkalling hver for seg.
+
+Det er det sterkeste enkelt-evidensgrunnlaget i læringsvitenskapen for en spesifikk læringsstrategi. Fluera sin oppgave er ikke å oppfinne den på nytt, men å fjerne hvert hinder for praksisen — særlig det største, nemlig slitet med å bygge flashkort i utgangspunktet. I Fluera *er* canvaset du allerede har repetisjons-materialet.
+
+## Hva som kommer
+
+- **Sammenflettede stier** — KI-en velger review-ruter som krysser ulike stoff-soner og deaktiverer dermed autopiloten.
+- **Kalibrering per fag** — separate FSRS-vekter for språk vs. matematikk vs. klinisk medisin, der hukommelses-dynamikken skiller seg målbart.
+- **Anki-import** — for studenter med eksisterende decks som vil migrere gradvis.

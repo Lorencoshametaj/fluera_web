@@ -1,0 +1,57 @@
+---
+lang: "nl"
+title: Reflow Physics
+tagline: "Sleep een concept. Zie het canvas zich rond wat ertoe doet hergroeperen."
+shortDescription: "Reflow houdt de ruimtelijke codering levend terwijl je begrip evolueert. Je verplaatst een knooppunt en de buren volgen de gradiënt — het schrift blijft waar het is getrokken, de structuur ademt."
+status: beta
+relatedPrinciples:
+  - spatial-cognition
+  - embodied-cognition
+  - generation-effect
+relatedAuthors:
+  - okeefe-moser
+  - mueller-oppenheimer
+  - van-der-meer
+order: 8
+---
+
+## Wat het oplost
+
+Een canvas dat in week één van een semester is gebouwd, is niet het canvas dat je in week tien wilt. Onderwerpen die los leken blijken verbonden. Verre clusters klappen samen tot één hoofdstuk. Nieuw materiaal laat een knooppunt dat eerst één woord was ontploffen.
+
+Zonder reflow blijven er twee opties: het canvas bevroren en progressief fout laten, of het met de hand opnieuw tekenen — uren kostend en alle ruimtelijke cues brekend die je hippocampus al had gecodeerd.
+
+Reflow Physics is de derde optie. Het canvas reorganiseert zichzelf, terwijl elke streek precies blijft staan waar je hem hebt getekend.
+
+## Hoe het werkt
+
+Sleep welk knooppunt dan ook — een concept, een cluster, een handgeschreven alinea. Terwijl je vinger of pen beweegt, reageren de naburige elementen als een zacht fysisch systeem: dichtbije knopen volgen proportioneel, verre nauwelijks, en ghost displacements tonen de voorgestelde eindlayout *voor* je bevestigt.
+
+Laat los. De reflow valt in één vloeiende animatie tot rust. Onder de motorkap behoudt elke streek zijn oorspronkelijke ID, zijn oorspronkelijke timestamp, zijn audiolink uit [Time Travel](/nl/features/time-travel). De ruimtelijke cues worden bijgewerkt; de identiteit niet.
+
+Reflow respecteert handgetekende pijlen en de [Cross-Zone Bridges](/nl/features/cross-zone-bridges): ze rekken op, buigen, ademen — maar breken nooit. Verbindingen zijn eersteklas burgers van de layout.
+
+Drie modi:
+
+- **Lokale reflow** — je sleept een enkel knooppunt; alleen het directe cluster reorganiseert.
+- **Cluster-reflow** — long-press op een cluster; de hele regio wordt versleepbaar als eenheid terwijl de interne structuur behouden blijft.
+- **Atlas-reflow** — in continent-zoom sleep je een heel canvas in het [Atlas](/nl/features/atlas)-aanzicht; de vakken herordenen zich ten opzichte van elkaar.
+
+Undo en redo werken op het reflow-niveau. Een slechte hergroepering verdwijnt met één tik — elke layoutstaat is een checkpoint.
+
+## De wetenschap erachter
+
+De hippocampus codeert meer dan wat je hebt geschreven: hij codeert **waar** je het hebt geschreven. Het werk van O'Keefe en Moser over place cells (Nobel 2014) toonde dat dezelfde neurale populatie die je appartement in kaart brengt ook je concepten in kaart brengt — zolang de concepten stabiele ruimtelijke coördinaten hebben. Statische kaarten versterken die cellen; chaos vernietigt ze.
+
+De ontwerprestrictie van Reflow vloeit hier direct uit voort: ruimtelijke verandering moet **soepel en bewust** zijn, nooit abrupt. Een knooppunt dat naar een nieuwe positie teleporteert reset de place cell-mapping; een knooppunt dat door tussenliggende posities glijdt behoudt haar. De fysica is geen versiering — het is hoe het geheugen reorganisatie overleeft.
+
+Mueller en Oppenheimer (2014) en van der Meer (2020) stelden vast dat **handschrift** geheugen codeert via sensorimotorische sporen. Reflow beschermt die sporen: streken worden nooit opnieuw gerenderd, nooit opnieuw gerasterd, en verliezen nooit de druk/tilt/snelheid-handtekening die de oorspronkelijke schrijfact produceerde. Je verplaatst een concept; het motorische spoor verhuist mee.
+
+Tot slot snijdt het **generatie-effect** (Slamecka & Graf, 1978) langs twee kanten. De daad van beslissen *waar* een concept thuishoort — en die beslissing herzien naarmate begrip dieper wordt — is op zichzelf al een generatieve beweging die de codering versterkt. Reflow maakt die herziening goedkoop genoeg om hem elke week te doen.
+
+## Wat komt
+
+- **Zwaartekracht per zone** — verschillende reflow-krachten voor verschillende vakken (wiskunde wil compacte clusters; geschiedenis wil tijdlijn-drift).
+- **Reflow-tijdlijn** — loop door de layoutgeschiedenis van een canvas; zie hoe je mentale kaart week na week is geëvolueerd.
+- **Auto-reflow-suggesties** — de Atlas stelt consolidaties voor wanneer ze clusters detecteert die over sessies heen naar elkaar drijven.
+- **Reflow-bewuste export** — PDF's en SVG's die de laatste layout behouden met deep links naar historische posities.

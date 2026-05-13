@@ -1,0 +1,51 @@
+---
+lang: "de"
+title: Fog of War
+tagline: "Prüfungsmodus, der verbirgt, woran du dich fast erinnerst."
+shortDescription: "Maskiere Bereiche des Canvas. Hole sie aus dem Gedächtnis zurück. Die Anstrengung des Abrufs — nicht das erneute Lesen — ist das, was Erinnerungen verfestigt."
+status: beta
+stepInCycle: 10
+relatedPrinciples:
+  - desirable-difficulties
+  - retrieval-practice
+  - spatial-cognition
+  - spacing-effect
+relatedAuthors:
+  - robert-bjork
+  - roediger-karpicke
+  - okeefe-moser
+order: 4
+---
+
+## Was es löst
+
+Die Prüfungsvorbereitung verkommt häufig zu einem von zwei falschen Modi: erneutes Lesen (fühlt sich produktiv an, lehrt wenig) oder Panik-Cramming (lehrt kurz, bricht danach zusammen). Beide vermeiden genau das, was dauerhafte Erinnerung tatsächlich aufbaut — den *Kampf*, ohne Hilfe abrufen zu wollen.
+
+Fog of War macht diesen Kampf zum Standardzustand deines Canvas.
+
+## Wie es funktioniert
+
+Sieben bis vierzehn Tage vor einer Prüfung aktivierst du Fog of War in dem Bereich des Canvas, den du testen willst. Die Fläche wird maskiert — eine halbtransparente Unschärfe verdeckt den Inhalt, bis du ihn aus dem Gedächtnis abrufst oder explizit aufdeckst.
+
+Du navigierst durch das Canvas. Du hältst an einem maskierten Knoten an. Du versuchst dich zu erinnern, was dort stand. Du sagst es laut oder schreibst es auf einer Hilfsfläche. Erst dann tippst du, um aufzudecken.
+
+Drei Ausgänge:
+- **Grün** — korrekt abgerufen. Die Maske wird dauerhaft dünner.
+- **Bernstein** — teilweise erfasst. Die Maske wird transparent, der Knoten bleibt aber für eine Wiederholung markiert.
+- **Rot** — komplett verloren. Fluera plant eine sofortige Rückkehr und bittet dich, den Knoten von Hand neu zu schreiben — Verstärkung durch Generierung, nicht durch erneutes Lesen.
+
+Du wiederholst die Schleife, bis der Großteil des Canvas auf Grün steht. Was rot bleibt, ist die Karte dessen, was du nicht weißt — exakt die Karte, die du brauchtest.
+
+## Die Wissenschaft dahinter
+
+Robert Bjorks Konzept der **erwünschten Schwierigkeiten** ist die strukturelle Idee. Fluenz während des Lernens ist ein schlechtes Signal — eine Warnung, dass die Kodierung oberflächlich ist. Die Reibung des Abrufs unter Verdeckung ist das Gegenteil: nicht-fluent, langsam, frustrierend *und* genau das, was Erinnerung zementiert.
+
+Roediger und Karpickes Arbeit von 2006 zeigte, dass ein einziger Abrufversuch stärkere Langzeiterinnerung erzeugt als vier Sitzungen erneuten Lesens. Fog of War ist Abrufpraxis im großen Maßstab, über das gesamte Canvas hinweg, ohne Reibung pro Frage.
+
+Auch das räumliche Element zählt. Da dein Canvas ein Gedächtnispalast ist (O'Keefe und Moser, Nobelpreis 2014), verstärkt der Abruf von der Position aus nicht nur das Konzept, sondern auch den räumlichen Index, der dorthin führt. In der Prüfung erinnerst du dich nicht an den Fakt — du *navigierst* zu ihm.
+
+## Was als Nächstes kommt
+
+- **Automatische Maskenplanung** — vom FSRS gesteuerter Nebel, der bei fälligen Items dichter wird.
+- **Zeitlich begrenzte Prüfungssimulation** — realistischer Druck mit konfigurierbaren Beschränkungen.
+- **Post-mortem-Karte** — nach der echten Prüfung markierst du, welche Fragen du richtig oder falsch hattest, und Fluera aktualisiert den Scheduler mit dieser Feldwahrheit.

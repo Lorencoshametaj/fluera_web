@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const processors = [
+  {
+    name: "Supabase Inc.",
+    purpose: "Tietokanta, autentikointi, salattu pilvitallennus, Realtime-signalointi, Edge Function tekoälyvälityspalvelimelle.",
+    dataTypes: "Tilin sähköposti, hashattu käyttäjä-ID, canvas-salateksti (E2E-salattu), synkronoinnin metatiedot.",
+    region: "Frankfurt, EU (Flueran instanssien oletusalue).",
+    privacy: "https://supabase.com/privacy",
+  },
+  {
+    name: "Google LLC",
+    purpose: "Google Generative AI (Gemini) Socratic Modea, Ghost Mapia, LaTeX-OCR:ää ja Exam Sessionien generointia varten.",
+    dataTypes: "Valitut tekstipätkät canvasilta (vain kun tekoälyominaisuudet on sallittu ja aktiivisia). Ei koskaan koko muistikirjaa.",
+    region: "USA, EU Google Cloud -alueiden kautta; SCC:t + EU-US DPF.",
+    privacy: "https://policies.google.com/privacy",
+  },
+  {
+    name: "Apple Inc.",
+    purpose: "Sign in with Apple -autentikointi; sovelluksen sisäiset ostot iOS:ssä ja macOS:ssä App Storen kautta.",
+    dataTypes: "Apple ID -välityssähköposti, kuittitunnisteet. Ei canvas-dataa.",
+    region: "USA; SCC:t + EU-US DPF.",
+    privacy: "https://www.apple.com/legal/privacy/",
+  },
+  {
+    name: "RevenueCat Inc.",
+    purpose: "Tilausten hallinta ja kuittien validointi iOS:ssä, Androidissa ja webissä.",
+    dataTypes: "Anonymisoitu käyttäjä-ID RevenueCatissa, tilauksen tila, kuitin metatiedot. Ei korttidataa.",
+    region: "USA; SCC:t + EU-US DPF.",
+    privacy: "https://www.revenuecat.com/privacy",
+  },
+  {
+    name: "Functional Software Inc. (Sentry)",
+    purpose: "Kaatumisraportointi ja virheiden valvonta.",
+    dataTypes: "Stack-jäljet, käyttöjärjestelmäversio, laitemalli, sovellusversio. sendDefaultPii on nimenomaisesti pois päältä — ei käyttäjäsisältöä.",
+    region: "USA, EU-vaihtoehdot saatavilla.",
+    privacy: "https://sentry.io/privacy/",
+  },
+  {
+    name: "Vercel Inc.",
+    purpose: "Markkinointisivuston fluera.dev ja /docs-osion isännöinti.",
+    dataTypes: "Standardin verkon käyttölokit (IP, User-Agent). Ei tilisisältöjä.",
+    region: "Globaali edge; alkuperäalue konfiguroitavissa.",
+    privacy: "https://vercel.com/legal/privacy-policy",
+  },
+];
+
+const lastUpdated = "2026-04-20";
+---
+
+<BaseLayout
+  title="Alikäsittelijät"
+  description="Kolmannet osapuolet, joihin Fluera nojaa tuotteen toimittamiseksi. Jokaisen alikäsittelijän tarkoitus, jaettu data, alue ja linkki tietosuojaselosteeseen."
+  locale="fi"
+>
+  <PageHero
+    kicker="Alikäsittelijät"
+    title="Jokainen kolmas osapuoli, johon nojaamme."
+    description="GDPR:n 28 artiklan mukaisesti tässä on lueteltu jokainen alikäsittelijä, joka käsittelee henkilötietoja puolestamme — mitä jaamme, miksi ja missä se sijaitsee. Ilmoitamme asiakkaille ennen jokaista muutosta."
+    breadcrumb={{ label: "Turvallisuus", href: "/fi/security" }}
+  >
+    <p slot="copy" class="mt-6 text-sm text-ink-500 font-mono">Viimeksi päivitetty: {lastUpdated}</p>
+  </PageHero>
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-5xl">
+        {processors.map((p) => (
+          <li class="card p-6 md:p-7">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <h2 class="font-serif text-xl text-paper-50 mb-2">{p.name}</h2>
+                <a href={p.privacy} class="text-xs text-accent-glow underline underline-offset-4 font-mono" rel="noopener">
+                  Tietosuojaseloste ↗
+                </a>
+              </div>
+              <dl class="md:col-span-3 grid gap-3 text-sm">
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Tarkoitus</dt>
+                  <dd class="text-paper-200">{p.purpose}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Jaettu data</dt>
+                  <dd class="text-paper-200">{p.dataTypes}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">Alue</dt>
+                  <dd class="text-paper-200">{p.region}</dd>
+                </div>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">Muutokset ja ilmoitukset</h2>
+      <p class="prose-ink text-sm mb-4">
+        Päivitämme tätä listaa heti, kun alikäsittelijä lisätään, vaihdetaan tai poistetaan. Institutionaaliset ja Enterprise-asiakkaat saavat sähköposti-ilmoituksen vähintään 30 päivää ennen muutosta, GDPR:n 28 artiklan 2 kohdan mukaisesti.
+      </p>
+      <p class="prose-ink text-sm">
+        Tilataksesi alikäsittelijöiden muutosilmoitukset kirjoita osoitteeseen <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a> tilisi sähköpostiosoitteesta.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

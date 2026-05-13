@@ -1,0 +1,37 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { buildDocsSections } from "@/lib/docs-nav";
+
+const sections = await buildDocsSections("sv");
+---
+
+<DocLayout
+  title="Användardokumentation"
+  description="Praktisk vägledning för att använda Fluera så som det är designat. Börja på Välkommen om det är ditt första besök."
+  sections={sections}
+  rootHref="/sv/docs"
+  rootLabel="Dokumentation"
+  sectionLabel="Översikt"
+  locale="sv"
+>
+  <p>Välkommen till Flueras användardokumentation. Sidofältet till vänster är ordnat efter det flöde nya användare brukar gå igenom — börja på <a href="/sv/docs/welcome">Välkommen</a>, sedan <a href="/sv/docs/first-canvas">Din första canvas</a>, och gå till felsökning bara när du behöver.</p>
+
+  <p>Om du letar efter <em>varför</em> — den kognitiva vetenskapen, forskningen, 12-stegs-cykeln produkten bygger på — så finns det på <a href="/sv/science">vetenskapssidan</a>. Dokumentationen här är det praktiska <em>hur</em>.</p>
+
+  <h2>Per sektion</h2>
+
+  {sections.map((sec) => (
+    <section class="mt-8">
+      <h3 id={sec.slug}>{sec.label}</h3>
+      <ul>
+        {sec.links.map((link) => (
+          <li><a href={link.href}>{link.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <h2>Hittar du inte det du behöver?</h2>
+
+  <p>Skriv till <a href="mailto:support@fluera.dev">support@fluera.dev</a>. En grundare svarar inom en arbetsdag — oftast inom en timme. Om du ser en lucka i dokumentationen, säg till så fyller vi den.</p>
+</DocLayout>

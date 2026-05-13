@@ -1,0 +1,70 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const channels = [
+  {
+    label: "عامّ",
+    email: SITE.company.contactEmail,
+    body: "ملاحظات، أسئلة، طلبات. كلّ ما يصل هنا نقرأه.",
+  },
+  {
+    label: "المؤسّسات والمبيعات",
+    email: SITE.company.contactEmail,
+    body: "جامعات، مدارس، مختبرات أبحاث. نُرسل لكم اتفاقية معالجة البيانات وموجز الأسعار وتفاصيل البرنامج التجريبي.",
+  },
+  {
+    label: "الصحافة",
+    email: SITE.company.contactEmail,
+    body: "مقابلات، اقتباسات، حظر. حقيبة صحفية مع شعارات ولقطات شاشة عند الطلب.",
+  },
+  {
+    label: "الأمان",
+    email: SITE.company.securityEmail,
+    body: "تقارير الثغرات. نؤكّد خلال 24 ساعة، ونُصلح المشكلات الحرجة خلال 72.",
+  },
+  {
+    label: "الخصوصية وطلبات البيانات",
+    email: SITE.company.privacyEmail,
+    body: "الوصول إلى البيانات والتصدير والحذف (GDPR). ردّ خلال 30 يومًا — عادة خلال 48 ساعة.",
+  },
+  {
+    label: "الدعم",
+    email: SITE.company.supportEmail,
+    body: "للمستخدمين الذين وجدوا خطأً أو يحتاجون مساعدة في ميزة.",
+  },
+];
+---
+
+<BaseLayout
+  title="تواصل"
+  description="تواصل مع Fluera. قنوات للاستفسارات العامّة والمبيعات والصحافة والأمان والخصوصية والدعم."
+  locale="ar"
+>
+  <PageHero
+    kicker="تواصل"
+    title="ستّ قنوات. ردّ واحد."
+    description="بدون نظام تذاكر. كلّ قناة من القنوات أدناه تصل إلى شخص حقيقي — والردّ عادة خلال يوم أو يومين."
+  >
+    <div class="mt-16 grid md:grid-cols-2 gap-5 max-w-5xl">
+      {channels.map((c) => (
+        <article class="card p-6">
+          <p class="eyebrow text-accent-glow mb-3">{c.label}</p>
+          <a href={`mailto:${c.email}`} class="font-serif text-xl text-paper-50 block mb-3 hover:text-accent-glow transition-colors">
+            {c.email}
+          </a>
+          <p class="text-sm text-paper-300 leading-relaxed">{c.body}</p>
+        </article>
+      ))}
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        المقرّ في {SITE.company.city}. لا ننشر أرقام هواتف: التواصل المكتوب يبقى قابلًا للتتبّع ويُبقينا مركَّزين. للمسائل الأمنية العاجلة، مفتاح PGP موجود على ملفّنا الشخصي في GitHub.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

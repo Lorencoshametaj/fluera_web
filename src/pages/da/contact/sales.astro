@@ -1,0 +1,120 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Tal med salg — Fluera til institutioner"
+  description="Aftal en samtale med Flueras grundlæggere om at bringe evidensbaserede læringsværktøjer ind i dit kursus, dit fakultet eller din campus."
+  locale="da"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">Salg til institutioner</p>
+      <h1 class="font-serif text-display-xl text-paper-50 mb-6">Vi bygger en plan til dine studerende.</h1>
+      <p class="prose-ink text-lg mb-8">
+        Udfyld formularen, så svarer en grundlægger inden for 24 timer på hverdage. Vi starter helst asynkront — en velskrevet e-mail er mere værd end tre kalender-pingponger.
+      </p>
+
+      <form id="sales-form" class="card p-6 md:p-8 space-y-5" action={`mailto:${SITE.company.contactEmail}`} method="post" enctype="text/plain">
+        <div>
+          <label class="sales-label" for="s-name">Dit navn <span class="text-signal-bad">*</span></label>
+          <input id="s-name" name="name" type="text" required class="sales-input" placeholder="For- og efternavn" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-role">Rolle <span class="text-signal-bad">*</span></label>
+          <select id="s-role" name="role" required class="sales-input">
+            <option value="" disabled selected>Vælg…</option>
+            <option>Underviser</option>
+            <option>Studieleder</option>
+            <option>Direktør / prorektor</option>
+            <option>IT / indkøb</option>
+            <option>Bibliotekar / instructional designer</option>
+            <option>Studenterrepræsentant</option>
+            <option>Andet</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-institution">Institution <span class="text-signal-bad">*</span></label>
+          <input id="s-institution" name="institution" type="text" required class="sales-input" placeholder="Navn på universitet eller skole" />
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-email">Arbejds-e-mail <span class="text-signal-bad">*</span></label>
+          <input id="s-email" name="email" type="email" required class="sales-input" placeholder="dig@uni.dk" />
+          <p class="sales-hint">Brug din institutionelle e-mail, det forenkler verifikationen.</p>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-size">Interesseret i</label>
+          <select id="s-size" name="size" class="sales-input">
+            <option value="" selected>Vælg…</option>
+            <option>Pilot — ét kursus, ét semester</option>
+            <option>Licens til fakultet</option>
+            <option>Licens til campus</option>
+            <option>Jeg sonderer — jeg har brug for en briefing</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="sales-label" for="s-context">Hvad bør vi vide, før vi svarer? <span class="text-signal-bad">*</span></label>
+          <textarea id="s-context" name="context" rows="5" required minlength="20" maxlength="2000"
+            class="sales-input"
+            placeholder="Kursusnavn, profil på de studerende, deadlines, nuværende værktøjer, compliance-krav — hvad end der hjælper."></textarea>
+          <p class="sales-hint">Jo mere konkret, jo kortere kan vores svar være.</p>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="btn-primary w-full py-3.5">Send →</button>
+          <p class="sales-hint text-center mt-3">
+            Formularen sendes som e-mail. Indtil du klikker Send, forlader intet din enhed. Vil du hellere skrive direkte? <a href={`mailto:${SITE.company.contactEmail}`} class="text-accent-glow underline">{SITE.company.contactEmail}</a>.
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">Hvad der sker, efter du har sendt</h2>
+      <ol class="space-y-4 text-sm text-paper-200 list-none p-0">
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">01</span><span>En grundlægger svarer inden for 1 hverdag med konkrete spørgsmål til din situation — aldrig et generisk script.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">02</span><span>Vi sender dig en pilot-briefing (PDF), skræddersyet til din sag, med eksempler på sessionsplaner og en spørgeliste til dine studerende.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">03</span><span>Et 30-minutters opkald med grundlæggeren og — hvis det giver mening — din IT-kontakt. Vi gennemgår SSO, DPA og deadlines ærligt — inklusive de nuværende grænser.</span></li>
+        <li class="flex gap-4"><span class="font-mono text-ink-500 shrink-0">04</span><span>Piloten starter. Typisk 2–4 uger efter første kontakt.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <style>
+    .sales-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: theme("colors.paper.200");
+      margin-bottom: 0.5rem;
+    }
+    .sales-hint {
+      font-size: 0.75rem;
+      color: theme("colors.ink.500");
+      margin-top: 0.375rem;
+    }
+    .sales-input {
+      width: 100%;
+      background: theme("colors.ink.900");
+      border: 1px solid rgb(255 255 255 / 0.08);
+      border-radius: 0.625rem;
+      padding: 0.75rem 1rem;
+      color: theme("colors.paper.50");
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .sales-input:focus {
+      outline: none;
+      border-color: theme("colors.accent.ink");
+      box-shadow: 0 0 0 3px rgb(45 74 222 / 0.18);
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,199 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const useCases = [
+  {
+    title: "تسجيل المحاضرة",
+    body: "يكتب الطلّاب الملاحظات بخطّ اليد على لوحة لانهائية خلال المحاضرة، مع مزامنة صوتية اختيارية عبر Time Travel. تصبح اللوحة أرشيفًا حيًّا يبقى بعد الفصل الدراسي.",
+  },
+  {
+    title: "التحضير للامتحان على نطاق واسع",
+    body: "Fog of War + التكرار المتباعد يُحوِّلان لوحة الطالب الشخصية إلى محرّك ممارسة استرجاع. يمكن للأساتذة التوصية بمسارات دراسة بحسب الموضوع دون إعداد المواد.",
+  },
+  {
+    title: "دفاتر مختبرات STEM",
+    body: "عرض LaTeX، رسوم تخطيطية حسّاسة للضغط، سجلّات تجارب متزامنة مع الصوت. يحلّ محلّ الدفاتر الورقية ويُحافظ على دليل الكتابة اليدوية اللازم للتقييم.",
+  },
+];
+
+const deployment = [
+  { label: "SSO",              body: "SAML 2.0 وOIDC. يتكامل مع Shibboleth وAzure AD وOkta وGoogle Workspace for Education." },
+  { label: "متوافق مع MDM",     body: "توزيع مؤسّسي معياري عبر App Store / Play. على Windows وmacOS كمثبّتات موقّعة. لا تحميل جانبي." },
+  { label: "سجلّ تدقيق",        body: "أثر وصول غير قابل للتعديل لكلّ حساب. قابل للتصدير لتدقيقات الالتزام." },
+  { label: "إقامة البيانات",    body: "خوادم في الاتّحاد الأوروبي بشكل افتراضي. اتفاقية معالجة بيانات متاحة عند الطلب." },
+  { label: "إمكانية الوصول",    body: "هدف WCAG 2.1 AA على كلّ المنصّات. دعم قارئات الشاشة، وضع تباين عالٍ، إخلاص فرشاة قابل للتعديل لاختلافات حركية." },
+  { label: "داخل الشركة",        body: "في خارطة طريق Enterprise. اليوم: السحاب فقط بتشفير قويّ وتحكّم إقليمي." },
+];
+---
+
+<BaseLayout
+  title="Fluera للجامعات — بنية معرفية للتعليم العالي"
+  description="أحضِر إلى أعضاء هيئتك التدريسية أداة دراسة قائمة على الأدلّة. تراخيص متعدّدة المقاعد، SSO، سجلّ تدقيق، تدريب أعضاء الهيئة على دورة الـ12 خطوة. برنامج تجريبي متاح."
+  locale="ar"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">الجامعات والمدارس</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          بنية معرفية<br />للجامعة الحديثة.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          أداة دراسة قائمة على الأدلّة لطلّابك. SSO لِفِرَق الـIT لديك. تدريب أعضاء الهيئة على علم الإدراك للتعلّم. تبدأ التجارب التجريبية بفصل واحد لقسم واحد ولفصل دراسي واحد، مجّانًا.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/ar/contact" class="btn-primary">احجز مكالمة تعليمية ←</a>
+          <a href="/ar/" class="btn-secondary">العلم الأساسي</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">لماذا يختار المعلّمون Fluera</p>
+        <h2 class="font-serif text-display-xl text-paper-50">ثلاثة أنماط ملموسة.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {useCases.map((u, i) => (
+          <article class="card p-7">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{u.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{u.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">نموذج الترخيص</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-4">ثلاثة مستويات. مكالمة واحدة فقط.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          لا ننشر سعرًا بحسب المقعد لحسابات المؤسّسات: البنية الصحيحة تتوقّف على المحيط الذي ترغب في ترخيصه — فصل، قسم، أو جامعة. مكالمة واحدة ونخرج بمقترح ملموس.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 max-w-5xl">
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">الفصل</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            مقرّر واحد، فصل دراسي واحد، حتى 200 طالب. وصول Pro لكلّ طالب، لوحة معلّم، وجلسة تدريب واحدة.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">التبنّي المعتاد: تجريبي</p>
+        </article>
+        <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">القسم</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            قسم كامل. عقود متعدّدة السنوات. SSO، سجلّ تدقيق، اتفاقية مستوى خدمة دعم مخصّصة. تدريب أعضاء هيئة لكلّ مقرّر.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">التبنّي المعتاد: السنة الثانية</p>
+        </article>
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">الجامعة</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            الحرم الجامعي بأكمله. دعم نشر مخصّص، نقطة اتّصال هندسية، فرص أبحاث مشتركة على دورة الـ12 خطوة.
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">التبنّي المعتاد: من السنة الثالثة</p>
+        </article>
+      </div>
+
+      <div class="mt-10">
+        <a href="/ar/contact" class="btn-primary">اطلب موجز الأسعار ←</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">تدريب الهيئة</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">ساعتان. علم إدراك مُطبَّق.</h2>
+          <p class="prose-ink mb-4">
+            تُغطّي ورشة العمل دورة التعلّم ذات الـ12 خطوة، والمبادئ وراء كلّ خطوة، وأنماط دمج Fluera في مقرّر قائم. ليست عرضًا للمنتج.
+          </p>
+          <p class="prose-ink">
+            تُقدَّم حضوريًّا أو عن بُعد، بحدّ أقصى خمسة عشر مشاركًا في الجلسة. كلّ معلّم يخرج بخطّة ملموسة لمقرّره.
+          </p>
+        </div>
+        <div class="card p-7">
+          <h3 class="eyebrow text-accent-glow mb-4">ما نُغطّيه</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0">
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">01</span><span>التباعد، الاسترجاع، التوليد، الصعوبات المرغوبة — الأركان الأربعة</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">02</span><span>دورة الـ12 خطوة مُخطّطة على بنية مقرّرك المحدّدة</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">03</span><span>متى تستخدم Socratic Mode، متى Ghost Map، ومتى تبتعد عن الطريق</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">04</span><span>تصميم التحضير للامتحان مع Fog of War دون تغيير تقييمك</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">05</span><span>الأبحاث وقوّة الأدلّة وحدود ما تدعمه الأدلّة</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">06</span><span>عمليًّا: كلّ معلّم يَبني درسًا في Fluera قبل أن يخرج</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">النشر</p>
+        <h2 class="font-serif text-display-xl text-paper-50">فِرَق الـIT لديك ستحبّنا أيضًا.</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {deployment.map((d) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">البرنامج التجريبي</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">فصل واحد. فصل دراسي واحد. مجّانًا.</h2>
+          <p class="prose-ink mb-4">
+            أسرع طريقة لمعرفة ما إذا كانت Fluera تَعمل لطلّابك هي تجربتها مع ثلاثين منهم لفصل دراسي واحد دون أيّ تكلفة. وفي المقابل نطلب تغذية راجعة منظَّمة — مراجعة في منتصف الفصل، استبيان نهاية الفصل، وخيار مشاركة بيانات نتائج مجهولة الهوية.
+          </p>
+          <p class="prose-ink">
+            إن نجح الأمر، نتحدّث عن عقد متعدّد السنوات. وإن لم ينجح، تحتفظ بالبيانات ونحتفظ نحن بالدروس. في الحالتين كلانا يربح.
+          </p>
+        </div>
+        <div class="card p-8 bg-accent-ink/[0.08] border-accent-ink/30">
+          <h3 class="eyebrow text-accent-glow mb-4">ما تحصل عليه</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0 mb-6">
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>وصول Pro لما يصل إلى 30 طالبًا</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>ورشة عمل لأعضاء الهيئة لمدّة ساعتين</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>قناة مباشرة مع المؤسّسين طوال الفصل</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>تحليل مجمَّع مجهول الهوية لتقريرك</span></li>
+          </ul>
+          <a href="/ar/contact" class="btn-primary w-full">ابدأ التجربة ←</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">متوافق مع GDPR. على دراية بـFERPA. هدف WCAG 2.1 AA.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        التفاصيل تعيش في صفحة الأمان — قائمة المعالجين الفرعيين، اتفاقية معالجة البيانات، بنية التشفير، نموذج سجلّ التدقيق.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/ar/security" class="btn-secondary">اقرأ بنية الأمان ←</a>
+        <a href="/ar/contact" class="btn-primary">تحدّث إلينا</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

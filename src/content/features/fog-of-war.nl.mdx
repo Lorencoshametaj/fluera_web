@@ -1,0 +1,51 @@
+---
+lang: "nl"
+title: Fog of War
+tagline: "Tentamenmodus die verbergt wat je bijna nog weet."
+shortDescription: "Maskeer regio's van het canvas. Haal ze op uit het geheugen. De inspanning van het ophalen — niet het herlezen — is waar het geheugen verhardt."
+status: beta
+stepInCycle: 10
+relatedPrinciples:
+  - desirable-difficulties
+  - retrieval-practice
+  - spatial-cognition
+  - spacing-effect
+relatedAuthors:
+  - robert-bjork
+  - roediger-karpicke
+  - okeefe-moser
+order: 4
+---
+
+## Wat het oplost
+
+Tentamenvoorbereiding ontaardt meestal in een van twee verkeerde modi: herlezen (lijkt productief, leert weinig) of paniek-stampen (leert kortstondig, stort daarna in). Beide vermijden wat eigenlijk duurzaam geheugen bouwt — de *worsteling* om zonder steun op te halen.
+
+Fog of War maakt van die worsteling de standaardtoestand van je canvas.
+
+## Hoe het werkt
+
+Zeven tot veertien dagen voor een tentamen activeer je Fog of War op het canvasgebied dat je wilt testen. De zone wordt gemaskeerd — een semi-ondoorzichtige waas die de inhoud verbergt tot je uit het geheugen ophaalt of expliciet onthult.
+
+Je navigeert over het canvas. Je stopt bij een gemaskeerd knooppunt. Je probeert je te herinneren wat er stond. Je zegt het hardop of schrijft het op een ondersteuningsoppervlak. Pas dan tik je om te onthullen.
+
+Drie uitkomsten:
+- **Groen** — correct opgehaald. Het masker wordt blijvend dunner.
+- **Oranje** — gedeeltelijk geraakt. Het masker wordt transparant maar het knooppunt blijft gemarkeerd voor herbezoek.
+- **Rood** — volledig gemist. Fluera plant een onmiddellijke terugkeer en vraagt je het knooppunt met de hand opnieuw te schrijven — versterking via generatie, niet herlezen.
+
+Je draait de loop tot het grootste deel van het canvas op groen staat. Wat rood blijft, is de kaart van wat je niet weet — precies de kaart die je nodig had.
+
+## De wetenschap erachter
+
+Het framework van de **wenselijke moeilijkheden** van Robert Bjork is het structurele idee. Vlotheid tijdens het studeren is een slecht signaal — een waarschuwing dat de codering oppervlakkig is. De wrijving van ophalen onder occlusie is het tegenovergestelde: niet-vlot, traag, frustrerend *en* precies wat het geheugen cementeert.
+
+Het werk van Roediger en Karpicke uit 2006 liet zien dat één enkele ophaalpoging een sterker langetermijngeheugen produceert dan vier herleessessies. Fog of War is ophaalpogingen op schaal, over het hele canvas, zonder wrijving per vraag.
+
+Het ruimtelijke element telt ook. Omdat je canvas een memory palace is (O'Keefe en Moser, Nobel 2014), versterkt ophalen vanuit de positie niet alleen het concept maar ook de ruimtelijke index die ernaar leidt. Tijdens het tentamen herinner je je het feit niet — je *navigeert* ernaartoe.
+
+## Wat komt
+
+- **Auto-scheduling van het masker** — door FSRS gestuurde mist die dichter wordt op items waarvan de review vervalt.
+- **Tijdgestuurde tentamensimulatie** — realistische druk met configureerbare beperkingen.
+- **Post-mortem kaart** — na het echte tentamen noteer je welke vragen je goed en welke je fout had, en Fluera werkt de scheduler met die veldwaarheid bij.

@@ -1,0 +1,146 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const factBullets = [
+  "Aplikacja do nauki poznawczej w prywatnej becie, uruchomiona w kwietniu 2026 na iOS i macOS.",
+  "Nieskończona, ręcznie pisana kanwa z 13 czułymi na nacisk pędzlami i opóźnieniem kreski poniżej 15 milisekund, na sześciu platformach.",
+  "Funkcje AI zaprojektowane, by zadawać pytania zamiast odpowiadać — oparte na pięciu dekadach badań nad pamięcią.",
+  "Zbudowana na fluera_engine, własnościowym silniku renderowania 2D dla Fluttera, dostępnym także dla zewnętrznych deweloperów.",
+  "Dwuosobowy zespół z siedzibą w Mediolanie. Brak inwestycji zewnętrznych do dnia publikacji.",
+];
+
+const imageAssets = [
+  { name: "Logo — pełen kolor",         path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
+  { name: "Logo — jasny monochrom",     path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
+  { name: "Logo — ciemny monochrom",    path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
+  { name: "Zrzut ekranu — iPad",        path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
+  { name: "Zrzut ekranu — macOS",       path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
+  { name: "Portret założyciela",        path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
+];
+
+const quotables = [
+  {
+    context: "O założeniu",
+    quote: "W 2026 roku wiedza jest przywoływana w trzy sekundy i zapominana w trzy tygodnie. Jest dziesięć aplikacji do robienia notatek i ani jednej do zatrzymania tego, czego się nauczyło.",
+  },
+  {
+    context: "O AI",
+    quote: "AI, które odpowiada na egzaminy za Ciebie, to AI, które niczego Cię nie uczy. AI Fluery pyta, podpowiada, odzwierciedla — nie zastępuje aktu myślenia.",
+  },
+  {
+    context: "O dowodach",
+    quote: "Nauka poznawcza jest jasna od pięćdziesięciu lat. Nigdy nie mieliśmy narzędzia, które czyniłoby właściwą rzecz drogą najmniejszego oporu. Próbujemy zbudować dokładnie to.",
+  },
+  {
+    context: "O odbiorcach",
+    quote: "Fluera nie jest dla wszystkich. Tarcie jest prawdziwe. Jest zbudowana dla kohorty uczących się, którzy wiedzą, jak odróżnić płynność od kompetencji, gdy to ma znaczenie — lekarzy zdających ustne, doktorantów, prawników, długoletnich samouków.",
+  },
+];
+---
+
+<BaseLayout
+  title="Press kit"
+  description="Logo, zrzuty ekranu, biogramy założycieli i cytowane frazy dla dziennikarzy i autorów piszących o Fluerze."
+  locale="pl"
+>
+
+  <PageHero
+    kicker="Prasa"
+    title="Piszesz o Fluerze?<br />Tutaj wszystko, czego potrzebujesz."
+    description={`Logo, zrzuty ekranu, zdjęcia założycieli i krótki factsheet. Wszystko na tej stronie jest darmowe do użytku redakcyjnego — z atrybucją <em>Fluera</em> i linkiem do <a href="/">fluera.dev</a>.`}
+  >
+    <div slot="copy" class="mt-8 flex flex-wrap gap-4">
+      <a href="/press/fluera-press-kit.zip" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Pobierz pełny press kit (.zip)
+      </a>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Press%20request`} class="btn-secondary">
+        Napisz do zespołu →
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Factsheet</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Minutowe streszczenie.</h2>
+      </div>
+
+      <ul class="space-y-4 list-none p-0 max-w-3xl">
+        {factBullets.map((f) => (
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <span class="text-paper-200 text-lg leading-relaxed">{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Cytaty</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Frazy do bezpośredniego cytowania.</h2>
+        <p class="prose-ink text-sm mt-4">
+          Wszystkie cytaty są przypisywane zespołowi Fluery, chyba że przeprowadziłeś wywiad z konkretnym założycielem — w takim przypadku zweryfikuj z nami przed przypisaniem komuś konkretnemu.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 max-w-5xl">
+        {quotables.map((q) => (
+          <figure class="card p-7">
+            <p class="eyebrow text-accent-glow mb-4">{q.context}</p>
+            <blockquote class="font-serif text-lg text-paper-50 leading-relaxed italic">
+              "{q.quote}"
+            </blockquote>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Zasoby wizualne</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Logo, zrzuty ekranu, portrety.</h2>
+        <p class="prose-ink text-sm mt-4">
+          Pojedynczo poniżej, lub razem przez link do press kitu na górze.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {imageAssets.map((a) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{a.name}</h3>
+            <p class="text-xs font-mono text-ink-500 mb-4">{a.size}</p>
+            <a href={a.path} class="text-accent-glow text-sm underline underline-offset-4 hover:text-paper-50" download>
+              Pobierz →
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-xl">
+        Uwaga: pliki indywidualnych zasobów są zaślepkami do czasu publikacji finalnego press kitu. Linki obecnie zwracają 404 — uzupełnimy je przy wyjściu z prywatnej bety.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Bezpośredni kontakt z zespołem.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Zapytania prasowe trafiają bezpośrednio do założyciela, nie do agencji PR. Odpowiedź w ciągu 24 godzin roboczych — zwykle w ciągu godziny.
+      </p>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Press%20request`} class="btn-primary">
+        {SITE.company.contactEmail}
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

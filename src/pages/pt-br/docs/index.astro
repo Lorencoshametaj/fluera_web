@@ -1,0 +1,37 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { buildDocsSections } from "@/lib/docs-nav";
+
+const sections = await buildDocsSections("pt-br");
+---
+
+<DocLayout
+  title="Documentação do usuário"
+  description="Orientação prática para usar o Fluera do jeito que ele foi projetado. Comece em Bem-vindo se for sua primeira visita."
+  sections={sections}
+  rootHref="/pt-br/docs"
+  rootLabel="Documentação"
+  sectionLabel="Visão geral"
+  locale="pt-br"
+>
+  <p>Bem-vindo à documentação do usuário do Fluera. A barra lateral à esquerda está ordenada seguindo o fluxo que novos usuários geralmente percorrem — comece em <a href="/pt-br/docs/welcome">Bem-vindo</a>, depois <a href="/pt-br/docs/first-canvas">Seu primeiro canvas</a>, e chegue ao troubleshooting só quando precisar.</p>
+
+  <p>Se você procura o <em>porquê</em> — a ciência cognitiva, a pesquisa, o ciclo de 12 passos sobre o qual o produto é construído — a <a href="/pt-br/science">página da ciência</a> é onde isso vive. A documentação aqui é o <em>como</em> prático.</p>
+
+  <h2>Por seção</h2>
+
+  {sections.map((sec) => (
+    <section class="mt-8">
+      <h3 id={sec.slug}>{sec.label}</h3>
+      <ul>
+        {sec.links.map((link) => (
+          <li><a href={link.href}>{link.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <h2>Não encontra o que precisa?</h2>
+
+  <p>Escreva para <a href="mailto:support@fluera.dev">support@fluera.dev</a>. Um founder responde em até um dia útil — geralmente em uma hora. Se você vê uma lacuna na documentação, conta pra gente e a preenchemos.</p>
+</DocLayout>

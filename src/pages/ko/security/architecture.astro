@@ -1,0 +1,100 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="보안 아키텍처"
+  description="Fluera가 노트북을 정지 시, 전송 중, 기기 간에 어떻게 암호화하는지. SQLCipher, TLS 1.3, 종단 간 동기화, 옵트인 텔레메트리, 기관용 감사 로그."
+  locale="ko"
+>
+  <PageHero
+    kicker="아키텍처"
+    title="Fluera가 당신의 노트북을 어떻게 보호하나."
+    description={`이 페이지는 기술 독자 — 보안 책임자, 대학 CISO, 호기심 많은 개발자 — 가 기대하는 수준에서 보안 모델을 설명합니다. 비기술적 요약은 <a href="/ko/security">/ko/security</a>에서 시작하세요.`}
+    breadcrumb={{ label: "보안", href: "/ko/security" }}
+  />
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+
+      <h2>위협 모델</h2>
+      <p>
+        기기 도난, 네트워크 가로채기, 백업이나 클라우드 동기화를 통한 우발적 노출을 가정합니다. 사용자 자격 증명이 손상될 수 있다고 가정합니다. 잠금 해제된 기기에 물리적 액세스가 있는 국가 수준 적대자는 <em>가정하지 않습니다</em> — Fluera는 비밀 도구가 아니라 학습 도구입니다.
+      </p>
+      <p>그 모델 안에서, 세 가지 보장:</p>
+      <ul>
+        <li><strong>로컬 데이터는 키 없이 읽을 수 없습니다.</strong> 도난당한 기기는 암호화된 블롭을 산출합니다.</li>
+        <li><strong>동기화된 데이터는 우리가 읽을 수 없습니다.</strong> 클라우드는 암호문만 보유합니다. 파생은 기기에서 발생합니다.</li>
+        <li><strong>텔레메트리는 동의 기반이고 비식별화됩니다.</strong> 분석은 완전한 침해의 경우에도 사용자를 콘텐츠에 연결할 수 없습니다.</li>
+      </ul>
+
+      <h2>정지 시: SQLCipher, AES-256</h2>
+      <p>
+        모든 Fluera 노트북은 SQLCipher로 암호화된 로컬 SQLite 데이터베이스에 살고 있습니다 — AES-256-CBC로 모든 데이터베이스 페이지를 투명하게 암호화하고 페이지당 HMAC-SHA512 무결성 검사를 수행하는 광범위하게 검증된 확장.
+      </p>
+      <p>
+        키 파생은 SHA-256으로 PBKDF2를 사용하며 256,000회 반복 (OWASP에 맞춰짐). 패스프레이즈는 플랫폼 키체인에 보관됩니다 — iOS/macOS의 Keychain, Android의 Keystore, Windows의 DPAPI, Linux의 libsecret. 우리 서버에 전송되지 않습니다.
+      </p>
+
+      <h2>전송 중: TLS 1.3, 인증서 피닝</h2>
+      <p>
+        모든 네트워크 트래픽은 현대 암호로 TLS 1.3입니다. iOS와 Android에서 우리 CA 체인에 인증서 피닝을 사용하여 기업 프록시의 중간자 공격을 방지합니다 — 필요한 네트워크 관리자를 위해 문서화된 오버라이드 포함.
+      </p>
+
+      <h2>기기 간 동기화: 종단 간 암호화</h2>
+      <p>
+        클라우드 동기화는 활성화되면 기기에서 파생된 별도 키 세트를 사용합니다. 동기화 서버 (Supabase Storage, EU 지역)는 암호문을 보유하고 해독할 수 없습니다. 동기화는 노트북별 옵트인입니다 — 일부를 로컬로만 유지하면서 다른 것을 동기화할 수 있습니다.
+      </p>
+
+      <h2>P2P 협업: 직접, 암호화</h2>
+      <p>
+        실시간 협업은 DTLS-SRTP 암호화로 WebRTC DataChannel을 사용합니다. Supabase Realtime은 시그널링 브로커 역할만 합니다 — 연결 설정 — 실제 캔버스 트래픽의 릴레이가 아닙니다. 핸드셰이크 후, 캔버스 편집은 피어 투 피어로 흐릅니다. 서버는 그것을 보지 못합니다.
+      </p>
+
+      <h2>AI 호출: 프록시를 통해, 직접 아님</h2>
+      <p>
+        Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session)에 대한 호출은 서버 측에 API 키를 보관하는 Supabase Edge Function을 통과합니다. 클라이언트 기기는 결코 키를 보지 못합니다. 프록시는 플랜별 속도 제한을 적용하고 회계를 위해 호출 지속 시간을 로깅합니다 — 캔버스 콘텐츠는 절대 아닙니다.
+      </p>
+
+      <h2>텔레메트리: 옵트인, 해시화, 허용 목록</h2>
+      <p>
+        제품 분석은 기본적으로 비활성화됩니다. 활성화될 때, 이벤트는 서버 측 화이트리스트로 제한됩니다 (세션 시작/종료, 기능 호출, AI 호출 지속 시간 — 콘텐츠는 절대 아님). 사용자 ID는 기기에서 SHA-256 해시됩니다. 평문 ID는 클라이언트를 떠나지 않습니다.
+      </p>
+
+      <h2>감사 로그 (기관 계정)</h2>
+      <p>
+        공유 노트북에 대한 모든 액세스 — 누가, 어떤 기기에서, 언제 — 가 추가 전용 감사 로그에 기록됩니다. 관리자는 컴플라이언스 검토를 위해 CSV 또는 JSON으로 로그를 내보낼 수 있습니다.
+      </p>
+
+      <h2>복구 및 키 손실</h2>
+      <p>
+        패스프레이즈를 잃으면 암호화된 데이터를 복구할 수 없게 됩니다. 의도적입니다 — 대안은 필연적으로 암호화 모델을 약화시킬 복구 경로일 것입니다. 기관 계정의 경우, 관리자가 보유한 선택적 복구 키를 구성할 수 있습니다.
+      </p>
+
+      <h2>책임 있는 공개</h2>
+      <p>
+        보안 연구원은 환영합니다. <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>로 PGP 암호화 (GitHub 프로필에 게시된 키)와 함께 취약점을 보고하세요. 24시간 이내 회신, 중요 문제 72시간 이내 패치, 익명을 요청하지 않는 한 명예의 전당에 보고자 인정.
+      </p>
+
+      <h2>외부 평가</h2>
+      <p>
+        Fluera는 현재 SOC 2 또는 ISO 27001 인증이 없습니다. 엔터프라이즈 로드맵에 있으며 완료 시 공개적으로 발표됩니다. 독립적으로 검증하지 않은 통제를 선언하지 않는 것을 선호합니다.
+      </p>
+      <p>
+        <a href="/ko/security/sub-processors">하위 처리자 목록</a>은 공개되어 있고 최신 상태입니다. Data Processing Agreement는 <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a>로 요청 시 사용 가능합니다.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/ko/security/sub-processors" class="btn-secondary">하위 처리자 →</a>
+        <a href="/ko/contact" class="btn-primary">배포에 대해 상담</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

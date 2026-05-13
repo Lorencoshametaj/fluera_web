@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "Beta",  note: "TestFlight-invitasjon etter at du er sluppet inn i betaen." },
+  { name: "macOS",        status: "Beta",  note: ".dmg-fil via privat lenke etter klarsignal." },
+  { name: "Android",      status: "Alpha", note: "APK via internal track på Google Play." },
+  { name: "Windows",      status: "Alpha", note: "Signert .exe-installatør via Microsoft Store." },
+  { name: "Linux",        status: "Alpha", note: "AppImage + Flatpak." },
+  { name: "Web",          status: "Demo",  note: "Test på /demo nå — krever nettleser med WebGPU." },
+];
+---
+
+<BaseLayout
+  title="Nedlasting"
+  description="Fluera kjører nativt på iOS, Android, macOS, Windows, Linux og i nettleseren. Bli med i closed beta for tidlig tilgang."
+  locale="no"
+>
+  <PageHero
+    kicker="Nedlasting"
+    title="Seks plattformer.<br />Bli med i betaen for tilgang."
+    description="Fluera er i closed beta. Så snart du er inne, kommer installasjonslenkene på e-post — native apper på hver plattform, ingen nedbarbert webversjon."
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">Be om beta-tilgang →</a>
+      <a href="/demo" class="btn-secondary">Test web-demoen</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        De offentlige releasene i App Store og Google Play kommer på slutten av closed beta. Inntil da er statusene over ærlige om modenheten på hver plattform — vi lanserer heller godt på én enn dårlig på seks.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

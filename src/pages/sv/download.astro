@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "Beta",  note: "TestFlight-inbjudan efter att du godkänts i betan." },
+  { name: "macOS",        status: "Beta",  note: ".dmg-fil via privat länk efter godkännande." },
+  { name: "Android",      status: "Alpha", note: "APK via Google Play internal track." },
+  { name: "Windows",      status: "Alpha", note: "Signerad .exe-installer via Microsoft Store." },
+  { name: "Linux",        status: "Alpha", note: "AppImage + flatpak." },
+  { name: "Web",          status: "Demo",  note: "Testa nu på /demo — kräver webbläsare med WebGPU." },
+];
+---
+
+<BaseLayout
+  title="Ladda ner"
+  description="Fluera körs nativt på iOS, Android, macOS, Windows, Linux och på webben. Gå med i den slutna betan för tidig åtkomst."
+  locale="sv"
+>
+  <PageHero
+    kicker="Ladda ner"
+    title="Sex plattformar.<br />Gå med i betan för åtkomst."
+    description="Fluera är i sluten beta. När du är inne kommer installationslänkarna via e-post — native app på varje plattform, ingen avskalad webbversion."
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">Begär beta-åtkomst →</a>
+      <a href="/demo" class="btn-secondary">Testa webbdemon</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        De publika lanseringarna på App Store och Google Play kommer i slutet av den slutna betan. Under tiden är statusarna ovan ärliga om mognadsgraden för varje plattform — vi släpper hellre bra på en än dåligt på sex.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

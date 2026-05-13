@@ -1,7 +1,7 @@
 ---
 lang: "it"
 title: "Retrieval practice"
-shortDescription: "Tirare l'informazione fuori dalla memoria — anche quando il tentativo fallisce — produce ritenzione a lungo termine molto più forte della rilettura. Il test non misura la memoria: la crea."
+shortDescription: "Tirare l'informazione fuori dalla memoria — anche quando il tentativo fallisce — produce memoria a lungo termine molto più forte della rilettura. Il test non misura la memoria: la crea."
 keyYear: "2006"
 fieldOfStudy: memory
 primaryAuthors: [roediger-karpicke]

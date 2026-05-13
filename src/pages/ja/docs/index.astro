@@ -1,0 +1,37 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { buildDocsSections } from "@/lib/docs-nav";
+
+const sections = await buildDocsSections("ja");
+---
+
+<DocLayout
+  title="ユーザードキュメント"
+  description="Fluera を設計どおりに使うための実践的なガイド。初めての方は「ようこそ」から始めてください。"
+  sections={sections}
+  rootHref="/ja/docs"
+  rootLabel="ドキュメント"
+  sectionLabel="概要"
+  locale="ja"
+>
+  <p>Fluera のユーザードキュメントへようこそ。左サイドバーは新規ユーザーが通常たどる流れに沿って並んでいます。まずは <a href="/ja/docs/welcome">ようこそ</a>、次に <a href="/ja/docs/first-canvas">最初のキャンバス</a> を読み、トラブルシューティングは必要になったときに参照してください。</p>
+
+  <p><em>なぜ</em> を知りたい方 — 認知科学、研究、製品が築かれている12ステップの学習サイクルについては、<a href="/ja/science">サイエンスのページ</a> をご覧ください。ここにあるドキュメントは実践的な <em>使い方</em> です。</p>
+
+  <h2>セクション別</h2>
+
+  {sections.map((sec) => (
+    <section class="mt-8">
+      <h3 id={sec.slug}>{sec.label}</h3>
+      <ul>
+        {sec.links.map((link) => (
+          <li><a href={link.href}>{link.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <h2>探しているものが見つからない場合</h2>
+
+  <p><a href="mailto:support@fluera.dev">support@fluera.dev</a> までご連絡ください。創業者が1営業日以内に返信します。多くは1時間以内です。ドキュメントに不足を見つけたら教えてください。すぐに補います。</p>
+</DocLayout>

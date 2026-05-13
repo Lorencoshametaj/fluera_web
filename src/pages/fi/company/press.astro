@@ -1,0 +1,173 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const factBullets = [
+  "Kognitiivinen oppimissovellus yksityisessä betassa, julkaistu iOS:lle ja macOS:lle huhtikuussa 2026.",
+  "Ääretön käsinkirjoitettava canvas, 13 painearkaa sivellintä ja alle 15 millisekunnin vetolatenssi kuudella alustalla.",
+  "Tekoälyominaisuudet, jotka kysyvät vastaamisen sijaan — ankkuroituna viidenkymmenen vuoden muistitutkimukseen.",
+  "Rakennettu fluera_enginen päälle, joka on omistettu 2D-renderöintimoottori Flutterille, saatavilla myös ulkoisille kehittäjille.",
+  "Kahden hengen tiimi Milanossa. Ei ulkoista rahoitusta julkaisupäivään mennessä.",
+];
+
+const imageAssets = [
+  { name: "Logo — värillinen",           path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
+  { name: "Logo — monokromi vaalea",     path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
+  { name: "Logo — monokromi tumma",      path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
+  { name: "Sovelluskuva — iPad",         path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
+  { name: "Sovelluskuva — macOS",        path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
+  { name: "Perustajan muotokuva",        path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
+];
+
+const quotables = [
+  {
+    context: "Lähtökohdasta",
+    quote: "Vuonna 2026 tieto haetaan kolmessa sekunnissa ja unohdetaan kolmessa viikossa. Meillä on kymmenen sovellusta muistiinpanojen tekemiseen ja ei yhtäkään sen säilyttämiseen, mitä olemme oppineet.",
+  },
+  {
+    context: "Tekoälystä",
+    quote: "Tekoäly, joka vastaa tenteistäsi puolestasi, on tekoäly, joka ei opeta sinulle mitään. Flueran tekoäly kysyy, rakentaa tukirakenteita, reflektoi — se ei korvaa ajattelua.",
+  },
+  {
+    context: "Todisteista",
+    quote: "Kognitiotiede on ollut selvä viidenkymmenen vuoden ajan. Meiltä ei ole koskaan puuttunut työkalua, joka tekisi oikeasta helpoimman tavan. Sitä yritämme rakentaa.",
+  },
+  {
+    context: "Yleisöstä",
+    quote: "Fluera ei ole kaikille. Kitka on todellista. Se on rakennettu sille oppijoiden kohortille, joka osaa erottaa sujuvuuden osaamisesta silloin kun sillä on väliä — lääkärit suullisessa tentissä, tohtorikoulutettavat, juristit, pitkän linjan itseoppijat.",
+  },
+];
+---
+
+<BaseLayout
+  title="Press Kit"
+  description="Logot, kuvakaappaukset, perustajaesittelyt ja siteerattavat lauseet toimittajille ja kirjoittajille, jotka käsittelevät Flueraa."
+  locale="fi"
+>
+
+  <PageHero
+    kicker="Lehdistö"
+    title="Kirjoitatko Fluerasta?<br />Täältä löydät kaiken tarvitsemasi."
+    description={`Logot, kuvakaappaukset, perustajakuvat ja tiivis factsheet. Kaikki tällä sivulla on vapaata toimitukselliseen käyttöön — mainitsemalla <em>Fluera</em> ja linkkaamalla osoitteeseen <a href="/">fluera.dev</a>.`}
+  >
+    <div slot="copy" class="mt-8 flex flex-wrap gap-4">
+      <a href="/press/fluera-press-kit.zip" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Lataa koko Press Kit (.zip)
+      </a>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Lehdistötiedustelu`} class="btn-secondary">
+        Kirjoita tiimille →
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Factsheet</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Minuutin lukema.</h2>
+      </div>
+
+      <ul class="space-y-4 list-none p-0 max-w-3xl">
+        {factBullets.map((f) => (
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <span class="text-paper-200 text-lg leading-relaxed">{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Siteerattavaa</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Lauseet, jotka voit siteerata sellaisenaan.</h2>
+        <p class="prose-ink text-sm mt-4">
+          Kaikki sitaatit attribuoidaan Fluera-tiimille, ellet ole haastatellut tiettyä perustajaa — siinä tapauksessa sovi kanssamme ennen henkilön nimeämistä.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 max-w-5xl">
+        {quotables.map((q) => (
+          <figure class="card p-7">
+            <p class="eyebrow text-accent-glow mb-4">{q.context}</p>
+            <blockquote class="font-serif text-lg text-paper-50 leading-relaxed italic">
+              "{q.quote}"
+            </blockquote>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Visuaaliset aineistot</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Logot, kuvakaappaukset, muotokuvat.</h2>
+        <p class="prose-ink text-sm mt-4">
+          Saatavilla yksittäin alla tai yhdessä yllä olevan Press Kit -linkin kautta.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {imageAssets.map((a) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{a.name}</h3>
+            <p class="text-xs font-mono text-ink-500 mb-4">{a.size}</p>
+            <a href={a.path} class="text-accent-glow text-sm underline underline-offset-4 hover:text-paper-50" download>
+              Lataa →
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-xl">
+        Huom.: yksittäiset aineistotiedostot ovat paikanvaraajia, kunnes julkaisemme lopullisen Press Kitin. Linkit palauttavat toistaiseksi 404 — täytämme ne, kun poistumme yksityisestä betasta.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Mitä saat tehdä</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Kyllä, vapaasti.</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Käytä logoja ja kuvakaappauksia artikkelissa</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Sisällytä siteerattavat lauseet attribuoituina</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Rajaa tai skaalaa kuvakaappauksia (älä muokkaa logoja)</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Haastattele perustajia (kirjoita sopimaan)</li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Mitä vältät</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Kiitos huomaavaisuudesta.</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Älä muokkaa tai värjää logoa uudelleen</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Älä vihjaa suositusta tuotteille, joita emme suosittele</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Älä käytä Fluera-aineistoja tekoälyn koulutusdatassa</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Älä aseta logoamme kilpailijan viereen ilman selvää toimituksellista perustelua</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Suora linja tiimiin.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Lehdistötiedustelut saapuvat suoraan perustajalle, ei PR-toimistoon. Vastaus 24 tunnin sisällä arkipäivinä — useimmiten tunnin sisällä.
+      </p>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Lehdistötiedustelu`} class="btn-primary">
+        {SITE.company.contactEmail}
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

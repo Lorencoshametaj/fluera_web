@@ -4,57 +4,25 @@ import AuthorCard from "@/components/AuthorCard.astro";
 import LearningStep from "@/components/LearningStep.astro";
 import PillarFeature from "@/components/PillarFeature.astro";
 import { SITE } from "@/lib/site";
+import home from "@/data/home/it";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: SITE.name,
-  applicationCategory: "EducationalApplication",
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
   operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
   description: "Un canvas di studio infinito costruito sulla scienza cognitiva dell'apprendimento.",
   url: `${SITE.url}/it/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
 };
 
-const steps = [
-  { n: 1,  title: "Cattura",             verb: "Giorno lezione",        description: "Scrivi i concetti a mano durante la lezione. Posizionali nello spazio. La compressione — forzata dalla lentezza della penna — è dove nasce la codifica." },
-  { n: 2,  title: "Ricostruzione",       verb: "Stessa sera",           description: "Chiudi il libro. Ricostruisci ciò che ricordi su un canvas vuoto. I nodi rossi dove vacilli sono la mappa di cosa studiare (Kapur, productive failure, 2008)." },
-  { n: 3,  title: "Socratica",           verb: "Entro 48h",             description: "L'IA chiede, tu rispondi. Dichiari la tua confidenza da 1 a 5 prima di ogni rivelazione. Metacognizione resa esplicita." },
-  { n: 4,  title: "Centauro",            verb: "Subito dopo",           description: "Ghost Map sovrappone il tuo ragionamento alla mappa ideale. L'ipercorrezione rende permanenti le lacune (Butterfield & Metcalfe, 2001)." },
-  { n: 5,  title: "Sonno",               verb: "Quella notte",          description: "Non fare nulla. Il sonno a onde lente rigioca il giorno. L'ippocampo passa le tracce alla corteccia. Noi ci facciamo da parte." },
-  { n: 6,  title: "Primo ritorno",       verb: "Giorno 1",              description: "Torna il giorno dopo. Il canvas sfuma ciò che quasi sapevi. Lo recuperi dalla memoria e riscrivi ciò che è scivolato." },
-  { n: 7,  title: "Apprendimento solidale",verb: "Giorni 2–3",           description: "Visita il canvas di un compagno. Insegna. Fatti insegnare. Organizzare per altri lo consolida per te (effetto protégé)." },
-  { n: 8,  title: "Ritorni SRS",         verb: "Giorno 3 · 7 · 14…",    description: "Riapprendimento successivo a intervalli crescenti. La strategia gold standard nell'evidenza scientifica (Rawson & Dunlosky, 2011)." },
-  { n: 9,  title: "Ponti cross-dominio", verb: "Settimane dopo",        description: "Zoom out alla vista continente. Traccia frecce tra chimica ed equazioni differenziali. Il transfer è il test vero dell'apprendimento." },
-  { n: 10, title: "Preparazione esame",  verb: "7–14 giorni prima",     description: "Fog of War. Naviga nella nebbia del tuo canvas. Verde, rosso, punti ciechi — la mappa della padronanza si disegna da sola." },
-  { n: 11, title: "L'esame",             verb: "Il giorno",             description: "Chiudi il dispositivo. Cammina nel palazzo della memoria che hai costruito con le mani per settimane. Il canvas vive in te ora." },
-  { n: 12, title: "Crescita permanente", verb: "Per sempre",            description: "Il canvas persiste come autobiografia cognitiva. Torni dopo due anni e vedi la forma tangibile di quanto sei cresciuto." },
-];
-
-const authors = [
-  { name: "Robert A. Bjork", contribution: "Desirable difficulties — la scoperta controintuitiva che uno studio più difficile produce ricordo migliore.", year: "1994" },
-  { name: "Butterfield e Metcalfe", contribution: "Effetto ipercorrezione — gli errori fatti con alta confidenza, una volta corretti, sono i più duraturi.", year: "2001" },
-  { name: "Daniel Kahneman", contribution: "Sistema 1 vs Sistema 2 — intuizione veloce contro deliberazione lenta nel pensiero e nella memoria.", year: "2011" },
-  { name: "Lev Vygotsky", contribution: "Zona di sviluppo prossimale — la fascia stretta dove imparare con scaffolding supera l'imparare da soli.", year: "1978" },
-  { name: "Albert Bandura", contribution: "Auto-efficacia — il predittore singolo più forte del successo accademico, superiore al QI.", year: "1977" },
-  { name: "Carol Dweck", contribution: "Growth mindset — lodare lo sforzo invece del talento cambia la risposta alla difficoltà.", year: "2006" },
-  { name: "Mihaly Csikszentmihalyi", contribution: "Flow — massima prestazione cognitiva quando sfida e abilità si bilanciano.", year: "1990" },
-  { name: "Joseph Novak", contribution: "Concept mapping — costruire una mappa batte studiarne una precostruita, in ogni disciplina.", year: "1984" },
-  { name: "O'Keefe e Moser", contribution: "Place cells e grid cells — il GPS biologico del cervello. Perché il Palazzo della Memoria funziona.", year: "Nobel 2014", nobel: true },
-  { name: "Mueller e Oppenheimer", contribution: "Gli appunti a mano battono quelli al laptop sulle domande concettuali — anche quando quelli al laptop sono più completi.", year: "2014" },
-  { name: "Audrey van der Meer", contribution: "Evidenza EEG: la scrittura a mano attiva reti cerebrali più ampie della digitazione.", year: "2020" },
-  { name: "Roediger e Karpicke", contribution: "Retrieval practice — il test non misura la memoria, la crea.", year: "2006" },
-];
-
-const platforms = [
-  { name: "iOS",     api: "Metal",        status: "Beta" },
-  { name: "iPadOS",  api: "Metal",        status: "Beta" },
-  { name: "macOS",   api: "Metal",        status: "Beta" },
-  { name: "Windows", api: "Direct3D 11",  status: "Alpha" },
-  { name: "Android", api: "Vulkan",       status: "Alpha" },
-  { name: "Linux",   api: "OpenGL",       status: "Alpha" },
-  { name: "Web",     api: "WebGPU",       status: "Demo" },
-];
+const { steps, authors, platforms } = home;
 ---
 
 <BaseLayout
@@ -65,22 +33,22 @@ const platforms = [
 >
 
   <section class="relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-40 -left-40 bg-accent-ink/30 animate-orb-pulse"></div>
-    <div class="glow-orb h-[420px] w-[420px] top-32 -right-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
 
     <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
       <div class="max-w-3xl">
         <div class="pill mb-8">
           <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
-          Beta privata · Prima coorte
+          Beta privata · Su invito
         </div>
 
         <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
-          Lo spazio di studio<br />per come funziona<br /><span class="text-gradient">davvero la mente.</span>
+          Lo spazio di studio<br />costruito sul<br /><span class="text-gradient">funzionamento della mente.</span>
         </h1>
 
         <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
-          Scrivi a mano su un canvas infinito. Fatti interrogare invece di ricevere risposte. Rivedi il tuo stesso pensiero nel tempo. Costruito per come funziona davvero la memoria.
+          Scrivi a mano su un canvas infinito. Lascia che l'IA ti interroghi invece di darti risposte. Rivedi il tuo pensiero nel tempo. Calibrato sul modo in cui la memoria si forma davvero.
         </p>
 
         <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
@@ -101,7 +69,7 @@ const platforms = [
           <span>Linux</span><span class="text-ink-600">·</span>
           <span>Web</span><span class="text-ink-600">·</span>
           <span>End-to-end cifrato</span><span class="text-ink-600">·</span>
-          <span>GDPR-nativo</span>
+          <span>GDPR per default</span>
         </p>
       </div>
     </div>
@@ -122,7 +90,7 @@ const platforms = [
           Sottolineare sembra studiare. Rileggere sembra studiare. Chiedere a un LLM un riassunto sembra studiare. Nessuna delle tre lo è — la scienza cognitiva lo dice da cinquant'anni.
         </p>
         <p>
-          Il collo di bottiglia dell'apprendimento non è più l'accesso. È <em>la codifica</em>. È <em>la ritenzione</em>. È <em>il transfer</em>.
+          Il collo di bottiglia dell'apprendimento non è più l'accesso — è <em>la codifica, il consolidamento e il transfer</em>: tre problemi insieme.
         </p>
         <p class="font-serif text-paper-50 text-xl">
           Fluera è costruito per queste tre.
@@ -165,7 +133,7 @@ const platforms = [
       <div class="space-y-28">
         <PillarFeature
           label="Ghost Map · Passo 4"
-          title="Vedi lo scarto tra ciò che hai scritto e ciò che era giusto."
+          title="Vedi la distanza tra ciò che hai scritto e la soluzione corretta."
           description="Dopo un tentativo di recupero, Fluera sovrappone il tuo lavoro a una soluzione ideale. Le discrepanze pulsano. Non accusano — risvegliano la memoria. Più avevi torto, più la correzione si fissa."
           citation="Effetto ipercorrezione — Butterfield e Metcalfe, 2001."
           href="/beta"
@@ -189,18 +157,45 @@ const platforms = [
           status="beta"
         />
         <PillarFeature
-          label="Time Travel · Passo 5+"
-          title="Rigioca ogni tratto sincronizzato con l'audio della lezione."
-          description="Tocca un appunto di tre settimane fa e l'audio riprende dove stavi scrivendo. Ri-vivi il tuo stesso pensiero. Il quaderno diventa una macchina del tempo per il contesto."
-          citation="Recupero dipendente dal contesto — Tulving, 1972."
-          href="/beta"
-          status="coming-soon"
+          label="Exam Session · Passo 11"
+          title="Esami simulati dal tuo canvas — corretti da Ghost Map."
+          description="Confidence picker da 1 a 5 prima di ogni domanda. Closed-book. Dopo l'invio, Fluera sovrappone la tua risposta a quella ideale e applica l'ipercorrezione dove eri più sicuro e hai sbagliato. Più grande la sorpresa, più la correzione si fissa."
+          citation="Ipercorrezione — Butterfield e Metcalfe, 2001 · Productive failure — Kapur, 2008."
+          href="/it/features/exam-session"
+          status="beta"
           reverse
         />
       </div>
 
       <div class="mt-24 max-w-3xl">
         <a href="/beta" class="btn-primary">Provalo nella beta →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">Inchiostro, non tastiera</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            Digitare è più veloce.<br />Scrivere a mano è meglio.<br />Il cervello non è ottimizzato per la velocità.
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller e Oppenheimer, Princeton 2014 · van der Meer, NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            Quando Mueller e Oppenheimer pubblicarono il famoso studio di Princeton nel 2014, gli studenti che prendevano appunti a mano superavano quelli al laptop sulle domande concettuali — <em>nonostante</em> i secondi avessero scritto molto più testo. La mano era più lenta. La mente era più profonda.
+          </p>
+          <p>
+            Dieci anni dopo, l'EEG di Audrey van der Meer alla NTNU (2020) ha dato il <em>perché</em>: la scrittura a mano attiva reti cerebrali più ampie della digitazione, soprattutto nelle regioni legate alla formazione della memoria e all'integrazione sensorimotoria. La penna è uno strumento cognitivo.
+          </p>
+          <p>
+            Fluera è costruito attorno a questo. Tredici brush engine. Pressione, tilt, velocità. Latenza del tratto sotto i 15 millisecondi su ogni dispositivo supportato. Il canvas infinito non è estetica — è il substrato che la tua memoria ti chiedeva.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -222,6 +217,16 @@ const platforms = [
         {authors.map((a) => (
           <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
         ))}
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] max-w-2xl">
+        <h3 class="font-serif text-lg text-paper-50 mb-2">Cosa non rivendichiamo</h3>
+        <p class="text-sm text-paper-300 leading-relaxed mb-3">
+          Citiamo cinquant'anni di ricerca sulla memoria. Non abbiamo ancora condotto studi randomizzati su Fluera in sé — non ancora. Quando diciamo "evidence-based" intendiamo che i principi sottostanti lo sono; la nostra specifica implementazione è una scommessa ingegneristica informata dall'evidenza.
+        </p>
+        <p class="text-sm text-paper-300 leading-relaxed">
+          Non promettiamo nemmeno l'expertise. Meta-analisi (Macnamara, Hambrick &amp; Moreau, 2014) hanno trovato che la pratica deliberata spiega circa il 4% della varianza nelle performance educative — il resto è prior knowledge, motivazione, capacità di working memory e opportunità. Fluera ottimizza il loop di pratica. Le ore, il focus, e la curiosità restano tuoi.
+        </p>
       </div>
     </div>
   </section>
@@ -248,20 +253,106 @@ const platforms = [
           </div>
         ))}
       </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        Le etichette di stato sono oneste sulla maturità di rilascio. Le piattaforme "Alpha" o "Demo" funzionano ma vanno rifinite — entra in beta se vuoi aiutarci a modellarle.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">La tua mente, i tuoi dati</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          End-to-end cifrato.<br />La chiave la tieni tu.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">AES-256 a riposo</h3>
+          <p class="text-sm text-paper-300">Cifratura SQLCipher su ogni dispositivo. Il database locale è illeggibile senza la tua chiave.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">GDPR per default</h3>
+          <p class="text-sm text-paper-300">Hosting EU, DPA disponibile, esportazione e cancellazione completa su richiesta.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Zero ad-tech</h3>
+          <p class="text-sm text-paper-300">Niente pixel di tracciamento. Niente pubblicità comportamentale. Non addestriamo i nostri modelli sui tuoi contenuti.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Audit log</h3>
+          <p class="text-sm text-paper-300">Per gli account Education, ogni accesso è registrato in una traccia immutabile.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">Leggi l'architettura di sicurezza →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Prezzi</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Free per imparare. Plus e Pro per andare a fondo.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">Il canvas completo. Tre quaderni. Gratis per sempre.</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5,99<span class="text-sm font-sans text-paper-300">/mese</span></p>
+          <p class="text-sm text-paper-300">Canvas illimitato, sync 2 device, AI di base. €49/anno.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11,99<span class="text-sm font-sans text-paper-300">/mese</span></p>
+          <p class="text-sm text-paper-300">Exam Session, Atlas, suite AI completa, sync illimitato. €99/anno.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19,99<span class="text-sm font-sans text-paper-300">/seat</span></p>
+          <p class="text-sm text-paper-300">Canvas condivisi, team Atlas, ACL, audit log. Da 5 seat.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        Studenti verificati ottengono Plus o Pro al 50% tramite il programma pilota. Chi sottoscrive ora blocca la tariffa per la durata dell'abbonamento.
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">Vedi tutti i prezzi →</a>
+      </div>
     </div>
   </section>
 
   <!-- BETA CTA -->
   <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
-    <div class="glow-orb h-[400px] w-[400px] top-0 left-1/2 -translate-x-1/2 bg-accent-ink/20 animate-orb-pulse"></div>
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
 
     <div class="container-narrow relative text-center">
       <p class="eyebrow mb-6 text-accent-glow">Unisciti a noi</p>
       <h2 class="font-serif text-display-xl text-paper-50 mb-8">
-        Siamo in beta privata.<br />Lenta di proposito.
+        Beta privata.<br />Onboarding per coorti.
       </h2>
       <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
-        Facciamo entrare poche centinaia di learner alla volta, per poter ascoltare ciascuno. Se sei stanco di app che promettono di imparare al posto tuo, scrivici.
+        Facciamo entrare gli utenti per coorti, così ogni gruppo — studenti, professionisti, docenti — ha una vera conversazione, non un numero in coda. Se sei stanco di app che promettono di imparare al posto tuo, richiedi accesso.
       </p>
       <a href="/beta" class="btn-primary text-base px-6 py-3.5">
         Richiedi accesso →

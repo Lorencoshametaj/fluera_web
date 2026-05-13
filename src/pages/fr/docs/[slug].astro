@@ -1,0 +1,50 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import { buildDocsSections } from "@/lib/docs-nav";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs", ({ data }) => data.lang === "fr");
+  return docs.map((d) => ({
+    params: { slug: d.id.replace(/\.fr$/, "") },
+    props: { doc: d },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+const sections = await buildDocsSections("fr");
+
+async function resolveLocalized(ref: { collection: "docs"; id: string }) {
+  const localizedId = ref.id.endsWith(".fr") ? ref.id : `${ref.id}.fr`;
+  return (await getEntry(ref.collection, localizedId)) ?? (await getEntry(ref));
+}
+
+const relatedDocs = (
+  await Promise.all(doc.data.relatedDocs.map(resolveLocalized))
+).filter(Boolean);
+---
+
+<DocLayout
+  title={doc.data.title}
+  description={doc.data.description}
+  sections={sections}
+  rootHref="/fr/docs"
+  rootLabel="Documentation"
+  sectionLabel={doc.data.sectionLabel}
+  updatedAt={doc.data.updatedAt}
+  locale="fr"
+>
+  <Content />
+
+  {relatedDocs.length > 0 && (
+    <section class="mt-16 pt-8 border-t border-white/[0.06]">
+      <h3 class="font-serif text-lg text-paper-50 mb-3">Liés</h3>
+      <ul>
+        {relatedDocs.map((d) => d && (
+          <li><a href={`/fr/docs/${d.id.replace(/\.fr$/, "")}`}>{d.data.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  )}
+</DocLayout>

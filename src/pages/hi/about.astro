@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="हमारे बारे में"
+  description="Fluera इटली में एक छोटी टीम द्वारा बनाया गया है। हमारी कहानी, हमारे विश्वास, वह रेखा जिसे हम पार नहीं करेंगे।"
+  locale="hi"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">हमारे बारे में</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
+          हमने वह अध्ययन ऐप बनाया<br />जो हम छात्र होने पर<br />चाहते थे।
+        </h1>
+        <div class="prose-ink text-lg">
+          <p>
+            Fluera निराशा से जन्मा। हम में से एक, दस साल के अनुभव वाला फुल-स्टैक डेवलपर; दूसरा, एक छात्र जो अपने साथियों को उसी जाल में गिरते देख रहा था — ऐप्स जो उत्पादक लगते थे लेकिन कुछ भी याद रखने में मदद नहीं करते थे।
+          </p>
+          <p>
+            हमने अनुसंधान पढ़ा। <em>बहुत सारा</em> अनुसंधान। Bjork, Mueller, Roediger, van der Meer, O'Keefe। संज्ञानात्मक विज्ञान आधी सदी से स्पष्ट है: हस्तलेखन टाइपिंग को हराता है, पुनर्प्राप्ति पुनः पढ़ने को हराती है, अंतराल वर्णन को हराता है, घर्षण एक विशेषता है। हमें कोई ऐप नहीं मिला जो इनमें से किसी को गंभीरता से लेता। तो हमने एक बनाया।
+          </p>
+          <p>
+            रास्ते में, हमने स्क्रैच से एक 2D रेंडरिंग इंजन लिखा — क्योंकि कोई ऑफ-द-शेल्फ स्टैक छह नेटिव प्लेटफॉर्म पर 60 FPS पर दबाव-संवेदनशील स्याही नहीं संभाल सकता था। इंजन वह सब्सट्रेट है जिस पर संज्ञानात्मक विशेषताएं रहती हैं।
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">रेखा</p>
+        <h2 class="font-serif text-display-lg text-paper-50 mb-8">हम क्या नहीं करेंगे।</h2>
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">हमारे पास ऐसा AI नहीं होगा जो आपकी जगह परीक्षा के उत्तर दे।</strong>
+              <p class="text-sm mt-1 text-paper-300">Fluera का AI पूछता है, स्कैफोल्डिंग करता है, परावर्तित करता है। आपकी सोच को कभी बंद नहीं करता। संज्ञानात्मक कार्य के लिए AI का उपयोग करना उस मांसपेशी को क्षीण करना है जिसे हमें प्रशिक्षित करना चाहिए।</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">हम आपकी नोटबुक डेटा नहीं बेचेंगे।</strong>
+              <p class="text-sm mt-1 text-paper-300">आपके नोट्स विश्राम पर एन्क्रिप्टेड हैं, सिंक होने पर एंड-टू-एंड, और किसी के मॉडल को प्रशिक्षित करने के लिए कभी उपयोग नहीं किए जाते। हमारे सहित।</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">कोई विज्ञापन, सहभागिता लूप, स्ट्रीक नहीं।</strong>
+              <p class="text-sm mt-1 text-paper-300">अध्ययन के साथ आपका रिश्ता पुश सूचना पर निर्भर नहीं होना चाहिए। हम चाहते हैं कि आप Fluera का कम उपयोग करें और अधिक सीखें।</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">हम ऐसी विशेषताएं प्रकाशित नहीं करेंगे जिनका हम उद्धरण के साथ बचाव नहीं कर सकते।</strong>
+              <p class="text-sm mt-1 text-paper-300">यदि कोई विशेषता प्रकाशित खोज या हमारी बीटा से सुसंगत प्रतिक्रिया पर वापस नहीं जाती है, तो वह उत्पादन में नहीं जाती। वाह प्रभाव कोई विशेषता नहीं है। नवीनता कोई विशेषता नहीं है।</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        {SITE.company.city} में मुख्यालय। हम क्या अस्वीकार करते हैं और क्यों, इसका लंबा बयान <a href="/hi/manifesto" class="text-paper-300 underline underline-offset-4">मैनिफेस्टो</a> में रहता है।
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/hi/contact" class="btn-secondary">हमसे संपर्क करें</a>
+        <a href="/beta" class="btn-primary">बीटा में शामिल हों</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

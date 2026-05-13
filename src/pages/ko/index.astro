@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+import home from "@/data/home/ko";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "학습의 인지 과학 위에 구축된 무한 학습 캔버스.",
+  url: `${SITE.url}/ko/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const { steps, authors, platforms } = home;
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="학습의 인지 과학 위에 구축된 무한 학습 캔버스. iOS, Android, macOS, Windows, Linux, Web."
+  jsonLd={jsonLd}
+  locale="ko"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          비공개 베타 ・ 초대 전용
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          기억이 작동하는 방식에<br />맞게 설계된<br /><span class="text-gradient">학습 공간.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          무한 캔버스에 손으로 쓰세요. AI가 답을 주는 대신 질문하게 하세요. 시간이 지남에 따라 자신의 사고를 다시 보세요. 기억이 실제로 어떻게 형성되는지에 맞춰 조정되었습니다.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            베타 참여
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            라이브 데모 시도
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>종단 간 암호화</span><span class="text-ink-600">·</span>
+          <span>GDPR 기본</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">병목 현상</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        무엇이든 물어볼 수 있습니다.<br />그래도 답은 머리에 남지 않습니다.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          2026년, 지식은 3초만에 검색되고 3주 만에 잊힙니다. 노트를 작성하는 앱은 10개가 있지만 배운 것을 <em>유지하는</em> 앱은 하나도 없습니다.
+        </p>
+        <p>
+          하이라이트하는 것은 공부하는 것처럼 느껴집니다. 다시 읽는 것은 공부하는 것처럼 느껴집니다. LLM에게 요약을 부탁하는 것은 공부하는 것처럼 느껴집니다. 그 셋 중 어느 것도 그렇지 않습니다 — 인지 과학은 50년 전부터 그렇게 말해왔습니다.
+        </p>
+        <p>
+          학습의 병목은 더 이상 접근이 아닙니다 — <em>부호화, 통합, 전이</em>의 세 가지 문제가 동시에 존재합니다.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera는 이 셋을 위해 만들어졌습니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">방법론</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          하나의 캔버스.<br />열두 가지 인지적 동작.<br />당신의 뇌가 학습하는 사이클.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Fluera의 모든 기능은 사이클의 한 단계에 살며, 각 단계는 게재된 연구에 기반합니다. 하나를 건너뛰면 사슬이 끊어집니다. 모두 따르면 노트북은 영구적이 됩니다.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">네 가지 인지적 차별화 요소</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          기억이 구축되는 네 가지 방법.
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map ・ 4단계"
+          title="당신이 쓴 것과 정답 사이의 거리를 보세요."
+          description="회상 시도 후, Fluera는 당신의 작업을 이상적인 해답에 겹쳐 놓습니다. 차이가 맥동합니다. 비난하지 않고 — 기억을 깨웁니다. 더 틀렸을수록 수정이 더 깊이 자리잡습니다."
+          citation="하이퍼코렉션 효과 — Butterfield와 Metcalfe, 2001."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode ・ 3단계"
+          title="우리의 AI는 답하지 않습니다. 묻습니다."
+          description="각 공개 전에 1부터 5까지 확신도를 평가합니다. 메타인지는 숙달의 절반이고, 확신도 보정은 한 번에 하나의 예측으로 그것이 구축되는 방식입니다."
+          citation="메타인지 모니터링 — Flavell, 1979."
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War ・ 10단계"
+          title="거의 기억나는 것을 숨기는 시험 모드."
+          description="캔버스의 어떤 영역이라도 마스킹합니다. 공개하기 전에 기억에서 끌어내세요. 다시 보는 것이 아닌 회상의 노력 — 거기서 기억이 단단해집니다."
+          citation="바람직한 어려움 — Bjork, 1994."
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Exam Session ・ 11단계"
+          title="당신의 캔버스에서 모의 시험 — Ghost Map이 채점."
+          description="각 문제 전 1부터 5까지 확신도 피커. 폐쇄형. 제출 후, Fluera는 당신의 답을 이상적인 답에 겹쳐 놓고, 가장 자신감 있게 틀렸던 곳에 하이퍼코렉션을 적용합니다. 놀라움이 클수록 수정이 더 깊이 자리잡습니다."
+          citation="하이퍼코렉션 — Butterfield와 Metcalfe, 2001 ・ 생산적 실패 — Kapur, 2008."
+          href="/ko/features/exam-session"
+          status="beta"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">베타에서 시도 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">잉크, 키보드 아닌</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            타이핑이 더 빠릅니다.<br />손글씨가 더 좋습니다.<br />뇌는 속도에 최적화되지 않았습니다.
+          </h2>
+          <p class="text-sm text-ink-500 italic">Mueller와 Oppenheimer, Princeton 2014 ・ van der Meer, NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            2014년 Mueller와 Oppenheimer가 유명한 Princeton 연구를 발표했을 때, 손으로 노트를 쓴 학생들이 노트북을 사용한 학생들을 개념적 질문에서 능가했습니다 — 노트북을 사용한 학생들이 <em>훨씬 더 많은</em> 단어를 썼는데도. 손은 더 느렸습니다. 마음은 더 깊었습니다.
+          </p>
+          <p>
+            10년 후, NTNU의 Audrey van der Meer의 EEG 연구 (2020)가 그 <em>이유</em>를 알려주었습니다: 손글씨는 타이핑보다 더 넓은 뇌 네트워크를 활성화하며, 특히 기억 형성과 감각운동 통합에 관련된 영역에서 그렇습니다. 펜은 인지 도구입니다.
+          </p>
+          <p>
+            Fluera는 이 발견을 중심으로 만들어졌습니다. 13개의 브러시 엔진. 압력, 기울기, 속도. 모든 지원 기기에서 15ms 이하의 스트로크 지연. 무한 캔버스는 미적인 것이 아닙니다 — 당신의 기억이 요청해온 기질입니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">과학적 토대</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          거인들의 어깨 위 — 이름까지.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          모든 디자인 결정은 인용할 수 있는 논문으로 거슬러 올라갑니다. 여기 그 12명의 마음들이 있습니다. 전체 참고 문헌은 공개되어 있습니다.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">6개 플랫폼, 하나의 잉크</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          6개 플랫폼. 하나의 잉크. 하나의 마음.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Vulkan, Metal, OpenGL, Direct3D 11, WebGPU에서 네이티브 렌더러. 노트북은 종단 간 암호화로 동기화되거나 오프라인으로 유지됩니다. 당신의 결정.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        상태 라벨은 출시 준비 상태에 정직합니다. "알파" 또는 "데모"로 표시된 플랫폼은 작동하지만 다듬어야 합니다 — 형성에 도움을 주려면 베타에 참여하세요.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">당신의 마음, 당신의 데이터</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          종단 간 암호화.<br />키는 당신이 쥡니다.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">유휴 시 AES-256</h3>
+          <p class="text-sm text-paper-300">모든 기기에서 SQLCipher 암호화. 로컬 데이터베이스는 키 없이 읽을 수 없습니다.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">GDPR 기본</h3>
+          <p class="text-sm text-paper-300">EU 호스팅, DPA 제공, 요청 시 완전한 내보내기 및 삭제.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">광고 기술 제로</h3>
+          <p class="text-sm text-paper-300">추적 픽셀 없음. 행동 기반 광고 없음. 당신의 콘텐츠로 모델을 훈련시키지 않습니다.</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">감사 로그</h3>
+          <p class="text-sm text-paper-300">교육 계정의 경우, 모든 액세스가 변경할 수 없는 추적에 기록됩니다.</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">보안 아키텍처 읽기 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">요금</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          학습은 무료. 더 깊이 가려면 Plus와 Pro.
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">완전한 캔버스. 노트북 3개. 영원히 무료.</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5.99<span class="text-sm font-sans text-paper-300">/월</span></p>
+          <p class="text-sm text-paper-300">무제한 캔버스, 2기기 동기화, 기본 AI. 연 €49.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11.99<span class="text-sm font-sans text-paper-300">/월</span></p>
+          <p class="text-sm text-paper-300">Exam Session, Atlas, 전체 AI 스위트, 무제한 동기화. 연 €99.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19.99<span class="text-sm font-sans text-paper-300">/시트</span></p>
+          <p class="text-sm text-paper-300">공유 캔버스, team Atlas, ACL, 감사 로그. 5+ 시트.</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        검증된 학생은 파일럿 프로그램을 통해 Plus 또는 Pro를 50% 할인 받습니다. 지금 가입하면 구독 기간 동안 요금이 고정됩니다.
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">전체 요금 보기 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">함께하기</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        비공개 베타.<br />코호트 단위 온보딩.
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        우리는 사용자를 코호트로 모셔, 모든 그룹 — 학생, 지식 근로자, 교수진 — 이 대기열의 번호가 아닌 진정한 대화를 받을 수 있게 합니다. 당신을 위해 학습한다고 약속하는 앱에 지쳤다면, 액세스를 요청하세요.
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        액세스 요청 →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

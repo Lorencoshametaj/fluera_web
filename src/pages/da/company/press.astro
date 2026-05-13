@@ -1,0 +1,173 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const factBullets = [
+  "Kognitiv lærings-app i privat beta, udgivet for iOS og macOS i april 2026.",
+  "Uendeligt håndskrevet canvas med 13 trykfølsomme pensler og stregelatens under 15 millisekunder på seks platforme.",
+  "AI-funktioner, der spørger i stedet for at svare — forankret i halvtreds års hukommelsesforskning.",
+  "Bygget på fluera_engine, en egen 2D-rendering-engine til Flutter, der også er tilgængelig for eksterne udviklere.",
+  "To-personers team med base i Milano. Ingen ekstern finansiering frem til udgivelsesdatoen.",
+];
+
+const imageAssets = [
+  { name: "Logo — farve",             path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
+  { name: "Logo — monokrom lys",      path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
+  { name: "Logo — monokrom mørk",     path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
+  { name: "App-screenshot — iPad",    path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
+  { name: "App-screenshot — macOS",   path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
+  { name: "Founder-portræt",          path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
+];
+
+const quotables = [
+  {
+    context: "Om præmissen",
+    quote: "I 2026 hentes viden på tre sekunder og glemmes på tre uger. Vi har ti apps til at tage noter og ingen til at fastholde det, vi har lært.",
+  },
+  {
+    context: "Om AI",
+    quote: "En AI, der besvarer dine eksamener for dig, er en AI, der intet lærer dig. Flueras AI spørger, stilladserer, reflekterer — den erstatter ikke selve det at tænke.",
+  },
+  {
+    context: "Om evidens",
+    quote: "Den kognitive videnskab har været klar i halvtreds år. Det, vi aldrig har manglet, var et værktøj, der gør det rigtige til den letteste vej. Det er præcis det, vi forsøger at bygge.",
+  },
+  {
+    context: "Om målgruppen",
+    quote: "Fluera er ikke for alle. Friktionen er reel. Den er bygget til den kohorte af lærende, der kan skelne flydenhed fra kompetence, når det betyder noget — medicinere til mundtlige eksamener, ph.d.-studerende, advokater, langtids-autodidakter.",
+  },
+];
+---
+
+<BaseLayout
+  title="Press Kit"
+  description="Logoer, screenshots, founder-biografier og citerbare sætninger til journalister og forfattere, der skriver om Fluera."
+  locale="da"
+>
+
+  <PageHero
+    kicker="Presse"
+    title="Skriver du om Fluera?<br />Her finder du alt, hvad du behøver."
+    description={`Logoer, screenshots, founder-fotos og et kort factsheet. Alt på denne side er frit til redaktionel brug — med kreditering af <em>Fluera</em> og link til <a href="/">fluera.dev</a>.`}
+  >
+    <div slot="copy" class="mt-8 flex flex-wrap gap-4">
+      <a href="/press/fluera-press-kit.zip" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Hent komplet Press Kit (.zip)
+      </a>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Presseforesp%C3%B8rgsel`} class="btn-secondary">
+        Skriv til teamet →
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Factsheet</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Et-minuts-læsningen.</h2>
+      </div>
+
+      <ul class="space-y-4 list-none p-0 max-w-3xl">
+        {factBullets.map((f) => (
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <span class="text-paper-200 text-lg leading-relaxed">{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Citerbart</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Sætninger, du kan citere direkte.</h2>
+        <p class="prose-ink text-sm mt-4">
+          Alle citater tilskrives Fluera-teamet, medmindre du har interviewet en bestemt grundlægger — i så fald, koordinér med os, før du tilskriver dem en person.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 max-w-5xl">
+        {quotables.map((q) => (
+          <figure class="card p-7">
+            <p class="eyebrow text-accent-glow mb-4">{q.context}</p>
+            <blockquote class="font-serif text-lg text-paper-50 leading-relaxed italic">
+              "{q.quote}"
+            </blockquote>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Visuelle assets</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Logoer, screenshots, portrætter.</h2>
+        <p class="prose-ink text-sm mt-4">
+          Tilgængelige enkeltvis nedenfor eller samlet via Press Kit-linket ovenfor.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {imageAssets.map((a) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{a.name}</h3>
+            <p class="text-xs font-mono text-ink-500 mb-4">{a.size}</p>
+            <a href={a.path} class="text-accent-glow text-sm underline underline-offset-4 hover:text-paper-50" download>
+              Hent →
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-xl">
+        Bemærk: de enkelte asset-filer er pladsholdere, indtil vi udgiver det endelige Press Kit. Linkene leverer 404 indtil videre — vi fylder dem ud, så snart vi forlader den private beta.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Hvad du må</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Ja, gør det.</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Bruge logoer og screenshots i artiklen</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Indbygge de citerbare sætninger med kreditering</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Beskære eller skalere screenshots (logoerne må ikke ændres)</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Interviewe grundlæggerne (skriv til os for at koordinere)</li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Hvad du bør undgå</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Tak for hensynet.</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Ændre eller omfarve logoet</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Antyde en anbefaling af produkter, vi ikke anbefaler</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Bruge Fluera-assets i AI-træningsdatasæt</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Placere vores logo ved siden af en konkurrents uden klar redaktionel begrundelse</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Direkte linje til teamet.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Presseforespørgsler lander direkte hos en grundlægger, ikke hos et PR-bureau. Svar inden for 24 timer på hverdage — som regel inden for en time.
+      </p>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Presseforesp%C3%B8rgsel`} class="btn-primary">
+        {SITE.company.contactEmail}
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

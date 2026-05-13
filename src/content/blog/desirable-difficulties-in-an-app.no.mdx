@@ -1,0 +1,67 @@
+---
+lang: "no"
+title: "Slik dukker 'ønskede vanskeligheter' opp i en app"
+description: "Bjorks rammeverk er ryggraden i Fluera. Slik blir et kontraintuitivt forskningsfunn til konkrete designvalg — og dette er de hardeste avveiningene."
+publishedAt: 2026-04-10
+author: "Lorenzo"
+category: product
+tags: ["bjork", "design", "ønskede-vanskeligheter"]
+relatedPrinciples: [desirable-difficulties, retrieval-practice, productive-failure]
+---
+import Citation from "@/components/Citation.astro";
+
+Når vi presenterer Fluera for skeptiske observatører, er den enkeltideen som arbeider mest <Citation authors="Bjork" year="1994" href="/no/research">Robert Bjorks *ønskede vanskeligheter*</Citation>. Så snart folk har tatt inn at de letteste læringsbetingelsene nesten alltid gir de dårligste resultatene, slutter resten av designvalgene våre å virke rare og begynner å virke uunngåelige.
+
+Men "uunngåelige" gjør mye arbeid her. Å oversette et forskningsfunn til en produktoverflate medfører avveininger som ingen metaanalyse fanger opp. Her er en delvis regnskapsføring.
+
+## Det tomme canvaset
+
+Standard lærings-app har en mal. Du åpner den, og der er en foreslått struktur — et mindmap-skjelett, en temaliste, et Cornell-oppsett. Malen senker aktiverings-energien. Den virker nyttig.
+
+Det er den ikke. En mal lar deg hoppe over genererings-steget — det kognitive akten å bestemme hva som hører hvor, hva som er forbundet med hva, hva det sentrale konseptet er. Genererings-steget *er* læringen. Å hoppe over det betyr å hoppe over grunnen til notatboken.
+
+Canvaset i Fluera er tomt. Uendelig, tomt, ikke skremmende. Prisen er at nye brukere kjenner friksjonen umiddelbart. Noen går igjen. Vi godtar det. Alternativet er et verktøy som tiltrekker seg flere brukere og lærer mindre.
+
+## KI-en som spør i stedet for å svare
+
+Hver eneste brukerundersøkelse vi har gjort, inneholdt minst én person som sa: "Det ville vært nyttig om KI-en kunne skrive en oppsummering for meg." Hver økt, uten unntak.
+
+De har rett i at det ville vært nyttig. De tar feil i å forveksle nytte med målet. En KI som oppsummerer forelesningen for deg er en KI som tar over delen av læringen som var *ditt* arbeid. Du får en oppsummering. Du føler at du har lært. Du husker ingenting.
+
+Socratic Mode eksisterer nettopp for å ikke gjøre det brukerne ber om. Den utspør canvaset i stedet for å oppsummere det. På aksen for umiddelbar tilfredshet, i den første interaksjonen, taper den mot en KI som forklarer. <Citation authors="Roediger og Karpicke" year="2006" href="/no/research">På aksen for retensjonsprestasjon uker senere</Citation> vinner den med marginer som får korttidsresponsen til å virke ubetydelig.
+
+Avveiningen er ekte. Noen brukere krysser aldri terskelen. For dem som krysser den, er forskjellen produktet.
+
+## Tillit-slideren
+
+Du har skrevet ferdig et svar. Du trykker "vis løsning". Fluera ber deg om én siste ting først: vurder tilliten din, fra 1 til 5.
+
+Det er et lite avbrudd. Per forsøk legger det til to eller tre sekunder. Over en hel økt summerer disse sekundene seg. Brukerne ber om å skru det av.
+
+Slideren er strukturell. <Citation authors="Butterfield og Metcalfe" year="2001" href="/no/research">Butterfield og Metcalfes hyperkorreksjon-effekt</Citation> — feil begått med høy tillit og deretter korrigert sitter bedre enn feil med lav tillit — krever at du har *navngitt* tilliten din før korrigeringen ankommer. Uten slider korrigerer du i tåka og korrigeringen falmer. Med slider blir kontrasten eksplisitt og korrigeringen lander.
+
+Vi beholder slideren. Friksjonen er mekanismen.
+
+## Fog of War for eksamensforberedelse
+
+Den nærliggende måten å forberede seg til en eksamen på er å lese notatene på nytt. Flyten øker. Den opplevde forberedelsen øker. På eksamensdagen kollapser prestasjonen — for gjenkjenning er ikke gjenkalling, og eksamen krever gjenkalling.
+
+Fog of War snur interaksjonen. I eksamensmodus *skjuler* Fluera canvaset ditt — den maskerer regionene du allerede har dekket og ber deg gjenkalle dem fra hukommelsen før de slippes fri igjen. Den første økten er forferdelig. Du sitter foran et tildekket canvas og oppdager hvor mye av det du trodde du visste, du ikke kan produsere.
+
+Brukerne hater den første økten. De elsker eksamensresultatene. Friksjonen i den første økten er det som gjør disse resultatene mulig.
+
+## Hva vi ikke gjør (og som vi beklager)
+
+Evidensen støtter også noen intervensjoner vi ikke har bygd. <Citation authors="Rohrer og Taylor" year="2007">Interleaving — å randomisere tema-rekkefølgen under øving i stedet for å øve i blokker</Citation> — er robust dokumentert å forbedre overføring. Vi vil bygge dypere interleaving-funksjoner. Hindringen er at *produktfølelsen* av en tilfeldig tema-rekkefølge kan virke dypt desorienterende uten omhyggelig design. Brukeropplevelsen kollapser før den kognitive fordelen tar tak.
+
+Å håndtere den avveiningen — å bevare flow mens man innfører ønsket friksjon — er det hardeste designproblemet vi har.
+
+## Mønsteret
+
+Mønsteret som går gjennom alle disse beslutningene er: **umiddelbar brukerpreferanse er et systematisk villedende signal.** Brukere foretrekker den enkle versjonen. Den enkle versjonen er dårligere. Å bygge den vanskeligere versjonen belønnes ofte i ettertid — gjennom retensjon, gjennom eksamensresultater, gjennom den sjeldne brukeren som kommer tilbake og sier: "Jeg trodde dere var gale, nå forstår jeg." Men den straffes nesten alltid på forhånd — gjennom churn, gjennom dårlige anmeldelser, gjennom fristelsen til neste gang å levere den enklere versjonen.
+
+Vi forsøker å motstå den fristelsen. Noen ganger mislykkes vi. Vi leverer, trekker tilbake, leverer igjen.
+
+Innsatsen er at i et felt — edtech — der hver konkurrent har gitt etter for brukerpreferansen og bygd verktøy som føles godt og lærer lite, er det plass til et verktøy som føles verre og lærer bedre.
+
+Hvis du vil hjelpe oss å finne ut av det, [betaen er åpen](/beta).

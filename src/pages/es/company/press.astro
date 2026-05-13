@@ -1,0 +1,173 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const factBullets = [
+  "App de estudio cognitivo en beta privada, lanzada en iOS y macOS en abril de 2026.",
+  "Canvas infinito manuscrito con 13 pinceles sensibles a la presión y latencia de trazo por debajo de 15 milisegundos, en seis plataformas.",
+  "Funciones de IA pensadas para hacer preguntas, no dar respuestas — ancladas en cincuenta años de investigación sobre la memoria.",
+  "Construido sobre fluera_engine, un motor de renderizado 2D propietario para Flutter, disponible también para desarrolladores externos.",
+  "Equipo de dos personas con sede en Milán. Sin inversión externa hasta la fecha de publicación.",
+];
+
+const imageAssets = [
+  { name: "Logo — color",            path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
+  { name: "Logo — monocromo claro",  path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
+  { name: "Logo — monocromo oscuro", path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
+  { name: "Screenshot de la app — iPad",  path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
+  { name: "Screenshot de la app — macOS", path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
+  { name: "Retrato founder",         path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
+];
+
+const quotables = [
+  {
+    context: "Sobre la premisa",
+    quote: "En 2026, el conocimiento se recupera en tres segundos y se olvida en tres semanas. Tenemos diez apps para tomar notas y ninguna para retener lo que aprendemos.",
+  },
+  {
+    context: "Sobre la IA",
+    quote: "Una IA que responde a tus exámenes en tu lugar es una IA que no te enseña nada. La IA de Fluera pregunta, hace andamiaje, refleja — no sustituye el acto de pensar.",
+  },
+  {
+    context: "Sobre la evidencia",
+    quote: "La ciencia cognitiva es clara desde hace cincuenta años. Lo que nunca tuvimos fue una herramienta que convierta lo correcto en el camino más fácil. Eso es lo que estamos intentando construir.",
+  },
+  {
+    context: "Sobre el público",
+    quote: "Fluera no es para todos. La fricción es real. Está construido para la cohorte de learners que sabe distinguir fluidez de competencia cuando importa — médicos en oral, doctorandos, abogados, autodidactas de largo recorrido.",
+  },
+];
+---
+
+<BaseLayout
+  title="Press kit"
+  description="Logos, screenshots, biografías de los founders y frases citables para periodistas y autores que cubren Fluera."
+  locale="es"
+>
+
+  <PageHero
+    kicker="Prensa"
+    title="¿Estás escribiendo sobre Fluera?<br />Aquí encuentras todo lo que necesitas."
+    description={`Logos, screenshots, fotos de los founders y un factsheet sintético. Todo en esta página es libre para uso editorial — con atribución a <em>Fluera</em> y enlace a <a href="/">fluera.dev</a>.`}
+  >
+    <div slot="copy" class="mt-8 flex flex-wrap gap-4">
+      <a href="/press/fluera-press-kit.zip" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 3v13m0 0l-5-5m5 5l5-5M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Descargar press kit completo (.zip)
+      </a>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Solicitud%20de%20prensa`} class="btn-secondary">
+        Escribir al equipo →
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Factsheet</p>
+        <h2 class="font-serif text-display-lg text-paper-50">La lectura de un minuto.</h2>
+      </div>
+
+      <ul class="space-y-4 list-none p-0 max-w-3xl">
+        {factBullets.map((f) => (
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <span class="text-paper-200 text-lg leading-relaxed">{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Citables</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Frases que puedes citar directamente.</h2>
+        <p class="prose-ink text-sm mt-4">
+          Todas las citas se atribuyen al equipo de Fluera, salvo si has entrevistado a un founder concreto — en ese caso, verifica con nosotros antes de atribuirla a una persona.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 max-w-5xl">
+        {quotables.map((q) => (
+          <figure class="card p-7">
+            <p class="eyebrow text-accent-glow mb-4">{q.context}</p>
+            <blockquote class="font-serif text-lg text-paper-50 leading-relaxed italic">
+              "{q.quote}"
+            </blockquote>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Recursos visuales</p>
+        <h2 class="font-serif text-display-lg text-paper-50">Logos, screenshots, retratos.</h2>
+        <p class="prose-ink text-sm mt-4">
+          Disponibles individualmente abajo, o todos juntos vía el enlace del press kit de arriba.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {imageAssets.map((a) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{a.name}</h3>
+            <p class="text-xs font-mono text-ink-500 mb-4">{a.size}</p>
+            <a href={a.path} class="text-accent-glow text-sm underline underline-offset-4 hover:text-paper-50" download>
+              Descargar →
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-xl">
+        Nota: los archivos individuales de los recursos son placeholders hasta que publiquemos el press kit definitivo. Los enlaces devuelven 404 por ahora — los rellenaremos cuando salgamos de la beta privada.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-20 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Lo que puedes hacer</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Sí, adelante.</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Usar logos y screenshots en el artículo</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Integrar las frases citables con atribución</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Recortar o redimensionar los screenshots (no alterar los logos)</li>
+            <li class="flex items-start gap-3"><span class="text-signal-ok shrink-0">✓</span>Entrevistar a los founders (escribe para coordinarlo)</li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Lo que evita hacer</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Gracias por preguntar.</h2>
+          <ul class="space-y-3 text-paper-200 list-none p-0">
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Modificar o recolorear el logo</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Sugerir endorsement a productos que no respaldamos</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Usar recursos de Fluera en datasets de entrenamiento de IA</li>
+            <li class="flex items-start gap-3"><span class="text-signal-bad shrink-0">✗</span>Colocar nuestro logo junto al de un competidor sin motivación editorial clara</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Línea directa con el equipo.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Las solicitudes de prensa llegan directo a un founder, no a una agencia de PR. Respuesta en 24 horas en días laborables — normalmente en una hora.
+      </p>
+      <a href={`mailto:${SITE.company.contactEmail}?subject=Solicitud%20de%20prensa`} class="btn-primary">
+        {SITE.company.contactEmail}
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

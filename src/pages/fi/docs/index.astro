@@ -1,0 +1,37 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { buildDocsSections } from "@/lib/docs-nav";
+
+const sections = await buildDocsSections("fi");
+---
+
+<DocLayout
+  title="Käyttäjädokumentaatio"
+  description="Käytännön opastusta Flueran käyttöön sellaisena kuin se on suunniteltu. Aloita Tervetuloa-sivulta, jos käyt ensimmäistä kertaa."
+  sections={sections}
+  rootHref="/fi/docs"
+  rootLabel="Dokumentaatio"
+  sectionLabel="Yleiskuva"
+  locale="fi"
+>
+  <p>Tervetuloa Flueran käyttäjädokumentaatioon. Vasemman sivupalkin järjestys noudattaa polkua, jonka uudet käyttäjät yleensä käyvät läpi — aloita kohdasta <a href="/fi/docs/welcome">Tervetuloa</a>, sitten <a href="/fi/docs/first-canvas">Ensimmäinen canvas</a>, ja siirry vianetsintään vasta kun tarvitset sitä.</p>
+
+  <p>Jos etsit <em>miksi</em>-vastausta — kognitiotiedettä, tutkimusta, 12-vaiheista sykliä, jonka päälle tuote rakentuu — ne löytyvät <a href="/fi/science">tiedesivulta</a>. Täällä oleva dokumentaatio on käytännön <em>miten</em>.</p>
+
+  <h2>Osion mukaan</h2>
+
+  {sections.map((sec) => (
+    <section class="mt-8">
+      <h3 id={sec.slug}>{sec.label}</h3>
+      <ul>
+        {sec.links.map((link) => (
+          <li><a href={link.href}>{link.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <h2>Etkö löydä tarvitsemaasi?</h2>
+
+  <p>Kirjoita osoitteeseen <a href="mailto:support@fluera.dev">support@fluera.dev</a>. Perustaja vastaa arkipäivän sisällä — useimmiten tunnin sisällä. Jos huomaat aukon dokumentaatiossa, kerro meille ja täytämme sen.</p>
+</DocLayout>

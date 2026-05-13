@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Institusjonelle case-studier"
+  description="Ekte historier fra universiteter, høgskoler og kurs som tar i bruk Fluera. Foreløpig tom: pilotene fullfører nettopp sine første semestre."
+  locale="no"
+>
+
+  <PageHero
+    kicker="Case-studier"
+    title="Pilotene løper.<br />Historiene kommer senere."
+    description="Vi publiserer ikke en case-studie før en pilot har fullført minst ett semester, lærestedet har signert og de anonymiserte studentdataene er gjennomgått for nøyaktighet. Kohortene fra andre semester 2026 og første semester 2027 er i gang — denne siden fylles så snart de avsluttes."
+    breadcrumb={{ label: "Utdanning", href: "/no/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2. semester 2026 · Pågående</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">En preklinisk medisinkohort</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            ~30 førsteårs medisinstudenter som bruker Fluera ett semester i anatomi og biokjemi. Publisering ved semesterets slutt.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Planlagt Q1 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2. semester 2026 · Pågående</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Mikroøkonomi på bachelornivå</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Et konsept-tett kurs i mikroøkonomi. Fokus: hvordan 12-stegs-syklusen bærer når materialet er abstrakt heller enn faktabasert.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Planlagt Q2 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">1. semester 2027 · Begynnende</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Et masterseminar i juss</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Konstitusjonell tolkning. Mindre kohort, dypere deltakelse. Fokus på Ghost Map for sammenligning av rettspraksis.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Planlagt Q3 2027</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Vil du starte en pilot?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          Vi kjører én pilot per semester — én klasse, tretti studenter, ett semester, uten kostnad. Til gjengjeld ber vi om strukturert tilbakemelding og muligheten til å publisere en anonymisert case-studie til slutt.
+        </p>
+        <a href="/no/contact/sales" class="btn-primary">Start en pilotsamtale →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        Hvorfor vente? Fordi en case-studie med ekte tall trenger tid for å samles inn ærlig — og å publisere "case-studier" basert på leverandørselekterte anekdoter er nettopp den typen innhold vi ikke vil produsere.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,51 @@
+---
+lang: "fi"
+title: Time Travel
+tagline: "Toista jokainen veto. Synkronissa luennon äänen kanssa, joka sai sinut kirjoittamaan sen."
+shortDescription: "Napauta kolmen viikon takaista muistiinpanoa, ja ääni jatkuu täsmälleen siitä, missä kynäsi kirjoitti. Koe oma ajattelusi uudelleen."
+status: coming-soon
+stepInCycle: 5
+relatedPrinciples:
+  - spatial-cognition
+  - spacing-effect
+  - embodied-cognition
+  - levels-of-processing
+relatedAuthors:
+  - okeefe-moser
+  - van-der-meer
+order: 10
+---
+
+## Mitä se ratkaisee
+
+Perinteisten luentomuistiinpanojen puute on, että ne ovat kuolleita. Viikkoja myöhemmin katsot jotain, mitä kirjoitit, etkä enää muista miksi. Mitä luennoija juuri sanoi? Mikä oli konteksti? Muistiinpano on dekontekstualisoitu — ja dekontekstualisoidut muistiinpanot ovat lähes hyödyttömiä.
+
+Time Travel pitää kontekstin elossa.
+
+## Miten se toimii
+
+Käynnistät tallennuksen, kun luento alkaa. Kirjoitat normaalisti. Jokainen piirtämäsi veto on aikaleimattu tallennettuun äänikehykseen.
+
+Myöhemmin — päivien, viikkojen tai kuukausien jälkeen — napautat mitä tahansa vetoa canvasilla. Ääni kelautuu täsmälleen hetkeen, jolloin juuri kirjoitit. Kuulet luennoijan äänen, oman ajattelusi, salin takaa tulleen kysymyksen. Konteksti palaa kerralla.
+
+Liikutat ääntä ja näet canvasin toistuvan veto vedolta, alkuperäisellä tahdilla tai nopeutettuna. Katsot mielesi työskentelyä.
+
+Kaikki tallennus on oletuksena paikallista, SQLCipher-salattua. Äänen synkronointi on opt-in ja päästä päähän salattu, kun se on käytössä.
+
+## Taustalla oleva tiede
+
+Kaksi periaatetta lähestyy:
+
+- **Konteksti-riippuvainen palauttaminen** (Tulving, 1972): muisti palautetaan paremmin, kun palautuskonteksti vastaa enkoodauskontekstia. Fluera toistaa enkoodauskontekstin pyynnöstä — luennoijan äänen, salin tunnelman, käsiesi liikkeet.
+- **Tilallinen kognitio** (O'Keefe ja Moser, Nobel 2014): sijainti canvasilla on itsessään palautusvihje. Vedon napauttaminen yhdistää tilavihjeen (sijainnin) kontekstuaaliseen (ääni) — kaksi palautusreittiä yhden sijaan.
+
+Van der Meerin EEG-työ (2020) lisää kolmannen kerroksen: käsinkirjoitus aktivoi laajoja sensomotorisia verkkoja kirjoitushetkellä. Time Travel antaa oppijoiden kulkea uudelleen saman verkon läpi viikkoja myöhemmin — he eivät vain muista, vaan *toistavat* vedon, joka alun perin sen laukaisi.
+
+## Mitä tulee seuraavaksi
+
+Time Travel on yksityisessä alfassa. Täysi julkaisu sisältää:
+
+- **Cross-Device-äänisynkronointi** (tällä hetkellä vain paikallinen)
+- **Haku litteroinnista** — etsi luentohetkiä sanottujen sanojen perusteella
+- **Automaattisesti generoidut lukumerkit** taukojen ja aiheenvaihtojen kautta
+- **Vienti annotoituna videona** — luennon walkthroughin jakamiseksi

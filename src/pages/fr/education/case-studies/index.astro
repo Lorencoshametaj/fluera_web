@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Études de cas institutionnelles"
+  description="Histoires réelles d'universités, de facultés et de classes utilisant Fluera. Pour l'instant vide : les programmes pilotes sont en train de boucler leurs premiers semestres."
+  locale="fr"
+>
+
+  <PageHero
+    kicker="Études de cas"
+    title="Les pilotes tournent.<br />Les histoires viennent ensuite."
+    description="Nous ne publions pas d'étude de cas tant qu'un pilote n'a pas bouclé au moins un semestre, que la faculté n'a pas validé et que les données anonymisées des étudiants n'ont pas été revues pour leur exactitude. Les cohortes du second semestre 2026 et du premier semestre 2027 sont en cours — cette page se remplira au fur et à mesure qu'elles se terminent."
+    breadcrumb={{ label: "Éducation", href: "/fr/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2nd semestre 2026 · En cours</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Une promotion préclinique de médecine</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            ~30 étudiants de première année de médecine utilisant Fluera pendant un semestre d'anatomie et de biochimie. Publication en fin de semestre.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Prévu Q1 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2nd semestre 2026 · En cours</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Microéconomie en licence</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Un cours de microéconomie dense en concepts. Focus : comment le cycle en 12 étapes tient quand le matériau est abstrait plutôt que factuel.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Prévu Q2 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">1er semestre 2027 · Démarre</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Un séminaire de master en droit</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Interprétation constitutionnelle. Cohorte plus restreinte, engagement plus profond. Focus sur Ghost Map pour la comparaison de jurisprudence.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Prévu Q3 2027</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Tu veux lancer un pilote ?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          Nous menons un pilote par semestre — une classe, trente étudiants, un semestre, sans frais. En échange, nous demandons un feedback structuré et l'option de publier une étude de cas anonymisée à la fin.
+        </p>
+        <a href="/fr/contact/sales" class="btn-primary">Démarrer une conversation pilote →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        Pourquoi attendre ? Parce qu'une étude de cas avec des chiffres réels prend du temps à collecter honnêtement — et publier des "études de cas" marketing fondées sur des anecdotes choisies par le vendor est précisément le genre de contenu que nous ne voulons pas produire.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

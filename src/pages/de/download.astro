@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "Beta",  note: "TestFlight-Einladung nach Freischaltung in der Beta." },
+  { name: "macOS",        status: "Beta",  note: ".dmg-Datei per privatem Link nach Freischaltung." },
+  { name: "Android",      status: "Alpha", note: "APK über den Internal Track von Google Play." },
+  { name: "Windows",      status: "Alpha", note: "Signierter .exe-Installer über den Microsoft Store." },
+  { name: "Linux",        status: "Alpha", note: "AppImage + Flatpak." },
+  { name: "Web",          status: "Demo",  note: "Jetzt unter /demo testen — Browser mit WebGPU erforderlich." },
+];
+---
+
+<BaseLayout
+  title="Download"
+  description="Fluera läuft nativ auf iOS, Android, macOS, Windows, Linux und im Web. Komm in die Closed Beta für frühen Zugang."
+  locale="de"
+>
+  <PageHero
+    kicker="Download"
+    title="Sechs Plattformen.<br />Komm in die Beta für den Zugang."
+    description="Fluera ist in Closed Beta. Sobald du drin bist, kommen die Installations-Links per E-Mail — native App auf jeder Plattform, keine reduzierte Web-Version."
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">Beta-Zugang anfragen →</a>
+      <a href="/demo" class="btn-secondary">Web-Demo testen</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Die öffentlichen Releases im App Store und auf Google Play kommen am Ende der Closed Beta. Bis dahin sind die obigen Status ehrlich zur Reife jeder Plattform — wir launchen lieber gut auf einer als schlecht auf sechs.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,187 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import { getCollection } from "astro:content";
+
+const principles = (await getCollection("principles", ({ data }) => data.lang === "en")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const authors = (await getCollection("authors", ({ data }) => data.lang === "en")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const steps = [
+  { n: 1,  title: "कैप्चर",                  verb: "व्याख्यान का दिन",       description: "व्याख्यान के दौरान अवधारणाओं को हाथ से लिखें। उन्हें स्थान में रखें। पेन की धीमी गति संकुचन को मजबूर करती है — और संकुचन वहीं है जहां एन्कोडिंग जन्म लेती है।" },
+  { n: 2,  title: "पुनर्निर्माण",            verb: "उसी शाम",                description: "किताब बंद करें। जो याद है उसे खाली कैनवास पर पुनर्निर्माण करें। जिन लाल नोड्स पर हिचकिचाते हैं, वही अगले अध्ययन का मानचित्र हैं (Kapur, उत्पादक विफलता, 2008)।" },
+  { n: 3,  title: "सोक्रेटिक",                verb: "48 घंटे के भीतर",        description: "AI पूछता है, आप उत्तर देते हैं। प्रत्येक प्रकटीकरण से पहले 1 से 5 तक आत्मविश्वास का मूल्यांकन। मेटाकॉग्निशन को स्पष्ट किया गया।" },
+  { n: 4,  title: "सेंटॉर",                   verb: "तुरंत बाद",              description: "Ghost Map आपके तर्क को आदर्श मानचित्र पर ओवरले करता है। हाइपरकरेक्शन सुधारों को स्मृति में स्थिर करता है (Butterfield और Metcalfe, 2001)।" },
+  { n: 5,  title: "नींद",                      verb: "उस रात",                description: "कुछ न करें। धीमी-तरंग नींद दिन को फिर से चलाती है। हिप्पोकैम्पस निशानों को नियोकोर्टेक्स को सौंप देता है।" },
+  { n: 6,  title: "पहली वापसी",                 verb: "दिन 1",                  description: "अगले दिन कैनवास खोलें। जो आप लगभग जानते थे वह धुंधला हो जाता है। प्रकट करने से पहले स्मृति से वापस खींचें।" },
+  { n: 7,  title: "साथी अधिगम",                  verb: "दिन 2-3",                description: "किसी सहपाठी को — या एक मूक AI को जो रिबाउंड पूछती है — अपना कैनवास समझाएं। दूसरों को सिखाना खुद को सिखाने का तरीका है।" },
+  { n: 8,  title: "अंतराल वापसी",                 verb: "दिन 3 · 7 · 14…",        description: "बढ़ते अंतराल पर सफल पुनर्शिक्षण। प्रभाव आकार के अनुसार, सबसे मजबूत साक्ष्य वाली अध्ययन रणनीति (Rawson और Dunlosky, 2011)।" },
+  { n: 9,  title: "क्रॉस-डोमेन पुल",            verb: "हफ्तों बाद",             description: "विषयों के बीच तीर खींचें। रसायन विज्ञान अवकल समीकरणों से मिलता है। स्थानांतरण ही अधिगम का असली परीक्षण है।" },
+  { n: 10, title: "परीक्षा तैयारी",             verb: "परीक्षा से 7-14 दिन पहले",description: "Fog of War। अपने कैनवास के कोहरे में नेविगेट करें। हरा, लाल, अंध बिंदु — महारत का मानचित्र खुद बनता है।" },
+  { n: 11, title: "Exam Session",              verb: "7 दिन पहले · दिन",       description: "Fluera आपके कैनवास से एक बंद-पुस्तक परीक्षा उत्पन्न करता है। 1 से 5 तक आत्मविश्वास का मूल्यांकन करें, हाथ से उत्तर दें। Ghost Map अंतराल को ओवरले करता है।" },
+  { n: 12, title: "स्थायी विकास",                verb: "हमेशा के लिए",           description: "कैनवास संज्ञानात्मक आत्मकथा के रूप में बना रहता है। दो साल बाद वापस आएं और देखें कि आप कितना बढ़े हैं उसका मूर्त रूप।" },
+];
+---
+
+<BaseLayout
+  title="Fluera का विज्ञान"
+  description="Fluera पांच दशकों के स्मृति अनुसंधान पर टिका है — Bjork, Mueller, van der Meer, Roediger, और नोबेल पुरस्कार विजेता place cell न्यूरोसाइंस। 12-चरण चक्र और हर विशेषता के पीछे सिद्धांतों का अन्वेषण करें।"
+  locale="hi"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">विज्ञान</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          एक ऐप के पीछे<br />पांच दशकों का स्मृति अनुसंधान।
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Fluera की हर विशेषता प्रकाशित अनुसंधान पर वापस जाती है। नीचे: 12-चरण अधिगम चक्र, इसके आधार पर 23 सिद्धांत, हम जिन बारह दिमागों पर निर्भर हैं, और जो हम अभी तक दावा नहीं करते उसकी सीमाएं।
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#learning-cycle" class="btn-secondary">चक्र पर जाएं</a>
+          <a href="#principles" class="btn-secondary">सिद्धांत सूचकांक</a>
+          <a href="#authors" class="btn-secondary">लेखक</a>
+          <a href="/hi/research" class="btn-secondary">ग्रंथसूची →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">चक्र</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">एक कैनवास। बारह संज्ञानात्मक चालें।</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          चक्र अनुक्रमिक और पुनरावृत्तीय है। चरण 1-4 एन्कोडिंग बनाते हैं। चरण 5 (नींद) गैर-समझौता योग्य जीव विज्ञान है। चरण 6-9 दिनों और हफ्तों में समेकित करते हैं। चरण 10-12 ज्ञान को स्थायी और स्थानांतरण योग्य बनाते हैं।
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">सिद्धांत सूचकांक</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Fluera के पीछे 23 सिद्धांत।</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          हर सिद्धांत प्राथमिक लेखकों, लागू विशेषताओं और हम जिन पेपरों का उद्धरण देते हैं, उनके साथ एक समर्पित पृष्ठ पर लिंक करता है।
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {principles.map((p) => (
+          <li>
+            <a
+              href={`/hi/science/principles/${p.id}`}
+              class="block card p-5 h-full transition-all hover:border-accent-glow/40 hover:bg-white/[0.04]"
+            >
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{p.data.title}</h3>
+                <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+              </div>
+              <p class="text-sm text-paper-300 leading-relaxed line-clamp-3">{p.data.shortDescription}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="authors" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">विधि के पीछे के दिमाग</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">बारह शोधकर्ता जिनका कार्य Fluera के अंदर रहता है।</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          यह श्रद्धांजलि पृष्ठ नहीं है। हर नाम एक पृष्ठ पर ले जाता है जो सिद्धांत, इसे लागू करने वाली Fluera विशेषताएं, और हम जिन पेपरों का उद्धरण देते हैं, उनका नाम लेता है।
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none p-0">
+        {authors.map((a) => (
+          <li>
+            <a href={`/hi/science/authors/${a.id}`} class="block">
+              <AuthorCard name={a.data.name} contribution={a.data.shortBio.slice(0, 160) + (a.data.shortBio.length > 160 ? "…" : "")} year={a.data.years} nobel={a.data.nobelLaureate} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">क्यों आज</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">बाधा बदल गई है।</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          अधिकांश इतिहास के लिए, अधिगम की बाधा पहुंच थी। पुस्तकें महंगी थीं, शिक्षक कम थे, पुस्तकालय दूर थे। प्रश्न था: <em>क्या मैं जानकारी तक पहुंच सकता हूं?</em>
+        </p>
+        <p>
+          पिछली पीढ़ी के लिए, बाधा नेविगेशन थी। जानकारी प्रचुर थी, सही टुकड़ा खोजना काम था। Google, Wikipedia, पाठ्यक्रम कैटलॉग — एक प्रश्न के लिए पूरा बुनियादी ढांचा: <em>यह कहां है?</em>
+        </p>
+        <p>
+          2026 में दोनों में से कोई और बाधा नहीं है। कोई भी तथ्य तीन सेकंड दूर है। कोई भी व्याख्या आपकी पसंदीदा शैली में उत्पन्न की जा सकती है। बाधा ने आकार बदल लिया है, और नए आकार के लिए हमने अभी तक बुनियादी ढांचा नहीं बनाया है: <em>मैंने अभी जो पढ़ा उसे ऐसी चीज़ में कैसे बदलूं जिसे मैं वास्तव में रखता हूं?</em>
+        </p>
+        <p>
+          इस प्रश्न का संज्ञानात्मक विज्ञान पचास वर्षों से स्पष्ट है। अंतराल पुनरावृत्ति, पुनर्प्राप्ति अभ्यास, उत्पादन, वांछनीय कठिनाइयां, सन्निहित संज्ञान, मेटाकॉग्निटिव अंशांकन। परिणाम मजबूत हैं। मेटा-विश्लेषण सुसंगत हैं। समस्या कभी यह जानने की नहीं रही कि क्या काम करता है — यह ऐसे उपकरण बनाने की रही है जो सही चीज़ को आसान रास्ता बनाते हैं।
+        </p>
+        <p>
+          LLM युग का प्रलोभन विपरीत है। यह गलत चीज़ — तरल व्याख्याओं की निष्क्रिय खपत — को ऐसा महसूस कराता है जैसे यह सही हो। तीन सेकंड की पहचान, एन्कोडिंग के साथ भ्रमित। उस गलती को तेज करने के लिए हमें एक और ऐप की आवश्यकता नहीं है।
+        </p>
+        <p>
+          Fluera धारा के विरुद्ध बनाया गया है। धीमा जहां गति एक भ्रम है। शांत जहां शोर व्यापार मॉडल है। कठिन जहां कठिनाई तंत्र है। इसलिए नहीं कि हमें मेहनत पसंद है, बल्कि क्योंकि साक्ष्य स्पष्ट है — मेहनत <em>ही</em> अधिगम है।
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">पारदर्शिता</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">हम क्या दावा नहीं करते।</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          हम हर सिद्धांत के लिए अनुसंधान का उद्धरण देते हैं क्योंकि अनुसंधान वहां है। इसका मतलब यह नहीं है कि Fluera का परीक्षण नियंत्रणों के विरुद्ध किया गया है। नहीं किया गया — अभी तक नहीं। जब हम "साक्ष्य-आधारित" कहते हैं, तो हमारा मतलब है कि अंतर्निहित तंत्र है। विशिष्ट कार्यान्वयन साहित्य से सूचित इंजीनियरिंग दांव है।
+        </p>
+        <p>
+          हम क्लिनिकल टूल नहीं हैं। हम सक्षम ट्यूटर का स्थान नहीं लेते। हम यह घोषित नहीं करेंगे कि Fluera का उपयोग किसी भी छात्र के परिणाम को किसी विशिष्ट प्रतिशत से बढ़ाता है। ऐसा दावा बेईमान या अप्रमाणित होगा — दोनों मौन से बदतर।
+        </p>
+        <p>
+          कुछ सूचीबद्ध सिद्धांत विशिष्ट डोमेन में विवादित हैं। विकास मानसिकता हस्तक्षेप नियंत्रित परीक्षणों में मिश्रित प्रतिकृति दिखाते हैं। फ्लो को विश्वसनीयता से इंजीनियर करने की तुलना में पहचानना आसान है। डिजिटल वातावरण में स्थानिक संज्ञान हमेशा भौतिक वातावरण की तरह मेल नहीं खाती।
+        </p>
+        <p>
+          हम जिन मेटा-विश्लेषणों का उद्धरण देते हैं, वे संज्ञानात्मक विज्ञान द्वारा उत्पन्न निकटतम सहमति हैं। उन पर निर्मित Fluera विशेषताएं, इस क्षण में, परिकल्पनाएं हैं जिन्हें हम बीटा के साथ परीक्षण कर रहे हैं। यदि कुछ आपके लिए काम नहीं करता, तो हम जानना चाहते हैं — वह सिग्नल किसी भी लैंडिंग पृष्ठ दावे से अधिक मूल्यवान है।
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">चक्र आज़माएं।</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        पुनर्प्राप्ति अभ्यास के बारे में पढ़ना पुनर्प्राप्ति अभ्यास नहीं है। निजी बीटा में शामिल हों और अपने कैनवास पर चक्र का परीक्षण करें।
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">बीटा में शामिल हों →</a>
+        <a href="/hi/research" class="btn-secondary">ग्रंथसूची पढ़ें</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

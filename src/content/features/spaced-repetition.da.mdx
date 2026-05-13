@@ -1,0 +1,44 @@
+---
+lang: "da"
+title: Distribueret gentagelse
+tagline: "Successiv genindlæring — den læringsstrategi med stærkest evidens, i dit canvas."
+shortDescription: "AI'en planlægger tilbagevenden i voksende intervaller. Hver tilbagevenden er genfindelse, ikke genlæsning. Spacing og genfindelse kombineret giver superadditive effekter."
+status: beta
+stepInCycle: 8
+relatedPrinciples:
+  - spacing-effect
+  - retrieval-practice
+  - successive-relearning
+  - interleaving
+relatedAuthors:
+  - roediger-karpicke
+  - robert-bjork
+  - albert-bandura
+order: 5
+---
+
+## Hvad det løser
+
+De fleste værktøjer til distribueret gentagelse er flashcard-apps. De dekontekstualiserer viden til atomare kort og rekonstruerer derefter intervallerne ud fra selvrapporteret lethed. De virker — men på bekostning af at fjerne den rumlige og strukturelle betydning, der overhovedet gjorde viden mulig at hente frem.
+
+Flueras distribuerede gentagelse bor i dit canvas. Den knude, du gentager, er den knude, du har skrevet, på den position, hvor du skrev den, forbundet med de begreber, du tegnede kanter til. Intet atomiseres.
+
+## Hvordan det fungerer
+
+Efter hver sokratisk session og hver Ghost Map-overlejring opdaterer Fluera et estimat af hukommelsesstyrken pr. knude. Den ved, hvilke begreber du har besvaret let, hvilke der har udløst hyperkorrektion, og hvilke du ikke har set i et stykke tid.
+
+Ved hver tilbagevenden (dag 3, 7, 14, 30, 60+) åbner Fluera canvasset med de forfaldne knuder renderet i Fog of War. Du navigerer, henter frem, afslører. Planlæggeren opdaterer. Næste interval udvides eller trækker sig sammen ud fra, hvad du faktisk huskede — ikke ud fra, hvad du hævdede at huske.
+
+**Personaliseret FSRS.** Planlæggeren er ikke en fast algoritme. Den kalibrerer otte vægt-parametre pr. bruger via gradient descent over din review-historik — samme metode som i den nyeste forskning om distribueret gentagelse, tilpasset Flueras rigere signal (sikkerhed, svartid, hyperkorrektion-magnitude).
+
+## Videnskaben bag
+
+Roediger og Karpicke (2006) viste, at genfindelsespraksis slår genlæsning. Bjorks årtiers arbejde har vist, at distribueret praksis slår koncentreret. I 2011 kombinerede Rawson og Dunlosky de to — *successiv genindlæring* — og viste **superadditive** resultater: distribueret genfindelsespraksis producerer større effekter end summen af spacing og genfindelse hver for sig.
+
+Det er den stærkeste enkeltstående evidens-base i læringsvidenskaben for en specifik læringsstrategi. Flueras opgave er ikke at genopfinde den, men at fjerne enhver hindring for praksis — særligt den største, nemlig besværet med overhovedet at bygge flashcards. I Fluera *er* canvasset, du allerede har, gentagelsesmaterialet.
+
+## Hvad der kommer
+
+- **Sammenflettede ruter** — AI'en vælger review-ruter, der krydser forskellige stof-zoner og slår autopiloten fra.
+- **Kalibrering pr. fag** — separate FSRS-vægte for sprog vs. matematik vs. klinisk medicin, hvor hukommelsesdynamikken adskiller sig målbart.
+- **Anki-import** — for lærende med eksisterende decks, der vil migrere gradvist.

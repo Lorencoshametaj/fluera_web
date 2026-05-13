@@ -1,0 +1,44 @@
+---
+lang: "sv"
+title: Distribuerad repetition
+tagline: "Successivt återinlärande — studiestrategin med starkast bevis, inuti din canvas."
+shortDescription: "AI:n schemalägger återbesök vid växande intervall. Varje återbesök är återkallelse, inte omläsning. Spacing och återkallelse kombinerade ger superadditiva resultat."
+status: beta
+stepInCycle: 8
+relatedPrinciples:
+  - spacing-effect
+  - retrieval-practice
+  - successive-relearning
+  - interleaving
+relatedAuthors:
+  - roediger-karpicke
+  - robert-bjork
+  - albert-bandura
+order: 5
+---
+
+## Vad det löser
+
+De flesta verktyg för distribuerad repetition är flashcard-appar. De avkontextualiserar kunskap till atomära kort och rekonstruerar sedan intervallen baserat på självrapporterad lätthet. De fungerar — men till priset att ta bort den rumsliga och strukturella betydelse som gjorde kunskapen möjlig att återkalla i första hand.
+
+Fluera distribuerade repetition lever inuti din canvas. Noden du repeterar är noden du skrev, på positionen där du skrev den, kopplad till begreppen du drog kanter till. Inget atomiseras.
+
+## Hur det fungerar
+
+Efter varje sokratisk session och varje Ghost Map-överlägg uppdaterar Fluera en uppskattning av minnesstyrka per nod. Den vet vilka begrepp du svarat på lätt, vilka som utlöste hyperkorrigering och vilka du inte sett på ett tag.
+
+Vid varje återbesök (dag 3, 7, 14, 30, 60+) öppnar Fluera canvasen med de förfallande noderna renderade i Fog of War. Du navigerar, återkallar, avslöjar. Schemaläggaren uppdateras. Nästa intervall vidgas eller dras åt baserat på vad du faktiskt mindes, inte vad du sa att du mindes.
+
+**Personlig FSRS.** Schemaläggaren är inte en fast algoritm. Den kalibrerar åtta viktparametrar per användare via gradient descent över din historik av genomgångar — samma metod som den modernaste forskningen om distribuerad repetition, anpassad till Fluera rikare signal (självsäkerhet, svarstid, hyperkorrigeringsmagnitud).
+
+## Vetenskapen bakom
+
+Roediger och Karpicke (2006) etablerade att återkallelsepraktik överträffar omläsning. Bjorks decennier av arbete visade att distribuerad övning överträffar koncentrerad. År 2011 kombinerade Rawson och Dunlosky de två — *successivt återinlärande* — och demonstrerade **superadditiva** resultat: distribuerad återkallelsepraktik producerar effekter större än summan av spacing och återkallelse var för sig.
+
+Detta är den enskilt starkaste evidensbasen i lärandevetenskapen för någon specifik studiestrategi. Fluera arbete är inte att uppfinna den, utan att ta bort varje hinder för utövandet — framför allt det största, som är tråkigheten i att bygga flashcards i första hand. I Fluera *är* canvasen du redan har repetitionsmaterialet.
+
+## Vad som kommer
+
+- **Interleavade spår** — AI:n väljer genomgångsrutter som korsar olika ämneszoner och stänger av autopiloten.
+- **Kalibrering per ämne** — separata FSRS-vikter för språk vs matematik vs klinisk medicin, där minnesdynamiken skiljer sig mätbart.
+- **Anki-import** — för studenter med befintliga decks som vill migrera gradvis.

@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const pillars = [
+  {
+    title: "Verschlüsselung",
+    body: "Jedes Notizbuch in Fluera ist im Ruhezustand mit AES-256 via SQLCipher verschlüsselt. Der Traffic läuft mit TLS 1.3 in Transit. Die Synchronisierung zwischen deinen Geräten ist Ende-zu-Ende verschlüsselt mit Schlüsseln, die aus deiner Passphrase abgeleitet werden — gespeichert im Keychain der Plattform, niemals an unsere Server gesendet.",
+  },
+  {
+    title: "Eigentum an deinen Daten",
+    body: "Jedes Byte, das du schreibst, ist mit einem Klick exportierbar: PNG, JPEG, WebP, SVG, PDF und unser offenes .fluera-Format. Deine Notizbücher leben zuerst auf deinen Geräten. Die Cloud ist eine Bequemlichkeit, kein Gefängnis — Lock-in ist ein Geschäftsmodell, das wir bewusst ablehnen.",
+  },
+  {
+    title: "DSGVO ab Werk",
+    body: "Fluera wird auf Servern in Europa gehostet und ist nach den Prinzipien der DSGVO gebaut. Ein Data Processing Agreement steht für jede Bildungseinrichtung auf Anfrage zur Verfügung. Vollständiger Datenexport und Recht auf Vergessenwerden werden innerhalb von 30 Tagen erfüllt (in der Regel innerhalb von 48 Stunden).",
+  },
+  {
+    title: "Local-first, immer",
+    body: "Du kannst Fluera komplett offline nutzen. Die Synchronisierung ist opt-in pro Notizbuch, nicht auf Kontoebene. Wenn du Sync abschaltest, verlassen deine Daten das Gerät nicht — inklusive der Telemetrie, die einwilligungsbasiert und anonym ist.",
+  },
+  {
+    title: "Audit-Trail (Institutionen)",
+    body: "Für Education-Konten wird jeder Zugriff auf geteilte Notizbücher in einem unveränderlichen Trail aufgezeichnet, exportierbar für Compliance-Audits. Administrator/innen können SSO (SAML, OIDC) und MDM-Deployment durchsetzen.",
+  },
+  {
+    title: "Was wir nicht tun",
+    body: "Keine Werbung. Kein Datenverkauf. Wir trainieren unsere Modelle nicht mit deinen Inhalten. Wir tracken dich nicht im Web. Wir geben Daten an niemanden außerhalb der erklärten Subauftragsverarbeiter (Supabase, Vercel, Stripe) weiter — alle unter DPA.",
+  },
+];
+---
+
+<BaseLayout
+  title="Sicherheit und Datenschutz"
+  description="AES-256 im Ruhezustand, DSGVO ab Werk, Server in Europa, null Ad-Tech. Die Sicherheitsarchitektur von Fluera und das Bekenntnis zum Eigentum an deinen Daten."
+  locale="de"
+>
+  <PageHero
+    kicker="Sicherheit und Datenschutz"
+    title="Ende-zu-Ende-Verschlüsselung.<br />Der Schlüssel bleibt bei dir."
+    titleSize="2xl"
+    description="Verschlüsselung ab Werk. Kein Ad-Tech. Server in Europa. Vollständiger Export. Datenschutz ist eine Design-Restriktion, keine Compliance-Aufgabe."
+    orbs
+    noise
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {pillars.map((p, i) => (
+          <article class="card p-8">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
+            <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Responsible Disclosure</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Etwas gefunden?</h2>
+          <p class="prose-ink mb-6">
+            Sicherheitsforschende sind willkommen. Melde Schwachstellen an
+            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
+            Wir antworten innerhalb von 24 Stunden, patchen kritische Probleme innerhalb von 72 und nennen Reportende in unserem Hall of Fame — außer du bevorzugst Anonymität.
+          </p>
+          <p class="text-sm text-ink-500 italic">
+            Der PGP-Schlüssel für verschlüsselte Reports ist in unserem GitHub-Profil veröffentlicht.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Compliance und Deployment</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Adoption an einer Institution geplant?</h2>
+          <p class="prose-ink mb-6">
+            Universitäten, Schulen, Forschungslabore: wir können dich durch DPA, Liste der Subauftragsverarbeiter, SSO-Setup und Audit-Trail-Modell führen. Pilotprogramme starten meist mit einem Kurs, einem Semester, ohne Kosten.
+          </p>
+          <a href="/de/contact" class="btn-primary">Über Deployment sprechen →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Diese Seite deckt das Wesentliche ab. Die vollständige Architektur, das Register der Subauftragsverarbeiter und das DPA-Template leben unter
+        <a href="/de/security/architecture" class="text-paper-300 underline">/de/security/architecture</a> und
+        <a href="/de/security/sub-processors" class="text-paper-300 underline">/de/security/sub-processors</a>. Spezifische Compliance-Fragen? Schreibe an
+        <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

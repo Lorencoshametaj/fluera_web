@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "بيتا",  note: "دعوة TestFlight بعد القبول في البيتا." },
+  { name: "macOS",        status: "بيتا",  note: "ملفّ .dmg عبر رابط خاصّ بعد الموافقة." },
+  { name: "Android",      status: "ألفا", note: "APK عبر القناة الداخلية في Google Play." },
+  { name: "Windows",      status: "ألفا", note: "مثبّت .exe موقّع عبر Microsoft Store." },
+  { name: "Linux",        status: "ألفا", note: "AppImage + flatpak." },
+  { name: "Web",          status: "عرض",  note: "جرّبه على /demo الآن — يتطلّب متصفّحًا يدعم WebGPU." },
+];
+---
+
+<BaseLayout
+  title="التحميل"
+  description="Fluera يعمل بشكل أصلي على iOS وAndroid وmacOS وWindows وLinux والويب. انضمّ إلى البيتا الخاصّة للوصول المبكر."
+  locale="ar"
+>
+  <PageHero
+    kicker="التحميل"
+    title="ستّ منصّات.<br />انضمّ إلى البيتا للوصول."
+    description="Fluera في بيتا خاصّة. بمجرّد قبولك، تأتي روابط التثبيت بالبريد — تطبيق أصلي على كلّ منصّة، دون نسخة ويب منقوصة."
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">اطلب وصولًا إلى البيتا ←</a>
+      <a href="/demo" class="btn-secondary">جرّب عرض الويب</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        الإصدارات العامّة على App Store وGoogle Play تأتي في نهاية البيتا الخاصّة. في هذه الأثناء، لافتات الحالة أعلاه تقول الحقيقة عن نضج كلّ منصّة — نُفضّل إصدارًا واحدًا جيّدًا على ستّة سيّئة.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

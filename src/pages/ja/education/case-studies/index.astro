@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="教育機関のケーススタディ"
+  description="Fluera を使用している大学、学部、授業の実話。現時点では空のページです。パイロットプログラムは最初の学期を終えつつあります。"
+  locale="ja"
+>
+
+  <PageHero
+    kicker="ケーススタディ"
+    title="パイロットは進行中。<br />ストーリーはその後に。"
+    description="パイロットが少なくとも1学期を完了し、教員の承認を得て、匿名化された学生データの正確性が検証されるまで、ケーススタディは公開しません。2026年下半期と2027年上半期のコホートが進行中です。終了次第、このページが埋まっていきます。"
+    breadcrumb={{ label: "教育", href: "/ja/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2026年下半期 · 進行中</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">医学部の臨床前クラス</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            医学部1年生 約30名が解剖学と生化学の1学期を通じて Fluera を使用。学期末に公開予定。
+          </p>
+          <p class="text-xs font-mono text-ink-500">2027年第1四半期予定</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2026年下半期 · 進行中</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">学部のミクロ経済学</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            概念密度の高いミクロ経済学の科目。焦点: 12ステップサイクルが事実的な内容ではなく抽象的な内容にも耐えられるか。
+          </p>
+          <p class="text-xs font-mono text-ink-500">2027年第2四半期予定</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2027年上半期 · 開始予定</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">法学大学院セミナー</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            憲法解釈。少人数コホート、より深いエンゲージメント。判例比較のための Ghost Map に焦点。
+          </p>
+          <p class="text-xs font-mono text-ink-500">2027年第3四半期予定</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">パイロットを始めたいですか？</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          1学期につき1つのパイロットを実施します。1クラス、30名の学生、1学期、無償。代わりに、構造化されたフィードバックと、終了時に匿名化されたケーススタディを公開する選択肢をお願いしています。
+        </p>
+        <a href="/ja/contact/sales" class="btn-primary">パイロットの相談を始める →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        なぜ待つのか？実数値を伴うケーススタディを誠実に収集するには時間がかかるからです。ベンダーが選んだ逸話に基づくマーケティング目的の「ケーススタディ」を出すのは、私たちが作りたくないコンテンツの典型です。
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

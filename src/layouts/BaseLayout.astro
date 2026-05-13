@@ -3,7 +3,8 @@ import "@/styles/global.css";
 import Head from "@/components/Head.astro";
 import Nav from "@/components/Nav.astro";
 import Footer from "@/components/Footer.astro";
-import { localeFromPathname, t } from "@/lib/i18n";
+import LocaleBanner from "@/components/LocaleBanner.astro";
+import { localeFromPathname, t, type Locale } from "@/lib/i18n";
 
 export interface Props {
   title: string;
@@ -11,7 +12,7 @@ export interface Props {
   ogImage?: string;
   noIndex?: boolean;
   canonical?: string;
-  locale?: "en" | "it";
+  locale?: Locale;
   hideChrome?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   bodyClass?: string;
@@ -19,18 +20,33 @@ export interface Props {
 
 const detectedLocale = localeFromPathname(Astro.url.pathname);
 const { locale = detectedLocale, hideChrome = false, bodyClass = "", ...headProps } = Astro.props;
+
+// RTL locales — set on <html dir="rtl"> so logical properties flip the layout.
+// Logical Tailwind classes (ps-*, pe-*, ms-*, me-*, start-*, end-*, text-start,
+// text-end, border-s-*, border-e-*, rounded-s-*, rounded-e-*) automatically
+// mirror under dir="rtl". Physical classes (pl-*, mr-*, left-*, etc.) do NOT.
+const RTL_LOCALES = new Set<Locale>(["ar" as Locale, "he" as Locale, "fa" as Locale, "ur" as Locale]);
+const dir = RTL_LOCALES.has(locale) ? "rtl" : "ltr";
 ---
 
 <!doctype html>
-<html lang={locale} class="scroll-smooth">
+<html lang={locale} dir={dir} class="scroll-smooth">
   <head>
     <Head {...headProps} locale={locale} />
+    {locale === "ar" && (
+      <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      </>
+    )}
   </head>
   <body class={`min-h-screen bg-ink-950 text-paper-100 antialiased overflow-x-hidden ${bodyClass}`}>
     {!hideChrome && (
       <a href="#main-content" class="skip-link">{t("nav.skipToContent", locale)}</a>
     )}
     {!hideChrome && <Nav />}
+    {!hideChrome && <LocaleBanner />}
     <main id="main-content" class={hideChrome ? "" : "pt-16"} tabindex="-1">
       <slot />
     </main>
@@ -40,7 +56,7 @@ const { locale = detectedLocale, hideChrome = false, bodyClass = "", ...headProp
       .skip-link {
         position: fixed;
         top: -100px;
-        left: 1rem;
+        inset-inline-start: 1rem;
         z-index: 100;
         padding: 0.75rem 1.25rem;
         background: theme("colors.accent.ink");

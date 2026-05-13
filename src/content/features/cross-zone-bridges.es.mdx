@@ -1,0 +1,57 @@
+---
+lang: "es"
+title: Cross-Zone Bridges
+tagline: "Dibuja una línea de la química a las ecuaciones diferenciales. Ahora se acuerdan la una de la otra."
+shortDescription: "Puentes anotados persistentes entre regiones distantes del canvas o cuadernos separados. Declarar un enlace de transfer es de por sí una jugada de codificación generativa — Fluera mantiene el puente vivo a través de reflow, time travel y Atlas."
+status: beta
+stepInCycle: 9
+relatedPrinciples:
+  - concept-mapping
+  - scaffolding
+  - generation-effect
+  - levels-of-processing
+relatedAuthors:
+  - joseph-novak
+  - lev-vygotsky
+order: 6
+---
+
+## Qué resuelve
+
+Cada estudiante, tarde o temprano, nota que la misma idea lleva trajes distintos en sus asignaturas. Una ecuación de velocidad en química es una ecuación diferencial en matemáticas. El principio de Le Châtelier es un cambio de equilibrio en economía. El reinforcement learning es condicionamiento operante reformulado en código.
+
+Las herramientas estándar — documentos separados, carpetas separadas, apps separadas — vuelven esos puentes invisibles by design. El estudiante que los nota es el que aprendió. El que no los nota es el que olvida.
+
+Cross-Zone Bridges convierte el notar en una acción de primera clase.
+
+## Cómo funciona
+
+Aleja a la vista continente de [Atlas](/es/features/atlas). Elige dos zonas en canvas distintos — o dos clusters distantes en el mismo canvas. Toca **+ Bridge**, traza una línea entre ellos y escribe una anotación de una frase explicando *por qué* van juntos.
+
+Ese puente ahora es persistente. Sobrevive a:
+
+- [Reflow Physics](/es/features/reflow) — cuando alguno de los lados se reorganiza, el puente se curva y se adapta; nunca se rompe.
+- [Time Travel](/es/features/time-travel) — reproduce el canvas en el momento en que dibujaste el puente; el contexto de audio también vuelve.
+- Las síntesis de Atlas — el puente aparece como relación de primera clase en los resúmenes conceptuales.
+- [Exam Session](/es/features/exam-session) — las preguntas pueden interleavear deliberadamente los dos lados, entrenando el transfer.
+
+Los puentes tienen estados de lifecycle ligeros: **draft** (sospechas una conexión, quieres revisitarla), **confirmed** (la has validado en ambas asignaturas), y **archived** (la conexión resultó superficial — pero el rastro queda, porque *entender por qué algo no transfiere* también es aprendizaje).
+
+Toca un puente para expandirlo: ves ambos lados en paralelo, los trazos originales que dispararon la conexión, y cualquier pregunta socrática que Atlas haya generado específicamente sobre el enlace.
+
+## La ciencia detrás
+
+Declarar un puente es una jugada de manual del **generation effect** (Slamecka & Graf, 1978): estás produciendo la relación en lugar de recibirla. El conocimiento generado se retiene más durablemente que el recibido, incluso cuando la generación es parcialmente errónea.
+
+El trabajo de Joseph Novak sobre **concept mapping** (1984) extiende esto: los enlaces entre dominios — los que Novak llamaba "cross-links" en mapas conceptuales — predicen el rendimiento de transfer mejor que los enlaces dentro del dominio. Los estudiantes que dibujan cross-links sacan mejores notas en problemas nuevos que requieren aplicación conceptual, no solo en los originales.
+
+El mecanismo son los **levels of processing** (Craik & Lockhart, 1972): el procesamiento superficial codifica rasgos de superficie; el profundo codifica los estructurales. Un puente entre química y economía exige procesamiento estructural — encontrar el patrón abstracto que sobrevive al cambio de vocabulario. Cuanto más profundo el procesamiento, más durable la huella.
+
+El **scaffolding** de Vygotsky aparece como sugerencia de puentes mediada por Atlas: cuando has dibujado suficientes puentes hacia una asignatura, Atlas propone nuevos en tu zona de desarrollo próximo — lo bastante cerca para ser descubribles, lo bastante lejos para requerir trabajo real para confirmarlos.
+
+## Lo que viene
+
+- **Puentes bidireccionales** — modelar la asimetría: química → matemáticas suele ser más fácil que matemáticas → química; los datos pueden guiar revisiones conscientes de la direccionalidad.
+- **Socratic guiado por puentes** — preguntas que piden predecir un lado desde el otro, entrenando el transfer como habilidad de recuperación.
+- **Scope Exam cross-canvas** — opción de incluir todos los puentes en una Exam Session, weaponizando el interleaving entre cuadernos.
+- **Bibliotecas públicas de puentes** — para profesores que quieran sembrar un curso con un set inicial de conexiones canónicas cross-disciplinares.

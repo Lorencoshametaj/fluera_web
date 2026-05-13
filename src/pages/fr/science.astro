@@ -1,0 +1,187 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import { getCollection } from "astro:content";
+
+const principles = (await getCollection("principles", ({ data }) => data.lang === "fr")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const authors = (await getCollection("authors", ({ data }) => data.lang === "fr")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const steps = [
+  { n: 1,  title: "Capture",                   verb: "Jour de cours",         description: "Écris les concepts à la main pendant le cours. Place-les dans l'espace. La lenteur du stylo force la compression — et la compression est l'endroit où naît l'encodage." },
+  { n: 2,  title: "Reconstruction",            verb: "Le soir même",          description: "Ferme le livre. Reconstruis ce dont tu te souviens sur un canvas vierge. Les nœuds rouges où tu hésites sont la carte de ce qu'il faut réviser (Kapur, échec productif, 2008)." },
+  { n: 3,  title: "Socratique",                verb: "Sous 48 h",             description: "L'IA pose les questions, tu réponds. Déclare ta confiance de 1 à 5 avant chaque révélation. La métacognition rendue explicite." },
+  { n: 4,  title: "Centaure",                  verb: "Juste après",           description: "Ghost Map superpose ton raisonnement à la carte idéale. L'hypercorrection ancre les corrections dans la mémoire (Butterfield et Metcalfe, 2001)." },
+  { n: 5,  title: "Sommeil",                   verb: "Cette nuit-là",         description: "Ne fais rien. Le sommeil à ondes lentes rejoue la journée. L'hippocampe transmet les traces au néocortex." },
+  { n: 6,  title: "Premier rappel",            verb: "Jour 1",                description: "Ouvre le canvas le lendemain. Ce que tu savais à peu près s'est estompé. Récupère depuis la mémoire avant de révéler." },
+  { n: 7,  title: "Apprentissage entre pairs", verb: "Jours 2–3",             description: "Explique ton canvas à un camarade — ou à une IA silencieuse qui te renvoie des questions. Enseigner à quelqu'un, c'est ainsi que tu finis de t'enseigner à toi-même." },
+  { n: 8,  title: "Rappels espacés",           verb: "Jour 3 · 7 · 14…",      description: "Réapprentissage successif à intervalles croissants. Par taille d'effet, la stratégie d'étude avec la preuve la plus forte (Rawson et Dunlosky, 2011)." },
+  { n: 9,  title: "Ponts entre domaines",      verb: "Semaines plus tard",    description: "Trace des flèches entre les matières. La chimie rencontre les équations différentielles. Le transfert est le vrai test de l'apprentissage." },
+  { n: 10, title: "Préparation à l'examen",    verb: "7 à 14 jours avant",    description: "Fog of War. Navigue dans le brouillard de ton canvas. Vert, rouge, angles morts — la carte de maîtrise se dessine d'elle-même." },
+  { n: 11, title: "L'examen",                  verb: "Le jour J",             description: "Éteins l'appareil. Marche dans le palais de la mémoire que tu as construit de tes mains pendant des semaines. Le canvas vit en toi maintenant." },
+  { n: 12, title: "Croissance permanente",     verb: "Pour toujours",         description: "Le canvas persiste comme autobiographie cognitive. Tu y reviens deux ans plus tard et tu vois la forme tangible de tout ce que tu as appris." },
+];
+---
+
+<BaseLayout
+  title="La science de Fluera"
+  description="Fluera s'appuie sur cinq décennies de recherche sur la mémoire — Bjork, Mueller, van der Meer, Roediger, et la neuroscience des place cells couronnée par le Nobel. Explore le cycle en 12 étapes et les principes derrière chaque fonctionnalité."
+  locale="fr"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">La science</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          Cinq décennies de recherche sur la mémoire<br />derrière une seule app.
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          Chaque fonctionnalité de Fluera renvoie à une recherche publiée. Ci-dessous : le cycle d'apprentissage en 12 étapes, les 23 principes à la base, les douze esprits sur lesquels nous construisons, et les limites de ce que nous ne prétendons pas encore.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#learning-cycle" class="btn-secondary">Aller au cycle</a>
+          <a href="#principles" class="btn-secondary">Index des principes</a>
+          <a href="#authors" class="btn-secondary">Auteurs</a>
+          <a href="/fr/research" class="btn-secondary">Bibliographie →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Le cycle</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Un canvas. Douze mouvements cognitifs.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Le cycle est séquentiel et itératif. Les étapes 1 à 4 construisent l'encodage. L'étape 5 (le sommeil) est de la biologie non négociable. Les étapes 6 à 9 consolident sur des jours et des semaines. Les étapes 10 à 12 rendent la connaissance permanente et transférable.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">Index des principes</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Les 23 principes derrière Fluera.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Chaque principe mène à une page dédiée avec les auteurs principaux, les fonctionnalités appliquées et les papers que nous citons.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {principles.map((p) => (
+          <li>
+            <a
+              href={`/fr/science/principles/${p.id.replace(/\.fr$/, "")}`}
+              class="block card p-5 h-full transition-all hover:border-accent-glow/40 hover:bg-white/[0.04]"
+            >
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-base font-medium text-paper-50 leading-tight">{p.data.title}</h3>
+                <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
+              </div>
+              <p class="text-sm text-paper-300 leading-relaxed line-clamp-3">{p.data.shortDescription}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="authors" class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Les esprits derrière la méthode</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Douze chercheurs dont le travail vit à l'intérieur de Fluera.</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Ce n'est pas une page-hommage. Chaque nom mène à une page qui nomme le principe, les fonctionnalités de Fluera qui l'implémentent et les papers que nous citons.
+        </p>
+      </div>
+
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 list-none p-0">
+        {authors.map((a) => (
+          <li>
+            <a href={`/fr/science/authors/${a.id.replace(/\.fr$/, "")}`} class="block">
+              <AuthorCard name={a.data.name} contribution={a.data.shortBio.slice(0, 160) + (a.data.shortBio.length > 160 ? "…" : "")} year={a.data.years} nobel={a.data.nobelLaureate} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Pourquoi maintenant</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Le goulot d'étranglement s'est déplacé.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Pendant la majeure partie de l'histoire, le goulot d'étranglement de l'apprentissage était l'accès. Les livres coûtaient cher, les enseignants étaient peu nombreux, les bibliothèques étaient loin. La question était : <em>est-ce que je peux atteindre l'information ?</em>
+        </p>
+        <p>
+          Pour la dernière génération, le goulot était la navigation. L'information était abondante ; trouver le bon morceau était le travail. Google, Wikipedia, catalogues de cours — toute une infrastructure pour une seule question : <em>où est-ce ?</em>
+        </p>
+        <p>
+          En 2026, ni l'un ni l'autre ne contraint plus. N'importe quel fait est à trois secondes. N'importe quelle explication peut être générée dans le style que tu préfères. Le goulot a changé de forme, et pour la nouvelle forme l'infrastructure n'a pas encore été construite : <em>comment est-ce que je transforme ce que je viens de lire en quelque chose que je retiens vraiment ?</em>
+        </p>
+        <p>
+          La science cognitive de cette question est claire depuis cinquante ans. Répétition espacée, pratique de récupération, génération, difficultés désirables, cognition incarnée, calibration métacognitive. Les résultats sont robustes. Les méta-analyses sont cohérentes. Le problème n'a jamais été de savoir ce qui marche — c'était de construire des outils qui rendent la bonne chose plus facile que la mauvaise.
+        </p>
+        <p>
+          La tentation de l'ère LLM est l'opposé. Elle fait paraître la mauvaise chose — la consommation passive d'explications fluentes — comme la bonne. Trois secondes de reconnaissance, confondues avec l'encodage. Nous n'avons pas besoin d'une app de plus qui accélère cette erreur.
+        </p>
+        <p>
+          Fluera est construit à contre-courant. Lent là où la vitesse est une illusion. Silencieux là où le bruit est le modèle économique. Difficile là où la difficulté est le mécanisme. Pas parce que nous aimons l'effort, mais parce que la preuve est sans équivoque — l'effort <em>est</em> l'apprentissage.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-prose">
+      <p class="eyebrow mb-6 text-accent-glow">Transparence</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-8">Ce que nous ne prétendons pas.</h2>
+      <div class="prose-ink text-lg">
+        <p>
+          Nous citons la recherche pour chaque principe parce que la recherche existe. Cela ne veut pas dire que Fluera lui-même a été testé contre des contrôles. Il ne l'a pas été — pas encore. Quand nous disons "fondé sur la preuve", nous voulons dire que le mécanisme sous-jacent l'est. L'implémentation spécifique est un pari d'ingénierie informé par la littérature.
+        </p>
+        <p>
+          Nous ne sommes pas un outil clinique. Nous ne remplaçons pas un tuteur compétent. Nous n'allons pas déclarer qu'utiliser Fluera relève le résultat d'aucun étudiant d'aucun pourcentage spécifique. Une telle affirmation serait soit malhonnête, soit infalsifiable ; les deux pires que le silence.
+        </p>
+        <p>
+          Certains des principes listés sont contestés dans des domaines spécifiques. Les interventions de mentalité de croissance ont une réplication mitigée dans les essais contrôlés. Le flow est plus facile à reconnaître qu'à ingénier de manière fiable. La cognition spatiale dans les environnements numériques ne coïncide pas toujours avec celle des environnements physiques. Nous signalons ces limites parce que les aplatir est le moyen le plus rapide de perdre la confiance précisément des learners qui nous tiennent à cœur.
+        </p>
+        <p>
+          Les méta-analyses que nous citons sont le consensus le plus proche que la science cognitive produise. Les fonctionnalités de Fluera bâties dessus sont, à ce stade, des hypothèses que nous testons avec la bêta. Si quelque chose ne marche pas pour toi, nous voulons le savoir — ce signal vaut plus que n'importe quelle promesse de landing page.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">Mets le cycle à l'épreuve.</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        Lire sur la pratique de récupération n'est pas pratiquer la récupération. Rejoins la bêta privée et mets le cycle à l'épreuve sur un canvas qui est le tien.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Rejoins la bêta →</a>
+        <a href="/fr/research" class="btn-secondary">Lis la bibliographie</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

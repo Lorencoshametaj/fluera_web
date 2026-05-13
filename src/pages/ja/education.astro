@@ -1,0 +1,199 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const useCases = [
+  {
+    title: "授業の記録",
+    body: "授業中に学生が無限キャンバス上で手書きノートを取り、Time Travel による音声同期もオプションで利用可能。キャンバスは学期を越えて生き続けるアーカイブになります。",
+  },
+  {
+    title: "大規模な試験準備",
+    body: "Fog of War と間隔反復が、学生個人のキャンバスを想起練習のエンジンに変えます。教員は内容を指示することなく、トピック別の学習パスを提案できます。",
+  },
+  {
+    title: "STEM ラボノート",
+    body: "LaTeX レンダリング、筆圧感応の図解、音声同期による実験記録。評価で要求される手書きの証跡を保ったまま、紙のノートを置き換えます。",
+  },
+];
+
+const deployment = [
+  { label: "SSO",              body: "SAML 2.0 と OIDC。Shibboleth、Azure AD、Okta、Google Workspace for Education と統合。" },
+  { label: "MDM フレンドリー", body: "App Store / Play 経由の標準的な企業配布。Windows と macOS は署名済みインストーラ。サイドローディング不要。" },
+  { label: "監査ログ",         body: "アカウント単位の改ざん不可なアクセスログ。コンプライアンス監査用にエクスポート可能。" },
+  { label: "データレジデンシー", body: "デフォルトでヨーロッパのサーバー。Data Processing Agreement はご請求に応じて提供。" },
+  { label: "アクセシビリティ", body: "全プラットフォームで WCAG 2.1 AA を目標。スクリーンリーダー対応、ハイコントラストモード、運動機能の差異に対応するブラシ感度の調整可。" },
+  { label: "オンプレミス",     body: "Enterprise ロードマップに掲載。現時点ではクラウドのみ ― 強力な暗号化と地域別コントロール付き。" },
+];
+---
+
+<BaseLayout
+  title="大学のための Fluera ― 高等教育のための認知インフラ"
+  description="エビデンスに基づく学習ツールを大学へ。マルチシートライセンス、SSO、監査ログ、12ステップ・サイクルに関する教員トレーニング。パイロットプログラム実施中。"
+  locale="ja"
+>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
+    <div class="container-site relative">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">大学・学校向け</p>
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
+          現代の大学のための<br />認知インフラ。
+        </h1>
+        <p class="prose-ink text-xl max-w-2xl mb-10">
+          学生のためのエビデンスに基づく学習ツール。情報システム部門のための SSO。学習の認知科学に関する教員トレーニング。パイロットは1クラス、1学期、無料から始まります。
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/ja/contact" class="btn-primary">アカデミック相談を予約 →</a>
+          <a href="/ja/" class="btn-secondary">背景にあるサイエンス</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">教員が Fluera を選ぶ理由</p>
+        <h2 class="font-serif text-display-xl text-paper-50">具体的な3つのパターン。</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {useCases.map((u, i) => (
+          <article class="card p-7">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{u.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{u.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">ライセンスモデル</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-4">3段階。まずは一度の対話から。</h2>
+        <p class="prose-ink text-lg max-w-prose">
+          教育機関向けにはシート単価を公開していません: 適切な構造はライセンス対象範囲 ― クラス、学部、キャンパス ― によって決まるからです。一度お話しいただければ、具体的な提案をお持ちします。
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 max-w-5xl">
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">クラス</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            1コース、1学期、最大200名の学生。各学生に Pro アクセス、教員ダッシュボード、トレーニング1セッション付き。
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">典型的な導入: パイロット</p>
+        </article>
+        <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">学部</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            学部全体。複数年契約。SSO、監査ログ、専任サポート SLA。導入する各授業の教員トレーニング込み。
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">典型的な導入: 2年目</p>
+        </article>
+        <article class="card p-7">
+          <h3 class="font-serif text-xl text-paper-50 mb-3">キャンパス</h3>
+          <p class="text-sm text-paper-300 mb-4 leading-relaxed">
+            キャンパス全体。専任の導入サポート、指名されたエンジニアリング担当者、12ステップ・サイクルに関する共同研究の機会。
+          </p>
+          <p class="text-xs font-mono uppercase tracking-widest text-ink-500">典型的な導入: 3年目以降</p>
+        </article>
+      </div>
+
+      <div class="mt-10">
+        <a href="/ja/contact" class="btn-primary">価格概要を請求 →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">教員トレーニング</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">2時間。応用認知科学。</h2>
+          <p class="prose-ink mb-4">
+            このワークショップは、12段階の学習サイクル、各ステップの背後にある原則、そして既存のコースに Fluera を統合するための具体的なパターンをカバーします。製品デモではありません。
+          </p>
+          <p class="prose-ink">
+            対面またはリモートで実施、1セッションあたり最大15名 ― 各教員が自身のコースに対する具体的な計画を持ち帰れるように。
+          </p>
+        </div>
+        <div class="card p-7">
+          <h3 class="eyebrow text-accent-glow mb-4">カバーする内容</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0">
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">01</span><span>間隔、想起、生成、望ましい困難 ― 4つの柱</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">02</span><span>12ステップ・サイクルを、あなたの授業の具体的な構造にマッピング</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">03</span><span>Socratic を使うとき、Ghost Map を使うとき、道を譲るとき</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">04</span><span>Fog of War で、あなたの評価を置き換えずに試験準備を設計する</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">05</span><span>研究、エビデンスの強さ、そしてエビデンスが支持する範囲の限界</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">06</span><span>ハンズオン: 各教員が退出前に Fluera で1授業を構築</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-10">
+        <p class="eyebrow mb-6 text-accent-glow">展開</p>
+        <h2 class="font-serif text-display-xl text-paper-50">情報システム部門にも喜んでもらえます。</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+        {deployment.map((d) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{d.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">パイロットプログラム</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">1クラス。1学期。無料。</h2>
+          <p class="prose-ink mb-4">
+            Fluera が学生に有効かを最も早く知る方法は、30名で1学期、無料で試すことです。引き換えに、構造化されたフィードバック ― 中間チェックイン、学期末アンケート、そして匿名化された結果データを共有するオプション ― をお願いします。
+          </p>
+          <p class="prose-ink">
+            うまくいけば、複数年契約について話し合います。うまくいかなければ、あなたはデータを得て、私たちは教訓を得ます。どちらにしても、双方にとって価値があります。
+          </p>
+        </div>
+        <div class="card p-8 bg-accent-ink/[0.08] border-accent-ink/30">
+          <h3 class="eyebrow text-accent-glow mb-4">提供内容</h3>
+          <ul class="space-y-3 text-sm text-paper-200 list-none p-0 mb-6">
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>最大30名の学生に Pro アクセス</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>2時間の教員ワークショップ</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>学期中、ファウンダーへのダイレクトチャネル</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>レポート用の匿名化された集計アナリティクス</span></li>
+          </ul>
+          <a href="/ja/contact" class="btn-primary w-full">パイロットを始める →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <h2 class="font-serif text-display-lg text-paper-50 mb-4">GDPR準拠デフォルト。FERPA 配慮。WCAG 2.1 AA を目標。</h2>
+      <p class="prose-ink mb-8 max-w-2xl mx-auto">
+        詳細はセキュリティページに ― サブプロセッサ一覧、Data Processing Agreement、暗号化アーキテクチャ、監査ログのモデル。
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/ja/security" class="btn-secondary">セキュリティアーキテクチャを読む →</a>
+        <a href="/ja/contact" class="btn-primary">お問い合わせ</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

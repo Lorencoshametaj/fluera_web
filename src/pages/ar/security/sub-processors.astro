@@ -1,0 +1,112 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const processors = [
+  {
+    name: "Supabase Inc.",
+    purpose: "قاعدة بيانات، مصادقة، تخزين سحابي مشفّر، إشارات realtime، Edge Function لبروكسي AI.",
+    dataTypes: "بريد الحساب، معرّف مستخدم مُجزَّأ، نصّ مشفّر للوحة (E2E)، بيانات وصفية للمزامنة.",
+    region: "فرانكفورت، الاتّحاد الأوروبي (المنطقة الافتراضية لمثيلات Fluera).",
+    privacy: "https://supabase.com/privacy",
+  },
+  {
+    name: "Google LLC",
+    purpose: "Google Generative AI (Gemini) لـSocratic Mode وGhost Map وLaTeX OCR وتوليد جلسات الامتحان.",
+    dataTypes: "أجزاء نصّية مختارة من اللوحة (فقط إن كانت ميزات AI مسموحة ومُفعَّلة). لا دفاتر كاملة أبدًا.",
+    region: "الولايات المتّحدة، الاتّحاد الأوروبي عبر مناطق Google Cloud؛ SCC + EU-US DPF.",
+    privacy: "https://policies.google.com/privacy",
+  },
+  {
+    name: "Apple Inc.",
+    purpose: "مصادقة Sign in with Apple؛ شراء داخل التطبيق عبر App Store على iOS وmacOS.",
+    dataTypes: "بريد ترحيل Apple ID، معرّفات الإيصال. لا بيانات لوحة.",
+    region: "الولايات المتّحدة؛ SCC + EU-US DPF.",
+    privacy: "https://www.apple.com/legal/privacy/",
+  },
+  {
+    name: "RevenueCat Inc.",
+    purpose: "إدارة الاشتراكات والتحقّق من الإيصالات على iOS وAndroid والويب.",
+    dataTypes: "معرّف مستخدم RevenueCat مجهول الهوية، حالة الاشتراك، بيانات وصفية للإيصال. لا بيانات بطاقات دفع.",
+    region: "الولايات المتّحدة؛ SCC + EU-US DPF.",
+    privacy: "https://www.revenuecat.com/privacy",
+  },
+  {
+    name: "Functional Software Inc. (Sentry)",
+    purpose: "تقارير الأعطال ومراقبة الأخطاء.",
+    dataTypes: "تتبّع المكدّس، إصدار النظام، طراز الجهاز، إصدار التطبيق. sendDefaultPii معطَّل صراحةً — لا محتوى مستخدم.",
+    region: "الولايات المتّحدة، خيار الاتّحاد الأوروبي متاح.",
+    privacy: "https://sentry.io/privacy/",
+  },
+  {
+    name: "Vercel Inc.",
+    purpose: "استضافة موقع التسويق fluera.dev و/docs.",
+    dataTypes: "سجلّات وصول ويب قياسية (IP، user-agent). لا محتوى حساب.",
+    region: "حافة عالمية؛ منطقة المصدر قابلة للتكوين.",
+    privacy: "https://vercel.com/legal/privacy-policy",
+  },
+];
+
+const lastUpdated = "2026-04-20";
+---
+
+<BaseLayout
+  title="المعالجون الفرعيون"
+  description="أطراف ثالثة تعتمد عليها Fluera لتقديم المنتج. الغرض، البيانات المُشارَكة، المنطقة، ورابط سياسة الخصوصية لكلّ معالج فرعي."
+  locale="ar"
+>
+  <PageHero
+    kicker="المعالجون الفرعيون"
+    title="كلّ طرف ثالث نعتمد عليه."
+    description="وفقًا للمادّة 28 من GDPR، كلّ معالج فرعي يُعالج بيانات شخصية بالنيابة عنّا مذكور هنا — ما نُشاركه، لماذا، وأين يعيش. نُخطِر العملاء قبل كلّ تغيير."
+    breadcrumb={{ label: "الأمان", href: "/ar/security" }}
+  >
+    <p slot="copy" class="mt-6 text-sm text-ink-500 font-mono">آخر تحديث: {lastUpdated}</p>
+  </PageHero>
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-5xl">
+        {processors.map((p) => (
+          <li class="card p-6 md:p-7">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <h2 class="font-serif text-xl text-paper-50 mb-2">{p.name}</h2>
+                <a href={p.privacy} class="text-xs text-accent-glow underline underline-offset-4 font-mono" rel="noopener">
+                  سياسة الخصوصية ↗
+                </a>
+              </div>
+              <dl class="md:col-span-3 grid gap-3 text-sm">
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">الغرض</dt>
+                  <dd class="text-paper-200">{p.purpose}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">البيانات المُشارَكة</dt>
+                  <dd class="text-paper-200">{p.dataTypes}</dd>
+                </div>
+                <div>
+                  <dt class="eyebrow text-ink-500 mb-1">المنطقة</dt>
+                  <dd class="text-paper-200">{p.region}</dd>
+                </div>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <h2 class="font-serif text-xl text-paper-50 mb-4">التغييرات والإشعارات</h2>
+      <p class="prose-ink text-sm mb-4">
+        نُحدّث هذه القائمة في كلّ مرّة يُضاف فيها معالج فرعي أو يُغيَّر أو يُحذَف. وفقًا للمادّة 28(2) من GDPR، يتلقّى العملاء المؤسّسيون والمشتركون في Enterprise إشعارًا بالبريد قبل التغيير بـ30 يومًا على الأقلّ.
+      </p>
+      <p class="prose-ink text-sm">
+        للاشتراك في إشعارات تغييرات المعالجين الفرعيين، راسل من بريد حسابك على <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

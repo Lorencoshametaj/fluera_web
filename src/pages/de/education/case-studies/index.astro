@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Institutionelle Fallstudien"
+  description="Echte Geschichten von Universitäten, Hochschulen und Kursen, die Fluera einsetzen. Vorerst leer: die Pilotprogramme schließen gerade ihre ersten Semester ab."
+  locale="de"
+>
+
+  <PageHero
+    kicker="Fallstudien"
+    title="Die Piloten laufen.<br />Die Geschichten kommen später."
+    description="Wir veröffentlichen keine Fallstudie, bevor ein Pilot mindestens ein Semester abgeschlossen hat, die Hochschule unterzeichnet hat und die anonymisierten Daten der Studierenden auf Genauigkeit geprüft wurden. Die Kohorten des zweiten Semesters 2026 und des ersten Semesters 2027 laufen — diese Seite füllt sich, sobald sie enden."
+    breadcrumb={{ label: "Bildung", href: "/de/education" }}
+  />
+
+  <section class="py-20 md:py-24 border-b border-white/[0.04]">
+    <div class="container-site max-w-4xl">
+      <div class="grid md:grid-cols-3 gap-4">
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2. Semester 2026 · Laufend</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Eine vorklinische Medizinkohorte</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            ~30 Erstsemester der Medizin, die Fluera für ein Semester Anatomie und Biochemie nutzen. Veröffentlichung am Ende des Semesters.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Geplant Q1 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">2. Semester 2026 · Laufend</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Mikroökonomie im Bachelor</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Eine konzeptdichte Mikroökonomie-Lehrveranstaltung. Fokus: wie der 12-Schritte-Zyklus trägt, wenn das Material abstrakt statt faktisch ist.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Geplant Q2 2027</p>
+        </article>
+        <article class="card p-7 opacity-60">
+          <p class="eyebrow text-ink-500 mb-3">1. Semester 2027 · Beginnend</p>
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Ein Master-Seminar in Recht</h2>
+          <p class="text-sm text-paper-300 mb-4">
+            Verfassungsauslegung. Kleinere Kohorte, tiefere Beteiligung. Fokus auf Ghost Map für den Vergleich von Rechtsprechung.
+          </p>
+          <p class="text-xs font-mono text-ink-500">Geplant Q3 2027</p>
+        </article>
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Möchtest du einen Pilot starten?</h2>
+        <p class="text-sm text-paper-200 mb-4 leading-relaxed">
+          Wir führen einen Pilot pro Semester durch — eine Klasse, dreißig Studierende, ein Semester, ohne Kosten. Im Gegenzug bitten wir um strukturiertes Feedback und die Option, am Ende eine anonymisierte Fallstudie zu veröffentlichen.
+        </p>
+        <a href="/de/contact/sales" class="btn-primary">Ein Pilotgespräch beginnen →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto">
+        Warum warten? Weil eine Fallstudie mit echten Zahlen Zeit braucht, um ehrlich erhoben zu werden — und „Fallstudien" zu veröffentlichen, die auf vom Anbieter selektierten Anekdoten basieren, ist genau jene Art von Inhalt, die wir nicht produzieren wollen.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,56 @@
+---
+lang: "sv"
+title: Exam Session
+tagline: "Simulerade prov från din egen canvas. Hyperkorrigering förvandlar fel till permanent minne."
+shortDescription: "Fluera genererar ett prov med stängd bok från de begrepp du faktiskt ritat. Självsäkerhetsväljare före varje svar. Efter inlämning lägger Ghost Map ditt arbete ovanpå — ju större överraskningen, desto bättre fastnar korrigeringen."
+status: beta
+stepInCycle: 11
+relatedPrinciples:
+  - hypercorrection-effect
+  - productive-failure
+  - interleaving
+  - retrieval-practice
+  - metacognition
+relatedAuthors:
+  - butterfield-metcalfe
+  - robert-bjork
+  - roediger-karpicke
+order: 7
+---
+
+## Vad det löser
+
+De flesta studenter förväxlar *att känna sig förberedd* med *att vara förberedd*. De läser om sina anteckningar, ser en video i 2x, ber en LLM sammanfatta kapitlet — och kommer till provet med en flyt som inte har något att göra med återkallelse. Resultatet är den universella efter-prov-chocken: "Jag visste det här. Varför kunde jag inte skriva det?"
+
+Exam Session stänger den luckan genom att låta provet hända — privat, på din canvas, dagar före det riktiga.
+
+## Hur det fungerar
+
+Du avslutar en studiesession. Öppnar Atlas-menyn och trycker på **🎓 Förhör mig** — eller skriver *"förhör mig"* i canvas-chatten. Fluera läser de begrepp du faktiskt ritat (kluster-cache plus streck-OCR) och genererar ett prov med stängd bok från dem. Fem, sju eller tio frågor. Blandade typer: öppna, flerval, sant/falskt, formelrekall.
+
+Före varje svar frågar självsäkerhetsväljaren en enda sak: **hur säker är du, från 1 till 5?** Flytta vredet. Förbinde dig till en siffra.
+
+Svara nu — för hand, på en mini-canvas-scratchpad, exakt som du skulle skriva på det riktiga provet. Ingen autocomplete. Ingen kopiering och inklistring. Inget "regenerera". Bara du och sidan.
+
+Vid inlämning bedömer Fluera svaret token för token och returnerar streamad återkoppling. Om du har fel med hög självsäkerhet utlöses **hypercorrection shock-UI** — en avsiktlig och omöjligen att ignorera visuell effekt som aktiverar den mest varaktiga form av korrigering hjärnan producerar. Sedan ber Fluera dig skriva om det korrekta svaret med dina egna ord: **genereringseffekten** låser minnet.
+
+Efter tre rätta i rad ökar svårigheten automatiskt. Efter varje chunk om fyra frågor, en kort återkopplingspaus före nästa set — chunking och interleaving genom design.
+
+Vid sessionens slut uppdaterar FSRS-schemaläggaren repetitionsintervallen per begrepp utifrån din faktiska prestation, inte självrapporterad svårighet. Blinda fläckar går tillbaka till Fog of War för kirurgisk återkallelsepraktik på dag 1, 3, 7, 14.
+
+## Vetenskapen bakom
+
+Tre decennier av evidens konvergerar mot ett enda fynd: de mest varaktiga korrigeringarna kommer från de mest överraskande misstagen.
+
+Butterfield och Metcalfes **hyperkorrigering-effekt** (2001) är den centrala mekanismen. Fel begångna med hög självsäkerhet, när de väl korrigeras, behålls mer permanent än fel med låg självsäkerhet — överraskningen att ha fel när du var säker modulerar hippocampal kodning via amygdala-aktivering. Självsäkerhetsväljaren är inte estetik; den är utlösaren för denna mekanism.
+
+Robert Bjorks **önskvärda svårigheter** (1994) förklarar varför ett öppet handskrivet svar överträffar flerval: friktionen i genereringen är exakt det som bygger minne. Roediger och Karpicke (2006) avslutar bilden — ett enda återkallelseförsök producerar starkare långsiktigt minne än fyra omläsningssessioner.
+
+Manu Kapurs forskning om **produktivt misslyckande** (2008) stöder det hårdaste designbeslutet: frågor något över din nuvarande nivå producerar mer varaktigt lärande än frågor kalibrerade för komfortzonen. Den adaptiva svårigheten skalar avsiktligt, inte defensivt.
+
+## Vad som kommer
+
+- **Efter-prov-analys** — självsäkerhetskalibrering per kluster och grafer över hyperkorrigeringens magnitud.
+- **Voice-mode Exam** — talade frågor med handskrivna svar, för att förbereda kliniska eller muntliga prov.
+- **Persistent surgical path overlay** — efter provet markerar Fog of War endast de förlorade begreppen på den levande canvasen, avgränsade för nästa dags genomgång.
+- **Multidisciplin-Exam Sessions** — en session som interleavar kluster från olika anteckningsböcker, tränar transfer.

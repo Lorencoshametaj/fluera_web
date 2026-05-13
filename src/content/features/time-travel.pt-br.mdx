@@ -1,0 +1,51 @@
+---
+lang: "pt-br"
+title: Time Travel
+tagline: "Reproduza qualquer traço. Sincronizado com o áudio da aula que te fez escrevê-lo."
+shortDescription: "Toque uma anotação de três semanas atrás e o áudio retoma exatamente onde a sua caneta estava escrevendo. Reviva o seu próprio pensamento."
+status: coming-soon
+stepInCycle: 5
+relatedPrinciples:
+  - spatial-cognition
+  - spacing-effect
+  - embodied-cognition
+  - levels-of-processing
+relatedAuthors:
+  - okeefe-moser
+  - van-der-meer
+order: 10
+---
+
+## O que resolve
+
+A falha tradicional das anotações de aula é que elas são mortas. Semanas depois você olha algo que escreveu e não lembra por quê. O que o professor estava dizendo? Qual era o contexto? A anotação está descontextualizada — e anotações descontextualizadas são quase inúteis.
+
+Time Travel mantém o contexto vivo.
+
+## Como funciona
+
+Você inicia uma gravação quando a aula começa. Escreve normalmente. Cada traço que desenha fica ligado por timestamp ao frame de áudio gravado.
+
+Depois — dias, semanas ou meses — você toca em qualquer traço no seu canvas. O áudio rebobina para o momento exato em que você estava escrevendo. Você ouve a voz do professor, o seu próprio pensamento, a pergunta de quem estava no fundo da sala. O contexto volta de uma vez.
+
+Você desliza o áudio e vê o canvas se reproduzir traço por traço, no ritmo original ou acelerado. Vê a sua mente em trabalho.
+
+Todo o storage é local por padrão, criptografado com SQLCipher. A sincronização do áudio é opt-in e criptografada ponta a ponta quando ativada.
+
+## A ciência por trás
+
+Dois princípios convergem:
+
+- **Recuperação dependente do contexto** (Tulving, 1972): a memória se recupera melhor quando o contexto de recuperação corresponde ao de codificação. O Fluera reproduz o contexto de codificação sob demanda — a voz do professor, o ambiente da sala, os movimentos da sua mão.
+- **Cognição espacial** (O'Keefe e Moser, Nobel 2014): a posição no canvas é, ela mesma, um pista de recuperação. Tocar um traço combina a pista espacial (posição) com a contextual (áudio) — duas vias de recuperação em vez de uma.
+
+O trabalho de EEG de van der Meer (2020) adiciona uma terceira camada: a escrita à mão ativa redes sensorimotoras amplas no momento da escrita. Time Travel deixa o estudante percorrer essa mesma rede semanas depois — não só lembrando-a, mas *reproduzindo* o traço que originalmente a disparou.
+
+## O que vem por aí
+
+Time Travel está em alpha privada. O lançamento completo inclui:
+
+- **Sync de áudio cross-device** (hoje apenas local)
+- **Busca na transcrição** — encontre momentos da aula a partir do que foi dito
+- **Marcadores de capítulo** auto-gerados por pausas e mudanças de tópico
+- **Export como vídeo anotado** — para compartilhar um walkthrough da aula

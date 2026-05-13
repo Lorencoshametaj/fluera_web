@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Om oss"
+  description="Fluera byggs av ett litet team i Italien. Vår historia, våra övertygelser, gränsen vi inte kommer att gå över."
+  locale="sv"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Om oss</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
+          Vi byggde studieappen<br />vi själva hade velat ha<br />när vi var studenter.
+        </h1>
+        <div class="prose-ink text-lg">
+          <p>
+            Fluera föddes ur en frustration. En av oss är full-stack-utvecklare med tio år på nacken; den andra var student och såg sina kursare gå i samma fälla — appar som kändes produktiva men inte hjälpte någon att minnas något.
+          </p>
+          <p>
+            Vi läste forskningen. <em>Mycket</em> forskning. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Den kognitiva vetenskapen har varit tydlig i ett halvt sekel: handskrift slår tangentbord, återkalla slår läsa om, sprida slår plugga, friktion är en funktion. Vi hittade ingen app som tog något av detta på allvar. Så vi byggde en.
+          </p>
+          <p>
+            På vägen skrev vi en 2D-renderingsmotor från grunden — för ingen färdig stack klarade tryckskänsligt bläck i 60 FPS över sex native plattformar. Motorn är substratet som de kognitiva funktionerna lever på.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">Gränsen</p>
+        <h2 class="font-serif text-display-lg text-paper-50 mb-8">Var vi drar gränsen.</h2>
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Vi kommer inte ha en AI som svarar på tentor åt dig.</strong>
+              <p class="text-sm mt-1 text-paper-300">Flueras AI ifrågasätter, ger ställning, reflekterar. Den stänger aldrig ditt tänkande. Att använda AI för det kognitiva arbetet är att använda den för att låta muskeln vi borde träna förtvina.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Vi säljer inte data från dina anteckningsböcker.</strong>
+              <p class="text-sm mt-1 text-paper-300">Dina anteckningar är krypterade i vila, ände till ände vid synk, och används aldrig för att träna någons modeller. Inte ens våra.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Ingen reklam, engagement loop eller streak.</strong>
+              <p class="text-sm mt-1 text-paper-300">Din relation till studierna ska inte hänga på en push-notis. Vi föredrar att du använder Fluera mindre och lär dig mer.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Vi släpper inga funktioner vi inte kan försvara med en källa.</strong>
+              <p class="text-sm mt-1 text-paper-300">Om en funktion inte hänvisar till ett publicerat fynd eller till konsekvent feedback från vår beta så går den inte i produktion. Wow-effekt är ingen funktion. Nyhet är ingen funktion.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        Säte i {SITE.company.city}. En längre redogörelse för vad vi tackar nej till och varför finns i <a href="/sv/manifesto" class="text-paper-300 underline underline-offset-4">manifestet</a>.
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/sv/contact" class="btn-secondary">Hör av dig</a>
+        <a href="/beta" class="btn-primary">Gå med i betan</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,51 @@
+---
+lang: "pl"
+title: Reflow Physics
+tagline: "Przeciągnij pojęcie. Patrz, jak kanwa reorganizuje się wokół tego, co ważne."
+shortDescription: "Reflow utrzymuje kodowanie przestrzenne przy życiu, gdy zrozumienie ewoluuje. Przesuń węzeł, a sąsiedzi podążą za gradientem — pismo ręczne zostaje tam, gdzie ręka je narysowała, struktura oddycha."
+status: beta
+relatedPrinciples:
+  - spatial-cognition
+  - embodied-cognition
+  - generation-effect
+relatedAuthors:
+  - okeefe-moser
+  - mueller-oppenheimer
+  - van-der-meer
+order: 8
+---
+
+## Co to rozwiązuje
+
+Kanwa zbudowane w pierwszym tygodniu semestru nie jest tym, którego chcesz w dziesiątym. Tematy, które uważałeś za rozdzielne, okazują się powiązane. Odległe klastry zwijają się w jeden rozdział.
+
+Bez Reflow są tylko dwie opcje: zostawić kanwę zamrożoną i progresywnie błędne albo narysować je ponownie ręcznie — marnując godziny. Reflow Physics jest trzecią opcją. Kanwa reorganizuje się sama, podczas gdy każda kreska zostaje tam, gdzie ją narysowano.
+
+## Jak to działa
+
+Przeciągnij dowolny węzeł — pojęcie, klaster, akapit pisma. Gdy palec lub pióro się porusza, sąsiednie elementy reagują jak miękki układ fizyczny: bliskie węzły podążają proporcjonalnie, odległe ledwie się zmieniają, a ghost-displacements pokazują proponowany ostateczny układ *przed* zatwierdzeniem.
+
+Puść. Reflow ustabilizuje się w jednej płynnej animacji. Za kulisami każda kreska zachowuje swój oryginalny ID, oryginalny znacznik czasu, oryginalny link do audio z [Time Travel](/pl/features/time-travel). Wskazówki przestrzenne się aktualizują; tożsamość nie.
+
+Reflow respektuje ręcznie rysowane strzałki i [Cross-Zone Bridges](/pl/features/cross-zone-bridges): rozciągają się, zginają, oddychają — ale nigdy się nie łamią.
+
+Trzy tryby:
+
+- **Reflow lokalny** — przeciągnij pojedynczy węzeł; reorganizuje się tylko jego najbliższy klaster.
+- **Reflow klastra** — długie naciśnięcie na klastrze; cały region staje się przeciągalny jako jednostka.
+- **Reflow Atlasu** — w widoku kontynentu w [Atlas](/pl/features/atlas), przeciągnij całe kanwy.
+
+## Nauka stojąca za tym
+
+Hipokamp koduje więcej niż to, co zapisujesz: koduje **gdzie** to zapisujesz. Praca O'Keefe'a i Mosera o komórkach miejsca (Nobel 2014) pokazała, że te same skupiska neuronów, które mapują Twoje mieszkanie, mapują też Twoje pojęcia — pod warunkiem, że pojęcia mają stabilne współrzędne przestrzenne.
+
+Mueller i Oppenheimer (2014) oraz van der Meer (2020) ustalili, że **samo pisanie ręczne** koduje pamięć przez ślady sensoryczno-ruchowe. Reflow chroni te ślady: kreski nigdy nie są renderowane od nowa.
+
+Wreszcie **efekt generowania** (Slamecka & Graf, 1978) tnie w obie strony. Akt decydowania *gdzie* pojęcie należy — i rewizja tej decyzji, gdy zrozumienie się pogłębia — jest sam w sobie produktywnym ruchem, który wzmacnia kodowanie.
+
+## Co nadchodzi
+
+- **Grawitacja per region** — różne siły reflow dla różnych przedmiotów.
+- **Linia czasu Reflow** — przewijanie historii układu kanwy.
+- **Sugestie auto-Reflow** — Atlas sugeruje konsolidację, gdy widzi klastry dryfujące ku sobie przez wiele sesji.
+- **Eksport świadomy Reflow** — PDF i SVG zachowujące najnowszy układ.

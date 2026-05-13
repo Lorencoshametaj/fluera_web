@@ -1,0 +1,37 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { buildDocsSections } from "@/lib/docs-nav";
+
+const sections = await buildDocsSections("ar");
+---
+
+<DocLayout
+  title="توثيق المستخدم"
+  description="أدلّة عملية لاستخدام Fluera كما صُمِّم. إن كانت هذه زيارتك الأولى، ابدأ من الترحيب."
+  sections={sections}
+  rootHref="/ar/docs"
+  rootLabel="التوثيق"
+  sectionLabel="نظرة عامّة"
+  locale="ar"
+>
+  <p>أهلًا بك في توثيق مستخدم Fluera. الشريط الجانبي إلى اليسار مرتَّب وفق التدفّق الذي يتبعه عادة المستخدمون الجدد — ابدأ من <a href="/ar/docs/welcome">الترحيب</a>، ثمّ <a href="/ar/docs/first-canvas">اللوحة الأولى</a>، وانتقل إلى استكشاف الأخطاء عند الحاجة فقط.</p>
+
+  <p>إن كنت تبحث عن <em>لماذا</em> — علم الإدراك، الأبحاث، دورة الـ12 خطوة التي بُني عليها المنتج — فإنّ <a href="/ar/science">صفحة العلم</a> هناك. التوثيق هنا هو <em>كيف</em> العملي.</p>
+
+  <h2>بحسب القسم</h2>
+
+  {sections.map((sec) => (
+    <section class="mt-8">
+      <h3 id={sec.slug}>{sec.label}</h3>
+      <ul>
+        {sec.links.map((link) => (
+          <li><a href={link.href}>{link.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <h2>لا تجد ما تحتاجه؟</h2>
+
+  <p>راسل <a href="mailto:support@fluera.dev">support@fluera.dev</a>. يردّ مؤسّس خلال يوم عمل — عادة خلال ساعة. إن لاحظت ثغرة في التوثيق، أخبِرنا فنُكمِلها.</p>
+</DocLayout>

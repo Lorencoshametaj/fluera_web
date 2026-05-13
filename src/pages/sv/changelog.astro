@@ -1,0 +1,86 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getCollection, render } from "astro:content";
+
+const entries = (await getCollection("changelog", ({ data }) => data.lang === "sv"))
+  .sort((a, b) => b.data.releasedAt.valueOf() - a.data.releasedAt.valueOf());
+
+const rendered = await Promise.all(
+  entries.map(async (e) => ({ entry: e, ...(await render(e)) })),
+);
+
+const typeStyle: Record<string, string> = {
+  feature:      "text-accent-glow border-accent-glow/30",
+  improvement:  "text-signal-ok border-signal-ok/30",
+  fix:          "text-paper-300 border-white/15",
+  experiment:   "text-signal-warn border-signal-warn/30",
+  deprecation:  "text-signal-bad border-signal-bad/30",
+};
+
+const typeLabel: Record<string, string> = {
+  feature:      "funktion",
+  improvement:  "förbättring",
+  fix:          "fix",
+  experiment:   "experiment",
+  deprecation:  "utfasning",
+};
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("sv-SE", { year: "numeric", month: "short", day: "2-digit" });
+}
+---
+
+<BaseLayout
+  title="Nyheter"
+  description="Varje release av Fluera, förklarad utan jargong. Vad som kom, vad som förbättrades, vad som gick sönder, vad vi backat på."
+  locale="sv"
+>
+  <PageHero
+    kicker="Nyheter"
+    title="Släppt. Trasigt. Snart."
+    description="Varje release, vad som finns i den, vad som fortfarande är ohyvlat. Vi flaggar hellre kanterna än låtsas att de inte finns."
+  />
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ol class="space-y-8 list-none p-0 max-w-4xl">
+        {rendered.map(({ entry, Content }) => (
+          <li class="card p-6 md:p-8">
+            <header class="flex flex-wrap items-center gap-3 mb-4">
+              <span class="font-mono text-lg text-paper-50">v{entry.data.version}</span>
+              <span class="text-ink-600">·</span>
+              <span class="text-xs font-mono uppercase tracking-widest text-ink-500">{formatDate(entry.data.releasedAt)}</span>
+              <span class={`pill text-[10px] ${typeStyle[entry.data.type]}`}>{typeLabel[entry.data.type]}</span>
+              {entry.data.breaking && (
+                <span class="pill text-[10px] text-signal-bad border-signal-bad/40">Breaking</span>
+              )}
+            </header>
+
+            <h2 class="font-serif text-2xl text-paper-50 mb-3 leading-tight">{entry.data.title}</h2>
+            <p class="prose-ink mb-6">{entry.data.summary}</p>
+
+            <div class="prose-v2 prose-v2-compact">
+              <Content />
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-2 text-[11px] font-mono uppercase tracking-widest text-ink-500">
+              {entry.data.platforms.map((p) => <span class="pill text-[10px] capitalize">{p}</span>)}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto mb-4">
+        Vill du ha släppnotiser i inkorgen i stället för att skrolla här? Nyhetsbrev kommer snart.
+      </p>
+      <a href="/beta" class="btn-secondary">Gå med i betan</a>
+    </div>
+  </section>
+
+</BaseLayout>

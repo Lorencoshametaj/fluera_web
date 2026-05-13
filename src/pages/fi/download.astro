@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "Beta",  note: "TestFlight-kutsu betahyväksynnän jälkeen." },
+  { name: "macOS",        status: "Beta",  note: ".dmg-tiedosto yksityisen linkin kautta hyväksynnän jälkeen." },
+  { name: "Android",      status: "Alpha", note: "APK Google Playn internal trackin kautta." },
+  { name: "Windows",      status: "Alpha", note: "Allekirjoitettu .exe-asentaja Microsoft Storen kautta." },
+  { name: "Linux",        status: "Alpha", note: "AppImage + flatpak." },
+  { name: "Web",          status: "Demo",  note: "Kokeile nyt osoitteessa /demo — vaatii WebGPU-yhteensopivan selaimen." },
+];
+---
+
+<BaseLayout
+  title="Lataa"
+  description="Fluera toimii natiivina iOS:ssä, Androidissa, macOS:ssä, Windowsissa, Linuxissa ja webissä. Liity yksityiseen betaan saadaksesi varhaisen pääsyn."
+  locale="fi"
+>
+  <PageHero
+    kicker="Lataa"
+    title="Kuusi alustaa.<br />Liity betaan saadaksesi pääsyn."
+    description="Fluera on yksityisessä betassa. Kun olet sisällä, asennuslinkit saapuvat sähköpostitse — natiivisovellus jokaiselle alustalle, ei karsittua webversiota."
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">Pyydä beta-pääsy →</a>
+      <a href="/demo" class="btn-secondary">Kokeile webdemoa</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Julkiset julkaisut App Storeen ja Google Playhin tulevat yksityisen betan päätyttyä. Sillä välin yllä olevat statukset ovat rehellisiä kunkin alustan kypsyydestä — julkaisemme mieluummin hyvin yhdelle kuin huonosti kuudelle.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

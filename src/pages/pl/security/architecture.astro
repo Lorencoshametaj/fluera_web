@@ -1,0 +1,103 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="Architektura bezpieczeństwa"
+  description="Jak Fluera szyfruje Twoje notatniki w spoczynku, w tranzycie i między urządzeniami. SQLCipher, TLS 1.3, sync end-to-end, telemetria opt-in, dziennik audytu dla instytucji."
+  locale="pl"
+>
+  <PageHero
+    kicker="Architektura"
+    title="Jak Fluera dba o bezpieczeństwo Twoich notatników."
+    description={`Ta strona opisuje model bezpieczeństwa na poziomie, jakiego oczekuje czytelnik techniczny — oficer bezpieczeństwa, CISO uniwersytetu, ciekawy deweloper. Streszczenie nietechniczne zacznij od <a href="/pl/security">/pl/security</a>.`}
+    breadcrumb={{ label: "Bezpieczeństwo", href: "/pl/security" }}
+  />
+
+  <article class="py-16 md:py-20 border-b border-white/[0.04]">
+    <div class="container-prose prose-v2">
+
+      <h2>Model zagrożeń</h2>
+      <p>
+        Zakładamy kradzież urządzenia, przechwycenie ruchu sieciowego oraz przypadkowe ujawnienie przez kopie zapasowe lub synchronizację w chmurze. Zakładamy, że poświadczenia użytkownika mogą zostać przejęte. <em>Nie</em> zakładamy przeciwników na poziomie państwowym z fizycznym dostępem do odblokowanych urządzeń — Fluera nie jest narzędziem do prywatności, jest narzędziem do nauki.
+      </p>
+      <p>W ramach tego modelu trzy gwarancje:</p>
+      <ul>
+        <li><strong>Lokalne dane są nieczytelne bez klucza.</strong> Skradzione urządzenie produkuje zaszyfrowany blob.</li>
+        <li><strong>Synchronizowane dane są nieczytelne dla nas.</strong> Chmura przechowuje tylko szyfrogram. Wyprowadzanie odbywa się na urządzeniu.</li>
+        <li><strong>Telemetria jest opt-in i zdeidentyfikowana.</strong> Nawet w przypadku pełnego naruszenia analityka nie może powiązać użytkownika z jego treścią.</li>
+      </ul>
+
+      <h2>W spoczynku: SQLCipher, AES-256</h2>
+      <p>
+        Każdy notatnik Fluery żyje w lokalnej bazie SQLite zaszyfrowanej za pomocą SQLCipher — szeroko zwalidowanego rozszerzenia, które przezroczyście szyfruje każdą stronę bazy danych za pomocą AES-256-CBC i przeprowadza kontrolę integralności HMAC-SHA512 na każdej stronie.
+      </p>
+      <p>
+        Wyprowadzanie klucza używa PBKDF2 z SHA-256, 256 000 iteracji (zgodnie z OWASP). Hasło jest przechowywane w pęku kluczy platformy — Keychain na iOS/macOS, Keystore na Androidzie, DPAPI na Windows, libsecret na Linuksie. Nigdy nie jest wysyłane na nasze serwery.
+      </p>
+
+      <h2>W tranzycie: TLS 1.3, certificate pinning</h2>
+      <p>
+        Cały ruch sieciowy to TLS 1.3 z nowoczesnymi szyframi. Na iOS i Androidzie pinujemy certyfikaty do naszego łańcucha CA, by zapobiec atakom man-in-the-middle korporacyjnych proxy — z udokumentowanym obejściem dla administratorów sieci, którzy go potrzebują.
+      </p>
+
+      <h2>Między urządzeniami: szyfrowanie end-to-end</h2>
+      <p>
+        Gdy aktywna, synchronizacja w chmurze używa odrębnego zestawu kluczy wyprowadzonych na urządzeniu. Serwer synchronizacji (Supabase Storage, region UE) przechowuje szyfrogram i nie może odszyfrować. Synchronizacja jest opt-in dla notatnika — możesz zachować niektóre tylko lokalnie, a inne synchronizować.
+      </p>
+
+      <h2>Współpraca P2P: bezpośrednia, szyfrowana</h2>
+      <p>
+        Współpraca w czasie rzeczywistym używa WebRTC DataChannel z szyfrowaniem DTLS-SRTP. Supabase Realtime działa tylko jako broker sygnalizacji — konfiguracja połączenia — a nie jako przekaźnik dla rzeczywistego ruchu kanwy. Po uzgodnieniu edycje kanwy płyną P2P. Serwer ich nie widzi.
+      </p>
+
+      <h2>Wywołania AI: przez proxy, nigdy bezpośrednio</h2>
+      <p>
+        Wywołania do Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) idą przez Supabase Edge Function, która trzyma klucz API po stronie serwera. Urządzenia klienckie nigdy nie widzą klucza. Proxy egzekwuje limity per-plan i loguje czas trwania wywołań do rachunkowości — nigdy treści kanwy.
+      </p>
+
+      <h2>Telemetria: opt-in, hashowana, na liście dozwolonych</h2>
+      <p>
+        Analityka produktu jest domyślnie wyłączona. Gdy aktywna, zdarzenia są ograniczone do białej listy po stronie serwera (start/koniec sesji, wywołanie funkcji, czas trwania wywołania AI — nigdy treść). ID użytkownika jest hashem SHA-256 na urządzeniu; ID w postaci zwykłego tekstu nigdy nie opuszcza klienta. Zdarzenia są przechowywane przez 180 dni, potem agregowane lub usuwane.
+      </p>
+
+      <h2>Dziennik audytu (konta instytucjonalne)</h2>
+      <p>
+        Każdy dostęp do współdzielonych notatników — kto, z którego urządzenia, kiedy — jest zapisywany w dzienniku audytu append-only. Administratorzy mogą eksportować logi do CSV lub JSON do audytów zgodności. Logi są zapisywane raz: usunięcie wymaga udokumentowanego powodu i samo zostaje zarejestrowane.
+      </p>
+
+      <h2>Odzyskiwanie i utrata klucza</h2>
+      <p>
+        Jeśli stracisz hasło, zaszyfrowane dane stają się nie do odzyskania. Jest to celowe — alternatywa byłaby ścieżką odzyskiwania, która z konieczności osłabiłaby model szyfrowania. Dla kont instytucjonalnych można skonfigurować opcjonalny klucz odzyskiwania trzymany przez administratora; jest to udokumentowany kompromis, który instytucja świadomie wybiera.
+      </p>
+
+      <h2>Odpowiedzialne ujawnianie</h2>
+      <p>
+        Badacze bezpieczeństwa są mile widziani. Zgłaszaj podatności na <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> z szyfrowaniem PGP (klucz opublikowany na profilu GitHub). Potwierdzamy w ciągu 24 godzin, łatamy krytyczne problemy w ciągu 72 i wymieniamy zgłaszających w hall of fame, chyba że wolą pozostać anonimowi.
+      </p>
+      <p>
+        Zakres: aplikacja Fluera (wszystkie platformy), usługa synchronizacji, proxy AI i ta strona marketingowa. Poza zakresem: usługi stron trzecich (Supabase, Google, Apple, Sentry, RevenueCat) — zgłaszaj odpowiednim dostawcom.
+      </p>
+
+      <h2>Oceny zewnętrzne</h2>
+      <p>
+        Fluera obecnie nie ma certyfikacji SOC 2 ani ISO 27001. Są one na planie rozwoju Enterprise i zostaną publicznie ogłoszone po ukończeniu. Wolimy nie deklarować kontroli, których nie zweryfikowaliśmy niezależnie.
+      </p>
+      <p>
+        <a href="/pl/security/sub-processors">Lista podwykonawców</a> jest publiczna i aktualna. Umowa o przetwarzaniu danych dostępna na żądanie pod <a href={`mailto:${SITE.company.privacyEmail}`}>{SITE.company.privacyEmail}</a>.
+      </p>
+
+    </div>
+  </article>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/pl/security/sub-processors" class="btn-secondary">Podwykonawcy →</a>
+        <a href="/pl/contact" class="btn-primary">Porozmawiaj o wdrożeniu</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

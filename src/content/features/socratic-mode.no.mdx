@@ -1,0 +1,56 @@
+---
+lang: "no"
+title: Socratic Mode
+tagline: "KI-en vår svarer ikke. Den spør."
+shortDescription: "Fluera utspør canvaset ditt i stedet for å oppsummere det. Du oppgir tilliten din fra 1 til 5 før hver avsløring. For metakognisjon er halve mestringen."
+status: beta
+stepInCycle: 3
+relatedPrinciples:
+  - system-1-2
+  - zone-proximal-development
+  - metacognition
+  - retrieval-practice
+  - illusion-of-competence
+relatedAuthors:
+  - daniel-kahneman
+  - lev-vygotsky
+  - roediger-karpicke
+  - butterfield-metcalfe
+order: 3
+---
+
+## Hva det løser
+
+Den enkleste måten å føle at man har lært på, er å be en LLM forklare noe. Lesningen er flytende. Forklaringen virker klar. Tre sekunder senere har du den distinkte følelsen av å ha forstått — og tre uker senere klarer du ikke å gjenkalle noe som helst.
+
+Det er **kompetanseillusjonen** i industriell skala. Socratic Mode er motgiften.
+
+## Hvordan det fungerer
+
+Du skriver ferdig et konsept på canvaset ditt. Du trykker på Socratic Mode. Fluera gir deg *ingen* forklaring, ingen oppsummering, ingen definisjon.
+
+Den spør.
+
+"Du har trukket en pil fra kinetisk energi til bevegelsesmengde. I hvilket referansesystem er denne relasjonen skalar i stedet for vektoriell?"
+
+Før du svarer, krever UI-en én ting til: **Hvor sikker er du — fra 1 til 5?** Du skyver slideren. Du forplikter deg til et tall. Nå svarer du — skrivende på canvaset ditt, ikke i en chatboks. Svaret blir fra nå av en del av notatboken din.
+
+Først etter at du har svart, reagerer KI-en. Hvis du tok rett og var sikker, går det videre. Hvis du tok feil og var sikker, holder den ingen preken — den stiller et oppfølgingsspørsmål som legger fram avviket. Hvis du nølte, bygger den et stillas av stadig snevrere hint, til du kommer dit alene.
+
+Stillaset trekker seg progressivt tilbake mens KI-en ser canvaset ditt vokse. Spørsmål som i uke én virket akkurat passe vanskelige, er for lette i uke tre — KI-en rekalibrerer uten at du ber den om det.
+
+## Vitenskapen bak
+
+Tre krefter konvergerer her:
+
+- **Gjenkalling-praksis** (Roediger og Karpicke, 2006): å bli *testet* i materialet skaper vesentlig sterkere hukommelse enn at materialet *fortelles* — selv når gjenkallingsforsøkene mislykkes.
+- **Proksimal utviklingssone** (Vygotsky, 1978): læring skjer i det kalibrerte hullet mellom det du klarer alene og det du klarer med støttet veiledning. Sokratiske spørsmål bor by design i denne sonen.
+- **Metakognitiv kalibrering** (Butterfield og Metcalfe, 2001): å oppgi tillit *før* tilbakemelding er i seg selv en metakognitiv intervensjon. Den forbereder hyperkorreksjon-effekten og trener deg i å skille *å vite* fra *å gjenkjenne*.
+
+Kahnemans system 1 / system 2-dikotomi rammer hele modusen. En LLM som svarer deg umiddelbart, snakker til system 1. En KI som tvinger deg til å stoppe, forklare tilliten din og deretter gjenkalle, engasjerer system 2 — og i system 2 bor læringen.
+
+## Hva som kommer
+
+- **Stemme-modus** — talte sokratiske økter når pennen er upraktisk (i bevegelse, på reise).
+- **Cross-Canvas Socratic** — KI-en fisker fram spørsmål som krysser dagens tema og eldre canvas, og utnytter interleaving.
+- **Sokratiske pakker** fra fageksperter for spesifikke felt (medisin, juss, ML).

@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AuthorCard from "@/components/AuthorCard.astro";
+import LearningStep from "@/components/LearningStep.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import { SITE } from "@/lib/site";
+import home from "@/data/home/ja";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: SITE.name,
+  applicationCategory: ["EducationalApplication", "ProductivityApplication"],
+  operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
+  description: "学習の認知科学の上に構築された、無限の学習用キャンバス。",
+  url: `${SITE.url}/ja/`,
+  audience: [
+    { "@type": "EducationalAudience", educationalRole: "student" },
+    { "@type": "Audience", audienceType: "knowledge worker" },
+    { "@type": "EducationalAudience", educationalRole: "teacher" },
+  ],
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+};
+
+const { steps, authors, platforms } = home;
+---
+
+<BaseLayout
+  title={SITE.name}
+  description="学習の認知科学の上に構築された、無限の学習用キャンバス。iOS、Android、macOS、Windows、Linux、Web。"
+  jsonLd={jsonLd}
+  locale="ja"
+>
+
+  <section class="relative overflow-hidden noise">
+    <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
+    <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
+
+    <div class="container-site relative pt-24 md:pt-32 pb-20 md:pb-28">
+      <div class="max-w-3xl">
+        <div class="pill mb-8">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
+          プライベートベータ ・ 招待制
+        </div>
+
+        <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
+          記憶の働き方のために<br />設計された<br /><span class="text-gradient">学習スペース。</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
+          無限のキャンバスに手書きする。AIに答えではなく問いを投げかけてもらう。時間とともに自分自身の思考を見直す。記憶が実際にどう形成されるかに合わせて調整されています。
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+          <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+            ベータに参加
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
+            デモを試す
+          </a>
+        </div>
+
+        <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>iOS</span><span class="text-ink-600">·</span>
+          <span>Android</span><span class="text-ink-600">·</span>
+          <span>macOS</span><span class="text-ink-600">·</span>
+          <span>Windows</span><span class="text-ink-600">·</span>
+          <span>Linux</span><span class="text-ink-600">·</span>
+          <span>Web</span><span class="text-ink-600">·</span>
+          <span>エンドツーエンド暗号化</span><span class="text-ink-600">·</span>
+          <span>GDPR準拠</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section border-t border-white/[0.04]">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">ボトルネック</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        どんな質問もできる。<br />それでも答えは頭に残らない。
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          2026年、知識は3秒で取り出され、3週間で忘れられます。メモを取るためのアプリは10個ありますが、学んだことを<em>保持する</em>ためのものは一つもありません。
+        </p>
+        <p>
+          ハイライトすることは勉強しているように感じます。読み直すことも勉強しているように感じます。LLMに要約を頼むことも勉強しているように感じます。どれも違います――そして認知科学は50年前からそう言ってきました。
+        </p>
+        <p>
+          学習のボトルネックはもうアクセスではありません――それは<em>符号化、固定化、転移</em>の3つの問題が同時に存在することです。
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera はその3つのために作られています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12-STEP -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">メソッド</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          一つのキャンバス。<br />十二の認知的な動作。<br />あなたの脳が学ぶサイクル。
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Fluera のすべての機能はサイクルの一つのステップに対応し、各ステップは公開された研究に基づいています。一つを飛ばせば連鎖が切れます。すべてを順に進めれば、ノートは永続的になります。
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PILLAR FEATURES -->
+  <section id="pillar-features" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-20">
+        <p class="eyebrow mb-6 text-accent-glow">四つの認知的差別化要因</p>
+        <h2 class="font-serif text-display-xl text-paper-50">
+          記憶を構築する四つの方法。
+        </h2>
+      </div>
+
+      <div class="space-y-28">
+        <PillarFeature
+          label="Ghost Map ・ ステップ4"
+          title="あなたが書いたものと正しい解との距離を見る。"
+          description="想起の試みの後、Fluera はあなたの作業を理想的な解に重ねます。差異が脈打ちます。それは責めるのではなく――記憶を呼び覚まします。間違いが大きいほど、修正は深く根づきます。"
+          citation="ハイパーコレクション効果 ― ButterfieldとMetcalfe、2001。"
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Socratic Mode ・ ステップ3"
+          title="私たちのAIは答えません。問いかけます。"
+          description="各回答の前に1から5で確信度を申告します。メタ認知は熟達の半分であり、確信度の較正は一回の予測ごとにそれが構築される方法です。"
+          citation="メタ認知的モニタリング ― Flavell、1979。"
+          href="/beta"
+          status="beta"
+          reverse
+        />
+        <PillarFeature
+          label="Fog of War ・ ステップ10"
+          title="ほぼ覚えていることを隠す試験モード。"
+          description="キャンバスのどの領域でもマスクできます。明らかにする前に記憶から取り出してください。再読ではなく想起の努力こそが、記憶が硬くなる場所です。"
+          citation="望ましい困難 ― Bjork、1994。"
+          href="/beta"
+          status="beta"
+        />
+        <PillarFeature
+          label="Exam Session ・ ステップ11"
+          title="あなたのキャンバスから生成される模擬試験 — Ghost Map が採点。"
+          description="各問題の前に1から5の確信度ピッカー。閉本。送信後、Fluera はあなたの解答を理想解に重ね、最も自信があって間違えた箇所にハイパーコレクションを適用します。驚きが大きいほど、補正は深く根付きます。"
+          citation="ハイパーコレクション ― ButterfieldとMetcalfe、2001 ・ 生産的失敗 ― Kapur、2008。"
+          href="/ja/features/exam-session"
+          status="beta"
+          reverse
+        />
+      </div>
+
+      <div class="mt-24 max-w-3xl">
+        <a href="/beta" class="btn-primary">ベータで試す →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HANDWRITING WINS -->
+  <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-12 gap-10 items-start">
+        <div class="md:col-span-5">
+          <p class="eyebrow mb-6 text-accent-glow">インクで、キーボードではなく</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+            タイピングの方が速い。<br />手書きの方が良い。<br />脳は速度のために最適化されていません。
+          </h2>
+          <p class="text-sm text-ink-500 italic">MuellerとOppenheimer、Princeton 2014 ・ van der Meer、NTNU 2020</p>
+        </div>
+
+        <div class="md:col-span-7 prose-ink text-lg">
+          <p>
+            MuellerとOppenheimer が2014年に有名なPrinceton 研究を発表したとき、手書きでノートを取った学生は、概念的な質問でラップトップ組を上回りました――ラップトップ組がはるかに多くのテキストを書いていた<em>にもかかわらず</em>です。手は遅かった。心は深かった。
+          </p>
+          <p>
+            10年後、Audrey van der Meer のNTNU でのEEG(2020)が<em>その理由</em>を示しました:手書きはタイピングよりも広い脳ネットワークを活性化させ、特に記憶形成と感覚運動統合に関わる領域でそうです。ペンは認知の道具です。
+          </p>
+          <p>
+            Fluera はこれを中心に作られています。13のブラシエンジン。筆圧、傾き、速度。サポートされるすべてのデバイスで15ミリ秒未満のストロークレイテンシ。無限のキャンバスは美学ではなく――あなたの記憶が求めていた基層です。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENTIFIC FOUNDATION -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">科学的基盤</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          巨人の肩の上で――名前で引用しています。
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          すべての設計判断はリンクできる論文に遡ります。Fluera の中に生きている12人の知性をここに紹介します。完全な参考文献は公開されています。
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- MULTIPLATFORM -->
+  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">六つのプラットフォーム、一つのインク</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          六つのプラットフォーム。一つのインク。一つの心。
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Vulkan、Metal、OpenGL、Direct3D 11、WebGPU 上のネイティブレンダラー。あなたのノートはエンドツーエンド暗号化で同期するか、オフラインのままにできます。あなたが決めます。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+        {platforms.map((p) => (
+          <div class="card p-5 flex flex-col items-start gap-2">
+            <span class="eyebrow text-accent-glow">{p.status}</span>
+            <h3 class="font-serif text-lg text-paper-50">{p.name}</h3>
+            <p class="text-xs text-ink-500 font-mono">{p.api}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-2xl">
+        ステータスラベルは各プラットフォームの成熟度について正直です。「アルファ」または「デモ」と表示されているものは動作しますが磨きが必要です――それらを形作るのを手伝いたいなら、ベータに参加してください。
+      </p>
+    </div>
+  </section>
+
+  <!-- SECURITY & PRIVACY -->
+  <section id="security" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">あなたの心、あなたのデータ</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          エンドツーエンド暗号化。<br />鍵はあなたの手に残ります。
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl">
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">01</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">保存時 AES-256</h3>
+          <p class="text-sm text-paper-300">各デバイスでSQLCipher 暗号化。ローカルデータベースはあなたの鍵なしでは読めません。</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">02</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">GDPR準拠デフォルト</h3>
+          <p class="text-sm text-paper-300">EUホスティング、DPA提供可能、リクエストに応じて完全エクスポートと削除。</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">03</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">アドテックゼロ</h3>
+          <p class="text-sm text-paper-300">トラッキングピクセルなし。行動ターゲティング広告なし。あなたのコンテンツで私たちのモデルを訓練しません。</p>
+        </div>
+        <div class="card p-6">
+          <div class="eyebrow text-accent-glow mb-3">04</div>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">監査ログ</h3>
+          <p class="text-sm text-paper-300">教育機関アカウントでは、すべてのアクセスが不変のログに記録されます。</p>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">セキュリティアーキテクチャを読む →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SNAPSHOT -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">料金</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          学ぶのは無料。深く掘り下げるならPlus とPro。
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
+          <p class="text-sm text-paper-300">完全なキャンバス。ノート3冊。永久無料。</p>
+        </div>
+        <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
+          <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€5.99<span class="text-sm font-sans text-paper-300">/月</span></p>
+          <p class="text-sm text-paper-300">無制限のキャンバス、2デバイス間の同期、基本AI。€49/年。</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€11.99<span class="text-sm font-sans text-paper-300">/月</span></p>
+          <p class="text-sm text-paper-300">Exam Session、Atlas、完全なAIスイート、無制限の同期。€99/年。</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
+          <p class="font-serif text-2xl text-paper-50 mb-2">€19.99<span class="text-sm font-sans text-paper-300">/シート</span></p>
+          <p class="text-sm text-paper-300">共有キャンバス、チーム Atlas、ACL、監査ログ。5シートから。</p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
+        認証された学生はパイロットプログラムを通じてPlus またはPro を50%割引で取得できます。今登録すれば、サブスクリプション期間中の料金が固定されます。
+      </p>
+
+      <div class="mt-8">
+        <a href="/pricing" class="btn-secondary">すべての料金を見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BETA CTA -->
+  <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
+    <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
+
+    <div class="container-narrow relative text-center">
+      <p class="eyebrow mb-6 text-accent-glow">参加する</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        プライベートベータ。<br />コホート単位のオンボーディング。
+      </h2>
+      <p class="prose-ink text-lg mb-10 max-w-2xl mx-auto">
+        各グループ――学生、ナレッジワーカー、教員――が待ち行列の番号ではなく、本物の対話を持てるよう、コホート単位で受け入れています。学ぶことを代わりにやってくれると約束するアプリにうんざりしているなら、アクセスをリクエストしてください。
+      </p>
+      <a href="/beta" class="btn-primary text-base px-6 py-3.5">
+        アクセスをリクエスト →
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+
+const platforms = [
+  { name: "iOS / iPadOS", status: "Beta",  note: "TestFlight-uitnodiging na goedkeuring voor de beta." },
+  { name: "macOS",        status: "Beta",  note: ".dmg-bestand via privélink na goedkeuring." },
+  { name: "Android",      status: "Alpha", note: "APK via interne track van Google Play." },
+  { name: "Windows",      status: "Alpha", note: "Ondertekende .exe-installer via Microsoft Store." },
+  { name: "Linux",        status: "Alpha", note: "AppImage + flatpak." },
+  { name: "Web",          status: "Demo",  note: "Probeer nu via /demo — vereist een browser met WebGPU." },
+];
+---
+
+<BaseLayout
+  title="Downloaden"
+  description="Fluera draait native op iOS, Android, macOS, Windows, Linux en het web. Word lid van de private beta voor vroege toegang."
+  locale="nl"
+>
+  <PageHero
+    kicker="Downloaden"
+    title="Zes platforms.<br />Word lid van de beta om toegang te krijgen."
+    description="Fluera is in private beta. Eenmaal binnen krijg je de installatielinks per e-mail — een native app op elk platform, geen uitgeklede webversie."
+  >
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+      {platforms.map((p) => (
+        <article class="card p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-serif text-lg text-paper-50">{p.name}</h2>
+            <span class="pill text-[10px]">{p.status}</span>
+          </div>
+          <p class="text-sm text-paper-300 leading-relaxed">{p.note}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/beta" class="btn-primary">Beta-toegang aanvragen →</a>
+      <a href="/demo" class="btn-secondary">Probeer de webdemo</a>
+    </div>
+  </PageHero>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed">
+        De publieke releases in de App Store en op Google Play komen aan het einde van de private beta. In de tussentijd zijn de bovenstaande statussen eerlijk over de rijpheid van elk platform — we lanceren liever goed op één dan slecht op zes.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

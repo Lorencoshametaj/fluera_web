@@ -1,0 +1,37 @@
+---
+import DocLayout from "@/layouts/DocLayout.astro";
+import { buildDocsSections } from "@/lib/docs-nav";
+
+const sections = await buildDocsSections("de");
+---
+
+<DocLayout
+  title="Nutzerdokumentation"
+  description="Praktische Orientierung, um Fluera so zu nutzen, wie es konzipiert wurde. Beginne bei Willkommen, wenn es dein erster Besuch ist."
+  sections={sections}
+  rootHref="/de/docs"
+  rootLabel="Dokumentation"
+  sectionLabel="Übersicht"
+  locale="de"
+>
+  <p>Willkommen in der Nutzerdokumentation von Fluera. Die linke Seitenleiste folgt der Reihenfolge, die neue Nutzer/innen üblicherweise durchlaufen — beginne bei <a href="/de/docs/welcome">Willkommen</a>, dann <a href="/de/docs/first-canvas">Dein erstes Canvas</a>, und komm erst zum Troubleshooting, wenn du es brauchst.</p>
+
+  <p>Wenn du nach dem <em>Warum</em> suchst — der kognitiven Wissenschaft, der Forschung, dem 12-Schritte-Zyklus, auf dem das Produkt aufgebaut ist — lebt das auf der <a href="/de/science">Wissenschafts-Seite</a>. Die Dokumentation hier ist das praktische <em>Wie</em>.</p>
+
+  <h2>Nach Sektion</h2>
+
+  {sections.map((sec) => (
+    <section class="mt-8">
+      <h3 id={sec.slug}>{sec.label}</h3>
+      <ul>
+        {sec.links.map((link) => (
+          <li><a href={link.href}>{link.title}</a></li>
+        ))}
+      </ul>
+    </section>
+  ))}
+
+  <h2>Findest du nicht, was du brauchst?</h2>
+
+  <p>Schreib an <a href="mailto:support@fluera.dev">support@fluera.dev</a>. Ein/e Founder/in antwortet innerhalb eines Werktags — meist innerhalb einer Stunde. Wenn du eine Lücke in der Dokumentation siehst, sag uns Bescheid und wir schließen sie.</p>
+</DocLayout>

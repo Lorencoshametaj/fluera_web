@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const pillars = [
+  {
+    title: "التشفير",
+    body: "كلّ دفتر في Fluera مشفّر في حالة سكون باستخدام AES-256 عبر SQLCipher. حركة البيانات في النقل بـTLS 1.3. المزامنة بين أجهزتك مشفّرة من طرف إلى طرف بمفاتيح مشتقّة من كلمة المرور — محفوظة في Keychain منصّتك ولا تُرسَل أبدًا إلى خوادمنا.",
+  },
+  {
+    title: "ملكية البيانات",
+    body: "كلّ بايت تكتبه يمكن تصديره بنقرة واحدة: PNG وJPEG وWebP وSVG وPDF وصيغة .fluera المفتوحة. دفاترك تعيش على جهازك أوّلًا. السحاب راحة، لا سجن — الإغلاق نموذج عمل قرّرنا الاحتجاج عليه.",
+  },
+  {
+    title: "متوافق مع GDPR",
+    body: "Fluera مستضافة في الاتّحاد الأوروبي ومتوافقة مع GDPR من البداية. اتفاقية معالجة بيانات متاحة عند الطلب لأيّ مؤسّسة تعليمية. تصدير كامل للبيانات وحقّ النسيان، مُحترَمَين خلال 30 يومًا (عادة خلال 48 ساعة).",
+  },
+  {
+    title: "محلّي أوّلًا، دائمًا",
+    body: "يمكنك تشغيل Fluera بلا اتّصال بالكامل. المزامنة اشتراكية لكلّ دفتر، لا للحساب كلّه. إن أوقفت المزامنة، بياناتك لا تغادر الجهاز — بما فيها التحليلات المبنيّة على الموافقة والمجهولة الهوية.",
+  },
+  {
+    title: "سجلّ تدقيق (للتعليم)",
+    body: "لحسابات التعليم، يُسجَّل كلّ وصول إلى الدفاتر المشتركة في أثر تدقيق غير قابل للتعديل، قابل للتصدير لمراجعات الالتزام. يمكن للمسؤولين فرض SSO (SAML، OIDC) ونشر مُدار عبر MDM.",
+  },
+  {
+    title: "ما لا نفعله",
+    body: "لا نَعرض إعلانات. لا نبيع بيانات. لا نُدرّب نماذجنا على محتواك. لا نتتبّعك عبر الويب. لا نسلّم بيانات إلى أطراف ثالثة بخلاف المعالجين الفرعيين المُسمّين (Supabase، Vercel، Stripe) — جميعهم تحت اتفاقيات معالجة بيانات.",
+  },
+];
+---
+
+<BaseLayout
+  title="الأمان والخصوصية"
+  description="تشفير AES-256 في حالة سكون، متوافق مع GDPR، استضافة في الاتّحاد الأوروبي، صفر تتبّع إعلاني. اقرأ بنية الأمان الكاملة لـFluera والتزام ملكية البيانات."
+  locale="ar"
+>
+  <PageHero
+    kicker="الأمان والخصوصية"
+    title="تشفير من طرف إلى طرف.<br />المفتاح يبقى عندك."
+    titleSize="2xl"
+    description="تشفير افتراضي. صفر تتبّع إعلاني. استضافة في الاتّحاد الأوروبي. تصدير كامل. الخصوصية قيد تصميم، لا مهمّة التزام."
+    orbs
+    noise
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {pillars.map((p, i) => (
+          <article class="card p-8">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
+            <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">الإفصاح المسؤول</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">وجدت شيئًا؟</h2>
+          <p class="prose-ink mb-6">
+            باحثو الأمان مرحَّب بهم هنا. أبلِغ عن ثغرة على
+            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
+            نؤكّد خلال 24 ساعة، نُصلح المشكلات الحرجة خلال 72، ونذكر المُبلِّغين في قاعة المشاهير لدينا ما لم يُفضّلوا الإخفاء.
+          </p>
+          <p class="text-sm text-ink-500 italic">
+            مفتاح PGP للإرسال المشفّر منشور على GitHub لدينا.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">الالتزام والنشر</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">تنشر Fluera في مؤسّستك؟</h2>
+          <p class="prose-ink mb-6">
+            الجامعات والمدارس ومختبرات الأبحاث: نُحدّثكم عن اتفاقية معالجة البيانات، قائمة المعالجين الفرعيين، إعداد SSO، ونموذج سجلّ التدقيق. تبدأ التجارب عادة بفصل واحد لفصل دراسي واحد دون رسوم.
+          </p>
+          <a href="/ar/contact" class="btn-primary">تحدّث إلينا عن النشر ←</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
+        تُغطّي هذه الصفحة الأساسيات. البنية الكاملة وسجلّ المعالجين الفرعيين وقالب اتفاقية معالجة البيانات تعيش على
+        <a href="/ar/security/architecture" class="text-paper-300 underline">/ar/security/architecture</a> و
+        <a href="/ar/security/sub-processors" class="text-paper-300 underline">/ar/security/sub-processors</a>. أسئلة التزام محدّدة؟
+        راسل <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

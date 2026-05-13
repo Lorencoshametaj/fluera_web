@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const pillars = [
+  {
+    title: "Salaus",
+    body: "Jokainen Flueran muistikirja salataan levossa AES-256:lla SQLCipherin kautta. Liikenne kulkee TLS 1.3:n yli. Synkronointi laitteidesi välillä on päästä päähän -salattu salalauseestasi johdetuilla avaimilla — talletettu alustan keychainiin, ei koskaan lähetetty palvelimillemme.",
+  },
+  {
+    title: "Datan omistajuus",
+    body: "Jokainen kirjoittamasi tavu on vietävissä yhdellä klikkauksella: PNG, JPEG, WebP, SVG, PDF ja oma avoin .fluera-formaattimme. Muistikirjasi elävät ensisijaisesti laitteillasi. Pilvi on mukavuus, ei vankila — lock-in on liiketoimintamalli, jonka olemme valinneet hylätä.",
+  },
+  {
+    title: "GDPR oletuksena",
+    body: "Fluera on isännöity Euroopan palvelimilla ja suunniteltu GDPR:n periaatteiden päälle. Data Processing Agreement on saatavilla pyynnöstä jokaiselle oppilaitokselle. Datan täydellinen vienti ja oikeus tulla unohdetuksi täytetään 30 päivän kuluessa (yleensä 48 tunnin sisällä).",
+  },
+  {
+    title: "Local-first, aina",
+    body: "Voit käyttää Flueraa täysin offline. Synkronointi on opt-in muistikirjakohtaisesti, ei tilitasolla. Jos kytket synkronoinnin pois, datasi ei poistu laitteelta — mukaan lukien telemetria, joka perustuu suostumukseen ja on anonyymiä.",
+  },
+  {
+    title: "Auditointiloki (Instituutiot)",
+    body: "Education-tileillä jokainen pääsy jaettuihin muistikirjoihin kirjataan muuttumattomaan lokiin, joka on vietävissä vaatimustenmukaisuusauditointeja varten. Ylläpitäjät voivat pakottaa SSO:n (SAML, OIDC) ja MDM-käyttöönoton.",
+  },
+  {
+    title: "Mitä emme tee",
+    body: "Ei mainontaa. Ei datan myyntiä. Emme kouluta mallejamme sisällölläsi. Emme seuraa sinua verkossa. Emme luovuta dataa kolmansille muille kuin julistetuille alikäsittelijöille (Supabase, Vercel, Stripe) — kaikki DPA:n alaisia.",
+  },
+];
+---
+
+<BaseLayout
+  title="Tietoturva ja yksityisyys"
+  description="AES-256-salaus levossa, GDPR oletuksena, palvelimet Euroopassa, nolla ad-techia. Flueran tietoturva-arkkitehtuuri ja sitoutuminen datasi omistajuuteen."
+  locale="fi"
+>
+  <PageHero
+    kicker="Tietoturva ja yksityisyys"
+    title="Päästä päähän -salaus.<br />Avain pysyy sinulla."
+    titleSize="2xl"
+    description="Salaus oletuksena. Ei ad-techia. Palvelimet Euroopassa. Täydellinen vienti. Yksityisyys on suunnittelurajoite, ei compliance-tehtävä."
+    orbs
+    noise
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {pillars.map((p, i) => (
+          <article class="card p-8">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
+            <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Vastuullinen ilmoittaminen</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Löysitkö jotain?</h2>
+          <p class="prose-ink mb-6">
+            Tietoturvatutkijat ovat tervetulleita. Ilmoita haavoittuvuuksista osoitteeseen
+            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
+            Vastaamme 24 tunnin sisällä, paikkaamme kriittiset ongelmat 72:ssa ja annamme tunnustusta ilmoittajalle hall of fame -luettelossamme — ellei toivota anonymiteettiä.
+          </p>
+          <p class="text-sm text-ink-500 italic">
+            PGP-avain salatuille raporteille on julkaistu GitHub-profiilissamme.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Compliance ja käyttöönotto</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Otatko Flueran käyttöön instituutiossa?</h2>
+          <p class="prose-ink mb-6">
+            Yliopistot, koulut, tutkimuslaboratoriot: voimme opastaa DPA:n, alikäsittelijöiden listan, SSO-asennuksen ja auditointilokin mallin kanssa. Pilotit alkavat tyypillisesti yhdellä kurssilla, yhdellä lukukaudella, ilman kustannuksia.
+          </p>
+          <a href="/fi/contact" class="btn-primary">Keskustele käyttöönotosta →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Tämä sivu kattaa olennaisen. Täydellinen arkkitehtuuri, alikäsittelijöiden rekisteri ja DPA-pohja löytyvät osoitteista
+        <a href="/fi/security/architecture" class="text-paper-300 underline">/fi/security/architecture</a> ja
+        <a href="/fi/security/sub-processors" class="text-paper-300 underline">/fi/security/sub-processors</a>. Erityisiä compliance-kysymyksiä? Kirjoita osoitteeseen
+        <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

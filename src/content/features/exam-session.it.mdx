@@ -1,0 +1,56 @@
+---
+lang: "it"
+title: Exam Session
+tagline: "Esami simulati dal tuo canvas. L'ipercorrezione trasforma gli errori in memoria permanente."
+shortDescription: "Fluera genera un esame closed-book dai concetti che hai davvero disegnato. Confidence picker prima di ogni risposta. Dopo l'invio, Ghost Map sovrappone il tuo lavoro — più grande la sorpresa, più la correzione si fissa."
+status: beta
+stepInCycle: 11
+relatedPrinciples:
+  - hypercorrection-effect
+  - productive-failure
+  - interleaving
+  - retrieval-practice
+  - metacognition
+relatedAuthors:
+  - butterfield-metcalfe
+  - robert-bjork
+  - roediger-karpicke
+order: 7
+---
+
+## Cosa risolve
+
+La maggior parte degli studenti confonde *sentirsi preparati* con *essere preparati*. Rileggono gli appunti, vedono un video a 2×, chiedono a un LLM di riassumere il capitolo — e arrivano all'esame con una fluenza che non c'entra niente con il recupero. Il risultato è lo shock universale post-esame: "Lo sapevo. Perché non sono riuscito a scriverlo?"
+
+Exam Session chiude quel divario facendo accadere l'esame — privatamente, sul tuo canvas, giorni prima di quello vero.
+
+## Come funziona
+
+Finisci una sessione di studio. Apri il menu Atlas e tocchi **🎓 Interrogami** — oppure scrivi *"interrogami"* nella chat del canvas. Fluera legge i concetti che hai davvero disegnato (cluster cache più stroke OCR) e genera un esame closed-book a partire da loro. Cinque, sette o dieci domande. Tipologie miste: aperte, multiple choice, vero/falso, richiamo formula.
+
+Prima di ogni risposta, il confidence picker chiede una cosa: **quanto sei sicuro, da 1 a 5?** Sposta il dial. Impegnati su un numero.
+
+Poi rispondi — a mano, su uno scratchpad mini-canvas, esattamente come scriveresti all'esame. Niente autocompletamento. Niente copia-incolla. Niente "rigenera". Solo tu e la pagina.
+
+Quando invii, Fluera valuta la risposta token per token, restituendo feedback in streaming. Se hai sbagliato con alta confidenza, parte la **UI di hypercorrection shock** — un effetto visivo deliberato e impossibile da ignorare, che innesca la forma più duratura di correzione che il cervello sappia produrre. Poi Fluera ti chiede di riscrivere la risposta corretta con le tue parole: il **generation effect** la fissa.
+
+Dopo tre risposte giuste di fila, la difficoltà sale automaticamente. Dopo ogni chunk di quattro domande, una breve pausa di feedback prima del set successivo — chunking e interleaving by design.
+
+A fine sessione, lo scheduler FSRS aggiorna gli intervalli di review per ogni concetto sulla base della tua performance reale, non sulla difficoltà che hai dichiarato. I punti ciechi tornano a Fog of War per retrieval practice chirurgico nei giorni 1, 3, 7, 14.
+
+## La scienza dietro
+
+Trent'anni di evidenza convergono su una cosa: le correzioni più durature nascono dai fallimenti più sorprendenti.
+
+L'**effetto ipercorrezione** di Butterfield e Metcalfe (2001) è il meccanismo centrale. Gli errori fatti con alta confidenza, una volta corretti, sono trattenuti più stabilmente di quelli fatti con bassa confidenza — la sorpresa di sbagliare quando eri sicuro modula la codifica ippocampale via attivazione amigdalica. Il confidence picker non è estetica: innesca questo meccanismo.
+
+Le **difficoltà desiderabili** di Robert Bjork (1994) spiegano perché una risposta aperta scritta a mano batte una multiple choice: la frizione della generazione è esattamente ciò che costruisce memoria. Roediger e Karpicke (2006) chiudono il quadro — un singolo tentativo di recupero produce ritenzione a lungo termine più forte di quattro sessioni di rilettura.
+
+La ricerca di Manu Kapur sul **productive failure** (2008) supporta la scelta di design più dura: domande che partono leggermente sopra il tuo livello attuale producono apprendimento più duraturo di domande tarate sulla zona di comfort. La difficoltà adattiva sale deliberatamente, non difensivamente.
+
+## Cosa arriva
+
+- **Analytics post-esame** — calibrazione confidence per cluster e grafi della magnitudine di hypercorrection.
+- **Voice-mode Exam** — domande parlate con risposte scritte a mano, per la preparazione di esami clinici o orali.
+- **Surgical path overlay persistente** — dopo l'esame, Fog of War evidenzia solo i concetti mancati sul canvas live, scoping per la review del giorno dopo.
+- **Exam Session multi-disciplina** — una sessione che interleavea cluster da quaderni diversi, allenando il transfer.

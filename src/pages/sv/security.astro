@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const pillars = [
+  {
+    title: "Kryptering",
+    body: "Varje anteckningsbok i Fluera krypteras i vila med AES-256 via SQLCipher. Trafiken är TLS 1.3 i transit. Sync mellan dina enheter är krypterad ände till ände med nycklar härledda från din lösenfras — sparade i plattformens keychain, aldrig skickade till våra servrar.",
+  },
+  {
+    title: "Dataägande",
+    body: "Varje byte du skriver kan exporteras med ett klick: PNG, JPEG, WebP, SVG, PDF och vårt öppna format .fluera. Dina anteckningsböcker bor först och främst på dina enheter. Molnet är en bekvämlighet, inte ett fängelse — lock-in är en affärsmodell vi valt att avvisa.",
+  },
+  {
+    title: "GDPR från grunden",
+    body: "Fluera hostas på servrar i Europa och är designad efter GDPR-principerna. Ett Data Processing Agreement finns på begäran för varje utbildningsinstitution. Fullständig dataexport och rätten att bli glömd hanteras inom 30 dagar (oftast inom 48 timmar).",
+  },
+  {
+    title: "Local-first, alltid",
+    body: "Du kan använda Fluera helt offline. Sync är opt-in per anteckningsbok, inte på kontonivå. Stänger du av sync lämnar din data inte enheten — inklusive telemetri, som baseras på samtycke och är anonym.",
+  },
+  {
+    title: "Revisionsspår (institutioner)",
+    body: "För Education-konton loggas varje åtkomst till delade anteckningsböcker i ett oföränderligt spår, exporterbart för compliance-revisioner. Administratörer kan tvinga fram SSO (SAML, OIDC) och MDM-utrullning.",
+  },
+  {
+    title: "Vad vi inte gör",
+    body: "Ingen reklam. Ingen försäljning av data. Vi tränar inte våra modeller på ditt innehåll. Vi spårar dig inte över webben. Vi delar inte data med tredje part utöver de deklarerade underbiträdena (Supabase, Vercel, Stripe) — alla under DPA.",
+  },
+];
+---
+
+<BaseLayout
+  title="Säkerhet och integritet"
+  description="AES-256-kryptering i vila, GDPR från grunden, servrar i Europa, noll ad-tech. Flueras säkerhetsarkitektur och åtagande för dina datas ägande."
+  locale="sv"
+>
+  <PageHero
+    kicker="Säkerhet och integritet"
+    title="Kryptering ände till ände.<br />Nyckeln stannar hos dig."
+    titleSize="2xl"
+    description="Kryptering som standard. Ingen ad-tech. Servrar i Europa. Full export. Integritet är en designrestriktion, inte en compliance-uppgift."
+    orbs
+    noise
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {pillars.map((p, i) => (
+          <article class="card p-8">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
+            <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Responsible disclosure</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Hittade du något?</h2>
+          <p class="prose-ink mb-6">
+            Säkerhetsforskare är välkomna. Rapportera sårbarheter till
+            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
+            Vi svarar inom 24 timmar, patchar kritiska problem inom 72 och krediterar rapportören i vår hall of fame — om de inte föredrar anonymitet.
+          </p>
+          <p class="text-sm text-ink-500 italic">
+            PGP-nyckeln för krypterade rapporter är publicerad på vår GitHub-profil.
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">Compliance och utrullning</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">Ska du införa Fluera på en institution?</h2>
+          <p class="prose-ink mb-6">
+            Universitet, skolor, forskningslabb: vi kan guida dig genom DPA, lista över underbiträden, SSO-setup och revisionsspårsmodellen. Piloter brukar börja med en klass, en termin, utan kostnad.
+          </p>
+          <a href="/sv/contact" class="btn-primary">Prata om utrullning →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
+        Den här sidan täcker det väsentliga. Hela arkitekturen, listan över underbiträden och DPA-mallen bor på
+        <a href="/sv/security/architecture" class="text-paper-300 underline">/sv/security/architecture</a> och
+        <a href="/sv/security/sub-processors" class="text-paper-300 underline">/sv/security/sub-processors</a>. Specifika compliance-frågor? Skriv till
+        <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

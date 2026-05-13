@@ -1,0 +1,57 @@
+---
+lang: "fr"
+title: Cross-Zone Bridges
+tagline: "Trace une ligne de la chimie aux équations différentielles. Maintenant elles se souviennent l'une de l'autre."
+shortDescription: "Ponts annotés persistants entre des régions distantes du canvas ou des cahiers séparés. Déclarer un lien de transfert est en soi une manœuvre d'encodage générative — Fluera maintient le pont vivant à travers reflow, time travel et Atlas."
+status: beta
+stepInCycle: 9
+relatedPrinciples:
+  - concept-mapping
+  - scaffolding
+  - generation-effect
+  - levels-of-processing
+relatedAuthors:
+  - joseph-novak
+  - lev-vygotsky
+order: 6
+---
+
+## Ce que ça résout
+
+Tout étudiant remarque, tôt ou tard, que la même idée porte des costumes différents dans ses cours. Une équation de vitesse en chimie est une équation différentielle en maths. Le principe de Le Châtelier est un déplacement d'équilibre en économie. Le reinforcement learning est le conditionnement opérant reformulé en code.
+
+Les outils standards — documents séparés, dossiers séparés, applis séparées — rendent ces ponts invisibles by design. L'étudiant qui les remarque est celui qui a appris. Celui qui ne les remarque pas est celui qui oublie.
+
+Cross-Zone Bridges fait du remarquer une action de première classe.
+
+## Comment ça marche
+
+Dézoome jusqu'à la vue continent d'[Atlas](/fr/features/atlas). Choisis deux zones dans des canvas différents — ou deux clusters distants dans le même canvas. Touche **+ Bridge**, trace une ligne entre eux et écris une annotation d'une phrase qui explique *pourquoi* ils vont ensemble.
+
+Ce pont est désormais persistant. Il survit à :
+
+- [Reflow Physics](/fr/features/reflow) — quand l'un des côtés se réorganise, le pont se courbe et s'adapte ; il ne casse jamais.
+- [Time Travel](/fr/features/time-travel) — rejoue le canvas au moment où tu as dessiné le pont ; le contexte audio revient aussi.
+- Les synthèses Atlas — le pont apparaît comme relation de première classe dans les résumés conceptuels.
+- [Exam Session](/fr/features/exam-session) — les questions peuvent interleavere délibérément les deux côtés, entraînant le transfert.
+
+Les ponts ont des états de lifecycle légers : **draft** (tu suspectes une connexion, tu veux y revenir), **confirmed** (tu l'as validée sur les deux matières), et **archived** (la connexion s'est révélée superficielle — mais la trace reste, parce que *comprendre pourquoi quelque chose ne transfère pas* est déjà de l'apprentissage).
+
+Touche un pont pour le déplier : tu vois les deux côtés en parallèle, les strokes originaux qui ont déclenché la connexion, et toute question socratique qu'Atlas a générée spécifiquement sur le lien.
+
+## La science derrière
+
+Déclarer un pont est une manœuvre de manuel du **generation effect** (Slamecka & Graf, 1978) : tu produis la relation au lieu de la recevoir. La connaissance générée est retenue plus durablement que celle reçue, même quand la génération est partiellement fausse.
+
+Le travail de Joseph Novak sur le **concept mapping** (1984) étend ceci : les liens cross-domaines — ce que Novak appelait les « cross-links » dans les cartes conceptuelles — prédisent la performance de transfert mieux que les liens intra-domaine. Les étudiants qui dessinent des cross-links ont de meilleures notes sur des problèmes inédits exigeant l'application conceptuelle, pas seulement sur les originaux.
+
+Le mécanisme est celui des **levels of processing** (Craik & Lockhart, 1972) : le traitement superficiel encode les caractéristiques de surface ; le profond encode les caractéristiques structurelles. Un pont entre chimie et économie exige du traitement structurel — trouver le motif abstrait qui survit au changement de vocabulaire. Plus le traitement est profond, plus la trace est durable.
+
+Le **scaffolding** de Vygotsky apparaît ici comme suggestion de pont médiée par Atlas : quand tu as dessiné assez de ponts vers une matière donnée, Atlas en propose de nouveaux dans ta zone proximale de développement — assez proches pour être découvrables, assez loins pour exiger un vrai travail à confirmer.
+
+## Ce qui arrive
+
+- **Ponts bidirectionnels** — modéliser l'asymétrie : chimie → maths est souvent plus facile que maths → chimie ; les données peuvent guider des révisions conscientes de la directionnalité.
+- **Socratic piloté par les ponts** — questions qui demandent de prédire un côté à partir de l'autre, entraînant le transfert comme compétence de récupération.
+- **Scope Exam cross-canvas** — option d'inclure tous les ponts dans une Exam Session, weaponisant l'interleaving entre cahiers.
+- **Bibliothèques de ponts publiques** — pour les enseignants qui veulent semer un cours avec un set de connexions cross-disciplinaires canoniques.

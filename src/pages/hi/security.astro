@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { SITE } from "@/lib/site";
+
+const pillars = [
+  {
+    title: "एन्क्रिप्शन",
+    body: "हर Fluera नोटबुक SQLCipher के माध्यम से AES-256 के साथ विश्राम पर एन्क्रिप्टेड है। ट्रैफ़िक पारगमन में TLS 1.3 है। आपके डिवाइस के बीच सिंक आपके पासफ्रेज़ से व्युत्पन्न कुंजियों के साथ एंड-टू-एंड एन्क्रिप्टेड है — आपके प्लेटफ़ॉर्म कीचेन में रखी गई, हमारे सर्वर पर कभी नहीं भेजी गई।",
+  },
+  {
+    title: "डेटा स्वामित्व",
+    body: "आप जो हर बाइट लिखते हैं, उसे एक क्लिक में निर्यात किया जा सकता है: PNG, JPEG, WebP, SVG, PDF, और हमारा खुला .fluera फ़ॉर्मेट। आपकी नोटबुक्स पहले आपके डिवाइस पर रहती हैं। क्लाउड एक सुविधा है, जेल नहीं — लॉक-इन एक व्यापार मॉडल है जिसके खिलाफ हमने चुना है।",
+  },
+  {
+    title: "GDPR मूल",
+    body: "Fluera EU-होस्टेड और GDPR-मूल है। किसी भी शैक्षणिक संस्थान को अनुरोध पर डेटा प्रोसेसिंग समझौता उपलब्ध है। पूर्ण डेटा निर्यात और भूले जाने का अधिकार 30 दिनों के भीतर सम्मानित किया जाता है (आमतौर पर 48 घंटों के भीतर)।",
+  },
+  {
+    title: "लोकल-फर्स्ट, हमेशा",
+    body: "आप Fluera को पूरी तरह ऑफ़लाइन चला सकते हैं। सिंक प्रति-नोटबुक ऑप्ट-इन है, खाता-व्यापी नहीं। यदि आप सिंक बंद करते हैं, तो आपका डेटा डिवाइस नहीं छोड़ता — सहमति-आधारित और गुमनाम टेलीमेट्री सहित।",
+  },
+  {
+    title: "ऑडिट लॉग (शिक्षा)",
+    body: "शिक्षा खातों के लिए, साझा नोटबुक्स तक हर एक्सेस अपरिवर्तनीय ऑडिट निशान में लॉग होता है, अनुपालन समीक्षाओं के लिए निर्यात योग्य। प्रशासक SSO (SAML, OIDC) और MDM-प्रबंधित परिनियोजन लागू कर सकते हैं।",
+  },
+  {
+    title: "हम क्या नहीं करते",
+    body: "हम विज्ञापन नहीं चलाते। हम डेटा नहीं बेचते। हम आपकी सामग्री पर अपने मॉडल को प्रशिक्षित नहीं करते। हम आपको वेब पर ट्रैक नहीं करते। हम नामित उप-प्रोसेसर (Supabase, Vercel, Stripe) के अलावा तीसरे पक्षों को डेटा नहीं सौंपते — सभी DPA के तहत।",
+  },
+];
+---
+
+<BaseLayout
+  title="सुरक्षा और गोपनीयता"
+  description="विश्राम पर AES-256 एन्क्रिप्शन, GDPR-मूल, EU-होस्टेड, शून्य विज्ञापन-तकनीक। Fluera की पूर्ण सुरक्षा वास्तुकला और डेटा स्वामित्व प्रतिबद्धता पढ़ें।"
+  locale="hi"
+>
+  <PageHero
+    kicker="सुरक्षा और गोपनीयता"
+    title="एंड-टू-एंड एन्क्रिप्टेड।<br />कुंजी आप रखते हैं।"
+    titleSize="2xl"
+    description="डिफ़ॉल्ट रूप से एन्क्रिप्शन। कोई विज्ञापन-तकनीक नहीं। EU-होस्टेड। पूर्ण निर्यात। गोपनीयता एक डिज़ाइन बाधा है, अनुपालन कार्य नहीं।"
+    orbs
+    noise
+  />
+
+  <section class="py-20 md:py-28">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {pillars.map((p, i) => (
+          <article class="card p-8">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
+            <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid md:grid-cols-2 gap-12 max-w-5xl">
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">जिम्मेदार प्रकटीकरण</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">कुछ मिला?</h2>
+          <p class="prose-ink mb-6">
+            सुरक्षा शोधकर्ताओं का यहां स्वागत है। भेद्यता
+            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>
+            पर रिपोर्ट करें। हम 24 घंटे के भीतर पुष्टि करते हैं, गंभीर मुद्दों को 72 के भीतर पैच करते हैं, और रिपोर्टर्स को हमारे हॉल ऑफ फेम में श्रेय देते हैं जब तक आप गुमनाम रहना नहीं चाहते।
+          </p>
+          <p class="text-sm text-ink-500 italic">
+            एन्क्रिप्टेड सबमिशन के लिए PGP कुंजी हमारे GitHub पर प्रकाशित है।
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4 text-accent-glow">अनुपालन और परिनियोजन</p>
+          <h2 class="font-serif text-display-lg text-paper-50 mb-4">अपने संस्थान में Fluera तैनात कर रहे हैं?</h2>
+          <p class="prose-ink mb-6">
+            विश्वविद्यालय, स्कूल और अनुसंधान प्रयोगशालाएं: हम आपको हमारे DPA, उप-प्रोसेसर सूची, SSO सेटअप और ऑडिट लॉग मॉडल के बारे में बताते हैं। पायलट आमतौर पर एक कक्षा, एक सेमेस्टर, बिना शुल्क के शुरू होते हैं।
+          </p>
+          <a href="/hi/contact" class="btn-primary">परिनियोजन के बारे में हमसे बात करें →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
+        यह पृष्ठ आवश्यकताओं को कवर करता है। पूरी वास्तुकला, उप-प्रोसेसर रजिस्टर और DPA टेम्प्लेट
+        <a href="/hi/security/architecture" class="text-paper-300 underline">/hi/security/architecture</a> और
+        <a href="/hi/security/sub-processors" class="text-paper-300 underline">/hi/security/sub-processors</a> पर रहते हैं। विशिष्ट अनुपालन प्रश्न?
+        <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a> पर लिखें।
+      </p>
+    </div>
+  </section>
+</BaseLayout>

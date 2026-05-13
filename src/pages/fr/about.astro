@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/lib/site";
+---
+
+<BaseLayout
+  title="À propos"
+  description="Fluera est construit par une petite équipe en Italie. Notre histoire, nos convictions, la ligne qu'on ne franchira pas."
+  locale="fr"
+>
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">À propos</p>
+        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
+          On a construit l'app d'étude<br />qu'on aurait aimé avoir<br />quand on était étudiants.
+        </h1>
+        <div class="prose-ink text-lg">
+          <p>
+            Fluera est né d'une frustration. L'un de nous, dev full-stack avec dix ans de métier ; l'autre, étudiant qui voyait ses camarades tomber dans le même piège — des apps qui semblaient productives mais n'aidaient personne à se souvenir de quoi que ce soit.
+          </p>
+          <p>
+            On a lu la recherche. <em>Beaucoup</em> de recherche. Bjork, Mueller, Roediger, van der Meer, O'Keefe. La science cognitive est claire depuis un demi-siècle : écrire à la main bat taper, récupérer bat relire, espacer bat bachoter, la friction est une ressource. On n'a trouvé aucun app qui prenait sérieusement tout ça. Alors on en a construit un.
+          </p>
+          <p>
+            En chemin, on a écrit de zéro un moteur de rendu 2D — parce qu'aucun stack tout fait n'arrivait à livrer de l'encre sensible à la pression à 60 FPS sur six plateformes natives. Le moteur est le substrat sur lequel les fonctions cognitives vivent.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-6 text-accent-glow">La ligne</p>
+        <h2 class="font-serif text-display-lg text-paper-50 mb-8">Là où on trace la ligne.</h2>
+        <ul class="space-y-5 text-paper-200">
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">On n'aura pas d'IA qui répond aux examens à ta place.</strong>
+              <p class="text-sm mt-1 text-paper-300">L'IA de Fluera questionne, étaye, fait réfléchir. Elle ne ferme jamais ta pensée. Utiliser l'IA pour faire le travail cognitif, c'est l'utiliser pour atrophier le muscle qu'on devrait être en train d'entraîner.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">On ne vendra pas les données de tes cahiers.</strong>
+              <p class="text-sm mt-1 text-paper-300">Tes notes sont chiffrées au repos, de bout en bout quand elles sont synchronisées, et jamais utilisées pour entraîner les modèles de qui que ce soit. Les nôtres y compris.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">Pas de pub, d'engagement loop, de streak.</strong>
+              <p class="text-sm mt-1 text-paper-300">Ta relation à l'étude ne devrait pas dépendre d'une push notification. On préfère que tu utilises Fluera moins et que tu apprennes plus.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
+            <div>
+              <strong class="text-paper-50 font-serif">On ne sortira pas de fonctionnalités qu'on ne peut pas défendre par une citation.</strong>
+              <p class="text-sm mt-1 text-paper-300">Si une fonctionnalité ne renvoie pas à un résultat publié, ou à un feedback consistant de notre bêta, elle ne va pas en production. L'effet wow n'est pas une fonctionnalité. La nouveauté n'est pas une fonctionnalité.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04]">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 max-w-xl mx-auto leading-relaxed mb-6">
+        Siège à {SITE.company.city}. Une déclaration plus longue de ce qu'on refuse et pourquoi vit dans le <a href="/fr/manifesto" class="text-paper-300 underline underline-offset-4">manifeste</a>.
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/fr/contact" class="btn-secondary">Parle-nous</a>
+        <a href="/beta" class="btn-primary">Rejoins la bêta</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft && data.lang === "ja"))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const categoryLabel: Record<string, string> = {
+  "cognitive-science": "認知科学",
+  "product": "プロダクト",
+  "engineering": "エンジニアリング",
+  "field-notes": "フィールドノート",
+};
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString("ja-JP", { year: "numeric", month: "long", day: "numeric" });
+}
+---
+
+<BaseLayout
+  title="ブログ"
+  description="応用認知科学。プロダクトノート。エンジニアリングの細部。書く価値のあったこと。"
+  locale="ja"
+>
+  <PageHero
+    kicker="ブログ"
+    title="認知科学を、応用する。"
+    description="私たちが何を作っていて、なぜなのかについてのノート。読むのに十分短く、意味を持つのに十分長く。"
+  />
+
+  <section class="py-12 md:py-16">
+    <div class="container-site">
+      <ul class="space-y-4 list-none p-0 max-w-4xl">
+        {posts.map((p) => (
+          <li>
+            <a href={`/ja/blog/${p.id.replace(/\.ja$/, "")}`} class="block card p-6 md:p-8 hover:border-accent-glow/40 hover:bg-white/[0.04] transition-all">
+              <div class="flex items-center gap-3 mb-3 flex-wrap">
+                <span class="eyebrow text-accent-glow">{categoryLabel[p.data.category]}</span>
+                <span class="text-ink-600">·</span>
+                <span class="text-xs font-mono uppercase tracking-widest text-ink-500">{formatDate(p.data.publishedAt)}</span>
+              </div>
+              <h2 class="font-serif text-2xl md:text-3xl text-paper-50 mb-3 leading-tight">{p.data.title}</h2>
+              <p class="text-sm text-paper-300 leading-relaxed max-w-prose">{p.data.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {posts.length === 0 && (
+        <p class="mt-10 text-sm text-ink-500 italic max-w-prose">
+          日本語の記事はまだありません。原文は <a href="/blog" class="text-accent-glow underline">/blog</a> にあります。
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <p class="text-sm text-ink-500 mb-4 max-w-xl mx-auto">
+        平均して2週間に1本、新しい記事を公開しています。最も重要なものについては、月1回のニュースレターをお送りします。
+      </p>
+      <a href="/ja/contact" class="btn-secondary">ニュースレター登録近日公開予定</a>
+    </div>
+  </section>
+</BaseLayout>

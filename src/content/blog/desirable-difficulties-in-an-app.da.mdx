@@ -1,0 +1,67 @@
+---
+lang: "da"
+title: "Hvordan 'ønskværdige vanskeligheder' viser sig inde i en app"
+description: "Bjorks framework er rygraden i Fluera. Her er, hvordan et kontraintuitivt forskningsfund bliver til konkrete designbeslutninger — og hvad de hårdeste afvejninger er."
+publishedAt: 2026-04-10
+author: "Lorenzo"
+category: product
+tags: ["bjork", "design", "ønskværdige-vanskeligheder"]
+relatedPrinciples: [desirable-difficulties, retrieval-practice, productive-failure]
+---
+import Citation from "@/components/Citation.astro";
+
+Når vi præsenterer Fluera for skeptiske observatører, er den enkelte idé, der arbejder hårdest, <Citation authors="Bjork" year="1994" href="/da/research">Robert Bjorks *ønskværdige vanskeligheder*</Citation>. Når folk først har absorberet, at de letteste studie-betingelser næsten altid producerer dårligere resultater, holder resten af vores designbeslutninger op med at virke mærkelige og begynder at virke uundgåelige.
+
+Men "uundgåelige" laver meget af arbejdet der. At forvandle et forskningsfund til et produkt-interface indebærer afvejninger, der ikke dukker op i meta-analyserne. Her er en delvis status.
+
+## Det blanke canvas
+
+Standard-studie-appen har en skabelon. Du åbner den, og der er en foreslået struktur — et mind-map-skelet, en emneliste, et Cornell-layout. Skabelonen sænker aktiveringsenergien. Den virker hjælpsom.
+
+Det er den ikke. En skabelon lader dig springe genereringstrinnet over — den kognitive handling at beslutte, hvad der hører hjemme hvor, hvad der forbinder sig med hvad, hvad det centrale begreb er. Genereringstrinnet er læringen. At springe det over er at springe grunden til at have notesbogen over.
+
+Flueras canvas er blankt. Uendeligt, tomt, ikke-skræmmende. Prisen er, at nye brugere mærker friktionen med det samme. Nogle går. Det accepterer vi. Alternativet er et værktøj, der tiltrækker flere brugere og lærer færre noget.
+
+## AI'en der spørger, ikke svarer
+
+Hver eneste user research-session vi har lavet, har inkluderet mindst én person, der sagde "det ville være nyttigt, hvis AI'en kunne skrive et resumé til mig". Hver eneste session uden undtagelse.
+
+De har ret i, at det ville være nyttigt. De tager fejl i at tro, at nytten er målet. En AI der opsummerer forelæsningen for dig, er en AI der tager sig af den del af læringen, der var *dit* arbejde. Du får et resumé. Du føler at du har studeret. Du husker intet.
+
+Socratic Mode eksisterer specifikt for ikke at gøre det, brugerne beder om. Den udspørger canvasset i stedet for at opsummere det. På aksen for umiddelbar tilfredshed, ved den første interaktion, taber den til en AI der forklarer. <Citation authors="Roediger og Karpicke" year="2006" href="/da/research">På aksen for fastholdelse uger senere</Citation>, vinder den med marginer, der får den kortsigtede præference til at virke ubetydelig.
+
+Afvejningen er reel. Nogle brugere krydser aldrig tærsklen. For dem der gør, er forskellen produktet.
+
+## Selvtillids-slideren
+
+Du er færdig med at skrive et svar. Du trykker på "afslør løsningen". Fluera beder dig om en sidste ting først: vurdér din selvtillid, fra 1 til 5.
+
+Det er en lille afbrydelse. Hvert trial lægger to eller tre sekunder til. Hen over en session lægger de sekunder sig op. Brugerne beder om at slå den fra.
+
+Slideren er strukturel. <Citation authors="Butterfield og Metcalfe" year="2001" href="/da/research">Butterfield og Metcalfes hyperkorrektion-effekt</Citation> — fejl begået med høj selvtillid, når de først er rettet, fastsætter sig stærkere end fejl med lav selvtillid — kræver at du har *navngivet* din selvtillid, før rettelsen kommer. Uden slideren retter du i tåge, og rettelsen falmer. Med slideren bliver kontrasten eksplicit, og rettelsen lander.
+
+Vi beholder slideren. Generet er mekanismen.
+
+## Fog of War til eksamensforberedelse
+
+Den indlysende måde at forberede sig til en eksamen på er at læse noterne igen. Flydende læsning stiger. Den oplevede forberedelse stiger. På eksamensdagen styrter præstationen — for genkendelse er ikke genfindelse, og eksamen kræver genfindelse.
+
+Fog of War vender interaktionen om. I eksamenstilstand *skjuler* Fluera dit canvas — den maskerer de områder, du allerede har dækket, og beder dig genfinde dem fra hukommelsen, før du afslører. Den første session er forfærdelig. Du sidder over for et tåget canvas og opdager, hvor meget af det, du troede du vidste, du ikke kan producere.
+
+Brugerne hader den første session. De elsker resultaterne ved eksamen. Friktionen i den første session er det, der gør disse resultater mulige.
+
+## Hvad vi ikke gør (og undskylder for ikke at gøre)
+
+Evidensen understøtter også nogle interventioner, vi ikke har bygget. <Citation authors="Rohrer og Taylor" year="2007">Interleaving — at randomisere rækkefølgen af emner under øvelse i stedet for at øve i blokke</Citation> — er robust påvist at forbedre transfer. Vi vil gerne bygge dybere interleaving-funktioner. Forhindringen er, at *produktfølelsen* af en tilfældig emnerækkefølge, uden omhyggeligt design, kan være dybt desorienterende. Brugeroplevelsen styrter, før den kognitive gevinst når at træde i kraft.
+
+At styre den afvejning — bevare flow, mens man introducerer ønskværdig friktion — er det hårdeste designproblem, vi har.
+
+## Mønsteret
+
+Mønsteret, der går igen i alle disse beslutninger, er: **brugerens umiddelbare præference er et systematisk vildledende signal.** Brugerne foretrækker den lette version. Den lette version er værre. At bygge den sværere version belønnes som regel senere — af fastholdelse, af eksamensresultater, af den sjældne bruger der vender tilbage og siger "jeg syntes I var skøre, nu forstår jeg". Men det straffes næsten altid før — af churn, af dårlige anmeldelser, af fristelsen til at lancere den lettere version næste gang.
+
+Vi forsøger at modstå den fristelse. Nogle gange fejler vi. Lancerer og trækker tilbage og lancerer igen.
+
+Indsatsen er, at der i et felt — ed-tech — hvor enhver konkurrent har overgivet sig til brugerens præference og bygget værktøjer der føles godt og lærer lidt fra sig, er plads til et værktøj der føles dårligere og lærer bedre fra sig.
+
+Hvis du vil hjælpe os med at finde ud af det, [er beta'en åben](/beta).
