@@ -79,7 +79,7 @@ const columns = [
 
       {columns.map((col) => (
         <div>
-          <h4 class="eyebrow mb-4">{t(col.heading, locale)}</h4>
+          <h2 class="eyebrow mb-4">{t(col.heading, locale)}</h2>
           <ul class="space-y-2.5 text-sm">
             {col.items.map((item) => {
               const isExternal = "external" in item && item.external;

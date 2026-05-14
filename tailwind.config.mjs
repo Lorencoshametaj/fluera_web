@@ -12,7 +12,10 @@ export default {
           800: "#111827",
           700: "#1a2236",
           600: "#253149",
-          500: "#3a4865",
+          // Bumped from #3a4865 to #6a7d9c so `text-ink-500` on `bg-ink-950`
+          // hits ~5:1 contrast (WCAG AA for normal text). Previous failed at
+          // 2.2:1 — affecting ~84 muted-microcopy spots site-wide.
+          500: "#6a7d9c",
         },
         paper: {
           50: "#fafaf7",

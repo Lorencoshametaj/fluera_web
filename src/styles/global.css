@@ -290,6 +290,17 @@
 
   .glow-orb {
     @apply pointer-events-none absolute rounded-full blur-[80px];
+    /* Promote to its own GPU layer — avoids main-thread paint on every animation frame.
+       Reduces Total Blocking Time + Main-thread work on landing/hero sections. */
+    will-change: opacity, transform;
+    transform: translateZ(0);
+  }
+
+  /* Respect prefers-reduced-motion — disable orb pulse for users who request reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .glow-orb {
+      animation: none !important;
+    }
   }
 
   .divider-dot::before {

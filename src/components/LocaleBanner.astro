@@ -58,7 +58,7 @@ const bannerVariants = LOCALES
       </a>
       <button
         type="button"
-        class="text-ink-500 hover:text-paper-200 px-2 py-1 -my-1 rounded-md text-xs"
+        class="text-paper-300 hover:text-paper-50 px-2 py-1 -my-1 rounded-md text-xs"
         data-banner-dismiss
         aria-label={b.dismiss}
       >
@@ -79,7 +79,10 @@ const bannerVariants = LOCALES
 </style>
 
 <script is:inline>
-  (function () {
+  // Defer execution until the browser is idle — this banner is not first-paint
+  // critical, so we trade ~50ms of perceived delay (visible on slow CPUs) for
+  // a meaningfully better Total Blocking Time + Time To Interactive score.
+  const __runLocaleBanner = function () {
     const STORAGE_KEY = "fluera.localeBanner.dismissed";
     const DISMISS_DAYS = 30;
     const banner = document.getElementById("locale-banner");
@@ -141,5 +144,12 @@ const bannerVariants = LOCALES
     ctaLink && ctaLink.addEventListener("click", () => {
       try { localStorage.setItem(STORAGE_KEY, new Date().toISOString()); } catch (e) {}
     });
-  })();
+  };
+
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(__runLocaleBanner, { timeout: 2000 });
+  } else {
+    // Safari fallback: setTimeout still defers past the critical render path.
+    setTimeout(__runLocaleBanner, 100);
+  }
 </script>
