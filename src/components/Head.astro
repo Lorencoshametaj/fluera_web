@@ -1,5 +1,6 @@
 ---
 import { SITE } from "@/lib/site";
+import type { Locale } from "@/lib/i18n";
 
 export interface Props {
   title: string;
@@ -7,7 +8,7 @@ export interface Props {
   ogImage?: string;
   noIndex?: boolean;
   canonical?: string;
-  locale?: "en" | "it";
+  locale?: Locale;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -27,8 +28,22 @@ const fullTitle = title === SITE.name ? SITE.name : `${title} — ${SITE.name}`;
 
 const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 
+// og:locale maps to a BCP 47 territory tag — needed by Facebook/LinkedIn parsers.
+const OG_LOCALE: Record<Locale, string> = {
+  en: "en_US", it: "it_IT", es: "es_ES", "pt-br": "pt_BR",
+  fr: "fr_FR", de: "de_DE", ja: "ja_JP", ko: "ko_KR",
+  hi: "hi_IN", ar: "ar_SA", pl: "pl_PL", nl: "nl_NL",
+  sv: "sv_SE", da: "da_DK", no: "nb_NO", fi: "fi_FI",
+};
+
+// Plausible analytics — opt-in via env var. The "outbound-links + tagged-events"
+// script gives us automatic outbound link tracking PLUS support for custom events
+// triggered by `class="plausible-event-name=Foo+Bar"` on any element. ~1KB extra.
+// Setup: add `PUBLIC_PLAUSIBLE_DOMAIN=fluera.dev` to .env once Plausible account
+// is provisioned. Without env var, no script is emitted (zero impact, GDPR-safe).
 const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
-const plausibleSrc = import.meta.env.PUBLIC_PLAUSIBLE_SRC ?? "https://plausible.io/js/script.js";
+const plausibleSrc = import.meta.env.PUBLIC_PLAUSIBLE_SRC
+  ?? "https://plausible.io/js/script.outbound-links.tagged-events.js";
 ---
 
 <meta charset="UTF-8" />
@@ -49,7 +64,7 @@ const plausibleSrc = import.meta.env.PUBLIC_PLAUSIBLE_SRC ?? "https://plausible.
 <meta property="og:image" content={ogImageUrl} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:locale" content={locale === "it" ? "it_IT" : "en_US"} />
+<meta property="og:locale" content={OG_LOCALE[locale] ?? "en_US"} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content={`@${SITE.company.twitter}`} />

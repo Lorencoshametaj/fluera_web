@@ -183,7 +183,7 @@ const currentLocaleEndonym = LOCALE_ENDONYM[locale] ?? locale.toUpperCase();
           {localeSwitcher.map((l) => (
             <a
               href={l.href}
-              class={`lang-dropdown-item ${l.isCurrent ? "lang-dropdown-item-current" : ""}`}
+              class={`lang-dropdown-item plausible-event-name=Locale+Switch plausible-event-to=${l.code} ${l.isCurrent ? "lang-dropdown-item-current" : ""}`}
               hreflang={l.code}
               aria-current={l.isCurrent ? "true" : undefined}
               role="option"
@@ -196,7 +196,10 @@ const currentLocaleEndonym = LOCALE_ENDONYM[locale] ?? locale.toUpperCase();
         </div>
       </div>
 
-      <a href={href(PRIMARY_CTA.href)} class="hidden sm:inline-flex btn-primary text-sm px-4 py-2">
+      <a
+        href={href(PRIMARY_CTA.href)}
+        class="hidden sm:inline-flex btn-primary text-sm px-4 py-2 plausible-event-name=Beta+CTA+Click plausible-event-source=Nav"
+      >
         {t("cta.joinBeta", locale)}
       </a>
 
@@ -247,7 +250,10 @@ const currentLocaleEndonym = LOCALE_ENDONYM[locale] ?? locale.toUpperCase();
         </div>
       </div>
 
-      <a href={href(PRIMARY_CTA.href)} class="btn-primary mt-3">
+      <a
+        href={href(PRIMARY_CTA.href)}
+        class="btn-primary mt-3 plausible-event-name=Beta+CTA+Click plausible-event-source=Nav+Mobile"
+      >
         {t("cta.joinBeta", locale)}
       </a>
     </nav>
