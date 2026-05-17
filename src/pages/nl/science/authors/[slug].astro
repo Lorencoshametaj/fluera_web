@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { authorSeo } from "@/lib/seo-templates";
 import { getCollection, getEntry, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -11,6 +12,9 @@ export async function getStaticPaths() {
 }
 
 const { author } = Astro.props;
+// SEO: JSON-LD schema + hreflang alternates (multi-locale aware).
+const allAuthors = await getCollection("authors", () => true);
+const seo = authorSeo({ author, allAuthors, pathname: Astro.url.pathname });
 const { Content } = await render(author);
 
 async function resolveLocalized<T extends "principles" | "features">(
@@ -36,6 +40,9 @@ const statusLabel: Record<string, string> = {
 ---
 
 <BaseLayout
+  jsonLd={seo.jsonLd}
+  alternates={seo.alternates}
+  ogImage={seo.ogImage}
   title={`${author.data.name} — De wetenschap van Fluera`}
   description={author.data.shortBio}
   locale="nl"

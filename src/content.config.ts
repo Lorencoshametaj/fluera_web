@@ -65,6 +65,8 @@ const principles = defineCollection({
       .enum(["strong", "moderate", "emerging", "contested"])
       .default("strong"),
     order: z.number().default(100),
+    updatedAt: z.coerce.date().optional(),
+    keywords: z.array(z.string()).default([]),
   }),
 });
 
@@ -104,6 +106,8 @@ const features = defineCollection({
       .array(z.enum(["ios", "android", "macos", "windows", "linux", "web"]))
       .default(["ios", "android", "macos", "windows", "linux", "web"]),
     order: z.number().default(100),
+    updatedAt: z.coerce.date().optional(),
+    keywords: z.array(z.string()).default([]),
   }),
 });
 

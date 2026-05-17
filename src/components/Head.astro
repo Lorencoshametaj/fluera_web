@@ -1,6 +1,6 @@
 ---
-import { SITE } from "@/lib/site";
-import type { Locale } from "@/lib/i18n";
+import { SITE, languageSwitchHref } from "@/lib/site";
+import { LOCALES, DEFAULT_LOCALE, type Locale } from "@/lib/i18n";
 
 export interface Props {
   title: string;
@@ -10,6 +10,13 @@ export interface Props {
   canonical?: string;
   locale?: Locale;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /**
+   * Explicit hreflang alternates per locale (relative or absolute URLs). Used by
+   * dynamic [slug].astro templates that know their localized counterparts via
+   * content collection lookup. When absent, falls back to `languageSwitchHref()`
+   * which routes to each locale's matching static page or homepage.
+   */
+  alternates?: Partial<Record<Locale, string>>;
 }
 
 const {
@@ -20,6 +27,7 @@ const {
   canonical,
   locale = "en",
   jsonLd,
+  alternates,
 } = Astro.props;
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
@@ -35,6 +43,39 @@ const OG_LOCALE: Record<Locale, string> = {
   hi: "hi_IN", ar: "ar_SA", pl: "pl_PL", nl: "nl_NL",
   sv: "sv_SE", da: "da_DK", no: "nb_NO", fi: "fi_FI",
 };
+
+// hreflang code = BCP 47 (Google requires region casing: pt-BR not pt-br).
+const HREFLANG_CODE: Record<Locale, string> = {
+  en: "en", it: "it", es: "es", "pt-br": "pt-BR",
+  fr: "fr", de: "de", ja: "ja", ko: "ko",
+  hi: "hi", ar: "ar", pl: "pl", nl: "nl",
+  sv: "sv", da: "da", no: "no", fi: "fi",
+};
+
+// Build hreflang alternates for all 16 locales + x-default (= EN root).
+// Explicit alternates win; otherwise fall back to languageSwitchHref() which
+// routes to each locale's matching static page (or homepage if untranslated).
+const hreflangLinks = LOCALES.map((loc) => {
+  const explicit = alternates?.[loc];
+  const path = explicit ?? languageSwitchHref(Astro.url.pathname, loc);
+  return {
+    code: HREFLANG_CODE[loc],
+    href: new URL(path, SITE.url).toString(),
+  };
+});
+const xDefaultHref = new URL(
+  alternates?.[DEFAULT_LOCALE] ?? languageSwitchHref(Astro.url.pathname, DEFAULT_LOCALE),
+  SITE.url,
+).toString();
+
+const plausibleOrigin = (() => {
+  try {
+    return new URL(import.meta.env.PUBLIC_PLAUSIBLE_SRC
+      ?? "https://plausible.io/js/script.outbound-links.tagged-events.js").origin;
+  } catch {
+    return null;
+  }
+})();
 
 // Plausible analytics — opt-in via env var. The "outbound-links + tagged-events"
 // script gives us automatic outbound link tracking PLUS support for custom events
@@ -53,6 +94,14 @@ const plausibleSrc = import.meta.env.PUBLIC_PLAUSIBLE_SRC
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
+
+{/* hreflang alternates — one per locale + x-default. Google uses these to
+    serve the right localized URL in SERPs based on user's language settings.
+    Both HTML head AND sitemap.xml emit hreflang; Google reads both. */}
+{hreflangLinks.map((h) => (
+  <link rel="alternate" hreflang={h.code} href={h.href} />
+))}
+<link rel="alternate" hreflang="x-default" href={xDefaultHref} />
 
 {noIndex ? <meta name="robots" content="noindex, nofollow" /> : <meta name="robots" content="index, follow" />}
 
@@ -81,6 +130,12 @@ const plausibleSrc = import.meta.env.PUBLIC_PLAUSIBLE_SRC
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+{plausibleOrigin && (
+  <>
+    <link rel="dns-prefetch" href={plausibleOrigin} />
+    <link rel="preconnect" href={plausibleOrigin} crossorigin />
+  </>
+)}
 {/* Async font loading — preload then swap to stylesheet. Falls back via <noscript>. */}
 <link
   rel="preload"

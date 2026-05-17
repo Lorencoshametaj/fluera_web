@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { blogSeo } from "@/lib/seo-templates";
 import { getCollection, getEntry, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -11,6 +12,9 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+// SEO: JSON-LD schema + hreflang alternates (multi-locale aware).
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const seo = blogSeo({ post, allPosts, pathname: Astro.url.pathname });
 const { Content } = await render(post);
 
 async function resolveLocalized(ref: { collection: "principles"; id: string }) {
@@ -37,6 +41,9 @@ function formatDate(d: Date) {
 ---
 
 <BaseLayout
+  jsonLd={seo.jsonLd}
+  alternates={seo.alternates}
+  ogImage={seo.ogImage}
   title={post.data.title}
   description={post.data.description}
   locale="ko"

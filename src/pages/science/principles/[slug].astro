@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { principleSeo } from "@/lib/seo-templates";
 import { getCollection, getEntry, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -8,6 +9,9 @@ export async function getStaticPaths() {
 }
 
 const { principle } = Astro.props;
+// SEO: JSON-LD schema + hreflang alternates (multi-locale aware).
+const allPrinciples = await getCollection("principles", () => true);
+const seo = principleSeo({ principle, allPrinciples, pathname: Astro.url.pathname });
 const { Content } = await render(principle);
 
 const authors = await Promise.all(
@@ -29,6 +33,9 @@ const strengthLabel: Record<string, string> = {
 ---
 
 <BaseLayout
+  jsonLd={seo.jsonLd}
+  alternates={seo.alternates}
+  ogImage={seo.ogImage}
   title={`${principle.data.title} — The Science of Fluera`}
   description={principle.data.shortDescription}
 >

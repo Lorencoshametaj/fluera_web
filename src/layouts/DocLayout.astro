@@ -13,6 +13,8 @@ export interface Props {
   updatedAt?: Date;
   noIndex?: boolean;
   locale?: Locale;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  alternates?: Partial<Record<Locale, string>>;
 }
 
 const {
@@ -25,6 +27,8 @@ const {
   updatedAt,
   noIndex = false,
   locale,
+  jsonLd,
+  alternates,
 } = Astro.props;
 
 const DATE_FORMAT: Partial<Record<Locale, string>> = {
@@ -76,7 +80,14 @@ const updatedLabel = UPDATED_LABEL[activeLocale] ?? "Updated";
 const browseLabel = BROWSE_LABEL[activeLocale] ?? "Browse";
 ---
 
-<BaseLayout title={title} description={description} noIndex={noIndex} locale={locale}>
+<BaseLayout
+  title={title}
+  description={description}
+  noIndex={noIndex}
+  locale={locale}
+  jsonLd={jsonLd}
+  alternates={alternates}
+>
   <!-- Mobile nav toggle -->
   <div class="md:hidden sticky top-16 z-30 border-b border-white/[0.06] bg-ink-950/85 backdrop-blur-xl">
     <button

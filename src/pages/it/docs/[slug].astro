@@ -1,5 +1,6 @@
 ---
 import DocLayout from "@/layouts/DocLayout.astro";
+import { docSeo } from "@/lib/seo-templates";
 import { getCollection, getEntry, render } from "astro:content";
 import { buildDocsSections } from "@/lib/docs-nav";
 
@@ -12,6 +13,9 @@ export async function getStaticPaths() {
 }
 
 const { doc } = Astro.props;
+// SEO: JSON-LD schema + hreflang alternates (multi-locale aware).
+const allDocs = await getCollection("docs", () => true);
+const seo = docSeo({ doc, allDocs, pathname: Astro.url.pathname });
 const { Content } = await render(doc);
 const sections = await buildDocsSections("it");
 
@@ -26,6 +30,8 @@ const relatedDocs = (
 ---
 
 <DocLayout
+  jsonLd={seo.jsonLd}
+  alternates={seo.alternates}
   title={doc.data.title}
   description={doc.data.description}
   sections={sections}

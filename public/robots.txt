@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /legal/
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /*?*utm_
 
 Sitemap: https://fluera.dev/sitemap-index.xml
