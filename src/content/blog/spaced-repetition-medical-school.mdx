@@ -1,0 +1,105 @@
+---
+title: "Spaced repetition for medical school: the science versus the apps"
+description: "Fifty years of memory research, four major algorithms (SM-2, FSRS, SuperMemo 18), and a handful of apps that implement them with varying fidelity. What the science actually says — and where the apps cut corners."
+publishedAt: 2026-05-17
+updatedAt: 2026-05-17
+author: "Lorenzo"
+category: cognitive-science
+tags: ["spaced-repetition", "fsrs", "sm-2", "medical-school", "learning-science"]
+keywords: ["spaced repetition medical school", "spaced repetition algorithm", "fsrs vs sm-2", "spaced repetition science", "anki algorithm", "best spaced repetition algorithm"]
+relatedPrinciples: [spacing-effect, successive-relearning, retrieval-practice, desirable-difficulties]
+---
+import Citation from "@/components/Citation.astro";
+
+Most articles about spaced repetition tell you to "use Anki" and stop there. This one is for the medical student who wants to understand what the underlying science actually says — and where every app that claims to implement it makes simplifying choices that matter.
+
+The short version: spaced repetition is one of the most-replicated findings in all of cognitive psychology. The mechanism is solid. The *algorithms* that approximate the mechanism, on the other hand, vary in fidelity, and the gap between the best ones and the ones most apps actually ship is wider than the marketing implies. For someone trying to retain a four-year medical curriculum, those gaps compound.
+
+## The basic finding
+
+The spacing effect is roughly this: for a fixed total amount of study time, spreading the sessions out produces better long-term retention than concentrating them. The finding is more than a century old — Ebbinghaus mapped a version of the forgetting curve in 1885 — but the modern empirical literature really begins in the 1970s with Bjork, and it's been replicated to the point where it's one of the most reliably-true things in cognitive science.
+
+The detail that matters for app design is in <Citation authors="Cepeda et al." year="2008" href="/research">the Cepeda 2008 paper</Citation>, which mapped not just *whether* spacing works but *what spacing works best at what retention interval*. The key result: optimal gap between repeated study sessions is roughly 10–20% of the retention interval you want. If you need to remember something in 100 days, study sessions about 10–20 days apart are near-optimal. If you need to remember it in 4 years, the optimal gap is something like 5–10 months.
+
+That second number is the one that matters for medical school. Most spaced-repetition apps are calibrated for a 30–90 day retention horizon (typical for one-off exams). Medical school is a *four-year* horizon, with the Boards as the test. The algorithm that's optimal for "review next week's quiz" is *not* the algorithm that's optimal for "still know this in two years."
+
+## From science to algorithm: SM-2, FSRS, SuperMemo 18
+
+Three algorithms cover essentially all serious spaced-repetition apps in 2026. They differ in how they pick the next interval.
+
+**SM-2 (1987).** The algorithm Anki has used by default for most of its history. Each card has an "ease factor" that goes up when you get it right easily and down when you get it wrong; the next interval is the current interval times the ease factor, clamped. It's simple, easy to implement, and has a well-documented failure mode: cards you find hard get into an "ease hell" where they're scheduled too often, while cards you find easy never get tested far enough out to provide real retention signal. SM-2 was designed in 1987 for a flashcard program with a few hundred cards; it scales to thousands but its calibration suffers.
+
+**FSRS (Free Spaced Repetition Scheduler, 2022–2024).** Developed by Jarrett Ye and others as a modern open-source replacement for SM-2. It models each card with three parameters — difficulty, stability, retrievability — and fits 19 weight parameters across a user's review history to predict the probability that a given card will be remembered at a given interval. The current version, FSRS-5, was released in 2024 and is the default in modern Anki, Mochi, and a handful of others. Compared to SM-2, FSRS produces ~10–30% fewer reviews for the same retention rate. For a medical student with 15,000 active cards, that's hours per week.
+
+**SuperMemo 18 (2019, with continued updates).** The lineage of the original SuperMemo, developed since 1985 by Piotr Wozniak. SuperMemo 18 implements an algorithm called SM-18, the latest in a line of two-component models of memory that informed FSRS's design. It's the most theoretically rigorous SRS algorithm available — and the least accessible. It runs on Windows and has a notoriously dated interface, and most students don't use it.
+
+**The hierarchy, simplified:** SM-18 (most accurate, hardest to use) > FSRS-5 (modern, open-source, well-implemented) > SM-2 (older, still works, suboptimal at scale). If your app is using SM-2 as the default in 2026, the makers either haven't updated their algorithm in a decade or they're choosing simplicity over fidelity.
+
+## What "optimal spacing" actually means for a 4-year medical curriculum
+
+Apply the Cepeda result to medical school and you get something most students don't internalize until M3:
+
+- The pharmacology you learn in M1 — that you need to recall on Step 1 (around M2.5) and again on Step 2 (around M4) — should ideally be reviewed at intervals approaching *months apart* by the time you're a year out, not days apart.
+- Concept-level material (mechanism of a class of drugs) decays slower than detail-level material (the specific β-blocker contraindicated in cocaine intoxication). They want different schedules.
+- High-stakes, high-volume curricula like the Boards are exactly the case where SM-2's calibration weakness shows: too-frequent review of cards you're handling well, not-frequent-enough review of cards drifting toward the long-interval failure region.
+
+The well-known failure mode is: an M2 student opens their Anki around month 14 and sees 600 mature cards due. They've been doing the work, the algorithm has just been calling them back to easy cards too often, and the harder cards are still going to be missed on exam day because they haven't been tested at the longer intervals where retention is actually formed.
+
+The fix is not "do more reviews." The fix is the algorithm.
+
+## Common mistakes
+
+Four mistakes the spaced-repetition literature is unambiguous about, but that medical-student practice routinely makes.
+
+**1. Treating SRS as "review every card every day."** This is the failure mode of using a calendar app instead of an SRS. The whole point of the algorithm is that you *don't* see every card daily — most cards should be at multi-week or multi-month intervals once they're mature. Students who treat their Anki queue as a daily completion task are doing themselves harm, because they're rewarding pile-management instead of letting the algorithm work.
+
+**2. Ignoring the desirable-difficulty interaction.** <Citation authors="Bjork" year="1994" href="/research">Bjork's desirable-difficulties framework</Citation> says that conditions of practice that feel harder — including longer intervals where some retrieval failure happens — produce stronger long-term retention. SRS users routinely "rescue" cards by hitting "again" too quickly, resetting the interval, because the failure feels uncomfortable. The failure is the signal. <Citation authors="Roediger &amp; Karpicke" year="2006" href="/research">A retrieval attempt that almost succeeds</Citation> creates more memory than one that succeeds easily.
+
+**3. Over-trusting the algorithm.** No spaced-repetition algorithm — SM-2, FSRS, SM-18 — produces *understanding*. They produce *retention of what's on the card*. If your card says "What converts angiotensin I to angiotensin II?" and the answer is "ACE," the algorithm will dutifully ensure you can recall that pair forever. It will not ensure you understand the renin-angiotensin system. SRS is downstream of comprehension, not a substitute for it.
+
+**4. Treating spaced repetition as the whole study system.** SRS is one tool. It is the tool for *retaining facts you have already understood*. It is not the tool for *building understanding in the first place*, for *testing integration across topics*, or for *catching the metacognitive gap between recognition and retrieval*. Medical students who study only by doing Anki have notable predictable weaknesses on Step 2 CK and clinical work, because clinical reasoning is not a flashcard-shaped problem.
+
+## Where it fits in a real study system
+
+If you take the spaced-repetition literature seriously, the implication for medical school is not "do more Anki." It's something like this:
+
+- Build understanding first, using the tools designed for it: video lectures, problem-based learning, drawing things out by hand, talking through cases.
+- Once a concept is *understood*, encode the discrete facts you need to recall on demand into a spaced-repetition system. Let the algorithm handle the schedule.
+- Combine the SRS schedule with [retrieval practice](/science/principles/retrieval-practice) at the concept level — closed-book attempts to reconstruct a system from memory — that the flashcard format can't test.
+- Combine that with [interleaving](/science/principles/interleaving) across systems, which is what makes integrated questions (Step 1 style) work on exam day.
+- Combine *that* with explicit metacognitive checks (predict your accuracy before you take a self-test; compare prediction to outcome; track the gap over time). This is the part most students skip and it's the one that most consistently separates 240 scores from 260 scores.
+
+Spaced repetition is essential. It is not sufficient. The "complete" picture is roughly: spacing handles *when*, retrieval practice handles *what kind of attempt*, interleaving handles *how the topics are mixed*, and metacognition handles *whether your sense of mastery is calibrated*. SRS apps mostly ship the first one. The good ones nudge toward the second. Almost none address the third or fourth.
+
+## Tools that implement FSRS-5 properly
+
+If you're going to pick a spaced-repetition app for medical school in 2026, FSRS-5 should be table stakes. The list of serious implementations:
+
+- **Anki** (with FSRS-5 enabled, not the default SM-2). Free on desktop and Android, $25 once on iOS. The community deck ecosystem is unmatched. Documentation for FSRS is now part of the official manual.
+- **Mochi.** Native FSRS-4, with FSRS-5 in beta as of 2026. Best for users who want a clean implementation and don't depend on community decks.
+- **RemNote.** Uses a custom SuperMemo-inspired algorithm rather than FSRS. Good if you want notes and cards in one tool.
+- **Fluera.** Uses FSRS-5 with a wrinkle: it operates on *concepts* you've drawn or written, not on flashcards in isolation. The algorithm is the same; the surface is different. The bet is that scheduling retrieval over your handwritten work — including the context that surrounds each concept — produces stronger encoding than scheduling the same retrieval over stripped-down cards. We've written about [the underlying principle](/science/principles/spacing-effect) and [why successive relearning matters](/science/principles/successive-relearning) in more depth.
+
+The Anki path is the established one and the right pick for most medical students. The Fluera path is for the case where you also want your spaced repetition layered onto a canvas of how the concepts connect — which is the part that flashcards, by design, strip out.
+
+## The honest limits of SRS in medicine
+
+Worth saying clearly, because the SRS community sometimes drifts toward overselling: there are things spaced repetition does badly in medical training.
+
+It does not produce **clinical reasoning**. The transition from "knows the facts about heart failure" to "can recognize new-onset heart failure in a 68-year-old presenting with bilateral leg edema and orthopnea" is a different cognitive skill. It's the skill clerkships exist to develop, and SRS gives you the substrate but not the synthesis.
+
+It does not produce **procedural skill**. The literature on motor skill acquisition is its own field, and the spaced-repetition principles don't transfer cleanly to "how do I do a paracentesis."
+
+It does not produce **communication or empathy**. These are not on the table.
+
+What SRS does is one specific thing very well: it makes a fact you've learned available to you at a distant future moment when you need it. For medicine, that's a critical ingredient, but it's an ingredient, not the meal.
+
+[Start free with Fluera — concepts, retrieval, spacing on one canvas →](/beta)
+
+## What this comes down to
+
+The 50-year-old science on spacing is true and applies to you. The 40-year-old SM-2 algorithm is no longer the best implementation of it; FSRS-5 is. Most apps in 2026 either ship FSRS-5 or are migrating to it; if yours hasn't, that's a signal.
+
+Beyond the algorithm question, the bigger architectural question is what the algorithm is *operating on*. If it's operating on stripped-down flashcards, you're getting the spacing benefit but losing the context that makes the recalled fact useful. If it's operating on something richer — a concept on a canvas, a connection in a map, a piece of handwriting you produced — you're getting both.
+
+Pick the algorithm seriously. Then pick the surface it runs on at least as seriously.
