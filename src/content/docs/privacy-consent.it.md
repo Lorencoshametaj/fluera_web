@@ -5,12 +5,12 @@ description: "Quali dati Fluera raccoglie, che consenso stai dando e come spegne
 section: settings
 sectionLabel: "Impostazioni"
 order: 1
-updatedAt: 2026-04-20
+updatedAt: 2026-05-19
 ---
 
 Fluera è uno strumento local-first. Di default, niente lascia il tuo dispositivo a meno che tu non attivi esplicitamente una funzione che lo richiede.
 
-## Le quattro categorie di consenso
+## Le quattro categorie di consenso principali
 
 Apri **Impostazioni → Privacy**. Vedrai quattro toggle, tutti disattivati di default:
 
@@ -20,6 +20,22 @@ Apri **Impostazioni → Privacy**. Vedrai quattro toggle, tutti disattivati di d
 - **Crash reporting.** Stack trace e metadata del dispositivo quando l'app crasha. Nessun contenuto utente. Trattato da Sentry con `sendDefaultPii: false`.
 
 Ogni toggle è indipendente. Puoi attivare Cloud Sync senza Analytics. Puoi usare l'AI senza Crash Reporting. I permessi sono granulari di proposito.
+
+## AI Training Data (sezione separata, solo opt-in)
+
+Stiamo costruendo un riconoscitore di scrittura proprietario, su misura per come scrivono gli utenti Fluera. Sotto **Impostazioni → Privacy → AI Training Data** trovi altri due toggle, anch'essi disattivati di default e indipendenti dai quattro sopra:
+
+- **Sessione di calibrazione (~5 min).** Una sessione guidata una tantum dove scrivi 30 simboli che ti mostriamo (cifre, operatori matematici, lettere greche, lettere italiane comuni). Il simbolo a schermo è la verità di base, accoppiato ai tuoi tratti. Dati di qualità più alta per singolo campione.
+- **Cattura automatica della scrittura.** Mentre scrivi naturalmente sul canvas, salviamo i tratti grezzi (coordinate, timing, pressione, tilt dello stilo dove supportato) più una piccola immagine PNG cifrata di ogni cluster. I dati restano cifrati sul nostro server. **Quando avremo completato gli accordi con Google** (Data Processing Agreement Vertex AI, in corso) Google Gemini Vision analizzerà le immagini per insegnare a Fluera AI cosa hai scritto. Fino ad allora nessun dato di AI Training esce dalla nostra infrastruttura verso terzi.
+
+Entrambi i toggle usano un identificatore pseudonimizzato dedicato (SHA-256 dell'user id + un salt fresco) **diverso** da quello usato dagli Analytics di prodotto. La correlazione incrociata tra i due corpora è matematicamente non fattibile senza la nostra infrastruttura.
+
+Misure di sicurezza specifiche per questa categoria:
+- Cifratura del payload con AES-256-GCM *prima* dell'upload; la chiave di decifratura del corpus è una keypair asimmetrica (X25519) la cui metà privata è custodita su carta offline e mai digitalizzata.
+- Row-Level Security sulle tabelle Supabase — un utente non può mai leggere i campioni di un altro utente.
+- Filtro rumore: i cluster con meno di 3 punti totali (tap accidentali, smudge) vengono scartati prima del salvataggio.
+- Deduplicazione persistente via fingerprint geometrico — re-disegnare identicamente lo stesso cluster non produce duplicati.
+- Anteprima per-sample in **Impostazioni → AI Training Data → Catture recenti**: vedi le miniature di esattamente cosa abbiamo salvato.
 
 ## Cosa non viene mai raccolto
 
@@ -36,7 +52,7 @@ Fai girare l'app in modalità aereo. Fai tutto tranne cloud sync e AI. Osserva i
 
 Tutti e quattro i toggle sono sempre accessibili in **Impostazioni → Privacy**. Disattivare un toggle ha effetto immediato. I dati backend associati vengono programmati per cancellazione entro 30 giorni.
 
-Per la cancellazione a livello di account (il diritto all'oblio completo), scrivi a [privacy@fluera.dev](mailto:privacy@fluera.dev) dall'indirizzo del tuo account.
+Per la cancellazione a livello di account (il diritto all'oblio completo), scrivi a [lorenco@fluera.dev](mailto:lorenco@fluera.dev) dall'indirizzo del tuo account.
 
 ## Account Education
 

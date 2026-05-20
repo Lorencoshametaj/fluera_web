@@ -27,7 +27,7 @@ const summary = `Informativa sul trattamento dei dati personali degli utenti del
     <li><strong>Ragione sociale:</strong> <span class="legal-placeholder">[NOME LEGALE AZIENDA — es. Looponia S.r.l.]</span></li>
     <li><strong>Sede legale:</strong> <span class="legal-placeholder">[INDIRIZZO COMPLETO — via, CAP, città, provincia, paese]</span></li>
     <li><strong>P.IVA / C.F.:</strong> <span class="legal-placeholder">[PARTITA IVA / CODICE FISCALE]</span></li>
-    <li><strong>Email di contatto privacy:</strong> <a href="mailto:privacy@fluera.dev">privacy@fluera.dev</a></li>
+    <li><strong>Email di contatto privacy:</strong> <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a></li>
     <li><strong>Email di supporto generale:</strong> <a href="mailto:support@fluera.dev">support@fluera.dev</a></li>
   </ul>
   <p>
@@ -93,6 +93,32 @@ const summary = `Informativa sul trattamento dei dati personali degli utenti del
     <li>Nessun dato di pagamento (numeri di carta, IBAN) viene mai memorizzato dai nostri sistemi: le transazioni sono gestite interamente da Apple, Google e RevenueCat</li>
   </ul>
 
+  <h3>2.8 Dati per l'addestramento di Fluera AI (Modalità A + E)</h3>
+  <p>
+    Solo se l'utente ha prestato consenso esplicito alla categoria <strong>AI Training Data</strong> in <em>Impostazioni → Privacy → AI Training Data</em>. Il consenso è granulare per modalità (calibrazione manuale prompt-driven e/o cattura automatica della scrittura) ed è sempre revocabile.
+  </p>
+  <p><strong>Modalità A — Sessione di calibrazione</strong> (prompt-driven, esplicita):</p>
+  <ul>
+    <li>Tratti grezzi della scrittura dell'utente durante la sessione (coordinate <code>x</code>, <code>y</code>, timestamp, pressione, tilt dello stilo se disponibile)</li>
+    <li>Il simbolo o parola richiesto dal sistema (ground truth)</li>
+    <li>Metadati base del dispositivo: piattaforma, modello, OS, tipo di puntatore inferito (stilo/dito/mouse), DPR, versione app</li>
+  </ul>
+  <p><strong>Modalità E — Cattura automatica della scrittura</strong> (passiva, opt-in):</p>
+  <ul>
+    <li>Tratti grezzi dei cluster scritti dall'utente sul canvas durante l'uso normale</li>
+    <li>Un'immagine PNG renderizzata del cluster (snapshot bbox-original che preserva il layout 2D, essenziale per il riconoscimento di formule matematiche)</li>
+    <li>Metadati base del dispositivo come sopra</li>
+    <li><strong>Nessuna analisi automatica viene effettuata al momento della cattura.</strong> I dati restano cifrati sul nostro server in attesa del completamento degli accordi contrattuali con Google Cloud (Data Processing Agreement per Vertex AI). Una volta firmati, Google Gemini Vision analizzerà le immagini per generare le etichette di addestramento del modello proprietario di Fluera. Fino ad allora, nessun dato viene inviato a Google.</li>
+  </ul>
+  <p><strong>Misure di sicurezza specifiche per questa categoria:</strong></p>
+  <ul>
+    <li>I dati sono pseudonimizzati con un hash SHA-256 dell'identificativo utente combinato con un salt dedicato (mai associati al nome, email o user_id reale)</li>
+    <li>Cifratura a livello di payload con AES-256-GCM <em>prima</em> del caricamento; la chiave di cifratura del corpus è custodita in forma asimmetrica offline (X25519) ed esiste solo in forma cartacea fisica</li>
+    <li>Le tabelle Supabase relative a questa categoria sono soggette a Row-Level Security che impedisce a un utente di leggere campioni di un altro utente</li>
+    <li>Filtraggio del rumore: cluster con meno di 3 punti totali (tap accidentali, smudge) vengono scartati prima del salvataggio</li>
+    <li>Deduplicazione persistente tramite fingerprint geometrico: scritture perfettamente identiche dello stesso cluster non producono campioni duplicati</li>
+  </ul>
+
   <h2 id="finalita">3. Finalità e basi giuridiche</h2>
   <p>Il trattamento dei dati personali avviene esclusivamente per le seguenti finalità:</p>
   <ul>
@@ -101,6 +127,7 @@ const summary = `Informativa sul trattamento dei dati personali degli utenti del
     <li><strong>Cloud Sync</strong>: consenso esplicito e revocabile dell'utente (art. 6.1.a GDPR).</li>
     <li><strong>Analytics di prodotto</strong>: consenso esplicito e revocabile dell'utente (art. 6.1.a GDPR). I dati servono a misurare l'efficacia pedagogica delle funzioni e a migliorare il prodotto.</li>
     <li><strong>Report dei crash</strong>: consenso esplicito e revocabile dell'utente (art. 6.1.a GDPR).</li>
+    <li><strong>AI Training Data</strong> (Modalità A — calibrazione, Modalità E — cattura automatica della scrittura): consenso esplicito e revocabile dell'utente, granulare per modalità (art. 6.1.a GDPR). Conservazione e utilizzo dei dati per costruire un riconoscitore di scrittura proprietario.</li>
     <li><strong>Gestione abbonamenti</strong>: esecuzione del contratto (art. 6.1.b GDPR).</li>
     <li><strong>Sicurezza e prevenzione abusi</strong> (enforcement quote AI lato server): legittimo interesse del Titolare (art. 6.1.f GDPR) a prevenire consumo abusivo delle risorse.</li>
   </ul>
@@ -109,7 +136,7 @@ const summary = `Informativa sul trattamento dei dati personali degli utenti del
   <p>I dati personali possono essere comunicati ai seguenti responsabili del trattamento, tutti vincolati da contratto ex art. 28 GDPR:</p>
   <ul>
     <li><strong>Supabase Inc.</strong> — database, autenticazione, storage cloud, telemetria, Edge Functions. <a href="https://supabase.com/privacy" rel="noopener">Privacy Policy</a></li>
-    <li><strong>Google LLC</strong> — Google Generative AI (Gemini) per le funzioni AI, Google Sign-In. <a href="https://policies.google.com/privacy" rel="noopener">Privacy Policy</a></li>
+    <li><strong>Google LLC</strong> — Google Generative AI (Gemini) per le funzioni AI in-app, Google Sign-In. In <strong>futuro</strong> (post-firma del Data Processing Agreement Vertex AI, attualmente in fase di completamento) anche Gemini Vision per l'etichettatura dei campioni di addestramento Modalità E. Nessun dato della categoria AI Training Data viene inviato a Google fino al completamento del DPA. <a href="https://policies.google.com/privacy" rel="noopener">Privacy Policy</a></li>
     <li><strong>Apple Inc.</strong> — Sign in with Apple, App Store, in-app purchases. <a href="https://www.apple.com/legal/privacy/" rel="noopener">Privacy Policy</a></li>
     <li><strong>RevenueCat Inc.</strong> — gestione abbonamenti e ricevute. <a href="https://www.revenuecat.com/privacy" rel="noopener">Privacy Policy</a></li>
     <li><strong>Functional Software Inc. (Sentry)</strong> — crash reporting. <a href="https://sentry.io/privacy/" rel="noopener">Privacy Policy</a></li>
@@ -134,6 +161,7 @@ const summary = `Informativa sul trattamento dei dati personali degli utenti del
     <li><strong>Log di utilizzo AI (<code>ai_usage_events</code>):</strong> 24 mesi, per esigenze contabili e di controllo dei costi</li>
     <li><strong>Dati di abbonamento:</strong> 10 anni a fini fiscali (art. 2220 c.c.)</li>
     <li><strong>Audit trail del consenso:</strong> fino alla revoca + 3 anni per dimostrare la conformità ai sensi dell'art. 7.1 GDPR</li>
+    <li><strong>AI Training Data (Modalità A + E):</strong> fino a 5 anni dopo la cancellazione dell'account dell'utente, o fino a richiesta esplicita di cancellazione tramite <em>Impostazioni → Privacy → AI Training Data → Cancella tutto</em>. La conservazione è giustificata dall'interesse legittimo (art. 6.1.f GDPR) alla continuità del corpus di addestramento; i dati sono mantenuti in forma pseudonimizzata e non più collegabili all'account. La cancellazione fisica avviene entro 30 giorni dalla richiesta (periodo di grazia anti-cancellazione accidentale).</li>
   </ul>
 
   <h2 id="diritti">7. Diritti dell'utente</h2>
@@ -153,7 +181,7 @@ const summary = `Informativa sul trattamento dei dati personali degli utenti del
   <ul>
     <li>Utilizzare i toggle dedicati in <em>Impostazioni → Privacy</em> dell'app (revoca consenso, disattivazione telemetria)</li>
     <li>Utilizzare la funzione <em>Esporta i miei dati</em> integrata nell'app (art. 20 GDPR)</li>
-    <li>Scrivere a <a href="mailto:privacy@fluera.dev">privacy@fluera.dev</a> per richieste che richiedono intervento manuale (cancellazione account completo, rettifica, ecc.)</li>
+    <li>Scrivere a <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a> per richieste che richiedono intervento manuale (cancellazione account completo, rettifica, ecc.)</li>
   </ul>
   <p>Il Titolare si impegna a rispondere entro il termine di 30 giorni dalla ricezione della richiesta (art. 12.3 GDPR), salvo proroga motivata.</p>
 

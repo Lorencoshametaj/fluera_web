@@ -19,15 +19,27 @@ const jsonLd = {
 
 <BaseLayout
   title="Pricing"
-  description="Free, Plus, Pro and Education plans. Full canvas free forever. Verified student discount. Custom education licensing."
+  description="Free, Plus, Pro. 100 / 500 / 2000 AI credits per month, always visible — no hidden rate limits. Plus €5.99/month, Pro €11.99/month."
   jsonLd={jsonLd}
 >
   <PageHero
     kicker="Pricing"
-    title="Free to learn.<br />Plus and Pro to go deeper."
-    description="One canvas. Four ways to use it. The Free tier is the full canvas — use it as long as you need. Whoever subscribes now locks their tier rate for the lifetime of the subscription."
+    title="You always know<br />how much AI you have left."
+    description="Notion AI throttles you silently. ChatGPT blocks you without warning. We don't: 100, 500 or 2000 credits per month, always visible in the canvas. Whoever subscribes now locks the rate for the lifetime of the subscription."
   >
-    <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <!-- 🎓 Student discount strip (above the fold, no FAQ hunt required) -->
+    <a
+      href="/contact"
+      class="mt-10 flex flex-wrap items-center gap-3 rounded-2xl border border-accent-glow/30 bg-accent-glow/[0.05] px-4 py-3 hover:bg-accent-glow/[0.08] transition-colors"
+    >
+      <span class="pill text-[10px] text-accent-glow border-accent-glow/40">Students</span>
+      <span class="text-sm text-paper-200 flex-1">
+        <strong class="text-paper-50">Verified 50% off</strong> with a <code class="font-mono text-xs text-accent-glow">.edu</code> address or student ID — also for European universities without .edu.
+      </span>
+      <span class="text-xs text-accent-glow font-medium">Apply →</span>
+    </a>
+
+    <div class="mt-8 grid md:grid-cols-1 lg:grid-cols-3 gap-4">
         {tiers.map((t) => (
           <article class={`card p-6 flex flex-col ${t.highlighted ? "border-accent-ink/40 bg-accent-ink/[0.05]" : ""}`}>
             <div class="flex items-start justify-between mb-4">

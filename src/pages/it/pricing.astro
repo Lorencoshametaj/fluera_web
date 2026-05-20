@@ -16,25 +16,37 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title="Pricing"
-  description="Free, Plus, Pro e Education. Canvas completo gratis per sempre. Plus a €5,99/mese, Pro a €11,99/mese. Licenze Education su misura."
+  title="Prezzi"
+  description="Free, Plus, Pro. 100 / 500 / 2000 crediti AI al mese, sempre visibili — niente rate limit nascosti. Plus €5,99/mese, Pro €11,99/mese."
   locale="it"
   jsonLd={jsonLd}
 >
 
   <section class="py-20 md:py-28 border-b border-white/[0.04]">
     <div class="container-site">
-      <div class="max-w-3xl mb-16">
+      <div class="max-w-3xl mb-10">
         <p class="eyebrow mb-6 text-accent-glow">Prezzi</p>
         <h1 class="font-serif text-display-xl text-paper-50 mb-6">
-          Gratis per imparare.<br />Plus e Pro per andare a fondo.
+          Sai sempre quanto AI<br />ti rimane.
         </h1>
         <p class="prose-ink text-lg max-w-prose">
-          Un canvas. Quattro modi per usarlo. Il tier Free è il canvas completo — usalo finché ti basta. Chi sottoscrive ora blocca la tariffa per la durata dell'abbonamento.
+          Notion AI ti rallenta in silenzio. ChatGPT ti blocca senza preavviso. Noi no: 100, 500 o 2000 crediti al mese, sempre visibili nel canvas. Chi sottoscrive ora blocca la tariffa per la durata dell'abbonamento.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- 🎓 Student discount strip (above the fold, no FAQ hunt required) -->
+      <a
+        href="/contact"
+        class="mb-12 flex flex-wrap items-center gap-3 rounded-2xl border border-accent-glow/30 bg-accent-glow/[0.05] px-4 py-3 hover:bg-accent-glow/[0.08] transition-colors"
+      >
+        <span class="pill text-[10px] text-accent-glow border-accent-glow/40">Studenti</span>
+        <span class="text-sm text-paper-200 flex-1">
+          <strong class="text-paper-50">Sconto 50% verificato</strong> con email <code class="font-mono text-xs text-accent-glow">.edu</code> o tessera universitaria — anche per università italiane senza .edu.
+        </span>
+        <span class="text-xs text-accent-glow font-medium">Richiedi →</span>
+      </a>
+
+      <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-4">
         {tiers.map((t) => (
           <article class={`card p-6 flex flex-col ${t.highlighted ? "border-accent-ink/40 bg-accent-ink/[0.05]" : ""}`}>
             <div class="flex items-start justify-between mb-4">

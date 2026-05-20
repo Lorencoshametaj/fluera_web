@@ -1,3 +1,7 @@
+// 🇪🇸 V1.5 — Native pass complete (2026-05-15).
+// CTA labels + badge preserved from the previous locale file.
+// Coordinated with it.ts canonical.
+
 import type { PricingData } from "../types";
 
 const data: PricingData = {
@@ -6,101 +10,111 @@ const data: PricingData = {
       name: "Free",
       price: "€0",
       period: "para siempre",
-      tagline: "El canvas completo. Tres cuadernos. Gratis para siempre.",
+      tagline:
+        "El canvas completo para probar el método. 100 créditos de IA al mes, siempre visibles.",
       features: [
-        "Canvas infinito, 13 pinceles, motor de escritura a mano completo",
-        "3 cuadernos, páginas ilimitadas",
-        "Local-first — totalmente offline",
-        "Exportación en PNG y PDF",
-        "Socratic mode básico",
+        "Canvas infinito, escritura a mano, motor de renderizado completo",
+        "3 pinceles base (lápiz, pluma estilográfica, marcador — más en Plus)",
+        "Exportación PNG",
+        "100 créditos de IA al mes — Atlas y Chat Fluera AI siempre gratis",
+        "Socratic 3 sesiones/sem., Ghost Map 3 comparaciones/sem., 1 Exam/sem.",
+        "Fog of War, FSRS (repetición espaciada)",
+        "Cross-Zone Bridges — ve las conexiones entre conceptos que el sistema descubre",
+        "📍 3 Checkpoints por canvas — guarda un momento de estudio y vuelve a él cuando quieras",
+        "Vista previa de Time Travel + sync audio↔trazo en un canvas demo (solo lectura)",
+        "Local-first, totalmente offline (1 dispositivo)",
       ],
-      cta: { label: "Empieza gratis", href: "/beta" },
+      cta: { label: "Empezar gratis", href: "/beta" },
       highlighted: false,
     },
     {
       name: "Plus",
       price: "€5,99",
-      period: "al mes · €49/año",
-      tagline: "Canvas completo, sincronización en 2 dispositivos, IA básica.",
+      period: "al mes · €49 / año (ahorras €22 — 2 meses gratis)",
+      tagline:
+        "Estudio individual completo: cloud sync, IA sin contadores semanales, voz ilimitada.",
       features: [
-        "Todos los pinceles + capas ilimitadas",
-        "Sincronización en 2 dispositivos",
-        "Exportación en PDF y todos los formatos básicos",
-        "Cuota de IA básica (Atlas, Ghost Map básico)",
-        "Anual a €49 (unos €4,08/mes)",
+        "Cloud sync 5 GB en 2 dispositivos — tus canvas también en iPad y escritorio",
+        "Socratic, Ghost Map, Exam sin límites de frecuencia (no más 3/semana)",
+        "5× más créditos de IA que Free (500 al mes — alrededor de 60 Ghost Map o 18 sesiones Socratic completas)",
+        "Grabación de voz ilimitada",
+        "Todos los pinceles V1 (6 en total, más en camino)",
+        "Exportación completa (PNG, JPEG, WebP, SVG, PDF, .fluera)",
+        "Cross-Zone Bridges — crea y edita tus propias conexiones entre conceptos",
+        "📍 Checkpoints ilimitados por canvas",
+        "Prueba gratis de 7 días, cancelable en cualquier momento",
       ],
-      cta: { label: "Empezar con Plus", href: "/beta" },
+      cta: { label: "Probar Plus", href: "/beta" },
       highlighted: true,
       badge: "Recomendado",
     },
     {
       name: "Pro",
       price: "€11,99",
-      period: "al mes · €99/año",
-      tagline: "Exam Session, Atlas, suite de IA completa, time travel y sincronización ilimitados.",
+      period: "al mes · €99 / año (ahorras €44 — 3,5 meses gratis)",
+      tagline:
+        "Estudio amplificado: Time Travel, sync audio↔trazo, colaboración en tiempo real, búsqueda en todos los canvas.",
       features: [
-        "Exam Session — exámenes simulados desde tu canvas con feedback de hipercorrección",
-        "Atlas vista continente + Cross-Zone Bridges en todos los cuadernos",
-        "Suite de IA completa (Ghost Map, Socratic, Fog of War, scheduler FSRS)",
-        "Cuadernos ilimitados",
-        "Sincronización multi-dispositivo cifrada de extremo a extremo",
-        "Time Travel con replay sincronizado al audio",
-        "Todos los formatos de exportación (PNG, JPEG, WebP, SVG, PDF, .fluera)",
-        "Soporte por correo prioritario",
-        "Anual a €99 (unos €8,25/mes)",
+        "⏱️ Scrubber de Time Travel — revisa tu estudio en reproducción",
+        "🎤 Sync audio ↔ trazo — tocas un trazo y vuelves a escuchar lo que decías en ese momento",
+        "🤝 Colaboración en canvas en tiempo real (CRDT) — invitas compañeros con un enlace",
+        "🔍 Background OCR proactivo — busca una fórmula escrita hace meses, la encuentra en todos los canvas",
+        "Cloud sync 50 GB, dispositivos ilimitados",
+        "Soporte prioritario por email",
+        "2000 créditos de IA al mes",
       ],
-      cta: { label: "Conviértete en Pro", href: "/beta" },
-      highlighted: false,
-    },
-    {
-      name: "Team",
-      price: "€19,99",
-      period: "por asiento / mes · €179/año por asiento · desde 5 asientos",
-      tagline: "Canvas compartidos para estudios, labs y equipos pequeños.",
-      features: [
-        "Todo lo de Pro para cada miembro del equipo",
-        "Workspace compartido con team Atlas",
-        "Permisos role-based y ACL",
-        "Dashboard admin + registro de auditoría",
-        "Facturación de equipo (factura única, IVA gestionado)",
-        "Soporte prioritario, onboarding dedicado",
-      ],
-      cta: { label: "Habla con sales", href: "/contact/sales" },
+      cta: { label: "Hazte Pro", href: "/beta" },
       highlighted: false,
     },
   ],
   faq: [
     {
-      q: "¿Por qué publicáis precios si estáis en beta privada?",
-      a: "Son los precios de la V1. Quien se suscribe ahora bloquea la tarifa de su plan durante toda la duración de la suscripción — incluso si la tabla cambia después.",
+      q: "¿Cómo funcionan los créditos de IA?",
+      a: "Cada operación de IA tiene un coste fijo en créditos: Ghost Map 8, Socratic 4 por etapa, Exam 12 por pregunta, Chat 1 por mensaje. Atlas (acciones del canvas) y Background OCR básico son gratis. Siempre ves cuántos créditos te quedan en la cabecera del canvas — sin rate limits ocultos, sin sorpresas. Los créditos no usados no se acumulan: el plan se recarga cada 30 días desde tu fecha de suscripción (no el 1 del mes — pagas 30 días y recibes 30 días).",
+    },
+    {
+      q: "¿Y si termino los créditos antes del reset?",
+      a: "Te avisamos antes — una alerta cuando has usado el 80% del ciclo. Cuando llegas a cero, las funciones de IA se detienen con un mensaje claro (nunca bloqueos silenciosos). Espera el próximo ciclo de 30 días o sube de plan.",
+    },
+    {
+      q: "¿Por qué Pro cuesta el doble si solo son tres pilares?",
+      a: "Pro no es 'Plus con más créditos' — es estudio amplificado. Time Travel reproduce tu sesión de estudio con audio sincronizado por cada trazo: tocas una fórmula y vuelves a escuchar la explicación que te dabas. La colaboración CRDT en tiempo real te permite trabajar simultáneamente con compañeros o colegas en el mismo canvas. Notability, GoodNotes y Notion AI no ofrecen este stack — no a este nivel de integración.",
+    },
+    {
+      q: "¿Qué pasa con mis canvas si cancelo Plus o Pro?",
+      a: "Todo se queda en tu dispositivo (local-first) y los 3 pinceles base + exportación PNG siguen funcionando en el tier Free. Los canvas extra quedan en solo lectura hasta que reactives o exportes. Nada se elimina sin una acción explícita tuya.",
+    },
+    {
+      q: "¿Por qué no hay prueba gratis de Pro?",
+      a: "Plus tiene 7 días de prueba gratis. Pro no: la colaboración en tiempo real + scrubber de Time Travel son funciones recurrentes con costes cloud que no podemos regalar. Si quieres probar el método, Free es el canvas completo — úsalo todo lo que necesites.",
+    },
+    {
+      q: "¿Qué es un Checkpoint?",
+      a: "Un Checkpoint es un marcador de tu canvas en un momento concreto — como un \"guardar como\". Lo creas cuando quieres (ej. \"antes del examencito\", \"al terminar el capítulo 3\") y vuelves cuando quieres: restaura el estado del canvas a ese punto. Es distinto de Time Travel: el Checkpoint es un punto fijo elegido por ti, Time Travel es el scrubber continuo sobre todo el historial. Free incluye 3 Checkpoints por canvas, Plus ilimitados.",
+    },
+    {
+      q: "¿Puedo probar Time Travel + sync audio↔trazo antes de pasar a Pro?",
+      a: "Sí. Cada usuario Free encuentra un canvas demo precargado donde puede abrir el scrubber de Time Travel y tocar los trazos para volver a escuchar el audio sincronizado — solo lectura, en el demo. Para grabar tus propios estudios necesitas Pro.",
+    },
+    {
+      q: "¿Política de reembolso?",
+      a: "30 días, sin preguntas, tanto en mensual como anual. Escribe a support@fluera.dev desde la dirección con la que te suscribiste.",
     },
     {
       q: "¿Cómo funciona la verificación de estudiante?",
-      a: "Te registras con un correo .edu, .ac.uk o académico verificado. Si tu universidad no usa un dominio académico (común en España y LATAM), aceptamos carnet de estudiante escaneado, ISIC o un correo único de la secretaría de la facultad.",
+      a: "Email .edu o académico verificado. Para universidades europeas sin .edu aceptamos carné de estudiante escaneado, ISIC o un email único de la secretaría de la facultad.",
     },
     {
-      q: "¿Qué pasa con mis cuadernos si cancelo Plus o Pro?",
-      a: "Los cuadernos quedan en tu dispositivo y vuelven al tier Free. Mantienes los tres primeros; los demás pasan a sólo lectura hasta que reactives o los exportes. Nada se borra sin una acción explícita tuya.",
-    },
-    {
-      q: "¿Hay política de reembolso?",
-      a: "Sí — 30 días, sin preguntas, en planes mensuales y anuales. Escribe a support@fluera.dev desde la dirección con la que te registraste.",
-    },
-    {
-      q: "¿Puedo hacer self-hosting de Fluera?",
-      a: "La parte local-first ya funciona totalmente offline en las seis plataformas. El self-hosting del cloud sync está en la roadmap Education (on-prem, SSO, registro de auditoría) — todavía no disponible hoy.",
-    },
-    {
-      q: "¿Ofrecéis descuentos para investigadores u ONGs?",
-      a: "Sí. Laboratorios de investigación, programas de doctorado y ONGs registradas pueden solicitarlo en /contact. Lo evaluamos caso por caso y solemos conceder Pro al precio Student, o gratis a cambio de feedback estructurado.",
-    },
-    {
-      q: "¿Por qué no hay trial gratuito de Plus o Pro?",
-      a: "El tier Free no es marketing capado — es el canvas completo. Úsalo el tiempo que necesites. Plus y Pro liberan IA y sincronización, que tienen costes de nube recurrentes que no podemos regalar.",
+      q: "¿Descuentos para investigadores o no-profit?",
+      a: "Sí. Laboratorios de investigación, programas de doctorado y no-profit registrados pueden solicitarlo en /contact — normalmente concedemos Pro al precio Plus o gratis a cambio de feedback estructurado.",
     },
     {
       q: "¿Qué métodos de pago aceptáis?",
-      a: "Tarjeta de crédito/débito vía Stripe (todas las marcas principales), SEPA para clientes UE, Apple Pay y Google Pay. Los clientes Education pueden pagar por transferencia bancaria u orden de compra.",
+      a: "Tarjetas de crédito/débito vía Stripe, SEPA para clientes UE, Apple Pay y Google Pay. Bizum donde Stripe lo soporta. Clientes Education pueden pagar por transferencia bancaria o pedido de compra.",
+    },
+    {
+      q: "¿Planes Team o Education?",
+      a: "Llegan en la fase 2 (workspaces compartidos, dashboard admin, SSO). ¿Interesado? Escribe a sales@fluera.dev — estamos construyendo la hoja de ruta con nuestros primeros design partners.",
     },
   ],
 };
