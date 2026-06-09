@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import AuthorCard from "@/components/AuthorCard.astro";
 import LearningStep from "@/components/LearningStep.astro";
 import PillarFeature from "@/components/PillarFeature.astro";
+import NewsletterCapture from "@/components/NewsletterCapture.astro";
 import { SITE } from "@/lib/site";
 import home from "@/data/home/it";
 
@@ -22,7 +23,7 @@ const jsonLd = {
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
 };
 
-const { steps, authors, platforms } = home;
+const { steps, authors, platforms, comparison, medicalUseCase } = home;
 ---
 
 <BaseLayout
@@ -32,6 +33,7 @@ const { steps, authors, platforms } = home;
   locale="it"
 >
 
+  <!-- ═══════════ 1 · HERO ═══════════ -->
   <section class="relative overflow-hidden noise">
     <div class="glow-orb h-[500px] w-[500px] -top-40 -start-40 bg-accent-ink/30 animate-orb-pulse"></div>
     <div class="glow-orb h-[420px] w-[420px] top-32 -end-20 bg-accent-glow/25 animate-orb-pulse" style="animation-delay: -3s"></div>
@@ -40,7 +42,7 @@ const { steps, authors, platforms } = home;
       <div class="max-w-3xl">
         <div class="pill mb-8">
           <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
-          Beta privata · Su invito
+          Beta privata · Accesso anticipato su richiesta
         </div>
 
         <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
@@ -51,15 +53,26 @@ const { steps, authors, platforms } = home;
           Scrivi a mano su un canvas infinito. Lascia che l'IA ti interroghi invece di darti risposte. Rivedi il tuo pensiero nel tempo. Calibrato sul modo in cui la memoria si forma davvero.
         </p>
 
-        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+        <div class="flex flex-wrap items-center gap-4 mb-6 animate-fade-up" style="animation-delay: 0.3s">
           <a href="/beta" class="btn-primary text-base px-6 py-3.5">
-            Entra nella beta
+            Richiedi accesso anticipato
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
-            Prova la demo live
+            Prova la demo — senza registrazione
           </a>
         </div>
+
+        <p class="text-xs text-ink-500 mb-10 flex flex-wrap items-center gap-x-3 gap-y-1 animate-fade-up" style="animation-delay: 0.4s">
+          <a href={SITE.social.github} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-accent-glow transition-colors">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.2.9 2.3v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Engine open source
+          </a>
+          <span class="text-ink-600">·</span>
+          <span>Disdici quando vuoi</span>
+          <span class="text-ink-600">·</span>
+          <span>Zero tracking</span>
+        </p>
 
         <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
           <span>iOS</span><span class="text-ink-600">·</span>
@@ -75,8 +88,39 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- PROBLEM -->
-  <section id="problem" class="section border-t border-white/[0.04]">
+  <!-- ═══════════ 2 · FONDAMENTI SCIENTIFICI (trust signal in alto) ═══════════ -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Sopra 50+ anni di ricerca sulla memoria</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Sulle spalle dei giganti — citati per nome.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Ogni scelta di design risale a un paper. Qui dodici delle menti che vivono dentro Fluera. La bibliografia completa è pubblica.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] max-w-2xl">
+        <h3 class="font-serif text-lg text-paper-50 mb-2">Cosa non rivendichiamo</h3>
+        <p class="text-sm text-paper-300 leading-relaxed mb-3">
+          Citiamo cinquant'anni di ricerca sulla memoria. Non abbiamo ancora condotto studi randomizzati su Fluera in sé — non ancora. Quando diciamo "evidence-based" intendiamo che i principi sottostanti lo sono; la nostra specifica implementazione è una scommessa ingegneristica informata dall'evidenza.
+        </p>
+        <p class="text-sm text-paper-300 leading-relaxed">
+          Non promettiamo nemmeno l'expertise. Meta-analisi (Macnamara, Hambrick &amp; Moreau, 2014) hanno trovato che la pratica deliberata spiega circa il 4% della varianza nelle performance educative — il resto è prior knowledge, motivazione, capacità di working memory e opportunità. Fluera ottimizza il loop di pratica. Le ore, il focus, e la curiosità restano tuoi.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 3 · PROBLEM ═══════════ -->
+  <section id="problem" class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-narrow">
       <p class="eyebrow mb-6 text-accent-glow">Il collo di bottiglia</p>
       <h2 class="font-serif text-display-xl text-paper-50 mb-8">
@@ -99,8 +143,8 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- 12-STEP -->
-  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+  <!-- ═══════════ 4 · 12-STEP ═══════════ -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
         <p class="eyebrow mb-6 text-accent-glow">Il metodo</p>
@@ -120,7 +164,47 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- PILLAR FEATURES -->
+  <!-- ═══════════ 5 · CONFRONTO COMPETITOR ═══════════ -->
+  <section id="comparison" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">{comparison.kicker}</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          {comparison.title}
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">{comparison.sub}</p>
+      </div>
+
+      <div class="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-x-auto max-w-5xl">
+        <table class="w-full text-sm min-w-[640px]">
+          <thead>
+            <tr class="border-b border-white/[0.06]">
+              <th class="text-start font-mono uppercase tracking-widest text-xs text-ink-500 px-4 py-4 w-2/5">Capacità</th>
+              <th class="text-start font-serif text-base text-accent-glow px-4 py-4">{comparison.columns.fluera}</th>
+              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.goodNotes}</th>
+              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.notion}</th>
+              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.anki}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparison.rows.map((r) => (
+              <tr class="border-b border-white/[0.04] last:border-0">
+                <td class="px-4 py-4 text-paper-200 font-medium align-top">{r.feature}</td>
+                <td class="px-4 py-4 text-accent-glow align-top">{r.fluera}</td>
+                <td class="px-4 py-4 text-ink-500 align-top">{r.goodNotes}</td>
+                <td class="px-4 py-4 text-ink-500 align-top">{r.notion}</td>
+                <td class="px-4 py-4 text-ink-500 align-top">{r.anki}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-3xl italic">{comparison.footnote}</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 6 · PILLAR FEATURES ═══════════ -->
   <section id="pillar-features" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-20">
@@ -173,7 +257,7 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- WHY HANDWRITING WINS -->
+  <!-- ═══════════ 7 · WHY HANDWRITING WINS ═══════════ -->
   <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
       <div class="grid md:grid-cols-12 gap-10 items-start">
@@ -200,38 +284,32 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- SCIENTIFIC FOUNDATION -->
-  <section id="science" class="section border-t border-white/[0.04]">
+  <!-- ═══════════ 8 · USE CASE: STUDENTI DI MEDICINA ═══════════ -->
+  <section id="medical-students" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">Fondamenti scientifici</p>
+        <p class="eyebrow mb-6 text-accent-glow">{medicalUseCase.kicker}</p>
         <h2 class="font-serif text-display-xl text-paper-50 mb-6">
-          Sulle spalle dei giganti — citati per nome.
+          {medicalUseCase.title}
         </h2>
-        <p class="prose-ink text-lg max-w-prose">
-          Ogni scelta di design risale a un paper. Qui dodici delle menti che vivono dentro Fluera. La bibliografia completa è pubblica.
-        </p>
+        <p class="prose-ink text-lg max-w-prose">{medicalUseCase.intro}</p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {authors.map((a) => (
-          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {medicalUseCase.steps.map((s) => (
+          <div class="card p-6 md:p-7">
+            <p class="eyebrow text-accent-glow mb-3">{s.phase}</p>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{s.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{s.description}</p>
+          </div>
         ))}
       </div>
 
-      <div class="mt-12 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] max-w-2xl">
-        <h3 class="font-serif text-lg text-paper-50 mb-2">Cosa non rivendichiamo</h3>
-        <p class="text-sm text-paper-300 leading-relaxed mb-3">
-          Citiamo cinquant'anni di ricerca sulla memoria. Non abbiamo ancora condotto studi randomizzati su Fluera in sé — non ancora. Quando diciamo "evidence-based" intendiamo che i principi sottostanti lo sono; la nostra specifica implementazione è una scommessa ingegneristica informata dall'evidenza.
-        </p>
-        <p class="text-sm text-paper-300 leading-relaxed">
-          Non promettiamo nemmeno l'expertise. Meta-analisi (Macnamara, Hambrick &amp; Moreau, 2014) hanno trovato che la pratica deliberata spiega circa il 4% della varianza nelle performance educative — il resto è prior knowledge, motivazione, capacità di working memory e opportunità. Fluera ottimizza il loop di pratica. Le ore, il focus, e la curiosità restano tuoi.
-        </p>
-      </div>
+      <p class="mt-10 prose-ink text-base max-w-3xl italic">{medicalUseCase.closing}</p>
     </div>
   </section>
 
-  <!-- MULTIPLATFORM -->
+  <!-- ═══════════ 9 · MULTIPLATFORM ═══════════ -->
   <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
@@ -255,12 +333,12 @@ const { steps, authors, platforms } = home;
       </div>
 
       <p class="mt-6 text-xs text-ink-500 max-w-2xl">
-        Le etichette di stato sono oneste sulla maturità di rilascio. Le piattaforme "Alpha" o "Demo" funzionano ma vanno rifinite — entra in beta se vuoi aiutarci a modellarle.
+        Le etichette di stato sono oneste sulla maturità di rilascio. Le piattaforme "Alpha" o "Demo" funzionano ma vanno rifinite — richiedi accesso anticipato se vuoi aiutarci a modellarle.
       </p>
     </div>
   </section>
 
-  <!-- SECURITY & PRIVACY -->
+  <!-- ═══════════ 10 · SECURITY & PRIVACY ═══════════ -->
   <section id="security" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
@@ -299,7 +377,7 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- PRICING SNAPSHOT -->
+  <!-- ═══════════ 11 · PRICING SNAPSHOT ═══════════ -->
   <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
@@ -309,7 +387,7 @@ const { steps, authors, platforms } = home;
         </h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <div class="card p-6">
           <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
           <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
@@ -325,15 +403,10 @@ const { steps, authors, platforms } = home;
           <p class="font-serif text-2xl text-paper-50 mb-2">€11,99<span class="text-sm font-sans text-paper-300">/mese</span></p>
           <p class="text-sm text-paper-300">Exam Session, Atlas, suite AI completa, sync illimitato. €99/anno.</p>
         </div>
-        <div class="card p-6">
-          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
-          <p class="font-serif text-2xl text-paper-50 mb-2">€19,99<span class="text-sm font-sans text-paper-300">/seat</span></p>
-          <p class="text-sm text-paper-300">Canvas condivisi, team Atlas, ACL, audit log. Da 5 seat.</p>
-        </div>
       </div>
 
-      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
-        Studenti verificati ottengono Plus o Pro al 50% tramite il programma pilota. Chi sottoscrive ora blocca la tariffa per la durata dell'abbonamento.
+      <p class="mt-6 text-sm text-paper-300 font-medium">
+        Disdici quando vuoi. Senza domande. Studenti verificati ottengono Plus o Pro al 50% tramite il programma pilota — chi sottoscrive ora blocca la tariffa per la durata dell'abbonamento.
       </p>
 
       <div class="mt-8">
@@ -342,7 +415,7 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- BETA CTA -->
+  <!-- ═══════════ 12 · BETA CTA ═══════════ -->
   <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
     <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
 
@@ -357,6 +430,18 @@ const { steps, authors, platforms } = home;
       <a href="/beta" class="btn-primary text-base px-6 py-3.5">
         Richiedi accesso →
       </a>
+    </div>
+  </section>
+
+  <!-- ═══════════ 13 · NEWSLETTER ═══════════ -->
+  <section class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <NewsletterCapture
+        variant="card"
+        headline="Resta nel loop."
+        sub="Note brevi e dense su scienza cognitiva, decisioni di prodotto e cosa impariamo dalla beta. Un'email al mese, mai di più."
+        buttonLabel="Iscriviti"
+      />
     </div>
   </section>
 

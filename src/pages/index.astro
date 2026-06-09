@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import AuthorCard from "@/components/AuthorCard.astro";
 import LearningStep from "@/components/LearningStep.astro";
 import PillarFeature from "@/components/PillarFeature.astro";
+import NewsletterCapture from "@/components/NewsletterCapture.astro";
 import { SITE, PRIMARY_CTA } from "@/lib/site";
 import home from "@/data/home/en";
 
@@ -22,7 +23,7 @@ const jsonLd = {
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
 };
 
-const { steps, authors, platforms } = home;
+const { steps, authors, platforms, comparison, medicalUseCase } = home;
 ---
 
 <BaseLayout
@@ -40,7 +41,7 @@ const { steps, authors, platforms } = home;
       <div class="max-w-3xl">
         <div class="pill mb-8">
           <span class="h-1.5 w-1.5 rounded-full bg-accent-glow animate-pulse"></span>
-          Private beta · By invitation
+          Private beta · Early access by request
         </div>
 
         <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
@@ -51,15 +52,26 @@ const { steps, authors, platforms } = home;
           Handwrite on an infinite canvas. Get quizzed into memory. Replay your own thinking over time. Built for the way memory actually works.
         </p>
 
-        <div class="flex flex-wrap items-center gap-4 mb-10 animate-fade-up" style="animation-delay: 0.3s">
+        <div class="flex flex-wrap items-center gap-4 mb-6 animate-fade-up" style="animation-delay: 0.3s">
           <a href={PRIMARY_CTA.href} class="btn-primary text-base px-6 py-3.5">
             {PRIMARY_CTA.label}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
-            Try the live demo
+            Try the demo — no signup
           </a>
         </div>
+
+        <p class="text-xs text-ink-500 mb-10 flex flex-wrap items-center gap-x-3 gap-y-1 animate-fade-up" style="animation-delay: 0.4s">
+          <a href={SITE.social.github} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-accent-glow transition-colors">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.2.9 2.3v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+            Engine open source
+          </a>
+          <span class="text-ink-600">·</span>
+          <span>Cancel anytime</span>
+          <span class="text-ink-600">·</span>
+          <span>No tracking</span>
+        </p>
 
         <p class="text-sm text-ink-500 flex flex-wrap items-center gap-x-3 gap-y-1">
           <span>iOS</span><span class="text-ink-600">·</span>
@@ -75,8 +87,39 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 2 · PROBLEM STATEMENT ═══════════ -->
-  <section id="problem" class="section border-t border-white/[0.04]">
+  <!-- ═══════════ 2 · SCIENTIFIC FOUNDATION (trust signal up-front) ═══════════ -->
+  <section id="science" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Built on 50+ years of memory research</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Standing on the shoulders of giants — by name.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Every design decision traces back to a paper we can link to. Twelve of those minds are below. The full bibliography lives in a public vault.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] max-w-2xl">
+        <h3 class="font-serif text-lg text-paper-50 mb-2">What we don't claim</h3>
+        <p class="text-sm text-paper-300 leading-relaxed mb-3">
+          We cite five decades of memory research. We have not run our own randomized trials on Fluera itself — not yet. When we say "evidence-based," we mean the underlying principles are; our specific implementation is an engineering bet informed by the evidence.
+        </p>
+        <p class="text-sm text-paper-300 leading-relaxed">
+          We also don't promise expertise. Meta-analyses (Macnamara, Hambrick &amp; Moreau, 2014) found that deliberate practice accounts for roughly 4% of the variance in educational performance — the rest is prior knowledge, motivation, working memory capacity, and opportunity. Fluera optimizes the practice loop. The hours, the focus, and the curiosity are still yours.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 3 · PROBLEM STATEMENT ═══════════ -->
+  <section id="problem" class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-narrow">
       <p class="eyebrow mb-6 text-accent-glow">The bottleneck</p>
       <h2 class="font-serif text-display-xl text-paper-50 mb-8">
@@ -99,8 +142,8 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 3 · THE 12-STEP LEARNING CYCLE ═══════════ -->
-  <section id="learning-cycle" class="section border-t border-white/[0.04] bg-ink-900/40">
+  <!-- ═══════════ 4 · THE 12-STEP LEARNING CYCLE ═══════════ -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
         <p class="eyebrow mb-6 text-accent-glow">The method</p>
@@ -124,7 +167,47 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 4 · PILLAR FEATURES ═══════════ -->
+  <!-- ═══════════ 5 · COMPARISON VS COMPETITOR ═══════════ -->
+  <section id="comparison" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">{comparison.kicker}</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          {comparison.title}
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">{comparison.sub}</p>
+      </div>
+
+      <div class="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-x-auto max-w-5xl">
+        <table class="w-full text-sm min-w-[640px]">
+          <thead>
+            <tr class="border-b border-white/[0.06]">
+              <th class="text-start font-mono uppercase tracking-widest text-xs text-ink-500 px-4 py-4 w-2/5">Capability</th>
+              <th class="text-start font-serif text-base text-accent-glow px-4 py-4">{comparison.columns.fluera}</th>
+              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.goodNotes}</th>
+              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.notion}</th>
+              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.anki}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparison.rows.map((r) => (
+              <tr class="border-b border-white/[0.04] last:border-0">
+                <td class="px-4 py-4 text-paper-200 font-medium align-top">{r.feature}</td>
+                <td class="px-4 py-4 text-accent-glow align-top">{r.fluera}</td>
+                <td class="px-4 py-4 text-ink-500 align-top">{r.goodNotes}</td>
+                <td class="px-4 py-4 text-ink-500 align-top">{r.notion}</td>
+                <td class="px-4 py-4 text-ink-500 align-top">{r.anki}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-3xl italic">{comparison.footnote}</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 6 · PILLAR FEATURES ═══════════ -->
   <section id="pillar-features" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-20">
@@ -177,7 +260,7 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 5 · WHY HANDWRITING WINS ═══════════ -->
+  <!-- ═══════════ 7 · WHY HANDWRITING WINS ═══════════ -->
   <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
       <div class="grid md:grid-cols-12 gap-10 items-start">
@@ -204,38 +287,32 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 6 · SCIENTIFIC FOUNDATION ═══════════ -->
-  <section id="science" class="section border-t border-white/[0.04]">
+  <!-- ═══════════ 8 · USE CASE: MEDICAL STUDENTS ═══════════ -->
+  <section id="medical-students" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">Scientific foundation</p>
+        <p class="eyebrow mb-6 text-accent-glow">{medicalUseCase.kicker}</p>
         <h2 class="font-serif text-display-xl text-paper-50 mb-6">
-          Standing on the shoulders of giants — by name.
+          {medicalUseCase.title}
         </h2>
-        <p class="prose-ink text-lg max-w-prose">
-          Every design decision traces back to a paper we can link to. Twelve of those minds are below. The full bibliography lives in a public vault.
-        </p>
+        <p class="prose-ink text-lg max-w-prose">{medicalUseCase.intro}</p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {authors.map((a) => (
-          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        {medicalUseCase.steps.map((s) => (
+          <div class="card p-6 md:p-7">
+            <p class="eyebrow text-accent-glow mb-3">{s.phase}</p>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{s.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{s.description}</p>
+          </div>
         ))}
       </div>
 
-      <div class="mt-12 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] max-w-2xl">
-        <h3 class="font-serif text-lg text-paper-50 mb-2">What we don't claim</h3>
-        <p class="text-sm text-paper-300 leading-relaxed mb-3">
-          We cite five decades of memory research. We have not run our own randomized trials on Fluera itself — not yet. When we say "evidence-based," we mean the underlying principles are; our specific implementation is an engineering bet informed by the evidence.
-        </p>
-        <p class="text-sm text-paper-300 leading-relaxed">
-          We also don't promise expertise. Meta-analyses (Macnamara, Hambrick &amp; Moreau, 2014) found that deliberate practice accounts for roughly 4% of the variance in educational performance — the rest is prior knowledge, motivation, working memory capacity, and opportunity. Fluera optimizes the practice loop. The hours, the focus, and the curiosity are still yours.
-        </p>
-      </div>
+      <p class="mt-10 prose-ink text-base max-w-3xl italic">{medicalUseCase.closing}</p>
     </div>
   </section>
 
-  <!-- ═══════════ 7 · MULTIPLATFORM PROOF ═══════════ -->
+  <!-- ═══════════ 9 · MULTIPLATFORM PROOF ═══════════ -->
   <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
@@ -259,12 +336,12 @@ const { steps, authors, platforms } = home;
       </div>
 
       <p class="mt-6 text-xs text-ink-500 max-w-2xl">
-        Status labels are honest about release readiness. Platforms marked "Alpha" or "Demo" work but need polish — join the beta if you want to help shape them.
+        Status labels are honest about release readiness. Platforms marked "Alpha" or "Demo" work but need polish — request early access if you want to help shape them.
       </p>
     </div>
   </section>
 
-  <!-- ═══════════ 8 · SECURITY & PRIVACY ═══════════ -->
+  <!-- ═══════════ 10 · SECURITY & PRIVACY ═══════════ -->
   <section id="security" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
@@ -303,7 +380,7 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 9 · PRICING SNAPSHOT ═══════════ -->
+  <!-- ═══════════ 11 · PRICING SNAPSHOT ═══════════ -->
   <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
@@ -313,7 +390,7 @@ const { steps, authors, platforms } = home;
         </h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <div class="card p-6">
           <h3 class="eyebrow text-paper-50 mb-3">Free</h3>
           <p class="font-serif text-2xl text-paper-50 mb-2">€0</p>
@@ -329,15 +406,10 @@ const { steps, authors, platforms } = home;
           <p class="font-serif text-2xl text-paper-50 mb-2">€11.99<span class="text-sm font-sans text-paper-300">/mo</span></p>
           <p class="text-sm text-paper-300">Exam Session, Atlas, full AI suite, unlimited sync. €99/year.</p>
         </div>
-        <div class="card p-6">
-          <h3 class="eyebrow text-paper-50 mb-3">Team</h3>
-          <p class="font-serif text-2xl text-paper-50 mb-2">€19.99<span class="text-sm font-sans text-paper-300">/seat</span></p>
-          <p class="text-sm text-paper-300">Shared canvases, team Atlas, ACL, audit log. 5+ seats.</p>
-        </div>
       </div>
 
-      <p class="mt-8 text-xs text-ink-500 max-w-2xl italic">
-        Verified students get Plus or Pro at 50% off through our pilot program. Whoever subscribes now locks the rate for the lifetime of the subscription.
+      <p class="mt-6 text-sm text-paper-300 font-medium">
+        Cancel anytime. No questions asked. Verified students get Plus or Pro at 50% through our pilot program — whoever subscribes now locks the rate for the lifetime of the subscription.
       </p>
 
       <div class="mt-8">
@@ -346,7 +418,7 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 10 · BETA CTA ═══════════ -->
+  <!-- ═══════════ 12 · BETA CTA ═══════════ -->
   <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
     <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
 
@@ -364,5 +436,16 @@ const { steps, authors, platforms } = home;
     </div>
   </section>
 
+  <!-- ═══════════ 13 · NEWSLETTER ═══════════ -->
+  <section class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <NewsletterCapture
+        variant="card"
+        headline="Stay in the loop."
+        sub="Short, dense notes on cognitive science, product decisions, and what we learn from the beta. One email a month, never more."
+        buttonLabel="Get on the list"
+      />
+    </div>
+  </section>
 
 </BaseLayout>

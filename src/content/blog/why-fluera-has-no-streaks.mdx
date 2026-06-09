@@ -1,0 +1,63 @@
+---
+lang: "en"
+title: "Why Fluera has no streaks"
+description: "Streaks are a great way to make people open an app every day. They are a poor way to make people learn. We removed them on purpose — here is the cognitive science, the product decision, and what we use instead."
+publishedAt: 2026-05-22
+author: "Lorenzo"
+category: product
+tags: ["dweck", "growth-mindset", "gamification", "engagement"]
+relatedPrinciples: [growth-mindset, automation-bias]
+---
+import Citation from "@/components/Citation.astro";
+
+Open any "learn a thing" app from the last decade and the first screen will show you a number. Days in a row. Three days, eleven days, four hundred and twelve days. Miss a day and the number resets. Hit the number and the screen briefly celebrates.
+
+The thing the streak is measuring — *consecutive days the app was opened* — is not learning. It is opening the app. The fact that we have learned to call this engagement, and then to call engagement a measure of value, is one of the small tragedies of consumer software.
+
+Fluera does not have streaks. This was not an oversight. It was a deliberate product decision, and the reason is older than the app.
+
+## What streaks actually optimise
+
+The pitch for streaks is that they leverage a real psychological mechanism — *commitment escalation*. Once you have shown up eleven days in a row, the eleventh day's effort makes the twelfth more likely. The mechanism is real. Skinner described it in pigeons in 1957. Modern app design rediscovers it every few years with a new colour palette.
+
+The problem is what the streak optimises *for*. A streak rewards the act of opening the app. It does not reward the quality of what happened inside. A student can keep a hundred-day Duolingo streak by tapping through the easy review screen during a commute. The streak survives. The Spanish does not.
+
+Worse, the streak system turns the relationship with learning into a relationship with the streak itself. Miss one day — because of a flu, a wedding, an exam, a death in the family — and the months of effort visibly evaporate. The pain is not pedagogical, it is theatrical. And it works: people return. But they return for the streak, not for the learning. When the streak finally breaks for good, the practice often collapses with it.
+
+## The Dweck objection
+
+<Citation authors="Dweck" year="2006">Carol Dweck's growth-mindset framework</Citation> arrived from a different angle. Dweck and her collaborators spent decades showing that the *feedback you give a learner shapes what they believe about ability itself*. Tell children they are smart and they avoid challenge — because challenge risks revealing they are not. Tell children their effort produced the result and they seek out harder problems — because difficulty is the path to the next plateau.
+
+The streak system, structurally, praises consistency-of-presence. That is not nothing. But it is also not the deep variable. The deep variable is effort directed at material the learner cannot already do — what Bjork would call <Citation authors="Bjork" year="1994">desirable difficulty</Citation>. A streak does not know whether the day's session was deep retrieval practice or a thirty-second tap-through. It just counts.
+
+A learner trained to value the streak learns to protect it. Protecting the streak means avoiding sessions that might be too long, too hard, or too risky to fit before bed. The streak quietly trains *risk-averse studying*. The opposite of what we want.
+
+## What we use instead
+
+When we removed streaks from Fluera, the question was what to put there instead. The wrong answer would have been "nothing — let the learner be motivated by pure interest." That is naive. Motivation is real and people benefit from external structure. The question was *what kind of structure*.
+
+We landed on three things:
+
+**One: the canvas itself as the artefact.** Fluera's canvas is a cognitive autobiography. After three months of medical school it is hundreds of nodes, dozens of bridges, the shape of how you came to know what you know. You can zoom out to continent view and see what your last semester actually looked like. The artefact is the reward. It does not reset.
+
+**Two: spaced returns, scheduled by the algorithm.** Fluera schedules retrieval sessions based on FSRS — the modern successor to Anki's SM-2. When the algorithm tells you "today is the right day to revisit photosynthesis," missing one day does not punish you. The schedule adjusts. The system absorbs life. Your job is to show up when the system says it matters, not every day for its own sake.
+
+**Three: visible progress on the variable that actually counts.** Inside each canvas, we surface how many nodes have moved from "I had to reconstruct this with effort" to "I produced this fluently from memory." That number does not reset on a missed day. It moves on actual learning, measured the way the cognitive science measures it — successful retrieval after a delay, not minutes spent in the app.
+
+## Two objections worth answering
+
+The first objection: *but streaks work*. They drive return visits. The DAU numbers are real.
+
+True. They also drive return visits in slot machines and notification-bait apps. The question is not whether a mechanism makes the number on the dashboard go up. The question is whether what the user gained from the session was worth the price of the dark-pattern hook. For a study app — where the whole point is that the *outcome* (knowing things) matters more than the *engagement* (opening the app) — that price is structurally too high.
+
+The second objection: *but learners say they like streaks*. They do. People also said they liked highlighting their textbooks. The history of cognitive science is, in large part, a history of finding out that what feels productive in the moment and what produces long-term mastery are often inverses of each other. The job of a study tool is not to maximise the feel of studying. It is to maximise the studying itself.
+
+## What this means in practice
+
+If you open Fluera and you have not opened it in a week, nothing on the screen will guilt you. There is no fire emoji. There is no recovery offer to pay to restore the streak. There is the canvas you left, the same way you left it, and a calm "here are the four cards your brain is about to forget — fifteen minutes if you want."
+
+You can take the fifteen minutes. You can not take them. Tomorrow Fluera will still know what you know and what you do not. That information does not depend on your having shown up yesterday. It depends on the schedule of forgetting, which is what we are actually trying to fight.
+
+This is, we know, a less stimulating reward loop than a streak. It is also the one that survives a real life. We will take that trade.
+
+If you want to study without being managed by a counter, [the beta is open](/beta).

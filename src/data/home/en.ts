@@ -38,6 +38,51 @@ const data: HomeData = {
     { name: "Linux",   api: "OpenGL",      status: "Alpha" },
     { name: "Web",     api: "WebGPU",      status: "Demo" },
   ],
+  comparison: {
+    kicker: "Built different",
+    title: "Fluera, against the apps you already use.",
+    sub: "Most study tools optimize for the part of studying that already feels productive — capture, formatting, review. Fluera optimizes for the part that produces memory.",
+    columns: { fluera: "Fluera", goodNotes: "GoodNotes", notion: "Notion", anki: "Anki" },
+    rows: [
+      { feature: "Native handwriting + infinite canvas", fluera: "Yes — six platforms", goodNotes: "Yes — Apple-first", notion: "No", anki: "No" },
+      { feature: "Forces retrieval before reveal", fluera: "Yes — Socratic mode", goodNotes: "No", notion: "No", anki: "Yes — by design" },
+      { feature: "Spaced repetition built-in (FSRS)", fluera: "Yes — modern FSRS", goodNotes: "No", notion: "No", anki: "Yes — SM-2 legacy" },
+      { feature: "Hypercorrection on overconfident errors", fluera: "Yes — Ghost Map", goodNotes: "No", notion: "No", anki: "No" },
+      { feature: "Metacognition (confidence calibration)", fluera: "Yes — 1–5 slider", goodNotes: "No", notion: "No", anki: "Partial" },
+      { feature: "Anti-passive: no highlighter, no streaks", fluera: "Yes — by design", goodNotes: "No", notion: "No", anki: "Streaks present" },
+      { feature: "AI that asks, not answers", fluera: "Yes", goodNotes: "No", notion: "Summaries", anki: "No" },
+      { feature: "Replay your own thinking over time", fluera: "Yes — time travel", goodNotes: "Page replay", notion: "No", anki: "No" },
+    ],
+    footnote: "Comparison reflects each app's defaults as of 2026. Anki and GoodNotes are admirable tools — Fluera is a different bet: the study loop, end-to-end, built on the evidence.",
+  },
+  medicalUseCase: {
+    kicker: "Built for the hardest curricula",
+    title: "Medical school, on a single canvas.",
+    intro: "Anatomy, physiology, pharmacology. Thousands of facts that have to interconnect — and stay retrievable under exam pressure. The studying that actually works for medicine is the kind that feels hard while you do it. Fluera makes that kind the path of least resistance.",
+    steps: [
+      {
+        phase: "Lecture day",
+        title: "One canvas per organ system.",
+        description: "Write each lesson by hand on an infinite canvas — anatomical structures, drug mechanisms, pathways. Spatial position becomes memory anchor. Thirteen brush engines, sub-15ms latency on iPad and Android tablets.",
+      },
+      {
+        phase: "Same evening",
+        title: "Reconstruct from memory, before the book.",
+        description: "Close the lecture material. Try to rebuild what you remember on a blank canvas. The gaps you find — the cranial nerve you skipped, the receptor you confused — are the map of what to study tonight. Productive failure, by design (Kapur, 2008).",
+      },
+      {
+        phase: "Within 48h",
+        title: "Socratic interrogation on the canvas you built.",
+        description: "The AI asks; you answer. Before each reveal, you predict your confidence 1–5. Every overconfident miss — every drug you were sure about and got wrong — gets reinforced harder. Hypercorrection (Butterfield & Metcalfe, 2001).",
+      },
+      {
+        phase: "7–14 days before the exam",
+        title: "Fog of War on the system you're weakest at.",
+        description: "Mask sections of the canvas. Pull anatomy back from memory before revealing. Fluera schedules returns with FSRS — the modern spaced-repetition algorithm. By exam day, the canvas itself is the simulation.",
+      },
+    ],
+    closing: "If this is the workflow you already half-do with paper and PDFs and three open apps, Fluera makes it one continuous loop. Built for the way memory works, tested against curricula that punish anything else.",
+  },
 };
 
 export default data;

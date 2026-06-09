@@ -1,4 +1,6 @@
 ---
+import { NEWSLETTER } from "@/lib/site";
+
 export interface Props {
   headline?: string;
   sub?: string;
@@ -11,13 +13,21 @@ const {
   buttonLabel = "Subscribe",
   variant = "card",
 } = Astro.props;
+
+const isWired = Boolean(NEWSLETTER.username);
+const endpoint = isWired ? NEWSLETTER.endpoint(NEWSLETTER.username) : "";
 ---
 
 <aside class={variant === "card" ? "card p-7 md:p-9" : ""}>
   <h3 class="font-serif text-xl md:text-2xl text-paper-50 mb-3">{headline}</h3>
   <p class="text-sm text-paper-300 leading-relaxed mb-6 max-w-prose">{sub}</p>
 
-  <form class="newsletter-form flex flex-col sm:flex-row gap-3 max-w-md" data-newsletter-form>
+  <form
+    class="newsletter-form flex flex-col sm:flex-row gap-3 max-w-md"
+    data-newsletter-form
+    data-newsletter-endpoint={endpoint}
+    data-newsletter-wired={isWired ? "true" : "false"}
+  >
     <label class="sr-only" for="newsletter-email">Email</label>
     <input
       id="newsletter-email"
@@ -34,9 +44,12 @@ const {
   </form>
 
   <p class="newsletter-status text-xs font-mono uppercase tracking-widest mt-4 hidden" data-newsletter-status></p>
-  <p class="text-[11px] font-mono uppercase tracking-widest text-ink-500 mt-4">
-    Newsletter wiring arrives in Phase 2 — today the form captures your email so we can backfill it when we pick a provider.
-  </p>
+
+  {!isWired && (
+    <p class="text-[11px] font-mono uppercase tracking-widest text-ink-500 mt-4">
+      Newsletter wiring arrives in Phase 2 — today the form captures your email so we can backfill it when we pick a provider.
+    </p>
+  )}
 </aside>
 
 <style>
@@ -58,26 +71,63 @@ const {
 
 <script>
   const forms = document.querySelectorAll<HTMLFormElement>("[data-newsletter-form]");
+
   forms.forEach((form) => {
     const status = form.parentElement?.querySelector<HTMLElement>("[data-newsletter-status]");
-    form.addEventListener("submit", (e) => {
+    const endpoint = form.dataset.newsletterEndpoint ?? "";
+    const wired = form.dataset.newsletterWired === "true";
+
+    const showStatus = (message: string, kind: "ok" | "warn" | "bad") => {
+      if (!status) return;
+      status.textContent = message;
+      status.classList.remove("hidden", "text-accent-glow", "text-signal-warn", "text-signal-bad");
+      const klass = kind === "ok" ? "text-accent-glow" : kind === "warn" ? "text-signal-warn" : "text-signal-bad";
+      status.classList.add(klass);
+    };
+
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
+      const emailInput = form.elements.namedItem("email") as HTMLInputElement;
+      const email = emailInput.value.trim();
       if (!email) return;
 
-      // Phase 2: replace with real provider POST (Buttondown / EmailOctopus / Substack)
-      try {
-        const stored = JSON.parse(localStorage.getItem("fluera-newsletter-emails") || "[]");
-        if (!stored.includes(email)) stored.push(email);
-        localStorage.setItem("fluera-newsletter-emails", JSON.stringify(stored));
-      } catch { /* ignore */ }
+      const submitBtn = form.querySelector<HTMLButtonElement>("button[type=submit]");
+      if (submitBtn) submitBtn.disabled = true;
 
-      if (status) {
-        status.textContent = "Got it. We'll backfill when the provider is wired up.";
-        status.classList.remove("hidden");
-        status.classList.add("text-accent-glow");
+      if (wired && endpoint) {
+        // Wired mode: POST to Buttondown public embed endpoint.
+        // No API key exposed — this is the same endpoint Buttondown's own
+        // <iframe> embed forms use. Server-side validates the email and
+        // sends the confirmation email (double opt-in).
+        try {
+          const body = new URLSearchParams({ email });
+          const res = await fetch(endpoint, {
+            method: "POST",
+            mode: "no-cors", // Buttondown's embed endpoint does not return CORS headers
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: body.toString(),
+          });
+          // With mode: "no-cors" we cannot read res.ok — assume success if no throw.
+          // Buttondown sends the confirmation email regardless; failure modes are
+          // typically invalid email format (caught by browser) or already-subscribed.
+          showStatus("Check your inbox to confirm — we sent a one-tap link.", "ok");
+          form.reset();
+        } catch (err) {
+          showStatus("Something went wrong. Try again in a moment.", "bad");
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      } else {
+        // Fallback mode: store in localStorage so we can backfill once a provider is wired.
+        try {
+          const stored = JSON.parse(localStorage.getItem("fluera-newsletter-emails") || "[]");
+          if (!stored.includes(email)) stored.push(email);
+          localStorage.setItem("fluera-newsletter-emails", JSON.stringify(stored));
+        } catch { /* ignore */ }
+        showStatus("Got it. We'll backfill when the provider is wired up.", "warn");
+        form.reset();
+        if (submitBtn) submitBtn.disabled = false;
       }
-      form.reset();
     });
   });
 </script>

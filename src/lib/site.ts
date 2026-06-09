@@ -29,8 +29,28 @@ export const PRIMARY_NAV = [
 ];
 
 export const PRIMARY_CTA = {
-  label: "Join the beta",
+  label: "Request early access",
   href: "/beta",
+};
+
+// ── Newsletter (Buttondown) ───────────────────────────────────────────
+/**
+ * Configuration for the newsletter signup forms (NewsletterCapture component).
+ *
+ * To activate the real wire-up:
+ *   1. Create a free account on https://buttondown.email
+ *   2. Set your username in the Buttondown dashboard (e.g. "fluera")
+ *   3. Replace `username` below with your actual Buttondown username
+ *
+ * While `username` is empty, the form falls back to localStorage and shows
+ * the Phase-2 disclaimer. Once set, posts go directly to Buttondown's
+ * public embed endpoint — no API key exposed client-side.
+ */
+export const NEWSLETTER = {
+  provider: "buttondown" as const,
+  username: "", // ← set this to activate (e.g. "fluera")
+  endpoint: (username: string) =>
+    `https://buttondown.email/api/emails/embed-subscribe/${username}`,
 };
 
 // ── Locale routing ────────────────────────────────────────────────────

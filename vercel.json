@@ -2,6 +2,12 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/c/:hash([A-Za-z0-9]{8,16})",
+      "destination": "/api/c?hash=:hash"
+    }
+  ],
   "redirects": [
     { "source": "/index.html",   "destination": "/",               "permanent": true },
     { "source": "/beta.html",    "destination": "/beta",           "permanent": true },

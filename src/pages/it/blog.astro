@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageHero from "@/components/PageHero.astro";
+import NewsletterCapture from "@/components/NewsletterCapture.astro";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft && data.lang === "it"))
@@ -56,11 +57,13 @@ function formatDate(d: Date) {
   </section>
 
   <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
-    <div class="container-narrow text-center">
-      <p class="text-sm text-ink-500 mb-4 max-w-xl mx-auto">
-        Nuovi post ogni circa due settimane. Per quelli che contano di più, una newsletter mensile.
-      </p>
-      <a href="/it/contact" class="btn-secondary">Iscrizione newsletter in arrivo</a>
+    <div class="container-narrow">
+      <NewsletterCapture
+        variant="card"
+        headline="Un'email al mese. Solo le cose buone."
+        sub="Nuovi post ogni circa due settimane. Per quelli che contano di più — deep dive di scienza cognitiva, decisioni di prodotto, note dietro le quinte — una newsletter mensile. Disiscriviti quando vuoi."
+        buttonLabel="Iscriviti"
+      />
     </div>
   </section>
 </BaseLayout>
