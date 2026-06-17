@@ -28,9 +28,9 @@ Pinch out. Keep pinching. Your individual canvases — biology, organic chemistr
 
 Tap any concept and the menu opens with Atlas actions:
 
-- **Sintetizza** — Fluera summarises the concept against everything else on your canvas, in your own vocabulary.
-- **Trova analogie** — Atlas surfaces structurally similar concepts in distant zones. Le Chatelier's principle next to economic equilibrium. Markov chains next to error-correcting codes.
-- **🎓 Interrogami** — escalate directly to an [Exam Session](/features/exam-session) scoped to this concept and its neighbours.
+- **Synthesise** — Fluera summarises the concept against everything else on your canvas, in your own vocabulary.
+- **Find analogies** — Atlas surfaces structurally similar concepts in distant zones. Le Chatelier's principle next to economic equilibrium. Markov chains next to error-correcting codes.
+- **🎓 Quiz me** — escalate directly to an [Exam Session](/features/exam-session) scoped to this concept and its neighbours.
 
 Slash commands work from the canvas chat for power users: `/synth`, `/bridge`, `/explain`. Atlas always cites which clusters it pulled from — every claim is traceable back to a stroke you drew.
 

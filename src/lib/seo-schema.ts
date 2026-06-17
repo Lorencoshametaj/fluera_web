@@ -77,7 +77,7 @@ export function blogPosting(args: {
       url: SITE.url,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE.url}/assets/fluera_logo.png`,
+        url: `${SITE.url}/assets/fluera_logo_tile.png`,
       },
     },
     ...(args.keywords && args.keywords.length > 0 ? { keywords: args.keywords.join(", ") } : {}),

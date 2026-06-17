@@ -41,10 +41,11 @@ const data: HomeData = {
   comparison: {
     kicker: "Built different",
     title: "Fluera, against the apps you already use.",
-    sub: "Most study tools optimize for the part of studying that already feels productive — capture, formatting, review. Fluera optimizes for the part that produces memory.",
+    sub: "GoodNotes and Apple Notes give you the canvas. Anki gives you spaced repetition. Desmos graphs your formulas — in a separate tab. Each does one slice; Fluera runs the whole loop on the handwriting you already wrote.",
     columns: { fluera: "Fluera", goodNotes: "GoodNotes", notion: "Notion", anki: "Anki" },
     rows: [
       { feature: "Native handwriting + infinite canvas", fluera: "Yes — six platforms", goodNotes: "Yes — Apple-first", notion: "No", anki: "No" },
+      { feature: "Handwritten formula → live, draggable graph", fluera: "Yes — from your ink", goodNotes: "No", notion: "No", anki: "No" },
       { feature: "Forces retrieval before reveal", fluera: "Yes — Socratic mode", goodNotes: "No", notion: "No", anki: "Yes — by design" },
       { feature: "Spaced repetition built-in (FSRS)", fluera: "Yes — modern FSRS", goodNotes: "No", notion: "No", anki: "Yes — SM-2 legacy" },
       { feature: "Hypercorrection on overconfident errors", fluera: "Yes — Ghost Map", goodNotes: "No", notion: "No", anki: "No" },
@@ -53,7 +54,7 @@ const data: HomeData = {
       { feature: "AI that asks, not answers", fluera: "Yes", goodNotes: "No", notion: "Summaries", anki: "No" },
       { feature: "Replay your own thinking over time", fluera: "Yes — time travel", goodNotes: "Page replay", notion: "No", anki: "No" },
     ],
-    footnote: "Comparison reflects each app's defaults as of 2026. Anki and GoodNotes are admirable tools — Fluera is a different bet: the study loop, end-to-end, built on the evidence.",
+    footnote: "Comparison reflects each app's defaults as of 2026. GoodNotes, Apple Notes, Anki and Desmos are admirable tools — Fluera is a different bet: it reads your own handwriting and runs the whole study loop on it, instead of being one app in a stack of four.",
   },
   medicalUseCase: {
     kicker: "Built for the hardest curricula",

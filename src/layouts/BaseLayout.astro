@@ -76,6 +76,11 @@ const dir = RTL_LOCALES.has(locale) ? "rtl" : "ltr";
       main:focus-visible {
         outline: none;
       }
+
+      /* ── Light-theme overrides for scoped layout styles ──────────────────── */
+      html.light .skip-link:focus-visible {
+        outline-color: #2563eb;
+      }
     </style>
   </body>
 </html>

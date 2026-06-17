@@ -67,6 +67,13 @@ const endpoint = isWired ? NEWSLETTER.endpoint(NEWSLETTER.username) : "";
     border-color: theme("colors.accent.ink");
     box-shadow: 0 0 0 3px rgb(45 74 222 / 0.18);
   }
+
+  /* ── Light-theme overrides for scoped newsletter styles ────────────────── */
+  :global(html.light) .newsletter-input {
+    background: #ffffff;
+    border-color: rgb(0 0 0 / 0.10);
+    color: #16181d;
+  }
 </style>
 
 <script>

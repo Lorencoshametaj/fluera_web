@@ -45,11 +45,11 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
         </div>
 
         <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
-          The study space<br />your brain was<br /><span class="text-gradient">built for.</span>
+          The notebook that studies <span class="text-gradient">you back.</span>
         </h1>
 
         <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
-          Handwrite on an infinite canvas. Get quizzed into memory. Replay your own thinking over time. Built for the way memory actually works.
+          Handwrite on an infinite canvas. Fluera turns it into a living map of your degree — then quizzes, questions, and re-tests you on your own notes. A learning canvas, not a note app.
         </p>
 
         <div class="flex flex-wrap items-center gap-4 mb-6 animate-fade-up" style="animation-delay: 0.3s">
@@ -57,8 +57,8 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
             {PRIMARY_CTA.label}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
-            Try the demo — no signup
+          <a href="#how-it-works" class="btn-secondary text-base px-6 py-3.5">
+            See how it works
           </a>
         </div>
 
@@ -87,128 +87,51 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 2 · SCIENTIFIC FOUNDATION (trust signal up-front) ═══════════ -->
-  <section id="science" class="section border-t border-white/[0.04]">
+  <!-- ═══════════ 2 · HOW IT WORKS — product-first, the moat ═══════════ -->
+  <section id="how-it-works" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">Built on 50+ years of memory research</p>
+        <p class="eyebrow mb-6 text-accent-glow">How it works</p>
         <h2 class="font-serif text-display-xl text-paper-50 mb-6">
-          Standing on the shoulders of giants — by name.
+          A canvas that <span class="text-gradient">understands</span> what you write.
         </h2>
         <p class="prose-ink text-lg max-w-prose">
-          Every design decision traces back to a paper we can link to. Twelve of those minds are below. The full bibliography lives in a public vault.
+          Most note apps store ink. Fluera <em>reads</em> it — recognising your handwriting, grouping it by concept and discipline, then turning it into something you can manipulate and remember. One page: capture, understand, do, remember. No switching to a calculator, a flashcard app, or a chatbot.
         </p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {authors.map((a) => (
-          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
-        ))}
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+          <p class="eyebrow text-accent-glow mb-3">01 · Capture</p>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Handwrite anything</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Infinite canvas, 13 pressure-sensitive brushes, PDFs, and voice recorded in sync with your strokes — with live transcription. Notes, formulas, diagrams, in your own hand.</p>
+        </div>
+        <div class="p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+          <p class="eyebrow text-accent-glow mb-3">02 · Understand</p>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">It reads the page</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Fluera recognises what you wrote, clusters it by concept, and labels it by discipline. Every page joins your Atlas — a living map of meaning across your whole degree, which is what lets everything below actually work.</p>
+        </div>
+        <div class="p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+          <p class="eyebrow text-accent-glow mb-3">03 · Do</p>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Your work comes alive</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Write <span class="font-mono">F = ma</span> by hand, drag the mass, watch the line bend. Get quizzed Socratically on what you wrote. The notebook stops being passive.</p>
+        </div>
+        <div class="p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+          <p class="eyebrow text-accent-glow mb-3">04 · Remember</p>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">It schedules what fades</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Spaced repetition (FSRS) brings back what you're about to forget, and your canvas follows you across every device. Learning that survives the week.</p>
+        </div>
       </div>
 
-      <div class="mt-12 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] max-w-2xl">
-        <h3 class="font-serif text-lg text-paper-50 mb-2">What we don't claim</h3>
-        <p class="text-sm text-paper-300 leading-relaxed mb-3">
-          We cite five decades of memory research. We have not run our own randomized trials on Fluera itself — not yet. When we say "evidence-based," we mean the underlying principles are; our specific implementation is an engineering bet informed by the evidence.
-        </p>
-        <p class="text-sm text-paper-300 leading-relaxed">
-          We also don't promise expertise. Meta-analyses (Macnamara, Hambrick &amp; Moreau, 2014) found that deliberate practice accounts for roughly 4% of the variance in educational performance — the rest is prior knowledge, motivation, working memory capacity, and opportunity. Fluera optimizes the practice loop. The hours, the focus, and the curiosity are still yours.
-        </p>
-      </div>
+      <p class="mt-10 text-sm text-paper-300 max-w-2xl leading-relaxed">
+        The difference isn't a better graph or a smarter chatbot — it's that all of it happens <em>inside your own notes</em>, on what you actually wrote.
+        <a href="/features/formula-to-graph" class="text-accent-glow hover:underline">See a formula come alive →</a>
+      </p>
     </div>
   </section>
 
-  <!-- ═══════════ 3 · PROBLEM STATEMENT ═══════════ -->
-  <section id="problem" class="section border-t border-white/[0.04] bg-ink-900/40">
-    <div class="container-narrow">
-      <p class="eyebrow mb-6 text-accent-glow">The bottleneck</p>
-      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
-        You can ask any question.<br />You still can't remember the answer.
-      </h2>
-      <div class="prose-ink text-lg">
-        <p>
-          In 2026, knowledge takes three seconds to retrieve and three weeks to forget. We have ten apps for taking notes and none for keeping what we learn.
-        </p>
-        <p>
-          Highlighting feels like studying. Re-reading feels like studying. Asking an LLM for a summary feels like studying. None of them are — and the cognitive science has been clear about this since the 1970s.
-        </p>
-        <p>
-          The bottleneck of learning is no longer access — it's <em>encoding, retention, and transfer</em>: three problems at once.
-        </p>
-        <p class="font-serif text-paper-50 text-xl">
-          Fluera is built for those three.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════ 4 · THE 12-STEP LEARNING CYCLE ═══════════ -->
-  <section id="learning-cycle" class="section border-t border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">The method</p>
-        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
-          One canvas.<br />Twelve cognitive moves.<br />The loop your brain learns from.
-        </h2>
-        <p class="prose-ink text-lg max-w-prose">
-          Every Fluera feature lives at a step in this loop, and every step is grounded in published research. Skip one, the chain breaks. Keep them all, the notebook becomes permanent.
-        </p>
-      </div>
-
-      <ol class="max-w-3xl list-none p-0">
-        {steps.map((s) => (
-          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
-        ))}
-      </ol>
-
-      <div class="mt-12 max-w-3xl">
-        <a href="/#science" class="btn-secondary">Explore the science →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════ 5 · COMPARISON VS COMPETITOR ═══════════ -->
-  <section id="comparison" class="section border-t border-white/[0.04] bg-ink-900/40">
-    <div class="container-site">
-      <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">{comparison.kicker}</p>
-        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
-          {comparison.title}
-        </h2>
-        <p class="prose-ink text-lg max-w-prose">{comparison.sub}</p>
-      </div>
-
-      <div class="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-x-auto max-w-5xl">
-        <table class="w-full text-sm min-w-[640px]">
-          <thead>
-            <tr class="border-b border-white/[0.06]">
-              <th class="text-start font-mono uppercase tracking-widest text-xs text-ink-500 px-4 py-4 w-2/5">Capability</th>
-              <th class="text-start font-serif text-base text-accent-glow px-4 py-4">{comparison.columns.fluera}</th>
-              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.goodNotes}</th>
-              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.notion}</th>
-              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.anki}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {comparison.rows.map((r) => (
-              <tr class="border-b border-white/[0.04] last:border-0">
-                <td class="px-4 py-4 text-paper-200 font-medium align-top">{r.feature}</td>
-                <td class="px-4 py-4 text-accent-glow align-top">{r.fluera}</td>
-                <td class="px-4 py-4 text-ink-500 align-top">{r.goodNotes}</td>
-                <td class="px-4 py-4 text-ink-500 align-top">{r.notion}</td>
-                <td class="px-4 py-4 text-ink-500 align-top">{r.anki}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <p class="mt-6 text-xs text-ink-500 max-w-3xl italic">{comparison.footnote}</p>
-    </div>
-  </section>
-
-  <!-- ═══════════ 6 · PILLAR FEATURES ═══════════ -->
-  <section id="pillar-features" class="section border-t border-white/[0.04]">
+  <!-- ═══════════ 3 · PILLAR FEATURES (the product) ═══════════ -->
+  <section id="pillar-features" class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
       <div class="max-w-3xl mb-20">
         <p class="eyebrow mb-6 text-accent-glow">Four cognitive differentiators</p>
@@ -260,7 +183,47 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 7 · WHY HANDWRITING WINS ═══════════ -->
+  <!-- ═══════════ 4 · COMPARISON VS COMPETITOR ═══════════ -->
+  <section id="comparison" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">{comparison.kicker}</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          {comparison.title}
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">{comparison.sub}</p>
+      </div>
+
+      <div class="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-x-auto max-w-5xl">
+        <table class="w-full text-sm min-w-[640px]">
+          <thead>
+            <tr class="border-b border-white/[0.06]">
+              <th class="text-start font-mono uppercase tracking-widest text-xs text-ink-500 px-4 py-4 w-2/5">Capability</th>
+              <th class="text-start font-serif text-base text-accent-glow px-4 py-4">{comparison.columns.fluera}</th>
+              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.goodNotes}</th>
+              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.notion}</th>
+              <th class="text-start font-serif text-base text-paper-200 px-4 py-4">{comparison.columns.anki}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparison.rows.map((r) => (
+              <tr class="border-b border-white/[0.04] last:border-0">
+                <td class="px-4 py-4 text-paper-200 font-medium align-top">{r.feature}</td>
+                <td class="px-4 py-4 text-accent-glow align-top">{r.fluera}</td>
+                <td class="px-4 py-4 text-ink-500 align-top">{r.goodNotes}</td>
+                <td class="px-4 py-4 text-ink-500 align-top">{r.notion}</td>
+                <td class="px-4 py-4 text-ink-500 align-top">{r.anki}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-6 text-xs text-ink-500 max-w-3xl italic">{comparison.footnote}</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 5 · WHY HANDWRITING WINS ═══════════ -->
   <section id="handwriting" class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
       <div class="grid md:grid-cols-12 gap-10 items-start">
@@ -287,7 +250,49 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 8 · USE CASE: MEDICAL STUDENTS ═══════════ -->
+  <!-- ═══════════ · CANVAS & ENGINE (capabilities, first-class) ═══════════ -->
+  <section id="engine" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Canvas & engine</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          A real engine under the ink.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Fluera isn't a wrapper around a text box. It's a GPU-native 2D engine — thirteen brushes, handwriting and formula recognition, PDF, voice, and real-time collaboration — the substrate everything cognitive is built on.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="card p-6">
+          <h3 class="font-serif text-lg text-paper-50 mb-2">13 pressure brushes</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Ballpoint to watercolour — full rendering pipelines with pressure, tilt, velocity and per-brush shaders. Sub-15&nbsp;ms stroke latency.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Handwriting & formula recognition</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Your ink becomes text and LaTeX — including handwritten maths, which Fluera understands well enough to turn into a live, interactive graph.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Voice + live transcription</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Record audio in sync with your strokes, transcribed in real time — replay the lecture exactly where your pen was.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-serif text-lg text-paper-50 mb-2">PDF annotation</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Drop in slides, papers, textbooks. Annotate by hand on the same infinite canvas as everything else.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Real-time collaboration</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Share a canvas and think together, live — conflict-free multi-user editing (CRDT), so two pens never fight.</p>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Export anywhere</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">PNG, JPEG, WebP, SVG, PDF, or the open <span class="font-mono">.fluera</span> format. Your notebook is yours to take.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 6 · USE CASE: MEDICAL STUDENTS ═══════════ -->
   <section id="medical-students" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
@@ -312,8 +317,88 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 9 · MULTIPLATFORM PROOF ═══════════ -->
-  <section id="platforms" class="section border-t border-white/[0.04] bg-ink-900/40">
+  <!-- ═══════════ 7 · PROBLEM STATEMENT (why it matters) ═══════════ -->
+  <section id="problem" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-narrow">
+      <p class="eyebrow mb-6 text-accent-glow">The bottleneck</p>
+      <h2 class="font-serif text-display-xl text-paper-50 mb-8">
+        You can ask any question.<br />You still can't remember the answer.
+      </h2>
+      <div class="prose-ink text-lg">
+        <p>
+          In 2026, knowledge takes three seconds to retrieve and three weeks to forget. We have ten apps for taking notes and none for keeping what we learn.
+        </p>
+        <p>
+          Highlighting feels like studying. Re-reading feels like studying. Asking an LLM for a summary feels like studying. None of them are — and the cognitive science has been clear about this since the 1970s.
+        </p>
+        <p>
+          The bottleneck of learning is no longer access — it's <em>encoding, retention, and transfer</em>: three problems at once.
+        </p>
+        <p class="font-serif text-paper-50 text-xl">
+          Fluera is built for those three.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 8 · THE 12-STEP LEARNING CYCLE (the method) ═══════════ -->
+  <section id="learning-cycle" class="section border-t border-white/[0.04]">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">The method</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          One canvas.<br />Twelve cognitive moves.<br />The loop your brain learns from.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Every Fluera feature lives at a step in this loop, and every step is grounded in published research. Skip one, the chain breaks. Keep them all, the notebook becomes permanent.
+        </p>
+      </div>
+
+      <ol class="max-w-3xl list-none p-0">
+        {steps.map((s) => (
+          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
+        ))}
+      </ol>
+
+      <div class="mt-12 max-w-3xl">
+        <a href="/#science" class="btn-secondary">Explore the science →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 9 · SCIENTIFIC FOUNDATION (credibility band) ═══════════ -->
+  <section id="science" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Built on 50+ years of memory research</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Standing on the shoulders of giants — by name.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Every design decision traces back to a paper we can link to. Twelve of those minds are below. The full bibliography lives in a public vault.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {authors.map((a) => (
+          <AuthorCard name={a.name} contribution={a.contribution} year={a.year} nobel={a.nobel} />
+        ))}
+      </div>
+
+      <div class="mt-12 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] max-w-2xl">
+        <h3 class="font-serif text-lg text-paper-50 mb-2">What we don't claim</h3>
+        <p class="text-sm text-paper-300 leading-relaxed mb-3">
+          We cite five decades of memory research. We have not run our own randomized trials on Fluera itself — not yet. When we say "evidence-based," we mean the underlying principles are; our specific implementation is an engineering bet informed by the evidence.
+        </p>
+        <p class="text-sm text-paper-300 leading-relaxed">
+          We also don't promise expertise. Meta-analyses (Macnamara, Hambrick &amp; Moreau, 2014) found that deliberate practice accounts for roughly 4% of the variance in educational performance — the rest is prior knowledge, motivation, working memory capacity, and opportunity. Fluera optimizes the practice loop. The hours, the focus, and the curiosity are still yours.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 10 · MULTIPLATFORM PROOF ═══════════ -->
+  <section id="platforms" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
         <p class="eyebrow mb-6 text-accent-glow">Six platforms, one ink</p>
@@ -341,8 +426,8 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 10 · SECURITY & PRIVACY ═══════════ -->
-  <section id="security" class="section border-t border-white/[0.04]">
+  <!-- ═══════════ 11 · SECURITY & PRIVACY ═══════════ -->
+  <section id="security" class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
         <p class="eyebrow mb-6 text-accent-glow">Your mind, your data</p>
@@ -380,8 +465,8 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 11 · PRICING SNAPSHOT ═══════════ -->
-  <section id="pricing-snapshot" class="section border-t border-white/[0.04] bg-ink-900/40">
+  <!-- ═══════════ 12 · PRICING SNAPSHOT ═══════════ -->
+  <section id="pricing-snapshot" class="section border-t border-white/[0.04]">
     <div class="container-site">
       <div class="max-w-3xl mb-14">
         <p class="eyebrow mb-6 text-accent-glow">Pricing</p>
@@ -418,7 +503,7 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 12 · BETA CTA ═══════════ -->
+  <!-- ═══════════ 13 · BETA CTA ═══════════ -->
   <section id="beta-cta" class="section border-t border-white/[0.04] relative overflow-hidden">
     <div class="glow-orb h-[400px] w-[400px] top-0 inset-x-0 mx-auto bg-accent-ink/20 animate-orb-pulse"></div>
 
@@ -436,7 +521,7 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
     </div>
   </section>
 
-  <!-- ═══════════ 13 · NEWSLETTER ═══════════ -->
+  <!-- ═══════════ 14 · NEWSLETTER ═══════════ -->
   <section class="section border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-narrow">
       <NewsletterCapture

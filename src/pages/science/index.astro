@@ -28,7 +28,7 @@ const steps = [
   { n: 6,  title: "First Return",         verb: "Day 1",          description: "Come back the next day. The canvas fades what you almost knew. Pull it back from memory." },
   { n: 7,  title: "Peer Learning",        verb: "Days 2–3",       description: "Visit a classmate's canvas. Teach. Be taught. Organising for others cements it for you." },
   { n: 8,  title: "Spaced Returns",       verb: "Day 3 · 7 · 14…",description: "Successive relearning at widening intervals. The gold-standard evidence-based strategy." },
-  { n: 9,  title: "Cross-Domain Bridges", verb: "Weeks later",    description: "Zoom out to continent view. Draw arrows between subjects. Transfer is the real test of learning." },
+  { n: 9,  title: "Cross-Domain Bridges", verb: "Weeks later",    description: "Zoom out to Atlas, the continent view of your degree. Draw arrows between subjects. Transfer is the real test of learning." },
   { n: 10, title: "Exam Prep",            verb: "7–14 days before",description: "Fog of War mode. Navigate the mist of your own canvas. The mastery map makes itself." },
   { n: 11, title: "The Exam",             verb: "The day",        description: "Close the device. Walk the memory palace you built with your hands. The canvas lives in you now." },
   { n: 12, title: "Lasting Growth",       verb: "Forever after",  description: "The canvas persists as a cognitive autobiography. See the tangible shape of how much you've grown." },
@@ -126,6 +126,13 @@ const steps = [
         background: rgb(45 74 222 / 0.18);
         border-color: rgb(56 189 248 / 0.5);
         color: theme("colors.accent.glow");
+      }
+
+      /* ── Light-theme overrides for scoped science styles ─────────────────── */
+      :global(html.light) .filter-pill-active {
+        background: rgb(37 99 235 / 0.10);
+        border-color: rgb(37 99 235 / 0.45);
+        color: #2563eb;
       }
     </style>
 

@@ -52,5 +52,5 @@ Vygotsky's **scaffolding** appears here as Atlas-mediated bridge suggestion: whe
 
 - **Bidirectional bridges** — model the asymmetry: chemistry → maths is often easier than maths → chemistry; the data can drive directionality-aware review.
 - **Bridge-driven Socratic** — questions that ask you to predict one side from the other, training transfer as a retrieval skill.
-- **Cross-canvas Exam scope** — opt to include all bridges in an Exam Session, weaponising interleaving across notebooks.
+- **Cross-canvas Exam scope** — opt to include all bridges in an Exam Session, putting interleaving to work across notebooks.
 - **Public bridge libraries** — for instructors who want to seed a course with a starter set of canonical cross-disciplinary connections.

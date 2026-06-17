@@ -290,6 +290,25 @@ const description =
     .honeypot {
       position: absolute; inset-inline-start: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;
     }
+
+    /* ── Light-theme overrides for scoped beta-form styles ─────────────── */
+    :global(html.light) .field-label { color: #1f242c; }
+    :global(html.light) .field-hint { color: #586173; }
+    :global(html.light) .field-input,
+    :global(html.light) .field-select,
+    :global(html.light) .field-textarea {
+      background: #ffffff; border-color: rgb(0 0 0 / 0.10); color: #16181d;
+    }
+    :global(html.light) .tool-pill,
+    :global(html.light) .role-pill {
+      background: #ffffff; border-color: rgb(0 0 0 / 0.10); color: #3a4150;
+    }
+    :global(html.light) .tool-pill:hover,
+    :global(html.light) .role-pill:hover { border-color: rgb(37 99 235 / 0.45); color: #16181d; }
+    :global(html.light) .tool-pill:has(input:checked),
+    :global(html.light) .role-pill:has(input:checked) {
+      background: rgb(37 99 235 / 0.10); border-color: theme("colors.accent.ink"); color: #2563eb;
+    }
   </style>
 
   <script is:inline define:vars={{ supabaseUrl, supabaseKey, configured }}>

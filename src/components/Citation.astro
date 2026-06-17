@@ -101,4 +101,18 @@ const id = `cit-${Math.random().toString(36).slice(2, 9)}`;
     font-family: "JetBrains Mono", ui-monospace, monospace;
     margin-top: 0.35rem;
   }
+
+  /* ── Light-theme overrides for scoped citation styles ──────────────────── */
+  :global(html.light) .citation-marker a,
+  :global(html.light) .citation-marker > span { color: #2563eb; }
+  :global(html.light) .citation-marker a:hover,
+  :global(html.light) .citation-marker:hover > span { color: #16181d; }
+  :global(html.light) .citation-tooltip {
+    background: #ffffff;
+    border-color: rgb(0 0 0 / 0.12);
+    color: #3a4150;
+    box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.18);
+  }
+  :global(html.light) .citation-tooltip-authors { color: #16181d; }
+  :global(html.light) .citation-tooltip-link { color: #2563eb; }
 </style>

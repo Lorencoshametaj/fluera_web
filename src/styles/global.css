@@ -46,6 +46,13 @@
     font-family: theme("fontFamily.serif");
     font-weight: 500;
     letter-spacing: -0.02em;
+    /* Balance headline lines so no single word orphans onto its own line. */
+    text-wrap: balance;
+  }
+
+  /* Body text: avoid widows (a lone last word) site-wide. */
+  p, li, blockquote, figcaption, dd, dt {
+    text-wrap: pretty;
   }
 
   :focus-visible {
@@ -323,6 +330,109 @@
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   LIGHT THEME — opt-in via `html.light` (set by the anti-FOUC script in
+   Head.astro + the toggle in Nav.astro). The site is dark-first; this block
+   re-derives the palette for light WITHOUT touching the dark defaults. Rules are
+   UNLAYERED so they win over Tailwind utilities and @layer components.
+   ════════════════════════════════════════════════════════════════════════════ */
+html.light {
+  color-scheme: light;
+  --body-bg: #faf9f6;
+  --body-fg: #16181d;
+  --muted-fg: #44505f;
+  --dim-fg: #5f6b7a;
+  --hairline: rgb(0 0 0 / 0.10);
+  --hairline-strong: rgb(0 0 0 / 0.16);
+}
+body { transition: background-color 0.25s ease, color 0.25s ease; }
+
+/* Text tokens (light text → ink) */
+html.light .text-paper-50 { color: #16181d; }
+html.light .text-paper-100 { color: #1f242c; }
+html.light .text-paper-200 { color: #3a4150; }
+html.light .text-paper-300 { color: #586173; }
+html.light .text-ink-500 { color: #5b6675; }
+html.light .text-ink-600 { color: #717c8b; }
+html.light .text-ink-950 { color: #faf9f6; }
+html.light .text-accent-glow { color: #2563eb; }
+
+/* Backgrounds (dark → light) */
+html.light .bg-ink-950 { background-color: #faf9f6; }
+html.light .bg-ink-900 { background-color: #ffffff; }
+html.light .bg-ink-900\/40 { background-color: rgb(0 0 0 / 0.03); }
+html.light .bg-ink-900\/95 { background-color: rgb(255 255 255 / 0.95); }
+html.light .bg-ink-950\/95 { background-color: rgb(250 249 246 / 0.95); }
+html.light .bg-ink-950\/85 { background-color: rgb(250 249 246 / 0.85); }
+html.light .bg-ink-950\/70 { background-color: rgb(250 249 246 / 0.70); }
+html.light .bg-paper-50 { background-color: #16181d; }
+
+/* Subtle surfaces (white-on-dark → black-on-light) */
+html.light .bg-white\/\[0\.02\] { background-color: rgb(0 0 0 / 0.025); }
+html.light .bg-white\/\[0\.03\] { background-color: rgb(0 0 0 / 0.03); }
+html.light .bg-white\/\[0\.04\] { background-color: rgb(0 0 0 / 0.035); }
+html.light .bg-white\/5 { background-color: rgb(0 0 0 / 0.05); }
+
+/* Hairlines / borders */
+html.light .border-white\/\[0\.04\] { border-color: rgb(0 0 0 / 0.08); }
+html.light .border-white\/\[0\.06\] { border-color: rgb(0 0 0 / 0.09); }
+html.light .border-white\/\[0\.08\] { border-color: rgb(0 0 0 / 0.10); }
+html.light .border-white\/\[0\.12\] { border-color: rgb(0 0 0 / 0.13); }
+html.light .border-white\/10 { border-color: rgb(0 0 0 / 0.12); }
+html.light .border-white\/15 { border-color: rgb(0 0 0 / 0.14); }
+html.light .border-white\/20 { border-color: rgb(0 0 0 / 0.18); }
+html.light .border-white\/30 { border-color: rgb(0 0 0 / 0.24); }
+
+/* Section gradient (from-ink-800 via-ink-850 to-ink-900 → light) */
+html.light .from-ink-800 { --tw-gradient-from: #ffffff var(--tw-gradient-from-position); }
+html.light .via-ink-850 { --tw-gradient-stops: var(--tw-gradient-from), #faf9f6 var(--tw-gradient-via-position), var(--tw-gradient-to); }
+html.light .to-ink-900 { --tw-gradient-to: #f1f0ea var(--tw-gradient-to-position); }
+
+/* Component classes (defined via @apply → override directly) */
+html.light .btn-primary { background-color: #2563eb; color: #ffffff; }
+html.light .btn-primary:hover { background-color: #1d4ed8; }
+html.light .btn-secondary { border-color: rgb(0 0 0 / 0.16); color: #1f242c; }
+html.light .btn-secondary:hover { border-color: rgb(0 0 0 / 0.30); background-color: rgb(0 0 0 / 0.04); }
+html.light .btn-ghost { color: #3a4150; }
+html.light .btn-ghost:hover { color: #16181d; background-color: rgb(0 0 0 / 0.04); }
+html.light .pill { border-color: rgb(0 0 0 / 0.10); background-color: rgb(0 0 0 / 0.03); color: #3a4150; }
+html.light .eyebrow { color: #586173; }
+html.light .prose-ink { color: #3a4150; }
+html.light .prose-ink a { color: #2563eb; }
+html.light .prose-ink a:hover { color: #16181d; }
+html.light .card { border-color: rgb(0 0 0 / 0.08); background-color: rgb(0 0 0 / 0.02); }
+html.light .divider-dot::before { color: #5b6675; }
+
+/* prose-v2 (blog / docs / manifesto long-form) */
+html.light .prose-v2 :where(h2) { color: #16181d; }
+html.light .prose-v2 :where(h3) { color: #1f242c; }
+html.light .prose-v2 :where(p), html.light .prose-v2 :where(ul, ol), html.light .prose-v2 :where(td) { color: #3a4150; }
+html.light .prose-v2 :where(a) { color: #2563eb; }
+html.light .prose-v2 :where(a:hover), html.light .prose-v2 :where(strong), html.light .prose-v2 :where(th) { color: #16181d; }
+html.light .prose-v2 :where(em), html.light .prose-v2 :where(blockquote), html.light .prose-v2 :where(kbd), html.light .prose-v2 :where(pre code) { color: #1f242c; }
+html.light .prose-v2 :where(code) { background: #eef0f3; color: #1d4ed8; }
+html.light .prose-v2 :where(pre) { background: #f4f4f0; border-color: rgb(0 0 0 / 0.08); }
+html.light .prose-v2 :where(blockquote) { border-color: #2563eb; }
+html.light .prose-v2 :where(th) { border-color: rgb(0 0 0 / 0.15); }
+html.light .prose-v2 :where(td), html.light .prose-v2 :where(hr) { border-color: rgb(0 0 0 / 0.08); }
+html.light .prose-v2 :where(kbd) { background: #eef0f3; border-color: rgb(0 0 0 / 0.15); }
+
+/* Text gradient (white→cyan → ink→blue) */
+html.light .text-gradient { background-image: linear-gradient(135deg, #16181d 0%, #2563eb 80%); }
+
+/* Glow orbs softened on light (faint brand tint, not muddy) */
+html.light .glow-orb { opacity: 0.5; }
+
+/* Scrollbar + selection + theme-toggle icons */
+html.light ::-webkit-scrollbar-track { background: #ece9e2; }
+html.light ::-webkit-scrollbar-thumb { background: #c8c3b6; }
+html.light ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+html.light ::selection { background: rgb(37 74 222 / 0.18); color: #16181d; }
+.theme-icon-sun { display: none; }
+.theme-icon-moon { display: block; }
+html.light .theme-icon-sun { display: block; }
+html.light .theme-icon-moon { display: none; }
 
 /* ── Arabic typography overrides ─────────────────────────────────────────────
    Source Serif 4 has no Arabic glyphs, so the browser falls back unpredictably.

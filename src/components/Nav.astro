@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logo from "@/assets/fluera_logo.png";
+import logo from "@/assets/fluera_logo_tile.png";
 import {
   PRIMARY_CTA,
   SITE,
@@ -8,9 +8,21 @@ import {
   languageSwitchHref,
 } from "@/lib/site";
 import { LOCALES, DEFAULT_LOCALE, localeFromPathname, t, type Locale } from "@/lib/i18n";
+import { getCollection } from "astro:content";
 
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 const locale = localeFromPathname(pathname);
+
+// One-line benefit gloss for each feature in the dropdown — pulled from the
+// content collection's (already localized) tagline, with EN fallback. So the
+// esoteric names (Ghost Map, Fog of War…) carry their value, in every locale.
+const allFeatures = await getCollection("features");
+function featureTagline(slug: string | undefined): string {
+  if (!slug) return "";
+  const localized = allFeatures.find((f) => f.id === `${slug}.${locale}`)?.data.tagline;
+  const fallback = allFeatures.find((f) => f.id === slug)?.data.tagline;
+  return localized ?? fallback ?? "";
+}
 
 function isActive(href: string) {
   if (href.startsWith("/#")) return false;
@@ -140,11 +152,21 @@ const currentLocaleEndonym = LOCALE_ENDONYM[locale] ?? locale.toUpperCase();
         </a>
         <div class="nav-dropdown nav-dropdown-wide">
           {featureLinks.map((l) => (
-            <a href={href(l.href)} class="nav-dropdown-item">{t(l.key, locale)}</a>
+            <a href={href(l.href)} class="nav-dropdown-item flex flex-col gap-0.5">
+              <span>{t(l.key, locale)}</span>
+              {featureTagline(l.href.split("/").pop()) && (
+                <span class="text-xs text-ink-500 font-normal leading-snug">{featureTagline(l.href.split("/").pop())}</span>
+              )}
+            </a>
           ))}
           <div class="nav-dropdown-divider"></div>
           {featureLinksLegacy.map((l) => (
-            <a href={href(l.href)} class="nav-dropdown-item">{t(l.key, locale)}</a>
+            <a href={href(l.href)} class="nav-dropdown-item flex flex-col gap-0.5">
+              <span>{t(l.key, locale)}</span>
+              {featureTagline(l.href.split("/").pop()) && (
+                <span class="text-xs text-ink-500 font-normal leading-snug">{featureTagline(l.href.split("/").pop())}</span>
+              )}
+            </a>
           ))}
           <div class="nav-dropdown-divider"></div>
           <a href={href("/features")} class="nav-dropdown-item nav-dropdown-item-cta">{t("nav.features.all", locale)}</a>
@@ -162,6 +184,21 @@ const currentLocaleEndonym = LOCALE_ENDONYM[locale] ?? locale.toUpperCase();
     </nav>
 
     <div class="flex items-center gap-2 shrink-0">
+      <!-- Theme toggle (dark ⇄ light) -->
+      <button
+        type="button"
+        id="theme-toggle"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-lg text-paper-300 hover:text-paper-50 hover:bg-white/5 transition-colors"
+        aria-label="Toggle light / dark theme"
+      >
+        <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 109.8 9.8z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke-linecap="round"/>
+        </svg>
+      </button>
       <!-- Language switcher (dropdown — data-driven across all registered locales) -->
       <div class="nav-group relative hidden sm:block me-1">
         <button
@@ -384,6 +421,30 @@ const currentLocaleEndonym = LOCALE_ENDONYM[locale] ?? locale.toUpperCase();
     .lang-endonym {
       flex: 1;
     }
+
+    /* ── Light-theme overrides for scoped nav styles ───────────────────────── */
+    :global(html.light) .nav-link { color: #3a4150; }
+    :global(html.light) .nav-link:hover { color: #16181d; background: rgb(0 0 0 / 0.05); }
+    :global(html.light) .nav-link-active { color: #16181d; background: rgb(0 0 0 / 0.06); }
+    :global(html.light) .nav-group > .nav-dropdown {
+      background: #ffffff;
+      border-color: rgb(0 0 0 / 0.10);
+      box-shadow: 0 12px 32px -8px rgb(0 0 0 / 0.18);
+    }
+    :global(html.light) .nav-dropdown-item { color: #3a4150; }
+    :global(html.light) .nav-dropdown-item:hover { background: rgb(0 0 0 / 0.05); color: #16181d; }
+    :global(html.light) .nav-dropdown-item-cta { color: #2563eb; }
+    :global(html.light) .nav-dropdown-divider { background: rgb(0 0 0 / 0.08); }
+    :global(html.light) .lang-trigger { color: #586173; }
+    :global(html.light) .lang-trigger:hover,
+    :global(html.light) .nav-group:hover > .lang-trigger,
+    :global(html.light) .nav-group:focus-within > .lang-trigger { color: #16181d; background: rgb(0 0 0 / 0.05); }
+    :global(html.light) .lang-dropdown-item { color: #3a4150; }
+    :global(html.light) .lang-dropdown-item:hover { background: rgb(0 0 0 / 0.05); color: #16181d; }
+    :global(html.light) .lang-dropdown-item-current { background: rgb(0 0 0 / 0.06); color: #16181d; }
+    :global(html.light) .lang-code { color: #5b6675; }
+    :global(html.light) .lang-dropdown-item:hover .lang-code,
+    :global(html.light) .lang-dropdown-item-current .lang-code { color: #2563eb; }
   </style>
 </header>
 
@@ -397,4 +458,32 @@ const currentLocaleEndonym = LOCALE_ENDONYM[locale] ?? locale.toUpperCase();
     btn.setAttribute("aria-expanded", String(!open));
     // Label flip not critical to translate in JS — aria-label set at SSR time.
   });
+
+  // Theme toggle (dark ⇄ light) — persists the choice; first-paint init is in Head.
+  const themeBtn = document.getElementById("theme-toggle");
+  themeBtn?.addEventListener("click", () => {
+    const isLight = document.documentElement.classList.toggle("light");
+    const chosen = isLight ? "light" : "dark";
+    const osPref = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    try {
+      // OS preference is the resting state: only persist an explicit choice when it
+      // DIFFERS from the OS. Toggling back to match the OS clears the override and
+      // re-enables live OS following.
+      if (chosen === osPref) localStorage.removeItem("theme");
+      else localStorage.setItem("theme", chosen);
+    } catch (e) {}
+  });
+
+  // Follow the OS preference LIVE — unless the user has made an explicit choice.
+  // (OS preference is the driver; the manual toggle above is the override.)
+  try {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+      let saved = null;
+      try {
+        saved = localStorage.getItem("theme");
+      } catch (_) {}
+      if (saved === "light" || saved === "dark") return; // explicit choice wins
+      document.documentElement.classList.toggle("light", !e.matches);
+    });
+  } catch (e) {}
 </script>

@@ -52,4 +52,4 @@ Manu Kapur's **productive failure** research (2008) supports the hardest design 
 - **Post-exam analytics** — per-cluster confidence calibration and hypercorrection magnitude graphs.
 - **Voice-mode Exam** — spoken questions with handwritten answers, for clinical or oral-exam preparation.
 - **Persistent surgical path overlay** — after Exam, Fog of War highlights only the missed concepts on the live canvas, scoped for next-day review.
-- **Multi-subject Exam Sessions** — one session that interleaves clusters from multiple notebooks, weaponising transfer.
+- **Multi-subject Exam Sessions** — one session that interleaves clusters from multiple notebooks, putting transfer to work.

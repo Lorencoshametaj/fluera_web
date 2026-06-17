@@ -6,6 +6,10 @@
     {
       "source": "/c/:hash([A-Za-z0-9]{8,16})",
       "destination": "/api/c?hash=:hash"
+    },
+    {
+      "source": "/i/:code([A-Za-z0-9]{4,16})",
+      "destination": "/api/i?code=:code"
     }
   ],
   "redirects": [

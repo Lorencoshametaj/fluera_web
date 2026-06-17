@@ -13,7 +13,7 @@ const jsonLd = {
   name: SITE.name,
   applicationCategory: ["EducationalApplication", "ProductivityApplication"],
   operatingSystem: "iOS, Android, macOS, Windows, Linux, Web",
-  description: "Un canvas di studio infinito costruito sulla scienza cognitiva dell'apprendimento.",
+  description: "Un canvas per imparare, non un'app di note. Fluera mappa la tua laurea e ti ri-studia sui tuoi appunti, sulla scienza della memoria.",
   url: `${SITE.url}/it/`,
   audience: [
     { "@type": "EducationalAudience", educationalRole: "student" },
@@ -28,7 +28,7 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
 
 <BaseLayout
   title={SITE.name}
-  description="Un canvas di studio infinito costruito sulla scienza cognitiva dell'apprendimento. iOS, Android, macOS, Windows, Linux, Web."
+  description="Un canvas per imparare, non un'app di note. Fluera mappa la tua laurea e ti ri-studia sui tuoi appunti. iOS, Android, macOS, Windows, Linux, Web."
   jsonLd={jsonLd}
   locale="it"
 >
@@ -46,11 +46,11 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
         </div>
 
         <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
-          Lo spazio di studio<br />costruito sul<br /><span class="text-gradient">funzionamento della mente.</span>
+          Il quaderno che studia <span class="text-gradient">te.</span>
         </h1>
 
         <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
-          Scrivi a mano su un canvas infinito. Lascia che l'IA ti interroghi invece di darti risposte. Rivedi il tuo pensiero nel tempo. Calibrato sul modo in cui la memoria si forma davvero.
+          Scrivi a mano su un canvas infinito. Fluera lo trasforma in una mappa viva della tua laurea — poi ti interroga, ti mette alla prova e ti ri-testa sui tuoi stessi appunti. Un canvas per imparare, non un'app di note.
         </p>
 
         <div class="flex flex-wrap items-center gap-4 mb-6 animate-fade-up" style="animation-delay: 0.3s">
@@ -58,8 +58,8 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
             Richiedi accesso anticipato
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="/demo" class="btn-secondary text-base px-6 py-3.5">
-            Prova la demo — senza registrazione
+          <a href="/it/features" class="btn-secondary text-base px-6 py-3.5">
+            Scopri le funzioni
           </a>
         </div>
 
@@ -85,6 +85,49 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
           <span>GDPR per default</span>
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 1.5 · COME FUNZIONA — prima il prodotto, il moat ═══════════ -->
+  <section id="how-it-works" class="section border-t border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="max-w-3xl mb-14">
+        <p class="eyebrow mb-6 text-accent-glow">Come funziona</p>
+        <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+          Una tela che <span class="text-gradient">capisce</span> ciò che scrivi.
+        </h2>
+        <p class="prose-ink text-lg max-w-prose">
+          Le altre app di note conservano l'inchiostro. Fluera lo <em>legge</em>: riconosce la tua scrittura, la raggruppa per concetto e disciplina, e la trasforma in qualcosa che puoi manipolare e ricordare. Una sola pagina: cattura, capisci, fai, ricorda. Senza saltare a una calcolatrice, un'app di flashcard o un chatbot.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+          <p class="eyebrow text-accent-glow mb-3">01 · Cattura</p>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Scrivi a mano qualsiasi cosa</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Tela infinita, 13 pennelli sensibili alla pressione, PDF, e la voce registrata in sincrono coi tuoi tratti — con trascrizione dal vivo. Appunti, formule, diagrammi, nella tua calligrafia.</p>
+        </div>
+        <div class="p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+          <p class="eyebrow text-accent-glow mb-3">02 · Capisci</p>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Legge la pagina</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Fluera riconosce ciò che hai scritto, lo raggruppa per concetto e lo etichetta per disciplina. Ogni pagina entra nel tuo Atlas — una mappa viva di significato su tutta la tua laurea, ed è questo che fa funzionare davvero tutto il resto.</p>
+        </div>
+        <div class="p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+          <p class="eyebrow text-accent-glow mb-3">03 · Fai</p>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Il tuo lavoro prende vita</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">Scrivi <span class="font-mono">F = ma</span> a mano, trascina la massa, guarda la retta piegarsi. Lasciati interrogare in modo socratico su ciò che hai scritto. Il quaderno smette di essere passivo.</p>
+        </div>
+        <div class="p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+          <p class="eyebrow text-accent-glow mb-3">04 · Ricorda</p>
+          <h3 class="font-serif text-lg text-paper-50 mb-2">Programma ciò che svanisce</h3>
+          <p class="text-sm text-paper-300 leading-relaxed">La ripetizione spaziata (FSRS) ti riporta ciò che stai per dimenticare, e la tua tela ti segue su ogni dispositivo. Un apprendimento che sopravvive alla settimana.</p>
+        </div>
+      </div>
+
+      <p class="mt-10 text-sm text-paper-300 max-w-2xl leading-relaxed">
+        La differenza non è un grafico migliore o un chatbot più furbo — è che tutto questo accade <em>dentro i tuoi appunti</em>, su ciò che hai scritto davvero.
+        <a href="/it/features" class="text-accent-glow hover:underline">Scopri le funzioni →</a>
+      </p>
     </div>
   </section>
 

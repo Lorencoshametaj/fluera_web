@@ -51,5 +51,5 @@ Kahneman's System 1 / System 2 dichotomy frames the whole mode. An LLM that answ
 ## What's coming
 
 - **Voice mode** — spoken Socratic sessions for when the pen isn't practical (walking, commuting).
-- **Cross-canvas Socratic** — the AI pulls questions that bridge your current topic with older canvases, weaponising interleaving.
+- **Cross-canvas Socratic** — the AI pulls questions that bridge your current topic with older canvases, putting interleaving to work.
 - **Socratic quiver packs** from expert authors for specific fields (medicine, law, ML).

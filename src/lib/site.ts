@@ -3,8 +3,8 @@ export const SITE = {
   domain: "fluera.dev",
   url: "https://fluera.dev",
   description:
-    "An infinite handwriting canvas built on cognitive science. iOS, Android, macOS, Windows, Linux, Web. Built on memory research, not on note-taking habits.",
-  tagline: "The study space your brain was built for.",
+    "A learning canvas, not a note app — handwrite on an infinite canvas and Fluera maps your whole degree, then studies you back. Built on 50 years of memory science. iOS, Android, macOS, Windows, Web.",
+  tagline: "The notebook that studies you back.",
   company: {
     legalName: "Fluera srl",
     city: "Milan, Italy",

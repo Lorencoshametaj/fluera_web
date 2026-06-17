@@ -6,16 +6,19 @@ export default {
     extend: {
       colors: {
         ink: {
-          950: "#05070c",
-          900: "#080b14",
-          850: "#0c111d",
-          800: "#111827",
-          700: "#1a2236",
-          600: "#253149",
-          // Bumped from #3a4865 to #6a7d9c so `text-ink-500` on `bg-ink-950`
-          // hits ~5:1 contrast (WCAG AA for normal text). Previous failed at
-          // 2.2:1 — affecting ~84 muted-microcopy spots site-wide.
-          500: "#6a7d9c",
+          // Enterprise dark — a calm COOL SLATE, not near-black. The whole ramp is
+          // lifted together (base #161b24 → raised surfaces) so depth/hierarchy is
+          // preserved while large areas read premium rather than pitch-black.
+          950: "#161b24", // base background
+          900: "#1c222d", // raised: nav, ink-900/40 panels
+          850: "#222935", // panels, dropdowns
+          800: "#29313f", // cards (strong), code blocks, gradient top
+          700: "#343f52", // hairline-strong / scrollbar thumb
+          600: "#46546c", // dim text, dividers
+          // Lifted to #7c8cac so `text-ink-500` on the slate base still clears
+          // WCAG AA (~4.7:1, normal text); the brighter base would otherwise drop
+          // muted microcopy below AA. ~84 spots site-wide.
+          500: "#7c8cac",
         },
         paper: {
           50: "#fafaf7",

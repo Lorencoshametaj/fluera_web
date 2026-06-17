@@ -116,6 +116,15 @@ import { SITE } from "@/lib/site";
       border-color: theme("colors.accent.ink");
       box-shadow: 0 0 0 3px rgb(45 74 222 / 0.18);
     }
+
+    /* ── Light-theme overrides for scoped sales styles ─────────────────────── */
+    :global(html.light) .sales-label { color: #1f242c; }
+    :global(html.light) .sales-hint { color: #586173; }
+    :global(html.light) .sales-input {
+      background: #ffffff;
+      border-color: rgb(0 0 0 / 0.10);
+      color: #16181d;
+    }
   </style>
 
 </BaseLayout>

@@ -68,4 +68,9 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "");
     overflow-y: auto;
     border-inline-end: 1px solid rgb(255 255 255 / 0.05);
   }
+
+  /* ── Light-theme overrides for scoped doc-sidebar styles ───────────────── */
+  :global(html.light) .docs-sidebar {
+    border-inline-end-color: rgb(0 0 0 / 0.06);
+  }
 </style>
