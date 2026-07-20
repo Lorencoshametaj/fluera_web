@@ -34,7 +34,7 @@ updatedAt: 2026-04-20
 
 ## मैं भारत में हूँ। DPDP Act का क्या?
 
-पूरी तरह compliant। Fluera EU में hosted है और GDPR-native है, जो parallel में DPDP Act 2023 की आवश्यकताओं को cover करता है। आप अपने rights (access, correction, erasure, portability) **सेटिंग्स → गोपनीयता** के माध्यम से या [privacy@fluera.dev](mailto:privacy@fluera.dev) पर लिखकर exercise कर सकते हैं। 30 दिनों के अंदर response; आमतौर पर 48 घंटों में।
+पूरी तरह compliant। Fluera EU में hosted है और GDPR-native है, जो parallel में DPDP Act 2023 की आवश्यकताओं को cover करता है। आप अपने rights (access, correction, erasure, portability) **सेटिंग्स → गोपनीयता** के माध्यम से या [lorenco@fluera.dev](mailto:lorenco@fluera.dev) पर लिखकर exercise कर सकते हैं। 30 दिनों के अंदर response; आमतौर पर 48 घंटों में।
 
 ## मेरे iPad पर Pencil lag कर रही है। क्या गलत है?
 
@@ -46,11 +46,11 @@ updatedAt: 2026-04-20
 
 [support@fluera.dev](mailto:support@fluera.dev)। वर्णन करें कि आप क्या कर रहे थे, क्या expected था, क्या हुआ, और app version include करें (सेटिंग्स → About)। Screenshots मदद करते हैं।
 
-Security vulnerabilities के लिए, [security@fluera.dev](mailto:security@fluera.dev) उपयोग करें और हमारी PGP key (हमारे GitHub profile पर) के साथ encrypt करें।
+Security vulnerabilities के लिए, [lorenco@fluera.dev](mailto:lorenco@fluera.dev) उपयोग करें और हमारी PGP key (हमारे GitHub profile पर) के साथ encrypt करें।
 
 ## मैं शिक्षाशास्त्र पर feedback कैसे दूँ?
 
-हम हर email पढ़ते हैं। [hello@fluera.dev](mailto:hello@fluera.dev) सीधे founders तक जाता है। विशेष रूप से उपयोगी: आपके लिए जो *काम नहीं* किया, जो ऐसा घर्षण लगा जो वांछनीय नहीं था, और कुछ भी जिसने आपको आश्चर्यचकित किया।
+हम हर email पढ़ते हैं। [support@fluera.dev](mailto:support@fluera.dev) सीधे founders तक जाता है। विशेष रूप से उपयोगी: आपके लिए जो *काम नहीं* किया, जो ऐसा घर्षण लगा जो वांछनीय नहीं था, और कुछ भी जिसने आपको आश्चर्यचकित किया।
 
 ## आगे
 

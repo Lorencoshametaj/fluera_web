@@ -4,15 +4,15 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 const useCases = [
   {
     title: "Lecture capture",
-    body: "Students take handwritten notes on infinite canvas during lectures, with optional audio sync via Time Travel. The canvas becomes a living lecture archive that survives the semester.",
+    body: "Students take handwritten notes on infinite canvas during lectures, with optional audio sync via Time Travel. Your handwriting doesn't just sit there after the lecture — Fluera reads it and studies you back on it all semester.",
   },
   {
     title: "Exam preparation at scale",
-    body: "Fog of War + Spaced Repetition turn the student's own canvas into a retrieval-practice engine. Faculty can recommend study routes per topic without prescribing content.",
+    body: "Fog of War turns the student's own notes into a retrieval-practice engine — FSRS spaced reviews, Socratic questions and Exam Sessions generated from what they actually wrote. Faculty can recommend study routes per topic without prescribing content.",
   },
   {
     title: "STEM lab notebooks",
-    body: "LaTeX rendering, pressure-sensitive diagrams, audio-synced experiment logs. Replaces paper notebooks while preserving the handwriting evidence students need for assessment.",
+    body: "LaTeX rendering, pressure-sensitive diagrams, audio-synced experiment logs. Fluera reads the handwriting — including the math, via LaTeX OCR — and organizes it into a living map students can be re-tested on, not just a paper notebook on screen.",
   },
 ];
 
@@ -21,7 +21,7 @@ const deployment = [
   { label: "MDM-friendly",   body: "Standard App Store / Play enterprise distribution. Windows and macOS as signed installers. No sideloading required." },
   { label: "Audit log",      body: "Immutable per-account access trail. Exportable for compliance reviews." },
   { label: "Data residency", body: "EU-hosted by default. Data processing agreement available on request." },
-  { label: "Accessibility",  body: "WCAG 2.1 AA target across all platforms. Screen reader support, high-contrast modes, adjustable brush fidelity for motor differences." },
+  { label: "Accessibility",  body: "Working toward WCAG 2.1 AA across all platforms. Screen reader support and high-contrast modes are on the roadmap; adjustable brush fidelity for motor differences is available today." },
   { label: "On-prem",        body: "Coming on the Enterprise roadmap. Currently: cloud-only with strong encryption and regional controls." },
 ];
 ---
@@ -131,7 +131,7 @@ const deployment = [
           <ul class="space-y-3 text-sm text-paper-200 list-none p-0">
             <li class="flex gap-3"><span class="text-ink-500 font-mono">01</span><span>Spacing, retrieval, generation, desirable difficulties — the four pillars</span></li>
             <li class="flex gap-3"><span class="text-ink-500 font-mono">02</span><span>The 12-step cycle mapped to your specific course structure</span></li>
-            <li class="flex gap-3"><span class="text-ink-500 font-mono">03</span><span>When to use Socratic, when to use Ghost Map, when to stay out of the way</span></li>
+            <li class="flex gap-3"><span class="text-ink-500 font-mono">03</span><span>When to use Socratic Mode, when to use Fog of War, when to stay out of the way</span></li>
             <li class="flex gap-3"><span class="text-ink-500 font-mono">04</span><span>Designing exam prep that uses Fog of War without replacing your assessments</span></li>
             <li class="flex gap-3"><span class="text-ink-500 font-mono">05</span><span>The research, the evidence strength, and the edges of what the evidence supports</span></li>
             <li class="flex gap-3"><span class="text-ink-500 font-mono">06</span><span>Hands-on: every instructor builds one lesson in Fluera before they leave</span></li>

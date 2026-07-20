@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Turvallisuusarkkitehtuuri"
-  description="Miten Fluera salaa muistikirjasi lepotilassa, siirrossa ja laitteiden välillä. SQLCipher, TLS 1.3, päästä päähän -synkronointi, opt-in-telemetria, instituutioille tarkoitettu auditointiloki."
+  description="Miten Fluera suojaa muistikirjasi lepotilassa, siirrossa ja laitteiden välillä. SQLCipher, TLS 1.3, EU-pohjainen pilvisynkronointi, opt-in-telemetria, instituutioille tarkoitettu auditointiloki."
   locale="fi"
 >
   <PageHero
@@ -26,7 +26,7 @@ import { SITE } from "@/lib/site";
       <p>Tämän mallin sisällä kolme takuuta:</p>
       <ul>
         <li><strong>Paikallinen data on lukukelvotonta ilman avainta.</strong> Varastettu laite tuottaa salatun blobin.</li>
-        <li><strong>Synkronoitu data on meille lukukelvotonta.</strong> Pilvi säilyttää vain salatekstiä. Avaimen johtaminen tapahtuu laitteella.</li>
+        <li><strong>Synkronoitu data on suojattu siirrossa ja lepotilassa EU-infrastruktuurissa.</strong> Pilvisynkronointi ei ole päästä päähän -salattua: rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä, mutta emme koskaan myy sitä emmekä käytä sitä mainontaan.</li>
         <li><strong>Telemetria on suostumukseen perustuvaa ja anonymisoitua.</strong> Analytiikka ei voi yhdistää käyttäjää sisältöön, ei edes täydellisen tietomurron tapauksessa.</li>
       </ul>
 
@@ -38,17 +38,17 @@ import { SITE } from "@/lib/site";
         Avaimen johtaminen käyttää PBKDF2:ta SHA-256:lla ja 256 000 iteraatiolla (OWASP-mukaisesti). Salalause säilytetään alustan avainsäilössä — Keychain iOS/macOS:ssa, Keystore Androidissa, DPAPI Windowsissa, libsecret Linuxissa. Sitä ei koskaan lähetetä palvelimillemme.
       </p>
 
-      <h2>Siirrossa: TLS 1.3, sertifikaatin kiinnitys</h2>
+      <h2>Siirrossa: TLS 1.3, moderni cipher suite</h2>
       <p>
-        Kaikki verkkoliikenne kulkee TLS 1.3:n yli moderneilla cipher suiteilla. iOS:ssä ja Androidissa kiinnitämme sertifikaatit CA-ketjuumme estääksemme yrityksen välityspalvelimien aiheuttamat man-in-the-middle-hyökkäykset — dokumentoidulla ohituksella verkonvalvojille, jotka sitä tarvitsevat.
+        Kaikki verkkoliikenne kulkee TLS 1.3:n yli moderneilla cipher suiteilla, mikä suojaa salakuuntelulta ja man-in-the-middle-hyökkäyksiltä siirron aikana.
       </p>
 
-      <h2>Synkronointi laitteiden välillä: päästä päähän</h2>
+      <h2>Synkronointi laitteiden välillä: EU-infrastruktuuri</h2>
       <p>
-        Pilvisynkronointi, kun se on käytössä, käyttää erillistä, laitteella johdettua avainsarjaa. Synkronointipalvelin (Supabase Storage, EU-alue) säilyttää salatekstiä eikä voi purkaa sitä. Synkronointi on muistikirjakohtainen opt-in — voit pitää jotkin muistikirjat vain paikallisina samalla kun synkronoit toisia.
+        Pilvisynkronointi, kun se on käytössä, tallentaa muistikirjasi Supabasen palvelimelle (EU-alue, eu-north-1). Data on suojattu siirrossa (TLS) ja lepotilassa infrastruktuuritasolla. Synkronointi ei ole päästä päähän -salattua: rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä, mutta emme koskaan myy sitä emmekä käytä sitä mainontaan. Synkronointi on muistikirjakohtainen opt-in — voit pitää jotkin muistikirjat vain paikallisina samalla kun synkronoit toisia.
       </p>
       <p>
-        Avainten kierto: kun se käynnistetään miltä tahansa laitteelta, kaikki tulevat payloadit salataan uudella avaimella. Vanhat salatekstit pysyvät vanhempien klienttien luettavissa, kunnes vahvistat migraation kaikilla laitteilla.
+        Vain paikallisina pidettävät muistikirjat eivät koskaan poistu laitteeltasi: ne säilyvät SQLCipher-salatussa paikallisessa tietokannassa, ja '.fluera'-vientitiedostot salataan AES-256-GCM:llä.
       </p>
 
       <h2>P2P-yhteistyö: suora, salattu</h2>
@@ -61,10 +61,10 @@ import { SITE } from "@/lib/site";
 
       <h2>Tekoälykutsut: välityspalvelimen kautta, ei koskaan suoraan</h2>
       <p>
-        Kutsut Google Geminiin (Socratic Mode, Ghost Map, LaTeX-OCR, Exam Session) kulkevat Supabase Edge Functionin kautta, joka pitää API-avaimen palvelimella. Asiakaslaitteet eivät koskaan näe avainta. Välityspalvelin valvoo tilauskohtaisia rate limit -rajoja ja kirjaa kutsujen kestot laskutusta varten — ei koskaan canvas-sisältöä.
+        Kutsut Google Gemini -malleihin (Socratic Mode, Ghost Map, LaTeX-OCR, Exam Session) palvellaan Google Vertex AI:n kautta ja käsitellään EU:ssa (europe-west4 NL / europe-west1 BE). Kutsut kulkevat välityspalvelimen kautta, joka pitää API-avaimen palvelimella. Asiakaslaitteet eivät koskaan näe avainta. Välityspalvelin valvoo tilauskohtaisia rate limit -rajoja ja kirjaa kutsujen kestot laskutusta varten — ei koskaan canvas-sisältöä.
       </p>
       <p>
-        Jos poistat tekoälyominaisuudet käytöstä kohdassa <em>Asetukset → Yksityisyys</em>, mitään canvas-sisältöä ei lähetetä Geminille, ei myöskään laitepohjaisen OCR:n varatoimena.
+        Jos poistat tekoälyominaisuudet käytöstä kohdassa <em>Asetukset → Yksityisyys</em>, mitään canvas-sisältöä ei lähetetä tekoälylle, ei myöskään laitepohjaisen OCR:n varatoimena.
       </p>
 
       <h2>Telemetria: opt-in, hashattu, sallittu lista</h2>

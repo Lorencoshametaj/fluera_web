@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Versleuteling",
-    body: "Elk Fluera-notitieboek wordt in rust versleuteld met AES-256 via SQLCipher. Het verkeer is TLS 1.3 onderweg. De synchronisatie tussen jouw apparaten is end-to-end versleuteld met sleutels die uit jouw wachtzin worden afgeleid — opgeslagen in de keychain van het platform, nooit naar onze servers gestuurd.",
+    body: "Elk Fluera-notitieboek wordt in rust versleuteld met AES-256 via SQLCipher. Het verkeer is onderweg versleuteld met TLS 1.3 en moderne cipher suites. Cloud-synchronisatie wordt onderweg (TLS) en in rust op Europese infrastructuur (Supabase, eu-north-1) versleuteld; ze is niet end-to-end versleuteld — als verwerkingsverantwoordelijke kan Fluera er technisch bij, maar we verkopen je inhoud nooit en gebruiken die nooit voor advertenties.",
   },
   {
     title: "Eigenaarschap van data",
@@ -38,7 +38,7 @@ const pillars = [
 >
   <PageHero
     kicker="Beveiliging en privacy"
-    title="End-to-end-versleuteling.<br />De sleutel blijft bij jou."
+    title="Versleuteld in rust en onderweg.<br />Jouw data blijft van jou."
     titleSize="2xl"
     description="Versleuteling als standaard. Geen ad-tech. Servers in Europa. Volledige export. Privacy is een ontwerpbeperking, geen compliance-taakje."
     orbs

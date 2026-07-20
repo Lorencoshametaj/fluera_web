@@ -29,7 +29,7 @@ Later — days, weeks, or months — touch any stroke on your canvas. The audio 
 
 Scrub the audio and watch the canvas replay itself stroke by stroke, at the original pace or accelerated. See your own mind working.
 
-All storage is local by default, encrypted with SQLCipher. Sync of audio is opt-in and end-to-end encrypted when enabled.
+All storage is local by default, encrypted with SQLCipher. Sync of audio is opt-in: when enabled, data is encrypted in transit (TLS) and at rest on EU infrastructure (Supabase, eu-north-1). It is not end-to-end encrypted — as data controller Fluera can technically access synced content, but never sells it or uses it for advertising.
 
 ## The science behind it
 

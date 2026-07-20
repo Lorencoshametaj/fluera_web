@@ -8,6 +8,10 @@
       "destination": "/api/c?hash=:hash"
     },
     {
+      "source": "/s/:hash([A-Za-z0-9]{8,64})",
+      "destination": "/api/s?hash=:hash"
+    },
+    {
       "source": "/i/:code([A-Za-z0-9]{4,16})",
       "destination": "/api/i?code=:code"
     }

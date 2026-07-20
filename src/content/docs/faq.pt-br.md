@@ -34,7 +34,7 @@ O canvas — escrita, leitura, exportação — está completamente offline. As 
 
 ## Estou no Brasil. E a LGPD?
 
-Plenamente compatível. O Fluera é hospedado na UE e GDPR-nativo, o que cobre os requisitos da LGPD em paralelo. Você pode exercer os seus direitos (acesso, retificação, deleção, portabilidade) via **Configurações → Privacidade** ou escrevendo para [privacy@fluera.dev](mailto:privacy@fluera.dev). Resposta em até 30 dias; geralmente em 48 horas.
+Plenamente compatível. O Fluera é hospedado na UE e GDPR-nativo, o que cobre os requisitos da LGPD em paralelo. Você pode exercer os seus direitos (acesso, retificação, deleção, portabilidade) via **Configurações → Privacidade** ou escrevendo para [lorenco@fluera.dev](mailto:lorenco@fluera.dev). Resposta em até 30 dias; geralmente em 48 horas.
 
 ## A Pencil está laggando no meu iPad. O que está errado?
 
@@ -46,11 +46,11 @@ Se o lag persistir com Predicted ligado, feche e relance. Se ainda persistir, es
 
 [support@fluera.dev](mailto:support@fluera.dev). Descreva o que você estava fazendo, o que esperava, o que aconteceu, e inclua a versão do app (Configurações → Sobre). Screenshots ajudam.
 
-Para vulnerabilidades de segurança, use [security@fluera.dev](mailto:security@fluera.dev) e criptografe com a nossa chave PGP (no nosso perfil do GitHub).
+Para vulnerabilidades de segurança, use [lorenco@fluera.dev](mailto:lorenco@fluera.dev) e criptografe com a nossa chave PGP (no nosso perfil do GitHub).
 
 ## Como dou feedback sobre a pedagogia?
 
-A gente lê cada e-mail. [hello@fluera.dev](mailto:hello@fluera.dev) vai direto para os founders. Especialmente útil: o que *não* funcionou para você, o que pareceu atrito que não era desejável, e qualquer coisa que te surpreendeu.
+A gente lê cada e-mail. [support@fluera.dev](mailto:support@fluera.dev) vai direto para os founders. Especialmente útil: o que *não* funcionou para você, o que pareceu atrito que não era desejável, e qualquer coisa que te surpreendeu.
 
 ## Próximo
 

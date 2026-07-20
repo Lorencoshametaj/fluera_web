@@ -45,7 +45,7 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
         </div>
 
         <h1 class="font-serif text-display-2xl text-paper-50 mb-6 animate-fade-up">
-          The notebook that studies <span class="text-gradient">you back.</span>
+          The learning canvas that studies <span class="text-gradient">you back.</span>
         </h1>
 
         <p class="text-xl md:text-2xl text-paper-200 max-w-2xl leading-relaxed mb-10 animate-fade-up" style="animation-delay: 0.15s">
@@ -63,11 +63,6 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
         </div>
 
         <p class="text-xs text-ink-500 mb-10 flex flex-wrap items-center gap-x-3 gap-y-1 animate-fade-up" style="animation-delay: 0.4s">
-          <a href={SITE.social.github} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-accent-glow transition-colors">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.2.9 2.3v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-            Engine open source
-          </a>
-          <span class="text-ink-600">·</span>
           <span>Cancel anytime</span>
           <span class="text-ink-600">·</span>
           <span>No tracking</span>
@@ -80,7 +75,7 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
           <span>Windows</span><span class="text-ink-600">·</span>
           <span>Linux</span><span class="text-ink-600">·</span>
           <span>Web</span><span class="text-ink-600">·</span>
-          <span>End-to-end encrypted</span><span class="text-ink-600">·</span>
+          <span>Encrypted in transit & at rest</span><span class="text-ink-600">·</span>
           <span>GDPR-native</span>
         </p>
       </div>
@@ -96,7 +91,7 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
           A canvas that <span class="text-gradient">understands</span> what you write.
         </h2>
         <p class="prose-ink text-lg max-w-prose">
-          Most note apps store ink. Fluera <em>reads</em> it — recognising your handwriting, grouping it by concept and discipline, then turning it into something you can manipulate and remember. One page: capture, understand, do, remember. No switching to a calculator, a flashcard app, or a chatbot.
+          Most note apps store ink. Fluera <em>reads</em> it — recognising your handwriting, grouping it by concept and discipline, then turning it into something you can manipulate and remember. One canvas: capture, understand, do, remember. No switching to a calculator, a flashcard app, or a chatbot.
         </p>
       </div>
 
@@ -119,7 +114,7 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
         <div class="p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02]">
           <p class="eyebrow text-accent-glow mb-3">04 · Remember</p>
           <h3 class="font-serif text-lg text-paper-50 mb-2">It schedules what fades</h3>
-          <p class="text-sm text-paper-300 leading-relaxed">Spaced repetition (FSRS) brings back what you're about to forget, and your canvas follows you across every device. Learning that survives the week.</p>
+          <p class="text-sm text-paper-300 leading-relaxed">Spaced repetition (FSRS) brings back what you're about to forget. Learning that survives the week.</p>
         </div>
       </div>
 
@@ -406,7 +401,7 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
           Six platforms. One ink. One brain.
         </h2>
         <p class="prose-ink text-lg max-w-prose">
-          Native renderers on Vulkan, Metal, OpenGL, Direct3D 11 and WebGPU. Your notebook syncs end-to-end encrypted, or stays offline. Your call.
+          Native renderers on Vulkan, Metal, OpenGL, Direct3D 11 and WebGPU. Your work lives on your device — encrypted at rest with SQLCipher — and syncs over an encrypted (TLS) connection only if you choose to. Your call.
         </p>
       </div>
 
@@ -432,7 +427,7 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
       <div class="max-w-3xl mb-14">
         <p class="eyebrow mb-6 text-accent-glow">Your mind, your data</p>
         <h2 class="font-serif text-display-xl text-paper-50 mb-6">
-          End-to-end encrypted.<br />You hold the key.
+          Encrypted on device.<br />Private by design.
         </h2>
       </div>
 
@@ -445,7 +440,7 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
         <div class="card p-6">
           <div class="eyebrow text-accent-glow mb-3">02</div>
           <h3 class="font-serif text-lg text-paper-50 mb-2">GDPR-native</h3>
-          <p class="text-sm text-paper-300">EU-based, data processing agreement available, full export and deletion on request.</p>
+          <p class="text-sm text-paper-300">EU-based (Supabase, eu-north-1). Cloud sync is encrypted in transit (TLS) and at rest on EU infrastructure — not end-to-end encrypted, so as data controller we can access synced content, but we never sell it or use it for ads. Full export and deletion on request.</p>
         </div>
         <div class="card p-6">
           <div class="eyebrow text-accent-glow mb-3">03</div>
@@ -484,12 +479,12 @@ const { steps, authors, platforms, comparison, medicalUseCase } = home;
         <div class="card p-6 border-accent-ink/30 bg-accent-ink/[0.05]">
           <h3 class="eyebrow text-paper-50 mb-3">Plus</h3>
           <p class="font-serif text-2xl text-paper-50 mb-2">€5.99<span class="text-sm font-sans text-paper-300">/mo</span></p>
-          <p class="text-sm text-paper-300">Unlimited canvas, 2-device sync, baseline AI. €49/year.</p>
+          <p class="text-sm text-paper-300">Unlimited canvas, 2-device sync, deeper review limits. €49/year.</p>
         </div>
         <div class="card p-6">
           <h3 class="eyebrow text-paper-50 mb-3">Pro</h3>
           <p class="font-serif text-2xl text-paper-50 mb-2">€11.99<span class="text-sm font-sans text-paper-300">/mo</span></p>
-          <p class="text-sm text-paper-300">Exam Session, Atlas, full AI suite, unlimited sync. €99/year.</p>
+          <p class="text-sm text-paper-300">Exam Session, full sync, the full cognitive toolkit. €99/year.</p>
         </div>
       </div>
 

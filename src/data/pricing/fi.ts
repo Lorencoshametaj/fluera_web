@@ -114,7 +114,7 @@ const data: PricingData = {
     },
     {
       q: "Team- tai Education-suunnitelmat?",
-      a: "Tulossa vaiheessa 2 (jaetut työtilat, admin-dashboard, SSO). Kiinnostunut? Lähetä sähköpostia osoitteeseen sales@fluera.dev — rakennamme tiekarttaa ensimmäisten design partnereiden kanssa.",
+      a: "Tulossa vaiheessa 2 (jaetut työtilat, admin-dashboard, SSO). Kiinnostunut? Lähetä sähköpostia osoitteeseen support@fluera.dev — rakennamme tiekarttaa ensimmäisten design partnereiden kanssa.",
     },
   ],
 };

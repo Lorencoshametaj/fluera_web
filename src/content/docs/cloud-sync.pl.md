@@ -13,7 +13,7 @@ Cloud sync jest opt-in per notatnik. Możesz synchronizować jeden canvas, trzym
 ## Włączenie sync na pierwszym urządzeniu
 
 1. Otwórz **Ustawienia → Prywatność** i włącz **Cloud sync**.
-2. Stwórz albo wpisz swoje **passphrase sync**. Jest *oddzielne* od hasła konta. Passphrase służy do wyprowadzenia klucza szyfrowania — i jest przechowywane tylko na twoim urządzeniu, nigdy na naszych serwerach.
+2. Zaloguj się swoim kontem. Połączenie z serwerem jest szyfrowane w tranzycie (TLS 1.3 z nowoczesnymi zestawami szyfrów).
 3. Wybierz, które notatniki synchronizować. Kliknij prawym (albo naciśnij i przytrzymaj) na notatniku → **Włącz sync**.
 
 Mała ikona chmury pojawia się na każdym zsynchronizowanym notatniku. Czerwony wariant wskazuje błąd; szary wskazuje pauzę.
@@ -22,22 +22,22 @@ Mała ikona chmury pojawia się na każdym zsynchronizowanym notatniku. Czerwony
 
 1. Zainstaluj Fluerę na drugim urządzeniu.
 2. Zaloguj się tym samym kontem.
-3. Wpisz to *samo* passphrase sync, gdy zostanie poproszone. Passphrase nie jest odzyskiwalne — jeśli go nie masz, zaszyfrowane dane nie są czytelne na nowym urządzeniu.
+3. Wybierz, które notatniki synchronizować na tym urządzeniu.
 4. Cloud sync rusza. Spodziewaj się, że pierwsza pełna synchronizacja zajmie kilka minut dla notatnika średniej wielkości.
 
 ## Co jest szyfrowane i jak
 
-- Każdy notatnik jest szyfrowany lokalnie kluczem per notatnik.
-- Te klucze są szyfrowane root keyem wyprowadzonym z twojego passphrase sync przez PBKDF2-SHA256, 256 000 iteracji.
-- Tylko zaszyfrowane bajty docierają do serwera. Nie potrafimy czytać twoich notatników.
+- Lokalna baza danych na twoim urządzeniu jest szyfrowana at-rest przez SQLCipher.
+- Synchronizowane dane są szyfrowane w tranzycie (TLS) oraz at-rest na infrastrukturze w UE (Supabase, region eu-north-1).
+- Cloud sync **nie** jest end-to-end szyfrowany. Fluera, jako administrator danych, może technicznie uzyskać dostęp do zsynchronizowanych treści. Nigdy nie sprzedajemy twoich danych ani nie używamy ich do reklam.
 
-Metadane (tytuły notatników, timestampy, rozmiar) też są szyfrowane — serwer widzi nieprzejrzyste blob-y i timestampy sync.
+Metadane (tytuły notatników, timestampy, rozmiar) są przechowywane na tych samych serwerach w UE i podlegają tym samym zasadom: zabezpieczone w tranzycie i at-rest, nieużywane do reklam.
 
-## Jeśli zgubisz passphrase
+## Jeśli stracisz dostęp do konta
 
-Jeśli zapomnisz passphrase i nie masz urządzenia, które wciąż ma klucz w cache'u, twoje zaszyfrowane dane stają się **niemożliwe do odzyskania**. To jest z założenia. Alternatywa — mechanizm odzyskiwania po stronie serwera — złamałaby model end-to-end i jest kompromisem, którego nie jesteśmy gotowi zrobić dla kont konsumenckich.
+Cloud sync jest powiązany z twoim kontem. Jeśli stracisz dostęp do konta, odzyskaj je standardową procedurą resetu — twoje zsynchronizowane notatniki pozostają dostępne po ponownym zalogowaniu. Lokalna kopia na każdym urządzeniu pozostaje na nim nawet bez połączenia z chmurą.
 
-Dla **kont Education** opcjonalny klucz odzyskiwania trzymany przez administratora może zostać skonfigurowany w momencie wdrożenia. To jawny opt-in, udokumentowany w instytucjonalnym DPA i audytowany.
+Dla **kont Education** dostęp do zsynchronizowanych danych może być zarządzany przez administratora instytucji. To jawny opt-in, udokumentowany w instytucjonalnym DPA i audytowany.
 
 ## Rozwiązywanie konfliktów
 

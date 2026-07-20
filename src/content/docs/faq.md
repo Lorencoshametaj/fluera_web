@@ -33,7 +33,7 @@ The canvas — writing, reading, export — is fully offline. The AI features (S
 
 ## I'm in the EU. How does GDPR apply here?
 
-Fully. Fluera is EU-hosted and GDPR-native. You can exercise your rights (access, rectification, deletion, portability) via **Settings → Privacy** or by emailing [privacy@fluera.dev](mailto:privacy@fluera.dev). Response within 30 days; typically within 48 hours.
+Fully. Fluera is EU-hosted and GDPR-native. You can exercise your rights (access, rectification, deletion, portability) via **Settings → Privacy** or by emailing [lorenco@fluera.dev](mailto:lorenco@fluera.dev). Response within 30 days; typically within 48 hours.
 
 ## The Pencil is lagging on my iPad. What's wrong?
 
@@ -45,11 +45,11 @@ If the lag persists with Predicted turned on, quit and relaunch. If it still per
 
 [support@fluera.dev](mailto:support@fluera.dev). Describe what you were doing, what you expected, what happened, and include your app version (Settings → About). Screenshots help.
 
-For security vulnerabilities, use [security@fluera.dev](mailto:security@fluera.dev) and encrypt with our PGP key (on our GitHub profile).
+For security vulnerabilities, use [lorenco@fluera.dev](mailto:lorenco@fluera.dev) and encrypt with our PGP key (on our GitHub profile).
 
 ## How do I give feedback on the pedagogy?
 
-We read every email. [hello@fluera.dev](mailto:hello@fluera.dev) goes to the founders directly. Specifically helpful: what *didn't* work for you, what felt like friction that wasn't desirable, and anything that surprised you.
+We read every email. [support@fluera.dev](mailto:support@fluera.dev) goes to the founders directly. Specifically helpful: what *didn't* work for you, what felt like friction that wasn't desirable, and anything that surprised you.
 
 ## Next
 

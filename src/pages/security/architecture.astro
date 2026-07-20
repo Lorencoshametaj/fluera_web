@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Security architecture"
-  description="How Fluera encrypts your notebook at rest, in transit, and between devices. SQLCipher, TLS 1.3, end-to-end sync, opt-in telemetry, audit log for Education."
+  description="How Fluera encrypts your notebook at rest and in transit, and how cloud sync works. SQLCipher, TLS 1.3, EU-hosted sync, opt-in telemetry, audit log for Education."
 >
 
   <PageHero
@@ -28,7 +28,7 @@ import { SITE } from "@/lib/site";
       </p>
       <ul>
         <li><strong>Local data is unreadable without the key.</strong> A stolen device yields an encrypted blob.</li>
-        <li><strong>Synced data is unreadable to Fluera.</strong> The cloud holds ciphertext. Derivation happens on device.</li>
+        <li><strong>Synced data stays in the EU and is never sold.</strong> Cloud sync is encrypted in transit (TLS) and at rest on EU infrastructure, but it is <em>not</em> end-to-end encrypted — Fluera, as data controller, can technically access synced content. We never sell it or use it for advertising.</li>
         <li><strong>Telemetry is consented and de-identified.</strong> Analytics cannot link a user to their content even if fully breached.</li>
       </ul>
 
@@ -40,17 +40,17 @@ import { SITE } from "@/lib/site";
         Key derivation uses PBKDF2 with SHA-256, 256,000 iterations (OWASP-aligned). The passphrase is held in the platform keychain — Keychain on iOS/macOS, Keystore on Android, DPAPI on Windows, libsecret on Linux. It is never sent to our servers.
       </p>
 
-      <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">In transit: TLS 1.3, certificate pinning</h2>
+      <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">In transit: TLS 1.3</h2>
       <p>
-        All network traffic is TLS 1.3 with modern ciphers only. On iOS and Android we pin certificates to our own CA chain to prevent man-in-the-middle attacks from corporate proxies — with a documented override for network administrators who need one.
+        All network traffic uses TLS 1.3 with modern cipher suites only, on every platform.
       </p>
 
-      <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">Cross-device sync: end-to-end encrypted</h2>
+      <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">Cross-device sync: EU-hosted, encrypted in transit and at rest</h2>
       <p>
-        Cloud sync, when enabled, uses a separate set of keys derived on the device. The sync server (Supabase Storage, EU region) holds ciphertext and cannot decrypt. Sync is opt-in per notebook — you can keep some local-only while syncing others.
+        Cloud sync, when enabled, stores your notebooks on Supabase (EU region, eu-north-1). Sync traffic is encrypted in transit with TLS, and the stored data is encrypted at rest at the infrastructure level. It is <em>not</em> end-to-end encrypted: Fluera, as data controller, can technically access synced content. We never sell it or use it for advertising. Sync is opt-in per notebook — you can keep some local-only while syncing others.
       </p>
       <p>
-        Key rotation: initiating a rotation on any device re-encrypts all future sync payloads under a new key. Old ciphertext is kept readable for recovery by older clients until you confirm all devices have migrated.
+        Your on-device database stays encrypted with SQLCipher regardless of sync, and any notebook you export as a <code>.fluera</code> file is encrypted with AES-256-GCM independently of the cloud.
       </p>
 
       <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">P2P collaboration: direct, encrypted</h2>
@@ -61,12 +61,12 @@ import { SITE } from "@/lib/site";
         On restrictive NATs we fall back to a TURN relay, in which case the relay sees only encrypted DTLS packets it cannot decrypt.
       </p>
 
-      <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">AI calls: proxied, never direct</h2>
+      <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">AI calls: proxied, processed in the EU</h2>
       <p>
-        Calls to Google Gemini (Socratic mode, Ghost Map, LaTeX OCR, Exam Session) transit a Supabase Edge Function that holds the API key server-side. Client devices never see the API key. The proxy enforces per-plan rate limits and logs call durations for accounting — never the content of the canvas.
+        AI features (Socratic mode, Ghost Map, LaTeX OCR, Exam Session) use Google Gemini models served via Google Vertex AI, processed in the EU (europe-west4 NL / europe-west1 BE). Calls transit a proxy that holds credentials server-side, so client devices never see them. The proxy enforces per-plan rate limits and logs call durations for accounting — never the content of the canvas.
       </p>
       <p>
-        If you opt out of AI features in <em>Settings → Privacy</em>, no canvas content is ever sent to Gemini, even for on-device OCR fallbacks.
+        If you opt out of AI features in <em>Settings → Privacy</em>, no canvas content is ever sent for AI processing, even for on-device OCR fallbacks.
       </p>
 
       <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">Telemetry: opt-in, hashed, allowlisted</h2>

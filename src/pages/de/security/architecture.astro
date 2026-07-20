@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Sicherheitsarchitektur"
-  description="Wie Fluera dein Heft im Ruhezustand, im Transit und zwischen Geräten verschlüsselt. SQLCipher, TLS 1.3, Ende-zu-Ende-Synchronisierung, Opt-in-Telemetrie, Audit-Trail für Institutionen."
+  description="Wie Fluera dein Heft im Ruhezustand und im Transit verschlüsselt. SQLCipher, TLS 1.3, Cloud-Sync auf EU-Infrastruktur, Opt-in-Telemetrie, Audit-Trail für Institutionen."
   locale="de"
 >
   <PageHero
@@ -26,7 +26,7 @@ import { SITE } from "@/lib/site";
       <p>Innerhalb dieses Modells drei Garantien:</p>
       <ul>
         <li><strong>Lokale Daten sind ohne den Schlüssel unlesbar.</strong> Ein gestohlenes Gerät produziert ein verschlüsseltes Blob.</li>
-        <li><strong>Synchronisierte Daten sind für uns unlesbar.</strong> Die Cloud speichert nur Ciphertext. Die Ableitung geschieht auf dem Gerät.</li>
+        <li><strong>Synchronisierte Daten sind im Transit (TLS) und im Ruhezustand auf EU-Infrastruktur verschlüsselt.</strong> Cloud-Sync ist nicht Ende-zu-Ende-verschlüsselt; als Verantwortlicher kann Fluera technisch auf synchronisierte Inhalte zugreifen — wir verkaufen sie nie und nutzen sie nicht für Werbung.</li>
         <li><strong>Telemetrie ist einvernehmlich und de-identifiziert.</strong> Die Analytik kann eine/n Nutzer/in nicht mit ihrem Inhalt verbinden, nicht einmal im Fall eines vollständigen Breach.</li>
       </ul>
 
@@ -38,17 +38,17 @@ import { SITE } from "@/lib/site";
         Die Schlüsselableitung verwendet PBKDF2 mit SHA-256 und 256.000 Iterationen (im Einklang mit OWASP). Die Passphrase wird im Keychain der Plattform aufbewahrt — Keychain unter iOS/macOS, Keystore unter Android, DPAPI unter Windows, libsecret unter Linux. Sie wird nie an unsere Server gesendet.
       </p>
 
-      <h2>Im Transit: TLS 1.3, Certificate Pinning</h2>
+      <h2>Im Transit: TLS 1.3</h2>
       <p>
-        Der gesamte Netzwerkverkehr läuft über TLS 1.3 mit modernen Cipher Suites. Unter iOS und Android pinnen wir die Zertifikate auf unsere CA-Kette, um Man-in-the-Middle durch Unternehmens-Proxys zu verhindern — mit dokumentiertem Override für Netzwerkadministratoren, die ihn brauchen.
+        Der gesamte Netzwerkverkehr läuft über TLS 1.3 mit modernen Cipher Suites.
       </p>
 
-      <h2>Synchronisierung zwischen Geräten: Ende-zu-Ende</h2>
+      <h2>Synchronisierung zwischen Geräten</h2>
       <p>
-        Cloud-Sync, wenn aktiviert, verwendet einen separaten, auf dem Gerät abgeleiteten Schlüsselsatz. Der Sync-Server (Supabase Storage, Region EU) speichert Ciphertext und kann nicht entschlüsseln. Die Synchronisierung ist pro Heft Opt-in — du kannst manche Hefte nur lokal halten, während du andere synchronisierst.
+        Cloud-Sync, wenn aktiviert, überträgt deine Hefte verschlüsselt im Transit (TLS) zum Sync-Server (Supabase Storage, Region EU, eu-north-1), wo sie verschlüsselt im Ruhezustand auf EU-Infrastruktur gespeichert werden. Cloud-Sync ist <em>nicht</em> Ende-zu-Ende-verschlüsselt: Als Verantwortlicher kann Fluera technisch auf synchronisierte Inhalte zugreifen. Wir verkaufen diese Inhalte nie und nutzen sie nicht für Werbung. Die Synchronisierung ist pro Heft Opt-in — du kannst manche Hefte nur lokal halten, während du andere synchronisierst.
       </p>
       <p>
-        Schlüsselrotation: Wird sie von einem beliebigen Gerät gestartet, verschlüsselt sie alle zukünftigen Payloads mit einem neuen Schlüssel neu. Alte Ciphertexts bleiben für ältere Clients lesbar, bis du die Migration auf allen Geräten bestätigst.
+        Wenn du ein Heft nur lokal hältst, bleibt es ausschließlich in der mit SQLCipher verschlüsselten On-Device-Datenbank und wird nie an unsere Server übertragen. Für maximale Vertraulichkeit kannst du ein Heft als verschlüsselte <code>.fluera</code>-Datei (AES-256-GCM) exportieren.
       </p>
 
       <h2>P2P-Kollaboration: direkt, verschlüsselt</h2>
@@ -61,10 +61,10 @@ import { SITE } from "@/lib/site";
 
       <h2>KI-Aufrufe: über Proxy, niemals direkt</h2>
       <p>
-        Die Aufrufe an Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) laufen über eine Supabase Edge Function, die den API-Schlüssel auf dem Server hält. Die Client-Geräte sehen den Schlüssel nie. Der Proxy erzwingt Rate-Limits pro Plan und protokolliert die Aufrufdauern zu Abrechnungszwecken — niemals den Canvas-Inhalt.
+        Die KI-Funktionen (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) nutzen Google-Gemini-Modelle, die über Google Vertex AI bereitgestellt und in der EU verarbeitet werden (europe-west4 NL / europe-west1 BE). Die Aufrufe laufen über einen Proxy, der den API-Schlüssel auf dem Server hält. Die Client-Geräte sehen den Schlüssel nie. Der Proxy erzwingt Rate-Limits pro Plan und protokolliert die Aufrufdauern zu Abrechnungszwecken — niemals den Canvas-Inhalt.
       </p>
       <p>
-        Wenn du die KI-Funktionen unter <em>Einstellungen → Datenschutz</em> deaktivierst, wird kein Canvas-Inhalt an Gemini gesendet, auch nicht als Fallback für On-Device-OCR.
+        Wenn du die KI-Funktionen unter <em>Einstellungen → Datenschutz</em> deaktivierst, wird kein Canvas-Inhalt an die KI gesendet, auch nicht als Fallback für On-Device-OCR.
       </p>
 
       <h2>Telemetrie: Opt-in, gehasht, allowlisted</h2>

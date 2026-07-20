@@ -1,7 +1,7 @@
 ---
 lang: "hi"
 title: "Cloud sync"
-description: "Devices के बीच canvas को कैसे sync करें, क्या encrypted है और passphrase खो जाने पर कैसे recover करें।"
+description: "Devices के बीच canvas को कैसे sync करें, sync किया गया डेटा कैसे protect होता है और कहाँ store होता है।"
 section: settings
 sectionLabel: "सेटिंग्स"
 order: 2
@@ -13,7 +13,7 @@ Cloud sync per-notebook opt-in है। आप एक कैनवास को
 ## पहले डिवाइस पर sync सक्रिय करना
 
 1. **सेटिंग्स → गोपनीयता** खोलें और **Cloud sync** सक्रिय करें।
-2. अपना **sync passphrase** बनाएँ या enter करें। यह आपके account password से *अलग* है। Passphrase encryption key derive करने के लिए उपयोग होता है — और यह केवल आपके डिवाइस पर रहता है, हमारे servers पर कभी नहीं।
+2. उसी account के साथ sign in रहें जिसका उपयोग आप अपने अन्य डिवाइसों पर करते हैं।
 3. चुनें कि कौन से notebooks sync करने हैं। एक notebook पर right-click करें (या press और hold करें) → **Sync सक्रिय करें**।
 
 हर synced notebook पर एक छोटा cloud icon दिखाई देता है। एक लाल variant error indicate करता है; ग्रे pause।
@@ -22,22 +22,22 @@ Cloud sync per-notebook opt-in है। आप एक कैनवास को
 
 1. दूसरे डिवाइस पर Fluera install करें।
 2. उसी account के साथ sign in करें।
-3. जब prompt हो *वही* sync passphrase enter करें। Passphrase recoverable नहीं है — यदि आपके पास नहीं है, तो encrypted डेटा नए डिवाइस पर readable नहीं है।
-4. Cloud sync शुरू होता है। मध्यम आकार के notebook के लिए पहले पूर्ण sync में कुछ मिनट लगने की उम्मीद करें।
+3. Cloud sync शुरू होता है। मध्यम आकार के notebook के लिए पहले पूर्ण sync में कुछ मिनट लगने की उम्मीद करें।
 
-## क्या encrypted है और कैसे
+## आपका synced डेटा कैसे protect होता है और कहाँ store होता है
 
-- हर notebook स्थानीय रूप से per-notebook key के साथ encrypted है।
-- ये keys PBKDF2-SHA256, 256,000 iterations के माध्यम से आपके sync passphrase से derive की गई root key के साथ encrypted हैं।
-- केवल encrypted bytes server तक पहुँचते हैं। हम आपके notebooks पढ़ नहीं सकते।
+- आपके डिवाइस पर local database SQLCipher के साथ at-rest encrypted है।
+- Sync के दौरान डेटा हमेशा transit में encrypted होता है (TLS), और हमारे EU infrastructure (Supabase, eu-north-1) पर at-rest encrypted store होता है।
+- Sync किया गया डेटा **end-to-end encrypted नहीं** है। data controller के रूप में Fluera तकनीकी रूप से synced content तक पहुँच सकता है। हम इसे कभी बेचते नहीं और न ही advertising के लिए उपयोग करते हैं।
+- आपका डेटा EU में store और process होता है।
 
-Metadata (notebook titles, timestamps, size) भी encrypted है — server opaque blobs और sync timestamps देखता है।
+जब आप एक notebook को `.fluera` file के रूप में export करते हैं, तो वह file AES-256-GCM के साथ encrypted होती है।
 
-## यदि आप passphrase खो देते हैं
+## अपने account तक access खोना
 
-यदि आप passphrase भूल जाते हैं और आपके पास कोई डिवाइस नहीं है जिसमें अभी भी key cached हो, तो आपका encrypted डेटा **अप्राप्य** हो जाता है। यह डिज़ाइन से है। विकल्प — server-side recovery mechanism — end-to-end model को तोड़ देगा और एक trade-off है जिसे हम consumer accounts के लिए करने को तैयार नहीं हैं।
+आपका synced डेटा आपके account से जुड़ा होता है। यदि आप अपने account credentials खो देते हैं, तो उन्हें सामान्य account recovery flow के माध्यम से reset करें — आपका synced डेटा हमारे EU infrastructure पर सुरक्षित रहता है और दोबारा sign in करने पर उपलब्ध रहता है।
 
-**Education accounts** के लिए, deployment के समय एक admin द्वारा रखी गई optional recovery key configure की जा सकती है। यह स्पष्ट opt-in है, संस्थागत DPA में documented और audited।
+**Education accounts** के लिए, deployment के समय एक admin द्वारा access और recovery policies configure की जा सकती हैं। यह स्पष्ट opt-in है, संस्थागत DPA में documented और audited।
 
 ## Conflict resolution
 

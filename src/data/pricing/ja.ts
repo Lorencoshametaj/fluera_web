@@ -114,7 +114,7 @@ const data: PricingData = {
     },
     {
       q: "Team または Education プランは?",
-      a: "フェーズ2 で登場予定(共有ワークスペース、管理ダッシュボード、SSO)。興味があれば sales@fluera.dev へメール — 最初の design partner と一緒にロードマップを構築中です。",
+      a: "フェーズ2 で登場予定(共有ワークスペース、管理ダッシュボード、SSO)。興味があれば support@fluera.dev へメール — 最初の design partner と一緒にロードマップを構築中です。",
     },
   ],
 };

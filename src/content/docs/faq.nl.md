@@ -34,7 +34,7 @@ Het canvas — schrijven, lezen, exporteren — werkt volledig offline. De AI-fu
 
 ## Ik ben in Nederland. En de AVG?
 
-Volledig conform. Fluera wordt in de EU gehost en is AVG-native, wat de vereisten dekt. Je kunt je rechten (inzage, rectificatie, verwijdering, dataportabiliteit) uitoefenen via **Instellingen → Privacy** of door te mailen naar [privacy@fluera.dev](mailto:privacy@fluera.dev). Reactie binnen 30 dagen; meestal binnen 48 uur.
+Volledig conform. Fluera wordt in de EU gehost en is AVG-native, wat de vereisten dekt. Je kunt je rechten (inzage, rectificatie, verwijdering, dataportabiliteit) uitoefenen via **Instellingen → Privacy** of door te mailen naar [lorenco@fluera.dev](mailto:lorenco@fluera.dev). Reactie binnen 30 dagen; meestal binnen 48 uur.
 
 ## De Pencil hapert op mijn iPad. Wat is er aan de hand?
 
@@ -46,11 +46,11 @@ Blijft de lag bestaan met Predicted aan, sluit de app en open hem opnieuw. Blijf
 
 [support@fluera.dev](mailto:support@fluera.dev). Beschrijf wat je deed, wat je verwachtte, wat er gebeurde, en voeg de app-versie toe (Instellingen → Over). Screenshots helpen.
 
-Voor beveiligingsproblemen, gebruik [security@fluera.dev](mailto:security@fluera.dev) en versleutel met onze PGP-sleutel (op ons GitHub-profiel).
+Voor beveiligingsproblemen, gebruik [lorenco@fluera.dev](mailto:lorenco@fluera.dev) en versleutel met onze PGP-sleutel (op ons GitHub-profiel).
 
 ## Hoe geef ik feedback over de pedagogie?
 
-We lezen elke mail. [hello@fluera.dev](mailto:hello@fluera.dev) komt rechtstreeks bij de oprichters terecht. Vooral nuttig: wat *niet* voor je werkte, wat aanvoelde als wrijving die niet wenselijk was, en alles wat je verraste.
+We lezen elke mail. [support@fluera.dev](mailto:support@fluera.dev) komt rechtstreeks bij de oprichters terecht. Vooral nuttig: wat *niet* voor je werkte, wat aanvoelde als wrijving die niet wenselijk was, en alles wat je verraste.
 
 ## Verder
 

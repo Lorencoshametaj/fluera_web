@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Architektura bezpieczeństwa"
-  description="Jak Fluera szyfruje Twoje notatniki w spoczynku, w tranzycie i między urządzeniami. SQLCipher, TLS 1.3, sync end-to-end, telemetria opt-in, dziennik audytu dla instytucji."
+  description="Jak Fluera szyfruje Twoje notatniki w spoczynku i w tranzycie. SQLCipher, TLS 1.3, sync w chmurze UE, telemetria opt-in, dziennik audytu dla instytucji."
   locale="pl"
 >
   <PageHero
@@ -26,7 +26,7 @@ import { SITE } from "@/lib/site";
       <p>W ramach tego modelu trzy gwarancje:</p>
       <ul>
         <li><strong>Lokalne dane są nieczytelne bez klucza.</strong> Skradzione urządzenie produkuje zaszyfrowany blob.</li>
-        <li><strong>Synchronizowane dane są nieczytelne dla nas.</strong> Chmura przechowuje tylko szyfrogram. Wyprowadzanie odbywa się na urządzeniu.</li>
+        <li><strong>Synchronizowane dane są szyfrowane w tranzycie i w spoczynku.</strong> Sync w chmurze nie jest end-to-end: dane przechowujemy na infrastrukturze UE (Supabase, eu-north-1). Jako administrator danych mamy do nich techniczny dostęp — nigdy ich nie sprzedajemy ani nie używamy do reklam.</li>
         <li><strong>Telemetria jest opt-in i zdeidentyfikowana.</strong> Nawet w przypadku pełnego naruszenia analityka nie może powiązać użytkownika z jego treścią.</li>
       </ul>
 
@@ -38,14 +38,14 @@ import { SITE } from "@/lib/site";
         Wyprowadzanie klucza używa PBKDF2 z SHA-256, 256 000 iteracji (zgodnie z OWASP). Hasło jest przechowywane w pęku kluczy platformy — Keychain na iOS/macOS, Keystore na Androidzie, DPAPI na Windows, libsecret na Linuksie. Nigdy nie jest wysyłane na nasze serwery.
       </p>
 
-      <h2>W tranzycie: TLS 1.3, certificate pinning</h2>
+      <h2>W tranzycie: TLS 1.3</h2>
       <p>
-        Cały ruch sieciowy to TLS 1.3 z nowoczesnymi szyframi. Na iOS i Androidzie pinujemy certyfikaty do naszego łańcucha CA, by zapobiec atakom man-in-the-middle korporacyjnych proxy — z udokumentowanym obejściem dla administratorów sieci, którzy go potrzebują.
+        Cały ruch sieciowy to TLS 1.3 z nowoczesnymi zestawami szyfrów.
       </p>
 
-      <h2>Między urządzeniami: szyfrowanie end-to-end</h2>
+      <h2>Między urządzeniami: synchronizacja w chmurze UE</h2>
       <p>
-        Gdy aktywna, synchronizacja w chmurze używa odrębnego zestawu kluczy wyprowadzonych na urządzeniu. Serwer synchronizacji (Supabase Storage, region UE) przechowuje szyfrogram i nie może odszyfrować. Synchronizacja jest opt-in dla notatnika — możesz zachować niektóre tylko lokalnie, a inne synchronizować.
+        Gdy aktywna, synchronizacja w chmurze przesyła dane szyfrowane w tranzycie (TLS) i przechowuje je zaszyfrowane w spoczynku na infrastrukturze UE (Supabase, region eu-north-1). Synchronizacja <strong>nie</strong> jest end-to-end: jako administrator danych mamy do treści techniczny dostęp. Nigdy jej nie sprzedajemy ani nie używamy do reklam. Synchronizacja jest opt-in dla notatnika — możesz zachować niektóre tylko lokalnie, a inne synchronizować.
       </p>
 
       <h2>Współpraca P2P: bezpośrednia, szyfrowana</h2>
@@ -53,9 +53,9 @@ import { SITE } from "@/lib/site";
         Współpraca w czasie rzeczywistym używa WebRTC DataChannel z szyfrowaniem DTLS-SRTP. Supabase Realtime działa tylko jako broker sygnalizacji — konfiguracja połączenia — a nie jako przekaźnik dla rzeczywistego ruchu kanwy. Po uzgodnieniu edycje kanwy płyną P2P. Serwer ich nie widzi.
       </p>
 
-      <h2>Wywołania AI: przez proxy, nigdy bezpośrednio</h2>
+      <h2>Wywołania AI: w UE, przez proxy</h2>
       <p>
-        Wywołania do Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) idą przez Supabase Edge Function, która trzyma klucz API po stronie serwera. Urządzenia klienckie nigdy nie widzą klucza. Proxy egzekwuje limity per-plan i loguje czas trwania wywołań do rachunkowości — nigdy treści kanwy.
+        Wywołania do modeli Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) są obsługiwane przez Google Vertex AI i przetwarzane w UE (europe-west4 NL / europe-west1 BE), przez nasze proxy, które trzyma poświadczenia po stronie serwera. Urządzenia klienckie nigdy nie widzą klucza. Proxy egzekwuje limity per-plan i loguje czas trwania wywołań do rachunkowości — nigdy treści kanwy.
       </p>
 
       <h2>Telemetria: opt-in, hashowana, na liście dozwolonych</h2>

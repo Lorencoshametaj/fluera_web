@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Sikkerhetsarkitektur"
-  description="Hvordan Fluera krypterer notatboken din i ro, i transitt og mellom enheter. SQLCipher, TLS 1.3, ende-til-ende-synkronisering, opt-in-telemetri, audit-spor for institusjoner."
+  description="Hvordan Fluera beskytter notatboken din i ro, i transitt og mellom enheter. SQLCipher, TLS 1.3, EU-hostet skysynkronisering, opt-in-telemetri, audit-spor for institusjoner."
   locale="no"
 >
   <PageHero
@@ -26,7 +26,7 @@ import { SITE } from "@/lib/site";
       <p>Innenfor denne modellen gir vi tre garantier:</p>
       <ul>
         <li><strong>Lokale data er uleselige uten nøkkelen.</strong> En stjålet enhet produserer en kryptert blob.</li>
-        <li><strong>Synkroniserte data er uleselige for oss.</strong> Skyen lagrer kun chiffertekst. Avledningen skjer på enheten.</li>
+        <li><strong>Synkroniserte data er kryptert i transitt og i ro på EU-infrastruktur.</strong> Skysynkronisering er ikke ende-til-ende-kryptert: Fluera kan, som dataansvarlig, få tilgang til det synkroniserte innholdet, men selger det aldri og bruker det aldri til annonsering.</li>
         <li><strong>Telemetri er samtykkebasert og avidentifisert.</strong> Analytikken kan ikke knytte en bruker til innholdet, ikke engang ved et fullstendig brudd.</li>
       </ul>
 
@@ -38,17 +38,14 @@ import { SITE } from "@/lib/site";
         Nøkkelavledningen bruker PBKDF2 med SHA-256 og 256 000 iterasjoner (i tråd med OWASP). Passfrasen oppbevares i plattformens keychain — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows, libsecret på Linux. Den sendes aldri til våre servere.
       </p>
 
-      <h2>I transitt: TLS 1.3, certificate pinning</h2>
+      <h2>I transitt: TLS 1.3</h2>
       <p>
-        All nettverkstrafikk går over TLS 1.3 med moderne cipher suites. På iOS og Android pinner vi sertifikatene til vår CA-kjede for å hindre man-in-the-middle gjennom bedriftsproxyer — med dokumentert override for nettverksadministratorer som trenger det.
+        All nettverkstrafikk går over TLS 1.3 med moderne cipher suites.
       </p>
 
-      <h2>Synkronisering mellom enheter: ende-til-ende</h2>
+      <h2>Synkronisering mellom enheter: EU-hostet, kryptert i transitt og i ro</h2>
       <p>
-        Skysynkronisering, når aktivert, bruker et separat sett med nøkler avledet på enheten. Synkserveren (Supabase Storage, region EU) lagrer chiffertekst og kan ikke dekryptere. Synkronisering er opt-in per notatbok — du kan beholde enkelte notatbøker kun lokalt mens du synker andre.
-      </p>
-      <p>
-        Nøkkelrotasjon: når den startes fra en hvilken som helst enhet, krypterer den alle framtidige nyttelaster med en ny nøkkel. Gamle chiffertekster forblir lesbare for eldre klienter inntil du bekrefter migrasjonen på alle enheter.
+        Skysynkronisering, når aktivert, lagrer notatbøkene dine på Supabase i EU (region eu-north-1). Dataene er kryptert i transitt (TLS) og i ro på infrastrukturnivå, men synkronisering er <em>ikke</em> ende-til-ende-kryptert: serveren lagrer ikke chiffertekst som bare enheten din kan låse opp. Som dataansvarlig kan Fluera teknisk få tilgang til det synkroniserte innholdet — vi selger det aldri og bruker det aldri til annonsering. Synkronisering er opt-in per notatbok — du kan beholde enkelte notatbøker kun lokalt mens du synker andre.
       </p>
 
       <h2>P2P-samarbeid: direkte, kryptert</h2>
@@ -61,7 +58,7 @@ import { SITE } from "@/lib/site";
 
       <h2>KI-kall: via proxy, aldri direkte</h2>
       <p>
-        Kallene til Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) går gjennom en Supabase Edge Function som holder API-nøkkelen på serveren. Klientenhetene ser aldri nøkkelen. Proxyen håndhever ratebegrensning per plan og logger varigheten på kallene for fakturering — aldri canvas-innholdet.
+        Kallene til Google Gemini-modeller (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) betjenes via Google Vertex AI og behandles i EU (europe-west4 NL / europe-west1 BE). De går gjennom en proxy som holder API-nøkkelen på serveren. Klientenhetene ser aldri nøkkelen. Proxyen håndhever ratebegrensning per plan og logger varigheten på kallene for fakturering — aldri canvas-innholdet.
       </p>
       <p>
         Hvis du deaktiverer KI-funksjonene under <em>Innstillinger → Personvern</em>, sendes ikke noe canvas-innhold til Gemini, heller ikke som fallback for on-device OCR.

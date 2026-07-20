@@ -6,16 +6,16 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "Baza danych, uwierzytelnianie, zaszyfrowane przechowywanie w chmurze, sygnalizacja realtime, Edge Function dla proxy AI.",
-    dataTypes: "E-mail konta, hashowane ID użytkownika, szyfrogram kanwy (E2E zaszyfrowany), metadane synchronizacji.",
-    region: "Frankfurt, UE (region domyślny dla instancji Fluery).",
+    purpose: "Baza danych, uwierzytelnianie, przechowywanie w chmurze, sygnalizacja realtime.",
+    dataTypes: "E-mail konta, hashowane ID użytkownika, dane kanwy synchronizowane do chmury (szyfrowane w tranzycie przez TLS oraz w spoczynku na infrastrukturze UE — nie jest to szyfrowanie end-to-end; Fluera jako administrator danych ma do nich techniczny dostęp, nigdy ich nie sprzedaje ani nie wykorzystuje do reklam), metadane synchronizacji.",
+    region: "eu-north-1 (UE; region domyślny dla instancji Fluery).",
     privacy: "https://supabase.com/privacy",
   },
   {
     name: "Google LLC",
-    purpose: "Google Generative AI (Gemini) dla Socratic Mode, Ghost Map, LaTeX OCR i generowania sesji egzaminacyjnych.",
+    purpose: "Modele Google Gemini udostępniane przez Google Vertex AI dla Socratic Mode, Ghost Map, LaTeX OCR i generowania sesji egzaminacyjnych.",
     dataTypes: "Wybrane fragmenty tekstu z kanwy (tylko jeśli funkcje AI są dozwolone i aktywne). Nigdy całe notatniki.",
-    region: "USA, UE przez regiony Google Cloud; SCC + EU-US DPF.",
+    region: "Przetwarzane w UE przez Vertex AI (europe-west4 NL / europe-west1 BE).",
     privacy: "https://policies.google.com/privacy",
   },
   {

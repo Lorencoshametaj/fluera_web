@@ -34,7 +34,7 @@ Fluera가 일시 중지 후 노트북을 처음 로드할 때, 공간 인덱스�
 
 ## EU에 있습니다. GDPR이 여기서 어떻게 적용되나요?
 
-완전히. Fluera는 EU 호스팅이고 GDPR 기본입니다. **설정 → 개인정보**를 통해 또는 [privacy@fluera.dev](mailto:privacy@fluera.dev)로 이메일을 보내 권리 (액세스, 수정, 삭제, 이동성)를 행사할 수 있습니다. 30일 이내 응답; 일반적으로 48시간 이내.
+완전히. Fluera는 EU 호스팅이고 GDPR 기본입니다. **설정 → 개인정보**를 통해 또는 [lorenco@fluera.dev](mailto:lorenco@fluera.dev)로 이메일을 보내 권리 (액세스, 수정, 삭제, 이동성)를 행사할 수 있습니다. 30일 이내 응답; 일반적으로 48시간 이내.
 
 ## iPad에서 Pencil이 지연됩니다. 무엇이 잘못되었나요?
 
@@ -46,11 +46,11 @@ Predicted가 켜진 상태에서 지연이 지속되면, 종료하고 다시 시
 
 [support@fluera.dev](mailto:support@fluera.dev). 무엇을 하고 있었는지, 무엇을 기대했는지, 무엇이 일어났는지 설명하고, 앱 버전 (설정 → 정보)을 포함합니다. 스크린샷이 도움이 됩니다.
 
-보안 취약점의 경우, [security@fluera.dev](mailto:security@fluera.dev)를 사용하고 우리의 PGP 키 (GitHub 프로필에 있음)로 암호화합니다.
+보안 취약점의 경우, [lorenco@fluera.dev](mailto:lorenco@fluera.dev)를 사용하고 우리의 PGP 키 (GitHub 프로필에 있음)로 암호화합니다.
 
 ## 교육학에 대한 피드백을 어떻게 주나요?
 
-우리는 모든 이메일을 읽습니다. [hello@fluera.dev](mailto:hello@fluera.dev)는 창립자에게 직접 갑니다. 특히 도움이 되는 것: 무엇이 *작동하지 않았는지*, 무엇이 바람직하지 않은 마찰처럼 느껴졌는지, 놀라움을 준 모든 것.
+우리는 모든 이메일을 읽습니다. [support@fluera.dev](mailto:support@fluera.dev)는 창립자에게 직접 갑니다. 특히 도움이 되는 것: 무엇이 *작동하지 않았는지*, 무엇이 바람직하지 않은 마찰처럼 느껴졌는지, 놀라움을 준 모든 것.
 
 ## 다음
 

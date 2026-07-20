@@ -6,16 +6,23 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "Database, authentication, encrypted cloud storage, realtime signalling, AI proxy Edge Functions.",
-    dataTypes: "Account email, hashed user ID, canvas ciphertext (E2E encrypted), sync metadata.",
-    region: "Frankfurt, EU (default region for Fluera instances).",
+    purpose: "Database, authentication, cloud storage, realtime signalling, AI proxy Edge Functions.",
+    dataTypes: "Account email, hashed user ID, synced canvas content (encrypted in transit via TLS and at rest on EU infrastructure — not end-to-end encrypted; accessible to Fluera as data controller, never sold or used for advertising), sync metadata.",
+    region: "Stockholm, EU (eu-north-1) — production. Dublin, EU (eu-west-1) — staging.",
     privacy: "https://supabase.com/privacy",
   },
   {
+    name: "Google Cloud (Google Ireland Ltd.)",
+    purpose: "Vertex AI (Gemini models) for Socratic mode, Ghost Map, LaTeX OCR, and exam-session generation.",
+    dataTypes: "Selected canvas content submitted only when AI features are consented and used — text portions and rendered PNG images of individual handwriting-cluster regions. Never the full notebook.",
+    region: "European Union only — europe-west4 (Netherlands) primary, europe-west1 (Belgium) failover. No transfer of canvas content outside the EU for AI inference.",
+    privacy: "https://cloud.google.com/terms/data-processing-addendum",
+  },
+  {
     name: "Google LLC",
-    purpose: "Google Generative AI (Gemini) for Socratic mode, Ghost Map, LaTeX OCR, and exam-session generation.",
-    dataTypes: "Selected canvas text portions (only when AI features are consented and used). Never the full notebook.",
-    region: "US, EU via Google Cloud regions; SCC + EU-US DPF.",
+    purpose: "Sign in with Google authentication (identity provider).",
+    dataTypes: "Google account email and account identifier. No canvas data.",
+    region: "US; SCC + EU-US DPF.",
     privacy: "https://policies.google.com/privacy",
   },
   {
@@ -35,7 +42,7 @@ const processors = [
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "Crash reporting and error monitoring.",
-    dataTypes: "Stack traces, OS version, device model, app version. sendDefaultPii is explicitly disabled — no user content.",
+    dataTypes: "Stack traces, OS version, device model, app version. sendDefaultPii is explicitly disabled and IP addresses are not stored — no user content.",
     region: "US, EU options available.",
     privacy: "https://sentry.io/privacy/",
   },
@@ -48,7 +55,7 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-04-20";
+const lastUpdated = "2026-06-27";
 ---
 
 <BaseLayout

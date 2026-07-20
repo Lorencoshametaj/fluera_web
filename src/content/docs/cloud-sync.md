@@ -1,6 +1,6 @@
 ---
 title: "Cloud sync"
-description: "How to sync canvases between devices, what gets encrypted, and how to recover if you lose your passphrase."
+description: "How to sync canvases between devices, how your data is protected, and what to expect."
 section: settings
 sectionLabel: "Settings"
 order: 2
@@ -12,8 +12,7 @@ Cloud sync is opt-in per notebook. You can sync one canvas while keeping another
 ## Enabling sync on your first device
 
 1. Open **Settings → Privacy** and enable **Cloud sync**.
-2. Create or enter your **sync passphrase**. This is *separate* from your account password. The passphrase is used to derive the encryption key — and it is held only on your device, never on our servers.
-3. Choose which notebooks sync. Right-click (or long-press) a notebook → **Enable sync**.
+2. Choose which notebooks sync. Right-click (or long-press) a notebook → **Enable sync**.
 
 A small cloud icon appears on each synced notebook. A red variant means an error; a grey one means paused.
 
@@ -21,22 +20,21 @@ A small cloud icon appears on each synced notebook. A red variant means an error
 
 1. Install Fluera on the second device.
 2. Sign in with the same account.
-3. Enter the *same* sync passphrase when prompted. The passphrase is not recoverable — if you don't have it, the encrypted data is not readable on the new device.
-4. Cloud sync begins. Expect the first full sync to take a few minutes for a moderately large notebook.
+3. Cloud sync begins automatically. Expect the first full sync to take a few minutes for a moderately large notebook.
 
-## What is encrypted and how
+## How your synced data is protected
 
-- Every notebook is encrypted locally with a per-notebook key.
-- Those keys are encrypted with a root key derived from your sync passphrase via PBKDF2-SHA256, 256,000 iterations.
-- Only the encrypted bytes ever reach the server. We cannot read your notebooks.
+- On your device, the local database is encrypted at rest with SQLCipher (AES-256).
+- When you sync, your data travels encrypted in transit (TLS 1.3 with modern cipher suites).
+- On our servers it is stored on EU infrastructure (Supabase, `eu-north-1`) and is protected by at-rest encryption at the infrastructure level.
 
-Metadata (notebook titles, timestamps, size) is also encrypted — the server sees opaque blobs and sync timestamps.
+To be clear: cloud sync is **not** end-to-end encrypted. As the data controller, Fluera can technically access synced content to provide and operate the service. We never sell your data and never use it for advertising. If you want a copy that only you can open, export a `.fluera` file — those exports are encrypted with AES-256-GCM.
 
-## Losing your passphrase
+## Recovering your data
 
-If you forget your passphrase and you have no device that still has a cached key, your encrypted data becomes **unrecoverable**. This is by design. The alternative — a server-side recovery mechanism — would break the end-to-end model and is a trade-off we are not willing to make for consumer accounts.
+Because synced notebooks are stored on our EU servers (and tied to your account), you can recover them by signing in again on any device. There is no separate passphrase to remember or lose.
 
-For **Education accounts**, an optional administrator-held recovery key can be configured at deployment time. This is an explicit opt-in, documented on the institutional DPA, and audited.
+If you want a copy that is encrypted so that only you can open it, export a `.fluera` file (AES-256-GCM) and keep its password yourself — that file is not readable by Fluera.
 
 ## Conflict resolution
 

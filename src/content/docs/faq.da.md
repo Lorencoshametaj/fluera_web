@@ -34,7 +34,7 @@ Canvasset — skrivning, læsning, eksport — er fuldstændigt offline. AI-funk
 
 ## Jeg er i Danmark. Og GDPR?
 
-Fuldt overholdt. Fluera hostes i EU og er GDPR-native. Du kan udøve dine rettigheder (adgang, berigtigelse, sletning, dataportabilitet) via **Indstillinger → Privatliv** eller ved at skrive til [privacy@fluera.dev](mailto:privacy@fluera.dev). Svar inden for 30 dage; typisk inden for 48 timer.
+Fuldt overholdt. Fluera hostes i EU og er GDPR-native. Du kan udøve dine rettigheder (adgang, berigtigelse, sletning, dataportabilitet) via **Indstillinger → Privatliv** eller ved at skrive til [lorenco@fluera.dev](mailto:lorenco@fluera.dev). Svar inden for 30 dage; typisk inden for 48 timer.
 
 ## Pencil'en hakker på min iPad. Hvad er galt?
 
@@ -46,11 +46,11 @@ Hvis hakket fortsætter med Predicted slået til, så luk og genstart. Hvis det 
 
 [support@fluera.dev](mailto:support@fluera.dev). Beskriv hvad du var ved at gøre, hvad du forventede, hvad der skete, og inkluder app-versionen (Indstillinger → Om). Skærmbilleder hjælper.
 
-For sikkerhedssårbarheder, brug [security@fluera.dev](mailto:security@fluera.dev) og kryptér med vores PGP-nøgle (på vores GitHub-profil).
+For sikkerhedssårbarheder, brug [lorenco@fluera.dev](mailto:lorenco@fluera.dev) og kryptér med vores PGP-nøgle (på vores GitHub-profil).
 
 ## Hvordan giver jeg feedback om pædagogikken?
 
-Vi læser hver eneste e-mail. [hello@fluera.dev](mailto:hello@fluera.dev) går direkte til grundlæggerne. Særligt nyttigt: hvad der *ikke* virkede for dig, hvad der føltes som friktion, der ikke var ønskværdig, og alt der overraskede dig.
+Vi læser hver eneste e-mail. [support@fluera.dev](mailto:support@fluera.dev) går direkte til grundlæggerne. Særligt nyttigt: hvad der *ikke* virkede for dig, hvad der føltes som friktion, der ikke var ønskværdig, og alt der overraskede dig.
 
 ## Næste
 

@@ -114,7 +114,7 @@ const data: PricingData = {
     },
     {
       q: "Team 또는 Education 플랜은?",
-      a: "2단계에서 출시 예정 (공유 워크스페이스, 관리자 대시보드, SSO). 관심 있으시면 sales@fluera.dev로 메일 — 첫 design partner와 함께 로드맵을 만들고 있습니다.",
+      a: "2단계에서 출시 예정 (공유 워크스페이스, 관리자 대시보드, SSO). 관심 있으시면 support@fluera.dev로 메일 — 첫 design partner와 함께 로드맵을 만들고 있습니다.",
     },
   ],
 };

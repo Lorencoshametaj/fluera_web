@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Sikkerhedsarkitektur"
-  description="Hvordan Fluera krypterer din notesbog i hvile, under transport og mellem enheder. SQLCipher, TLS 1.3, end-to-end-synkronisering, opt-in-telemetri, audit-trail for institutioner."
+  description="Hvordan Fluera beskytter din notesbog i hvile, under transport og mellem enheder. SQLCipher, TLS 1.3, cloud-sync på EU-infrastruktur, opt-in-telemetri, audit-trail for institutioner."
   locale="da"
 >
   <PageHero
@@ -26,7 +26,7 @@ import { SITE } from "@/lib/site";
       <p>Inden for den model gælder tre garantier:</p>
       <ul>
         <li><strong>Lokale data er ulæselige uden nøglen.</strong> En stjålet enhed producerer en krypteret blob.</li>
-        <li><strong>Synkroniserede data er ulæselige for os.</strong> Cloudet gemmer kun chiffertekst. Udledningen sker på enheden.</li>
+        <li><strong>Synkroniserede data beskyttes under transport og i hvile på EU-infrastruktur.</strong> Cloud-sync er ikke end-to-end-krypteret: som dataansvarlig kan Fluera teknisk tilgå synkroniseret indhold. Vi sælger det aldrig og bruger det aldrig til annoncering.</li>
         <li><strong>Telemetri er samtykkebaseret og afidentificeret.</strong> Analytics kan ikke forbinde en bruger med dennes indhold, ikke engang i tilfælde af et fuldt breach.</li>
       </ul>
 
@@ -38,17 +38,17 @@ import { SITE } from "@/lib/site";
         Nøgleudledningen bruger PBKDF2 med SHA-256 og 256.000 iterationer (i tråd med OWASP). Adgangsfrasen opbevares i platformens keychain — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows, libsecret på Linux. Den sendes aldrig til vores servere.
       </p>
 
-      <h2>Under transport: TLS 1.3, certificate pinning</h2>
+      <h2>Under transport: TLS 1.3</h2>
       <p>
-        Al netværkstrafik kører over TLS 1.3 med moderne cipher suites. På iOS og Android pinner vi certifikaterne til vores CA-kæde for at forhindre man-in-the-middle gennem enterprise-proxyer — med dokumenteret override for netværksadministratorer, der har brug for det.
+        Al netværkstrafik kører over TLS 1.3 med moderne cipher suites.
       </p>
 
-      <h2>Synkronisering mellem enheder: end-to-end</h2>
+      <h2>Synkronisering mellem enheder</h2>
       <p>
-        Cloud-sync, når den er aktiveret, bruger et separat nøglesæt udledt på enheden. Sync-serveren (Supabase Storage, region EU) gemmer chiffertekst og kan ikke dekryptere. Synkronisering er opt-in pr. notesbog — du kan holde nogle notesbøger lokalt, mens du synkroniserer andre.
+        Cloud-sync, når den er aktiveret, sender dine notesbøger over TLS til vores sync-tjeneste (Supabase, region EU, eu-north-1), hvor de opbevares krypteret i hvile på infrastrukturniveau. Synkroniseringen er <em>ikke</em> end-to-end-krypteret: data lagres serverlæsbart (gzip-komprimeret), og Fluera kan som dataansvarlig teknisk tilgå indholdet. Vi sælger det aldrig og bruger det aldrig til annoncering. Synkronisering er opt-in pr. notesbog — du kan holde nogle notesbøger lokalt, mens du synkroniserer andre.
       </p>
       <p>
-        Nøglerotation: når den startes fra en hvilken som helst enhed, krypterer den alle fremtidige payloads med en ny nøgle. Gamle chiffertekster forbliver læsbare for ældre klienter, indtil du bekræfter migreringen på alle enheder.
+        Vil du have, at indholdet aldrig forlader din enhed serverlæsbart, så lad være med at aktivere cloud-sync for den pågældende notesbog. Den lokale database forbliver krypteret med SQLCipher, og <code>.fluera</code>-eksporter er AES-256-GCM-krypterede.
       </p>
 
       <h2>P2P-samarbejde: direkte, krypteret</h2>
@@ -61,7 +61,7 @@ import { SITE } from "@/lib/site";
 
       <h2>AI-kald: via proxy, aldrig direkte</h2>
       <p>
-        Kaldene til Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) går via en Supabase Edge Function, der holder API-nøglen på serveren. Klient-enhederne ser aldrig nøglen. Proxyen håndhæver rate-limits pr. plan og logger kaldenes varigheder til faktureringsformål — aldrig canvas-indholdet.
+        Kaldene til Google Gemini-modeller (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) serveres via Google Vertex AI og behandles i EU (europe-west4 NL / europe-west1 BE). De går via en proxy, der holder credentials på serveren. Klient-enhederne ser aldrig nøglen. Proxyen håndhæver rate-limits pr. plan og logger kaldenes varigheder til faktureringsformål — aldrig canvas-indholdet.
       </p>
       <p>
         Hvis du deaktiverer AI-funktionerne under <em>Indstillinger → Privatliv</em>, sendes intet canvas-indhold til Gemini, heller ikke som fallback for on-device-OCR.

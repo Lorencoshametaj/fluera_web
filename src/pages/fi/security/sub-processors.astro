@@ -6,16 +6,16 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "Tietokanta, autentikointi, salattu pilvitallennus, Realtime-signalointi, Edge Function tekoälyvälityspalvelimelle.",
-    dataTypes: "Tilin sähköposti, hashattu käyttäjä-ID, canvas-salateksti (E2E-salattu), synkronoinnin metatiedot.",
-    region: "Frankfurt, EU (Flueran instanssien oletusalue).",
+    purpose: "Tietokanta, autentikointi, pilvitallennus ja -synkronointi, Realtime-signalointi.",
+    dataTypes: "Tilin sähköposti, hashattu käyttäjä-ID, synkronoitu canvas-data ja synkronoinnin metatiedot. Synkronoitu data on salattu siirron aikana (TLS) ja levossa EU-infrastruktuurissa; sitä ei ole päästä päähän -salattu, joten Fluera voi rekisterinpitäjänä käsitellä sitä. Emme koskaan myy sitä emmekä käytä mainontaan.",
+    region: "eu-north-1, EU (Tukholma, Flueran instanssien oletusalue).",
     privacy: "https://supabase.com/privacy",
   },
   {
     name: "Google LLC",
-    purpose: "Google Generative AI (Gemini) Socratic Modea, Ghost Mapia, LaTeX-OCR:ää ja Exam Sessionien generointia varten.",
+    purpose: "Google Gemini -mallit Google Vertex AI:n kautta tarjottuina, Socratic Modea, Ghost Mapia, LaTeX-OCR:ää ja Exam Sessionien generointia varten.",
     dataTypes: "Valitut tekstipätkät canvasilta (vain kun tekoälyominaisuudet on sallittu ja aktiivisia). Ei koskaan koko muistikirjaa.",
-    region: "USA, EU Google Cloud -alueiden kautta; SCC:t + EU-US DPF.",
+    region: "Käsitellään EU:ssa (europe-west4 NL / europe-west1 BE).",
     privacy: "https://policies.google.com/privacy",
   },
   {

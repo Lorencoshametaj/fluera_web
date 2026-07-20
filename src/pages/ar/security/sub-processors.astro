@@ -6,16 +6,16 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "قاعدة بيانات، مصادقة، تخزين سحابي مشفّر، إشارات realtime، Edge Function لبروكسي AI.",
-    dataTypes: "بريد الحساب، معرّف مستخدم مُجزَّأ، نصّ مشفّر للوحة (E2E)، بيانات وصفية للمزامنة.",
-    region: "فرانكفورت، الاتّحاد الأوروبي (المنطقة الافتراضية لمثيلات Fluera).",
+    purpose: "قاعدة بيانات، مصادقة، تخزين سحابي، إشارات realtime، بروكسي لنماذج AI.",
+    dataTypes: "بريد الحساب، معرّف مستخدم مُجزَّأ، بيانات اللوحة المُزامَنة، بيانات وصفية للمزامنة. البيانات المُزامَنة مشفّرة أثناء النقل (TLS) وفي حالة السكون على بنية تحتية في الاتّحاد الأوروبي؛ ليست مشفّرة طرفًا‑لطرف — يمكن لـFluera كمراقب للبيانات الوصول إليها، لكنّها لا تُباع أبدًا ولا تُستخدَم للإعلانات.",
+    region: "الاتّحاد الأوروبي (eu-north-1) (المنطقة الافتراضية لمثيلات Fluera).",
     privacy: "https://supabase.com/privacy",
   },
   {
     name: "Google LLC",
-    purpose: "Google Generative AI (Gemini) لـSocratic Mode وGhost Map وLaTeX OCR وتوليد جلسات الامتحان.",
+    purpose: "نماذج Google Gemini عبر Google Vertex AI لـSocratic Mode وGhost Map وLaTeX OCR وتوليد جلسات الامتحان.",
     dataTypes: "أجزاء نصّية مختارة من اللوحة (فقط إن كانت ميزات AI مسموحة ومُفعَّلة). لا دفاتر كاملة أبدًا.",
-    region: "الولايات المتّحدة، الاتّحاد الأوروبي عبر مناطق Google Cloud؛ SCC + EU-US DPF.",
+    region: "الاتّحاد الأوروبي (europe-west4 هولندا / europe-west1 بلجيكا) عبر Google Vertex AI.",
     privacy: "https://policies.google.com/privacy",
   },
   {

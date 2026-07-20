@@ -1,7 +1,7 @@
 ---
 lang: "nl"
 title: "Cloud sync"
-description: "Hoe je canvasses synchroniseert tussen apparaten, wat versleuteld wordt en hoe je herstelt als je je passphrase verliest."
+description: "Hoe je canvasses synchroniseert tussen apparaten en hoe gesynchroniseerde data wordt beschermd."
 section: settings
 sectionLabel: "Instellingen"
 order: 2
@@ -13,8 +13,7 @@ Cloud sync is opt-in per notitieboek. Je kunt het ene canvas synchroniseren terw
 ## Sync inschakelen op het eerste apparaat
 
 1. Open **Instellingen → Privacy** en zet **Cloud sync** aan.
-2. Maak of vul je **sync-passphrase** in. Die is *gescheiden* van je accountwachtwoord. De passphrase wordt gebruikt om de versleutelingssleutel af te leiden — en wordt alleen op je apparaat bewaard, nooit op onze servers.
-3. Kies welke notitieboeken je synchroniseert. Rechtsklik (of houd ingedrukt) op een notitieboek → **Sync inschakelen**.
+2. Kies welke notitieboeken je synchroniseert. Rechtsklik (of houd ingedrukt) op een notitieboek → **Sync inschakelen**.
 
 Een klein wolkje verschijnt bij elk gesynchroniseerd notitieboek. Een rode variant duidt op een fout; een grijze op een pauze.
 
@@ -22,22 +21,21 @@ Een klein wolkje verschijnt bij elk gesynchroniseerd notitieboek. Een rode varia
 
 1. Installeer Fluera op het tweede apparaat.
 2. Meld je aan met hetzelfde account.
-3. Voer *dezelfde* sync-passphrase in wanneer daar om wordt gevraagd. De passphrase is niet herstelbaar — heb je hem niet, dan zijn de versleutelde data op het nieuwe apparaat niet leesbaar.
-4. Cloud sync start. Verwacht dat de eerste volledige sync een paar minuten duurt voor een notitieboek van gemiddelde grootte.
+3. Cloud sync start. Verwacht dat de eerste volledige sync een paar minuten duurt voor een notitieboek van gemiddelde grootte.
 
-## Wat wordt versleuteld en hoe
+## Hoe gesynchroniseerde data wordt beschermd
 
-- Elk notitieboek wordt lokaal versleuteld met een sleutel per notitieboek.
-- Die sleutels worden versleuteld met een root-sleutel afgeleid uit je sync-passphrase via PBKDF2-SHA256, 256.000 iteraties.
-- Alleen de versleutelde bytes komen op de server. We kunnen je notitieboeken niet lezen.
+- Lokaal op je apparaat wordt elk notitieboek at-rest versleuteld met SQLCipher.
+- Gesynchroniseerde data wordt verzonden over een versleutelde verbinding (TLS 1.3 met moderne cipher suites) en at-rest opgeslagen op EU-infrastructuur (Supabase, regio eu-north-1).
+- Cloud sync is **niet** end-to-end versleuteld. Als verwerkingsverantwoordelijke kan Fluera technisch toegang krijgen tot gesynchroniseerde inhoud. We verkopen je data nooit en gebruiken die nooit voor advertenties.
 
-De metadata (notitieboektitels, timestamps, grootte) zijn ook versleuteld — de server ziet ondoorzichtige blobs en sync-timestamps.
+De metadata (notitieboektitels, timestamps, grootte) worden samen met de inhoud op dezelfde EU-infrastructuur opgeslagen.
 
-## Als je de passphrase verliest
+## Toegang en herstel
 
-Vergeet je de passphrase en heb je geen apparaat meer waar een sleutel in cache staat, dan worden je versleutelde data **onherstelbaar**. Dat is by design. Het alternatief — een server-side herstelmechanisme — zou het end-to-end-model breken en is een trade-off die we voor consumer-accounts niet willen maken.
+Omdat gesynchroniseerde data op EU-infrastructuur wordt opgeslagen en niet aan een lokale passphrase is gekoppeld, kun je je gesynchroniseerde notitieboeken terugkrijgen door je opnieuw aan te melden met hetzelfde account op een nieuw apparaat. Er is geen aparte sync-passphrase die verloren kan gaan.
 
-Voor **Education-accounts** kan optioneel een recovery-sleutel worden geconfigureerd die de beheerder bewaart, tijdens de uitrol. Het is een expliciete opt-in, gedocumenteerd in de institutionele DPA en geaudit.
+Wil je dat een notitieboek nooit de cloud raakt, laat **Cloud sync** dan uit voor dat notitieboek; het blijft dan strikt lokaal, at-rest versleuteld met SQLCipher.
 
 ## Conflict-resolutie
 

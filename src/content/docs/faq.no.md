@@ -34,7 +34,7 @@ Canvaset — skriving, lesing, eksport — er helt offline. AI-funksjoner (Socra
 
 ## Jeg er i Norge. Og GDPR?
 
-Fullt kompatibel. Fluera hostes i EU og er GDPR-native. Du kan utøve rettighetene dine (innsyn, retting, sletting, dataportabilitet) via **Innstillinger → Personvern** eller ved å skrive til [privacy@fluera.dev](mailto:privacy@fluera.dev). Svar innen 30 dager; vanligvis innen 48 timer.
+Fullt kompatibel. Fluera hostes i EU og er GDPR-native. Du kan utøve rettighetene dine (innsyn, retting, sletting, dataportabilitet) via **Innstillinger → Personvern** eller ved å skrive til [lorenco@fluera.dev](mailto:lorenco@fluera.dev). Svar innen 30 dager; vanligvis innen 48 timer.
 
 ## Apple Pencil henger på iPaden min. Hva er galt?
 
@@ -46,11 +46,11 @@ Hvis lagget vedvarer med Predicted på, lukk og start på nytt. Hvis det fortsat
 
 [support@fluera.dev](mailto:support@fluera.dev). Beskriv hva du holdt på med, hva du forventet, hva som skjedde, og inkluder app-versjonen (Innstillinger → Om). Skjermbilder hjelper.
 
-For sikkerhetssårbarheter, bruk [security@fluera.dev](mailto:security@fluera.dev) og krypter med PGP-nøkkelen vår (på GitHub-profilen vår).
+For sikkerhetssårbarheter, bruk [lorenco@fluera.dev](mailto:lorenco@fluera.dev) og krypter med PGP-nøkkelen vår (på GitHub-profilen vår).
 
 ## Hvordan gir jeg tilbakemelding på pedagogikken?
 
-Vi leser hver e-post. [hello@fluera.dev](mailto:hello@fluera.dev) går rett til grunnleggerne. Spesielt nyttig: hva som *ikke* funket for deg, hva som føltes som friksjon som ikke var ønsket, og alt som overrasket deg.
+Vi leser hver e-post. [support@fluera.dev](mailto:support@fluera.dev) går rett til grunnleggerne. Spesielt nyttig: hva som *ikke* funket for deg, hva som føltes som friksjon som ikke var ønsket, og alt som overrasket deg.
 
 ## Neste
 

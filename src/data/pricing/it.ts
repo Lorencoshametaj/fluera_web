@@ -129,7 +129,7 @@ const data: PricingData = {
     },
     {
       q: "Piani Team o Education?",
-      a: "In arrivo come fase 2 (workspace condivisi, dashboard admin, SSO). Se sei interessato scrivi a sales@fluera.dev: stiamo costruendo la roadmap con i primi clienti.",
+      a: "In arrivo come fase 2 (workspace condivisi, dashboard admin, SSO). Se sei interessato scrivi a support@fluera.dev: stiamo costruendo la roadmap con i primi clienti.",
     },
   ],
 };

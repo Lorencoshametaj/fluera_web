@@ -4,7 +4,7 @@ description: "What data Fluera collects, what consent you are giving, and how to
 section: settings
 sectionLabel: "Settings"
 order: 1
-updatedAt: 2026-05-19
+updatedAt: 2026-06-29
 ---
 
 Fluera is a local-first tool. By default, nothing leaves your device unless you explicitly enable a feature that requires it.
@@ -14,11 +14,15 @@ Fluera is a local-first tool. By default, nothing leaves your device unless you 
 Open **Settings → Privacy**. You will see four toggles, all off by default:
 
 - **Product analytics.** Anonymous session data — feature invocation counts, session length, AI call durations. Never content. SHA-256-hashed user ID, 180-day retention.
-- **AI features.** Required to use Socratic, Ghost Map, LaTeX OCR, and Fog of War. Selected canvas text is sent to Google Gemini via our server-side proxy. Never the full notebook.
-- **Cloud sync.** Required to sync canvases between devices. All notebooks are encrypted on your device before upload. The cloud holds ciphertext.
+- **AI features.** Required to use Socratic, Ghost Map, LaTeX OCR, and Fog of War. Selected canvas text is sent to Google Gemini models served via Google Vertex AI, processed in the EU (`europe-west4` NL / `europe-west1` BE). Never the full notebook.
+- **Cloud sync.** Required to sync canvases between devices. Synced data is encrypted in transit (TLS) and at rest on EU infrastructure (Supabase, `eu-north-1`). It is **not** end-to-end encrypted: as data controller Fluera can technically access synced content. We never sell it and never use it for advertising.
 - **Crash reporting.** Stack traces and device metadata when the app crashes. No user content. Processed by Sentry with `sendDefaultPii: false`.
 
 Each toggle is independent. You can enable Cloud Sync without Analytics. You can use AI without Crash Reporting. The permissions are granular on purpose.
+
+## Cognitive memory (on-device, opt-out)
+
+Distinct from the four cloud consents above: by default Fluera indexes your notes **on your device only** to power automatic titles, the concept map (Ghost Map), and spaced repetition (FSRS). This index **never leaves your device** — no content is sent to the cloud (unlike *AI features* and *Cloud sync*). You can turn it off in **Settings → Privacy → Cognitive memory**: indexing stops and the cognitive data already built on the device is erased immediately (your notes stay intact). Legal basis: legitimate interest with a right to object (GDPR Art. 6.1.f / 21) — which is why it is on by default and opt-out, not an opt-in consent like the four above.
 
 ## AI Training Data (separate, opt-in only)
 
@@ -55,7 +59,7 @@ For account-level deletion (the full right-to-be-forgotten), email [lorenco@flue
 
 ## Education accounts
 
-If your institution administers your Fluera account, the above behaviours still apply to *your* data. The administrator can see aggregate usage statistics for compliance reviews (via the audit log) but cannot read the content of your notebooks. The encryption is enforced on your device; the key is in your keychain, not in any admin system.
+If your institution administers your Fluera account, the above behaviours still apply to *your* data. The administrator can see aggregate usage statistics for compliance reviews (via the audit log) but is not given access to the content of your notebooks. On your device the local database is encrypted at rest with SQLCipher and the key lives in your keychain, not in any admin system. Note that synced canvases are not end-to-end encrypted: Fluera, as data controller, can technically access them on EU infrastructure.
 
 ## Next
 

@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Szyfrowanie",
-    body: "Każdy notatnik Fluery jest szyfrowany w spoczynku za pomocą AES-256 przez SQLCipher. Ruch w tranzycie ma TLS 1.3. Synchronizacja między Twoimi urządzeniami jest szyfrowana end-to-end kluczami pochodzącymi z Twojego hasła — przechowywanymi w pęku kluczy Twojej platformy, nigdy wysłanymi na nasze serwery.",
+    body: "Każdy notatnik Fluery jest szyfrowany w spoczynku na Twoim urządzeniu za pomocą AES-256 przez SQLCipher, a eksportowane pliki .fluera są szyfrowane przez AES-256-GCM. Ruch w tranzycie ma TLS 1.3 z nowoczesnymi zestawami szyfrów. Synchronizacja chmurowa jest szyfrowana w tranzycie (TLS) i w spoczynku na infrastrukturze w UE (Supabase, eu-north-1); nie jest to szyfrowanie end-to-end, więc Fluera jako administrator danych ma do niej dostęp techniczny — ale nigdy jej nie sprzedajemy ani nie wykorzystujemy do reklam.",
   },
   {
     title: "Własność danych",
@@ -38,7 +38,7 @@ const pillars = [
 >
   <PageHero
     kicker="Bezpieczeństwo i prywatność"
-    title="Szyfrowanie end-to-end.<br />Klucz zostaje u Ciebie."
+    title="Szyfrowanie domyślnie.<br />Local-first od podstaw."
     titleSize="2xl"
     description="Szyfrowanie domyślnie. Brak ad-tech. Hosting w UE. Pełny eksport. Prywatność jest ograniczeniem projektowym, a nie zadaniem zgodności."
     orbs

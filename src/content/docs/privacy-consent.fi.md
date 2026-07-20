@@ -5,7 +5,7 @@ description: "Mitä tietoja Fluera kerää, mihin annat suostumuksesi ja miten k
 section: settings
 sectionLabel: "Asetukset"
 order: 1
-updatedAt: 2026-04-20
+updatedAt: 2026-06-29
 ---
 
 Fluera on local-first-työkalu. Oletuksena mikään ei lähde laitteeltasi, ellet eksplisiittisesti aktivoi sitä tarvitsevaa toimintoa.
@@ -20,6 +20,10 @@ Avaa **Asetukset → Yksityisyys**. Näet neljä kytkintä, kaikki oletuksena po
 - **Kaatumisraportointi.** Stack tracet ja laitteen metatiedot, kun sovellus kaatuu. Ei käyttäjäsisältöä. Käsitellään Sentryllä asetuksella `sendDefaultPii: false`.
 
 Jokainen kytkin on itsenäinen. Voit aktivoida pilvisynkronoinnin ilman analytiikkaa. Voit käyttää AI:ta ilman kaatumisraportointia. Oikeudet ovat tarkoituksella granulaarisia.
+
+## Kognitiivinen muisti (laitteella, opt-out)
+
+Erillinen yllä olevista neljästä pilvisuostumuksesta: oletuksena Fluera indeksoi muistiinpanojasi **vain laitteellasi** tuottaakseen automaattiset otsikot, käsitekartan (Ghost Map) ja kertausvälitykset (FSRS). Tämä indeksi **ei koskaan poistu laitteeltasi** — mitään sisältöä ei lähetetä pilveen (toisin kuin *AI-toiminnot* ja *Pilvisynkronointi*). Voit kytkeä sen pois päältä kohdassa **Asetukset → Yksityisyys → Kognitiivinen muisti**: indeksointi pysähtyy ja laitteelle jo rakennetut kognitiiviset tiedot poistetaan välittömästi (muistiinpanosi pysyvät koskemattomina). Oikeusperuste: oikeutettu etu vastustamisoikeuden kanssa (GDPR Art. 6.1.f / 21) — siksi se on oletuksena päällä ja opt-out, ei opt-in-suostumus kuten yllä olevat neljä.
 
 ## Mitä ei koskaan kerätä
 
@@ -36,7 +40,7 @@ Aja sovellus lentokonetilassa. Tee kaikkea paitsi pilvisynkronointia ja AI:ta. T
 
 Neljä kytkintä ovat aina saatavilla kohdassa **Asetukset → Yksityisyys**. Kytkimen pois päältä laittaminen tulee voimaan välittömästi. Liittyvät backend-tiedot aikataulutetaan poistettavaksi 30 päivän kuluessa.
 
-Tilitason poistoa varten (täysi oikeus tulla unohdetuksi) kirjoita osoitteeseen [privacy@fluera.dev](mailto:privacy@fluera.dev) tilisi osoitteesta.
+Tilitason poistoa varten (täysi oikeus tulla unohdetuksi) kirjoita osoitteeseen [lorenco@fluera.dev](mailto:lorenco@fluera.dev) tilisi osoitteesta.
 
 ## Education-tilit
 

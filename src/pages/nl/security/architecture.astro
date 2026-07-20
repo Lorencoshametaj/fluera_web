@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Beveiligingsarchitectuur"
-  description="Hoe Fluera je notitieboek versleutelt in rust, in transit en tussen apparaten. SQLCipher, TLS 1.3, end-to-end synchronisatie, opt-in telemetrie, audittrail voor instellingen."
+  description="Hoe Fluera je notitieboek beschermt in rust, in transit en tussen apparaten. SQLCipher, TLS 1.3, cloud sync op EU-infrastructuur, opt-in telemetrie, audittrail voor instellingen."
   locale="nl"
 >
   <PageHero
@@ -26,7 +26,7 @@ import { SITE } from "@/lib/site";
       <p>Binnen dat model gelden drie garanties:</p>
       <ul>
         <li><strong>Lokale data zijn onleesbaar zonder de sleutel.</strong> Een gestolen apparaat levert een versleutelde blob op.</li>
-        <li><strong>Gesynchroniseerde data zijn voor ons onleesbaar.</strong> De cloud bewaart alleen ciphertext. De afleiding gebeurt op het apparaat.</li>
+        <li><strong>Gesynchroniseerde data zijn versleuteld in transit en in rust op EU-infrastructuur.</strong> Cloud sync is niet end-to-end versleuteld: als verwerkingsverantwoordelijke kan Fluera de gesynchroniseerde inhoud benaderen. We verkopen je inhoud nooit en gebruiken die nooit voor advertenties.</li>
         <li><strong>Telemetrie is consensueel en gedeïdentificeerd.</strong> De analytics kunnen een gebruiker zelfs bij een volledige breach niet aan zijn content koppelen.</li>
       </ul>
 
@@ -38,17 +38,17 @@ import { SITE } from "@/lib/site";
         De sleutelafleiding gebruikt PBKDF2 met SHA-256, 256.000 iteraties (conform OWASP). De passphrase wordt bewaard in de keychain van het platform — Keychain op iOS/macOS, Keystore op Android, DPAPI op Windows, libsecret op Linux. Het wordt nooit naar onze servers gestuurd.
       </p>
 
-      <h2>In transit: TLS 1.3, certificate pinning</h2>
+      <h2>In transit: TLS 1.3</h2>
       <p>
-        Al het netwerkverkeer is TLS 1.3 met moderne ciphers. Op iOS en Android pinnen we de certificaten aan onze CA-keten om man-in-the-middle door corporate proxies te voorkomen — met gedocumenteerde override voor netwerkbeheerders die dat nodig hebben.
+        Al het netwerkverkeer is TLS 1.3 met moderne cipher suites, voor vertrouwelijkheid en integriteit tussen de client en onze infrastructuur.
       </p>
 
-      <h2>Synchronisatie tussen apparaten: end-to-end</h2>
+      <h2>Synchronisatie tussen apparaten</h2>
       <p>
-        Cloud sync, indien ingeschakeld, gebruikt een aparte set sleutels die op het apparaat wordt afgeleid. De sync-server (Supabase Storage, EU-regio) bewaart ciphertext en kan niet ontsleutelen. De synchronisatie is opt-in per notitieboek — je kunt sommige alleen lokaal houden terwijl je andere synchroniseert.
+        Cloud sync, indien ingeschakeld, slaat je notitieboeken op bij Supabase (EU-regio, eu-north-1). De gegevens zijn versleuteld in transit (TLS) en in rust op infrastructuurniveau. Cloud sync is niet end-to-end versleuteld: als verwerkingsverantwoordelijke kan Fluera de gesynchroniseerde inhoud benaderen. We verkopen die nooit en gebruiken die nooit voor advertenties. De synchronisatie is opt-in per notitieboek — je kunt sommige alleen lokaal houden terwijl je andere synchroniseert.
       </p>
       <p>
-        Sleutelrotatie: vanaf elk apparaat starten versleutelt alle toekomstige payloads opnieuw met een nieuwe sleutel. Oude ciphertexts blijven leesbaar voor oudere clients totdat je de migratie op alle apparaten bevestigt.
+        Wil je dat alleen jij toegang hebt tot je werk? Een lokale <code>.fluera</code>-export is versleuteld met AES-256-GCM, en je lokale database op het apparaat is in rust versleuteld met SQLCipher — beide blijven onleesbaar zonder jouw sleutel.
       </p>
 
       <h2>P2P-samenwerking: direct, versleuteld</h2>
@@ -61,10 +61,10 @@ import { SITE } from "@/lib/site";
 
       <h2>AI-aanroepen: via proxy, nooit direct</h2>
       <p>
-        Aanroepen naar Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) lopen via een Supabase Edge Function die de API key op de server bewaart. Cliënt-apparaten zien de sleutel nooit. De proxy past rate limiting toe per plan en logt de duur van de calls voor accounting — nooit de inhoud van het canvas.
+        Aanroepen naar Google Gemini-modellen (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) worden geserveerd via Google Vertex AI en verwerkt in de EU (europe-west4 NL / europe-west1 BE). Ze lopen via een proxy die de inloggegevens op de server bewaart. Cliënt-apparaten zien de sleutel nooit. De proxy past rate limiting toe per plan en logt de duur van de calls voor accounting — nooit de inhoud van het canvas.
       </p>
       <p>
-        Als je de AI-functies uitschakelt in <em>Instellingen → Privacy</em>, wordt geen canvasinhoud naar Gemini gestuurd, ook niet als fallback voor on-device OCR.
+        Als je de AI-functies uitschakelt in <em>Instellingen → Privacy</em>, wordt geen canvasinhoud naar de AI gestuurd, ook niet als fallback voor on-device OCR.
       </p>
 
       <h2>Telemetrie: opt-in, gehasht, allowlisted</h2>

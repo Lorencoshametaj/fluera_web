@@ -1,13 +1,7 @@
 ---
 import LegalLayout from "@/layouts/LegalLayout.astro";
 
-const placeholders = [
-  { key: "NOME LEGALE AZIENDA", note: "ragione sociale completa" },
-  { key: "INDIRIZZO COMPLETO", note: "sede legale" },
-  { key: "PARTITA IVA / CODICE FISCALE", note: "" },
-  { key: "REGIONE SUPABASE SCELTA", note: "verifica dashboard Supabase" },
-  { key: "DATA ULTIMO AGGIORNAMENTO", note: "data effettiva pubblicazione" },
-];
+const placeholders = [];
 
 const summary = `Informativa sul trattamento dei dati personali degli utenti dell'applicazione Fluera, redatta ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (<strong>GDPR</strong>) e del D.Lgs. 196/2003 come novellato dal D.Lgs. 101/2018.`;
 ---
@@ -16,41 +10,41 @@ const summary = `Informativa sul trattamento dei dati personali degli utenti del
   title="Privacy Policy"
   kicker="Legale"
   summary={summary}
-  version="1.0"
-  updatedAt="[DATA ULTIMO AGGIORNAMENTO — es. 19 aprile 2026]"
+  version="1.4"
+  updatedAt="27 giugno 2026"
   locale="it"
   placeholders={placeholders}
 >
   <h2 id="titolare">1. Titolare del trattamento</h2>
   <p>Il Titolare del trattamento dei dati personali è:</p>
   <ul>
-    <li><strong>Ragione sociale:</strong> <span class="legal-placeholder">[NOME LEGALE AZIENDA — es. Looponia S.r.l.]</span></li>
-    <li><strong>Sede legale:</strong> <span class="legal-placeholder">[INDIRIZZO COMPLETO — via, CAP, città, provincia, paese]</span></li>
-    <li><strong>P.IVA / C.F.:</strong> <span class="legal-placeholder">[PARTITA IVA / CODICE FISCALE]</span></li>
-    <li><strong>Email di contatto privacy:</strong> <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a></li>
-    <li><strong>Email di supporto generale:</strong> <a href="mailto:support@fluera.dev">support@fluera.dev</a></li>
+    <li><strong>Titolare:</strong> Lorenco Shametaj (persona fisica; "Fluera" è il marchio/prodotto — società in corso di costituzione, a cui il ruolo sarà trasferito)</li>
+    <li><strong>Indirizzo:</strong> Via Boccaccio 44, 35128 Padova (PD), Italia</li>
+    <li><strong>P.IVA / C.F.:</strong> non ancora attribuita (da inserire alla costituzione)</li>
+    <li><strong>Email privacy:</strong> <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a></li>
+    <li><strong>Email supporto:</strong> <a href="mailto:support@fluera.dev">support@fluera.dev</a></li>
   </ul>
   <p>
-    Non è stato nominato un Data Protection Officer (DPO) in quanto non ricorrono i presupposti dell'art. 37 GDPR. Per qualsiasi questione relativa al trattamento dei propri dati, l'utente può comunque contattare il Titolare agli indirizzi indicati sopra.
+    Non è stato nominato un Data Protection Officer (DPO) in quanto non ricorrono i presupposti dell'art. 37 GDPR. Per qualsiasi questione relativa al trattamento dei propri dati, l'utente può contattare il Titolare agli indirizzi indicati sopra.
   </p>
 
   <h2 id="dati-raccolti">2. Dati personali trattati</h2>
   <p>
-    Fluera tratta le seguenti categorie di dati personali, esclusivamente nella misura necessaria alle finalità dichiarate e previo consenso granulare dell'utente ove richiesto.
+    Fluera tratta le seguenti categorie di dati personali, esclusivamente nella misura necessaria alle finalità dichiarate e previo consenso granulare ove richiesto.
   </p>
 
   <h3>2.1 Dati di account</h3>
   <ul>
-    <li>Indirizzo email, se l'utente crea un account (Supabase Auth)</li>
-    <li>Identificativo utente (<code>user_id</code>) generato da Supabase — anche per le sessioni anonime</li>
-    <li>Dati del provider di autenticazione se utilizzato (Google Sign-In, Sign in with Apple): email, nome, identificativo univoco del provider</li>
+    <li>Indirizzo email se l'utente crea un account (Supabase Auth)</li>
+    <li>Identificativo utente (<code>user_id</code>) generato da Supabase — anche per sessioni anonime</li>
+    <li>Dati del provider di autenticazione se utilizzato (Google Sign-In, Sign in with Apple): email, nome, identificativo univoco</li>
   </ul>
 
   <h3>2.2 Contenuti prodotti dall'utente</h3>
   <ul>
     <li>Canvas, tratti, note, annotazioni PDF, immagini inserite</li>
-    <li>Registrazioni audio delle sessioni di studio (solo se la funzione Time Travel è attiva)</li>
-    <li>Questi contenuti sono cifrati a riposo nel database locale mediante SQLCipher (art. 32 GDPR) e trasmessi al server solo se l'utente attiva il Cloud Sync</li>
+    <li>Registrazioni audio delle sessioni di studio (solo se Time Travel attivo)</li>
+    <li>Contenuti cifrati a riposo nel database locale via SQLCipher (art. 32 GDPR); trasmessi al server solo se l'utente attiva il Cloud Sync</li>
   </ul>
 
   <h3>2.3 Dati di utilizzo (telemetria)</h3>
@@ -58,151 +52,333 @@ const summary = `Informativa sul trattamento dei dati personali degli utenti del
   <ul>
     <li><code>session_id</code> anonimo generato casualmente per sessione</li>
     <li>Hash SHA-256 dello <code>user_id</code> (mai l'identificativo in chiaro)</li>
-    <li>Piattaforma (iOS, Android, macOS, Windows, Linux, Web), versione dell'app, tier di abbonamento, lingua del dispositivo</li>
-    <li>Eventi di prodotto appartenenti a una lista chiusa ("whitelist" lato server) — ad esempio: inizio/fine sessione, avvio/completamento di Ghost Map, avvio/completamento di Socratic Mode, review SRS, chiamate AI con durata e token consumati</li>
-    <li><strong>Non sono raccolti:</strong> contenuto degli appunti, testo delle domande, informazioni identificative personali.</li>
+    <li>Piattaforma, versione app, tier di abbonamento, lingua del dispositivo</li>
+    <li>Eventi di prodotto da whitelist server-side (inizio/fine sessione, Ghost Map, Socratic, review SRS, chiamate AI con durata e token)</li>
+    <li><strong>Non sono raccolti:</strong> contenuto degli appunti, testo delle domande, informazioni identificative.</li>
   </ul>
 
   <h3>2.4 Dati per funzioni AI</h3>
   <p>Solo se l'utente ha prestato consenso alla categoria <strong>Funzioni AI</strong>:</p>
   <ul>
-    <li>Porzioni selezionate di testo del canvas (es. testo OCR di cluster) inviate a Google Gemini per Socratic Mode, Ghost Map, LaTeX OCR, Exam Session</li>
-    <li>Token di utilizzo per l'enforcement dei limiti di piano</li>
-    <li>In modalità produzione le chiamate transitano attraverso un proxy Supabase Edge Function che mantiene la chiave API lato server</li>
+    <li>Contenuti selezionati del canvas inviati per Socratic Mode, Ghost Map, LaTeX OCR, Exam Session — porzioni di testo e immagini PNG renderizzate delle singole regioni-cluster di scrittura a mano (mai l'intero blocco note)</li>
+    <li>L'inferenza AI gira su Google Vertex AI nell'<strong>Unione Europea</strong> (europe-west4 Paesi Bassi, con failover europe-west1 Belgio); i contenuti del canvas non vengono trasferiti fuori dall'UE per l'inferenza AI</li>
+    <li>Token di utilizzo per enforcement dei limiti di piano</li>
+    <li>In produzione le chiamate transitano via proxy Supabase Edge Function (chiave API server-side)</li>
   </ul>
 
   <h3>2.5 Dati per Cloud Sync</h3>
   <p>Solo se l'utente ha prestato consenso alla categoria <strong>Cloud Sync</strong>:</p>
   <ul>
-    <li>Copia cifrata dei canvas sincronizzata su Supabase Storage</li>
+    <li>Copie dei canvas archiviate su Supabase (regione UE <code>eu-north-1</code>), cifrate in transito (TLS) e a riposo a livello infrastrutturale. Il Cloud Sync <strong>non</strong> è cifrato end-to-end: in qualità di titolare del trattamento, Fluera può tecnicamente accedere ai contenuti sincronizzati per erogare, proteggere e supportare il servizio (non li vende né li usa per pubblicità)</li>
     <li>Metadati di sincronizzazione (hash, timestamp, dimensione)</li>
   </ul>
 
   <h3>2.6 Dati di diagnostica e crash</h3>
   <p>Solo se l'utente ha prestato consenso alla categoria <strong>Report dei crash</strong>:</p>
   <ul>
-    <li>Stack trace dell'errore, versione OS, modello dispositivo, versione app</li>
-    <li>Nessun contenuto dell'utente è incluso nei report (<code>sendDefaultPii: false</code>)</li>
-    <li>Processati tramite Sentry (<a href="https://sentry.io/privacy/" rel="noopener">Privacy Policy Sentry</a>)</li>
+    <li>Stack trace, versione OS, modello dispositivo, versione app</li>
+    <li>Nessun contenuto utente nei report (<code>sendDefaultPii: false</code>)</li>
+    <li>Gli indirizzi IP non vengono memorizzati (scrubbing IP lato server attivo su Sentry)</li>
+    <li>Processati tramite Sentry — privacy policy: <a href="https://sentry.io/privacy/" rel="noopener">https://sentry.io/privacy/</a></li>
   </ul>
 
   <h3>2.7 Dati di abbonamento</h3>
   <ul>
-    <li>Stato dell'abbonamento (free / essential / plus / pro), data di attivazione, rinnovo, scadenza</li>
-    <li>Identificativi generati da RevenueCat, Apple e Google per il matching delle ricevute</li>
-    <li>Nessun dato di pagamento (numeri di carta, IBAN) viene mai memorizzato dai nostri sistemi: le transazioni sono gestite interamente da Apple, Google e RevenueCat</li>
+    <li>Stato dell'abbonamento (free / essential / plus / pro), date di attivazione, rinnovo, scadenza</li>
+    <li>Identificativi RevenueCat / Apple / Google per matching ricevute</li>
+    <li>Nessun dato di pagamento (numeri di carta, IBAN) viene memorizzato dai nostri sistemi: le transazioni sono gestite da Apple, Google e RevenueCat</li>
   </ul>
 
-  <h3>2.8 Dati per l'addestramento di Fluera AI (Modalità A + E)</h3>
+  <h3>2.8 Componenti software third-party (on-device)</h3>
   <p>
-    Solo se l'utente ha prestato consenso esplicito alla categoria <strong>AI Training Data</strong> in <em>Impostazioni → Privacy → AI Training Data</em>. Il consenso è granulare per modalità (calibrazione manuale prompt-driven e/o cattura automatica della scrittura) ed è sempre revocabile.
+    Fluera include alcuni SDK third-party embedded che processano dati <strong>esclusivamente sul tuo dispositivo</strong>, senza inviare nulla ai loro produttori. Per trasparenza:
   </p>
-  <p><strong>Modalità A — Sessione di calibrazione</strong> (prompt-driven, esplicita):</p>
   <ul>
-    <li>Tratti grezzi della scrittura dell'utente durante la sessione (coordinate <code>x</code>, <code>y</code>, timestamp, pressione, tilt dello stilo se disponibile)</li>
-    <li>Il simbolo o parola richiesto dal sistema (ground truth)</li>
-    <li>Metadati base del dispositivo: piattaforma, modello, OS, tipo di puntatore inferito (stilo/dito/mouse), DPR, versione app</li>
+    <li><strong>Google ML Kit</strong> (riconoscimento on-device di scrittura a mano e testo — Digital Ink &amp; Text Recognition) — il riconoscimento avviene localmente sul dispositivo; inchiostri e immagini non vengono inviati a Google per queste API on-device (i modelli di riconoscimento vengono scaricati da Google). Google non riceve alcun contenuto del canvas da Fluera tramite ML Kit.</li>
+    <li><strong>SQLCipher</strong> (Zetetic LLC) — libreria di cifratura del database locale. Tutta l'elaborazione è on-device.</li>
+    <li><strong>Sentry SDK</strong> (Functional Software Inc.) — solo la libreria embedded; vedi §4 per il responsabile del trattamento e §3 per la base giuridica del trasferimento di crash report (consenso, opt-in).</li>
   </ul>
-  <p><strong>Modalità E — Cattura automatica della scrittura</strong> (passiva, opt-in):</p>
-  <ul>
-    <li>Tratti grezzi dei cluster scritti dall'utente sul canvas durante l'uso normale</li>
-    <li>Un'immagine PNG renderizzata del cluster (snapshot bbox-original che preserva il layout 2D, essenziale per il riconoscimento di formule matematiche)</li>
-    <li>Metadati base del dispositivo come sopra</li>
-    <li><strong>Nessuna analisi automatica viene effettuata al momento della cattura.</strong> I dati restano cifrati sul nostro server in attesa del completamento degli accordi contrattuali con Google Cloud (Data Processing Agreement per Vertex AI). Una volta firmati, Google Gemini Vision analizzerà le immagini per generare le etichette di addestramento del modello proprietario di Fluera. Fino ad allora, nessun dato viene inviato a Google.</li>
-  </ul>
-  <p><strong>Misure di sicurezza specifiche per questa categoria:</strong></p>
-  <ul>
-    <li>I dati sono pseudonimizzati con un hash SHA-256 dell'identificativo utente combinato con un salt dedicato (mai associati al nome, email o user_id reale)</li>
-    <li>Cifratura a livello di payload con AES-256-GCM <em>prima</em> del caricamento; la chiave di cifratura del corpus è custodita in forma asimmetrica offline (X25519) ed esiste solo in forma cartacea fisica</li>
-    <li>Le tabelle Supabase relative a questa categoria sono soggette a Row-Level Security che impedisce a un utente di leggere campioni di un altro utente</li>
-    <li>Filtraggio del rumore: cluster con meno di 3 punti totali (tap accidentali, smudge) vengono scartati prima del salvataggio</li>
-    <li>Deduplicazione persistente tramite fingerprint geometrico: scritture perfettamente identiche dello stesso cluster non producono campioni duplicati</li>
-  </ul>
+  <p>
+    Questi componenti non sono <strong>responsabili del trattamento</strong> ai sensi dell'art. 28 GDPR perché non ricevono dati personali. Sono <strong>componenti software</strong> di terze parti come qualsiasi altra libreria utilizzata per costruire l'app.
+  </p>
 
   <h2 id="finalita">3. Finalità e basi giuridiche</h2>
-  <p>Il trattamento dei dati personali avviene esclusivamente per le seguenti finalità:</p>
   <ul>
-    <li><strong>Erogazione del servizio</strong> (account, creazione e lettura canvas locali): esecuzione del contratto o di misure pre-contrattuali (art. 6.1.b GDPR).</li>
-    <li><strong>Funzioni AI</strong> (Socratic, Ghost Map, LaTeX OCR, Exam): consenso esplicito e revocabile dell'utente (art. 6.1.a GDPR).</li>
-    <li><strong>Cloud Sync</strong>: consenso esplicito e revocabile dell'utente (art. 6.1.a GDPR).</li>
-    <li><strong>Analytics di prodotto</strong>: consenso esplicito e revocabile dell'utente (art. 6.1.a GDPR). I dati servono a misurare l'efficacia pedagogica delle funzioni e a migliorare il prodotto.</li>
-    <li><strong>Report dei crash</strong>: consenso esplicito e revocabile dell'utente (art. 6.1.a GDPR).</li>
-    <li><strong>AI Training Data</strong> (Modalità A — calibrazione, Modalità E — cattura automatica della scrittura): consenso esplicito e revocabile dell'utente, granulare per modalità (art. 6.1.a GDPR). Conservazione e utilizzo dei dati per costruire un riconoscitore di scrittura proprietario.</li>
-    <li><strong>Gestione abbonamenti</strong>: esecuzione del contratto (art. 6.1.b GDPR).</li>
-    <li><strong>Sicurezza e prevenzione abusi</strong> (enforcement quote AI lato server): legittimo interesse del Titolare (art. 6.1.f GDPR) a prevenire consumo abusivo delle risorse.</li>
+    <li><strong>Erogazione del servizio</strong> (account, canvas locali): esecuzione del contratto (art. 6.1.b GDPR)</li>
+    <li><strong>Funzioni AI</strong>: consenso esplicito e revocabile (art. 6.1.a GDPR)</li>
+    <li><strong>Cloud Sync</strong>: consenso esplicito e revocabile (art. 6.1.a GDPR)</li>
+    <li><strong>Analytics di prodotto</strong>: consenso esplicito e revocabile (art. 6.1.a GDPR)</li>
+    <li><strong>Report dei crash</strong>: consenso esplicito e revocabile (art. 6.1.a GDPR)</li>
+    <li><strong>Gestione abbonamenti</strong>: esecuzione del contratto (art. 6.1.b GDPR)</li>
+    <li><strong>Sicurezza e prevenzione abusi</strong> (enforcement quote AI): legittimo interesse (art. 6.1.f GDPR)</li>
   </ul>
 
   <h2 id="destinatari">4. Destinatari dei dati</h2>
-  <p>I dati personali possono essere comunicati ai seguenti responsabili del trattamento, tutti vincolati da contratto ex art. 28 GDPR:</p>
+  <p>Tutti i destinatari sono responsabili del trattamento vincolati da contratto ex art. 28 GDPR:</p>
   <ul>
-    <li><strong>Supabase Inc.</strong> — database, autenticazione, storage cloud, telemetria, Edge Functions. <a href="https://supabase.com/privacy" rel="noopener">Privacy Policy</a></li>
-    <li><strong>Google LLC</strong> — Google Generative AI (Gemini) per le funzioni AI in-app, Google Sign-In. In <strong>futuro</strong> (post-firma del Data Processing Agreement Vertex AI, attualmente in fase di completamento) anche Gemini Vision per l'etichettatura dei campioni di addestramento Modalità E. Nessun dato della categoria AI Training Data viene inviato a Google fino al completamento del DPA. <a href="https://policies.google.com/privacy" rel="noopener">Privacy Policy</a></li>
-    <li><strong>Apple Inc.</strong> — Sign in with Apple, App Store, in-app purchases. <a href="https://www.apple.com/legal/privacy/" rel="noopener">Privacy Policy</a></li>
-    <li><strong>RevenueCat Inc.</strong> — gestione abbonamenti e ricevute. <a href="https://www.revenuecat.com/privacy" rel="noopener">Privacy Policy</a></li>
-    <li><strong>Functional Software Inc. (Sentry)</strong> — crash reporting. <a href="https://sentry.io/privacy/" rel="noopener">Privacy Policy</a></li>
+    <li><strong>Supabase Inc.</strong> — database, autenticazione, storage, telemetria, Edge Functions (regione UE <code>eu-north-1</code>, Stoccolma) — <a href="https://supabase.com/privacy" rel="noopener">https://supabase.com/privacy</a></li>
+    <li><strong>Google Cloud (Google Ireland Ltd.)</strong> — Vertex AI (Gemini), elaborazione nell'UE (Paesi Bassi / Belgio) — <a href="https://cloud.google.com/terms/data-processing-addendum" rel="noopener">https://cloud.google.com/terms/data-processing-addendum</a></li>
+    <li><strong>Google LLC</strong> — Sign in with Google (solo autenticazione) — <a href="https://policies.google.com/privacy" rel="noopener">https://policies.google.com/privacy</a></li>
+    <li><strong>Apple Inc.</strong> — Sign in with Apple, App Store — <a href="https://www.apple.com/legal/privacy/" rel="noopener">https://www.apple.com/legal/privacy/</a></li>
+    <li><strong>RevenueCat Inc.</strong> — abbonamenti — <a href="https://www.revenuecat.com/privacy" rel="noopener">https://www.revenuecat.com/privacy</a></li>
+    <li><strong>Functional Software Inc. (Sentry)</strong> — crash reporting — <a href="https://sentry.io/privacy/" rel="noopener">https://sentry.io/privacy/</a></li>
   </ul>
   <p>
-    Non vendiamo, non cediamo e non mettiamo in comunicazione i dati personali con parti diverse da quelle sopra indicate. Nessuna attività di profilazione pubblicitaria viene effettuata.
+    Non vendiamo, non cediamo e non comunichiamo i dati personali a parti diverse da quelle indicate. Nessuna profilazione pubblicitaria viene effettuata.
+  </p>
+  <p>
+    I Data Processing Agreement (DPA) firmati con ciascun responsabile del trattamento sono conservati internamente e disponibili su richiesta scritta a <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a>. L'elenco aggiornato dei sub-processor di ciascun responsabile è consultabile ai link delle rispettive privacy policy.
   </p>
 
   <h2 id="trasferimenti">5. Trasferimenti extra-UE</h2>
   <p>
-    Alcuni responsabili del trattamento (Google, Apple, Sentry, RevenueCat) hanno sede negli Stati Uniti. Il trasferimento è effettuato sulla base delle Clausole Contrattuali Standard approvate dalla Commissione Europea (art. 46 GDPR) e, ove applicabile, dell'adesione del fornitore al <em>EU-US Data Privacy Framework</em>.
+    Alcuni responsabili — Sign in with Google (Google LLC), Apple, Sentry, RevenueCat — hanno sede negli Stati Uniti. Il trasferimento verso di essi avviene sulla base delle Clausole Contrattuali Standard approvate dalla Commissione Europea (art. 46 GDPR) e, ove applicabile, dell'adesione del fornitore al EU-US Data Privacy Framework.
   </p>
   <p>
-    Supabase consente di scegliere la regione del database: utilizziamo la regione <span class="legal-placeholder">[REGIONE SUPABASE SCELTA — es. eu-central-1 / Frankfurt]</span> all'interno dell'area SEE.
+    <strong>L'inferenza AI non lascia l'UE.</strong> I contenuti del canvas inviati alle funzioni AI sono elaborati da Google Vertex AI esclusivamente nell'Unione Europea (europe-west4 Paesi Bassi, con failover europe-west1 Belgio) e non vengono trasferiti negli Stati Uniti.
+  </p>
+  <p>
+    Supabase consente di scegliere la regione del database: utilizziamo la regione <code>eu-north-1</code> (Stoccolma) all'interno dell'area SEE.
   </p>
 
   <h2 id="conservazione">6. Periodi di conservazione</h2>
   <ul>
-    <li><strong>Account e contenuti utente:</strong> per tutta la durata del rapporto contrattuale e fino alla richiesta di cancellazione da parte dell'utente</li>
-    <li><strong>Eventi di telemetria:</strong> 180 giorni dalla raccolta, dopodiché vengono aggregati in forma anonima o cancellati</li>
+    <li><strong>Account e contenuti utente:</strong> per tutta la durata del rapporto contrattuale e fino alla richiesta di cancellazione</li>
+    <li><strong>Eventi di telemetria:</strong> 180 giorni</li>
     <li><strong>Report dei crash:</strong> 90 giorni</li>
-    <li><strong>Log di utilizzo AI (<code>ai_usage_events</code>):</strong> 24 mesi, per esigenze contabili e di controllo dei costi</li>
+    <li><strong>Log di utilizzo AI (<code>ai_usage_events</code>):</strong> 24 mesi</li>
     <li><strong>Dati di abbonamento:</strong> 10 anni a fini fiscali (art. 2220 c.c.)</li>
-    <li><strong>Audit trail del consenso:</strong> fino alla revoca + 3 anni per dimostrare la conformità ai sensi dell'art. 7.1 GDPR</li>
-    <li><strong>AI Training Data (Modalità A + E):</strong> fino a 5 anni dopo la cancellazione dell'account dell'utente, o fino a richiesta esplicita di cancellazione tramite <em>Impostazioni → Privacy → AI Training Data → Cancella tutto</em>. La conservazione è giustificata dall'interesse legittimo (art. 6.1.f GDPR) alla continuità del corpus di addestramento; i dati sono mantenuti in forma pseudonimizzata e non più collegabili all'account. La cancellazione fisica avviene entro 30 giorni dalla richiesta (periodo di grazia anti-cancellazione accidentale).</li>
+    <li><strong>Audit trail del consenso:</strong> fino alla revoca + 3 anni (art. 7.1 GDPR)</li>
+    <li><strong>Sessioni anonime:</strong> quando usi Fluera senza account permanente, i dati sono associati a un identificatore device temporaneo. Se non converti la sessione in un account permanente entro <strong>24 ore di inattività</strong> dall'apertura di una nuova sessione su un altro device, l'account anonimo e tutti i dati associati vengono cancellati automaticamente tramite un job pianificato sui nostri server.</li>
   </ul>
 
   <h2 id="diritti">7. Diritti dell'utente</h2>
-  <p>In ogni momento, l'utente può esercitare i seguenti diritti ai sensi degli artt. 15-22 GDPR:</p>
+  <p>L'utente può esercitare i seguenti diritti ai sensi degli artt. 15-22 GDPR:</p>
   <ul>
-    <li><strong>Accesso</strong> (art. 15): ottenere conferma del trattamento e una copia dei propri dati</li>
-    <li><strong>Rettifica</strong> (art. 16): correggere dati inesatti o incompleti</li>
-    <li><strong>Cancellazione</strong> (art. 17, "diritto all'oblio"): ottenere la cancellazione dei propri dati, salvo obblighi di legge</li>
-    <li><strong>Limitazione</strong> (art. 18): chiedere la sospensione del trattamento</li>
-    <li><strong>Portabilità</strong> (art. 20): ricevere i dati in formato strutturato e interoperabile (JSON). L'app offre una funzione nativa di export</li>
-    <li><strong>Opposizione</strong> (art. 21): opporsi al trattamento basato su legittimo interesse</li>
-    <li><strong>Revoca del consenso</strong> (art. 7.3): revocare in qualsiasi momento il consenso prestato, senza pregiudicare la liceità del trattamento effettuato prima della revoca. La revoca è immediatamente disponibile nella schermata <em>Impostazioni → Privacy</em> dell'app</li>
+    <li><strong>Accesso</strong> (art. 15): conferma del trattamento e copia dei dati</li>
+    <li><strong>Rettifica</strong> (art. 16): correzione di dati inesatti</li>
+    <li><strong>Cancellazione</strong> (art. 17, "diritto all'oblio")</li>
+    <li><strong>Limitazione</strong> (art. 18)</li>
+    <li><strong>Portabilità</strong> (art. 20): export in JSON (funzione in-app)</li>
+    <li><strong>Opposizione</strong> (art. 21)</li>
+    <li><strong>Revoca del consenso</strong> (art. 7.3): immediata via <em>Impostazioni → Privacy</em></li>
   </ul>
 
   <h2 id="esercizio-diritti">8. Come esercitare i diritti</h2>
-  <p>Per esercitare i diritti di cui al punto 7, è sufficiente:</p>
   <ul>
-    <li>Utilizzare i toggle dedicati in <em>Impostazioni → Privacy</em> dell'app (revoca consenso, disattivazione telemetria)</li>
-    <li>Utilizzare la funzione <em>Esporta i miei dati</em> integrata nell'app (art. 20 GDPR)</li>
-    <li>Scrivere a <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a> per richieste che richiedono intervento manuale (cancellazione account completo, rettifica, ecc.)</li>
+    <li>Toggle in <em>Impostazioni → Privacy</em> dell'app</li>
+    <li>Funzione <em>Esporta i miei dati</em> (art. 20 GDPR)</li>
+    <li>Scrivere a <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a> per cancellazione account o rettifiche manuali</li>
   </ul>
-  <p>Il Titolare si impegna a rispondere entro il termine di 30 giorni dalla ricezione della richiesta (art. 12.3 GDPR), salvo proroga motivata.</p>
+  <p>Il Titolare risponde entro 30 giorni dalla ricezione (art. 12.3 GDPR), salvo proroga motivata.</p>
 
   <h2 id="reclami">9. Reclami all'autorità di controllo</h2>
-  <p>
-    Qualora l'utente ritenga che il trattamento violi il GDPR, ha diritto di proporre reclamo all'autorità di controllo competente. Per l'Italia:
-  </p>
+  <p>Qualora l'utente ritenga che il trattamento violi il GDPR, ha diritto di proporre reclamo:</p>
   <ul>
     <li><strong>Garante per la protezione dei dati personali</strong></li>
     <li>Piazza Venezia 11, 00187 Roma</li>
-    <li>Sito web: <a href="https://www.garanteprivacy.it" rel="noopener">www.garanteprivacy.it</a></li>
+    <li><a href="https://www.garanteprivacy.it" rel="noopener">https://www.garanteprivacy.it</a></li>
   </ul>
+
+  <h3>9.1 Notifica di violazione dei dati</h3>
+  <p>
+    In caso di violazione dei dati personali, Fluera notificherà l'autorità di controllo competente (il <em>Garante per la protezione dei dati personali</em>, o l'autorità locale dell'utente) senza ingiustificato ritardo e, ove possibile, entro <strong>72 ore</strong> dal momento in cui ne è venuta a conoscenza, ai sensi dell'art. 33 GDPR. Qualora la violazione possa comportare un rischio elevato per i diritti e le libertà dell'utente, informeremo anche gli utenti interessati senza ingiustificato ritardo e con linguaggio chiaro, ai sensi dell'art. 34 GDPR. Manteniamo un registro interno delle violazioni come richiesto dall'art. 33(5).
+  </p>
 
   <h2 id="minori">10. Utenti minorenni</h2>
   <p>
-    Fluera non è destinata a utenti di età inferiore ai 14 anni. Per gli utenti di età compresa tra 14 e 18 anni il trattamento dei dati è consentito ai sensi dell'art. 2-quinquies del D.Lgs. 196/2003. Per età inferiori è richiesto il consenso di chi esercita la responsabilità genitoriale.
+    <strong>Fluera non è destinata a utenti di età inferiore ai 14 anni. Utilizzando il Servizio dichiari di avere almeno 14 anni.</strong>
+  </p>
+  <p>
+    Per età 14-18 il trattamento è consentito ai sensi dell'art. 2-quinquies D.Lgs. 196/2003, eventualmente subordinato al consenso di chi esercita la responsabilità genitoriale ove richiesto dalla legge nazionale applicabile. Per età inferiori a 14 anni la creazione di account non è consentita.
+  </p>
+  <p>
+    Se veniamo a conoscenza di dati raccolti da un minore di 14 anni, sospendiamo l'account e cancelliamo i dati associati entro 30 giorni. Segnalazioni a <a href="mailto:support@fluera.dev">support@fluera.dev</a> o <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a>.
   </p>
 
   <h2 id="modifiche">11. Modifiche alla presente informativa</h2>
   <p>
-    La presente informativa può essere aggiornata per riflettere evoluzioni del servizio o modifiche normative. In caso di modifiche sostanziali l'utente verrà informato tramite notifica in-app e, se registrato, via email. Gli utenti dovranno riconfermare il consenso alle categorie interessate dalla modifica.
+    Può essere aggiornata per riflettere evoluzioni del servizio o modifiche normative. In caso di modifiche sostanziali l'utente viene informato via notifica in-app e, se registrato, via email. Gli utenti dovranno riconfermare il consenso alle categorie interessate.
   </p>
-  <p>La versione storica dei consensi e delle modifiche è conservata nell'audit trail interno.</p>
+
+  <h2 id="giurisdizioni">12. Diritti per giurisdizioni specifiche (non-UE)</h2>
+  <p>
+    Per utenti residenti fuori dall'Unione Europea, oltre ai diritti GDPR-equivalenti descritti nelle sezioni 7-8, si applicano le seguenti tutele locali. Per esercitarli, scrivi a <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a> indicando il paese di residenza — risposta entro 30 giorni.
+  </p>
+
+  <h3>12.1 Stati Uniti — California (CCPA/CPRA) e altri stati</h3>
+  <p>
+    Residenti della <strong>California</strong> beneficiano dei diritti del <em>California Consumer Privacy Act</em> (CCPA, modificato dal CPRA 2023):
+  </p>
+  <ul>
+    <li><strong>Right to Know</strong>: ottenere conferma del trattamento e copia dei dati raccolti negli ultimi 12 mesi.</li>
+    <li><strong>Right to Delete</strong>: richiedere la cancellazione dei dati personali.</li>
+    <li><strong>Right to Correct</strong>: chiedere la correzione di dati inaccurati.</li>
+    <li><strong>Right to Limit Use of Sensitive Personal Information</strong>: Fluera <strong>non raccoglie SPI</strong> (no geolocalizzazione precisa, no biometrici, no dati sanitari) — diritto non applicabile in pratica.</li>
+    <li><strong>Right to Non-Discrimination</strong>: l'esercizio dei diritti non comporta degradazione del servizio.</li>
+    <li><strong>Right to Opt-Out of Sale/Share</strong>: vedi sotto.</li>
+  </ul>
+  <p>
+    <strong>Do Not Sell or Share Notice</strong>: Fluera <strong>non vende, condivide o cede</strong> i tuoi dati personali per advertising cross-context behavioral o qualsiasi altro scopo commerciale. Onoriamo i segnali <em>Global Privacy Control</em> (GPC) ove tecnicamente rilevanti.
+  </p>
+  <p>
+    <strong>Categorie di informazioni raccolte</strong> (Cal. Civ. Code §1798.130): identificatori (user_id pseudonimo), informazioni commerciali (subscription tier), attività internet (telemetria di prodotto se consentita), informazioni inferite (preferenze d'uso). Nessun dato sensibile ai sensi CCPA.
+  </p>
+  <p>
+    Diritti analoghi si applicano in <strong>Virginia (CDPA)</strong>, <strong>Colorado (CPA)</strong>, <strong>Connecticut (CTDPA)</strong>, <strong>Utah (UCPA)</strong> e nelle nuove leggi 2024-2025 (Texas, Oregon, Delaware, Iowa, New Hampshire, Montana). Per esercitarli usa lo stesso canale <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a>.
+  </p>
+
+  <h3>12.2 Brasile (LGPD)</h3>
+  <p>
+    Residenti in Brasile sono protetti dalla <em>Lei Geral de Proteção de Dados</em> (Lei 13.709/2018). Diritti del <strong>Titular</strong> ex Art. 18 LGPD:
+  </p>
+  <ul>
+    <li>Conferma dell'esistenza del trattamento</li>
+    <li>Accesso ai dati</li>
+    <li>Correzione di dati incompleti, inaccurati o non aggiornati</li>
+    <li>Anonimizzazione, blocco o eliminazione di dati eccessivi</li>
+    <li>Portabilità dei dati a un altro fornitore di servizi</li>
+    <li>Eliminazione dei dati trattati con consenso</li>
+    <li>Informazioni sui soggetti pubblici e privati con cui i dati sono stati condivisi</li>
+    <li>Informazioni sulla possibilità di non fornire il consenso e relative conseguenze</li>
+    <li>Revoca del consenso</li>
+  </ul>
+  <p>
+    Autorità di controllo: <strong>ANPD — Autoridade Nacional de Proteção de Dados</strong> (<a href="https://www.gov.br/anpd" rel="noopener">https://www.gov.br/anpd</a>). I trasferimenti internazionali di dati avvengono verso paesi con livello di protezione adeguato o sulla base di clausole contrattuali standard.
+  </p>
+
+  <h3>12.3 Giappone (APPI)</h3>
+  <p>
+    Residenti in Giappone sono protetti dall'<em>Act on the Protection of Personal Information</em> (APPI, modificato 2022).
+  </p>
+  <p>
+    <strong>Cross-border transfer consent</strong>: quando attivi <code>Funzioni AI</code> o <code>Report dei crash</code>, i dati sono trasferiti rispettivamente a Google LLC (Stati Uniti) e Functional Software Inc./Sentry (Stati Uniti). Confermando i consensi nella consent screen autorizzi esplicitamente tali trasferimenti ai sensi dell'Art. 28 APPI. Puoi revocare il consenso in qualsiasi momento da Impostazioni → Privacy.
+  </p>
+  <p>
+    <strong>Diritti</strong>: disclosure dei dati conservati, correzione, addizione, cancellazione, cessazione dell'uso, cessazione del trasferimento a terzi. Contatto: <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a>.
+  </p>
+
+  <h3>12.4 Corea del Sud (PIPA)</h3>
+  <p>
+    Residenti in Corea del Sud sono protetti dal <em>Personal Information Protection Act</em> (PIPA).
+  </p>
+  <p>
+    <strong>Personal Information Processing Notice</strong>: Fluera tratta i tuoi dati personali per le finalità descritte nella sezione 3, conservandoli per i periodi indicati nella sezione 6. I sub-processori USA (Sign in with Google, Sentry, RevenueCat) ricevono i dati solo dopo il tuo consenso esplicito tramite la consent screen. Le funzioni AI sono elaborate da Vertex AI nell'UE e non vengono trasferite negli USA.
+  </p>
+  <p>
+    <strong>Diritti</strong>: accesso, correzione, cancellazione, sospensione del trattamento. Per esercitarli: <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a>. In caso di reclamo, l'autorità competente è la <strong>Personal Information Protection Commission (PIPC)</strong> — <a href="https://www.pipc.go.kr" rel="noopener">https://www.pipc.go.kr</a>.
+  </p>
+  <p>
+    <strong>Chief Privacy Officer (CPO)</strong>: Lorenco Shametaj (founder, Fluera). Contatto operativo: <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a>. Designato ai sensi dell'Art. 31 PIPA che richiede la nomina di un CPO per ogni controller di dati personali, indipendentemente dal volume di utenti trattati. In caso di reclami non risolti tramite il canale CPO, gli utenti coreani possono contattare direttamente la Personal Information Protection Commission (PIPC) al link sopra.
+  </p>
+
+  <h3>12.5 India (DPDP Act 2023)</h3>
+  <p>
+    Residenti in India sono protetti dal <em>Digital Personal Data Protection Act 2023</em>.
+  </p>
+  <p><strong>Diritti del Data Principal</strong>:</p>
+  <ul>
+    <li>Conferma + sintesi dei dati trattati (Sec. 11)</li>
+    <li>Correzione e cancellazione (Sec. 12-13)</li>
+    <li>Grievance redressal entro 30 giorni (Sec. 14)</li>
+    <li>Nomina di un Consent Manager (Sec. 6)</li>
+  </ul>
+  <p>
+    <strong>Minori</strong>: il DPDP Act richiede <strong>consenso genitoriale per utenti sotto i 18 anni</strong>, soglia più stretta del GDPR (14 in Italia). Fluera applica l'età minima dichiarata in ToS §4.3 (≥14) e, per residenti indiani, richiede che gli utenti tra 14-18 anni acquisiscano il consenso del genitore prima dell'uso. Le segnalazioni di non conformità sono gestite via <a href="mailto:support@fluera.dev">support@fluera.dev</a> con cancellazione entro 30 giorni come da policy globale.
+  </p>
+  <p>
+    Contatto Data Protection Officer / Grievance Officer: <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a>.
+  </p>
+
+  <h3>12.6 Arabia Saudita (PDPL)</h3>
+  <p>
+    Residenti in Arabia Saudita sono protetti dal <em>Personal Data Protection Law</em> (in vigore dal 14 settembre 2024), regolato dalla <strong>Saudi Data and AI Authority (SDAIA)</strong>.
+  </p>
+  <p>
+    <strong>Cross-border transfer</strong>: i dati raccolti da utenti KSA sono trasferiti a server EEA (Supabase Stockholm; inferenza AI su Vertex AI nell'UE) e a sub-processori USA (Sign in with Google, Sentry, RevenueCat). Tale trasferimento avviene solo dopo il tuo consenso esplicito tramite la consent screen, ai sensi dell'Art. 29 PDPL.
+  </p>
+  <p>
+    <strong>Diritti</strong>: essere informato sul trattamento, accesso, correzione, cancellazione, opposizione al trattamento. Per esercitarli: <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a>. Reclami formali possono essere indirizzati a SDAIA — <a href="https://sdaia.gov.sa" rel="noopener">https://sdaia.gov.sa</a>.
+  </p>
+
+  <h3>12.7 Canada (PIPEDA + Quebec Law 25)</h3>
+  <p>
+    Residenti canadesi sono protetti dal <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA, federale) e, per i residenti del Quebec, anche dalla <em>Loi sur la protection des renseignements personnels dans le secteur privé</em> modificata dalla <strong>Law 25</strong> (in vigore dal 2023, notoriamente più strict del PIPEDA).
+  </p>
+  <p><strong>Diritti garantiti</strong>:</p>
+  <ul>
+    <li>Accesso ai propri dati personali e informazioni sul loro trattamento</li>
+    <li>Rettifica di dati inaccurati o incompleti</li>
+    <li>Ritiro del consenso al trattamento</li>
+    <li>Portabilità (Quebec Law 25, Art. 27)</li>
+    <li>Cancellazione / "right to be forgotten" (Quebec Law 25, Art. 28.1)</li>
+  </ul>
+  <p>
+    <strong>Cross-border transfer</strong>: Quebec Law 25 Art. 17 richiede valutazione di privacy impact prima del trasferimento di dati personali fuori dal Quebec. I dati Fluera transitano verso server EEA (Supabase Stockholm; inferenza AI su Vertex AI nell'UE) e sub-processori USA (Sign in with Google, Sentry, RevenueCat) — copertura fornita dalle SCC di cui ai DPA dei processori e dal consenso esplicito tramite consent screen.
+  </p>
+  <p>
+    <strong>Privacy Officer designato</strong>: Lorenco Shametaj (founder, Fluera). Contatto operativo: <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a>. Designato ai sensi dell'Art. 8 Quebec Law 25.
+  </p>
+  <p><strong>Autorità di controllo</strong>:</p>
+  <ul>
+    <li>Federale: Office of the Privacy Commissioner of Canada (OPC) — <a href="https://www.priv.gc.ca" rel="noopener">https://www.priv.gc.ca</a></li>
+    <li>Quebec: Commission d'accès à l'information du Québec — <a href="https://www.cai.gouv.qc.ca" rel="noopener">https://www.cai.gouv.qc.ca</a></li>
+  </ul>
+
+  <h3>12.8 Australia (Privacy Act 1988 + Australian Privacy Principles)</h3>
+  <p>
+    Residenti australiani sono protetti dal <em>Privacy Act 1988</em> (incluse le riforme 2024), che definisce 13 <strong>Australian Privacy Principles (APPs)</strong> vincolanti.
+  </p>
+  <p><strong>Diritti garantiti</strong>:</p>
+  <ul>
+    <li>Notifica al momento della raccolta (APP 5) — fornita tramite il consent screen + Privacy Policy</li>
+    <li>Accesso ai dati conservati (APP 12) e correzione (APP 13)</li>
+    <li>Opt-out da uso/disclosure per scopi diversi dal primario (APP 6)</li>
+    <li>Disclosure cross-border accountability (APP 8): Fluera resta responsabile per il trattamento da parte dei sub-processori USA, ai quali l'utente acconsente esplicitamente tramite la consent screen</li>
+  </ul>
+  <p>
+    <strong>Sensitive Personal Information</strong>: Fluera non raccoglie informazioni sensibili ai sensi APP (no health, no biometric, no political/religious).
+  </p>
+  <p>
+    <strong>Notifiable Data Breach scheme</strong> (Part IIIC): in caso di "eligible data breach" che possa causare "serious harm", Fluera notifica l'Office of the Australian Information Commissioner (OAIC) e gli utenti interessati "as soon as practicable", in linea con la stessa policy di breach notification GDPR a 72 ore.
+  </p>
+  <p>
+    <strong>Autorità di controllo</strong>: Office of the Australian Information Commissioner (OAIC) — <a href="https://www.oaic.gov.au" rel="noopener">https://www.oaic.gov.au</a>. Reclami formali: <a href="https://www.oaic.gov.au/privacy/privacy-complaints" rel="noopener">https://www.oaic.gov.au/privacy/privacy-complaints</a>.
+  </p>
+
+  <h3>12.9 Altre giurisdizioni</h3>
+  <p>
+    Per i residenti di qualsiasi altra giurisdizione non specificamente elencata sopra rispettiamo i tuoi diritti ai sensi della normativa nazionale applicabile in materia di protezione dei dati personali. La lista che segue è esemplificativa e non esaustiva:
+  </p>
+  <ul>
+    <li>🇳🇿 <strong>Nuova Zelanda</strong> — Privacy Act 2020</li>
+    <li>🇸🇬 <strong>Singapore</strong> — PDPA 2012</li>
+    <li>🇭🇰 <strong>Hong Kong</strong> — PDPO</li>
+    <li>🇿🇦 <strong>Sudafrica</strong> — POPIA 2013</li>
+    <li>🇵🇭 <strong>Filippine</strong> — Data Privacy Act 2012</li>
+    <li>🇲🇽 <strong>Messico</strong> — LFPDPPP</li>
+    <li>🇦🇷 <strong>Argentina</strong> — Ley 25.326</li>
+    <li>🇮🇱 <strong>Israele</strong> — Privacy Protection Law 1981</li>
+    <li>🇻🇳 <strong>Vietnam</strong> — PDPD 2024</li>
+    <li>🇮🇩 <strong>Indonesia</strong> — UU PDP 2022</li>
+    <li>🇹🇭 <strong>Thailand</strong> — PDPA 2022</li>
+    <li>🇹🇷 <strong>Turchia</strong> — KVKK 2016</li>
+    <li>🇳🇬 <strong>Nigeria</strong> — NDPA 2023</li>
+    <li>🇰🇪 <strong>Kenya</strong> — DPA 2019</li>
+    <li>🇰🇿 <strong>Kazakhstan</strong> — Data localization law</li>
+    <li>altri ordinamenti con leggi privacy equivalenti</li>
+  </ul>
+  <p>
+    Se la legge locale del tuo paese di residenza richiede tutele più specifiche di quelle qui descritte, prevarranno quelle tutele locali nei limiti in cui sono applicabili.
+  </p>
+  <p>
+    <strong>Come esercitarli</strong>: scrivi a <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a> indicando il tuo paese di residenza — risposta entro 30 giorni (compatibile con i termini massimi delle leggi citate sopra).
+  </p>
+  <p>
+    <strong>Self-service</strong>: le operazioni più comuni (export dati ai sensi del "right to portability" equivalente, cancellazione cloud ai sensi del "right to erasure" equivalente, revoca consenso) sono già disponibili in <strong>Impostazioni → Privacy</strong> e funzionano in modo identico indipendentemente dalla giurisdizione.
+  </p>
+
+  <p>
+    <strong>Nota generale per tutte le giurisdizioni</strong>: le operazioni pratiche (export dei dati, cancellazione cloud, revoca consensi) sono già implementate nell'app: vai a <strong>Impostazioni → Privacy</strong> per esercitarle in autonomia, senza dover scrivere a <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a>. Il canale email è disponibile per richieste che non sono coperte dai self-service tile o per chiarimenti.
+  </p>
 </LegalLayout>

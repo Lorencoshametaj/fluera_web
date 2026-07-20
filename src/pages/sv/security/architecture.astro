@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Säkerhetsarkitektur"
-  description="Hur Fluera krypterar din anteckningsbok i vila, i transit och mellan enheter. SQLCipher, TLS 1.3, ände-till-ände-synk, opt-in-telemetri, revisionsspår för institutioner."
+  description="Hur Fluera krypterar din anteckningsbok i vila, i transit och mellan enheter. SQLCipher, TLS 1.3, molnsynk på EU-infrastruktur, opt-in-telemetri, revisionsspår för institutioner."
   locale="sv"
 >
   <PageHero
@@ -26,7 +26,7 @@ import { SITE } from "@/lib/site";
       <p>Inom den modellen, tre garantier:</p>
       <ul>
         <li><strong>Lokal data är oläsbar utan nyckeln.</strong> En stulen enhet producerar en krypterad blob.</li>
-        <li><strong>Synkroniserad data är oläsbar för oss.</strong> Molnet lagrar bara ciphertext. Härledningen sker på enheten.</li>
+        <li><strong>Synkroniserad data lagras på EU-infrastruktur.</strong> Den är krypterad i transit (TLS) och i vila på infrastrukturnivå (Supabase, eu-north-1), men inte ände-till-ände-krypterad — Fluera kan som personuppgiftsansvarig komma åt den. Vi säljer den aldrig och använder den aldrig för annonsering.</li>
         <li><strong>Telemetri är samtyckesbaserad och avidentifierad.</strong> Analyserna kan inte koppla en användare till hennes innehåll ens vid ett fullständigt intrång.</li>
       </ul>
 
@@ -38,17 +38,14 @@ import { SITE } from "@/lib/site";
         Nyckelhärledning använder PBKDF2 med SHA-256, 256 000 iterationer (i linje med OWASP). Lösenfrasen lagras i plattformens keychain — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows, libsecret på Linux. Den skickas aldrig till våra servrar.
       </p>
 
-      <h2>I transit: TLS 1.3, certificate pinning</h2>
+      <h2>I transit: TLS 1.3</h2>
       <p>
-        All nätverkstrafik är TLS 1.3 med moderna chiffer. På iOS och Android pinnar vi certifikat mot vår CA-kedja för att förhindra man-in-the-middle från företagsproxyer — med en dokumenterad override för nätverksadministratörer som behöver det.
+        All nätverkstrafik är TLS 1.3 med moderna chiffersviter.
       </p>
 
-      <h2>Synk mellan enheter: ände till ände</h2>
+      <h2>Synk mellan enheter: på EU-infrastruktur</h2>
       <p>
-        Molnsynk, när den är aktiverad, använder en separat uppsättning nycklar härledda på enheten. Synkservern (Supabase Storage, EU-region) lagrar ciphertext och kan inte dekryptera. Synk är opt-in per anteckningsbok — du kan hålla vissa enbart lokalt medan andra synkas.
-      </p>
-      <p>
-        Nyckelrotation: att starta den från valfri enhet omkrypterar alla framtida payloads med en ny nyckel. Gammal ciphertext förblir läsbar för äldre klienter tills du bekräftat migrationen på alla enheter.
+        Molnsynk, när den är aktiverad, lagrar canvas-data på Supabase (EU-region, eu-north-1). Datan är krypterad i transit (TLS) och i vila på infrastrukturnivå, men inte ände-till-ände-krypterad: synkservern lagrar inte ciphertext som bara du kan låsa upp, och Fluera kan som personuppgiftsansvarig komma åt det synkade innehållet. Vi säljer det aldrig och använder det aldrig för annonsering. Synk är opt-in per anteckningsbok — du kan hålla vissa enbart lokalt medan andra synkas.
       </p>
 
       <h2>P2P-samarbete: direkt, krypterat</h2>
@@ -61,7 +58,7 @@ import { SITE } from "@/lib/site";
 
       <h2>AI-anrop: via proxy, aldrig direkt</h2>
       <p>
-        Anrop till Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) går via en Supabase Edge Function som håller API-nyckeln på servern. Klientenheterna ser aldrig nyckeln. Proxyn tillämpar rate limit per plan och loggar anropsdurationer för bokföring — aldrig canvas-innehållet.
+        Anrop till Google Gemini-modeller (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) serveras via Google Vertex AI och bearbetas i EU (europe-west4 NL / europe-west1 BE). En proxy håller autentiseringsuppgifterna på servern, så klientenheterna ser dem aldrig. Proxyn tillämpar rate limit per plan och loggar anropsdurationer för bokföring — aldrig canvas-innehållet.
       </p>
       <p>
         Om du stänger av AI-funktionerna i <em>Inställningar → Integritet</em> skickas inget canvas-innehåll till Gemini, inte ens som fallback för OCR på enheten.

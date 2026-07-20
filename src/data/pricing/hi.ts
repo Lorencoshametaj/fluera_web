@@ -117,7 +117,7 @@ const data: PricingData = {
     },
     {
       q: "Team या Education plans?",
-      a: "Phase 2 में आ रहे हैं (shared workspaces, admin dashboard, SSO)। रुचि है? sales@fluera.dev पर email करें — हम अपने पहले design partners के साथ roadmap बना रहे हैं।",
+      a: "Phase 2 में आ रहे हैं (shared workspaces, admin dashboard, SSO)। रुचि है? support@fluera.dev पर email करें — हम अपने पहले design partners के साथ roadmap बना रहे हैं।",
     },
   ],
 };

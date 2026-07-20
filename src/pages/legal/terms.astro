@@ -1,13 +1,7 @@
 ---
 import LegalLayout from "@/layouts/LegalLayout.astro";
 
-const placeholders = [
-  { key: "NOME LEGALE AZIENDA", note: "ragione sociale completa" },
-  { key: "INDIRIZZO COMPLETO", note: "sede legale" },
-  { key: "PARTITA IVA / CODICE FISCALE", note: "" },
-  { key: "FORO COMPETENTE", note: "di solito città della sede legale" },
-  { key: "DATA ULTIMO AGGIORNAMENTO", note: "data effettiva pubblicazione" },
-];
+const placeholders = [];
 
 const summary = `I presenti Termini e Condizioni d'uso (i "<strong>Termini</strong>") disciplinano l'accesso e l'utilizzo dell'applicazione Fluera e dei servizi correlati. L'utilizzo del servizio implica l'accettazione integrale dei presenti Termini.`;
 ---
@@ -16,17 +10,17 @@ const summary = `I presenti Termini e Condizioni d'uso (i "<strong>Termini</stro
   title="Termini e Condizioni"
   kicker="Legale"
   summary={summary}
-  version="1.0"
-  updatedAt="[DATA ULTIMO AGGIORNAMENTO]"
+  version="1.4"
+  updatedAt="27 giugno 2026"
   locale="it"
   placeholders={placeholders}
 >
   <h2 id="fornitore">1. Fornitore del servizio</h2>
   <p>Fluera è un servizio fornito da:</p>
   <ul>
-    <li><strong>Ragione sociale:</strong> <span class="legal-placeholder">[NOME LEGALE AZIENDA]</span></li>
-    <li><strong>Sede legale:</strong> <span class="legal-placeholder">[INDIRIZZO COMPLETO]</span></li>
-    <li><strong>P.IVA / C.F.:</strong> <span class="legal-placeholder">[PARTITA IVA / CODICE FISCALE]</span></li>
+    <li><strong>Fornitore:</strong> Lorenco Shametaj (persona fisica; "Fluera" è il marchio/prodotto — società in corso di costituzione)</li>
+    <li><strong>Indirizzo:</strong> Via Boccaccio 44, 35128 Padova (PD), Italia</li>
+    <li><strong>P.IVA / C.F.:</strong> non ancora attribuita (da inserire alla costituzione)</li>
     <li><strong>Email di contatto:</strong> <a href="mailto:support@fluera.dev">support@fluera.dev</a></li>
   </ul>
 
@@ -57,7 +51,10 @@ const summary = `I presenti Termini e Condizioni d'uso (i "<strong>Termini</stro
   </p>
   <h3>4.3 Età minima</h3>
   <p>
-    Fluera non è destinata a utenti di età inferiore ai 14 anni. Gli utenti tra 14 e 18 anni possono utilizzare il servizio a condizione di aver ottenuto il consenso di chi esercita la responsabilità genitoriale, ove richiesto dalla legge applicabile.
+    <strong>Utilizzando Fluera dichiari di avere almeno 14 anni.</strong> Se hai meno di 14 anni, non puoi creare un account né utilizzare il Servizio. Per gli utenti tra 14 e 18 anni, l'uso può richiedere il consenso del genitore o tutore secondo la legge applicabile (DLgs 196/2003 art. 2-quinquies in Italia; età minima di consenso digitale in altri ordinamenti UE).
+  </p>
+  <p>
+    Se veniamo a conoscenza di un account creato da un minore di 14 anni, l'account viene sospeso e cancellato entro 30 giorni. Per segnalare un uso non conforme, scrivici a <a href="mailto:support@fluera.dev">support@fluera.dev</a>.
   </p>
 
   <h2 id="licenza">5. Licenza d'uso</h2>
@@ -82,13 +79,13 @@ const summary = `I presenti Termini e Condizioni d'uso (i "<strong>Termini</stro
 
   <h2 id="ai">7. Funzioni AI e limitazioni</h2>
   <p>
-    Le funzioni di intelligenza artificiale di Fluera (Socratic, Ghost Map, LaTeX OCR, Exam) utilizzano modelli di Google Gemini. L'utente prende atto che:
+    Le funzioni di intelligenza artificiale di Fluera (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) utilizzano modelli di Google Gemini, erogati tramite Google Vertex AI con elaborazione nell'Unione Europea (cfr. <a href="/legal/privacy">Privacy Policy</a>). L'utente prende atto che:
   </p>
   <ul>
-    <li>I contenuti delle risposte AI sono generati automaticamente e possono contenere errori, imprecisioni o informazioni non aggiornate ("allucinazioni")</li>
-    <li>L'uso delle risposte AI per decisioni critiche (mediche, legali, finanziarie, cliniche) avviene sotto la completa responsabilità dell'utente. Le risposte AI <strong>non costituiscono consulenza professionale</strong></li>
+    <li>Le risposte AI sono generate automaticamente e possono contenere errori, imprecisioni o "allucinazioni"</li>
+    <li>Le risposte AI <strong>non costituiscono consulenza professionale</strong> (medica, legale, finanziaria, clinica) — l'uso per decisioni critiche è sotto responsabilità dell'utente</li>
     <li>Per abilitare queste funzioni è necessario prestare il consenso alla categoria "<em>Funzioni AI</em>" (cfr. <a href="/legal/privacy">Privacy Policy</a>)</li>
-    <li>Le funzioni AI sono soggette a limiti mensili di utilizzo in base al piano sottoscritto. Al raggiungimento del limite l'utente viene informato e invitato all'upgrade</li>
+    <li>Le funzioni AI sono soggette a limiti mensili in base al piano; al raggiungimento del limite l'utente è informato e invitato all'upgrade</li>
   </ul>
 
   <h2 id="abbonamenti">8. Abbonamenti e pagamenti</h2>
@@ -132,10 +129,10 @@ const summary = `I presenti Termini e Condizioni d'uso (i "<strong>Termini</stro
 
   <h2 id="proprieta">11. Proprietà intellettuale del Fornitore</h2>
   <p>
-    L'applicazione Fluera, il logo, il nome, la grafica, l'interfaccia utente, il codice sorgente (salvo le parti rese pubbliche sotto licenza open-source) e tutti i contenuti correlati sono di proprietà esclusiva del Fornitore o dei suoi licenzianti e sono protetti dalle leggi italiane e internazionali sulla proprietà intellettuale.
+    L'applicazione, il logo, il nome, la grafica, il codice sorgente (salvo le parti rese pubbliche sotto licenza open-source) sono proprietà esclusiva del Fornitore o dei suoi licenzianti, protetti dalle leggi italiane e internazionali sulla proprietà intellettuale.
   </p>
   <p>
-    Alcune componenti di Fluera (es. <code>fluera_engine</code>) possono essere rilasciate separatamente sotto licenza open-source: in tal caso le relative condizioni sono reperibili sui repository pubblici di riferimento e prevalgono per le porzioni di codice coperte.
+    Alcune componenti (es. <code>fluera_engine</code>) possono essere rilasciate sotto licenza open-source: le relative condizioni sono sui repository pubblici di riferimento e prevalgono per le porzioni di codice coperte.
   </p>
 
   <h2 id="garanzie">12. Garanzie e limitazione di responsabilità</h2>
@@ -164,7 +161,7 @@ const summary = `I presenti Termini e Condizioni d'uso (i "<strong>Termini</stro
 
   <h2 id="legge">15. Legge applicabile e foro competente</h2>
   <p>
-    I presenti Termini sono regolati dalla legge italiana. Per ogni controversia derivante dai presenti Termini il foro competente è quello di <span class="legal-placeholder">[FORO COMPETENTE — città della sede legale]</span>, fatto salvo il foro inderogabile del consumatore (art. 66-bis Codice del Consumo) quando applicabile.
+    I presenti Termini sono regolati dalla legge italiana. Per ogni controversia derivante dai presenti Termini il foro competente è quello di Padova, fatto salvo il foro inderogabile del consumatore (art. 66-bis Codice del Consumo) quando applicabile.
   </p>
   <p>
     Ai sensi dell'articolo 14 del Regolamento UE 524/2013, l'utente consumatore può accedere alla piattaforma ODR della Commissione europea per la risoluzione extragiudiziale delle controversie: <a href="https://ec.europa.eu/consumers/odr" rel="noopener">ec.europa.eu/consumers/odr</a>.
@@ -174,6 +171,6 @@ const summary = `I presenti Termini e Condizioni d'uso (i "<strong>Termini</stro
   <p>Per qualsiasi domanda relativa ai presenti Termini:</p>
   <ul>
     <li>Email supporto generale: <a href="mailto:support@fluera.dev">support@fluera.dev</a></li>
-    <li>Email privacy: <a href="mailto:privacy@fluera.dev">privacy@fluera.dev</a></li>
+    <li>Email privacy: <a href="mailto:lorenco@fluera.dev">lorenco@fluera.dev</a></li>
   </ul>
 </LegalLayout>

@@ -5,7 +5,7 @@ description: "Quali dati Fluera raccoglie, che consenso stai dando e come spegne
 section: settings
 sectionLabel: "Impostazioni"
 order: 1
-updatedAt: 2026-05-19
+updatedAt: 2026-06-29
 ---
 
 Fluera è uno strumento local-first. Di default, niente lascia il tuo dispositivo a meno che tu non attivi esplicitamente una funzione che lo richiede.
@@ -15,11 +15,15 @@ Fluera è uno strumento local-first. Di default, niente lascia il tuo dispositiv
 Apri **Impostazioni → Privacy**. Vedrai quattro toggle, tutti disattivati di default:
 
 - **Analytics di prodotto.** Dati di sessione anonimi — conteggio invocazioni feature, durata sessione, durata chiamate AI. Mai contenuto. ID utente hashato SHA-256, retention 180 giorni.
-- **Funzioni AI.** Richieste per usare Socratic, Ghost Map, LaTeX OCR e Fog of War. Il testo selezionato dal canvas viene inviato a Google Gemini via il nostro proxy lato server. Mai il quaderno intero.
-- **Cloud sync.** Richiesta per sincronizzare i canvas tra dispositivi. Tutti i quaderni sono cifrati sul tuo dispositivo prima dell'upload. Il cloud tiene ciphertext.
+- **Funzioni AI.** Richieste per usare Socratic, Ghost Map, LaTeX OCR e Fog of War. Il testo selezionato dal canvas viene inviato ai modelli Google Gemini serviti tramite Google Vertex AI, con elaborazione nell'UE (europe-west4 NL / europe-west1 BE). Mai il quaderno intero.
+- **Cloud sync.** Richiesta per sincronizzare i canvas tra dispositivi. I dati sincronizzati sono cifrati in transito (TLS) e a riposo sull'infrastruttura UE (Supabase, eu-north-1). Il sync **non** è cifrato end-to-end: Fluera, in quanto titolare del trattamento, può accedere ai contenuti sincronizzati. Non li vendiamo mai né li usiamo per pubblicità.
 - **Crash reporting.** Stack trace e metadata del dispositivo quando l'app crasha. Nessun contenuto utente. Trattato da Sentry con `sendDefaultPii: false`.
 
 Ogni toggle è indipendente. Puoi attivare Cloud Sync senza Analytics. Puoi usare l'AI senza Crash Reporting. I permessi sono granulari di proposito.
+
+## Memoria cognitiva (sul dispositivo, opt-out)
+
+Distinta dai quattro consensi cloud sopra: per impostazione predefinita Fluera indicizza i tuoi appunti **solo sul dispositivo** per dare titoli automatici, mappa concettuale (Ghost Map) e ripetizione dilazionata (FSRS). Questo indice **non lascia mai il dispositivo** — nessun contenuto viene inviato al cloud (è diverso da *Funzioni AI* e *Cloud sync*). Puoi disattivarla in **Impostazioni → Privacy → Memoria cognitiva**: l'indicizzazione si ferma e i dati cognitivi già creati sul dispositivo vengono cancellati subito (i tuoi appunti restano intatti). Base giuridica: legittimo interesse con diritto di opposizione (GDPR Art. 6.1.f / 21) — per questo è attiva di default e opt-out, non un consenso opt-in come i quattro sopra.
 
 ## AI Training Data (sezione separata, solo opt-in)
 

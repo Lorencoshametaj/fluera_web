@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Arquitetura de segurança"
-  description="Como o Fluera criptografa o seu caderno em repouso, em trânsito e entre dispositivos. SQLCipher, TLS 1.3, sincronização ponta a ponta, telemetria opt-in, trilha de auditoria para instituições."
+  description="Como o Fluera protege o seu caderno em repouso, em trânsito e entre dispositivos. SQLCipher, TLS 1.3, sincronização na nuvem na UE, telemetria opt-in, trilha de auditoria para instituições."
   locale="pt-br"
 >
   <PageHero
@@ -26,7 +26,7 @@ import { SITE } from "@/lib/site";
       <p>Dentro desse modelo, três garantias:</p>
       <ul>
         <li><strong>Os dados locais são ilegíveis sem a chave.</strong> Um dispositivo roubado produz um blob criptografado.</li>
-        <li><strong>Os dados sincronizados são ilegíveis para nós.</strong> A nuvem guarda apenas ciphertext. A derivação acontece no dispositivo.</li>
+        <li><strong>Os dados sincronizados são protegidos em trânsito e em repouso.</strong> A sincronização na nuvem é criptografada em trânsito (TLS) e em repouso na infraestrutura da UE (Supabase, eu-north-1). Ela <em>não</em> é ponta a ponta: o Fluera, como controlador de dados, pode tecnicamente acessar o conteúdo sincronizado — mas nunca o vende nem o usa para publicidade.</li>
         <li><strong>A telemetria é consensual e desidentificada.</strong> Os analytics não conseguem ligar um usuário ao seu conteúdo nem mesmo em caso de breach completo.</li>
       </ul>
 
@@ -38,17 +38,17 @@ import { SITE } from "@/lib/site";
         A derivação da chave usa PBKDF2 com SHA-256, 256.000 iterações (alinhado ao OWASP). A passphrase é guardada no keychain da plataforma — Keychain no iOS/macOS, Keystore no Android, DPAPI no Windows, libsecret no Linux. Nunca é enviada aos nossos servidores.
       </p>
 
-      <h2>Em trânsito: TLS 1.3, certificate pinning</h2>
+      <h2>Em trânsito: TLS 1.3</h2>
       <p>
-        Todo o tráfego de rede é TLS 1.3 com cifras modernas. No iOS e Android fazemos pinning dos certificados na nossa cadeia de CA para evitar man-in-the-middle de proxies corporativos — com override documentado para administradores de rede que precisem.
+        Todo o tráfego de rede é TLS 1.3 com cifras modernas, protegendo os dados contra interceptação na rede.
       </p>
 
-      <h2>Sincronização entre dispositivos: ponta a ponta</h2>
+      <h2>Sincronização entre dispositivos: na nuvem da UE</h2>
       <p>
-        O cloud sync, quando ativado, usa um conjunto de chaves separado derivado no dispositivo. O servidor de sincronização (Supabase Storage, região UE) guarda ciphertext e não consegue descriptografar. A sincronização é opt-in por caderno — você pode manter alguns só locais enquanto sincroniza outros.
+        O cloud sync, quando ativado, armazena os seus cadernos no servidor de sincronização (Supabase, região UE, eu-north-1). Os dados são criptografados em trânsito (TLS) e em repouso na infraestrutura. A sincronização <em>não</em> é ponta a ponta: o Fluera, como controlador de dados, pode tecnicamente acessar o conteúdo sincronizado — nunca o vende nem o usa para publicidade. A sincronização é opt-in por caderno — você pode manter alguns só locais enquanto sincroniza outros.
       </p>
       <p>
-        Rotação de chaves: iniciá-la a partir de qualquer dispositivo recriptografa todos os payloads futuros com uma chave nova. Os ciphertexts antigos continuam legíveis para clientes mais antigos até você confirmar a migração em todos os dispositivos.
+        Para garantias mais fortes, o conteúdo que nunca sai do dispositivo permanece criptografado localmente com SQLCipher, e a exportação para arquivos <code>.fluera</code> é criptografada com AES-256-GCM — esses sim ilegíveis para nós.
       </p>
 
       <h2>Colaboração P2P: direta, criptografada</h2>
@@ -59,12 +59,12 @@ import { SITE } from "@/lib/site";
         Em NATs restritivos passamos via TURN, caso em que o relay vê apenas pacotes DTLS criptografados que ele não consegue descriptografar.
       </p>
 
-      <h2>Chamadas de IA: via proxy, nunca diretas</h2>
+      <h2>Chamadas de IA: via proxy, processadas na UE</h2>
       <p>
-        As chamadas ao Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) passam por uma Supabase Edge Function que guarda a API key no servidor. Os dispositivos cliente nunca veem a chave. O proxy aplica rate limit por plano e loga as durações das chamadas para contabilidade — nunca o conteúdo do canvas.
+        As chamadas de IA (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) usam modelos Google Gemini servidos pelo Google Vertex AI, processados na UE (europe-west4 NL / europe-west1 BE). Passam por um proxy que guarda a credencial no servidor — os dispositivos cliente nunca a veem. O proxy aplica rate limit por plano e loga as durações das chamadas para contabilidade — nunca o conteúdo do canvas.
       </p>
       <p>
-        Se você desativa as funções de IA em <em>Configurações → Privacidade</em>, nenhum conteúdo do canvas é enviado ao Gemini, nem mesmo para fallback de OCR on-device.
+        Se você desativa as funções de IA em <em>Configurações → Privacidade</em>, nenhum conteúdo do canvas é enviado ao serviço de IA, nem mesmo para fallback de OCR on-device.
       </p>
 
       <h2>Telemetria: opt-in, hasheada, allowlisted</h2>

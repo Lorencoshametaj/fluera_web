@@ -118,7 +118,7 @@ const data: PricingData = {
     },
     {
       q: "خطط Team أو Education؟",
-      a: "قادمة في المرحلة 2 (workspaces مشتركة، لوحة تحكم admin، SSO). مهتم؟ راسل sales@fluera.dev — نبني خارطة الطريق مع شركاء التصميم الأوائل.",
+      a: "قادمة في المرحلة 2 (workspaces مشتركة، لوحة تحكم admin، SSO). مهتم؟ راسل support@fluera.dev — نبني خارطة الطريق مع شركاء التصميم الأوائل.",
     },
   ],
 };

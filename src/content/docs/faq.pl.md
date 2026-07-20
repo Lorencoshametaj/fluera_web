@@ -34,7 +34,7 @@ Canvas — pisanie, czytanie, eksport — jest całkowicie offline. Funkcje AI (
 
 ## Jestem w Polsce. A RODO?
 
-W pełni zgodne. Fluera jest hostowana w UE i jest natywnie GDPR/RODO, co pokrywa wymagania polskiej ustawy o ochronie danych osobowych równolegle. Możesz wykonywać swoje prawa (dostęp, sprostowanie, usunięcie, przenośność) przez **Ustawienia → Prywatność** albo pisząc do [privacy@fluera.dev](mailto:privacy@fluera.dev). Odpowiedź w ciągu 30 dni; zwykle w 48 godzin.
+W pełni zgodne. Fluera jest hostowana w UE i jest natywnie GDPR/RODO, co pokrywa wymagania polskiej ustawy o ochronie danych osobowych równolegle. Możesz wykonywać swoje prawa (dostęp, sprostowanie, usunięcie, przenośność) przez **Ustawienia → Prywatność** albo pisząc do [lorenco@fluera.dev](mailto:lorenco@fluera.dev). Odpowiedź w ciągu 30 dni; zwykle w 48 godzin.
 
 ## Pencil laguje na moim iPadzie. Co jest nie tak?
 
@@ -46,11 +46,11 @@ Jeśli lag utrzymuje się z włączonym Predicted, zamknij i uruchom ponownie. J
 
 [support@fluera.dev](mailto:support@fluera.dev). Opisz, co robiłeś, czego oczekiwałeś, co się stało, i podaj wersję aplikacji (Ustawienia → O programie). Screenshoty pomagają.
 
-Dla podatności bezpieczeństwa użyj [security@fluera.dev](mailto:security@fluera.dev) i zaszyfruj naszym kluczem PGP (na naszym profilu GitHub).
+Dla podatności bezpieczeństwa użyj [lorenco@fluera.dev](mailto:lorenco@fluera.dev) i zaszyfruj naszym kluczem PGP (na naszym profilu GitHub).
 
 ## Jak daję feedback o pedagogice?
 
-Czytamy każdy email. [hello@fluera.dev](mailto:hello@fluera.dev) idzie wprost do founderów. Szczególnie przydatne: co *nie* zadziałało dla ciebie, co wydawało się tarciem, które nie było pożądane, i wszystko, co cię zaskoczyło.
+Czytamy każdy email. [support@fluera.dev](mailto:support@fluera.dev) idzie wprost do founderów. Szczególnie przydatne: co *nie* zadziałało dla ciebie, co wydawało się tarciem, które nie było pożądane, i wszystko, co cię zaskoczyło.
 
 ## Następne
 

@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Kryptering",
-    body: "Hver notesbog i Fluera er krypteret i hvile med AES-256 via SQLCipher. Trafikken kører med TLS 1.3 in transit. Synkroniseringen mellem dine enheder er end-to-end-krypteret med nøgler, der udledes af din adgangsfrase — gemt i platformens keychain, aldrig sendt til vores servere.",
+    body: "Hver notesbog i Fluera er krypteret i hvile med AES-256 via SQLCipher, og .fluera-eksporter krypteres med AES-256-GCM. Trafikken kører med TLS 1.3 in transit. Når du slår cloud-sync til, krypteres dine data under transport (TLS) og i hvile på vores europæiske infrastruktur (Supabase, eu-north-1) — det er ikke end-to-end-krypteret, så Fluera kan som dataansvarlig tilgå indholdet. Vi sælger det aldrig og bruger det aldrig til reklame.",
   },
   {
     title: "Ejerskab over dine data",
@@ -38,7 +38,7 @@ const pillars = [
 >
   <PageHero
     kicker="Sikkerhed og privatliv"
-    title="End-to-end-kryptering.<br />Nøglen bliver hos dig."
+    title="Kryptering fra fabrikken.<br />Dine data bliver hos dig."
     titleSize="2xl"
     description="Kryptering fra fabrikken. Ingen ad-tech. Servere i Europa. Fuld eksport. Privatliv er en designbegrænsning, ikke en compliance-opgave."
     orbs

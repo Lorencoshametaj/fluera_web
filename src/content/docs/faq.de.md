@@ -34,7 +34,7 @@ Das Canvas — Schreiben, Lesen, Exportieren — ist komplett offline. Die KI-Fu
 
 ## Ich bin in Deutschland. Und die DSGVO?
 
-Vollständig konform. Fluera wird in der EU gehostet und ist DSGVO-nativ. Du kannst deine Rechte (Auskunft, Berichtigung, Löschung, Datenübertragbarkeit) über **Einstellungen → Datenschutz** wahrnehmen oder an [privacy@fluera.dev](mailto:privacy@fluera.dev) schreiben. Antwort innerhalb von 30 Tagen; meistens innerhalb von 48 Stunden.
+Vollständig konform. Fluera wird in der EU gehostet und ist DSGVO-nativ. Du kannst deine Rechte (Auskunft, Berichtigung, Löschung, Datenübertragbarkeit) über **Einstellungen → Datenschutz** wahrnehmen oder an [lorenco@fluera.dev](mailto:lorenco@fluera.dev) schreiben. Antwort innerhalb von 30 Tagen; meistens innerhalb von 48 Stunden.
 
 ## Der Pencil laggt auf meinem iPad. Was ist falsch?
 
@@ -46,11 +46,11 @@ Wenn der Lag mit eingeschaltetem Predicted bleibt, schließ die App und starte s
 
 [support@fluera.dev](mailto:support@fluera.dev). Beschreibe, was du gemacht hast, was du erwartet hast, was passiert ist, und füge die App-Version (Einstellungen → Über) hinzu. Screenshots helfen.
 
-Für Sicherheitslücken nutze [security@fluera.dev](mailto:security@fluera.dev) und verschlüssele mit unserem PGP-Key (in unserem GitHub-Profil).
+Für Sicherheitslücken nutze [lorenco@fluera.dev](mailto:lorenco@fluera.dev) und verschlüssele mit unserem PGP-Key (in unserem GitHub-Profil).
 
 ## Wie gebe ich Feedback zur Pädagogik?
 
-Wir lesen jede E-Mail. [hello@fluera.dev](mailto:hello@fluera.dev) geht direkt an die Founder. Besonders nützlich: was *nicht* für dich funktioniert hat, was sich nach Reibung anfühlte, die nicht erwünscht war, und alles, was dich überrascht hat.
+Wir lesen jede E-Mail. [support@fluera.dev](mailto:support@fluera.dev) geht direkt an die Founder. Besonders nützlich: was *nicht* für dich funktioniert hat, was sich nach Reibung anfühlte, die nicht erwünscht war, und alles, was dich überrascht hat.
 
 ## Weiter
 

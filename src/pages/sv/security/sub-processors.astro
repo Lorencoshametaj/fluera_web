@@ -6,16 +6,16 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "Databas, autentisering, krypterad cloud storage, realtidssignalering, Edge Function för AI-proxy.",
-    dataTypes: "Konto-e-post, hashat användar-ID, ciphertext för canvas (E2E-krypterat), synkmetadata.",
-    region: "Frankfurt, EU (standardregion för Fluera-instanser).",
+    purpose: "Databas, autentisering, cloud storage för canvas-synk, realtidssignalering.",
+    dataTypes: "Konto-e-post, hashat användar-ID, canvas-data (krypterad under överföring via TLS och i vila på EU-infrastruktur — ej end-to-end-krypterad; Fluera kan som personuppgiftsansvarig komma åt den, säljer den aldrig och använder den aldrig för annonsering), synkmetadata.",
+    region: "EU (eu-north-1, Stockholm) — standardregion för Fluera-instanser.",
     privacy: "https://supabase.com/privacy",
   },
   {
     name: "Google LLC",
-    purpose: "Google Generative AI (Gemini) för Socratic Mode, Ghost Map, LaTeX OCR och generering av exam sessions.",
+    purpose: "Google Gemini-modeller via Google Vertex AI, behandlade inom EU, för Socratic Mode, Ghost Map, LaTeX OCR och generering av exam sessions.",
     dataTypes: "Utvalda textavsnitt från canvasen (endast om AI-funktioner är tillåtna och aktiva). Aldrig hela anteckningsboken.",
-    region: "USA, EU via Google Cloud-regioner; SCC + EU-US DPF.",
+    region: "EU (europe-west4 NL / europe-west1 BE) via Google Vertex AI.",
     privacy: "https://policies.google.com/privacy",
   },
   {

@@ -34,7 +34,7 @@ Canvas — kirjoittaminen, lukeminen, vienti — toimii täysin offline. AI-toim
 
 ## Olen Suomessa. Entä GDPR?
 
-Täysin yhteensopiva. Fluera on isännöity EU:ssa ja GDPR-natiivi. Voit käyttää oikeuksiasi (pääsy, oikaisu, poisto, siirrettävyys) kohdasta **Asetukset → Yksityisyys** tai kirjoittamalla osoitteeseen [privacy@fluera.dev](mailto:privacy@fluera.dev). Vastaus 30 päivän kuluessa; yleensä 48 tunnissa.
+Täysin yhteensopiva. Fluera on isännöity EU:ssa ja GDPR-natiivi. Voit käyttää oikeuksiasi (pääsy, oikaisu, poisto, siirrettävyys) kohdasta **Asetukset → Yksityisyys** tai kirjoittamalla osoitteeseen [lorenco@fluera.dev](mailto:lorenco@fluera.dev). Vastaus 30 päivän kuluessa; yleensä 48 tunnissa.
 
 ## Pencil takkuilee iPadillani. Mikä on vialla?
 
@@ -46,11 +46,11 @@ Jos viive jatkuu Predicted päällä, sulje ja käynnistä uudelleen. Jos se sil
 
 [support@fluera.dev](mailto:support@fluera.dev). Kuvaile, mitä olit tekemässä, mitä odotit, mitä tapahtui, ja sisällytä sovelluksen versio (Asetukset → Tietoja). Kuvakaappaukset auttavat.
 
-Tietoturvahaavoittuvuuksia varten käytä [security@fluera.dev](mailto:security@fluera.dev) ja salaa PGP-avaimellamme (GitHub-profiilissamme).
+Tietoturvahaavoittuvuuksia varten käytä [lorenco@fluera.dev](mailto:lorenco@fluera.dev) ja salaa PGP-avaimellamme (GitHub-profiilissamme).
 
 ## Miten annan palautetta pedagogiikasta?
 
-Luemme jokaisen sähköpostin. [hello@fluera.dev](mailto:hello@fluera.dev) menee suoraan perustajille. Erityisen hyödyllistä: mikä *ei* toiminut sinulle, mikä tuntui ei-toivotulta kitkalta ja mikä tahansa, mikä yllätti.
+Luemme jokaisen sähköpostin. [support@fluera.dev](mailto:support@fluera.dev) menee suoraan perustajille. Erityisen hyödyllistä: mikä *ei* toiminut sinulle, mikä tuntui ei-toivotulta kitkalta ja mikä tahansa, mikä yllätti.
 
 ## Seuraavaksi
 

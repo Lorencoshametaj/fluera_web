@@ -6,16 +6,16 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "データベース、認証、暗号化されたクラウドストレージ、リアルタイムシグナリング、AI プロキシ用 Edge Function。",
-    dataTypes: "アカウントのメールアドレス、ハッシュ化されたユーザー ID、キャンバスの暗号文 (E2E 暗号化済み)、同期メタデータ。",
+    purpose: "データベース、認証、クラウドストレージ (同期)、リアルタイムシグナリング。",
+    dataTypes: "アカウントのメールアドレス、ハッシュ化されたユーザー ID、同期されるキャンバスデータ、同期メタデータ。同期データは転送時 (TLS) と EU インフラ上の保存時に暗号化されますが、エンドツーエンド暗号化ではありません。Fluera はデータ管理者としてアクセス可能ですが、第三者に販売したり広告に利用したりすることは一切ありません。",
     region: "フランクフルト、EU (Fluera インスタンスのデフォルトリージョン)。",
     privacy: "https://supabase.com/privacy",
   },
   {
     name: "Google LLC",
-    purpose: "Google Generative AI (Gemini) を Socratic Mode、Ghost Map、LaTeX OCR、試験セッション生成に使用。",
+    purpose: "Google Vertex AI 経由で提供される Google Gemini モデルを Socratic Mode、Ghost Map、LaTeX OCR、試験セッション生成に使用。",
     dataTypes: "キャンバスから選択されたテキスト断片 (AI 機能が許可かつ有効な場合のみ)。ノート全体は決して送られません。",
-    region: "米国、EU (Google Cloud リージョン経由)。SCC + EU-US DPF。",
+    region: "EU 内で処理 (europe-west4 オランダ / europe-west1 ベルギー)。",
     privacy: "https://policies.google.com/privacy",
   },
   {

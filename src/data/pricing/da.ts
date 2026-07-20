@@ -114,7 +114,7 @@ const data: PricingData = {
     },
     {
       q: "Team- eller Education-planer?",
-      a: "Kommer i fase 2 (delte workspaces, admin-dashboard, SSO). Interesseret? Skriv til sales@fluera.dev — vi bygger roadmappen med vores første design partners.",
+      a: "Kommer i fase 2 (delte workspaces, admin-dashboard, SSO). Interesseret? Skriv til support@fluera.dev — vi bygger roadmappen med vores første design partners.",
     },
   ],
 };
