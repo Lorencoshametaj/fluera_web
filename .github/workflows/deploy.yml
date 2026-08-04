@@ -1,3 +1,10 @@
+# ATTENZIONE: questo file NON viene eseguito da fluera-mono.
+# Actions legge i workflow solo da .github/workflows/ alla RADICE del repo, e qui
+# siamo sotto fluera-landing/. Questo file diventa attivo solo dopo essere stato
+# rispecchiato su Lorencoshametaj/fluera_web, dove finisce alla radice ed e' il
+# workflow che pubblica davvero fluera.dev su GitHub Pages.
+# Chi lo rispecchia: .github/workflows/deploy-landing.yml nella radice del monorepo.
+
 name: Deploy to GitHub Pages
 
 on:
