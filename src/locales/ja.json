@@ -1,6 +1,7 @@
 {
   "nav.science": "サイエンス",
   "nav.features": "機能",
+  "nav.catalogue": "カタログ",
   "nav.education": "教育",
   "nav.pricing": "料金",
   "nav.blog": "ブログ",
@@ -37,6 +38,7 @@
   "footer.col.trust": "コンプライアンス",
 
   "footer.product.features": "機能",
+  "footer.product.catalogue": "カタログ",
   "footer.product.download": "ダウンロード",
   "footer.product.pricing": "料金",
   "footer.product.demo": "ライブデモ",

@@ -1,0 +1,385 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CatalogueMark from "@/components/CatalogueMark.astro";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Every claim on this page was checked against the shipped source (app, engine,
+// Supabase migrations, edge functions) — not against the design docs, which
+// describe intent rather than behaviour. Two rules the copy must keep obeying:
+//
+//   1. No numbers about the catalog or its usage. The catalog is new; any
+//      install/creator/template count would be a vanity claim.
+//   2. No retention PERCENTAGE. The ranking signal is shipped, but the on-device
+//      baseline currently subtracts a superseded forgetting curve
+//      (mastery_checkpoint_service.dart:161 uses exp(-N/1.5) while retrievability
+//      is measured with the FSRS-6 power curve), so the magnitude is not yet
+//      quotable. Describing the ORDERING is fine; publishing a number is not.
+//
+// See also: the creator terms for publishing are still an unreviewed draft, so this
+// page must not link to them or imply that open publishing is a finished product.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const whatItCarries = [
+  {
+    title: "A bounded worksheet",
+    body: "Not a whole notebook — a region the author framed on their own canvas. The strokes, shapes, typed text and images inside that frame, and nothing outside it. No source PDF is bundled.",
+  },
+  {
+    title: "A concept scaffold",
+    body: "The structure underneath the ink: what the concepts are, which topic each belongs to, and how they depend on one another. This is what makes a template teachable instead of merely readable.",
+  },
+  {
+    title: "A fresh-card recipe",
+    body: "Not the author's memory — a recipe for building your own. Desired retention, the kind of material, and when the first review should fall. Your schedule is built from it at install time.",
+  },
+];
+
+const install = [
+  {
+    step: "01",
+    title: "The page arrives as ink",
+    body: "The worksheet is restored into a canvas of your own. It is real handwriting on real paper, not a rendered PDF — you can write on top of it, extend it, and cut it apart.",
+  },
+  {
+    step: "02",
+    title: "Every concept becomes a card",
+    body: "One brand-new spaced-repetition card per named concept, with no review history behind it: zero repetitions, and a starting difficulty in the middle of Fluera's range. The first review falls one day later.",
+  },
+  {
+    step: "03",
+    title: "The schedule is yours from then on",
+    body: "It persists to disk and drives your due badge and daily digest like anything else you wrote. Reinstalling the same template will not reset a review history you have already built.",
+  },
+];
+
+const ranking = [
+  {
+    label: "Measured on the device",
+    body: "When you reopen a template's canvas on or after day 1, 7 and 30, Fluera reads how well the spaced-repetition model thinks you are holding those specific concepts, and derives a single number from it.",
+  },
+  {
+    label: "One number, nothing else",
+    body: "That number is all that is sent. No concept titles, no card contents, no review history, no identity. It is submitted only if you are signed in and have opted into analytics, and never if you are the template's own author.",
+  },
+  {
+    label: "Silent below five learners",
+    body: "A template has no public figure at all until at least five different learners have contributed one. Below that threshold the sort falls back to install counts, and the card simply says nothing.",
+  },
+  {
+    label: "Downloads are not the rank",
+    body: "The grid under “All templates” is sorted on that measured signal by default, not on popularity. A template that spreads quickly cannot buy its way up it.",
+  },
+];
+
+const cardMarks = [
+  { mark: "Official", body: "Set by the catalogue, never by anything an author can type into a form. It cannot be spelled into existence with a display name." },
+  { mark: "New", body: "Strictly earned: no installs, no ratings, published within the last week. It expires on its own rather than being switched off." },
+  { mark: "Subject", body: "The discipline the template was filed under, so you can tell a chemistry page from a chemistry-adjacent one at a glance." },
+  { mark: "Rating", body: "Shown only once a template has actually been rated, by people who actually installed it. An unrated template says nothing rather than starting at zero." },
+];
+
+const privacy = [
+  {
+    title: "Your learner model is not in the file",
+    body: "The component that builds a template's public scaffold structurally never reads your review history, your confidence, how many times you studied something, how well you were holding it, or the embeddings behind it. An expert and a struggling author publishing the same page emit a byte-identical scaffold.",
+  },
+  {
+    title: "A test holds the line, in CI",
+    body: "The guarantee is pinned by a test that walks the serialised output and fails if any of twenty-six learner-model or behavioural field names appears anywhere in it. It runs as a named, non-optional CI gate that also fails if the test file is deleted.",
+  },
+  {
+    title: "The ink is the honest limit",
+    body: "What no amount of sanitising reaches is the handwriting itself, and the scaffold does carry a short truncated excerpt of the recognised text — never the full transcript, but not redacted either. That is why the publish sheet shows you the exact image that would become public, above a consent checkbox, before anything is uploaded.",
+  },
+  {
+    title: "Your name is never the handle",
+    body: "Public reads return no account id at all, and a creator is identified by a code derived one-way from their account — salted, hashed and truncated. It is a stable pseudonym, not your identity.",
+  },
+];
+
+const safety = [
+  {
+    label: "Nothing is listed on submit",
+    body: "A new template is written as pending review. Until it has been screened it is absent from browse, from search and from the catalogue entirely, and its share link resolves to nothing.",
+  },
+  {
+    label: "Screening reads the real file",
+    body: "The classifier extracts the images embedded in the template itself rather than trusting the uploader's thumbnail, takes the worst verdict across them, and runs in EU regions. It can advance or escalate an item; it can never overturn a moderator.",
+  },
+  {
+    label: "Reports inform people, not robots",
+    body: "A report is a signal into a human queue — one per reporter, self-reports refused. A coordinated group can raise attention. It cannot take a listing down.",
+  },
+  {
+    label: "Removal removes the bytes",
+    body: "When a listing is removed, the published objects are purged from the CDN and not merely delisted, after evidence has been preserved to a private, admin-only bucket.",
+  },
+  {
+    label: "A decision comes with reasons",
+    body: "A creator is told what happened to their template and whether the decision was automated, and can open an appeal. An appeal that succeeds restores the listing.",
+  },
+  {
+    label: "Ratings have to be earned",
+    body: "You cannot rate a template you never installed, you cannot rate your own, and you cannot rate anonymously. The averages are recomputed from scratch rather than incremented.",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "The Fluera Catalogue",
+  description:
+    "A catalogue of handwritten study templates that install as spaced-repetition schedules, ranked by measured retention rather than downloads.",
+  isPartOf: { "@type": "WebSite", name: "Fluera", url: "https://fluera.dev" },
+  inLanguage: "en",
+};
+---
+
+<BaseLayout
+  title="Catalogue — Study templates that install into your memory"
+  description="A study template is a page of handwriting plus the concept structure underneath it. Installing one plants a spaced-repetition schedule of your own. Ranked by measured retention, not downloads."
+  ogImage="/og/page/catalogue.png"
+  jsonLd={jsonLd}
+>
+  <PageHero
+    kicker="Catalogue"
+    title="Someone already worked this chapter out.<br />Install it and start being tested on it."
+    titleSize="2xl"
+    description="A Fluera study template is not a PDF and not a flashcard deck. It is a page of real handwriting, the concept structure underneath it, and a recipe for the review schedule you should be on. Installing one plants that schedule in a canvas of your own."
+    orbs
+    noise
+  >
+    <CatalogueMark slot="mark" size={30} class="mb-4" />
+    <div slot="copy" class="mt-10 flex flex-wrap items-center gap-4">
+      <a href="/beta" class="btn-primary">Request early access →</a>
+      <a href="/features/spaced-repetition" class="btn-secondary">How the review schedule works</a>
+    </div>
+  </PageHero>
+
+  <!-- WHAT A TEMPLATE IS -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <SectionHeader
+        kicker="The unit"
+        title="Three things travel. One of them is not the author."
+        sub="Every other store ships you a document and wishes you luck. A study template carries the page, the structure that makes the page teachable, and the instructions for scheduling it — deliberately without the part that belongs to whoever made it."
+      />
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {whatItCarries.map((c, i) => (
+          <article class="card p-7">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{c.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{c.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT INSTALLING DOES -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Installing</p>
+          <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+            The difference between owning a file<br />and being on a schedule.
+          </h2>
+          <p class="prose-ink mb-4">
+            Downloading study material has never been the hard part. Coming back to it on the day you were about to forget it is the hard part, and no folder has ever solved that.
+          </p>
+          <p class="prose-ink">
+            So installing a template does not put a document somewhere. It plants cards, dated. You inherit the author's concepts and the structure between them — never their review history, their confidence, or how well they personally knew any of it. The template format cannot carry those.
+          </p>
+        </div>
+
+        <ol class="space-y-4 list-none p-0 m-0">
+          {install.map((s) => (
+            <li class="card p-7">
+              <div class="flex items-baseline gap-4">
+                <span class="font-mono text-xs tracking-widest text-ink-500 shrink-0">{s.step}</span>
+                <div>
+                  <h3 class="font-serif text-lg text-paper-50 mb-2">{s.title}</h3>
+                  <p class="text-sm text-paper-300 leading-relaxed">{s.body}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- RANKING -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <SectionHeader
+        kicker="The ranking"
+        title="Ordered by what learners kept.<br />Not by what spread."
+        sub="A download count measures a decision made before anybody learned anything. It is also the easiest number in any store to inflate. Fluera can rank on something better, because the app is already modelling how well every learner is holding every concept."
+      />
+
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
+        {ranking.map((r) => (
+          <article class="card p-7">
+            <h3 class="font-serif text-lg text-paper-50 mb-3">{r.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{r.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-10 max-w-3xl rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
+        <p class="text-sm text-paper-300 leading-relaxed">
+          <strong class="text-paper-100">What this is not.</strong> It is a model's estimate of how well a template's concepts are being held by the learners who came back to study them — not an exam result, not a control group, and not a claim about anyone who installed a template and never opened it again. We would rather describe the signal accurately than dress it up.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCOVERY -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <SectionHeader
+        kicker="Finding one"
+        title="Three ways to narrow it down,<br />and one only your own device can do."
+        sub="A catalogue of study material fails in a specific way: everything is nominally about your subject and almost none of it is about your course. So the filters are the ones students actually think in."
+      />
+
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div>
+          <p class="prose-ink mb-4">
+            You can narrow by <strong class="text-paper-100">subject</strong>, by <strong class="text-paper-100">course or exam</strong> — free text, so <em>Maturità</em> and <em>MCAT</em> are as valid as <em>Analysis I</em> — and by <strong class="text-paper-100">language</strong>. Each filter carries a live count, each one re-queries the others when you pick something, and any filter with nothing behind it does not appear at all. You are never offered a choice that leads to an empty page.
+          </p>
+          <p class="prose-ink mb-4">
+            The catalogue opens in the language your app is set to, because a wall of material you cannot read is not a catalogue. It is a preference, not a fence: one tap widens it to every language.
+          </p>
+          <p class="prose-ink">
+            Search is full-text and forgiving about accents. It also drops the ranking and orders by relevance instead — when you have typed what you want, what other people retained is no longer the question you are asking.
+          </p>
+        </div>
+
+        <div class="card p-8">
+          <h3 class="eyebrow text-accent-glow mb-5">What the marks on a card mean</h3>
+          <dl class="space-y-4 m-0">
+            {cardMarks.map((m) => (
+              <div>
+                <dt class="font-serif text-base text-paper-50 mb-1">{m.mark}</dt>
+                <dd class="text-sm text-paper-300 leading-relaxed m-0">{m.body}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div class="mt-10 max-w-3xl rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.08] p-6">
+        <p class="text-sm text-paper-200 leading-relaxed">
+          <strong class="text-paper-50">And one row nobody else could build.</strong> Fluera already knows which concepts you are working on, because you wrote them. So it can rank templates by how much they overlap with what is currently on your canvas — and it does that arithmetic on your device. What leaves your phone is the subject you study most and the identifiers of templates it had already fetched. Your concept set is not one of them.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <SectionHeader
+        kicker="What travels, what doesn't"
+        title="Publishing a page should not publish how you were doing."
+        sub="Sharing study material means sharing something you made while you were still learning it. The line between the two is drawn in code, not in a policy paragraph."
+      />
+
+      <div class="grid md:grid-cols-2 gap-4 max-w-5xl">
+        {privacy.map((p) => (
+          <article class="card p-7">
+            <h3 class="font-serif text-lg text-paper-50 mb-3">{p.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-10">
+        <a href="/security" class="btn-secondary">Read the security architecture →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATORS -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">For creators</p>
+          <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+            The best explanation of a hard idea<br />is usually one page long.
+          </h2>
+          <p class="prose-ink mb-4">
+            Publishing starts on your own canvas. You frame the region worth sharing, Fluera mints it, and a sheet asks whether it should become a file or a listing. What you frame is what travels — the rest of the canvas never leaves.
+          </p>
+          <p class="prose-ink mb-4">
+            Before anything uploads you see the exact image that would become public and confirm it. The listing is validated before a single byte is stored, and the upload goes through one-time signed URLs; if it fails, the listing is rolled back rather than left half-made.
+          </p>
+          <p class="prose-ink">
+            Every template is free. There is no checkout in Fluera, no price field in the publishing API, and no payout ledger — the catalogue's price column is held at zero by a database constraint rather than by policy.
+          </p>
+        </div>
+
+        <div class="card p-8">
+          <h3 class="eyebrow text-accent-glow mb-5">What publishing gives you</h3>
+          <ul class="space-y-3.5 text-sm text-paper-200 list-none p-0 m-0 mb-6">
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>A pseudonymous creator handle that is never your account and never your email</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>An optional profile — display name, bio, avatar — with the avatar held back until it is screened</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Followers, and a shelf that carries your newest template to them</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Versioning: publish a correction as a replacement rather than a duplicate</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>A reason whenever a decision goes against you, and an appeal that can reinstate</span></li>
+          </ul>
+          <p class="text-xs text-ink-500 leading-relaxed">
+            Publishing requires a signed-in account and an age confirmation. Browsing and installing require neither.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFETY -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <SectionHeader
+        kicker="Moderation & trust"
+        title="A catalogue of strangers' handwriting<br />has to be answerable."
+        sub="Anyone can open a catalogue. The work is in what happens when something goes wrong — and in making sure the loudest group in the room is not the one deciding."
+      />
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {safety.map((s) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{s.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{s.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STATUS + CTA -->
+  <section class="py-20 md:py-28">
+    <div class="container-narrow text-center">
+      <p class="eyebrow mb-6 text-accent-glow">Availability</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+        The catalogue ships with the app.<br />It is at the beginning.
+      </h2>
+      <p class="prose-ink mb-4 max-w-2xl mx-auto">
+        Browsing, previewing and installing are built into Fluera and localised in all sixteen languages the app speaks. Publishing is live too, for signed-in adults, and we are letting it open slowly on purpose: hosting other people's work is a responsibility you take on properly or not at all.
+      </p>
+      <p class="prose-ink mb-10 max-w-2xl mx-auto">
+        So the catalogue is small, and this page has no template count, no install count and no creator count on it. Those numbers will mean something later. Today they would only be decoration.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/beta" class="btn-primary">Request early access →</a>
+        <a href="/download" class="btn-secondary">Download Fluera</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

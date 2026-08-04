@@ -43,7 +43,12 @@ const processors = [
     name: "Functional Software Inc. (Sentry)",
     purpose: "Crash reporting and error monitoring.",
     dataTypes: "Stack traces, OS version, device model, app version. sendDefaultPii is explicitly disabled and IP addresses are not stored — no user content.",
-    region: "US, EU options available.",
+    // 🇪🇺 Corrected 2026-08-01: the production DSN ingests into
+    // `ingest.de.sentry.io`, i.e. Sentry's European data region. Since April
+    // this page had named the United States instead — understating our own
+    // posture, but wrong either way in an Art. 28 disclosure, and wrong in all
+    // sixteen languages at once.
+    region: "European Union (Frankfurt) — the production DSN ingests into Sentry's EU data region. Processor entity is US-incorporated; SCC + EU-US DPF.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -55,7 +60,7 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-06-27";
+const lastUpdated = "2026-08-01";
 ---
 
 <BaseLayout

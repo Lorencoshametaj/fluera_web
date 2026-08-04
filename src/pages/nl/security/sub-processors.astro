@@ -6,16 +6,23 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "Database, authenticatie, cloud storage en sync, realtime signaling.",
+    purpose: "Database, authenticatie, cloud storage, realtime signaling, Edge Functions als AI-proxy.",
     dataTypes: "Account-e-mail, gehashte gebruikers-ID, gesynchroniseerde canvasdata (versleuteld tijdens transport via TLS en at-rest op EU-infrastructuur; niet end-to-end versleuteld — als verwerkingsverantwoordelijke kan Fluera erbij, maar verkoopt het nooit en gebruikt het nooit voor advertenties), sync-metadata.",
-    region: "EU (eu-north-1, Stockholm).",
+    region: "Stockholm, EU (eu-north-1) — productie. Dublin, EU (eu-west-1) — staging.",
     privacy: "https://supabase.com/privacy",
   },
   {
+    name: "Google Cloud (Google Ireland Ltd.)",
+    purpose: "Vertex AI (Gemini-modellen) voor Socratic Mode, Ghost Map, LaTeX OCR en het genereren van exam sessions.",
+    dataTypes: "Geselecteerde canvasinhoud, alleen verzonden wanneer voor de AI-functies toestemming is gegeven en ze worden gebruikt — tekstfragmenten en gerenderde PNG-afbeeldingen van afzonderlijke handschriftclustergebieden. Nooit het hele notitieboek.",
+    region: "Uitsluitend Europese Unie — europe-west4 (Nederland) primair, europe-west1 (België) als failover. Geen doorgifte van canvasinhoud buiten de EU voor AI-inferentie.",
+    privacy: "https://cloud.google.com/terms/data-processing-addendum",
+  },
+  {
     name: "Google LLC",
-    purpose: "Google Gemini-modellen via Google Vertex AI voor Socratic Mode, Ghost Map, LaTeX OCR en het genereren van exam sessions.",
-    dataTypes: "Geselecteerde tekstfragmenten van het canvas (alleen als de AI-functies zijn toegestaan en actief). Nooit het hele notitieboek.",
-    region: "EU (europe-west4 NL / europe-west1 BE).",
+    purpose: "Sign in with Google-authenticatie (identity provider).",
+    dataTypes: "E-mailadres en account-identifier van het Google-account. Geen canvasdata.",
+    region: "VS; SCC's + EU-US DPF.",
     privacy: "https://policies.google.com/privacy",
   },
   {
@@ -35,8 +42,8 @@ const processors = [
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "Crash reporting en foutmonitoring.",
-    dataTypes: "Stack traces, OS-versie, apparaatmodel, app-versie. sendDefaultPii is expliciet uitgeschakeld — geen gebruikersinhoud.",
-    region: "VS, EU-opties beschikbaar.",
+    dataTypes: "Stack traces, OS-versie, apparaatmodel, app-versie. sendDefaultPii is expliciet uitgeschakeld en IP-adressen worden niet opgeslagen — geen gebruikersinhoud.",
+    region: "Europese Unie (Frankfurt) — de productie-DSN levert aan in de EU-dataregio van Sentry. De verwerkende entiteit is gevestigd in de VS; SCC's + EU-US DPF.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -48,7 +55,7 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-04-20";
+const lastUpdated = "2026-08-01";
 ---
 
 <BaseLayout

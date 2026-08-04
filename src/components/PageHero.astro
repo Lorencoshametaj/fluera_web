@@ -67,6 +67,9 @@ const hasFx = orbs || noise;
     )}
 
     <div class={copyContainer}>
+      {/* Optional section mark, sitting above the kicker. Opt-in: pages that
+          pass nothing render exactly as before. */}
+      <slot name="mark" />
       {kicker && <p class="eyebrow mb-6 text-accent-glow">{kicker}</p>}
       <h1 class={titleClass} set:html={title} />
       {description && (

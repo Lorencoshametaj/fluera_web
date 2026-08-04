@@ -6,16 +6,23 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "Base de données, authentification, storage cloud, signaling realtime.",
-    dataTypes: "E-mail du compte, ID utilisateur hashé, données du canvas synchronisées, métadonnées de synchronisation. Les données synchronisées sont chiffrées en transit (TLS) et au repos sur l'infrastructure UE ; elles ne sont pas chiffrées de bout en bout. En tant que responsable du traitement, Fluera peut techniquement y accéder ; nous ne les vendons jamais et ne les utilisons pas à des fins publicitaires.",
-    region: "UE (eu-north-1).",
+    purpose: "Base de données, authentification, storage cloud, signaling realtime, Edge Functions de proxy IA.",
+    dataTypes: "E-mail du compte, ID utilisateur hashé, contenus du canvas synchronisés, métadonnées de synchronisation. Les données synchronisées sont chiffrées en transit (TLS) et au repos sur l'infrastructure UE ; elles ne sont pas chiffrées de bout en bout. En tant que responsable du traitement, Fluera peut techniquement y accéder ; nous ne les vendons jamais et ne les utilisons pas à des fins publicitaires.",
+    region: "Stockholm, UE (eu-north-1) — production. Dublin, UE (eu-west-1) — staging.",
     privacy: "https://supabase.com/privacy",
   },
   {
+    name: "Google Cloud (Google Ireland Ltd.)",
+    purpose: "Vertex AI (modèles Gemini) pour Socratic Mode, Ghost Map, OCR de LaTeX et génération des exam sessions.",
+    dataTypes: "Contenus sélectionnés du canvas, transmis uniquement lorsque les fonctionnalités d'IA sont consenties et utilisées — extraits de texte et images PNG rendues des régions de chaque cluster d'écriture manuscrite. Jamais le cahier entier.",
+    region: "Union européenne uniquement — europe-west4 (Pays-Bas) principale, europe-west1 (Belgique) en secours. Aucun transfert de contenu du canvas hors de l'UE pour l'inférence IA.",
+    privacy: "https://cloud.google.com/terms/data-processing-addendum",
+  },
+  {
     name: "Google LLC",
-    purpose: "Modèles Google Gemini servis via Google Vertex AI pour Socratic Mode, Ghost Map, OCR de LaTeX et génération des exam sessions.",
-    dataTypes: "Extraits sélectionnés de texte du canvas (uniquement si les fonctionnalités d'IA sont autorisées et actives). Jamais le cahier entier.",
-    region: "UE (europe-west4 Pays-Bas / europe-west1 Belgique).",
+    purpose: "Authentification Sign in with Google (fournisseur d'identité).",
+    dataTypes: "E-mail du compte Google et identifiant du compte. Aucune donnée du canvas.",
+    region: "USA ; SCCs + EU-US DPF.",
     privacy: "https://policies.google.com/privacy",
   },
   {
@@ -35,8 +42,8 @@ const processors = [
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "Crash reporting et monitoring d'erreurs.",
-    dataTypes: "Stack traces, version de l'OS, modèle de l'appareil, version de l'app. sendDefaultPii est explicitement désactivé — aucun contenu utilisateur.",
-    region: "USA, options UE disponibles.",
+    dataTypes: "Stack traces, version de l'OS, modèle de l'appareil, version de l'app. sendDefaultPii est explicitement désactivé et les adresses IP ne sont pas conservées — aucun contenu utilisateur.",
+    region: "Union européenne (Francfort) — le DSN de production ingère dans la région de données UE de Sentry. L'entité sous-traitante est constituée aux USA ; SCCs + EU-US DPF.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -48,7 +55,7 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-04-20";
+const lastUpdated = "2026-08-01";
 ---
 
 <BaseLayout

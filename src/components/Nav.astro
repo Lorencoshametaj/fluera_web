@@ -80,10 +80,14 @@ const scienceLinks = [
   { key: "nav.science.bibliography", href: "/research" },
 ] as const;
 
+// Science + Features render above as dropdowns; everything from index 2 on is
+// rendered as a plain link by the desktop nav (see `primaryLinks.slice(2)`).
+// The mobile panel renders the whole list. Keep dropdown entries first.
 const primaryLinks = [
-  { key: "nav.science",    href: "/science" },
-  { key: "nav.features",   href: "/features" },
-  { key: "nav.pricing",    href: "/pricing" },
+  { key: "nav.science",     href: "/science" },
+  { key: "nav.features",    href: "/features" },
+  { key: "nav.catalogue",   href: "/catalogue" },
+  { key: "nav.pricing",     href: "/pricing" },
 ] as const;
 
 // ── Language switcher hrefs (data-driven across all registered locales) ──

@@ -1,0 +1,386 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CatalogueMark from "@/components/CatalogueMark.astro";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Every claim on this page was checked against the shipped source (app, engine,
+// Supabase migrations, edge functions) — not against the design docs, which
+// describe intent rather than behaviour. Two rules the copy must keep obeying:
+//
+//   1. No numbers about the catalog or its usage. The catalog is new; any
+//      install/creator/template count would be a vanity claim.
+//   2. No retention PERCENTAGE. The ranking signal is shipped, but the on-device
+//      baseline currently subtracts a superseded forgetting curve
+//      (mastery_checkpoint_service.dart:161 uses exp(-N/1.5) while retrievability
+//      is measured with the FSRS-6 power curve), so the magnitude is not yet
+//      quotable. Describing the ORDERING is fine; publishing a number is not.
+//
+// See also: the creator terms for publishing are still an unreviewed draft, so this
+// page must not link to them or imply that open publishing is a finished product.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const whatItCarries = [
+  {
+    title: "Rajattu tehtäväsivu",
+    body: "Ei kokonaista muistikirjaa vaan alue, jonka tekijä rajasi omalta canvakseltaan. Kehyksen sisällä olevat vedot, muodot, näppäillyt tekstit ja kuvat – eikä mitään sen ulkopuolelta. Lähde-PDF ei tule mukaan.",
+  },
+  {
+    title: "Käsitteiden tukirakenne",
+    body: "Musteen alla oleva rakenne: mitä käsitteitä sivulla on, mihin aiheeseen kukin niistä kuuluu ja miten ne riippuvat toisistaan. Juuri tämä tekee opiskelupohjasta opetettavan eikä pelkästään luettavan.",
+  },
+  {
+    title: "Ohje uusille korteille",
+    body: "Ei tekijän muistia vaan ohje oman muistisi rakentamiseen: tavoiteltu muistissa pysyminen, aineiston laji ja se, milloin ensimmäisen kertauksen kuuluu osua. Aikataulusi syntyy siitä asennushetkellä.",
+  },
+];
+
+const install = [
+  {
+    step: "01",
+    title: "Sivu saapuu musteena",
+    body: "Tehtäväsivu palautuu omaan canvakseesi. Se on aitoa käsialaa aidolla paperilla, ei renderöityä PDF:ää: voit kirjoittaa sen päälle, jatkaa sitä ja leikata sen osiin.",
+  },
+  {
+    step: "02",
+    title: "Jokaisesta käsitteestä tulee kortti",
+    body: "Yksi uusi jaksottaisen kertauksen kortti jokaista nimettyä käsitettä kohti, ilman kertaushistoriaa takanaan: nolla toistoa ja aloitusvaikeus Flueran asteikon keskeltä. Ensimmäinen kertaus osuu yhden päivän päähän.",
+  },
+  {
+    step: "03",
+    title: "Aikataulu on tästä eteenpäin sinun",
+    body: "Se tallentuu levylle ja ohjaa eräpäivämerkkiäsi ja päivän koostetta kuten mikä tahansa itse kirjoittamasi kortti. Sama opiskelupohja uudelleen asennettuna ei nollaa jo kertynyttä kertaushistoriaa.",
+  },
+];
+
+const ranking = [
+  {
+    label: "Mitataan laitteella",
+    body: "Kun avaat opiskelupohjan canvaksen uudelleen 1., 7. ja 30. päivänä tai niiden jälkeen, Fluera katsoo, kuinka hyvin jaksottaisen kertauksen malli arvioi sinun pitävän juuri ne käsitteet muistissa. Arvio tiivistyy yhdeksi luvuksi.",
+  },
+  {
+    label: "Yksi luku, ei muuta",
+    body: "Vain se luku lähtee eteenpäin. Ei käsitteiden otsikoita, ei korttien sisältöä, ei kertaushistoriaa, ei henkilöllisyyttä. Sekin lähtee vain, jos olet kirjautunut ja hyväksynyt analytiikan – eikä koskaan, jos olet opiskelupohjan oma tekijä.",
+  },
+  {
+    label: "Viisi oppijaa tai ei mitään",
+    body: "Opiskelupohjalla ei ole julkista lukua lainkaan, ennen kuin vähintään viisi eri oppijaa on lähettänyt omansa. Sen alle jäävät järjestyvät asennusmäärien mukaan, ja kortti vaikenee.",
+  },
+  {
+    label: "Asennusmäärä ei ole sija",
+    body: "”Kaikki opiskelupohjat” -ruudukko järjestyy oletuksena tuon mitatun signaalin mukaan, ei suosion. Nopeasti leviävä opiskelupohja ei osta tietään sen kärkeen.",
+  },
+];
+
+const cardMarks = [
+  { mark: "Virallinen", body: "Merkin asettaa luettelo, ei mikään, jonka tekijä voi kirjoittaa lomakkeeseen. Sitä ei loihdi esiin näyttönimellä." },
+  { mark: "Uusi", body: "Tiukasti ansaittu: ei asennuksia, ei arvosteluja, julkaistu viimeisen viikon aikana. Se vanhenee itsestään, sitä ei sammuteta." },
+  { mark: "Oppiaine", body: "Ala, jonka alle opiskelupohja on arkistoitu, jotta erotat yhdellä silmäyksellä kemian sivun sellaisesta, joka vain sivuaa kemiaa." },
+  { mark: "Arvostelu", body: "Näkyy vasta, kun opiskelupohjaa ovat arvostelleet ihmiset, jotka myös asensivat sen. Arvostelematon opiskelupohja vaikenee sen sijaan, että aloittaisi nollasta." },
+];
+
+const privacy = [
+  {
+    title: "Oppijamallisi ei ole tiedostossa",
+    body: "Komponentti, joka rakentaa julkisen tukirakenteen, ei rakenteensa puolesta yllä kertaushistoriaasi, varmuuteesi, opiskelukertoihisi, siihen, kuinka hyvin pidit asian muistissa, eikä näiden takana oleviin upotuksiin. Osaaja ja vasta-alkaja tuottavat samasta sivusta tavulleen saman tukirakenteen.",
+  },
+  {
+    title: "Rajan pitää testi, ei lupaus",
+    body: "Rajan naulaa paikalleen testi, joka käy sarjallistetun tulosteen läpi ja kaatuu, jos yksikin kahdestakymmenestäkuudesta oppijamallin tai käyttäytymisen kenttänimestä esiintyy siinä missään kohtaa. Se ajetaan nimettynä CI-porttina, josta ei voi luistaa: portti kaatuu myös silloin, kun testitiedosto poistetaan.",
+  },
+  {
+    title: "Muste on rehellinen raja",
+    body: "Siivoaminen ei yllä itse käsialaan, ja tukirakenne kantaa mukanaan myös lyhyen katkaistun otteen tunnistetusta tekstistä. Ote ei ole koko litterointi, mutta sitä ei myöskään ole peitetty. Siksi julkaisunäkymä näyttää sinulle suostumusruudun yläpuolella täsmälleen sen kuvan, josta tulisi julkinen – ennen kuin mitään lähtee palvelimelle.",
+  },
+  {
+    title: "Nimesi ei koskaan päädy tunnukseksi",
+    body: "Julkiset haut eivät palauta tilitunnusta lainkaan, ja tekijä tunnistetaan koodilla, joka johdetaan hänen tilistään yhteen suuntaan – suolattuna, tiivistettynä ja katkaistuna. Se on pysyvä salanimi, ei henkilöllisyytesi.",
+  },
+];
+
+const safety = [
+  {
+    label: "Lähettäminen ei vielä listaa mitään",
+    body: "Uusi opiskelupohja menee tilaan ”odottaa tarkistusta”. Ennen seulontaa se puuttuu selauksesta, hausta ja koko luettelosta, eikä sen jakolinkki avaa mitään.",
+  },
+  {
+    label: "Seulonta lukee oikean tiedoston",
+    body: "Luokittelija purkaa kuvat itse opiskelupohjasta eikä luota lähettäjän pikkukuvaan. Niistä se ottaa ankarimman tuomion, ja ajo tapahtuu EU-alueilla. Se voi päästää kohteen eteenpäin tai nostaa sen jatkokäsittelyyn; moderaattorin päätöstä se ei kumoa koskaan.",
+  },
+  {
+    label: "Ilmoitukset menevät ihmisille, eivät roboteille",
+    body: "Ilmoitus on signaali ihmisen jonoon – yksi ilmoittajaa kohti, omaa työtä koskevat hylätään. Järjestäytynyt joukko voi herättää huomiota. Listausta se ei saa alas.",
+  },
+  {
+    label: "Poisto poistaa tavut",
+    body: "Kun listaus poistetaan, julkaistut objektit pyyhitään CDN:stä eikä vain piiloteta luettelosta – sen jälkeen, kun todisteet on säilötty yksityiseen, vain ylläpidon säiliöön.",
+  },
+  {
+    label: "Päätös tulee perusteltuna",
+    body: "Tekijälle kerrotaan, mitä hänen opiskelupohjalleen tapahtui ja tekikö päätöksen kone, ja hän voi valittaa. Hyväksytty valitus palauttaa listauksen.",
+  },
+  {
+    label: "Arvostelu pitää ansaita",
+    body: "Et voi arvostella opiskelupohjaa, jota et ole asentanut, et omaasi etkä nimettömänä. Keskiarvot lasketaan joka kerta alusta eikä niitä kasvateta askel kerrallaan.",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Flueran luettelo",
+  description:
+    "Luettelo käsin kirjoitetuista opiskelupohjista: ne asentuvat jaksottaisen kertauksen aikatauluiksi ja järjestyvät mitatun muistissa pysymisen mukaan, eivät asennusmäärien.",
+  isPartOf: { "@type": "WebSite", name: "Fluera", url: "https://fluera.dev" },
+  inLanguage: "fi",
+};
+---
+
+<BaseLayout
+  title="Luettelo – opiskelupohjia, jotka asentuvat muistiisi"
+  description="Opiskelupohja on sivullinen käsialaa ja sen alla oleva käsiterakenne. Asentaminen istuttaa kertausaikataulusi. Järjestys mitataan, ei lasketa asennuksista."
+  ogImage="/og/page/catalogue.png"
+  jsonLd={jsonLd}
+  locale="fi"
+>
+  <PageHero
+    kicker="Luettelo"
+    title="Joku on jo purkanut tämän luvun auki.<br />Asenna se, niin se kuulustelee sinua."
+    titleSize="2xl"
+    description="Flueran opiskelupohja ei ole PDF eikä korttipakka. Se on sivullinen aitoa käsialaa, sen alla oleva käsiterakenne ja ohje siihen kertausaikatauluun, jota sinun kannattaisi noudattaa. Asentaminen istuttaa sen aikataulun omaan canvakseesi."
+    orbs
+    noise
+  >
+    <CatalogueMark slot="mark" size={30} class="mb-4" />
+    <div slot="copy" class="mt-10 flex flex-wrap items-center gap-4">
+      <a href="/fi/beta" class="btn-primary">Pyydä pääsyä →</a>
+      <a href="/fi/features/spaced-repetition" class="btn-secondary">Näin kertausaikataulu toimii</a>
+    </div>
+  </PageHero>
+
+  <!-- WHAT A TEMPLATE IS -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <SectionHeader
+        kicker="Yksikkö"
+        title="Kolme asiaa lähtee mukaan. Tekijä ei ole niistä yksikään."
+        sub="Muut kaupat ojentavat dokumentin ja toivottavat onnea. Opiskelupohja kantaa mukanaan sivun, rakenteen, joka tekee sivusta opetettavan, ja ohjeet sen aikatauluttamiseen – tarkoituksella ilman sitä osaa, joka kuuluu tekijälleen."
+      />
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {whatItCarries.map((c, i) => (
+          <article class="card p-7">
+            <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
+            <h3 class="font-serif text-xl text-paper-50 mb-3">{c.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{c.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT INSTALLING DOES -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Asentaminen</p>
+          <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+            Sinä pidät tiedoston.<br />Aikataulu pitää sinusta kiinni.
+          </h2>
+          <p class="prose-ink mb-4">
+            Opiskelumateriaalin lataaminen ei ole koskaan ollut vaikeaa. Vaikeaa on palata siihen sinä päivänä, jona olet unohtamaisillasi sen, eikä yksikään kansio ole ratkaissut sitä.
+          </p>
+          <p class="prose-ink">
+            Siksi opiskelupohjan asentaminen ei siirrä dokumenttia jonnekin. Se istuttaa kortteja, joilla on päivämäärät. Perit tekijän käsitteet ja niiden väliset riippuvuudet – et hänen kertaushistoriaansa, et hänen varmuuttaan etkä sitä, kuinka hyvin hän itse asian osasi. Tiedostomuoto ei kanna niitä.
+          </p>
+        </div>
+
+        <ol class="space-y-4 list-none p-0 m-0">
+          {install.map((s) => (
+            <li class="card p-7">
+              <div class="flex items-baseline gap-4">
+                <span class="font-mono text-xs tracking-widest text-ink-500 shrink-0">{s.step}</span>
+                <div>
+                  <h3 class="font-serif text-lg text-paper-50 mb-2">{s.title}</h3>
+                  <p class="text-sm text-paper-300 leading-relaxed">{s.body}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- RANKING -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <SectionHeader
+        kicker="Järjestys"
+        title="Järjestys syntyy siitä, mikä jäi mieleen.<br />Ei siitä, mikä levisi."
+        sub="Asennusmäärä mittaa päätöstä, joka tehtiin, ennen kuin kukaan oppi mitään, ja se on helpoin luku paisuttaa missä tahansa kaupassa. Fluera voi järjestää paremmalla perusteella, koska sovellus mallintaa jo, kuinka hyvin kukin oppija pitää kunkin käsitteen muistissa."
+      />
+
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
+        {ranking.map((r) => (
+          <article class="card p-7">
+            <h3 class="font-serif text-lg text-paper-50 mb-3">{r.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{r.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-10 max-w-3xl rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
+        <p class="text-sm text-paper-300 leading-relaxed">
+          <strong class="text-paper-100">Mitä tämä ei ole.</strong> Se on mallin arvio siitä, kuinka hyvin opiskelupohjan käsitteet pysyvät muistissa niillä oppijoilla, jotka palasivat kertaamaan niitä. Se ei ole koetulos, ei kontrolliryhmä eikä väite kenestäkään, joka asensi opiskelupohjan muttei avannut sitä enää. Kuvaamme signaalin mieluummin täsmällisesti kuin puemme sen juhlavaatteisiin.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCOVERY -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <SectionHeader
+        kicker="Löytäminen"
+        title="Kolme tapaa rajata joukkoa,<br />ja yksi, jonka vain sinun laitteesi osaa."
+        sub="Opiskelumateriaalin luettelo epäonnistuu aina samalla tavalla: kaikki liittyy nimellisesti sinun oppiaineeseesi eikä juuri mikään sinun kurssiisi. Siksi suodattimet vastaavat sitä, miten opiskelija oikeasti ajattelee."
+      />
+
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div>
+          <p class="prose-ink mb-4">
+            Voit rajata <strong class="text-paper-100">oppiaineella</strong>, <strong class="text-paper-100">kurssilla tai tentillä</strong> – vapaana tekstinä, joten <em>Maturità</em> ja <em>MCAT</em> kelpaavat yhtä hyvin kuin <em>Analyysi I</em> – ja <strong class="text-paper-100">kielellä</strong>. Jokainen suodatin näyttää elävän lukumäärän, jokainen valinta laskee muiden luvut uudelleen, eikä tyhjän päälle jäävä suodatin näy lainkaan. Sinulle ei tarjota valintaa, joka johtaa tyhjälle sivulle.
+          </p>
+          <p class="prose-ink mb-4">
+            Luettelo avautuu sovelluksesi kielellä: seinällinen materiaalia, jota et osaa lukea, ei ole luettelo. Se on oletus eikä aita – yksi napautus avaa kaikki kielet.
+          </p>
+          <p class="prose-ink">
+            Haku on kokotekstihaku eikä takerru tarkkeisiin. Se myös jättää järjestyksen sikseen ja nostaa esiin osuvimmat: kun olet kirjoittanut hakuun sen, mitä haluat, kysymys ei ole enää se, mikä jäi muiden mieleen.
+          </p>
+        </div>
+
+        <div class="card p-8">
+          <h3 class="eyebrow text-accent-glow mb-5">Mitä kortin merkinnät tarkoittavat</h3>
+          <dl class="space-y-4 m-0">
+            {cardMarks.map((m) => (
+              <div>
+                <dt class="font-serif text-base text-paper-50 mb-1">{m.mark}</dt>
+                <dd class="text-sm text-paper-300 leading-relaxed m-0">{m.body}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div class="mt-10 max-w-3xl rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.08] p-6">
+        <p class="text-sm text-paper-200 leading-relaxed">
+          <strong class="text-paper-50">Ja yksi rivi, jota kukaan muu ei pystyisi rakentamaan.</strong> Fluera tietää jo, mitä käsitteitä työstät, koska kirjoitit ne itse. Siksi se osaa järjestää opiskelupohjat sen mukaan, kuinka paljon ne menevät päällekkäin canvaksesi kanssa – ja laskee sen sinun laitteellasi. Puhelimesta lähtee eniten opiskelemasi oppiaine ja niiden opiskelupohjien tunnisteet, jotka se on jo hakenut. Käsitteesi eivät lähde.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <SectionHeader
+        kicker="Mikä lähtee mukaan, mikä ei"
+        title="Kun julkaiset sivun, et julkaise sitä, miten sinulla meni."
+        sub="Opiskelumateriaalin jakaminen tarkoittaa, että jaat jotain, minkä teit kesken oppimisen. Raja näiden kahden välillä on vedetty koodiin eikä käytäntökappaleeseen."
+      />
+
+      <div class="grid md:grid-cols-2 gap-4 max-w-5xl">
+        {privacy.map((p) => (
+          <article class="card p-7">
+            <h3 class="font-serif text-lg text-paper-50 mb-3">{p.title}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{p.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-10">
+        <a href="/fi/security" class="btn-secondary">Lue tietoturva-arkkitehtuuri →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATORS -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
+    <div class="container-site">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div>
+          <p class="eyebrow mb-6 text-accent-glow">Tekijöille</p>
+          <h2 class="font-serif text-display-xl text-paper-50 mb-6">
+            Vaikean asian paras selitys<br />mahtuu yleensä yhdelle sivulle.
+          </h2>
+          <p class="prose-ink mb-4">
+            Julkaiseminen alkaa omalta canvakseltasi. Rajaat alueen, joka kannattaa jakaa. Fluera lyö siitä opiskelupohjan, ja näkymä kysyy, tuleeko siitä tiedosto vai listaus. Mukaan lähtee se, minkä rajaat – muu canvas jää sinulle.
+          </p>
+          <p class="prose-ink mb-4">
+            Ennen kuin mitään siirtyy palvelimelle, näet täsmälleen sen kuvan, josta tulisi julkinen, ja vahvistat sen. Listaus tarkistetaan, ennen kuin yhtäkään tavua tallennetaan, ja siirto kulkee kertakäyttöisten allekirjoitettujen osoitteiden kautta. Jos siirto kaatuu, listaus perutaan kokonaan eikä jää puolitiehen.
+          </p>
+          <p class="prose-ink">
+            Jokainen opiskelupohja on ilmainen. Fluerassa ei ole kassaa, julkaisurajapinnassa ei ole hintakenttää eikä tilityksiä kirjata minnekään – luettelon hintasarake on naulattu nollaan tietokannan rajoitteella, ei linjauksella.
+          </p>
+        </div>
+
+        <div class="card p-8">
+          <h3 class="eyebrow text-accent-glow mb-5">Mitä julkaiseminen antaa sinulle</h3>
+          <ul class="space-y-3.5 text-sm text-paper-200 list-none p-0 m-0 mb-6">
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Salanimitunnuksen, joka ei ole tilisi eikä sähköpostisi</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Valinnaisen profiilin – näyttönimi, esittely, profiilikuva – ja kuva näkyy vasta seulonnan jälkeen</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Seuraajat ja hyllyn, joka vie uusimman opiskelupohjasi heille</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Versioinnin: julkaise korjaus korvaajana, älä kaksoiskappaleena</span></li>
+            <li class="flex items-start gap-3"><span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span><span>Perustelun aina, kun päätös menee sinua vastaan, ja valituksen, joka voi palauttaa listauksen</span></li>
+          </ul>
+          <p class="text-xs text-ink-500 leading-relaxed">
+            Julkaiseminen vaatii kirjautumisen ja iän vahvistuksen. Selaaminen ja asentaminen eivät vaadi kumpaakaan.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFETY -->
+  <section class="py-20 md:py-28 border-b border-white/[0.04]">
+    <div class="container-site">
+      <SectionHeader
+        kicker="Moderointi ja luottamus"
+        title="Kun jaossa on vieraiden käsialaa,<br />jonkun on vastattava siitä."
+        sub="Luettelon avaa kuka tahansa. Työ alkaa siitä, mitä tapahtuu, kun jokin menee pieleen – ja siitä, ettei huoneen äänekkäin joukko ole se, joka päättää."
+      />
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {safety.map((s) => (
+          <article class="card p-6">
+            <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{s.label}</h3>
+            <p class="text-sm text-paper-300 leading-relaxed">{s.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STATUS + CTA -->
+  <section class="py-20 md:py-28">
+    <div class="container-narrow text-center">
+      <p class="eyebrow mb-6 text-accent-glow">Saatavuus</p>
+      <h2 class="font-serif text-display-lg text-paper-50 mb-6">
+        Luettelo tulee sovelluksen mukana.<br />Se vasta alkaa täyttyä.
+      </h2>
+      <p class="prose-ink mb-4 max-w-2xl mx-auto">
+        Selaaminen, esikatselu ja asentaminen ovat sovelluksen sisällä, ja ne on käännetty kaikille kuudelletoista kielelle, joita Fluera puhuu. Myös julkaiseminen on auki kirjautuneille täysi-ikäisille, ja avaamme sitä hitaasti tarkoituksella: toisten työn isännöinti on vastuu, joka kannetaan kunnolla tai ei ollenkaan.
+      </p>
+      <p class="prose-ink mb-10 max-w-2xl mx-auto">
+        Siksi luettelo on pieni, eikä tällä sivulla ole opiskelupohjien, asennusten eikä tekijöiden lukumäärää. Ne luvut merkitsevät joskus jotain. Tänään ne olisivat koristetta.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/fi/beta" class="btn-primary">Pyydä pääsyä →</a>
+        <a href="/fi/download" class="btn-secondary">Lataa Fluera</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

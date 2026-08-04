@@ -22,10 +22,11 @@ export const SITE = {
 };
 
 export const PRIMARY_NAV = [
-  { label: "Science",   href: "/science",   kind: "page" as const },
-  { label: "Features",  href: "/features",  kind: "page" as const },
-  { label: "Education", href: "/education", kind: "page" as const },
-  { label: "Pricing",   href: "/pricing",   kind: "page" as const },
+  { label: "Science",     href: "/science",     kind: "page" as const },
+  { label: "Features",    href: "/features",    kind: "page" as const },
+  { label: "Catalogue",   href: "/catalogue",   kind: "page" as const },
+  { label: "Education",   href: "/education",   kind: "page" as const },
+  { label: "Pricing",     href: "/pricing",     kind: "page" as const },
 ];
 
 export const PRIMARY_CTA = {
@@ -76,6 +77,7 @@ export const LOCALE_AVAILABLE_PATHS = new Set<string>([
   "/security/architecture",
   "/security/sub-processors",
   "/features",
+  "/catalogue",
   "/education",
   "/education/case-studies",
   "/science",
@@ -163,6 +165,7 @@ export function languageSwitchHref(currentPathname: string, targetLocale: Locale
 export const FOOTER_NAV = {
   product: [
     { label: "Features",           href: "/features" },
+    { label: "Catalogue",          href: "/catalogue" },
     { label: "Download",           href: "/download" },
     { label: "Pricing",            href: "/pricing" },
     { label: "Live demo",          href: "/demo", external: true },

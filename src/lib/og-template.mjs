@@ -18,11 +18,12 @@ const KIND_LABEL = {
   page: "Fluera",
 };
 
+
 function h(type, props, ...children) {
   return { type, props: { ...props, children: children.length === 1 ? children[0] : children } };
 }
 
-export function createOgCard({ kind, title, subtitle }) {
+export function createOgCard({ kind, title, subtitle, mark = false }) {
   const label = KIND_LABEL[kind] ?? "Fluera";
 
   return h(
@@ -44,24 +45,42 @@ export function createOgCard({ kind, title, subtitle }) {
     h(
       "div",
       { style: { display: "flex", alignItems: "center", gap: "14px" } },
-      h(
-        "div",
-        {
-          style: {
-            width: "32px",
-            height: "32px",
-            borderRadius: "8px",
-            backgroundColor: COLORS.brand,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: COLORS.bg,
-            fontSize: "20px",
-            fontWeight: 700,
-          },
-        },
-        "F",
-      ),
+      mark
+        ? h(
+            "div",
+            {
+              // The section sign, the same mark the site and the app use. Satori
+              // only has Inter loaded here, so it renders in Inter rather than
+              // the brand serif — acceptable for a glyph, and better than
+              // shipping a drawing that failed every legibility test.
+              style: {
+                display: "flex",
+                fontSize: "40px",
+                fontWeight: 600,
+                color: COLORS.paperFg,
+                lineHeight: 1,
+              },
+            },
+            "§",
+          )
+        : h(
+            "div",
+            {
+              style: {
+                width: "32px",
+                height: "32px",
+                borderRadius: "8px",
+                backgroundColor: COLORS.brand,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: COLORS.bg,
+                fontSize: "20px",
+                fontWeight: 700,
+              },
+            },
+            "F",
+          ),
       h(
         "div",
         { style: { fontSize: "22px", color: COLORS.paperFg, fontWeight: 500, letterSpacing: "-0.01em" } },

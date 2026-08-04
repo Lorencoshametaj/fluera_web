@@ -3,13 +3,15 @@
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"],
   "compilerOptions": {
-    "baseUrl": ".",
+    // No "baseUrl": it is deprecated and stops working in TypeScript 7.0.
+    // Since TS 4.4 "paths" resolves relative to this file's directory on its
+    // own, so the "./" prefixes below replace what baseUrl used to provide.
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@styles/*": ["src/styles/*"],
-      "@content/*": ["src/content/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@content/*": ["./src/content/*"]
     }
   }
 }

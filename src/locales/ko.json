@@ -10,6 +10,7 @@
   },
   "nav.science": "과학",
   "nav.features": "기능",
+  "nav.catalogue": "자료실",
   "nav.education": "교육",
   "nav.pricing": "요금",
   "nav.blog": "블로그",
@@ -46,6 +47,7 @@
   "footer.col.trust": "컴플라이언스",
 
   "footer.product.features": "기능",
+  "footer.product.catalogue": "자료실",
   "footer.product.download": "다운로드",
   "footer.product.pricing": "요금",
   "footer.product.demo": "라이브 데모",

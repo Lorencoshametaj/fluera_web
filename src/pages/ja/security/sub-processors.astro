@@ -6,16 +6,23 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "データベース、認証、クラウドストレージ (同期)、リアルタイムシグナリング。",
-    dataTypes: "アカウントのメールアドレス、ハッシュ化されたユーザー ID、同期されるキャンバスデータ、同期メタデータ。同期データは転送時 (TLS) と EU インフラ上の保存時に暗号化されますが、エンドツーエンド暗号化ではありません。Fluera はデータ管理者としてアクセス可能ですが、第三者に販売したり広告に利用したりすることは一切ありません。",
-    region: "フランクフルト、EU (Fluera インスタンスのデフォルトリージョン)。",
+    purpose: "データベース、認証、クラウドストレージ、リアルタイムシグナリング、AI プロキシ用 Edge Functions。",
+    dataTypes: "アカウントのメールアドレス、ハッシュ化されたユーザー ID、同期されるキャンバスコンテンツ (転送時は TLS により、保存時は EU インフラ上で暗号化されます。エンドツーエンド暗号化ではなく、データ管理者である Fluera はアクセス可能ですが、販売したり広告に利用したりすることは一切ありません)、同期メタデータ。",
+    region: "ストックホルム、EU (eu-north-1) — 本番環境。ダブリン、EU (eu-west-1) — ステージング環境。",
     privacy: "https://supabase.com/privacy",
   },
   {
+    name: "Google Cloud (Google Ireland Ltd.)",
+    purpose: "Socratic Mode、Ghost Map、LaTeX OCR、試験セッション生成のための Vertex AI (Gemini モデル)。",
+    dataTypes: "AI 機能に同意し、実際に利用した場合にのみ送信される、選択されたキャンバスコンテンツ — 個々の手書きクラスター領域のテキスト部分およびレンダリングされた PNG 画像。ノート全体が送られることは決してありません。",
+    region: "欧州連合内のみ — europe-west4 (オランダ) を主リージョン、europe-west1 (ベルギー) をフェイルオーバーとして使用。AI 推論のためにキャンバスコンテンツが EU 外へ移転されることはありません。",
+    privacy: "https://cloud.google.com/terms/data-processing-addendum",
+  },
+  {
     name: "Google LLC",
-    purpose: "Google Vertex AI 経由で提供される Google Gemini モデルを Socratic Mode、Ghost Map、LaTeX OCR、試験セッション生成に使用。",
-    dataTypes: "キャンバスから選択されたテキスト断片 (AI 機能が許可かつ有効な場合のみ)。ノート全体は決して送られません。",
-    region: "EU 内で処理 (europe-west4 オランダ / europe-west1 ベルギー)。",
+    purpose: "Sign in with Google 認証 (ID プロバイダー)。",
+    dataTypes: "Google アカウントのメールアドレスおよびアカウント識別子。キャンバスデータは含まれません。",
+    region: "米国。SCC + EU-US DPF。",
     privacy: "https://policies.google.com/privacy",
   },
   {
@@ -35,8 +42,8 @@ const processors = [
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "クラッシュレポートとエラー監視。",
-    dataTypes: "スタックトレース、OS バージョン、デバイスモデル、アプリバージョン。sendDefaultPii は明示的に無効化されており、ユーザーコンテンツは含まれません。",
-    region: "米国、EU オプション利用可能。",
+    dataTypes: "スタックトレース、OS バージョン、デバイスモデル、アプリバージョン。sendDefaultPii は明示的に無効化されており、IP アドレスは保存されません。ユーザーコンテンツは含まれません。",
+    region: "欧州連合 (フランクフルト) — 本番環境の DSN は Sentry の EU データリージョンに取り込まれます。処理者となる法人は米国法人です。SCC + EU-US DPF。",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -48,7 +55,7 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-04-20";
+const lastUpdated = "2026-08-01";
 ---
 
 <BaseLayout

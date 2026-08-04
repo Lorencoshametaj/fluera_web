@@ -6,16 +6,23 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "قاعدة بيانات، مصادقة، تخزين سحابي، إشارات realtime، بروكسي لنماذج AI.",
-    dataTypes: "بريد الحساب، معرّف مستخدم مُجزَّأ، بيانات اللوحة المُزامَنة، بيانات وصفية للمزامنة. البيانات المُزامَنة مشفّرة أثناء النقل (TLS) وفي حالة السكون على بنية تحتية في الاتّحاد الأوروبي؛ ليست مشفّرة طرفًا‑لطرف — يمكن لـFluera كمراقب للبيانات الوصول إليها، لكنّها لا تُباع أبدًا ولا تُستخدَم للإعلانات.",
-    region: "الاتّحاد الأوروبي (eu-north-1) (المنطقة الافتراضية لمثيلات Fluera).",
+    purpose: "قاعدة بيانات، مصادقة، تخزين سحابي، إشارات realtime، دوالّ Edge كبروكسي لنماذج AI.",
+    dataTypes: "بريد الحساب، معرّف مستخدم مُجزَّأ، محتوى اللوحة المُزامَن، بيانات وصفية للمزامنة. المحتوى المُزامَن مشفّر أثناء النقل (TLS) وفي حالة السكون على بنية تحتية في الاتّحاد الأوروبي؛ ليس مشفّرًا طرفًا‑لطرف — يمكن لـFluera كمراقب للبيانات الوصول إليه، لكنّه لا يُباع أبدًا ولا يُستخدَم للإعلانات.",
+    region: "ستوكهولم، الاتّحاد الأوروبي (eu-north-1) — الإنتاج. دبلن، الاتّحاد الأوروبي (eu-west-1) — البيئة التجريبية.",
     privacy: "https://supabase.com/privacy",
   },
   {
+    name: "Google Cloud (Google Ireland Ltd.)",
+    purpose: "Vertex AI (نماذج Gemini) لـSocratic Mode وGhost Map وLaTeX OCR وتوليد جلسات الامتحان.",
+    dataTypes: "محتوى مختار من اللوحة يُرسَل فقط عند الموافقة على ميزات AI واستخدامها — أجزاء نصّية وصور PNG مُصيَّرة لمناطق تجمّعات الكتابة اليدوية المفردة. لا دفاتر كاملة أبدًا.",
+    region: "الاتّحاد الأوروبي حصرًا — europe-west4 (هولندا) أساسية، وeurope-west1 (بلجيكا) للتحويل عند العطل. لا نقل لمحتوى اللوحة خارج الاتّحاد الأوروبي لأغراض استدلال AI.",
+    privacy: "https://cloud.google.com/terms/data-processing-addendum",
+  },
+  {
     name: "Google LLC",
-    purpose: "نماذج Google Gemini عبر Google Vertex AI لـSocratic Mode وGhost Map وLaTeX OCR وتوليد جلسات الامتحان.",
-    dataTypes: "أجزاء نصّية مختارة من اللوحة (فقط إن كانت ميزات AI مسموحة ومُفعَّلة). لا دفاتر كاملة أبدًا.",
-    region: "الاتّحاد الأوروبي (europe-west4 هولندا / europe-west1 بلجيكا) عبر Google Vertex AI.",
+    purpose: "مصادقة Sign in with Google (مزوّد الهوية).",
+    dataTypes: "بريد حساب Google ومعرّف الحساب. لا بيانات لوحة.",
+    region: "الولايات المتّحدة؛ SCC + EU-US DPF.",
     privacy: "https://policies.google.com/privacy",
   },
   {
@@ -35,8 +42,8 @@ const processors = [
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "تقارير الأعطال ومراقبة الأخطاء.",
-    dataTypes: "تتبّع المكدّس، إصدار النظام، طراز الجهاز، إصدار التطبيق. sendDefaultPii معطَّل صراحةً — لا محتوى مستخدم.",
-    region: "الولايات المتّحدة، خيار الاتّحاد الأوروبي متاح.",
+    dataTypes: "تتبّع المكدّس، إصدار النظام، طراز الجهاز، إصدار التطبيق. sendDefaultPii معطَّل صراحةً ولا تُخزَّن عناوين IP — لا محتوى مستخدم.",
+    region: "الاتّحاد الأوروبي (فرانكفورت) — يُدخِل DSN الإنتاج البيانات إلى منطقة بيانات Sentry الأوروبية. كيان المعالج مؤسَّس في الولايات المتّحدة؛ SCC + EU-US DPF.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -48,7 +55,7 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-04-20";
+const lastUpdated = "2026-08-01";
 ---
 
 <BaseLayout

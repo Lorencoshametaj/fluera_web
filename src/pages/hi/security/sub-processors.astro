@@ -6,16 +6,23 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "डेटाबेस, प्रमाणीकरण, क्लाउड स्टोरेज, रीयलटाइम सिग्नलिंग।",
-    dataTypes: "खाता ईमेल, हैश किया गया उपयोगकर्ता ID, सिंक किया गया कैनवास डेटा (ट्रांज़िट में TLS और EU इंफ्रास्ट्रक्चर पर at-rest एन्क्रिप्टेड; एंड-टू-एंड एन्क्रिप्टेड नहीं — डेटा नियंत्रक के रूप में Fluera इस तक पहुंच सकता है, लेकिन इसे कभी नहीं बेचता और न ही विज्ञापन के लिए उपयोग करता है), सिंक मेटाडेटा।",
-    region: "फ्रैंकफर्ट, EU (Fluera इंस्टेंसेस के लिए डिफ़ॉल्ट क्षेत्र)।",
+    purpose: "डेटाबेस, प्रमाणीकरण, क्लाउड स्टोरेज, रीयलटाइम सिग्नलिंग, AI प्रॉक्सी Edge Functions।",
+    dataTypes: "खाता ईमेल, हैश किया गया उपयोगकर्ता ID, सिंक की गई कैनवास सामग्री (ट्रांज़िट में TLS और EU इंफ्रास्ट्रक्चर पर at-rest एन्क्रिप्टेड; एंड-टू-एंड एन्क्रिप्टेड नहीं — डेटा नियंत्रक के रूप में Fluera इस तक पहुंच सकता है, लेकिन इसे कभी नहीं बेचता और न ही विज्ञापन के लिए उपयोग करता है), सिंक मेटाडेटा।",
+    region: "स्टॉकहोम, EU (eu-north-1) — प्रोडक्शन। डबलिन, EU (eu-west-1) — स्टेजिंग।",
     privacy: "https://supabase.com/privacy",
   },
   {
+    name: "Google Cloud (Google Ireland Ltd.)",
+    purpose: "Socratic Mode, Ghost Map, LaTeX OCR और exam session निर्माण के लिए Vertex AI (Gemini मॉडल)।",
+    dataTypes: "चयनित कैनवास सामग्री, जो केवल तभी भेजी जाती है जब AI सुविधाओं के लिए सहमति दी गई हो और उनका उपयोग किया गया हो — अलग-अलग हस्तलेखन-क्लस्टर क्षेत्रों के टेक्स्ट भाग और रेंडर की गई PNG छवियां। पूरी नोटबुक कभी नहीं।",
+    region: "केवल यूरोपीय संघ — europe-west4 (नीदरलैंड) प्राथमिक, europe-west1 (बेल्जियम) फ़ेलओवर। AI अनुमान के लिए कैनवास सामग्री का EU के बाहर कोई स्थानांतरण नहीं।",
+    privacy: "https://cloud.google.com/terms/data-processing-addendum",
+  },
+  {
     name: "Google LLC",
-    purpose: "Socratic Mode, Ghost Map, LaTeX OCR और exam session निर्माण के लिए Google Vertex AI के माध्यम से सर्व किए गए Google Gemini मॉडल।",
-    dataTypes: "कैनवास टेक्स्ट के चयनित भाग (केवल यदि AI सुविधाएं अनुमत और सक्रिय हैं)। पूरी नोटबुक कभी नहीं।",
-    region: "EU में संसाधित (europe-west4 NL / europe-west1 BE)।",
+    purpose: "Google के साथ साइन इन प्रमाणीकरण (पहचान प्रदाता)।",
+    dataTypes: "Google खाता ईमेल और खाता पहचानकर्ता। कोई कैनवास डेटा नहीं।",
+    region: "US; SCC + EU-US DPF।",
     privacy: "https://policies.google.com/privacy",
   },
   {
@@ -35,8 +42,8 @@ const processors = [
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "क्रैश रिपोर्टिंग और त्रुटि निगरानी।",
-    dataTypes: "स्टैक ट्रेस, OS संस्करण, डिवाइस मॉडल, ऐप संस्करण। sendDefaultPii स्पष्ट रूप से अक्षम है — कोई उपयोगकर्ता सामग्री नहीं।",
-    region: "US, EU विकल्प उपलब्ध।",
+    dataTypes: "स्टैक ट्रेस, OS संस्करण, डिवाइस मॉडल, ऐप संस्करण। sendDefaultPii स्पष्ट रूप से अक्षम है और IP पते संग्रहीत नहीं किए जाते — कोई उपयोगकर्ता सामग्री नहीं।",
+    region: "यूरोपीय संघ (फ्रैंकफर्ट) — प्रोडक्शन DSN, Sentry के EU डेटा क्षेत्र में इंजेस्ट होता है। प्रोसेसर इकाई US में निगमित है; SCC + EU-US DPF।",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -48,7 +55,7 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-04-20";
+const lastUpdated = "2026-08-01";
 ---
 
 <BaseLayout

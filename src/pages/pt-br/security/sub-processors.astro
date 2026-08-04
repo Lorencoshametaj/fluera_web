@@ -6,16 +6,23 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "Banco de dados, autenticação, storage cloud, signaling realtime.",
+    purpose: "Banco de dados, autenticação, storage cloud, signaling realtime, Edge Functions como proxy de IA.",
     dataTypes: "E-mail da conta, ID do usuário hasheado, dados do canvas sincronizado (criptografados em trânsito por TLS e em repouso na infraestrutura da UE; não criptografados de ponta a ponta — o Fluera, como controlador de dados, pode acessá-los, mas nunca os vende nem os usa para publicidade), metadados de sincronização.",
-    region: "eu-north-1, UE (região padrão para as instâncias do Fluera).",
+    region: "Estocolmo, UE (eu-north-1) — produção. Dublin, UE (eu-west-1) — staging.",
     privacy: "https://supabase.com/privacy",
   },
   {
+    name: "Google Cloud (Google Ireland Ltd.)",
+    purpose: "Vertex AI (modelos Gemini) para Socratic Mode, Ghost Map, OCR de LaTeX e geração das exam sessions.",
+    dataTypes: "Conteúdo selecionado do canvas, enviado apenas quando há consentimento para as funções de IA e estas são utilizadas — trechos de texto e imagens PNG renderizadas de regiões individuais de clusters de escrita à mão. Nunca o caderno inteiro.",
+    region: "Exclusivamente União Europeia — europe-west4 (Países Baixos) primário, europe-west1 (Bélgica) como failover. Nenhuma transferência de conteúdo do canvas para fora da UE para a inferência de IA.",
+    privacy: "https://cloud.google.com/terms/data-processing-addendum",
+  },
+  {
     name: "Google LLC",
-    purpose: "Modelos Google Gemini servidos via Google Vertex AI para Socratic Mode, Ghost Map, OCR de LaTeX e geração das exam sessions.",
-    dataTypes: "Trechos selecionados de texto do canvas (apenas se as funções de IA estão permitidas e ativas). Nunca o caderno inteiro.",
-    region: "UE (europe-west4 NL / europe-west1 BE); SCCs + EU-US DPF.",
+    purpose: "Autenticação Sign in with Google (provedor de identidade).",
+    dataTypes: "E-mail e identificador da conta Google. Nenhum dado do canvas.",
+    region: "EUA; SCCs + EU-US DPF.",
     privacy: "https://policies.google.com/privacy",
   },
   {
@@ -35,8 +42,8 @@ const processors = [
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "Crash reporting e monitoramento de erros.",
-    dataTypes: "Stack traces, versão do SO, modelo do dispositivo, versão do app. sendDefaultPii está explicitamente desabilitado — nenhum conteúdo do usuário.",
-    region: "EUA, opções UE disponíveis.",
+    dataTypes: "Stack traces, versão do SO, modelo do dispositivo, versão do app. sendDefaultPii está explicitamente desabilitado e os endereços IP não são armazenados — nenhum conteúdo do usuário.",
+    region: "União Europeia (Frankfurt) — o DSN de produção faz a ingestão na região de dados da UE do Sentry. A entidade operadora está constituída nos EUA; SCCs + EU-US DPF.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -48,7 +55,7 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-04-20";
+const lastUpdated = "2026-08-01";
 ---
 
 <BaseLayout

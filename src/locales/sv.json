@@ -1,6 +1,7 @@
 {
   "nav.science": "Vetenskap",
   "nav.features": "Funktioner",
+  "nav.catalogue": "Katalog",
   "nav.education": "Utbildning",
   "nav.pricing": "Priser",
   "nav.blog": "Blogg",
@@ -37,6 +38,7 @@
   "footer.col.trust": "Compliance",
 
   "footer.product.features": "Funktioner",
+  "footer.product.catalogue": "Katalog",
   "footer.product.download": "Ladda ner",
   "footer.product.pricing": "Priser",
   "footer.product.demo": "Live-demo",

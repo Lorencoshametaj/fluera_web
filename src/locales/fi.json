@@ -1,6 +1,7 @@
 {
   "nav.science": "Tiede",
   "nav.features": "Ominaisuudet",
+  "nav.catalogue": "Luettelo",
   "nav.education": "Koulutus",
   "nav.pricing": "Hinnoittelu",
   "nav.blog": "Blogi",
@@ -37,6 +38,7 @@
   "footer.col.trust": "Compliance",
 
   "footer.product.features": "Ominaisuudet",
+  "footer.product.catalogue": "Luettelo",
   "footer.product.download": "Lataa",
   "footer.product.pricing": "Hinnoittelu",
   "footer.product.demo": "Live-demo",

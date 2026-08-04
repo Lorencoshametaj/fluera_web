@@ -10,6 +10,7 @@
   },
   "nav.science": "विज्ञान",
   "nav.features": "विशेषताएं",
+  "nav.catalogue": "कैटलॉग",
   "nav.education": "शिक्षा",
   "nav.pricing": "मूल्य",
   "nav.blog": "ब्लॉग",
@@ -46,6 +47,7 @@
   "footer.col.trust": "अनुपालन",
 
   "footer.product.features": "विशेषताएं",
+  "footer.product.catalogue": "कैटलॉग",
   "footer.product.download": "डाउनलोड",
   "footer.product.pricing": "मूल्य",
   "footer.product.demo": "लाइव डेमो",

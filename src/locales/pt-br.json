@@ -11,6 +11,7 @@
 
   "nav.science": "Ciência",
   "nav.features": "Recursos",
+  "nav.catalogue": "Catálogo",
   "nav.education": "Educação",
   "nav.pricing": "Preços",
   "nav.blog": "Blog",
@@ -47,6 +48,7 @@
   "footer.col.trust": "Conformidade",
 
   "footer.product.features": "Recursos",
+  "footer.product.catalogue": "Catálogo",
   "footer.product.download": "Baixar",
   "footer.product.pricing": "Preços",
   "footer.product.demo": "Demo ao vivo",

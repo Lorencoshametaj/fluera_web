@@ -1,0 +1,64 @@
+---
+/**
+ * The Catalogue mark — a section sign, set in the brand serif.
+ *
+ * WHY A GLYPH AND NOT A DRAWING. Eight pictograms were drawn for this slot and
+ * every one of them died when rendered on a real phone at real sizes: a page
+ * with a returning arc collapsed to a rectangle, three uprights read as a bar
+ * chart, a card-index drawer read as a briefcase at 20px and a stamp at 44px,
+ * an index card with a tab became a briefcase again, two fanned cards merged
+ * into a blob. Two survived only by being conventional — and one of those,
+ * three descending bars, is already the SORT icon in the same chip row.
+ *
+ * A letterform is drawn by a type designer to stay legible at small sizes. That
+ * is the property every pictogram lacked, and it is why this one works.
+ *
+ * WHY § SPECIFICALLY:
+ *   • it is the typographic mark for a SECTION — semantically exact, not a
+ *     metaphor that has to be decoded
+ *   • it is language-neutral. The section is 자료실 in Korean, カタログ in
+ *     Japanese, الكتالوج in Arabic; a Latin initial would say nothing there
+ *   • no product uses it as a UI mark, so it stays distinctive
+ *   • it ties the mark to the thing that already carries this section's
+ *     identity — the serif masthead — instead of fighting it
+ *
+ * A filled block with a reversed initial tested stronger graphically but was
+ * rejected on evidence: it reads as an author avatar, which sits ten
+ * centimetres below it on the same screen.
+ *
+ * The Flutter twin is inline in `_heroBand`
+ * (Fluera/lib/screens/marketplace_screen.dart). Keep the two in step.
+ */
+export interface Props {
+  /** Font size in px. The glyph is set at ~1.1× the slot a pictogram would use. */
+  size?: number;
+  title?: string;
+  class?: string;
+}
+
+const { size = 30, title, class: className = "" } = Astro.props;
+---
+
+<span
+  class:list={["catalogue-mark", className]}
+  style={`font-size:${size}px`}
+  role={title ? "img" : undefined}
+  aria-label={title}
+  aria-hidden={title ? undefined : "true"}
+>§</span>
+
+<style>
+  .catalogue-mark {
+    font-family: theme("fontFamily.serif");
+    font-weight: 600;
+    line-height: 1;
+    display: inline-block;
+    /* Ink, never the accent: blue belongs to the install action alone, so that
+       "Install" stays the only thing that lights up on the page. */
+    color: theme("colors.paper.300");
+    user-select: none;
+  }
+  :global(html.light) .catalogue-mark {
+    color: #6b7280;
+  }
+</style>

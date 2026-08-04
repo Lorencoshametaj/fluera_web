@@ -27,7 +27,13 @@ export default {
           300: "#d6d3c4",
         },
         accent: {
-          ink: "#2d4ade",
+          // ONE blue across site and app. #2563eb is the app's marketplace
+          // accent (marketplace_theme.dart) and was already the light-theme CTA
+          // colour in Nav.astro — the site's old #2d4ade was a second, visibly
+          // different blue (ΔE 14) that failed 1.4.11 as a UI-component colour
+          // on the dark ground (2.39:1). This one clears it at 3.09:1 and still
+          // carries white text at 5.17:1.
+          ink: "#2563eb",
           glow: "#38bdf8",
           warm: "#c98a5b",
         },

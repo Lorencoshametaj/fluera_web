@@ -101,6 +101,13 @@ export default defineConfig({
       .reduce((acc, l) => ({ ...acc, [l]: DEFAULT_LOCALE }), {}),
   },
   redirects: {
+    // /marketplace was renamed to /catalogue (the old name promised commerce
+    // that does not exist here). Keep the old paths resolving in every locale.
+    "/marketplace": "/catalogue",
+    ...Object.fromEntries(
+      LOCALES.filter((l) => l !== DEFAULT_LOCALE)
+        .map((l) => [`/${l}/marketplace`, `/${l}/catalogue`]),
+    ),
     "/engine": "/",
     "/sdk": "/",
     "/engine/docs": "/",

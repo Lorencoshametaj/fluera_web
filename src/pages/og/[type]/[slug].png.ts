@@ -16,11 +16,14 @@ const FONT_DIR = join(process.cwd(), "src/lib/fonts");
 const interMedium = readFileSync(join(FONT_DIR, "Inter-Medium.ttf"));
 const interSemiBold = readFileSync(join(FONT_DIR, "Inter-SemiBold.ttf"));
 
+// `mark: true` swaps the generic "F" tile for the Catalogue mark — the section
+// has its own identity, and the OG card is where it travels.
 const STATIC_PAGES = [
   { slug: "manifesto", title: "The Manifesto", subtitle: "Why we built a learning canvas, not a note app." },
   { slug: "pricing", title: "Pricing", subtitle: "Free forever. Plus and Pro unlock advanced cognitive features." },
   { slug: "science", title: "The Science", subtitle: "50 years of cognitive research, applied to studying." },
   { slug: "education", title: "Fluera for Education", subtitle: "Tools for educators, validated by research." },
+  { slug: "catalogue", title: "The Fluera Catalogue", subtitle: "Study templates ranked by measured retention, not downloads.", mark: true },
   { slug: "security", title: "Security & Privacy", subtitle: "GDPR-compliant, encrypted at rest, local-first." },
 ];
 
@@ -29,7 +32,10 @@ function stripLocale(id: string): string {
 }
 
 export const getStaticPaths = async () => {
-  const paths: Array<{ params: { type: string; slug: string }; props: { title: string; subtitle: string } }> = [];
+  const paths: Array<{
+    params: { type: string; slug: string };
+    props: { title: string; subtitle: string; mark?: boolean };
+  }> = [];
 
   // Blog (EN only — base slugs).
   const blog = await getCollection("blog", ({ data }) => data.lang === "en" && !data.draft);
@@ -67,7 +73,7 @@ export const getStaticPaths = async () => {
   for (const page of STATIC_PAGES) {
     paths.push({
       params: { type: "page", slug: page.slug },
-      props: { title: page.title, subtitle: page.subtitle },
+      props: { title: page.title, subtitle: page.subtitle, mark: "mark" in page && page.mark === true },
     });
   }
 
@@ -76,10 +82,10 @@ export const getStaticPaths = async () => {
 
 export const GET: APIRoute = async ({ params, props }) => {
   const { type } = params as { type: string; slug: string };
-  const { title, subtitle } = props as { title: string; subtitle: string };
+  const { title, subtitle, mark } = props as { title: string; subtitle: string; mark?: boolean };
 
   const svg = await satori(
-    createOgCard({ kind: type, title, subtitle }) as Parameters<typeof satori>[0],
+    createOgCard({ kind: type, title, subtitle, mark }) as Parameters<typeof satori>[0],
     {
       width: 1200,
       height: 630,

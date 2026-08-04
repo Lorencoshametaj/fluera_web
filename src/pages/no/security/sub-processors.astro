@@ -6,16 +6,23 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "Database, autentisering, sky-lagring og synkronisering, sanntids-signaling.",
-    dataTypes: "Konto-e-post, hashet bruker-ID, canvas-data (kryptert under overføring med TLS og i ro på EU-infrastruktur — ikke ende-til-ende-kryptert; Fluera kan få tilgang som behandlingsansvarlig, men selger den aldri og bruker den aldri til annonsering), synkroniseringsmetadata.",
-    region: "EU (eu-north-1) for Fluera-instansene.",
+    purpose: "Database, autentisering, sky-lagring, sanntids-signaling, AI-proxy Edge Functions.",
+    dataTypes: "Konto-e-post, hashet bruker-ID, synkronisert canvas-innhold (kryptert under overføring med TLS og i ro på EU-infrastruktur — ikke ende-til-ende-kryptert; tilgjengelig for Fluera som behandlingsansvarlig, aldri solgt og aldri brukt til annonsering), synkroniseringsmetadata.",
+    region: "Stockholm, EU (eu-north-1) — produksjon. Dublin, EU (eu-west-1) — staging.",
     privacy: "https://supabase.com/privacy",
   },
   {
+    name: "Google Cloud (Google Ireland Ltd.)",
+    purpose: "Vertex AI (Gemini-modeller) for Socratic Mode, Ghost Map, LaTeX-OCR og generering av Exam Sessions.",
+    dataTypes: "Utvalgt canvas-innhold som kun sendes inn når KI-funksjonene er samtykket til og i bruk — tekstutdrag og gjengitte PNG-bilder av enkelte håndskriftsklynge-områder. Aldri hele notatboken.",
+    region: "Kun Den europeiske union — europe-west4 (Nederland) primær, europe-west1 (Belgia) failover. Ingen overføring av canvas-innhold ut av EU for KI-inferens.",
+    privacy: "https://cloud.google.com/terms/data-processing-addendum",
+  },
+  {
     name: "Google LLC",
-    purpose: "Google Gemini-modeller levert via Google Vertex AI for Socratic Mode, Ghost Map, LaTeX-OCR og generering av Exam Sessions.",
-    dataTypes: "Utvalgte tekstutdrag fra canvaset (kun når KI-funksjonene er tillatt og aktive). Aldri hele notatboken.",
-    region: "EU (europe-west4 NL / europe-west1 BE).",
+    purpose: "Autentisering med Sign in with Google (identitetstilbyder).",
+    dataTypes: "E-post og konto-identifikator for Google-kontoen. Ingen canvas-data.",
+    region: "USA; SCC + EU-US DPF.",
     privacy: "https://policies.google.com/privacy",
   },
   {
@@ -35,8 +42,8 @@ const processors = [
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "Crash-rapportering og feilovervåking.",
-    dataTypes: "Stack traces, OS-versjon, enhetsmodell, app-versjon. sendDefaultPii er eksplisitt deaktivert — ingen brukerinnhold.",
-    region: "USA, EU-alternativer tilgjengelige.",
+    dataTypes: "Stack traces, OS-versjon, enhetsmodell, app-versjon. sendDefaultPii er eksplisitt deaktivert og IP-adresser lagres ikke — ingen brukerinnhold.",
+    region: "Den europeiske union (Frankfurt) — produksjons-DSN-en ingesterer i Sentrys europeiske dataregion. Databehandlerens juridiske enhet er registrert i USA; SCC + EU-US DPF.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -48,7 +55,7 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-04-20";
+const lastUpdated = "2026-08-01";
 ---
 
 <BaseLayout

@@ -8,14 +8,21 @@ const processors = [
     name: "Supabase Inc.",
     purpose: "데이터베이스, 인증, 클라우드 스토리지, 실시간 시그널링, AI 프록시용 Edge Function.",
     dataTypes: "계정 이메일, 해시된 사용자 ID, 캔버스 콘텐츠 (전송 중 TLS로 암호화, EU 인프라에 저장 시 암호화 — 단, 종단 간(E2E) 암호화는 아니므로 데이터 컨트롤러인 Fluera가 접근할 수 있으나 절대 판매하거나 광고에 사용하지 않음), 동기화 메타데이터.",
-    region: "프랑크푸르트, EU (Fluera 인스턴스의 기본 지역).",
+    region: "스톡홀름, EU (eu-north-1) — 프로덕션. 더블린, EU (eu-west-1) — 스테이징.",
     privacy: "https://supabase.com/privacy",
   },
   {
+    name: "Google Cloud (Google Ireland Ltd.)",
+    purpose: "Socratic Mode, Ghost Map, LaTeX OCR 및 Exam Session 생성을 위한 Vertex AI (Gemini 모델).",
+    dataTypes: "AI 기능에 동의하고 이를 사용하는 경우에만 전송되는 선택된 캔버스 콘텐츠 — 텍스트 부분 및 개별 손글씨 클러스터 영역을 렌더링한 PNG 이미지. 전체 노트북은 절대 아님.",
+    region: "유럽 연합 내에서만 처리 — europe-west4 (네덜란드) 기본, europe-west1 (벨기에) 장애 조치. AI 추론을 위해 캔버스 콘텐츠를 EU 외부로 전송하지 않음.",
+    privacy: "https://cloud.google.com/terms/data-processing-addendum",
+  },
+  {
     name: "Google LLC",
-    purpose: "Socratic Mode, Ghost Map, LaTeX OCR 및 Exam Session 생성을 위한 Google Vertex AI를 통해 제공되는 Google Gemini 모델 (EU에서 처리).",
-    dataTypes: "선택된 캔버스 텍스트 부분 (AI 기능이 허용되고 활성화된 경우에만). 전체 노트북은 절대 아님.",
-    region: "EU에서 처리되는 Google Vertex AI (europe-west4 NL / europe-west1 BE).",
+    purpose: "Sign in with Google 인증 (ID 공급자).",
+    dataTypes: "Google 계정 이메일 및 계정 식별자. 캔버스 데이터 없음.",
+    region: "미국; SCC + EU-US DPF.",
     privacy: "https://policies.google.com/privacy",
   },
   {
@@ -35,8 +42,8 @@ const processors = [
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "충돌 보고 및 오류 모니터링.",
-    dataTypes: "스택 트레이스, OS 버전, 기기 모델, 앱 버전. sendDefaultPii는 명시적으로 비활성화 — 사용자 콘텐츠 없음.",
-    region: "미국, EU 옵션 사용 가능.",
+    dataTypes: "스택 트레이스, OS 버전, 기기 모델, 앱 버전. sendDefaultPii는 명시적으로 비활성화되어 있으며 IP 주소는 저장하지 않음 — 사용자 콘텐츠 없음.",
+    region: "유럽 연합 (프랑크푸르트) — 프로덕션 DSN은 Sentry의 EU 데이터 지역으로 수집됨. 처리자 법인은 미국에 설립됨; SCC + EU-US DPF.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -48,7 +55,7 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-04-20";
+const lastUpdated = "2026-08-01";
 ---
 
 <BaseLayout

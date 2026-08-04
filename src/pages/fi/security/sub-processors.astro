@@ -6,16 +6,23 @@ import { SITE } from "@/lib/site";
 const processors = [
   {
     name: "Supabase Inc.",
-    purpose: "Tietokanta, autentikointi, pilvitallennus ja -synkronointi, Realtime-signalointi.",
-    dataTypes: "Tilin sähköposti, hashattu käyttäjä-ID, synkronoitu canvas-data ja synkronoinnin metatiedot. Synkronoitu data on salattu siirron aikana (TLS) ja levossa EU-infrastruktuurissa; sitä ei ole päästä päähän -salattu, joten Fluera voi rekisterinpitäjänä käsitellä sitä. Emme koskaan myy sitä emmekä käytä mainontaan.",
-    region: "eu-north-1, EU (Tukholma, Flueran instanssien oletusalue).",
+    purpose: "Tietokanta, autentikointi, pilvitallennus, Realtime-signalointi, tekoälyvälityksen Edge Functions -toiminnot.",
+    dataTypes: "Tilin sähköposti, hashattu käyttäjä-ID, synkronoitu canvas-sisältö (salattu siirron aikana TLS:llä ja levossa EU-infrastruktuurissa — ei päästä päähän -salattu; Fluera pääsee siihen rekisterinpitäjänä käsiksi, mutta sitä ei koskaan myydä eikä käytetä mainontaan) sekä synkronoinnin metatiedot.",
+    region: "Tukholma, EU (eu-north-1) — tuotanto. Dublin, EU (eu-west-1) — testiympäristö.",
     privacy: "https://supabase.com/privacy",
   },
   {
+    name: "Google Cloud (Google Ireland Ltd.)",
+    purpose: "Vertex AI (Gemini-mallit) Socratic Modea, Ghost Mapia, LaTeX-OCR:ää ja Exam Sessionien generointia varten.",
+    dataTypes: "Valittu canvas-sisältö, joka lähetetään vain silloin, kun tekoälyominaisuuksiin on annettu suostumus ja niitä käytetään — tekstiosuudet sekä yksittäisistä käsinkirjoitusklustereiden alueista renderöidyt PNG-kuvat. Ei koskaan koko muistikirjaa.",
+    region: "Vain Euroopan unioni — europe-west4 (Alankomaat) ensisijaisena, europe-west1 (Belgia) varalla. Canvas-sisältöä ei siirretä EU:n ulkopuolelle tekoälypäättelyä varten.",
+    privacy: "https://cloud.google.com/terms/data-processing-addendum",
+  },
+  {
     name: "Google LLC",
-    purpose: "Google Gemini -mallit Google Vertex AI:n kautta tarjottuina, Socratic Modea, Ghost Mapia, LaTeX-OCR:ää ja Exam Sessionien generointia varten.",
-    dataTypes: "Valitut tekstipätkät canvasilta (vain kun tekoälyominaisuudet on sallittu ja aktiivisia). Ei koskaan koko muistikirjaa.",
-    region: "Käsitellään EU:ssa (europe-west4 NL / europe-west1 BE).",
+    purpose: "Sign in with Google -autentikointi (identiteetintarjoaja).",
+    dataTypes: "Google-tilin sähköposti ja tilin tunniste. Ei canvas-dataa.",
+    region: "USA; SCC:t + EU-US DPF.",
     privacy: "https://policies.google.com/privacy",
   },
   {
@@ -35,8 +42,8 @@ const processors = [
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "Kaatumisraportointi ja virheiden valvonta.",
-    dataTypes: "Stack-jäljet, käyttöjärjestelmäversio, laitemalli, sovellusversio. sendDefaultPii on nimenomaisesti pois päältä — ei käyttäjäsisältöä.",
-    region: "USA, EU-vaihtoehdot saatavilla.",
+    dataTypes: "Stack-jäljet, käyttöjärjestelmäversio, laitemalli, sovellusversio. sendDefaultPii on nimenomaisesti pois päältä eikä IP-osoitteita tallenneta — ei käyttäjäsisältöä.",
+    region: "Euroopan unioni (Frankfurt) — tuotannon DSN ohjaa datan Sentryn EU-data-alueelle. Käsittelijäyhtiö on rekisteröity Yhdysvalloissa; SCC:t + EU-US DPF.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -48,7 +55,7 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-04-20";
+const lastUpdated = "2026-08-01";
 ---
 
 <BaseLayout

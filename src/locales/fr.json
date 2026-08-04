@@ -1,6 +1,7 @@
 {
   "nav.science": "Science",
   "nav.features": "Fonctionnalités",
+  "nav.catalogue": "Catalogue",
   "nav.education": "Éducation",
   "nav.pricing": "Tarifs",
   "nav.blog": "Blog",
@@ -37,6 +38,7 @@
   "footer.col.trust": "Conformité",
 
   "footer.product.features": "Fonctionnalités",
+  "footer.product.catalogue": "Catalogue",
   "footer.product.download": "Télécharger",
   "footer.product.pricing": "Tarifs",
   "footer.product.demo": "Démo en direct",

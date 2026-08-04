@@ -156,27 +156,28 @@ function renderTemplateHtml(row: SeedRow, hash: string, ogImageUrl: string, plat
   <style>
     :root { color-scheme: dark; }
     * { box-sizing: border-box; }
-    body { margin:0; background:#0a0a0b; color:#f4f4f5; font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+    body { margin:0; background:#161b24; color:#f4f3ee; font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
     .wrap { max-width:680px; margin:0 auto; padding:24px 20px 64px; }
-    .brand { display:flex; align-items:center; gap:8px; font-weight:600; color:#a1a1aa; margin-bottom:20px; }
-    .hero { width:100%; aspect-ratio:1200/630; border-radius:16px; overflow:hidden; background:#18181b; border:1px solid #ffffff14; }
+    .brand { display:flex; align-items:center; gap:9px; font-weight:500; color:#d6d3c4; margin-bottom:20px; }
+    .brand .mark { font-family:"Source Serif 4","Source Serif Pro",Georgia,serif; font-size:21px; font-weight:600; line-height:1; }
+    .hero { width:100%; aspect-ratio:1200/630; border-radius:16px; overflow:hidden; background:#1c222d; border:1px solid #ffffff14; }
     .hero img { width:100%; height:100%; object-fit:cover; display:block; }
-    h1 { font-size:26px; line-height:1.25; margin:22px 0 6px; }
-    .by { color:#a1a1aa; font-size:14px; margin:0 0 14px; }
+    h1 { font-family:"Source Serif 4","Source Serif Pro",Georgia,serif; font-size:28px; line-height:1.2; letter-spacing:-0.015em; margin:22px 0 6px; }
+    .by { color:#7c8cac; font-size:14px; margin:0 0 14px; }
     .chips { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 18px; }
-    .chip { font-size:13px; color:#d4d4d8; background:#ffffff0f; border:1px solid #ffffff14; border-radius:999px; padding:5px 11px; }
-    p.desc { color:#d4d4d8; }
+    .chip { font-size:13px; color:#d6d3c4; background:#ffffff0f; border:1px solid #ffffff14; border-radius:999px; padding:5px 11px; }
+    p.desc { color:#d6d3c4; }
     .cta { display:flex; flex-direction:column; gap:10px; margin-top:26px; }
     .btn { display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; font-weight:600; padding:15px 18px; border-radius:14px; }
-    .btn.primary { background:#6366f1; color:#fff; }
+    .btn.primary { background:#2563eb; color:#fff; }
     .btn.ghost { background:#ffffff0f; color:#f4f4f5; border:1px solid #ffffff1f; }
-    .note { color:#71717a; font-size:13px; text-align:center; margin-top:18px; }
+    .note { color:#7c8cac; font-size:13px; text-align:center; margin-top:18px; }
     a { color:inherit; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="brand">🌱 Fluera · Template di studio</div>
+    <div class="brand"><span class="mark">§</span>Fluera · Catalogo</div>
     <div class="hero"><img src="${escapeHtml(ogImageUrl)}" alt="${escapeHtml(title)}" loading="eager" /></div>
     <h1>${escapeHtml(title)}</h1>
     <p class="by">di ${escapeHtml(author)}</p>

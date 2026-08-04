@@ -23,8 +23,10 @@ if (!existsSync(DIST)) {
 }
 
 const failures = [];
+let checksRun = 0;
 
 function check(label, ok, detail = "") {
+  checksRun++;
   const icon = ok ? "✓" : "✗";
   const tail = detail ? ` (${detail})` : "";
   console.log(`  ${icon} ${label}${tail}`);
@@ -65,6 +67,10 @@ const ROUTES = [
   "ar/index.html",
   "ar/pricing/index.html",
   "ar/features/index.html",
+  "catalogue/index.html",
+  "it/catalogue/index.html",
+  "ja/catalogue/index.html",
+  "ar/catalogue/index.html",
   "sitemap-index.xml",
 ];
 for (const route of ROUTES) {
@@ -146,6 +152,41 @@ console.log("\nPhase 1/2 content");
     pricingAr.includes(">Team<") && pricingAr.includes("€19.99") && pricingAr.includes("الأسئلة الشائعة"));
 }
 
+console.log("\nCatalogue");
+{
+  const mk = read("catalogue/index.html");
+  check("/catalogue renders the hero", mk.includes("Someone already worked this chapter out"));
+  check("/catalogue is linked from the nav", read("index.html").includes('href="/catalogue"'));
+  // The page deliberately carries no catalog/usage numbers: the catalog is new and
+  // any count would be a vanity claim. Guard the promise so it can't silently rot.
+  check("/catalogue quotes no retention percentage",
+    !/\+\s*\d+\s*%\s*(retention|retenzione)/i.test(mk));
+  check("/catalogue claims no template/install/creator count",
+    !/\b\d[\d,.]*\+?\s+(templates|installs|creators|students|downloads)\b/i.test(mk));
+  // The marketplace creator terms are still an unreviewed draft — the page must
+  // not link to them or to a content policy that isn't published.
+  check("/catalogue links to no unpublished legal doc",
+    !/marketplace-terms|content-policy|creator-terms/i.test(mk));
+}
+{
+  // The section mark (the returning-page arc) is the Catalogue's identity, and
+  // it must appear on the Catalogue and nowhere else — a mark that leaks onto
+  // other pages stops being a section mark.
+  const MARK = 'class="catalogue-mark';
+  check("/catalogue carries the section mark", read("catalogue/index.html").includes(MARK));
+  check("the mark stays off other pages",
+    !read("index.html").includes(MARK) && !read("pricing/index.html").includes(MARK));
+}
+{
+  const mkIt = read("it/catalogue/index.html");
+  check("IT /catalogue is a real translation", !mkIt.includes("Someone already worked this chapter out"));
+  check("IT /catalogue declares lang=it", mkIt.includes('lang="it"'));
+}
+{
+  const mkAr = read("ar/catalogue/index.html");
+  check("AR /catalogue renders RTL", mkAr.includes('dir="rtl"'));
+}
+
 console.log("\nEducation hidden (UI surface only)");
 {
   const home = read("index.html");
@@ -164,7 +205,7 @@ console.log("\nEducation hidden (UI surface only)");
 
 console.log("\nResult");
 if (failures.length === 0) {
-  console.log(`\n✓ All ${ROUTES.length + 17} smoke checks passed.`);
+  console.log(`\n✓ All ${checksRun} smoke checks passed.`);
   process.exit(0);
 } else {
   console.error(`\n✗ ${failures.length} smoke check(s) failed:`);

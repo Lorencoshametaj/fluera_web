@@ -1,6 +1,7 @@
 {
   "nav.science": "Wetenschap",
   "nav.features": "Functies",
+  "nav.catalogue": "Catalogus",
   "nav.education": "Onderwijs",
   "nav.pricing": "Prijzen",
   "nav.blog": "Blog",
@@ -37,6 +38,7 @@
   "footer.col.trust": "Compliance",
 
   "footer.product.features": "Functies",
+  "footer.product.catalogue": "Catalogus",
   "footer.product.download": "Downloaden",
   "footer.product.pricing": "Prijzen",
   "footer.product.demo": "Live demo",
