@@ -1,0 +1,44 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+---
+
+<BaseLayout
+  title="Page not found"
+  description="This page doesn't exist. If you followed a Fluera share link, we'll route you to the right place."
+  noIndex
+>
+  <PageHero
+    kicker="404"
+    title="This page doesn't exist."
+    description="If you followed a share link, hold on — we're routing you to the right place. Otherwise, the links below will get you home."
+  >
+    <div class="flex flex-wrap gap-4">
+      <a href="/" class="btn-primary">Back to Fluera →</a>
+      <a href="/beta" class="btn-secondary">Request beta access</a>
+    </div>
+  </PageHero>
+
+  <!-- 🔗 Legacy dynamic-link rescue. fluera.dev is static GitHub Pages: the
+       serverless routes the app once baked into share artefacts — /i/{code}
+       (referral end-card/QR, old Vercel api/i.ts that never deployed) and
+       /s/{hash} (template share) — can only 404 here. GitHub Pages serves THIS
+       page for every unknown path, so a tiny client redirect rescues every
+       link already burned into published videos/captions by forwarding it to
+       share.fluera.dev, the serverful host (seed-share Supabase Edge Function)
+       that owns those routes. Crawlers still see a proper 404 (noindex, no
+       server redirect) — this is a user-rescue hop, not cloaking. -->
+  <script is:inline>
+    (function () {
+      var m = location.pathname.match(/^\/(i|s|u)\/([A-Za-z0-9]{4,64})\/?$/);
+      if (!m) return;
+      var target =
+        "https://share.fluera.dev/" +
+        m[1] +
+        "/" +
+        m[2] +
+        (location.search || "");
+      location.replace(target);
+    })();
+  </script>
+</BaseLayout>
