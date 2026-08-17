@@ -13,10 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
-    defaults:
-      run:
-        working-directory: fluera-landing-v2
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,7 +22,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: fluera-landing-v2/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -51,5 +47,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: lighthouse-reports
-          path: fluera-landing-v2/.lighthouseci/
+          path: .lighthouseci/
           retention-days: 14
