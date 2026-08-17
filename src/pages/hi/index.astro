@@ -7,7 +7,7 @@ import pricing from "@/data/pricing/hi";
 import copy from "@/data/homeCopy/hi";
 
 const description = "सीखने के लिए एक कैनवास, नोट्स ऐप नहीं। Fluera आपके हाथ से लिखे नोट्स को आपकी डिग्री के जीवंत मानचित्र में बदलता है और याददाश्त कमज़ोर पड़ने से पहले आपसे दोबारा पूछता है।";
-const jsonLd = {
+const jsonLd = [{
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: SITE.name,
@@ -21,9 +21,24 @@ const jsonLd = {
     { "@type": "EducationalAudience", educationalRole: "teacher" },
   ],
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-};
+},
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Fluera",
+    url: "https://fluera.dev/",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Fluera",
+    url: "https://fluera.dev/",
+    logo: "https://fluera.dev/press/logo-full.png",
+    sameAs: ["https://github.com/Lorencoshametaj/fluera_engine"],
+  },
+];
 ---
 
-<BaseLayout title={SITE.name} description={description} jsonLd={jsonLd} locale="hi">
+<BaseLayout title="Fluera — वह डिजिटल नोटबुक जो आपसे पूछती है" description={description} jsonLd={jsonLd} locale="hi">
   <PremiumHome locale="hi" home={home} pricing={pricing} copy={copy} />
 </BaseLayout>

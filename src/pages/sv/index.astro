@@ -7,7 +7,7 @@ import pricing from "@/data/pricing/sv";
 import copy from "@/data/homeCopy/sv";
 
 const description = "En canvas för att lära, inte en anteckningsapp. Fluera gör dina handskrivna anteckningar till en levande karta över utbildningen och förhör dig innan minnet sviker.";
-const jsonLd = {
+const jsonLd = [{
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: SITE.name,
@@ -21,9 +21,24 @@ const jsonLd = {
     { "@type": "EducationalAudience", educationalRole: "teacher" },
   ],
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-};
+},
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Fluera",
+    url: "https://fluera.dev/",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Fluera",
+    url: "https://fluera.dev/",
+    logo: "https://fluera.dev/press/logo-full.png",
+    sameAs: ["https://github.com/Lorencoshametaj/fluera_engine"],
+  },
+];
 ---
 
-<BaseLayout title={SITE.name} description={description} jsonLd={jsonLd} locale="sv">
+<BaseLayout title="Fluera — den digitala anteckningsboken som förhör dig" description={description} jsonLd={jsonLd} locale="sv">
   <PremiumHome locale="sv" home={home} pricing={pricing} copy={copy} />
 </BaseLayout>

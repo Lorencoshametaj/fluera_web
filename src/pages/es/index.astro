@@ -7,7 +7,7 @@ import pricing from "@/data/pricing/es";
 import copy from "@/data/homeCopy/es";
 
 const description = "Un canvas para aprender, no una app de notas. Fluera convierte tus apuntes a mano en un mapa vivo de tu carrera y te vuelve a estudiar antes de que la memoria falle.";
-const jsonLd = {
+const jsonLd = [{
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: SITE.name,
@@ -21,9 +21,24 @@ const jsonLd = {
     { "@type": "EducationalAudience", educationalRole: "teacher" },
   ],
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-};
+},
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Fluera",
+    url: "https://fluera.dev/",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Fluera",
+    url: "https://fluera.dev/",
+    logo: "https://fluera.dev/press/logo-full.png",
+    sameAs: ["https://github.com/Lorencoshametaj/fluera_engine"],
+  },
+];
 ---
 
-<BaseLayout title={SITE.name} description={description} jsonLd={jsonLd} locale="es">
+<BaseLayout title="Fluera — el cuaderno digital que te estudia a ti" description={description} jsonLd={jsonLd} locale="es">
   <PremiumHome locale="es" home={home} pricing={pricing} copy={copy} />
 </BaseLayout>

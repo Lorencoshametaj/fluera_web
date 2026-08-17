@@ -44,7 +44,9 @@ const bannerBootLocales = LOCALES;
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
 const ogImageUrl = new URL(ogImage, SITE.url).toString();
-const fullTitle = title === SITE.name ? SITE.name : `${title} — ${SITE.name}`;
+// Append the brand only when the page title doesn't already carry it —
+// otherwise feature pages rendered as "Atlas — Fluera — Fluera" in the SERP.
+const fullTitle = title.includes(SITE.name) ? title : `${title} — ${SITE.name}`;
 
 const jsonLdArray = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 

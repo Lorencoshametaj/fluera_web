@@ -8,6 +8,8 @@ export interface Props { locale: Locale; }
 type Copy = {
   title: string;
   description: string;
+  metaTitle: string;
+  eyebrow: string;
   visualLabel: string;
   sameCanvas: string;
   access: string;
@@ -28,6 +30,8 @@ const COPY = {
   en: {
     title: "Every platform.<br /><em>The same canvas.</em>",
     description: "Request Fluera access wherever you study. Your degree remains one continuous space; only the client changes. Access requests are open across every supported platform.",
+    metaTitle: "Download Fluera — iOS, iPadOS, Android, macOS, Windows, Linux",
+    eyebrow: "Download",
     visualLabel: "One Fluera canvas continuing across six supported platforms",
     sameCanvas: "ONE CONTINUOUS CANVAS",
     access: "Access by invitation",
@@ -42,6 +46,8 @@ const COPY = {
   it: {
     title: "Tutte le piattaforme.<br /><em>Lo stesso canvas.</em>",
     description: "Richiedi Fluera ovunque studi. La tua triennale resta un unico spazio continuo; cambia solo il client. Le richieste di accesso sono aperte su ogni piattaforma supportata.",
+    metaTitle: "Scarica Fluera — iOS, iPadOS, Android, macOS, Windows, Linux",
+    eyebrow: "Download",
     visualLabel: "Un unico canvas Fluera che continua su sei piattaforme supportate",
     sameCanvas: "UN CANVAS CONTINUO",
     access: "Accesso su invito",
@@ -56,6 +62,8 @@ const COPY = {
   es: {
     title: "Todas las plataformas.<br /><em>El mismo lienzo.</em>",
     description: "Solicita Fluera donde estudies. Tu carrera sigue siendo un único espacio continuo; solo cambia el cliente. Las solicitudes están abiertas en todas las plataformas compatibles.",
+    metaTitle: "Descarga Fluera — iOS, iPadOS, Android, macOS, Windows, Linux",
+    eyebrow: "Descargas",
     visualLabel: "Un lienzo de Fluera que continúa en seis plataformas compatibles",
     sameCanvas: "UN LIENZO CONTINUO", access: "Acceso por invitación", cta: "Solicitar acceso",
     maturityKicker: "MADUREZ DE LA VERSIÓN", maturityTitle: "Un sistema, con etapas de madurez claras.", maturityBody: "Las etiquetas describen el estado real de cada cliente. Puedes solicitar acceso hoy para cualquiera de ellos.",
@@ -65,6 +73,8 @@ const COPY = {
   "pt-br": {
     title: "Todas as plataformas.<br /><em>O mesmo canvas.</em>",
     description: "Peça acesso ao Fluera onde você estuda. Sua graduação continua em um único espaço; só o cliente muda. Os pedidos estão abertos em todas as plataformas compatíveis.",
+    metaTitle: "Baixe o Fluera — iOS, iPadOS, Android, macOS, Windows, Linux",
+    eyebrow: "Download",
     visualLabel: "Um canvas Fluera contínuo em seis plataformas compatíveis",
     sameCanvas: "UM CANVAS CONTÍNUO", access: "Acesso por convite", cta: "Solicitar acesso",
     maturityKicker: "MATURIDADE DA VERSÃO", maturityTitle: "Um sistema, com estágios de maturidade claros.", maturityBody: "As etiquetas descrevem o estado real de cada cliente. Você pode solicitar acesso hoje para qualquer plataforma.",
@@ -74,6 +84,8 @@ const COPY = {
   fr: {
     title: "Toutes les plateformes.<br /><em>Le même canvas.</em>",
     description: "Demandez Fluera là où vous étudiez. Votre cursus reste un espace continu ; seul le client change. Les demandes sont ouvertes sur toutes les plateformes prises en charge.",
+    metaTitle: "Télécharger Fluera — iOS, iPadOS, Android, macOS, Windows",
+    eyebrow: "Téléchargement",
     visualLabel: "Un canvas Fluera continu sur six plateformes prises en charge",
     sameCanvas: "UN CANVAS CONTINU", access: "Accès sur invitation", cta: "Demander l’accès",
     maturityKicker: "MATURITÉ DES VERSIONS", maturityTitle: "Un système, avec des étapes de maturité claires.", maturityBody: "Les étiquettes décrivent l’état réel de chaque client. Vous pouvez demander l’accès aujourd’hui pour chacun d’eux.",
@@ -83,6 +95,8 @@ const COPY = {
   de: {
     title: "Alle Plattformen.<br /><em>Dasselbe Canvas.</em>",
     description: "Beantrage Fluera dort, wo du lernst. Dein Studium bleibt ein zusammenhängender Raum; nur der Client wechselt. Anfragen sind für jede unterstützte Plattform offen.",
+    metaTitle: "Fluera laden — iOS, iPadOS, Android, macOS, Windows, Linux",
+    eyebrow: "Download",
     visualLabel: "Ein Fluera-Canvas auf sechs unterstützten Plattformen",
     sameCanvas: "EIN DURCHGÄNGIGES CANVAS", access: "Zugang per Einladung", cta: "Zugang anfragen",
     maturityKicker: "REIFEGRAD DER CLIENTS", maturityTitle: "Ein System, mit ehrlich benannten Reifegraden.", maturityBody: "Die Labels zeigen den tatsächlichen Stand jedes Clients. Zugang kannst du bereits heute für jede Plattform anfragen.",
@@ -92,6 +106,8 @@ const COPY = {
   ja: {
     title: "すべてのプラットフォーム。<br /><em>同じひとつのキャンバス。</em>",
     description: "学ぶ場所を問わず Fluera を申請できます。学びはひとつの連続した空間のまま、変わるのはクライアントだけです。対応する全プラットフォームで申請を受け付けています。",
+    metaTitle: "Fluera をダウンロード — iOS・iPadOS・Android・macOS・Windows・Linux",
+    eyebrow: "ダウンロード",
     visualLabel: "6つの対応プラットフォームに続くひとつのFlueraキャンバス",
     sameCanvas: "ひとつの連続したキャンバス", access: "招待制アクセス", cta: "アクセスを申請",
     maturityKicker: "リリースの成熟度", maturityTitle: "ひとつのシステム。明確に示す開発段階。", maturityBody: "ラベルは各クライアントの実際の成熟度を示します。どのプラットフォームも今すぐ申請できます。",
@@ -101,6 +117,8 @@ const COPY = {
   ko: {
     title: "모든 플랫폼.<br /><em>하나의 캔버스.</em>",
     description: "어디에서 공부하든 Fluera 액세스를 신청하세요. 전공은 하나의 연속된 공간으로 남고 클라이언트만 바뀝니다. 지원되는 모든 플랫폼에서 신청을 받고 있습니다.",
+    metaTitle: "Fluera 다운로드 — iOS · iPadOS · Android · macOS · Windows · Linux",
+    eyebrow: "다운로드",
     visualLabel: "지원되는 6개 플랫폼으로 이어지는 하나의 Fluera 캔버스",
     sameCanvas: "하나의 연속된 캔버스", access: "초대 기반 액세스", cta: "액세스 요청",
     maturityKicker: "릴리스 성숙도", maturityTitle: "하나의 시스템, 명확히 표시한 개발 단계.", maturityBody: "라벨은 각 클라이언트의 실제 상태를 보여 줍니다. 어느 플랫폼이든 지금 액세스를 신청할 수 있습니다.",
@@ -110,6 +128,8 @@ const COPY = {
   hi: {
     title: "हर प्लेटफ़ॉर्म।<br /><em>वही एक canvas.</em>",
     description: "जहाँ भी पढ़ते हों, Fluera access माँगें। आपकी degree एक ही सतत जगह में रहती है; केवल client बदलता है। हर समर्थित platform पर अनुरोध खुले हैं।",
+    metaTitle: "Fluera डाउनलोड करें — iOS, iPadOS, Android, macOS, Windows",
+    eyebrow: "डाउनलोड",
     visualLabel: "छह समर्थित platforms पर चलता एक Fluera canvas",
     sameCanvas: "एक सतत CANVAS", access: "आमंत्रण द्वारा access", cta: "एक्सेस का अनुरोध करें",
     maturityKicker: "रिलीज़ की स्थिति", maturityTitle: "एक system, साफ़ बताई गई maturity के साथ।", maturityBody: "लेबल हर client की वास्तविक स्थिति बताते हैं। आप आज किसी भी platform के लिए access माँग सकते हैं।",
@@ -119,6 +139,8 @@ const COPY = {
   pl: {
     title: "Wszystkie platformy.<br /><em>Ten sam canvas.</em>",
     description: "Poproś o Fluera tam, gdzie studiujesz. Całe studia pozostają jedną ciągłą przestrzenią; zmienia się tylko klient. Zgłoszenia są otwarte na każdej obsługiwanej platformie.",
+    metaTitle: "Pobierz Fluera — iOS, iPadOS, Android, macOS, Windows, Linux",
+    eyebrow: "Pobieranie",
     visualLabel: "Jeden canvas Fluera na sześciu obsługiwanych platformach",
     sameCanvas: "JEDEN CIĄGŁY CANVAS", access: "Dostęp na zaproszenie", cta: "Poproś o dostęp",
     maturityKicker: "DOJRZAŁOŚĆ WERSJI", maturityTitle: "Jeden system, uczciwie opisane etapy rozwoju.", maturityBody: "Etykiety pokazują rzeczywisty stan każdego klienta. Dostęp możesz zamówić dziś na każdą platformę.",
@@ -128,6 +150,8 @@ const COPY = {
   ar: {
     title: "كلّ المنصّات.<br /><em>اللوحة نفسها.</em>",
     description: "اطلب Fluera أينما تدرس. تبقى دراستك مساحة واحدة متصلة، ويتغيّر التطبيق فقط. طلبات الوصول مفتوحة على كل منصة مدعومة.",
+    metaTitle: "تنزيل Fluera — iOS وiPadOS وAndroid وmacOS وWindows وLinux",
+    eyebrow: "التنزيل",
     visualLabel: "لوحة Fluera واحدة تمتد عبر ست منصات مدعومة",
     sameCanvas: "لوحة واحدة متصلة", access: "الوصول بدعوة", cta: "اطلب الوصول",
     maturityKicker: "مرحلة الإصدار", maturityTitle: "نظام واحد، ومراحل نضج واضحة.", maturityBody: "تصف العلامات الحالة الفعلية لكل تطبيق. يمكنك طلب الوصول اليوم لأي منصة.",
@@ -137,6 +161,8 @@ const COPY = {
   nl: {
     title: "Alle platforms.<br /><em>Hetzelfde canvas.</em>",
     description: "Vraag Fluera aan waar je ook studeert. Je opleiding blijft één doorlopende ruimte; alleen de client verandert. Aanvragen staan open voor elk ondersteund platform.",
+    metaTitle: "Download Fluera — iOS, iPadOS, Android, macOS, Windows, Linux",
+    eyebrow: "Download",
     visualLabel: "Eén Fluera-canvas op zes ondersteunde platforms",
     sameCanvas: "ÉÉN DOORLOPEND CANVAS", access: "Toegang op uitnodiging", cta: "Toegang aanvragen",
     maturityKicker: "VERSIEMATURITEIT", maturityTitle: "Eén systeem, met eerlijk benoemde ontwikkelfasen.", maturityBody: "De labels tonen de werkelijke staat van elke client. Je kunt vandaag toegang aanvragen voor ieder platform.",
@@ -146,6 +172,8 @@ const COPY = {
   sv: {
     title: "Alla plattformar.<br /><em>Samma canvas.</em>",
     description: "Begär Fluera där du studerar. Din utbildning förblir ett sammanhängande rum; bara klienten ändras. Förfrågningar är öppna på alla plattformar som stöds.",
+    metaTitle: "Ladda ner Fluera — iOS, iPadOS, Android, macOS, Windows, Linux",
+    eyebrow: "Ladda ner",
     visualLabel: "En Fluera-canvas över sex plattformar som stöds",
     sameCanvas: "EN SAMMANHÄNGANDE CANVAS", access: "Åtkomst via inbjudan", cta: "Begär åtkomst",
     maturityKicker: "VERSIONERNAS MOGNAD", maturityTitle: "Ett system, med tydligt angivna utvecklingsfaser.", maturityBody: "Etiketterna visar varje klients faktiska status. Du kan begära åtkomst för vilken plattform som helst redan i dag.",
@@ -155,6 +183,8 @@ const COPY = {
   da: {
     title: "Alle platforme.<br /><em>Det samme canvas.</em>",
     description: "Anmod om Fluera, uanset hvor du studerer. Din uddannelse forbliver ét sammenhængende rum; kun klienten skifter. Der er åbent for anmodninger på alle understøttede platforme.",
+    metaTitle: "Hent Fluera — iOS, iPadOS, Android, macOS, Windows, Linux",
+    eyebrow: "Hent",
     visualLabel: "Ét Fluera-canvas på seks understøttede platforme",
     sameCanvas: "ÉT SAMMENHÆNGENDE CANVAS", access: "Adgang via invitation", cta: "Anmod om adgang",
     maturityKicker: "VERSIONERNES MODENHED", maturityTitle: "Ét system, med tydeligt angivne udviklingstrin.", maturityBody: "Etiketterne viser hver klients reelle status. Du kan anmode om adgang til enhver platform allerede i dag.",
@@ -164,6 +194,8 @@ const COPY = {
   no: {
     title: "Alle plattformer.<br /><em>Det samme lerretet.</em>",
     description: "Be om Fluera der du studerer. Utdanningen forblir ett sammenhengende rom; bare klienten byttes. Forespørsler er åpne på alle støttede plattformer.",
+    metaTitle: "Last ned Fluera — iOS, iPadOS, Android, macOS, Windows, Linux",
+    eyebrow: "Last ned",
     visualLabel: "Ett Fluera-lerret på seks støttede plattformer",
     sameCanvas: "ETT SAMMENHENGENDE LERRET", access: "Tilgang via invitasjon", cta: "Be om tilgang",
     maturityKicker: "VERSJONENES MODENHET", maturityTitle: "Ett system, med tydelig oppgitte utviklingsfaser.", maturityBody: "Etikettene viser den faktiske statusen til hver klient. Du kan be om tilgang til hvilken som helst plattform i dag.",
@@ -173,6 +205,8 @@ const COPY = {
   fi: {
     title: "Kaikki alustat.<br /><em>Sama canvas.</em>",
     description: "Pyydä Fluera-käyttöä siellä missä opiskelet. Tutkintosi pysyy yhtenä jatkuvana tilana; vain asiakasohjelma vaihtuu. Pyynnöt ovat avoinna kaikilla tuetuilla alustoilla.",
+    metaTitle: "Lataa Fluera — iOS, iPadOS, Android, macOS, Windows, Linux",
+    eyebrow: "Lataa",
     visualLabel: "Yksi Fluera-canvas kuudella tuetulla alustalla",
     sameCanvas: "YKSI JATKUVA CANVAS", access: "Pääsy kutsulla", cta: "Pyydä pääsyä",
     maturityKicker: "VERSIOIDEN KYPSYYS", maturityTitle: "Yksi järjestelmä, avoimesti kerrotut kehitysvaiheet.", maturityBody: "Tunnisteet näyttävät jokaisen asiakkaan todellisen tilan. Voit pyytää pääsyä mille tahansa alustalle jo nyt.",
@@ -199,12 +233,12 @@ const stageCopy = {
 };
 ---
 
-<BaseLayout title={t("nav.download", locale)} description={copy.description} locale={locale} bodyClass="premium-page">
+<BaseLayout title={copy.metaTitle} description={copy.description} locale={locale} bodyClass="premium-page">
   <div>
     <section class="download-hero">
       <div class="container-site download-hero-grid">
         <div class="download-copy">
-          <p class="eyebrow">{t("nav.download", locale)}</p>
+          <p class="eyebrow">{copy.eyebrow}</p>
           <h1 set:html={copy.title} />
           <p class="download-description">{copy.description}</p>
           <div class="download-actions">

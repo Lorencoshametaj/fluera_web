@@ -6,7 +6,7 @@ import home from "@/data/home/en";
 import pricing from "@/data/pricing/en";
 import copy from "@/data/homeCopy/en";
 
-const jsonLd = {
+const jsonLd = [{
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: SITE.name,
@@ -20,9 +20,24 @@ const jsonLd = {
     { "@type": "EducationalAudience", educationalRole: "teacher" },
   ],
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-};
+},
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Fluera",
+    url: "https://fluera.dev/",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Fluera",
+    url: "https://fluera.dev/",
+    logo: "https://fluera.dev/press/logo-full.png",
+    sameAs: ["https://github.com/Lorencoshametaj/fluera_engine"],
+  },
+];
 ---
 
-<BaseLayout title={SITE.name} description={SITE.description} jsonLd={jsonLd}>
+<BaseLayout title="Fluera — the digital notebook that studies you back" description={SITE.description} jsonLd={jsonLd}>
   <PremiumHome locale="en" home={home} pricing={pricing} copy={copy} />
 </BaseLayout>
