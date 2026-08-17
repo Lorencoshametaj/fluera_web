@@ -20,7 +20,7 @@ Nesten alt annet følger av disse.
 
 ## Hva du gjør i første økt
 
-- Opprett et nytt canvas for et tema du jobber med denne uken.
+- Opprett ett canvas for hele studiet, og avgrens deretter en region for temaet du jobber med denne uken.
 - Velg én pensel og hold deg til den i første økt. Ikke la deg distrahere av penselbiblioteket.
 - Skriv 8–15 begreper for hånd. Plasser hvert enkelt der det gir romlig mening.
 - Tegn piler mellom begreper du tror henger sammen.

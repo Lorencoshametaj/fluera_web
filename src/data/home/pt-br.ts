@@ -3,7 +3,7 @@ import type { HomeData } from "../types";
 const data: HomeData = {
   steps: [
     { n: 1,  title: "Captura",                   verb: "Dia da aula",          description: "Escreva os conceitos à mão durante a aula. Posicione-os no espaço. A caneta lenta força a compressão mental — é aí que nasce a codificação." },
-    { n: 2,  title: "Reconstrução",              verb: "Mesma noite",          description: "Feche o livro. Reconstrua o que você lembra em um canvas em branco. Os nós vermelhos onde você hesita são o mapa do que estudar (Kapur, falha produtiva, 2008)." },
+    { n: 2,  title: "Reconstrução",              verb: "Mesma noite",          description: "Feche o livro. Reconstrua o que você lembra em uma área livre do mesmo canvas. Os nós vermelhos onde você hesita são o mapa do que estudar (Kapur, falha produtiva, 2008)." },
     { n: 3,  title: "Socrática",                 verb: "Em até 48h",           description: "A IA pergunta, você responde. Declara sua confiança de 1 a 5 antes de cada revelação. Metacognição tornada explícita." },
     { n: 4,  title: "Centauro",                  verb: "Logo depois",          description: "Ghost Map sobrepõe seu raciocínio ao mapa ideal. A hipercorreção fixa as correções na memória (Butterfield e Metcalfe, 2001)." },
     { n: 5,  title: "Sono",                      verb: "Aquela noite",         description: "Não faça nada. O sono de ondas lentas reproduz o dia. O hipocampo passa os traços ao córtex. Nosso trabalho é sair do caminho." },
@@ -38,6 +38,34 @@ const data: HomeData = {
     { name: "Linux",   api: "OpenGL",      status: "Alpha" },
     { name: "Web",     api: "WebGPU",      status: "Demo" },
   ],
+  medicalUseCase: {
+    kicker: "Feito para os currículos mais duros",
+    title: "Medicina, em um só canvas.",
+    intro: "Anatomia, fisiologia, farmacologia. Milhares de informações que precisam continuar conectadas — e recuperáveis sob pressão de prova. O estudo que realmente funciona em medicina é aquele que parece difícil enquanto você faz. A Fluera transforma esse tipo de estudo no caminho de menor resistência.",
+    steps: [
+      {
+        phase: "Dia da aula",
+        title: "Cada sistema do corpo vira uma região.",
+        description: "Escreva cada aula na sua própria região do mesmo canvas infinito — estruturas anatômicas, mecanismos de ação, vias metabólicas. A posição no espaço vira âncora de memória. Doze motores de pincel e tinta de baixa latência nos tablets compatíveis.",
+      },
+      {
+        phase: "Na mesma noite",
+        title: "Reconstrua de memória, antes do livro.",
+        description: "Feche o material da aula. Tente reconstruir o que você lembra em uma área livre do mesmo canvas. As lacunas que aparecerem — o nervo craniano que você pulou, o receptor que confundiu — são o mapa do que estudar hoje à noite. Fracasso produtivo, por design (Kapur, 2008).",
+      },
+      {
+        phase: "Em até 48 h",
+        title: "Arguição socrática sobre o canvas que você construiu.",
+        description: "A IA pergunta, você responde. Antes de cada revelação você prevê sua confiança de 1 a 5. Todo erro cometido com alta confiança — todo fármaco de que você tinha certeza e errou — é reforçado com mais força. Hipercorreção (Butterfield e Metcalfe, 2001).",
+      },
+      {
+        phase: "7–14 dias antes da prova",
+        title: "Fog of War no sistema em que você é mais fraco.",
+        description: "Cubra seções do canvas. Puxe a anatomia da memória antes de revelar. A Fluera agenda os retornos com FSRS — o algoritmo moderno de repetição espaçada. No dia da prova, o próprio canvas é a simulação.",
+      },
+    ],
+    closing: "Se esse é o fluxo que você já faz pela metade com papel, PDFs e três apps abertos, a Fluera transforma tudo em um único ciclo contínuo. Feita para o jeito como a memória funciona, testada contra currículos que não perdoam outra coisa.",
+  },
 };
 
 export default data;

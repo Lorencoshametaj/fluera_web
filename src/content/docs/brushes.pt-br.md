@@ -1,14 +1,14 @@
 ---
 lang: "pt-br"
 title: "Pincéis"
-description: "Treze brush engines, cada um calibrado para um tipo de marca diferente. Um guia curto para escolher o certo — e por que importa menos do que você pensa."
+description: "Doze brush engines, cada um calibrado para um tipo de marca diferente. Um guia curto para escolher o certo — e por que importa menos do que você pensa."
 section: canvas
 sectionLabel: "O canvas"
 order: 1
 updatedAt: 2026-04-20
 ---
 
-O Fluera vem com treze brush engines. Cada um é uma pipeline de renderização completa — pressão, inclinação, velocidade, fragment shaders por pincel — não uma troca de textura. Parece muito; na prática, a maior parte da sua aprendizagem vai acontecer em um ou dois deles.
+O Fluera vem com doze brush engines. Cada um é uma pipeline de renderização completa — pressão, inclinação, velocidade, fragment shaders por pincel — não uma troca de textura. Parece muito; na prática, a maior parte da sua aprendizagem vai acontecer em um ou dois deles.
 
 ## A resposta curta
 
@@ -19,7 +19,7 @@ O Fluera vem com treze brush engines. Cada um é uma pipeline de renderização 
 
 Todo o resto é para situações específicas. Não pense demais.
 
-## Os treze
+## Os doze
 
 | Pincel              | Bom para                                          | Notas                                          |
 |---------------------|---------------------------------------------------|------------------------------------------------|
@@ -35,11 +35,10 @@ Todo o resto é para situações específicas. Não pense demais.
 | Aguada              | Sensação wet-on-paper                             | Sangria de cor nas bordas                      |
 | Spray               | Efeitos de partículas, sombras                    | Distorção nas bordas                           |
 | Neon                | Anotações luminosas                               | Brilho externo, saturação fluorescente         |
-| Borracha            | Remoção pixel a pixel, não é uma ferramenta de delete | Consciente do histórico — revela marcas embaixo |
 
 ## Por que o motor importa (rapidamente)
 
-O motor do Fluera preserva os sinais de pressão, inclinação e velocidade com latência abaixo de 15 milissegundos no iOS e macOS. Não é só capricho de produto. <a href="/pt-br/science/authors/van-der-meer">O trabalho de EEG da van der Meer</a> mostrou que a escrita à mão engaja redes sensorimotoras que a digitação não engaja, e a riqueza desses sinais escala com a fidelidade da captura.
+O motor do Fluera preserva os sinais de pressão, inclinação e velocidade com tinta de baixa latência em hardware compatível. Não é só capricho de produto. <a href="/pt-br/science/authors/van-der-meer">O trabalho de EEG da van der Meer</a> mostrou que a escrita à mão engaja redes sensorimotoras que a digitação não engaja, e a riqueza desses sinais escala com a fidelidade da captura.
 
 Em termos práticos: um canvas que perde traços, atrasa sob pressão ou achata os dados de inclinação está jogando fora exatamente o sinal que torna as anotações à mão cognitivamente superiores. Construímos o motor do zero porque nenhuma opção off-the-shelf atendia o padrão.
 
@@ -52,7 +51,7 @@ Pressione e segure qualquer pincel na toolbar. Um pequeno painel abre com:
 - **Estabilização** (nenhuma / suave / firme) — suaviza o jitter sem matar a personalidade
 - **Curva de pressão** — ajusta a resposta a pressões leves vs fortes
 
-As mudanças são por canvas, não globais, então você pode ter um lápis macio em um caderno e um afiado em outro.
+As mudanças pertencem ao canvas atual, em vez de alterar o app globalmente. Assim, o canvas da sua graduação mantém sua própria configuração de pincéis.
 
 ## Próximo
 

@@ -9,8 +9,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "npm run build && node tools/test-smoke.mjs",
+    "test": "npm run build && node tools/check-links.mjs && node tools/test-smoke.mjs",
     "test:smoke": "node tools/test-smoke.mjs",
+    "test:links": "node tools/check-links.mjs",
     "lighthouse": "lhci autorun",
     "lighthouse:build": "npm run build && npm run lighthouse"
   },

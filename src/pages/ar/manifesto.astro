@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="نصّ أطول حول ما هي Fluera، وما ترفض أن تكونه، ولماذا كان المنتج البديهي خاطئًا."
   locale="ar"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">البيان</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">مساحة دراسة مبنيّة على طريقة عمل العقل.</h1>
+  <PageHero
+    kicker={"البيان"}
+    title={"مساحة دراسة مبنيّة على طريقة عمل العقل."}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         نصّ أطول حول ما هي Fluera، وما ترفض أن تكونه، ولماذا كان المنتج البديهي خاطئًا.
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">
@@ -83,7 +86,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <strong>لن نملك ذكاءً اصطناعيًّا يجيب على امتحانك بدلًا منك.</strong> الرضى قصير الأمد عند المستخدم سيكون هائلًا. والنتيجة طويلة الأمد — ضمور العضلات المعرفية التي يجب على الأداة أن تُقوّيها — ستكون خيانة للهدف المُعلَن. ذكاء اصطناعي يعمل بدلًا منك ذكاء لا يُعلّمك شيئًا.
       </p>
       <p>
-        <strong>لن نبيع بيانات دفاترك.</strong> كلّ دفتر مشفّر في حالة سكون بـAES-256. المزامنة، حين تُفعَّل، مشفّرة من طرف إلى طرف. لا نُدرّب نماذجنا على محتواك.
+        <strong>لن نبيع بيانات دفاترك.</strong> كلّ دفتر مشفّر على جهازك في حالة السكون بـAES-256. وعند تفعيل المزامنة تُشفّر البيانات أثناء النقل (TLS) وفي حالة السكون على بنية أوروبية، لكنها ليست مشفّرة من طرف إلى طرف؛ يمكن لـFluera بصفتها المتحكِّمة في البيانات الوصول إليها تقنيًا، لكنها لا تبيعها ولا تستخدمها للإعلانات أو لتدريب النماذج.
       </p>
       <p>
         <strong>لن نمتلك حلقات تفاعل أو إعلانات أو سلاسل أيّام متتالية.</strong> الإشارة الأقوى التي يمكننا تحسينها — المستخدمون اليوميون، طول الجلسة، نقرات الإشعارات — هي نفسها الإشارة الأكثر احتمالًا لإفساد المنتج.

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 import { SITE } from "@/lib/site";
 ---
 
@@ -8,27 +9,25 @@ import { SITE } from "@/lib/site";
   description="Fluera bygges av et lite team i Italia. Historien vår, det vi tror på, og linjen vi ikke krysser."
   locale="no"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">Om oss</p>
-        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
-          Vi bygger lærings-appen<br />vi skulle ønske vi hadde hatt<br />da vi var studenter.
-        </h1>
-        <div class="prose-ink text-lg">
-          <p>
-            Fluera ble til av frustrasjon. Den ene av oss er full-stack-utvikler med ti års erfaring; den andre var student som så medstudentene sine havne i den samme fella — apper som føltes produktive, men som ikke hjalp noen å huske noe.
-          </p>
-          <p>
-            Vi leste forskningen. <em>Mye</em> forskning. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Den kognitive vitenskapen har vært tydelig i et halvt århundre: håndskrift slår tasting, gjenkalling slår lesing, spacing slår skippertak, friksjon er en ressurs. Vi fant ingen app som tok noe av dette på alvor. Så vi bygde en.
-          </p>
-          <p>
-            Underveis skrev vi en 2D-rendering-motor fra bunnen — fordi ingen ferdig stack klarte å levere trykksensitivt blekk i 60 FPS på seks native plattformer. Motoren er substratet de kognitive funksjonene lever på.
-          </p>
-        </div>
+  <PageHero
+    kicker={"Om oss"}
+    title={"Vi bygger lærings-appen<br />vi skulle ønske vi hadde hatt<br />da vi var studenter."}
+    titleSize="xl"
+  >
+    <div slot="copy" class="mt-8">
+      <div class="prose-ink text-lg">
+        <p>
+          Fluera ble til av frustrasjon. Den ene av oss er full-stack-utvikler med ti års erfaring; den andre var student som så medstudentene sine havne i den samme fella — apper som føltes produktive, men som ikke hjalp noen å huske noe.
+        </p>
+        <p>
+          Vi leste forskningen. <em>Mye</em> forskning. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Den kognitive vitenskapen har vært tydelig i et halvt århundre: håndskrift slår tasting, gjenkalling slår lesing, spacing slår skippertak, friksjon er en ressurs. Vi fant ingen app som tok noe av dette på alvor. Så vi bygde en.
+        </p>
+        <p>
+          Underveis skrev vi en 2D-rendering-motor fra bunnen — fordi ingen ferdig stack ga oss den trykksensitive blekkopplevelsen vi ønsket på tvers av klientene som støttes. Motoren er substratet de kognitive funksjonene lever på.
+        </p>
       </div>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
@@ -47,7 +46,7 @@ import { SITE } from "@/lib/site";
             <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
             <div>
               <strong class="text-paper-50 font-serif">Vi kommer ikke til å selge dataene fra notatbøkene dine.</strong>
-              <p class="text-sm mt-1 text-paper-300">Notatene dine er kryptert i hvile, ende-til-ende ved sync, og brukes aldri til å trene noens modeller. Heller ikke våre.</p>
+              <p class="text-sm mt-1 text-paper-300">Notatene dine er kryptert i hvile på enheten. Ved synkronisering krypteres de under overføring (TLS) og i hvile på EU-infrastruktur (Supabase, eu-north-1). Skysynkronisering er ikke ende-til-ende-kryptert: Som behandlingsansvarlig kan Fluera teknisk få tilgang til innholdet, men vi selger det aldri, bruker det aldri til annonsering og trener aldri noens modeller på det — heller ikke våre.</p>
             </div>
           </li>
           <li class="flex items-start gap-4">

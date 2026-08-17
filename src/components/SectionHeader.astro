@@ -20,8 +20,8 @@ const {
 } = Astro.props;
 
 const titleClass = {
-  lg: "font-serif text-display-lg text-paper-50",
-  xl: "font-serif text-display-xl text-paper-50",
+  lg: "section-header-title section-header-title-lg",
+  xl: "section-header-title section-header-title-xl",
 }[titleSize];
 
 const marginClass = {
@@ -33,14 +33,28 @@ const marginClass = {
 
 <div
   class:list={[
+    "section-header",
     "max-w-3xl",
     marginClass,
     align === "center" ? "text-center mx-auto" : "",
     className,
   ]}
 >
-  {kicker && <p class="eyebrow mb-6 text-accent-glow">{kicker}</p>}
+  {kicker && <p class="eyebrow section-header-kicker">{kicker}</p>}
   <h2 class={`${titleClass} ${sub ? "mb-6" : ""}`} set:html={title} />
-  {sub && <p class="prose-ink text-lg max-w-prose" set:html={sub} />}
+  {sub && <p class="section-header-sub" set:html={sub} />}
   <slot />
 </div>
+
+<style>
+  .section-header{position:relative;padding-inline-start:1.25rem}
+  .section-header::before{content:"";position:absolute;inset-block:.2rem 0;inset-inline-start:0;width:2px;background:linear-gradient(180deg,#2563eb,transparent 82%)}
+  .section-header-kicker{margin-bottom:1.35rem;color:var(--dim-fg)}
+  .section-header-title{margin:0;color:var(--body-fg);font-family:"Sora Fluera","Sora Fallback",system-ui,sans-serif;font-weight:680;line-height:1;letter-spacing:-.052em}
+  .section-header-title-lg{font-size:clamp(2.15rem,3.8vw,3.7rem)}
+  .section-header-title-xl{font-size:clamp(2.6rem,4.8vw,4.8rem)}
+  .section-header-title :global(em),.section-header-title :global(i){font-family:"Playfair Fluera","Playfair Fallback",Georgia,serif;font-weight:600;font-style:italic;color:#2563eb}
+  .section-header-sub{max-width:42rem;margin-top:1.4rem;color:var(--muted-fg);font-size:clamp(1rem,1.35vw,1.12rem);line-height:1.7}
+  .section-header.text-center{padding-inline:1.25rem}.section-header.text-center::before{inset-inline-start:50%;inset-block-start:-1.25rem;width:42px;height:2px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,#2563eb,transparent)}
+  :global(:lang(ar)) .section-header-title,:global(:lang(hi)) .section-header-title,:global(:lang(ja)) .section-header-title,:global(:lang(ko)) .section-header-title{font-family:system-ui,sans-serif;letter-spacing:normal}
+</style>

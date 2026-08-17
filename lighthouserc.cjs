@@ -12,25 +12,28 @@ module.exports = {
     collect: {
       staticDistDir: "./dist",
       numberOfRuns: 1,
+      // Trailing slashes: the built pages live at /path/index.html, so the
+      // slashless form is a 301 — auditing it fails the `redirects` assertion
+      // for a defect the page doesn't have. (/engine IS a redirect to /, so
+      // auditing it as a page only measures the redirect stub — dropped.)
       url: [
         "/",
-        "/pricing",
-        "/beta",
-        "/security",
-        "/security/architecture",
-        "/engine",
-        "/science",
-        "/features",
-        "/features/ghost-map",
-        "/education",
-        "/about",
-        "/docs",
-        "/docs/welcome",
-        "/blog",
-        "/blog/case-against-highlighters",
-        "/changelog",
-        "/manifesto",
-        "/research",
+        "/pricing/",
+        "/beta/",
+        "/security/",
+        "/security/architecture/",
+        "/science/",
+        "/features/",
+        "/features/ghost-map/",
+        "/education/",
+        "/about/",
+        "/docs/",
+        "/docs/welcome/",
+        "/blog/",
+        "/blog/case-against-highlighters/",
+        "/changelog/",
+        "/manifesto/",
+        "/research/",
       ],
       settings: {
         // Emulated throttling that matches Lighthouse defaults (mobile 4G).
@@ -64,6 +67,13 @@ module.exports = {
         // Google Fonts is hosted externally; we preload it already.
         "font-display":               "warn",
         "render-blocking-resources":  "warn",
+
+        // These audits produce no numeric value on pages without lazy/LCP
+        // images or animations — asserting minScore on them fails spuriously
+        // ("audit did not produce a value") on a perfectly clean page.
+        "lcp-lazy-loaded":            "off",
+        "prioritize-lcp-image":       "off",
+        "non-composited-animations":  "off",
 
         // We deliberately use SVG placeholders for OG images pre-launch.
         "image-aspect-ratio":         "warn",

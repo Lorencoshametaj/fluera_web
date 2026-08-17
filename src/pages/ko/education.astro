@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 
 const useCases = [
   {
@@ -32,24 +33,17 @@ const deployment = [
   locale="ko"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">대학 및 학교</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          현대 대학을 위한<br />인지 인프라.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          학생들을 위한 증거 기반 학습 도구. IT를 위한 SSO. 학습의 인지 과학에 대한 교수 교육. 파일럿은 한 클래스, 한 학기, 무료로 시작합니다.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/ko/contact" class="btn-primary">학술 통화 예약 →</a>
-          <a href="/ko/" class="btn-secondary">기반 과학</a>
-        </div>
-      </div>
+  <PageHero
+    kicker={"대학 및 학교"}
+    title={"현대 대학을 위한<br />인지 인프라."}
+    titleSize="2xl"
+    description={"학생들을 위한 증거 기반 학습 도구. IT를 위한 SSO. 학습의 인지 과학에 대한 교수 교육. 파일럿은 한 클래스, 한 학기, 무료로 시작합니다."}
+  >
+    <div slot="copy" class="mt-9 flex flex-wrap gap-4">
+      <a href="/ko/contact" class="btn-primary">학술 통화 예약 →</a>
+      <a href="/ko/" class="btn-secondary">기반 과학</a>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04]">
     <div class="container-site">

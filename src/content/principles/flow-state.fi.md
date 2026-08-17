@@ -14,4 +14,4 @@ Mihaly Csikszentmihalyi luetteloi flow'n edellytykset šakinpelaajilla, kiipeili
 
 Keskeytys on flow'n oletustappaja. Push-ilmoitukset, modaaliset ikkunat, kontekstinvaihdot, käyttöliittymän odottamattomat liikkeet. Jokainen niistä katkaisee silmukan käden ja ajatuksen välillä ja nollaa lämmittelyn kustannukset.
 
-Fluera on suunniteltu flow'n säilyttämisen ympärille. Ei ilmoituksia kirjoittamisen aikana. Työkalupalkit piilottavat itsensä. Syötteen latenssi pidetään alle 15 ms, koska korkeampi latenssi on itsessään keskeytyksen muoto. Tekoäly pysyy hiljaa, kunnes sitä kutsutaan. Jokainen käyttöliittymäpäätös arvioidaan yhdellä kysymyksellä: auttaako se silmukkaa vai häiritseekö se sitä?
+Fluera on suunniteltu flow'n säilyttämisen ympärille. Ei ilmoituksia kirjoittamisen aikana. Työkalupalkit piilottavat itsensä. Matalan viiveen muste tuetulla laitteistolla auttaa pitämään käden ja ajatuksen samassa silmukassa. Tekoäly pysyy hiljaa, kunnes sitä kutsutaan. Jokainen käyttöliittymäpäätös arvioidaan yhdellä kysymyksellä: auttaako se silmukkaa vai häiritseekö se sitä?

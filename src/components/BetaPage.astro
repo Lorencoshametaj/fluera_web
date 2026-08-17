@@ -1,0 +1,186 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ProductVisual from "@/components/ProductVisual.astro";
+import BetaWaitlistForm from "@/components/BetaWaitlistForm.astro";
+import { getBetaCopy } from "@/data/beta";
+import type { Locale } from "@/lib/i18n";
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getBetaCopy(locale);
+---
+
+<BaseLayout
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  locale={locale}
+  bodyClass="beta-premium-page"
+>
+  <section class="beta-hero">
+    <div class="hero-rule" aria-hidden="true"></div>
+    <div class="container-site hero-grid">
+      <div class="hero-copy">
+        <div class="beta-badge">
+          <span aria-hidden="true"></span>
+          {copy.badge}
+        </div>
+
+        <h1>
+          {copy.heroLead}<br />
+          <span>{copy.heroAccent}</span>
+        </h1>
+
+        <p class="hero-body">{copy.heroBody}</p>
+
+        <a class="hero-cta" href="#beta-request">
+          {copy.submit}
+          <svg aria-hidden="true" viewBox="0 0 20 20"><path d="m4 10 11 0m-4-4 4 4-4 4" /></svg>
+        </a>
+
+        <div class="platform-line">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6.5 12 3l8 3.5v5.2c0 4.4-3.1 7.8-8 9.3-4.9-1.5-8-4.9-8-9.3Z" /><path d="m8.4 12 2.2 2.2 5-5" /></svg>
+          <p>{copy.platformLabel}</p>
+        </div>
+      </div>
+
+      <div class="canvas-column">
+        <div class="canvas-index" aria-hidden="true">
+          <span>FLUERA / CANVAS</span>
+          <i>∞</i>
+        </div>
+        <ProductVisual
+          kind="canvas"
+          slot={`beta-${locale}-one-canvas`}
+          label={copy.canvasLabel}
+          locale={locale}
+          class="beta-canvas"
+        />
+        <ol class="principle-list">
+          {copy.principles.map((principle, index) => (
+            <li><span>{String(index + 1).padStart(2, "0")}</span>{principle}</li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="beta-request" class="request-section">
+    <div class="section-marker" aria-hidden="true">
+      <span></span><i></i><span></span>
+    </div>
+    <div class="container-site">
+      <BetaWaitlistForm locale={locale} copy={copy} />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .beta-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100svh - 4rem);
+    padding: clamp(4rem, 8vw, 7.5rem) 0 clamp(4.5rem, 8vw, 7rem);
+    background:
+      linear-gradient(90deg, transparent calc(50% - .5px), rgb(255 255 255 / .035) 50%, transparent calc(50% + .5px)),
+      linear-gradient(180deg, rgb(37 99 235 / .045), transparent 28rem);
+  }
+
+  .hero-rule {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(rgb(255 255 255 / .025) 1px, transparent 1px);
+    background-size: 100% 5.5rem;
+    mask-image: linear-gradient(to bottom, black, transparent 78%);
+  }
+
+  .hero-grid {
+    position: relative;
+    display: grid;
+    gap: clamp(3rem, 7vw, 7rem);
+    align-items: center;
+  }
+
+  .hero-copy { max-width: 41rem; }
+  .beta-badge { display: inline-flex; align-items: center; gap: .65rem; margin-bottom: 1.4rem; color: #93a4ba; font: 600 .7rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; }
+  .beta-badge span { width: 1.65rem; height: 1px; background: #3b82f6; box-shadow: .55rem 0 0 rgb(59 130 246 / .35); }
+
+  h1 { max-width: 12ch; color: #f8fafc; font-family: "Sora Fluera", "Sora Fallback", system-ui, sans-serif; font-size: clamp(3rem, 7.2vw, 6rem); font-weight: 700; letter-spacing: -.06em; line-height: .94; text-wrap: balance; }
+  h1 span { color: #60a5fa; font-family: "Playfair Fluera", "Playfair Fallback", Georgia, serif; font-weight: 600; font-style: italic; }
+  .hero-body { max-width: 39rem; margin-top: 1.7rem; color: #a5b2c3; font-size: clamp(.98rem, 1.5vw, 1.1rem); line-height: 1.75; }
+
+  .hero-cta { display: inline-flex; min-height: 3.15rem; align-items: center; gap: .85rem; margin-top: 1.8rem; padding: .8rem 1.15rem .8rem 1.3rem; border: 1px solid #3b82f6; border-radius: .72rem; background: #2563eb; color: white; font-size: .86rem; font-weight: 700; box-shadow: 0 15px 35px rgb(37 99 235 / .19), inset 0 1px rgb(255 255 255 / .15); transition: transform .18s ease, background .18s ease, box-shadow .18s ease; }
+  .hero-cta svg { width: 1.15rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.6; }
+  .hero-cta:hover { transform: translateY(-1px); background: #3475ec; box-shadow: 0 20px 42px rgb(37 99 235 / .26); }
+  .hero-cta:focus-visible { outline: 2px solid #93c5fd; outline-offset: 3px; }
+
+  .platform-line { display: flex; align-items: flex-start; gap: .65rem; max-width: 34rem; margin-top: 1.4rem; color: #718096; font-size: .76rem; line-height: 1.55; }
+  .platform-line svg { width: 1rem; flex: none; margin-top: .15rem; fill: none; stroke: #60a5fa; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.55; }
+
+  .canvas-column { min-width: 0; }
+  .canvas-index { display: flex; align-items: center; justify-content: space-between; margin-bottom: .65rem; color: #536174; font: 600 .62rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; }
+  .canvas-index i { color: #60a5fa; font-size: 1.15rem; font-style: normal; font-weight: 400; }
+  .canvas-column :global(.beta-canvas) { width: 100%; box-shadow: 0 32px 80px rgb(0 0 0 / .27); }
+
+  .principle-list { display: grid; margin-top: 1rem; border-top: 1px solid rgb(255 255 255 / .08); list-style: none; }
+  .principle-list li { display: flex; align-items: center; gap: .7rem; padding: .72rem 0; border-bottom: 1px solid rgb(255 255 255 / .06); color: #93a4ba; font-size: .73rem; }
+  .principle-list li span { color: #3b82f6; font: 600 .6rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  .request-section { position: relative; scroll-margin-top: 5rem; padding: clamp(5rem, 10vw, 9rem) 0; border-top: 1px solid rgb(255 255 255 / .06); background: linear-gradient(180deg, #090c11, #080a0e); }
+  .section-marker { position: absolute; top: 0; left: 50%; display: flex; align-items: center; transform: translate(-50%, -50%); }
+  .section-marker span { width: 2.5rem; height: 1px; background: rgb(255 255 255 / .1); }
+  .section-marker i { display: block; width: .45rem; height: .45rem; margin: 0 .55rem; border: 1px solid #3b82f6; background: #090c11; transform: rotate(45deg); }
+
+  :global(html.light) .beta-hero { background: linear-gradient(90deg, transparent calc(50% - .5px), rgb(15 23 42 / .035) 50%, transparent calc(50% + .5px)), linear-gradient(180deg, rgb(37 99 235 / .045), transparent 28rem); }
+  :global(html.light) .hero-rule { background-image: linear-gradient(rgb(15 23 42 / .035) 1px, transparent 1px); }
+  :global(html.light) h1 { color: #0f172a; }
+  :global(html.light) h1 span { color: #2563eb; }
+  :global(html.light) .hero-body { color: #526071; }
+  :global(html.light) .platform-line, :global(html.light) .beta-badge, :global(html.light) .principle-list li { color: #64748b; }
+  :global(html.light) .principle-list { border-color: rgb(15 23 42 / .1); }
+  :global(html.light) .principle-list li { border-color: rgb(15 23 42 / .07); }
+  :global(html.light) .request-section { border-color: rgb(15 23 42 / .08); background: linear-gradient(180deg, #f8fafc, #f3f6fa); }
+  :global(html.light) .section-marker span { background: rgb(15 23 42 / .13); }
+  :global(html.light) .section-marker i { background: #f8fafc; }
+
+  @media (min-width: 1024px) {
+    .hero-grid { grid-template-columns: minmax(0, .88fr) minmax(30rem, 1.12fr); }
+  }
+
+  @media (max-width: 1023px) {
+    .beta-hero { min-height: auto; }
+    .hero-copy { margin-inline: auto; text-align: center; }
+    h1 { margin-inline: auto; }
+    .hero-body, .platform-line { margin-inline: auto; }
+    .platform-line { justify-content: center; text-align: start; }
+    .canvas-column { width: min(100%, 46rem); margin-inline: auto; }
+  }
+
+  @media (max-width: 520px) {
+    .beta-hero { padding-top: 3.6rem; }
+    h1 { font-size: clamp(2.75rem, 13vw, 4rem); }
+    .beta-badge { font-size: .61rem; letter-spacing: .08em; }
+    .platform-line { max-width: 19rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cta { transition: none; }
+  }
+
+  :global(:lang(ar)) h1, :global(:lang(ar)) h1 span,
+  :global(:lang(hi)) h1, :global(:lang(hi)) h1 span,
+  :global(:lang(ja)) h1, :global(:lang(ja)) h1 span,
+  :global(:lang(ko)) h1, :global(:lang(ko)) h1 span {
+    font-family: system-ui, sans-serif;
+    font-style: normal;
+    letter-spacing: normal;
+  }
+  /* Column-sized type, appended last so it beats earlier media queries:
+     the h1 tracks its own column via cqw instead of the viewport, which
+     put desktop-scale type in a ~450px grid share (one word per line). */
+  .hero-copy{container-type:inline-size}
+  .hero-copy h1{max-width:18ch;font-size:clamp(2.5rem,10.5cqw,4.75rem)}
+</style>

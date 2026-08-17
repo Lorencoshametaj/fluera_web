@@ -14,4 +14,4 @@ Den experimentella designen var enkel: studenter såg föreläsningar och anteck
 
 Slutsatsen är kontraintuitiv i hastighetens era: långsamheten i fångsten tvingar fram kognitiv elaborering vid kodningstillfället. Handen är flaskhalsen — och flaskhalsen är där lärandet sker.
 
-Hela Fluera produktfilosofi utgår härifrån. Handskrift är inte ett skeuomorfiskt val. Det är det kognitiva verktyget. Tretton penselmotorer. Tryck, lutning, hastighet. Strecklatens under 15 millisekunder på varje stödd enhet. Den oändliga canvasen är inte estetik — den är substratet ditt minne letade efter.
+Hela Fluera produktfilosofi utgår härifrån. Handskrift är inte ett skeuomorfiskt val. Det är det kognitiva verktyget. Tolv penselmotorer. Tryck, lutning, hastighet. Bläck med låg latens på hårdvara som stöds. Den oändliga canvasen är inte estetik — den är substratet ditt minne letade efter.

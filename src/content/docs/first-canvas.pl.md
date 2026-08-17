@@ -12,7 +12,7 @@ Ten przewodnik zajmie ci dziesięć minut i wymaga tematu, którego uczysz się 
 
 ## Minuty 0–2: Stwórz canvas
 
-Otwórz Fluerę. Stuknij **Nowy canvas**. Daj mu nazwę tematu (nie wykładu — *pojęcia*). Wybierz pędzel — pióro wieczne to bezpieczny domyślny wybór. Zostań przy domyślnej szerokości pociągnięcia na razie.
+Otwórz Fluerę. Stuknij **Nowy canvas** tylko raz i nazwij go od swoich studiów lub całej ścieżki nauki: ta jedna przestrzeń może rosnąć wraz z całym kierunkiem. Wyznacz w niej pierwszy region i nazwij właśnie ten region od tematu (nie wykładu — *pojęcia*). Wybierz pędzel — pióro wieczne to bezpieczny domyślny wybór. Na razie zostań przy domyślnej szerokości pociągnięcia.
 
 Canvas jest pusty. To jest celowe — szablony tu nie pomagają.
 

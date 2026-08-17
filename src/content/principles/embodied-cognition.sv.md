@@ -14,4 +14,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002) och Susan Goldin-Meadow (2003) 
 
 För lärande är implikationen stark. Att skriva på tangentbord aktiverar ett snävt, högt övat motoriskt mönster. Att skriva för hand aktiverar ett rikt, varierande motoriskt mönster med integrerad visuell, rumslig och proprioceptiv återkoppling. Van der Meers EEG-inspelningar (2020) visar skillnaden konkret: handskrift engagerar breda hjärnnätverk som tangentbord inte når.
 
-Fluera insisterande på pennan — tretton penselmotorer, tryck- och lutningsspårning, strecklatens under 15 millisekunder — är tesen om förkroppsligad kognition tagen på allvar. Handen stannar i loopen för att handen är en del av tänkandet.
+Fluera insisterande på pennan — tolv penselmotorer, tryck- och lutningsspårning, bläck med låg latens på hårdvara som stöds — är tesen om förkroppsligad kognition tagen på allvar. Handen stannar i loopen för att handen är en del av tänkandet.

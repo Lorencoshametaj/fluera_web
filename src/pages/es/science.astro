@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import LearningStep from "@/components/LearningStep.astro";
+import ScienceCanvasPath from "@/components/ScienceCanvasPath.astro";
 import AuthorCard from "@/components/AuthorCard.astro";
 import { getCollection } from "astro:content";
 
@@ -13,7 +13,7 @@ const authors = (await getCollection("authors", ({ data }) => data.lang === "es"
 
 const steps = [
   { n: 1,  title: "Captura",                   verb: "Día de clase",          description: "Escribe los conceptos a mano durante la clase. Posiciónalos en el espacio. La lentitud de la pluma fuerza compresión — y la compresión es donde nace la codificación." },
-  { n: 2,  title: "Reconstrucción",            verb: "Esa misma noche",       description: "Cierra el libro. Reconstruye lo que recuerdas en un canvas vacío. Los nodos rojos donde dudas son el mapa de qué estudiar (Kapur, falla productiva, 2008)." },
+  { n: 2,  title: "Reconstrucción",            verb: "Esa misma noche",       description: "Cierra el libro. Reconstruye lo que recuerdas en una zona libre del mismo canvas. Los nodos rojos donde dudas son el mapa de qué estudiar (Kapur, falla productiva, 2008)." },
   { n: 3,  title: "Socrática",                 verb: "En 48 horas",           description: "La IA pregunta, tú respondes. Declaras tu confianza del 1 al 5 antes de cada revelación. Metacognición hecha explícita." },
   { n: 4,  title: "Centauro",                  verb: "Justo después",         description: "Ghost Map superpone tu razonamiento al mapa ideal. La hipercorrección fija las correcciones en la memoria (Butterfield y Metcalfe, 2001)." },
   { n: 5,  title: "Sueño",                     verb: "Esa noche",             description: "No hagas nada. El sueño de ondas lentas reproduce el día. El hipocampo pasa las trazas al neocórtex." },
@@ -28,49 +28,28 @@ const steps = [
 ---
 
 <BaseLayout
+  bodyClass="science-page"
   title="La ciencia de Fluera"
   description="Fluera se apoya en cinco décadas de investigación sobre la memoria — Bjork, Mueller, van der Meer, Roediger y la neurociencia de las place cells laureada con el Nobel. Explora el ciclo de 12 pasos y los principios detrás de cada función."
   locale="es"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">La ciencia</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          Cinco décadas de investigación sobre la memoria<br />detrás de una sola app.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Cada función de Fluera remite a investigación publicada. Aquí abajo: el ciclo de aprendizaje en 12 pasos, los 23 principios en la base, las doce mentes sobre las que construimos, y los límites de lo que aún no afirmamos.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#learning-cycle" class="btn-secondary">Ir al ciclo</a>
-          <a href="#principles" class="btn-secondary">Índice de principios</a>
-          <a href="#authors" class="btn-secondary">Autores</a>
-          <a href="/es/research" class="btn-secondary">Bibliografía →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">El ciclo</p>
-        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Un canvas. Doce movimientos cognitivos.</h2>
-        <p class="prose-ink text-lg max-w-prose">
-          El ciclo es secuencial e iterativo. Los pasos 1–4 construyen la codificación. El paso 5 (sueño) es biología no negociable. Los pasos 6–9 consolidan a lo largo de días y semanas. Los pasos 10–12 hacen el conocimiento permanente y transferible.
-        </p>
-      </div>
-
-      <ol class="max-w-3xl list-none p-0">
-        {steps.map((s) => (
-          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
-        ))}
-      </ol>
-    </div>
-  </section>
+  <ScienceCanvasPath
+    locale="es"
+    heroKicker={"La ciencia"}
+    heroTitleHtml={"Cinco décadas de investigación sobre la memoria<br />detrás de una sola app."}
+    heroDescription={"Cada función de Fluera remite a investigación publicada. Aquí abajo: el ciclo de aprendizaje en 12 pasos, los 23 principios en la base, las doce mentes sobre las que construimos, y los límites de lo que aún no afirmamos."}
+    cycleKicker={"El ciclo"}
+    cycleTitle={"Un canvas. Doce movimientos cognitivos."}
+    cycleDescription={"El ciclo es secuencial e iterativo. Los pasos 1–4 construyen la codificación. El paso 5 (sueño) es biología no negociable. Los pasos 6–9 consolidan a lo largo de días y semanas. Los pasos 10–12 hacen el conocimiento permanente y transferible."}
+    navigation={[
+      { href: "#learning-cycle", label: "Ir al ciclo" },
+      { href: "#principles", label: "Índice de principios" },
+      { href: "#authors", label: "Autores" },
+      { href: "/es/research", label: "Bibliografía →" },
+    ]}
+    steps={steps}
+  />
 
   <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">

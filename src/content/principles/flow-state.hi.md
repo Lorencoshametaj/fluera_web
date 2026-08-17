@@ -14,4 +14,4 @@ Mihaly Csikszentmihalyi ने Flow की पूर्व-शर्तों �
 
 व्यवधान default flow-killer है। Push notifications, modal dialogs, context switches, UI के अप्रत्याशित movements। प्रत्येक हाथ और सोच के बीच loop को तोड़ता है और warm-up cost को reset करता है।
 
-Fluera को flow संरक्षण के चारों ओर डिज़ाइन किया गया है। लिखते समय कोई notifications नहीं। Toolbars स्वयं को छिपाते हैं। Input latency 15 ms से नीचे रखी जाती है क्योंकि उससे ऊपर की latency स्वयं एक प्रकार का व्यवधान है। AI तब तक चुप रहती है जब तक आप न बुलाएँ। हर interface निर्णय एक ही प्रश्न से आँका जाता है: यह loop में मदद करता है या उसे बाधित करता है?
+Fluera को flow संरक्षण के चारों ओर डिज़ाइन किया गया है। लिखते समय कोई notifications नहीं। Toolbars स्वयं को छिपाते हैं। Supported hardware पर low-latency ink हाथ और विचार को एक ही loop में रखने में मदद करती है। AI तब तक चुप रहती है जब तक आप न बुलाएँ। हर interface निर्णय एक ही प्रश्न से आँका जाता है: यह loop में मदद करता है या उसे बाधित करता है?

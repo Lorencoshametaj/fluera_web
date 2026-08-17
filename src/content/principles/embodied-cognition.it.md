@@ -14,4 +14,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002) e Susan Goldin-Meadow (2003) ha
 
 Per l'apprendimento, l'implicazione è forte. Digitare attiva un pattern motorio stretto, altamente praticato. Scrivere a mano attiva un pattern motorio ricco, variabile, con feedback visivo, spaziale e propriocettivo integrati. Le registrazioni EEG di van der Meer (2020) mostrano la differenza concretamente: la scrittura a mano ingaggia reti cerebrali ampie che la digitazione non raggiunge.
 
-L'insistenza di Fluera sulla penna — tredici brush engine, tracking di pressione e inclinazione, latenza tratto sub-15 millisecondi — è la tesi della cognizione incarnata presa sul serio. La mano resta nel loop perché la mano è parte del pensiero.
+L'insistenza di Fluera sulla penna — dodici brush engine, tracking di pressione e inclinazione, inchiostro a bassa latenza sull'hardware supportato — è la tesi della cognizione incarnata presa sul serio. La mano resta nel loop perché la mano è parte del pensiero.

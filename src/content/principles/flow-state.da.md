@@ -14,4 +14,4 @@ Mihaly Csikszentmihalyi katalogiserede flowets forudsætninger hos skakspillere,
 
 Afbrydelse er standard-flow-dræberen. Push-notifikationer, modale dialoger, kontekstskift, uventede bevægelser i UI'et. Hver enkelt bryder loopet mellem hånd og tænkning og nulstiller opvarmningsomkostningerne.
 
-Fluera er designet omkring bevarelse af flow. Ingen notifikationer under skrivning. Værktøjslinjer skjuler sig selv. Inputlatensen holdes under 15 ms, fordi højere latens i sig selv er en form for afbrydelse. AI'en forbliver stille, indtil du kalder på den. Hver interface-beslutning vurderes ud fra ét spørgsmål: hjælper den loopet eller forstyrrer den det?
+Fluera er designet omkring bevarelse af flow. Ingen notifikationer under skrivning. Værktøjslinjer skjuler sig selv. Blæk med lav latenstid på understøttet hardware hjælper med at holde hånd og tanke i samme loop. AI'en forbliver stille, indtil du kalder på den. Hver interface-beslutning vurderes ud fra ét spørgsmål: hjælper den loopet eller forstyrrer den det?

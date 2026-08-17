@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 
 const useCases = [
   {
@@ -32,24 +33,17 @@ const deployment = [
   locale="sv"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">Universitet och skolor</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          Kognitiv infrastruktur<br />för det moderna universitetet.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Evidensbaserade studieverktyg för dina studenter. SSO för din IT. Lärarutbildning i den kognitiva vetenskapen om lärande. Piloter börjar med en klass, en termin, gratis.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/sv/contact" class="btn-primary">Boka ett akademiskt samtal →</a>
-          <a href="/sv/" class="btn-secondary">Vetenskapen bakom</a>
-        </div>
-      </div>
+  <PageHero
+    kicker={"Universitet och skolor"}
+    title={"Kognitiv infrastruktur<br />för det moderna universitetet."}
+    titleSize="2xl"
+    description={"Evidensbaserade studieverktyg för dina studenter. SSO för din IT. Lärarutbildning i den kognitiva vetenskapen om lärande. Piloter börjar med en klass, en termin, gratis."}
+  >
+    <div slot="copy" class="mt-9 flex flex-wrap gap-4">
+      <a href="/sv/contact" class="btn-primary">Boka ett akademiskt samtal →</a>
+      <a href="/sv/" class="btn-secondary">Vetenskapen bakom</a>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04]">
     <div class="container-site">

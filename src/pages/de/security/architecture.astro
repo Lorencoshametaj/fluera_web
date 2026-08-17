@@ -35,7 +35,7 @@ import { SITE } from "@/lib/site";
         Jedes Heft in Fluera lebt in einer lokalen, mit SQLCipher verschlüsselten SQLite-Datenbank — einer breit auditierten Erweiterung, die jede Seite der Datenbank transparent mit AES-256-CBC verschlüsselt und pro Seite mit HMAC-SHA512 auf Integrität prüft.
       </p>
       <p>
-        Die Schlüsselableitung verwendet PBKDF2 mit SHA-256 und 256.000 Iterationen (im Einklang mit OWASP). Die Passphrase wird im Keychain der Plattform aufbewahrt — Keychain unter iOS/macOS, Keystore unter Android, DPAPI unter Windows, libsecret unter Linux. Sie wird nie an unsere Server gesendet.
+        Der Schlüssel der lokalen Datenbank ist ein zufällig erzeugter 256-Bit-Schlüssel, den Fluera im sicheren Schlüsselspeicher der Plattform ablegt — Keychain unter iOS/macOS, Keystore unter Android, DPAPI unter Windows und libsecret unter Linux. Er ist weder dein Kontopasswort noch eine Cloud-Sync-Passphrase und wird als lokaler Datenbankschlüssel nie an Flueras Server gesendet.
       </p>
 
       <h2>Im Transit: TLS 1.3</h2>
@@ -48,7 +48,7 @@ import { SITE } from "@/lib/site";
         Cloud-Sync, wenn aktiviert, überträgt deine Hefte verschlüsselt im Transit (TLS) zum Sync-Server (Supabase Storage, Region EU, eu-north-1), wo sie verschlüsselt im Ruhezustand auf EU-Infrastruktur gespeichert werden. Cloud-Sync ist <em>nicht</em> Ende-zu-Ende-verschlüsselt: Als Verantwortlicher kann Fluera technisch auf synchronisierte Inhalte zugreifen. Wir verkaufen diese Inhalte nie und nutzen sie nicht für Werbung. Die Synchronisierung ist pro Heft Opt-in — du kannst manche Hefte nur lokal halten, während du andere synchronisierst.
       </p>
       <p>
-        Wenn du ein Heft nur lokal hältst, bleibt es ausschließlich in der mit SQLCipher verschlüsselten On-Device-Datenbank und wird nie an unsere Server übertragen. Für maximale Vertraulichkeit kannst du ein Heft als verschlüsselte <code>.fluera</code>-Datei (AES-256-GCM) exportieren.
+        Wenn du ein Heft nur lokal hältst, bleibt es ausschließlich in der mit SQLCipher verschlüsselten On-Device-Datenbank und wird nie an unsere Server übertragen. Ein passwortgeschützter <code>.fluera</code>-Export wird separat mit AES-256-GCM verschlüsselt; das Exportpasswort schützt nur diese Datei und hat nichts mit Cloud-Sync zu tun.
       </p>
 
       <h2>P2P-Kollaboration: direkt, verschlüsselt</h2>
@@ -77,9 +77,9 @@ import { SITE } from "@/lib/site";
         Jeder Zugriff auf geteilte Hefte — wer, von welchem Gerät, wann — wird in einen append-only Audit-Trail geschrieben. Die Administratoren können den Trail als CSV oder JSON für Compliance-Kontrollen exportieren. Der Trail ist write-once: Eine Entfernung erfordert eine dokumentierte Begründung und wird selbst geloggt.
       </p>
 
-      <h2>Recovery und Schlüsselverlust</h2>
+      <h2>Datenwiederherstellung</h2>
       <p>
-        Wenn du die Passphrase verlierst, werden die verschlüsselten Daten unwiederbringlich. Das ist beabsichtigt — die Alternative wäre ein Recovery-Pfad, der das Verschlüsselungsmodell zwangsläufig schwächen würde. Für institutionelle Konten lässt sich ein optionaler, vom Administrator verwahrter Recovery-Schlüssel konfigurieren; das ist ein dokumentierter Trade-off, den die Institution bewusst wählt.
+        Synchronisierte Hefte sind mit deinem Konto verknüpft: Nach der normalen Kontowiederherstellung kannst du dich erneut anmelden und sie auf einem neuen Gerät herunterladen. Es gibt keine separate Cloud-Sync-Passphrase, die du dir merken oder verlieren könntest. Die Kontowiederherstellung kann ein ausschließlich lokal gespeichertes Heft nicht rekonstruieren, wenn die Gerätedaten gelöscht wurden; aktiviere Sync für Hefte, die du geräteübergreifend wiederherstellen möchtest.
       </p>
 
       <h2>Responsible Disclosure</h2>

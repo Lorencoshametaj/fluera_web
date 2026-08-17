@@ -3,7 +3,7 @@ import type { HomeData } from "../types";
 const data: HomeData = {
   steps: [
     { n: 1,  title: "Kaappaus",                    verb: "Luentopäivä",            description: "Kirjoita käsitteet käsin luennon aikana. Sijoita ne tilaan. Hidas kynä pakottaa henkiseen tiivistämiseen — juuri siitä syntyy enkoodaus." },
-    { n: 2,  title: "Rekonstruktio",               verb: "Samana iltana",          description: "Sulje kirja. Rakenna muistamasi uudelleen tyhjälle canvakselle. Punaiset solmut, joissa epäröit, ovat kartta siitä, mitä sinun täytyy kerrata (Kapur, tuottava epäonnistuminen, 2008)." },
+    { n: 2,  title: "Rekonstruktio",               verb: "Samana iltana",          description: "Sulje kirja. Rakenna muistamasi uudelleen saman canvaksen vapaalle alueelle. Punaiset solmut, joissa epäröit, ovat kartta siitä, mitä sinun täytyy kerrata (Kapur, tuottava epäonnistuminen, 2008)." },
     { n: 3,  title: "Sokraattinen",                verb: "48 tunnin sisällä",      description: "Tekoäly kysyy, sinä vastaat. Ilmoita varmuutesi 1–5 ennen jokaista paljastusta. Metakognitio tehdään näkyväksi." },
     { n: 4,  title: "Centaur",                     verb: "Heti perään",            description: "Ghost Map asettaa päättelysi ihanteellisen kartan päälle. Hyperkorjaus kiinnittää korjaukset muistiin (Butterfield ja Metcalfe, 2001)." },
     { n: 5,  title: "Uni",                         verb: "Sinä yönä",              description: "Älä tee mitään. Hidasaaltouni toistaa päivän. Hippokampus siirtää jäljet aivokuoreen. Meidän tehtävämme on pysyä poissa tieltä." },
@@ -38,6 +38,34 @@ const data: HomeData = {
     { name: "Linux",   api: "OpenGL",      status: "Alpha" },
     { name: "Web",     api: "WebGPU",      status: "Demo" },
   ],
+  medicalUseCase: {
+    kicker: "Rakennettu kovimpiin tutkintoihin",
+    title: "Lääketiede, yhdellä canvasilla.",
+    intro: "Anatomia, fysiologia, farmakologia. Tuhansia tietoja, joiden on pysyttävä yhteydessä toisiinsa — ja palautettavissa tenttipaineessa. Lääketieteessä toimiva lukeminen on sitä, joka tuntuu vaikealta sitä tehdessä. Fluera tekee juuri siitä pienimmän vastuksen tien.",
+    steps: [
+      {
+        phase: "Luentopäivä",
+        title: "Jokaisesta elinjärjestelmästä tulee alue.",
+        description: "Kirjoita jokainen luento omalle alueelleen samalla äärettömällä canvasilla — anatomiset rakenteet, lääkkeiden vaikutusmekanismit, aineenvaihduntareitit. Sijainti tilassa muuttuu muistin ankkuriksi. Kaksitoista sivellinmoottoria ja matalan viiveen muste tuetuilla tableteilla.",
+      },
+      {
+        phase: "Samana iltana",
+        title: "Rakenna muistista, ennen kirjaa.",
+        description: "Sulje luentomateriaali. Yritä koota muistamasi uudelleen saman canvasin tyhjälle alueelle. Löytämäsi aukot — ohitettu aivohermo, sekoitettu reseptori — ovat kartta siitä, mitä tänä iltana on luettava. Tuottava epäonnistuminen, tarkoituksella (Kapur, 2008).",
+      },
+      {
+        phase: "48 tunnin sisällä",
+        title: "Sokraattinen kuulustelu itse rakentamallasi canvasilla.",
+        description: "Tekoäly kysyy, sinä vastaat. Ennen jokaista paljastusta ennustat varmuutesi asteikolla 1–5. Jokainen suurella varmuudella tehty virhe — jokainen lääke, josta olit varma ja menit väärin — vahvistetaan lujemmin. Hyperkorjaus (Butterfield ja Metcalfe, 2001).",
+      },
+      {
+        phase: "7–14 päivää ennen tenttiä",
+        title: "Fog of War siihen järjestelmään, jossa olet heikoin.",
+        description: "Peitä canvasin osia. Hae anatomia muistista ennen kuin paljastat. Fluera ajoittaa paluut FSRS:llä — nykyaikaisella välistetyn kertauksen algoritmilla. Tenttipäivänä canvas itse on simulaatio.",
+      },
+    ],
+    closing: "Jos tämä on työtapa, jota teet jo puoliksi paperilla, PDF-tiedostoilla ja kolmella avoimella sovelluksella, Fluera tekee siitä yhden yhtenäisen silmukan. Rakennettu sille, miten muisti toimii, ja koeteltu tutkinnoilla, jotka eivät anna muuta anteeksi.",
+  },
 };
 
 export default data;

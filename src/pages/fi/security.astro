@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Salaus",
-    body: "Jokainen Flueran muistikirja salataan levossa AES-256:lla SQLCipherin kautta. Liikenne kulkee TLS 1.3:n yli. Synkronointi laitteidesi välillä on päästä päähän -salattu salalauseestasi johdetuilla avaimilla — talletettu alustan keychainiin, ei koskaan lähetetty palvelimillemme.",
+    body: "Jokainen Flueran muistikirja salataan laitteellasi levossa AES-256:lla SQLCipherin kautta, ja viedyt .fluera-tiedostot salataan AES-256-GCM:llä. Liikenne salataan siirron aikana TLS 1.3:lla. Pilvisynkronointi ei ole päästä päähän -salattua: synkronoidut muistikirjat tallennetaan EU-infrastruktuuriin (Supabase, eu-north-1) ja suojataan siirrossa sekä levossa infrastruktuuritasolla. Rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä, mutta emme koskaan myy sitä, käytä sitä mainontaan tai mallien kouluttamiseen.",
   },
   {
     title: "Datan omistajuus",
@@ -38,7 +38,7 @@ const pillars = [
 >
   <PageHero
     kicker="Tietoturva ja yksityisyys"
-    title="Päästä päähän -salaus.<br />Avain pysyy sinulla."
+    title="Salattu levossa ja siirrossa.<br />Palvelimet EU:ssa."
     titleSize="2xl"
     description="Salaus oletuksena. Ei ad-techia. Palvelimet Euroopassa. Täydellinen vienti. Yksityisyys on suunnittelurajoite, ei compliance-tehtävä."
     orbs

@@ -1,0 +1,293 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { t, type Locale } from "@/lib/i18n";
+import { localizedHref } from "@/lib/site";
+
+export interface Props { locale: Locale; }
+
+type Copy = {
+  title: string;
+  description: string;
+  visualLabel: string;
+  sameCanvas: string;
+  access: string;
+  cta: string;
+  maturityKicker: string;
+  maturityTitle: string;
+  maturityBody: string;
+  beta: string;
+  alpha: string;
+  demo: string;
+  betaNote: string;
+  alphaNote: string;
+  demoNote: string;
+  footnote: string;
+};
+
+const COPY = {
+  en: {
+    title: "Every platform.<br /><em>The same canvas.</em>",
+    description: "Request Fluera access wherever you study. Your degree remains one continuous space; only the client changes. Access requests are open across every supported platform.",
+    visualLabel: "One Fluera canvas continuing across six supported platforms",
+    sameCanvas: "ONE CONTINUOUS CANVAS",
+    access: "Access by invitation",
+    cta: "Request early access",
+    maturityKicker: "RELEASE READINESS",
+    maturityTitle: "One system, at honest stages of maturity.",
+    maturityBody: "The labels describe the readiness of each client. They do not prevent you from requesting access for that platform today.",
+    beta: "Beta", alpha: "Alpha", demo: "Web demo",
+    betaNote: "Private beta client", alphaNote: "Early test client", demoNote: "Browser demonstration",
+    footnote: "Access is opened in stages. When a relevant build is available, the install or test link is sent by email. No platform below is presented as public or stable before it is.",
+  },
+  it: {
+    title: "Tutte le piattaforme.<br /><em>Lo stesso canvas.</em>",
+    description: "Richiedi Fluera ovunque studi. La tua triennale resta un unico spazio continuo; cambia solo il client. Le richieste di accesso sono aperte su ogni piattaforma supportata.",
+    visualLabel: "Un unico canvas Fluera che continua su sei piattaforme supportate",
+    sameCanvas: "UN CANVAS CONTINUO",
+    access: "Accesso su invito",
+    cta: "Richiedi accesso anticipato",
+    maturityKicker: "MATURITÀ DEI CLIENT",
+    maturityTitle: "Un solo sistema, in fasi di maturità dichiarate.",
+    maturityBody: "Le etichette descrivono lo stato reale di ciascun client. Non impediscono di richiedere oggi l’accesso per quella piattaforma.",
+    beta: "Beta", alpha: "Alpha", demo: "Demo web",
+    betaNote: "Client in beta privata", alphaNote: "Client di test iniziale", demoNote: "Dimostrazione nel browser",
+    footnote: "L’accesso viene aperto per fasi. Quando è disponibile una build pertinente, il link di installazione o test arriva via email. Nessuna piattaforma viene presentata come pubblica o stabile prima di esserlo.",
+  },
+  es: {
+    title: "Todas las plataformas.<br /><em>El mismo lienzo.</em>",
+    description: "Solicita Fluera donde estudies. Tu carrera sigue siendo un único espacio continuo; solo cambia el cliente. Las solicitudes están abiertas en todas las plataformas compatibles.",
+    visualLabel: "Un lienzo de Fluera que continúa en seis plataformas compatibles",
+    sameCanvas: "UN LIENZO CONTINUO", access: "Acceso por invitación", cta: "Solicitar acceso",
+    maturityKicker: "MADUREZ DE LA VERSIÓN", maturityTitle: "Un sistema, con etapas de madurez claras.", maturityBody: "Las etiquetas describen el estado real de cada cliente. Puedes solicitar acceso hoy para cualquiera de ellos.",
+    beta: "Beta", alpha: "Alpha", demo: "Demo web", betaNote: "Cliente beta privado", alphaNote: "Cliente de prueba inicial", demoNote: "Demostración en navegador",
+    footnote: "El acceso se abre por fases. Cuando haya una compilación adecuada, recibirás por correo el enlace de instalación o prueba. Ninguna plataforma se presenta como pública o estable antes de serlo.",
+  },
+  "pt-br": {
+    title: "Todas as plataformas.<br /><em>O mesmo canvas.</em>",
+    description: "Peça acesso ao Fluera onde você estuda. Sua graduação continua em um único espaço; só o cliente muda. Os pedidos estão abertos em todas as plataformas compatíveis.",
+    visualLabel: "Um canvas Fluera contínuo em seis plataformas compatíveis",
+    sameCanvas: "UM CANVAS CONTÍNUO", access: "Acesso por convite", cta: "Solicitar acesso",
+    maturityKicker: "MATURIDADE DA VERSÃO", maturityTitle: "Um sistema, com estágios de maturidade claros.", maturityBody: "As etiquetas descrevem o estado real de cada cliente. Você pode solicitar acesso hoje para qualquer plataforma.",
+    beta: "Beta", alpha: "Alpha", demo: "Demo web", betaNote: "Cliente beta privado", alphaNote: "Cliente de teste inicial", demoNote: "Demonstração no navegador",
+    footnote: "O acesso é aberto por etapas. Quando houver uma build adequada, o link de instalação ou teste chega por e-mail. Nenhuma plataforma é apresentada como pública ou estável antes de ser.",
+  },
+  fr: {
+    title: "Toutes les plateformes.<br /><em>Le même canvas.</em>",
+    description: "Demandez Fluera là où vous étudiez. Votre cursus reste un espace continu ; seul le client change. Les demandes sont ouvertes sur toutes les plateformes prises en charge.",
+    visualLabel: "Un canvas Fluera continu sur six plateformes prises en charge",
+    sameCanvas: "UN CANVAS CONTINU", access: "Accès sur invitation", cta: "Demander l’accès",
+    maturityKicker: "MATURITÉ DES VERSIONS", maturityTitle: "Un système, avec des étapes de maturité claires.", maturityBody: "Les étiquettes décrivent l’état réel de chaque client. Vous pouvez demander l’accès aujourd’hui pour chacun d’eux.",
+    beta: "Bêta", alpha: "Alpha", demo: "Démo web", betaNote: "Client en bêta privée", alphaNote: "Client de test initial", demoNote: "Démonstration dans le navigateur",
+    footnote: "L’accès s’ouvre par étapes. Lorsqu’une version adaptée est disponible, le lien d’installation ou de test arrive par e-mail. Aucune plateforme n’est présentée comme publique ou stable avant de l’être.",
+  },
+  de: {
+    title: "Alle Plattformen.<br /><em>Dasselbe Canvas.</em>",
+    description: "Beantrage Fluera dort, wo du lernst. Dein Studium bleibt ein zusammenhängender Raum; nur der Client wechselt. Anfragen sind für jede unterstützte Plattform offen.",
+    visualLabel: "Ein Fluera-Canvas auf sechs unterstützten Plattformen",
+    sameCanvas: "EIN DURCHGÄNGIGES CANVAS", access: "Zugang per Einladung", cta: "Zugang anfragen",
+    maturityKicker: "REIFEGRAD DER CLIENTS", maturityTitle: "Ein System, mit ehrlich benannten Reifegraden.", maturityBody: "Die Labels zeigen den tatsächlichen Stand jedes Clients. Zugang kannst du bereits heute für jede Plattform anfragen.",
+    beta: "Beta", alpha: "Alpha", demo: "Web-Demo", betaNote: "Privater Beta-Client", alphaNote: "Früher Test-Client", demoNote: "Browser-Demonstration",
+    footnote: "Der Zugang wird schrittweise geöffnet. Sobald eine passende Version verfügbar ist, kommt der Installations- oder Testlink per E-Mail. Keine Plattform wird vorzeitig als öffentlich oder stabil dargestellt.",
+  },
+  ja: {
+    title: "すべてのプラットフォーム。<br /><em>同じひとつのキャンバス。</em>",
+    description: "学ぶ場所を問わず Fluera を申請できます。学びはひとつの連続した空間のまま、変わるのはクライアントだけです。対応する全プラットフォームで申請を受け付けています。",
+    visualLabel: "6つの対応プラットフォームに続くひとつのFlueraキャンバス",
+    sameCanvas: "ひとつの連続したキャンバス", access: "招待制アクセス", cta: "アクセスを申請",
+    maturityKicker: "リリースの成熟度", maturityTitle: "ひとつのシステム。明確に示す開発段階。", maturityBody: "ラベルは各クライアントの実際の成熟度を示します。どのプラットフォームも今すぐ申請できます。",
+    beta: "ベータ", alpha: "アルファ", demo: "Webデモ", betaNote: "非公開ベータ版", alphaNote: "初期テスト版", demoNote: "ブラウザデモ",
+    footnote: "アクセスは段階的に開放されます。対象ビルドが利用可能になると、インストールまたはテスト用リンクをメールでお送りします。公開・安定版になる前にそう表示することはありません。",
+  },
+  ko: {
+    title: "모든 플랫폼.<br /><em>하나의 캔버스.</em>",
+    description: "어디에서 공부하든 Fluera 액세스를 신청하세요. 전공은 하나의 연속된 공간으로 남고 클라이언트만 바뀝니다. 지원되는 모든 플랫폼에서 신청을 받고 있습니다.",
+    visualLabel: "지원되는 6개 플랫폼으로 이어지는 하나의 Fluera 캔버스",
+    sameCanvas: "하나의 연속된 캔버스", access: "초대 기반 액세스", cta: "액세스 요청",
+    maturityKicker: "릴리스 성숙도", maturityTitle: "하나의 시스템, 명확히 표시한 개발 단계.", maturityBody: "라벨은 각 클라이언트의 실제 상태를 보여 줍니다. 어느 플랫폼이든 지금 액세스를 신청할 수 있습니다.",
+    beta: "베타", alpha: "알파", demo: "Web 데모", betaNote: "비공개 베타 클라이언트", alphaNote: "초기 테스트 클라이언트", demoNote: "브라우저 데모",
+    footnote: "액세스는 단계적으로 열립니다. 관련 빌드가 준비되면 설치 또는 테스트 링크를 이메일로 보냅니다. 공개되거나 안정화되기 전에는 그렇게 표시하지 않습니다.",
+  },
+  hi: {
+    title: "हर प्लेटफ़ॉर्म।<br /><em>वही एक canvas.</em>",
+    description: "जहाँ भी पढ़ते हों, Fluera access माँगें। आपकी degree एक ही सतत जगह में रहती है; केवल client बदलता है। हर समर्थित platform पर अनुरोध खुले हैं।",
+    visualLabel: "छह समर्थित platforms पर चलता एक Fluera canvas",
+    sameCanvas: "एक सतत CANVAS", access: "आमंत्रण द्वारा access", cta: "एक्सेस का अनुरोध करें",
+    maturityKicker: "रिलीज़ की स्थिति", maturityTitle: "एक system, साफ़ बताई गई maturity के साथ।", maturityBody: "लेबल हर client की वास्तविक स्थिति बताते हैं। आप आज किसी भी platform के लिए access माँग सकते हैं।",
+    beta: "बीटा", alpha: "अल्फा", demo: "Web डेमो", betaNote: "निजी beta client", alphaNote: "शुरुआती test client", demoNote: "Browser demonstration",
+    footnote: "Access चरणों में खुलता है। उपयुक्त build उपलब्ध होने पर install या test link ईमेल से आता है। किसी platform को समय से पहले public या stable नहीं बताया जाता।",
+  },
+  pl: {
+    title: "Wszystkie platformy.<br /><em>Ten sam canvas.</em>",
+    description: "Poproś o Fluera tam, gdzie studiujesz. Całe studia pozostają jedną ciągłą przestrzenią; zmienia się tylko klient. Zgłoszenia są otwarte na każdej obsługiwanej platformie.",
+    visualLabel: "Jeden canvas Fluera na sześciu obsługiwanych platformach",
+    sameCanvas: "JEDEN CIĄGŁY CANVAS", access: "Dostęp na zaproszenie", cta: "Poproś o dostęp",
+    maturityKicker: "DOJRZAŁOŚĆ WERSJI", maturityTitle: "Jeden system, uczciwie opisane etapy rozwoju.", maturityBody: "Etykiety pokazują rzeczywisty stan każdego klienta. Dostęp możesz zamówić dziś na każdą platformę.",
+    beta: "Beta", alpha: "Alpha", demo: "Demo webowe", betaNote: "Prywatny klient beta", alphaNote: "Wczesny klient testowy", demoNote: "Demonstracja w przeglądarce",
+    footnote: "Dostęp otwieramy etapami. Gdy odpowiednia wersja będzie gotowa, link instalacyjny lub testowy przyjdzie e-mailem. Żadnej platformy nie nazywamy publiczną ani stabilną przed czasem.",
+  },
+  ar: {
+    title: "كلّ المنصّات.<br /><em>اللوحة نفسها.</em>",
+    description: "اطلب Fluera أينما تدرس. تبقى دراستك مساحة واحدة متصلة، ويتغيّر التطبيق فقط. طلبات الوصول مفتوحة على كل منصة مدعومة.",
+    visualLabel: "لوحة Fluera واحدة تمتد عبر ست منصات مدعومة",
+    sameCanvas: "لوحة واحدة متصلة", access: "الوصول بدعوة", cta: "اطلب الوصول",
+    maturityKicker: "مرحلة الإصدار", maturityTitle: "نظام واحد، ومراحل نضج واضحة.", maturityBody: "تصف العلامات الحالة الفعلية لكل تطبيق. يمكنك طلب الوصول اليوم لأي منصة.",
+    beta: "بيتا", alpha: "ألفا", demo: "عرض ويب", betaNote: "تطبيق بيتا خاص", alphaNote: "تطبيق اختبار مبكر", demoNote: "عرض في المتصفح",
+    footnote: "يُفتح الوصول على مراحل. عندما تتوفر نسخة مناسبة، نرسل رابط التثبيت أو الاختبار بالبريد. لا نصف أي منصة بأنها عامة أو مستقرة قبل أن تكون كذلك.",
+  },
+  nl: {
+    title: "Alle platforms.<br /><em>Hetzelfde canvas.</em>",
+    description: "Vraag Fluera aan waar je ook studeert. Je opleiding blijft één doorlopende ruimte; alleen de client verandert. Aanvragen staan open voor elk ondersteund platform.",
+    visualLabel: "Eén Fluera-canvas op zes ondersteunde platforms",
+    sameCanvas: "ÉÉN DOORLOPEND CANVAS", access: "Toegang op uitnodiging", cta: "Toegang aanvragen",
+    maturityKicker: "VERSIEMATURITEIT", maturityTitle: "Eén systeem, met eerlijk benoemde ontwikkelfasen.", maturityBody: "De labels tonen de werkelijke staat van elke client. Je kunt vandaag toegang aanvragen voor ieder platform.",
+    beta: "Beta", alpha: "Alpha", demo: "Webdemo", betaNote: "Privé-bètaclient", alphaNote: "Vroege testclient", demoNote: "Browserdemonstratie",
+    footnote: "Toegang wordt gefaseerd geopend. Zodra een passende build beschikbaar is, ontvang je de installatie- of testlink per e-mail. Geen platform wordt te vroeg als openbaar of stabiel gepresenteerd.",
+  },
+  sv: {
+    title: "Alla plattformar.<br /><em>Samma canvas.</em>",
+    description: "Begär Fluera där du studerar. Din utbildning förblir ett sammanhängande rum; bara klienten ändras. Förfrågningar är öppna på alla plattformar som stöds.",
+    visualLabel: "En Fluera-canvas över sex plattformar som stöds",
+    sameCanvas: "EN SAMMANHÄNGANDE CANVAS", access: "Åtkomst via inbjudan", cta: "Begär åtkomst",
+    maturityKicker: "VERSIONERNAS MOGNAD", maturityTitle: "Ett system, med tydligt angivna utvecklingsfaser.", maturityBody: "Etiketterna visar varje klients faktiska status. Du kan begära åtkomst för vilken plattform som helst redan i dag.",
+    beta: "Beta", alpha: "Alpha", demo: "Webb-demo", betaNote: "Privat betaklient", alphaNote: "Tidig testklient", demoNote: "Webbläsardemo",
+    footnote: "Åtkomst öppnas i etapper. När en relevant version finns skickas installations- eller testlänken via e-post. Ingen plattform framställs som offentlig eller stabil i förtid.",
+  },
+  da: {
+    title: "Alle platforme.<br /><em>Det samme canvas.</em>",
+    description: "Anmod om Fluera, uanset hvor du studerer. Din uddannelse forbliver ét sammenhængende rum; kun klienten skifter. Der er åbent for anmodninger på alle understøttede platforme.",
+    visualLabel: "Ét Fluera-canvas på seks understøttede platforme",
+    sameCanvas: "ÉT SAMMENHÆNGENDE CANVAS", access: "Adgang via invitation", cta: "Anmod om adgang",
+    maturityKicker: "VERSIONERNES MODENHED", maturityTitle: "Ét system, med tydeligt angivne udviklingstrin.", maturityBody: "Etiketterne viser hver klients reelle status. Du kan anmode om adgang til enhver platform allerede i dag.",
+    beta: "Beta", alpha: "Alpha", demo: "Web-demo", betaNote: "Privat betaklient", alphaNote: "Tidlig testklient", demoNote: "Browserdemo",
+    footnote: "Adgang åbnes i etaper. Når en relevant version er klar, sendes installations- eller testlinket på mail. Ingen platform præsenteres som offentlig eller stabil før tid.",
+  },
+  no: {
+    title: "Alle plattformer.<br /><em>Det samme lerretet.</em>",
+    description: "Be om Fluera der du studerer. Utdanningen forblir ett sammenhengende rom; bare klienten byttes. Forespørsler er åpne på alle støttede plattformer.",
+    visualLabel: "Ett Fluera-lerret på seks støttede plattformer",
+    sameCanvas: "ETT SAMMENHENGENDE LERRET", access: "Tilgang via invitasjon", cta: "Be om tilgang",
+    maturityKicker: "VERSJONENES MODENHET", maturityTitle: "Ett system, med tydelig oppgitte utviklingsfaser.", maturityBody: "Etikettene viser den faktiske statusen til hver klient. Du kan be om tilgang til hvilken som helst plattform i dag.",
+    beta: "Beta", alpha: "Alpha", demo: "Web-demo", betaNote: "Privat betaklient", alphaNote: "Tidlig testklient", demoNote: "Nettleserdemo",
+    footnote: "Tilgang åpnes trinnvis. Når en relevant versjon er klar, sendes installasjons- eller testlenken på e-post. Ingen plattform fremstilles som offentlig eller stabil for tidlig.",
+  },
+  fi: {
+    title: "Kaikki alustat.<br /><em>Sama canvas.</em>",
+    description: "Pyydä Fluera-käyttöä siellä missä opiskelet. Tutkintosi pysyy yhtenä jatkuvana tilana; vain asiakasohjelma vaihtuu. Pyynnöt ovat avoinna kaikilla tuetuilla alustoilla.",
+    visualLabel: "Yksi Fluera-canvas kuudella tuetulla alustalla",
+    sameCanvas: "YKSI JATKUVA CANVAS", access: "Pääsy kutsulla", cta: "Pyydä pääsyä",
+    maturityKicker: "VERSIOIDEN KYPSYYS", maturityTitle: "Yksi järjestelmä, avoimesti kerrotut kehitysvaiheet.", maturityBody: "Tunnisteet näyttävät jokaisen asiakkaan todellisen tilan. Voit pyytää pääsyä mille tahansa alustalle jo nyt.",
+    beta: "Beta", alpha: "Alpha", demo: "Web-demo", betaNote: "Yksityinen beta-asiakas", alphaNote: "Varhainen testiasiakas", demoNote: "Selainversio",
+    footnote: "Pääsy avataan vaiheittain. Kun sopiva versio on valmis, asennus- tai testilinkki lähetetään sähköpostitse. Mitään alustaa ei esitetä julkisena tai vakaana ennenaikaisesti.",
+  },
+} satisfies Record<Locale, Copy>;
+
+const { locale } = Astro.props;
+const copy = COPY[locale];
+const href = (path: string) => localizedHref(path, locale);
+const platforms = [
+  { name: "iOS / iPadOS", stage: "beta" },
+  { name: "macOS", stage: "beta" },
+  { name: "Android", stage: "alpha" },
+  { name: "Windows", stage: "alpha" },
+  { name: "Linux", stage: "alpha" },
+  { name: "Web", stage: "demo" },
+] as const;
+const stageCopy = {
+  beta: { label: copy.beta, note: copy.betaNote },
+  alpha: { label: copy.alpha, note: copy.alphaNote },
+  demo: { label: copy.demo, note: copy.demoNote },
+};
+---
+
+<BaseLayout title={t("nav.download", locale)} description={copy.description} locale={locale} bodyClass="premium-page">
+  <div>
+    <section class="download-hero">
+      <div class="container-site download-hero-grid">
+        <div class="download-copy">
+          <p class="eyebrow">{t("nav.download", locale)}</p>
+          <h1 set:html={copy.title} />
+          <p class="download-description">{copy.description}</p>
+          <div class="download-actions">
+            <a href={href("/beta")} class="btn-primary">{copy.cta} <span aria-hidden="true">→</span></a>
+            <span><i></i>{copy.access}</span>
+          </div>
+        </div>
+
+        <figure class="continuity-map">
+          <div class="map-meta"><span>FLUERA</span><b>{copy.sameCanvas}</b></div>
+          <svg viewBox="0 0 640 390" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+            <path class="territory territory-a" d="M25 119C105 28 229 35 281 105s-18 123 72 164 197-16 271 59" />
+            <path class="territory territory-b" d="M74 312c41-97 121-133 199-86s143 37 217-39 114-53 145-17" />
+            <path class="canvas-shadow" d="M-12 251C67 246 96 136 178 145s95 91 176 44 119-129 301-73" />
+            <path class="canvas-thread" d="M-12 251C67 246 96 136 178 145s95 91 176 44 119-129 301-73" />
+            <g class="nodes">
+              <circle cx="65" cy="238" r="7" /><circle cx="178" cy="145" r="7" />
+              <circle cx="278" cy="195" r="7" /><circle cx="354" cy="189" r="7" />
+              <circle cx="466" cy="126" r="7" /><circle cx="582" cy="108" r="7" />
+            </g>
+            <path class="annotation" d="M45 74h97M45 89h64M464 300h113M487 315h90" />
+          </svg>
+          <ol class="map-platforms" aria-hidden="true">
+            {platforms.map((platform, index) => (
+              <li><span>{String(index + 1).padStart(2,"0")}</span><b>{platform.name}</b></li>
+            ))}
+          </ol>
+          <figcaption class="sr-only">{copy.visualLabel}</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="readiness">
+      <div class="container-site">
+        <header class="readiness-heading">
+          <div><p class="eyebrow">{copy.maturityKicker}</p><h2>{copy.maturityTitle}</h2></div>
+          <p>{copy.maturityBody}</p>
+        </header>
+
+        <ol class="platform-list">
+          {platforms.map((platform, index) => (
+            <li>
+              <span class="platform-number">{String(index + 1).padStart(2,"0")}</span>
+              <h3>{platform.name}</h3>
+              <span class:list={["stage", `stage-${platform.stage}`]}>{stageCopy[platform.stage].label}</span>
+              <p>{stageCopy[platform.stage].note}</p>
+              <a href={href("/beta")} aria-label={`${copy.cta}: ${platform.name}`}>{copy.cta}<span aria-hidden="true">↗</span></a>
+            </li>
+          ))}
+        </ol>
+
+        <div class="access-note"><i aria-hidden="true"></i><p>{copy.footnote}</p></div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .download-hero{position:relative;padding:clamp(5.5rem,9vw,9rem) 0 clamp(4rem,7vw,7rem);border-bottom:1px solid var(--hairline);overflow:hidden}
+  .download-hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgb(37 99 235/.16) .7px,transparent .8px);background-size:24px 24px;mask-image:linear-gradient(120deg,transparent 38%,#000 86%);pointer-events:none}
+  .download-hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,.92fr) minmax(420px,1.08fr);align-items:center;gap:clamp(3rem,8vw,8rem)}
+  .download-copy h1{max-width:12ch;margin:1.5rem 0 1.75rem;color:var(--body-fg);font:700 clamp(3.4rem,6.6vw,7.1rem)/.92 "Sora Fluera","Sora Fallback",system-ui,sans-serif;letter-spacing:-.065em}
+  .download-copy h1 :global(em){font-family:"Playfair Fluera","Playfair Fallback",Georgia,serif;font-weight:600;color:#2563eb}
+  .download-description{max-width:39rem;color:var(--muted-fg);font-size:clamp(1.05rem,1.5vw,1.22rem);line-height:1.7}
+  .download-actions{display:flex;align-items:center;flex-wrap:wrap;gap:1.25rem;margin-top:2.25rem}.download-actions>span{display:flex;align-items:center;gap:.55rem;color:var(--dim-fg);font-size:.75rem}.download-actions>span i{width:6px;height:6px;border-radius:50%;background:#2e844a;box-shadow:0 0 0 4px rgb(46 132 74/.1)}
+  /* --map-paper drives card ground, thread wipe and node fills together, so the
+     map follows the theme like every other visual (it was hardcoded cream). */
+  .continuity-map{--map-paper:color-mix(in srgb,var(--body-bg) 93%,#2563eb 7%);position:relative;min-height:440px;margin:0;border:1px solid var(--hairline);border-radius:18px;background:var(--map-paper);color:var(--body-fg);overflow:hidden;box-shadow:0 32px 80px rgb(0 0 0/.14)}
+  .map-meta{position:absolute;z-index:2;top:22px;inset-inline:22px;display:flex;align-items:center;justify-content:space-between;color:#6e6656;font:650 8px/1 ui-monospace,monospace;letter-spacing:.15em}.map-meta span{color:#2563eb}.map-meta b{font-weight:550}
+  .continuity-map svg{position:absolute;inset:25px 0 54px;width:100%;height:calc(100% - 79px)}.territory{fill:rgb(37 99 235/.022);stroke:rgb(37 99 235/.16);stroke-width:1.2;stroke-dasharray:7 8}.territory-b{stroke:#b7791f;opacity:.45}.canvas-shadow,.canvas-thread{fill:none;stroke-linecap:round}.canvas-shadow{stroke:var(--map-paper);stroke-width:11}.canvas-thread{stroke:#2563eb;stroke-width:3}.nodes circle{fill:var(--map-paper);stroke:#2563eb;stroke-width:2.5}.annotation{fill:none;stroke:var(--dim-fg);stroke-width:1;opacity:.45}
+  .map-platforms{position:absolute;inset-inline:20px;bottom:18px;display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin:0;padding:0;list-style:none}.map-platforms li{display:flex;flex-direction:column;gap:4px;min-width:0}.map-platforms span{color:#2563eb;font:600 7px/1 ui-monospace,monospace}.map-platforms b{overflow:hidden;color:var(--body-fg);font-size:8px;font-weight:650;text-overflow:ellipsis;white-space:nowrap}
+  .readiness{padding:clamp(5rem,8vw,8rem) 0}.readiness-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.7fr);align-items:end;gap:4rem;margin-bottom:clamp(3rem,6vw,5rem)}.readiness-heading h2{max-width:16ch;margin:1rem 0 0;color:var(--body-fg);font:680 clamp(2.4rem,4.7vw,5rem)/.98 "Sora Fluera","Sora Fallback",system-ui,sans-serif;letter-spacing:-.05em}.readiness-heading>p{max-width:34rem;color:var(--muted-fg);font-size:1rem;line-height:1.7}
+  .platform-list{margin:0;padding:0;border-top:1px solid var(--hairline);list-style:none}.platform-list li{display:grid;grid-template-columns:48px minmax(150px,.75fr) 105px minmax(180px,1fr) auto;align-items:center;gap:1.5rem;min-height:98px;border-bottom:1px solid var(--hairline)}.platform-number{color:var(--dim-fg);font:600 .65rem/1 ui-monospace,monospace;letter-spacing:.12em}.platform-list h3{color:var(--body-fg);font-size:clamp(1.05rem,1.6vw,1.35rem);font-weight:650}.platform-list p{color:var(--muted-fg);font-size:.87rem}.platform-list a{display:flex;align-items:center;gap:.6rem;color:var(--body-fg);font-size:.72rem;font-weight:650}.platform-list a span{color:#2563eb}.stage{justify-self:start;padding:.42rem .65rem;border:1px solid var(--hairline);border-radius:999px;color:var(--body-fg);font:650 .61rem/1 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em}.stage-beta{border-color:rgb(37 99 235/.3);color:#5b8def}.stage-alpha{border-color:rgb(183 121 31/.3);color:#d29a42}.stage-demo{border-color:rgb(46 132 74/.3);color:#4cb563}
+  .access-note{display:grid;grid-template-columns:2px minmax(0,52rem);gap:1.25rem;margin-top:3rem}.access-note i{background:#2563eb}.access-note p{margin:0;color:var(--dim-fg);font-size:.82rem;line-height:1.7}
+  :global(html.light) .continuity-map{--map-paper:#faf8f2;color:#23211b;box-shadow:0 26px 70px rgb(35 33 27/.1)}
+  :global(html.light) .map-platforms b{color:#23211b}
+  :global(html.light) .annotation{stroke:#6e6656}
+  @media(max-width:980px){.download-hero-grid{grid-template-columns:1fr}.continuity-map{min-height:400px}.readiness-heading{grid-template-columns:1fr;gap:1.5rem}.platform-list li{grid-template-columns:40px 1fr auto}.platform-list p{grid-column:2/4;margin-top:-.75rem}.platform-list a{grid-column:2/4;padding-bottom:1.25rem}}
+  @media(max-width:600px){.download-hero{padding-top:4.5rem}.download-copy h1{font-size:clamp(3rem,15vw,4.6rem)}.continuity-map{min-height:330px}.map-platforms{grid-template-columns:repeat(3,1fr);row-gap:10px}.continuity-map svg{inset:22px 0 72px;height:calc(100% - 94px)}.platform-list li{grid-template-columns:32px 1fr;gap:1rem;padding:1.25rem 0}.stage{grid-column:2}.platform-list p,.platform-list a{grid-column:2;margin:0;padding:0}}
+  :global(:lang(ar)) .download-copy h1,:global(:lang(hi)) .download-copy h1,:global(:lang(ja)) .download-copy h1,:global(:lang(ko)) .download-copy h1{font-family:system-ui,sans-serif;letter-spacing:normal}
+  /* Column-sized type, appended last so it beats earlier media queries:
+     the h1 tracks its own column via cqw instead of the viewport, which
+     put desktop-scale type in a ~450px grid share (one word per line). */
+  .download-copy{container-type:inline-size}
+  .download-copy h1{max-width:18ch;font-size:clamp(2.6rem,10.5cqw,5.25rem)}
+</style>

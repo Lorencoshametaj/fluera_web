@@ -14,4 +14,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002) i Susan Goldin-Meadow (2003) zb
 
 Dla uczenia się implikacja jest mocna. Pisanie na klawiaturze aktywuje wąski, wysoce wytrenowany wzorzec motoryczny. Pisanie ręczne aktywuje bogaty, zmienny wzorzec motoryczny ze zintegrowanym feedbackiem wzrokowym, przestrzennym i propriocepcyjnym. Zapisy EEG van der Meer (2020) pokazują tę różnicę konkretnie: pisanie ręczne angażuje szerokie sieci mózgowe, których pisanie na klawiaturze nie sięga.
 
-Naleganie Fluery na pióro — trzynaście silników pędzli, śledzenie nacisku i nachylenia, latencja pociągnięcia poniżej 15 milisekund — to teza poznania ucieleśnionego potraktowana poważnie. Ręka zostaje w pętli, bo ręka jest częścią myślenia.
+Naleganie Fluery na pióro — dwanaście silników pędzli, śledzenie nacisku i nachylenia, atrament o niskiej latencji na obsługiwanym sprzęcie — to teza poznania ucieleśnionego potraktowana poważnie. Ręka zostaje w pętli, bo ręka jest częścią myślenia.

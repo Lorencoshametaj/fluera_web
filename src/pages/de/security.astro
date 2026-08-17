@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Verschlüsselung",
-    body: "Jedes Notizbuch in Fluera ist im Ruhezustand mit AES-256 via SQLCipher verschlüsselt. Der Traffic läuft mit TLS 1.3 in Transit. Die Synchronisierung zwischen deinen Geräten ist Ende-zu-Ende verschlüsselt mit Schlüsseln, die aus deiner Passphrase abgeleitet werden — gespeichert im Keychain der Plattform, niemals an unsere Server gesendet.",
+    body: "Jedes Fluera-Notizbuch ist auf deinem Gerät mit AES-256 via SQLCipher verschlüsselt. Der Datenverkehr ist beim Transport mit TLS 1.3 geschützt. Cloud-Sync wird beim Transport und im Ruhezustand auf EU-Infrastruktur verschlüsselt, ist aber nicht Ende-zu-Ende-verschlüsselt: Als Verantwortlicher kann Fluera technisch auf synchronisierte Inhalte zugreifen. Wir verkaufen sie nie und nutzen sie nicht für Werbung.",
   },
   {
     title: "Eigentum an deinen Daten",
@@ -38,7 +38,7 @@ const pillars = [
 >
   <PageHero
     kicker="Sicherheit und Datenschutz"
-    title="Ende-zu-Ende-Verschlüsselung.<br />Der Schlüssel bleibt bei dir."
+    title="Lokal verschlüsselt.<br />Cloud-Sync transparent erklärt."
     titleSize="2xl"
     description="Verschlüsselung ab Werk. Kein Ad-Tech. Server in Europa. Vollständiger Export. Datenschutz ist eine Design-Restriktion, keine Compliance-Aufgabe."
     orbs

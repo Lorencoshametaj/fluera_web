@@ -1,0 +1,127 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ProductVisual from "@/components/ProductVisual.astro";
+import { getCollection } from "astro:content";
+import { t, type Locale } from "@/lib/i18n";
+import { localizedHref } from "@/lib/site";
+
+export interface Props { locale: Locale; }
+
+type UiCopy = {
+  title: string;
+  description: string;
+  mapLabel: string;
+  indexKicker: string;
+  indexTitle: string;
+  step: string;
+  open: string;
+  ctaTitle: string;
+  ctaBody: string;
+  cta: string;
+  science: string;
+  status: Record<"stable" | "beta" | "coming-soon", string>;
+};
+
+const COPY = {
+  en: { title:"One canvas. Every feature is a lens.", description:"Write once, then change the way you look at the same knowledge. Fluera turns one continuous canvas into a map, a question, a blind spot and an exam — without breaking your spatial memory.", mapLabel:"The same degree canvas seen through Fluera’s learning lenses", indexKicker:"THE LEARNING SYSTEM", indexTitle:"Different cognitive moves. The same continuous space.", step:"Step", open:"Explore", ctaTitle:"Bring the whole system into your own canvas.", ctaBody:"Beta access can be requested on every supported platform. The maturity label describes the client, not whether you can join.", cta:"Request early access", science:"Read the science", status:{stable:"Available",beta:"In beta","coming-soon":"Coming soon"} },
+  it: { title:"Un canvas. Ogni funzione è una lente.", description:"Scrivi una volta, poi cambia il modo in cui guardi la stessa conoscenza. Fluera trasforma un unico canvas continuo in mappa, domanda, punto cieco ed esame — senza spezzare la memoria spaziale.", mapLabel:"Lo stesso canvas della laurea attraverso le lenti di apprendimento di Fluera", indexKicker:"IL SISTEMA DI APPRENDIMENTO", indexTitle:"Mosse cognitive diverse. Lo stesso spazio continuo.", step:"Passo", open:"Approfondisci", ctaTitle:"Porta l’intero sistema dentro il tuo canvas.", ctaBody:"L’accesso alla beta è richiedibile su ogni piattaforma supportata. L’etichetta descrive la maturità del client, non la possibilità di partecipare.", cta:"Richiedi accesso anticipato", science:"Leggi la scienza", status:{stable:"Disponibile",beta:"In beta","coming-soon":"In arrivo"} },
+  es: { title:"Un lienzo. Cada función es una lente.", description:"Escribe una vez y cambia la forma de mirar el mismo conocimiento. Fluera convierte un único lienzo continuo en mapa, pregunta, punto ciego y examen, sin romper tu memoria espacial.", mapLabel:"El mismo lienzo de la carrera a través de las lentes de Fluera", indexKicker:"EL SISTEMA DE APRENDIZAJE", indexTitle:"Movimientos cognitivos distintos. El mismo espacio continuo.", step:"Paso", open:"Explorar", ctaTitle:"Lleva todo el sistema a tu propio lienzo.", ctaBody:"Puedes solicitar acceso beta en cualquier plataforma compatible. La etiqueta indica la madurez del cliente, no si puedes participar.", cta:"Solicitar acceso", science:"Leer la ciencia", status:{stable:"Disponible",beta:"En beta","coming-soon":"Próximamente"} },
+  "pt-br": { title:"Um canvas. Cada recurso é uma lente.", description:"Escreva uma vez e mude a forma de olhar para o mesmo conhecimento. O Fluera transforma um único canvas contínuo em mapa, pergunta, ponto cego e prova, sem romper sua memória espacial.", mapLabel:"O mesmo canvas da graduação pelas lentes do Fluera", indexKicker:"O SISTEMA DE APRENDIZAGEM", indexTitle:"Movimentos cognitivos diferentes. O mesmo espaço contínuo.", step:"Passo", open:"Explorar", ctaTitle:"Leve o sistema inteiro para o seu canvas.", ctaBody:"O acesso beta pode ser solicitado em qualquer plataforma compatível. A etiqueta mostra a maturidade do cliente, não se você pode participar.", cta:"Solicitar acesso", science:"Ler a ciência", status:{stable:"Disponível",beta:"Em beta","coming-soon":"Em breve"} },
+  fr: { title:"Un seul canvas. Chaque fonction est une lentille.", description:"Écrivez une fois, puis changez votre façon de regarder le même savoir. Fluera transforme un espace continu en carte, question, angle mort et examen, sans briser votre mémoire spatiale.", mapLabel:"Le même canvas du cursus à travers les lentilles de Fluera", indexKicker:"LE SYSTÈME D’APPRENTISSAGE", indexTitle:"Des gestes cognitifs différents. Le même espace continu.", step:"Étape", open:"Explorer", ctaTitle:"Apportez tout le système dans votre canvas.", ctaBody:"L’accès bêta peut être demandé sur chaque plateforme prise en charge. L’étiquette indique la maturité du client, pas votre droit de participer.", cta:"Demander l’accès", science:"Lire la science", status:{stable:"Disponible",beta:"En bêta","coming-soon":"À venir"} },
+  de: { title:"Ein Canvas. Jede Funktion ist eine Linse.", description:"Schreibe einmal und betrachte dasselbe Wissen immer wieder neu. Fluera macht aus einem durchgehenden Canvas Karte, Frage, blinden Fleck und Prüfung, ohne dein räumliches Gedächtnis zu zerbrechen.", mapLabel:"Dasselbe Studien-Canvas durch die Lernlinsen von Fluera", indexKicker:"DAS LERNSYSTEM", indexTitle:"Verschiedene kognitive Schritte. Derselbe zusammenhängende Raum.", step:"Schritt", open:"Entdecken", ctaTitle:"Bring das ganze System in dein Canvas.", ctaBody:"Beta-Zugang kann für jede unterstützte Plattform angefragt werden. Das Label beschreibt die Reife des Clients, nicht ob du teilnehmen kannst.", cta:"Zugang anfragen", science:"Die Wissenschaft", status:{stable:"Verfügbar",beta:"In Beta","coming-soon":"Demnächst"} },
+  ja: { title:"ひとつのキャンバス。すべての機能が学びのレンズ。", description:"一度書いた知識を、地図、問い、盲点、試験として見直せます。Flueraは空間記憶を分断せず、同じ連続したキャンバスに学習の視点を重ねます。", mapLabel:"Flueraの学習レンズで見る、同じ学びのキャンバス", indexKicker:"学習システム", indexTitle:"異なる認知の動き。同じひとつの空間。", step:"ステップ", open:"詳しく見る", ctaTitle:"学習システム全体を、あなたのキャンバスへ。", ctaBody:"対応するすべてのプラットフォームでベータアクセスを申請できます。ラベルは参加可否ではなく、クライアントの成熟度を示します。", cta:"アクセスを申請", science:"科学的根拠", status:{stable:"利用可能",beta:"ベータ","coming-soon":"近日公開"} },
+  ko: { title:"하나의 캔버스. 모든 기능은 하나의 렌즈입니다.", description:"한 번 쓴 지식을 지도, 질문, 사각지대, 시험으로 다시 바라보세요. Fluera는 공간 기억을 끊지 않고 같은 연속된 캔버스에 학습 관점을 겹칩니다.", mapLabel:"Fluera 학습 렌즈로 보는 하나의 전공 캔버스", indexKicker:"학습 시스템", indexTitle:"서로 다른 인지 활동. 하나의 연속된 공간.", step:"단계", open:"살펴보기", ctaTitle:"전체 학습 시스템을 내 캔버스로.", ctaBody:"지원되는 모든 플랫폼에서 베타 액세스를 신청할 수 있습니다. 라벨은 참여 가능 여부가 아니라 클라이언트의 성숙도를 뜻합니다.", cta:"액세스 요청", science:"과학 읽기", status:{stable:"이용 가능",beta:"베타","coming-soon":"곧 출시"} },
+  hi: { title:"एक कैनवास। हर फ़ीचर एक नया लेंस।", description:"एक बार लिखें, फिर उसी ज्ञान को मानचित्र, प्रश्न, blind spot और परीक्षा की तरह देखें। Fluera आपकी spatial memory तोड़े बिना एक ही सतत canvas पर सीखने के अलग दृष्टिकोण रखता है।", mapLabel:"Fluera के learning lenses से वही degree canvas", indexKicker:"लर्निंग सिस्टम", indexTitle:"अलग cognitive moves। वही सतत स्थान।", step:"चरण", open:"देखें", ctaTitle:"पूरा सिस्टम अपने canvas में लाएँ।", ctaBody:"हर समर्थित प्लेटफ़ॉर्म पर beta access माँगा जा सकता है। लेबल client की maturity बताता है, भाग लेने की अनुमति नहीं।", cta:"एक्सेस का अनुरोध करें", science:"विज्ञान पढ़ें", status:{stable:"उपलब्ध",beta:"बीटा","coming-soon":"जल्द"} },
+  pl: { title:"Jeden canvas. Każda funkcja jest soczewką.", description:"Pisz raz, a potem oglądaj tę samą wiedzę jako mapę, pytanie, lukę i egzamin. Fluera nakłada różne tryby nauki na jedną ciągłą przestrzeń, nie rozbijając pamięci przestrzennej.", mapLabel:"Ten sam canvas studiów przez soczewki Fluera", indexKicker:"SYSTEM NAUKI", indexTitle:"Różne ruchy poznawcze. Ta sama ciągła przestrzeń.", step:"Krok", open:"Poznaj", ctaTitle:"Przenieś cały system do swojego canvasu.", ctaBody:"Dostęp beta można zamówić na każdej obsługiwanej platformie. Etykieta opisuje dojrzałość klienta, nie możliwość udziału.", cta:"Poproś o dostęp", science:"Poznaj naukę", status:{stable:"Dostępne",beta:"Beta","coming-soon":"Wkrótce"} },
+  ar: { title:"لوحة واحدة. كل ميزة عدسة مختلفة.", description:"اكتب مرة واحدة، ثم انظر إلى المعرفة نفسها كخريطة وسؤال ونقطة عمياء وامتحان. يضع Fluera طرق التعلّم فوق المساحة المستمرة نفسها من دون كسر ذاكرتك المكانية.", mapLabel:"لوحة الدراسة نفسها عبر عدسات Fluera التعليمية", indexKicker:"نظام التعلّم", indexTitle:"حركات معرفية مختلفة. المساحة المستمرة نفسها.", step:"الخطوة", open:"استكشف", ctaTitle:"ضع النظام كله داخل لوحتك.", ctaBody:"يمكن طلب الوصول إلى البيتا على كل منصة مدعومة. توضّح العلامة نضج التطبيق، لا إمكانية مشاركتك.", cta:"اطلب الوصول", science:"اقرأ العلم", status:{stable:"متاح",beta:"بيتا","coming-soon":"قريبًا"} },
+  nl: { title:"Eén canvas. Elke functie is een lens.", description:"Schrijf één keer en bekijk dezelfde kennis als kaart, vraag, blinde vlek en examen. Fluera legt leermodi over één doorlopende ruimte zonder je ruimtelijke geheugen te breken.", mapLabel:"Hetzelfde studiecanvas door de leerlenzen van Fluera", indexKicker:"HET LEERSYSTEEM", indexTitle:"Verschillende cognitieve bewegingen. Dezelfde doorlopende ruimte.", step:"Stap", open:"Ontdek", ctaTitle:"Breng het hele systeem naar je eigen canvas.", ctaBody:"Beta-toegang kan voor elk ondersteund platform worden aangevraagd. Het label beschrijft de volwassenheid van de client, niet of je mag deelnemen.", cta:"Toegang aanvragen", science:"Lees de wetenschap", status:{stable:"Beschikbaar",beta:"In beta","coming-soon":"Binnenkort"} },
+  sv: { title:"En canvas. Varje funktion är en lins.", description:"Skriv en gång och se samma kunskap som karta, fråga, blind fläck och examen. Fluera lägger olika sätt att lära ovanpå samma sammanhängande yta utan att bryta ditt rumsliga minne.", mapLabel:"Samma utbildningscanvas genom Flueras lärandelinser", indexKicker:"LÄRANDESYSTEMET", indexTitle:"Olika kognitiva rörelser. Samma sammanhängande rum.", step:"Steg", open:"Utforska", ctaTitle:"Ta hela systemet till din egen canvas.", ctaBody:"Betaåtkomst kan begäras på varje plattform som stöds. Etiketten beskriver klientens mognad, inte om du får delta.", cta:"Begär åtkomst", science:"Läs vetenskapen", status:{stable:"Tillgänglig",beta:"I beta","coming-soon":"Kommer snart"} },
+  da: { title:"Ét canvas. Hver funktion er en linse.", description:"Skriv én gang og se den samme viden som kort, spørgsmål, blind vinkel og eksamen. Fluera lægger forskellige læringsmåder på det samme sammenhængende rum uden at bryde din rumlige hukommelse.", mapLabel:"Det samme uddannelsescanvas gennem Flueras læringslinser", indexKicker:"LÆRINGSSYSTEMET", indexTitle:"Forskellige kognitive bevægelser. Det samme sammenhængende rum.", step:"Trin", open:"Udforsk", ctaTitle:"Tag hele systemet ind i dit eget canvas.", ctaBody:"Betaadgang kan anmodes på alle understøttede platforme. Etiketten beskriver klientens modenhed, ikke om du kan deltage.", cta:"Anmod om adgang", science:"Læs videnskaben", status:{stable:"Tilgængelig",beta:"I beta","coming-soon":"Kommer snart"} },
+  no: { title:"Ett lerret. Hver funksjon er en linse.", description:"Skriv én gang og se den samme kunnskapen som kart, spørsmål, blindsone og eksamen. Fluera legger ulike læringsmåter over det samme sammenhengende rommet uten å bryte det romlige minnet.", mapLabel:"Det samme studielerretet gjennom Flueras læringslinser", indexKicker:"LÆRINGSSYSTEMET", indexTitle:"Ulike kognitive bevegelser. Det samme sammenhengende rommet.", step:"Trinn", open:"Utforsk", ctaTitle:"Ta hele systemet inn i ditt eget lerret.", ctaBody:"Betatilgang kan forespørres på alle støttede plattformer. Etiketten beskriver klientens modenhet, ikke om du kan delta.", cta:"Be om tilgang", science:"Les vitenskapen", status:{stable:"Tilgjengelig",beta:"I beta","coming-soon":"Kommer snart"} },
+  fi: { title:"Yksi canvas. Jokainen ominaisuus on linssi.", description:"Kirjoita kerran ja tarkastele samaa tietoa karttana, kysymyksenä, sokeana pisteenä ja kokeena. Fluera asettaa oppimisen näkökulmat samaan jatkuvaan tilaan rikkomatta avaruudellista muistiasi.", mapLabel:"Sama tutkinnon canvas Flueran oppimislinssien läpi", indexKicker:"OPPIMISJÄRJESTELMÄ", indexTitle:"Eri kognitiiviset liikkeet. Sama jatkuva tila.", step:"Vaihe", open:"Tutustu", ctaTitle:"Tuo koko järjestelmä omaan canvasiisi.", ctaBody:"Betakäyttöoikeutta voi pyytää kaikille tuetuille alustoille. Tunniste kertoo asiakkaan kypsyydestä, ei osallistumisoikeudesta.", cta:"Pyydä pääsyä", science:"Lue tieteestä", status:{stable:"Saatavilla",beta:"Betassa","coming-soon":"Tulossa"} },
+} satisfies Record<Locale, UiCopy>;
+
+const { locale } = Astro.props;
+const copy = COPY[locale];
+const href = (path: string) => localizedHref(path, locale);
+const features = (await getCollection("features", ({ data }) => data.lang === locale)).sort((a,b) => a.data.order - b.data.order);
+const baseSlug = (id: string) => locale === "en" ? id : id.replace(new RegExp(`\\.${locale.replace("-", "\\-")}$`), "");
+---
+
+<BaseLayout title={t("nav.features", locale)} description={copy.description} locale={locale} bodyClass="premium-page">
+  <section class="editorial-hero">
+    <div class="container-site editorial-hero-grid">
+      <div class="editorial-copy">
+        <p class="eyebrow">{t("nav.features", locale)}</p>
+        <h1>{copy.title}</h1>
+        <p>{copy.description}</p>
+        <div class="hero-rule" aria-hidden="true"><i></i><span></span><i></i></div>
+      </div>
+      <ProductVisual kind="canvas" slot={`features-${locale}-degree-map`} label={copy.mapLabel} locale={locale} />
+    </div>
+  </section>
+
+  <section class="feature-system">
+    <div class="container-site">
+      <header class="system-heading">
+        <p class="eyebrow">{copy.indexKicker}</p>
+        <h2>{copy.indexTitle}</h2>
+        <span aria-hidden="true">{String(features.length).padStart(2,"0")}</span>
+      </header>
+      <ol class="feature-index">
+        {features.map((feature, index) => (
+          <li>
+            <a href={href(`/features/${baseSlug(feature.id)}`)} class="feature-entry">
+              <span class="entry-number">{String(index + 1).padStart(2,"0")}</span>
+              <div class="entry-copy">
+                <div class="entry-meta">
+                  {feature.data.stepInCycle && <span>{copy.step} {feature.data.stepInCycle}</span>}
+                  <i></i>
+                  <span>{copy.status[feature.data.status]}</span>
+                </div>
+                <h3>{feature.data.title}</h3>
+                <p>{feature.data.tagline}</p>
+              </div>
+              <span class="entry-action">{copy.open} <b aria-hidden="true">↗</b></span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="editorial-cta">
+    <div class="container-site editorial-cta-grid">
+      <div><p class="eyebrow">BETA</p><h2>{copy.ctaTitle}</h2></div>
+      <div><p>{copy.ctaBody}</p><div class="cta-actions"><a href={href("/beta")} class="btn-primary">{copy.cta} →</a><a href={href("/science")} class="btn-secondary">{copy.science}</a></div></div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .editorial-hero{padding:clamp(5rem,9vw,8rem) 0;border-bottom:1px solid var(--hairline);overflow:hidden}
+  .editorial-hero-grid{display:grid;grid-template-columns:minmax(0,.88fr) minmax(480px,1.12fr);align-items:center;gap:clamp(3rem,7vw,7rem)}
+  .editorial-copy .eyebrow,.system-heading .eyebrow,.editorial-cta .eyebrow{margin-bottom:1.5rem;color:var(--dim-fg)}
+  .editorial-copy h1{max-width:13ch;margin:0 0 1.7rem;color:var(--body-fg);font:700 clamp(3.3rem,6.4vw,6.6rem)/.94 "Sora Fluera","Sora Fallback",system-ui,sans-serif;letter-spacing:-.06em}
+  .editorial-copy>p:not(.eyebrow){max-width:34rem;color:var(--muted-fg);font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.65}
+  .hero-rule{display:flex;align-items:center;gap:8px;margin-top:2.2rem;color:#2563eb}.hero-rule span{width:92px;height:1px;background:currentColor;opacity:.45}.hero-rule i{width:4px;height:4px;border-radius:50%;background:currentColor}
+  .feature-system{padding:clamp(5rem,9vw,8rem) 0;border-bottom:1px solid var(--hairline)}
+  .system-heading{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:2rem;margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--hairline)}
+  .system-heading .eyebrow{grid-column:1/-1;margin-bottom:0}.system-heading h2{max-width:16ch;color:var(--body-fg);font-size:clamp(2.4rem,5vw,4.8rem);line-height:1;letter-spacing:-.055em}.system-heading>span{color:var(--dim-fg);font:500 3rem/1 ui-monospace,monospace;letter-spacing:-.08em}
+  .feature-index{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0;padding:0;border-top:1px solid var(--hairline);border-inline-start:1px solid var(--hairline);list-style:none}
+  .feature-index li{min-width:0;border-inline-end:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+  .feature-entry{position:relative;display:grid;grid-template-columns:2.5rem minmax(0,1fr);gap:1.25rem;min-height:250px;padding:2rem;color:inherit;text-decoration:none;transition:background-color 160ms ease,border-color 160ms ease}
+  .feature-entry:hover,.feature-entry:focus-visible{background:rgb(37 99 235/.045)}
+  .entry-number{color:#2563eb;font:600 .7rem/1 ui-monospace,monospace;letter-spacing:.14em}
+  .entry-copy{align-self:end}.entry-meta{display:flex;align-items:center;gap:.55rem;margin-bottom:.9rem;color:var(--dim-fg);font:550 .63rem/1 ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}.entry-meta i{width:3px;height:3px;border-radius:50%;background:#2563eb}
+  .entry-copy h3{margin-bottom:.6rem;color:var(--body-fg);font-size:clamp(1.6rem,2.4vw,2.3rem);line-height:1;letter-spacing:-.045em}.entry-copy p{max-width:33rem;color:var(--muted-fg);font-size:.92rem;line-height:1.55}
+  .entry-action{position:absolute;top:2rem;inset-inline-end:2rem;color:var(--dim-fg);font:550 .63rem/1 ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}.entry-action b{color:#2563eb;font-size:.85rem}
+  .editorial-cta{padding:clamp(5rem,8vw,7rem) 0;background:rgb(37 99 235/.035)}.editorial-cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,8vw,8rem)}.editorial-cta h2{max-width:14ch;color:var(--body-fg);font-size:clamp(2.3rem,4.5vw,4.2rem);line-height:1;letter-spacing:-.05em}.editorial-cta-grid>div:last-child>p{max-width:35rem;margin-bottom:2rem;color:var(--muted-fg);font-size:1.05rem;line-height:1.65}.cta-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+  @media(max-width:900px){.editorial-hero-grid{grid-template-columns:1fr}.editorial-copy h1{max-width:14ch}.editorial-hero :global(.degree-visual){max-width:700px}.feature-index{grid-template-columns:1fr}.editorial-cta-grid{grid-template-columns:1fr}}
+  @media(max-width:560px){.editorial-hero{padding:4.5rem 0}.editorial-copy h1{font-size:clamp(2.8rem,15vw,4rem)}.feature-entry{grid-template-columns:1.8rem minmax(0,1fr);min-height:220px;padding:1.4rem;gap:.8rem}.entry-action{top:1.45rem;inset-inline-end:1.4rem}.system-heading>span{font-size:2rem}}
+  /* Column-sized type, appended last so it beats earlier media queries:
+     the h1 tracks its own column via cqw instead of the viewport, which
+     put desktop-scale type in a ~450px grid share (one word per line). */
+  .editorial-copy{container-type:inline-size}
+  .editorial-copy h1{max-width:18ch;font-size:clamp(2.6rem,10.5cqw,5rem)}
+</style>

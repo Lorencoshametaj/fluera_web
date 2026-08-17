@@ -3,7 +3,7 @@ import type { HomeData } from "../types";
 const data: HomeData = {
   steps: [
     { n: 1,  title: "Captura",                verb: "Día de clase",          description: "Escribe los conceptos a mano durante la clase. Posiciónalos en el espacio. La pluma lenta fuerza la compresión mental — ahí nace la codificación." },
-    { n: 2,  title: "Reconstrucción",         verb: "Esa misma noche",       description: "Cierra el libro. Reconstruye lo que recuerdas en un canvas vacío. Los nodos rojos donde dudas son el mapa de qué estudiar (Kapur, productive failure, 2008)." },
+    { n: 2,  title: "Reconstrucción",         verb: "Esa misma noche",       description: "Cierra el libro. Reconstruye lo que recuerdas en una zona libre del mismo canvas. Los nodos rojos donde dudas son el mapa de qué estudiar (Kapur, productive failure, 2008)." },
     { n: 3,  title: "Socrática",              verb: "En 48 horas",           description: "La IA pregunta, tú respondes. Declaras tu confianza del 1 al 5 antes de cada revelación. Metacognición hecha explícita." },
     { n: 4,  title: "Centauro",               verb: "Justo después",         description: "Ghost Map superpone tu razonamiento al mapa ideal. La hipercorrección fija las correcciones en la memoria (Butterfield & Metcalfe, 2001)." },
     { n: 5,  title: "Sueño",                  verb: "Esa noche",             description: "No hagas nada. El sueño de ondas lentas reproduce el día. El hipocampo pasa las trazas a la corteza. Nuestro trabajo es apartarnos." },
@@ -38,6 +38,34 @@ const data: HomeData = {
     { name: "Linux",   api: "OpenGL",      status: "Alpha" },
     { name: "Web",     api: "WebGPU",      status: "Demo" },
   ],
+  medicalUseCase: {
+    kicker: "Diseñado para los planes de estudio más duros",
+    title: "Medicina, en un solo canvas.",
+    intro: "Anatomía, fisiología, farmacología. Miles de datos que tienen que estar conectados — y seguir recuperables bajo presión de examen. El estudio que de verdad funciona en medicina es el que se siente difícil mientras lo haces. Fluera convierte ese tipo de estudio en el camino de menor resistencia.",
+    steps: [
+      {
+        phase: "Día de clase",
+        title: "Cada sistema del cuerpo se convierte en una región.",
+        description: "Escribe cada lección en su propia región del mismo canvas infinito — estructuras anatómicas, mecanismos farmacológicos, vías metabólicas. La posición en el espacio se vuelve un ancla de memoria. Doce motores de pincel y tinta de baja latencia en las tablets compatibles.",
+      },
+      {
+        phase: "Esa misma noche",
+        title: "Reconstruye de memoria, antes del libro.",
+        description: "Cierra el material de clase. Intenta reconstruir lo que recuerdas en una zona libre del mismo canvas. Los huecos que encuentres — el par craneal que te saltaste, el receptor que confundiste — son el mapa de lo que hay que estudiar esta noche. Fracaso productivo, por diseño (Kapur, 2008).",
+      },
+      {
+        phase: "En menos de 48 h",
+        title: "Interrogatorio socrático sobre el canvas que construiste.",
+        description: "La IA pregunta, tú respondes. Antes de cada revelación predices tu confianza de 1 a 5. Cada fallo con alta confianza — cada fármaco del que estabas seguro y erraste — se refuerza más. Hipercorrección (Butterfield y Metcalfe, 2001).",
+      },
+      {
+        phase: "7–14 días antes del examen",
+        title: "Fog of War sobre el sistema en el que estás más flojo.",
+        description: "Enmascara secciones del canvas. Recupera la anatomía de memoria antes de revelar. Fluera programa los retornos con FSRS — el algoritmo moderno de repetición espaciada. El día del examen, el canvas mismo es la simulación.",
+      },
+    ],
+    closing: "Si este es el flujo que ya haces a medias con papel, PDFs y tres apps abiertas, Fluera lo convierte en un único ciclo continuo. Construido para cómo funciona la memoria, probado contra planes de estudio que no perdonan otra cosa.",
+  },
 };
 
 export default data;

@@ -20,7 +20,7 @@ Quasi tutto il resto deriva da queste tre.
 
 ## Cosa fare nella prima sessione
 
-- Crea un canvas nuovo per un argomento che stai studiando questa settimana.
+- Crea un unico canvas per tutta la laurea, poi delimita al suo interno una regione per l'argomento che stai studiando questa settimana.
 - Scegli un pennello e resta con quello per la prima sessione. Non lasciarti distrarre dalla libreria pennelli.
 - Scrivi 8–15 concetti a mano. Posiziona ognuno dove ti sembra naturale spazialmente.
 - Disegna frecce tra i concetti che pensi siano correlati.

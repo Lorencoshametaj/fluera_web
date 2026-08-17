@@ -13,4 +13,4 @@ The experimental design was simple: students watched lectures and took notes eit
 
 The conclusion is counterintuitive for the age of speed: slowness of capture forces cognitive processing at the moment of encoding. The hand is the bottleneck — and the bottleneck is where the learning happens.
 
-Fluera's entire product philosophy starts here. Handwriting is not a skeuomorphic choice. It is the cognitive instrument. Thirteen brush engines, sub-15 ms stroke latency, pressure and tilt tracked to preserve the full motor signal — all of it exists to keep the hand in the loop.
+Fluera's entire product philosophy starts here. Handwriting is not a skeuomorphic choice. It is the cognitive instrument. Twelve brush engines, low-latency ink on supported hardware, pressure and tilt tracked to preserve the full motor signal — all of it exists to keep the hand in the loop.

@@ -12,7 +12,7 @@ Deze walkthrough kost tien minuten van je tijd en één onderwerp dat je deze we
 
 ## Minuten 0–2: Maak het canvas
 
-Open Fluera. Tik op **Nieuw canvas**. Geef het de naam van het onderwerp (niet van het college — van het *concept*). Kies een kwast — vulpen is een veilige default. Houd voorlopig de standaard streekbreedte aan.
+Open Fluera. Tik één keer op **Nieuw canvas** en geef het de naam van je studie of leertraject: deze ene ruimte kan met je hele opleiding meegroeien. Baken daarin de eerste regio af en geef juist die regio de naam van het onderwerp (niet van het college — van het *concept*). Kies een kwast — de vulpen is een veilige standaard. Houd voorlopig de standaard streekbreedte aan.
 
 Het canvas is leeg. Dat is opzettelijk — templates helpen hier niet.
 

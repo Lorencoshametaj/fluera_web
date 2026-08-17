@@ -82,7 +82,7 @@ const data: PricingData = {
     },
     {
       q: "Mitä canvaseilleni tapahtuu, jos peruutan Plusin tai Pron?",
-      a: "Kaikki pysyy laitteessasi (local-first), ja 3 perussivellintä + PNG-vienti jatkavat toimintaa Free-tasolla. Ylimääräiset canvasit muuttuvat vain luettaviksi, kunnes aktivoit uudelleen tai viet. Mitään ei poisteta ilman eksplisiittistä toimenpidettäsi.",
+      a: "Kaikki pysyy laitteessasi (local-first), ja 3 perussivellintä sekä PNG-vienti toimivat edelleen Free-tasolla. Maksullisen paketin ominaisuudet keskeytyvät, kunnes aktivoit sen uudelleen. Mitään ei poisteta ilman nimenomaista toimintaasi.",
     },
     {
       q: "Miksi ei ole ilmaista Pro-kokeilua?",
@@ -98,7 +98,7 @@ const data: PricingData = {
     },
     {
       q: "Hyvitysehdot?",
-      a: "30 päivää, ilman kysymyksiä, sekä kuukausi- että vuositilauksissa. Lähetä sähköpostia osoitteeseen support@fluera.dev rekisteröitymisosoitteesta.",
+      a: "Hyvitys- ja peruutusehdot riippuvat kaupasta ja ostokanavasta. Sovellettava käytäntö näytetään ennen vahvistusta; saat apua lähettämällä viestin rekisteröidystä osoitteestasi osoitteeseen support@fluera.dev.",
     },
     {
       q: "Miten opiskelijavarmennus toimii?",

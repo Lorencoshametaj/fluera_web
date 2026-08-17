@@ -20,7 +20,7 @@ Niemal wszystko inne wynika stąd.
 
 ## Co zrobić w pierwszej sesji
 
-- Stwórz nowy canvas dla tematu, którego uczysz się w tym tygodniu.
+- Utwórz jedną kanwę dla całych studiów, a następnie wyznacz w niej region dla tematu, którego uczysz się w tym tygodniu.
 - Wybierz pędzel i zostań przy nim w pierwszej sesji. Nie rozpraszaj się biblioteką pędzli.
 - Napisz 8–15 pojęć ręcznie. Umieść każde tam, gdzie ma sens przestrzennie.
 - Narysuj strzałki między pojęciami, które według ciebie są powiązane.

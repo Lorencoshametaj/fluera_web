@@ -34,17 +34,19 @@ const sizeClass = {
 }[size];
 
 const titleClass = {
-  lg: "font-serif text-display-lg text-paper-50 mb-6",
-  xl: "font-serif text-display-xl text-paper-50 mb-6",
-  "2xl": "font-serif text-display-2xl text-paper-50 mb-6",
+  lg: "page-hero-title page-hero-title-lg",
+  xl: "page-hero-title page-hero-title-xl",
+  "2xl": "page-hero-title page-hero-title-2xl",
 }[titleSize];
 
-const copyContainer = wide ? "" : "max-w-3xl";
 const hasFx = orbs || noise;
+const routeParts = Astro.url.pathname.split("/").filter(Boolean);
+const routeLabel = (routeParts.at(-1) ?? "Fluera").replaceAll("-", " ");
 ---
 
 <section
   class:list={[
+    "page-hero",
     sizeClass,
     borderBottom ? "border-b border-white/[0.04]" : "",
     background === "dim" ? "bg-ink-900/40" : "",
@@ -52,31 +54,69 @@ const hasFx = orbs || noise;
     noise ? "noise" : "",
   ]}
 >
-  {orbs && (
-    <>
-      <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse" aria-hidden="true"></div>
-      <div class="glow-orb h-[420px] w-[420px] top-24 -end-24 bg-accent-glow/20 animate-orb-pulse" style="animation-delay: -3s" aria-hidden="true"></div>
-    </>
-  )}
-
-  <div class:list={["container-site", hasFx ? "relative" : ""]}>
+  <div class="page-hero-field" aria-hidden="true"><i></i><span></span><b></b></div>
+  <div class:list={["container-site page-hero-inner", hasFx ? "relative" : ""]}>
     {breadcrumb && (
       <nav class="mb-8 text-xs font-mono uppercase tracking-widest text-ink-500" aria-label="Breadcrumb">
         <a href={breadcrumb.href} class="hover:text-paper-200">{breadcrumb.label}</a>
       </nav>
     )}
 
-    <div class={copyContainer}>
-      {/* Optional section mark, sitting above the kicker. Opt-in: pages that
-          pass nothing render exactly as before. */}
-      <slot name="mark" />
-      {kicker && <p class="eyebrow mb-6 text-accent-glow">{kicker}</p>}
-      <h1 class={titleClass} set:html={title} />
-      {description && (
-        <p class="prose-ink text-lg max-w-2xl" set:html={description} />
-      )}
-      <slot name="copy" />
+    <div class:list={["page-hero-lead", wide ? "page-hero-wide" : ""]}>
+      <div class="page-hero-copy">
+        <slot name="mark" />
+        {kicker && <p class="eyebrow page-hero-kicker">{kicker}</p>}
+        <h1 class={titleClass} set:html={title} />
+        {description && <p class="page-hero-description" set:html={description} />}
+        <slot name="copy" />
+      </div>
+      <div class="page-hero-signature" aria-hidden="true">
+        <div class="signature-label"><span>FLUERA</span><b>{routeLabel}</b></div>
+        <svg viewBox="0 0 420 260" preserveAspectRatio="xMidYMid meet">
+          <path class="signature-territory" d="M24 93C75 17 190 2 249 54c45 39 18 105 69 128 34 15 72 2 96-14" />
+          <path class="signature-thread-shadow" d="M-16 224C58 217 76 140 143 137s76 55 133 20 61-96 154-83" />
+          <path class="signature-thread" d="M-16 224C58 217 76 140 143 137s76 55 133 20 61-96 154-83" />
+          <circle cx="143" cy="137" r="5" /><circle cx="276" cy="157" r="5" /><circle cx="356" cy="83" r="5" />
+          <path class="signature-note" d="M81 74h67M74 91h48M299 211h74M314 226h43" />
+        </svg>
+        <div class="signature-scale"><i></i><span>01</span><i></i><span>∞</span></div>
+      </div>
     </div>
-    <slot />
+    <div class="page-hero-content"><slot /></div>
   </div>
 </section>
+
+<style>
+  .page-hero { position:relative; overflow:hidden; }
+  .page-hero::before { content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgb(91 141 239/.12) .65px,transparent .75px);background-size:24px 24px;mask-image:linear-gradient(110deg,transparent 38%,#000 83%,transparent);pointer-events:none; }
+  .page-hero-field { position:absolute;inset-inline-end:0;top:12%;display:flex;align-items:center;gap:8px;color:#2563eb;opacity:.7 }.page-hero-field i,.page-hero-field b{width:34px;height:1px;background:currentColor}.page-hero-field span{width:4px;height:4px;border-radius:50%;background:currentColor}
+  .page-hero-inner { position:relative; }
+  .page-hero-lead { display:grid;grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);align-items:start;gap:clamp(3rem,8vw,8rem); }
+  .page-hero-wide { grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr); }
+  .page-hero-copy { min-width:0; }
+  .page-hero-kicker { margin-bottom:1.5rem;color:var(--dim-fg); }
+  .page-hero-title { max-width:17ch;margin:0 0 1.6rem;color:var(--body-fg);font-family:"Sora Fluera","Sora Fallback",system-ui,sans-serif;font-weight:700;line-height:.96;letter-spacing:-.058em; }
+  .page-hero-title-lg { font-size:clamp(2.5rem,4.8vw,4.6rem); }.page-hero-title-xl{font-size:clamp(3.1rem,5.4vw,5.55rem)}.page-hero-title-2xl{font-size:clamp(3.4rem,6.4vw,6.5rem)}
+  .page-hero-title :global(em),.page-hero-title :global(i){font-family:"Playfair Fluera","Playfair Fallback",Georgia,serif;font-weight:600;font-style:italic;color:#2563eb}
+  .page-hero-description { max-width:42rem;color:var(--muted-fg);font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.65; }
+  .page-hero-signature { position:relative;min-height:300px;margin-top:2.25rem;border:1px solid var(--hairline);border-radius:16px;background:color-mix(in srgb,var(--body-bg) 94%,#2563eb 6%);overflow:hidden; }
+  .signature-label { position:absolute;z-index:2;top:20px;inset-inline-start:20px;display:flex;flex-direction:column;gap:4px;padding-inline-start:10px;border-inline-start:2px solid #2563eb }.signature-label span{color:#2563eb;font:650 8px/1 ui-monospace,monospace;letter-spacing:.16em}.signature-label b{color:var(--body-fg);font-size:.78rem;font-weight:600;text-transform:capitalize}
+  .page-hero-signature svg{position:absolute;inset:0;width:100%;height:100%}.signature-territory{fill:rgb(37 99 235/.035);stroke:rgb(37 99 235/.18);stroke-width:1.2}.signature-thread-shadow,.signature-thread{fill:none;stroke-linecap:round}.signature-thread-shadow{stroke:var(--body-bg);stroke-width:8}.signature-thread{stroke:#2563eb;stroke-width:2;stroke-dasharray:5 7}.page-hero-signature circle{fill:var(--body-bg);stroke:#2563eb;stroke-width:2}.signature-note{fill:none;stroke:var(--dim-fg);stroke-width:1.2;opacity:.55}
+  .signature-scale{position:absolute;inset-inline:20px;bottom:16px;display:flex;align-items:center;gap:8px;color:var(--dim-fg);font:500 7px/1 ui-monospace,monospace;letter-spacing:.15em}.signature-scale i{height:1px;flex:1;background:currentColor;opacity:.3}
+  .page-hero-content { margin-top:clamp(3rem,6vw,5rem); }
+  .page-hero-content:empty { display:none; }
+  :global(html.light) .page-hero-signature{background:#faf8f2;border-color:#e5dece;box-shadow:0 22px 60px rgb(35 33 27/.08)}
+  @media(max-width:900px){.page-hero-lead{grid-template-columns:1fr}.page-hero-signature{min-height:240px;max-width:700px;margin-top:0}.page-hero-title{max-width:17ch}}
+  @media(max-width:560px){.page-hero-title-xl,.page-hero-title-2xl{font-size:clamp(2.7rem,14vw,4rem)}.page-hero-signature{min-height:210px}.page-hero-content{margin-top:2.5rem}}
+  :global(:lang(ar)) .page-hero-title,:global(:lang(hi)) .page-hero-title,:global(:lang(ja)) .page-hero-title,:global(:lang(ko)) .page-hero-title{font-family:system-ui,sans-serif;letter-spacing:normal}
+  /* Column-sized type (last so it also beats the mobile media query above).
+     The copy column is ~59% of the container; vw-based caps up to 6.5rem
+     overflowed long localized titles into one word per line. cqw tracks the
+     column itself; ~15–16 characters fit a line at any width. Browsers
+     without container-query units keep the vw sizes above. */
+  .page-hero-copy{container-type:inline-size}
+  .page-hero-title{max-width:19ch}
+  .page-hero-title-lg{font-size:clamp(2.2rem,8.5cqw,4rem)}
+  .page-hero-title-xl{font-size:clamp(2.5rem,9.5cqw,4.75rem)}
+  .page-hero-title-2xl{font-size:clamp(2.7rem,10.5cqw,5.5rem)}
+</style>

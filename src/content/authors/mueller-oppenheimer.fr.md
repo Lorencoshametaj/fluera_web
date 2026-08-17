@@ -14,4 +14,4 @@ Le design expérimental était simple : les étudiants assistaient à des cours 
 
 La conclusion est contre-intuitive à l'ère de la vitesse : la lenteur de la capture force l'élaboration cognitive au moment de l'encodage. La main est le goulot d'étranglement — et le goulot d'étranglement est l'endroit où l'apprentissage se produit.
 
-La philosophie produit entière de Fluera part de là. L'écriture à la main n'est pas un choix skeuomorphique. C'est l'outil cognitif. Treize brush engines. Pression, inclinaison, vitesse. Latence de trait sous 15 millisecondes sur chaque appareil supporté. Le canvas infini n'est pas esthétique — c'est le substrat que ta mémoire cherchait.
+La philosophie produit entière de Fluera part de là. L'écriture à la main n'est pas un choix skeuomorphique. C'est l'outil cognitif. Douze brush engines. Pression, inclinaison, vitesse. Encre à faible latence sur le matériel pris en charge. Le canvas infini n'est pas esthétique — c'est le substrat que ta mémoire cherchait.

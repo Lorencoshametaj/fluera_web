@@ -14,4 +14,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002) और Susan Goldin-Meadow (200
 
 सीखने के लिए, निहितार्थ मजबूत है। Typing एक संकीर्ण, अत्यधिक अभ्यास किए गए मोटर pattern को सक्रिय करता है। हस्तलेखन एक समृद्ध, परिवर्तनीय मोटर pattern को सक्रिय करता है, जिसमें visual, spatial और proprioceptive फीडबैक integrated होते हैं। van der Meer (2020) की EEG रिकॉर्डिंग ठोस रूप से अंतर दिखाती हैं: हस्तलेखन उन व्यापक मस्तिष्क नेटवर्क को engage करता है जिन तक typing नहीं पहुँच पाता।
 
-Fluera की पेन पर ज़िद — तेरह brush engines, दबाव और झुकाव tracking, 15 milliseconds से नीचे की stroke latency — मूर्त संज्ञान की thesis को गंभीरता से लिया गया है। हाथ loop में रहता है क्योंकि हाथ सोच का हिस्सा है।
+Fluera की पेन पर ज़िद — बारह brush engines, दबाव और झुकाव tracking, supported hardware पर low-latency ink — मूर्त संज्ञान की thesis को गंभीरता से लिया गया है। हाथ loop में रहता है क्योंकि हाथ सोच का हिस्सा है।

@@ -1,28 +1,28 @@
 ---
 title: "Performance tuning"
-description: "Fluera is built to keep 60 FPS on canvases with hundreds of thousands of strokes. Here is what to check when it doesn't."
+description: "Fluera targets 60 FPS and low-latency ink on supported hardware. Actual performance varies by device, canvas complexity, and active features."
 section: troubleshooting
 sectionLabel: "Troubleshooting"
 order: 2
 updatedAt: 2026-04-20
 ---
 
-Fluera's engine is designed to stay at 60 FPS with sub-15 ms stroke latency on modern hardware — up to hundreds of thousands of strokes per notebook. When it doesn't, one of a small set of things is usually responsible.
+Fluera's engine targets 60 FPS and low-latency ink on supported hardware. Actual performance varies with the device, input stack, canvas complexity, and active features.
 
 ## Diagnostics
 
 Open **Settings → Advanced → Performance**. You'll see:
 
 - **Current FPS** — should hover at 60 (or 120 on ProMotion devices)
-- **Stroke latency** — should read <15 ms on iOS/macOS, <20 ms on other platforms
+- **Stroke latency** — compare the reading with the target documented for your device and input stack; there is no universal threshold
 - **Memory used** — absolute and as percentage of your device's budget
 - **Tile cache hit rate** — should be >90 % during normal zoom/pan
 
 If anything here is red, the likely culprits are in the list below.
 
-## Large canvases (&gt; 200k strokes)
+## Large canvases
 
-The engine is fine with this volume, but two settings matter:
+Large canvases may require tuning. Start with these two settings:
 
 - **Memory budget.** On devices with less than 6 GB of RAM, Fluera's default memory budget is conservative. If you have lots of RAM and want faster zoom responses, raise it in **Settings → Canvas → Memory budget** to *Generous*.
 - **Level of detail.** The default LOD policy simplifies strokes at very low zoom levels. If you notice jittery-looking strokes when zoomed out, switch LOD to *High detail* — but expect ~10 % more GPU load.
@@ -36,13 +36,13 @@ Time Travel stores audio alongside stroke timestamps. For a 60-minute lecture, t
 
 ## Apple Pencil specifically
 
-On iPad, the default *Predicted touch* mode keeps stroke latency under 8 ms. If you've disabled prediction (in Settings → Canvas → Stroke latency → Standard), put it back to Predicted. Prediction is an Apple Pencil API, not a guess — it uses the hardware's own trajectory prediction.
+On iPad, the default *Predicted touch* mode is designed to reduce perceived stroke latency. Results vary by iPad, Pencil, OS version, and canvas load. If you've disabled prediction (in Settings → Canvas → Stroke latency → Standard), put it back to Predicted. Prediction is an Apple Pencil API, not a guess — it uses the hardware's own trajectory prediction.
 
 ## When nothing helps
 
 Run **Settings → Advanced → Export diagnostics**. You get a small JSON file with FPS samples, memory usage, and (anonymous) device information. Email it to [support@fluera.dev](mailto:support@fluera.dev) with a short description of when things slow down.
 
-We log ≈95 % of user-visible perf regressions to a specific piece of code within one hour of receiving a diagnostics export. The remaining 5 % are genuinely hard and we'll tell you so.
+Diagnostics help support investigate performance issues. Investigation time and outcomes vary with the issue and the available data.
 
 ## Next
 

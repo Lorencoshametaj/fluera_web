@@ -13,4 +13,4 @@ Mihaly Csikszentmihalyi catalogued the preconditions of Flow across chess player
 
 Interruption is the default flow-killer. Push notifications, modal dialogs, context switches, unexpected UI movement. Each one breaks the loop between hand and thought and resets the warm-up cost.
 
-Fluera is designed around flow preservation. No notifications during writing. Toolbars auto-hide. Input latency is held under 15 ms because latency above that threshold is itself a form of interruption. The AI is silent unless summoned. Every interface decision is evaluated against a single question: does this help or hurt the loop?
+Fluera is designed around flow preservation. No notifications during writing. Toolbars auto-hide. Low-latency ink on supported hardware helps keep hand and thought in one loop. The AI is silent unless summoned. Every interface decision is evaluated against a single question: does this help or hurt the loop?

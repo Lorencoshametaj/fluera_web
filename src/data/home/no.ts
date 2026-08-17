@@ -3,7 +3,7 @@ import type { HomeData } from "../types";
 const data: HomeData = {
   steps: [
     { n: 1,  title: "Fange opp",                  verb: "Forelesningsdag",        description: "Skriv konseptene for hånd under forelesningen. Plasser dem i rommet. Den langsomme pennen tvinger fram mental fortetning — det er der innkodingen skjer." },
-    { n: 2,  title: "Rekonstruksjon",              verb: "Samme kveld",            description: "Lukk boka. Rekonstruer det du husker, på et tomt canvas. De røde nodene der du nøler, er kartet over det du må repetere (Kapur, produktiv feil, 2008)." },
+    { n: 2,  title: "Rekonstruksjon",              verb: "Samme kveld",            description: "Lukk boka. Rekonstruer det du husker, i et ledig område på det samme canvaset. De røde nodene der du nøler, er kartet over det du må repetere (Kapur, produktiv feil, 2008)." },
     { n: 3,  title: "Sokratisk",                   verb: "Innen 48 timer",         description: "AI spør, du svarer. Vurder din egen sikkerhet fra 1 til 5 før hver oppløsning. Metakognisjon gjort eksplisitt." },
     { n: 4,  title: "Centaur",                     verb: "Rett etterpå",           description: "Ghost Map legger din tankegang oppå det ideelle kartet. Hyperkorreksjon forankrer rettelsene i hukommelsen (Butterfield og Metcalfe, 2001)." },
     { n: 5,  title: "Søvn",                        verb: "Den natten",             description: "Ikke gjør noe. Slow-wave-søvn spiller dagen om igjen. Hippocampus overfører sporene til cortex. Vår oppgave er å holde oss unna." },
@@ -38,6 +38,34 @@ const data: HomeData = {
     { name: "Linux",   api: "OpenGL",      status: "Alpha" },
     { name: "Web",     api: "WebGPU",      status: "Demo" },
   ],
+  medicalUseCase: {
+    kicker: "Bygd for de tøffeste studiene",
+    title: "Medisinstudiet, på ett canvas.",
+    intro: "Anatomi, fysiologi, farmakologi. Tusenvis av fakta som må henge sammen — og kunne hentes fram under eksamenspress. Lesingen som faktisk virker på medisin, er den som føles hard mens du gjør den. Fluera gjør nettopp den til veien med minst motstand.",
+    steps: [
+      {
+        phase: "Forelesningsdag",
+        title: "Hvert organsystem blir en region.",
+        description: "Skriv hver forelesning i sin egen region av det samme uendelige canvaset — anatomiske strukturer, virkningsmekanismer, metabolske veier. Plasseringen i rommet blir et hukommelsesanker. Tolv penselmotorer og blekk med lav latens på støttede nettbrett.",
+      },
+      {
+        phase: "Samme kveld",
+        title: "Gjenskap fra hukommelsen, før boka.",
+        description: "Lukk forelesningsmaterialet. Prøv å bygge opp igjen det du husker i et ledig område av det samme canvaset. Hullene du finner — hjernenerven du hoppet over, reseptoren du blandet — er kartet over hva som må leses i kveld. Produktiv fiasko, med hensikt (Kapur, 2008).",
+      },
+      {
+        phase: "Innen 48 timer",
+        title: "Sokratisk utspørring på canvaset du selv bygde.",
+        description: "KI-en spør, du svarer. Før hver avsløring forutsier du sikkerheten din fra 1 til 5. Hver bom gjort med høy sikkerhet — hvert legemiddel du var sikker på og tok feil av — forsterkes hardere. Hyperkorreksjon (Butterfield og Metcalfe, 2001).",
+      },
+      {
+        phase: "7–14 dager før eksamen",
+        title: "Fog of War på systemet du er svakest i.",
+        description: "Masker deler av canvaset. Hent anatomien tilbake fra hukommelsen før du avslører. Fluera planlegger gjensynene med FSRS — den moderne algoritmen for spredt repetisjon. På eksamensdagen er canvaset selv simuleringen.",
+      },
+    ],
+    closing: "Hvis dette er arbeidsmåten du allerede gjør halvveis med papir, PDF-er og tre åpne apper, gjør Fluera den om til én sammenhengende sløyfe. Bygd for måten hukommelsen virker på, og prøvd mot studier som ikke tilgir noe annet.",
+  },
 };
 
 export default data;

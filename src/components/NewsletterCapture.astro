@@ -18,6 +18,7 @@ const isWired = Boolean(NEWSLETTER.username);
 const endpoint = isWired ? NEWSLETTER.endpoint(NEWSLETTER.username) : "";
 ---
 
+{isWired ? (
 <aside class={variant === "card" ? "card p-7 md:p-9" : ""}>
   <h3 class="font-serif text-xl md:text-2xl text-paper-50 mb-3">{headline}</h3>
   <p class="text-sm text-paper-300 leading-relaxed mb-6 max-w-prose">{sub}</p>
@@ -45,18 +46,17 @@ const endpoint = isWired ? NEWSLETTER.endpoint(NEWSLETTER.username) : "";
 
   <p class="newsletter-status text-xs font-mono uppercase tracking-widest mt-4 hidden" data-newsletter-status></p>
 
-  {!isWired && (
-    <p class="text-[11px] font-mono uppercase tracking-widest text-ink-500 mt-4">
-      Newsletter wiring arrives in Phase 2 — today the form captures your email so we can backfill it when we pick a provider.
-    </p>
-  )}
 </aside>
+) : (
+  <!-- INTEGRATION PLACEHOLDER: set NEWSLETTER.username in src/lib/site.ts to render this capture. -->
+  <div hidden data-integration-placeholder="newsletter-buttondown"></div>
+)}
 
 <style>
   .newsletter-input {
     background: theme("colors.ink.900");
     border: 1px solid rgb(255 255 255 / 0.08);
-    border-radius: 9999px;
+    border-radius: 8px;
     padding: 0.75rem 1.25rem;
     color: theme("colors.paper.50");
     font-size: 0.95rem;
@@ -124,16 +124,6 @@ const endpoint = isWired ? NEWSLETTER.endpoint(NEWSLETTER.username) : "";
         } finally {
           if (submitBtn) submitBtn.disabled = false;
         }
-      } else {
-        // Fallback mode: store in localStorage so we can backfill once a provider is wired.
-        try {
-          const stored = JSON.parse(localStorage.getItem("fluera-newsletter-emails") || "[]");
-          if (!stored.includes(email)) stored.push(email);
-          localStorage.setItem("fluera-newsletter-emails", JSON.stringify(stored));
-        } catch { /* ignore */ }
-        showStatus("Got it. We'll backfill when the provider is wired up.", "warn");
-        form.reset();
-        if (submitBtn) submitBtn.disabled = false;
       }
     });
   });

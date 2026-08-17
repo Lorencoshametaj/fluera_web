@@ -20,7 +20,7 @@ Quase todo o resto sai daí.
 
 ## O que fazer na primeira sessão
 
-- Crie um canvas novo para um tópico que você está estudando esta semana.
+- Crie um único canvas para toda a graduação e delimite nele uma região para o tópico que você está estudando esta semana.
 - Escolha um pincel e fique com ele na primeira sessão. Não se distraia com a biblioteca de pincéis.
 - Escreva 8–15 conceitos à mão. Posicione cada um onde fizer sentido espacialmente.
 - Desenhe setas entre conceitos que você acha que estão relacionados.

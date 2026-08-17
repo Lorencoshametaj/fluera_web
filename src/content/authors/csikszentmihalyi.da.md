@@ -14,4 +14,4 @@ Flow er ikke mystisk. Csikszentmihalyi identificerede dens forudsætninger præc
 
 For et læringsværktøj har det konsekvenser uden middelvej. Ingen modale pop-ups under skrivning. Ingen notifikationer. Ingen gamificerede streak-opfordringer, der trækker i opmærksomheden. Ingen AI, der kommer med uopfordrede forslag.
 
-Flueras canvas er designet til at forsvinde under skrivning. Værktøjslinjerne skjuler sig. AI'en forbliver stille, indtil den tilkaldes. Det uendelige canvas fjerner scrolling og paginering — de mest banale former for afbrydelse. Inputlatensen holdes under 15 ms, fordi latens over den tærskel også er en form for afbrydelse — den river sløjfen mellem hånd og tanke i stykker.
+Flueras canvas er designet til at forsvinde under skrivning. Værktøjslinjerne skjuler sig. AI'en forbliver stille, indtil den tilkaldes. Det uendelige canvas fjerner scrolling og paginering — de mest banale former for afbrydelse. Blæk med lav latenstid på understøttet hardware hjælper med at holde hånd og tanke i samme loop.

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="En lång redogörelse för vad Fluera är, vad det vägrar att bli och varför den uppenbara produkten var fel produkt."
   locale="sv"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">Manifest</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">Studieutrymmet byggt på hur sinnet fungerar.</h1>
+  <PageHero
+    kicker={"Manifest"}
+    title={"Studieutrymmet byggt på hur sinnet fungerar."}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         En lång redogörelse för vad Fluera är, vad det vägrar att bli och varför den uppenbara produkten var fel produkt.
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">
@@ -107,7 +110,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <strong>Vi kommer inte ha en AI som svarar på tentor åt dig.</strong> Den omedelbara användartillfredsställelsen vore enorm. Långtidsresultatet — atrofi av just de kognitiva muskler verktyget skulle stärka — vore ett svek mot det uttalade målet. En AI som gör jobbet åt dig är en AI som inte lär dig något.
       </p>
       <p>
-        <strong>Vi säljer inte data från dina anteckningsböcker.</strong> Varje anteckningsbok krypteras i vila med AES-256. Sync, när det är aktivt, är krypterat ände till ände. Vi tränar inte våra modeller på ditt innehåll. Din handskrift, ditt tänkande, dina misstag och din tillväxt är dina. Att "din data är produkten" är ed-techens default 2026 gör det inte tolerabelt.
+        <strong>Vi säljer inte data från dina anteckningsböcker.</strong> Varje anteckningsbok krypteras i vila på din enhet med AES-256. När synkronisering är aktiv krypteras data under överföring (TLS) och i vila på EU-infrastruktur (Supabase, eu-north-1); synkroniseringen är inte ände-till-ände-krypterad, så Fluera kan som personuppgiftsansvarig tekniskt komma åt synkroniserat innehåll. Vi säljer det aldrig, använder det aldrig för annonsering och tränar aldrig modeller på det. Din handskrift, ditt tänkande, dina misstag och din tillväxt är dina. Att "din data är produkten" är ed-techens default 2026 gör det inte tolerabelt.
       </p>
       <p>
         <strong>Vi har inga engagement loops, ingen reklam och inga streaks.</strong> Den starkaste signalen vi kunde optimera mot — dagliga aktiva användare, sessionslängd, click-through på notiser — är också den mest sannolika att korrumpera produkten. Din relation till studierna ska inte hänga på en push-notis. Vi föredrar att du använder Fluera mindre och lär dig mer.

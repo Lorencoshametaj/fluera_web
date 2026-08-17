@@ -12,7 +12,7 @@ Denne gennemgang bruger ti minutter af din tid og et emne, du studerer i denne u
 
 ## Minut 0-2: Opret canvasset
 
-Åbn Fluera. Tryk på **Nyt canvas**. Giv det navnet på emnet (ikke forelæsningen — *begrebet*). Vælg en pensel — fyldepen er et sikkert standardvalg. Bliv ved standardstregbredden indtil videre.
+Åbn Fluera. Tryk én gang på **Nyt canvas**, og giv det navnet på din uddannelse eller læringsrejse: dette ene rum kan vokse med hele studiet. Afgræns den første region i det, og giv netop regionen navn efter emnet (ikke forelæsningen — *begrebet*). Vælg en pensel — fyldepen er et sikkert standardvalg. Bliv ved standardstregbredden indtil videre.
 
 Canvasset er tomt. Det er bevidst — skabeloner hjælper ikke her.
 

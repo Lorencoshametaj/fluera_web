@@ -82,7 +82,7 @@ const data: PricingData = {
     },
     {
       q: "Que deviennent mes canvas si j'annule Plus ou Pro ?",
-      a: "Tout reste sur ton appareil (local-first) et les 3 pinceaux de base + export PNG continuent de fonctionner sur le tier Free. Les canvas supplémentaires deviennent en lecture seule jusqu'à réactivation ou export. Rien n'est supprimé sans action explicite de ta part.",
+      a: "Tout reste sur ton appareil (local-first), et les 3 pinceaux de base ainsi que l'export PNG continuent de fonctionner avec Free. Les fonctions liées à l'offre payante sont suspendues jusqu'à sa réactivation. Rien n'est supprimé sans action explicite de ta part.",
     },
     {
       q: "Pourquoi pas d'essai gratuit Pro ?",
@@ -98,7 +98,7 @@ const data: PricingData = {
     },
     {
       q: "Politique de remboursement ?",
-      a: "30 jours, sans condition, sur les plans mensuels et annuels. Email à support@fluera.dev depuis l'adresse d'inscription.",
+      a: "Les conditions de remboursement et de rétractation dépendent de la boutique et du canal d'achat. La politique applicable est affichée avant confirmation ; pour obtenir de l'aide, écris à support@fluera.dev depuis ton adresse d'inscription.",
     },
     {
       q: "Comment fonctionne la vérification étudiante ?",

@@ -29,7 +29,7 @@ You finish a study session. You open the Atlas menu and tap **🎓 Interrogami**
 
 Before each answer, the confidence picker asks one thing: **how sure are you, one to five?** Move the dial. Commit.
 
-Now answer — by hand, on a mini-canvas scratchpad, exactly the way you'd write it on the exam itself. No autocomplete. No copy-paste. No "regenerate response." Just you and the page.
+Now answer — by hand, in a protected scratchpad region of the same canvas, exactly the way you'd write it on the exam itself. No autocomplete. No copy-paste. No "regenerate response." Just you and the page.
 
 When you submit, Fluera evaluates the answer token by token, streaming feedback as it reads. If you were wrong and confident, the **hypercorrection shock UI** fires — a deliberate, hard-to-ignore visual that primes the most durable form of correction the brain can produce. Then Fluera asks you to rewrite the correct answer in your own words: the **generation effect** locks it in.
 
@@ -52,4 +52,4 @@ Manu Kapur's **productive failure** research (2008) supports the hardest design 
 - **Post-exam analytics** — per-cluster confidence calibration and hypercorrection magnitude graphs.
 - **Voice-mode Exam** — spoken questions with handwritten answers, for clinical or oral-exam preparation.
 - **Persistent surgical path overlay** — after Exam, Fog of War highlights only the missed concepts on the live canvas, scoped for next-day review.
-- **Multi-subject Exam Sessions** — one session that interleaves clusters from multiple notebooks, putting transfer to work.
+- **Multi-subject Exam Sessions** — one session that interleaves subject clusters from across the same canvas, putting transfer to work.

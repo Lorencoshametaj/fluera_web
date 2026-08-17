@@ -1,13 +1,13 @@
 ---
 title: "Brushes"
-description: "Thirteen brush engines, each tuned for a different kind of mark. A short guide to picking the right one — and why it matters less than you think."
+description: "Twelve brush engines, each tuned for a different kind of mark. A short guide to picking the right one — and why it matters less than you think."
 section: canvas
 sectionLabel: "The canvas"
 order: 1
 updatedAt: 2026-04-20
 ---
 
-Fluera ships with thirteen brush engines. Each is a full rendering pipeline — pressure, tilt, velocity, per-brush fragment shaders — not a texture swap. That sounds like a lot; in practice, most of your learning will happen on one or two of them.
+Fluera ships with twelve brush engines. Each is a full rendering pipeline — pressure, tilt, velocity, per-brush fragment shaders — not a texture swap. That sounds like a lot; in practice, most of your learning will happen on one or two of them.
 
 ## The short answer
 
@@ -18,7 +18,7 @@ Fluera ships with thirteen brush engines. Each is a full rendering pipeline — 
 
 Everything else is for specific situations. Don't overthink it.
 
-## All thirteen
+## All twelve
 
 | Brush           | Best for                                         | Notes                                    |
 |-----------------|--------------------------------------------------|------------------------------------------|
@@ -34,11 +34,10 @@ Everything else is for specific situations. Don't overthink it.
 | Ink wash        | Wet-on-paper feel                                | Color bleed at edges                     |
 | Spray           | Particle effects, shadows                        | Edge distortion                          |
 | Neon            | Glowing annotations                              | Outer glow, fluorescent saturation       |
-| Eraser          | Per-pixel removal, not a delete tool             | History-aware — reveals underlying marks |
 
 ## Why the engine matters (briefly)
 
-Fluera's engine preserves pressure, tilt, and velocity signals at sub-15-millisecond latency on iOS and macOS. That is not just a product nicety. <a href="/science/authors/van-der-meer">Van der Meer's EEG work</a> showed that handwriting engages sensorimotor networks that typing does not, and the richness of those signals scales with the fidelity of the capture.
+Fluera's engine preserves pressure, tilt, and velocity signals with low-latency ink on supported hardware. That is not just a product nicety. <a href="/science/authors/van-der-meer">Van der Meer's EEG work</a> showed that handwriting engages sensorimotor networks that typing does not, and the richness of those signals scales with the fidelity of the capture.
 
 In practical terms: a canvas that drops strokes, lags under pressure, or flattens tilt data is throwing away the exact signal that makes handwritten notes cognitively superior. We built the engine from scratch because no off-the-shelf option met the bar.
 
@@ -51,7 +50,7 @@ Long-press any brush in the toolbar. A small panel opens with:
 - **Stabilisation** (none / soft / firm) — smooths jitter without killing personality
 - **Pressure curve** — adjust the response to light vs heavy presses
 
-Changes are per-canvas, not global, so you can have a soft pencil on one notebook and a sharp one on another.
+Changes belong to the current canvas rather than changing the app globally, so your degree canvas keeps its own brush setup.
 
 ## Next
 

@@ -1,7 +1,7 @@
 ---
 lang: "pl"
 title: "Cloud sync"
-description: "Jak synchronizować canvasy między urządzeniami, co jest szyfrowane i jak odzyskać dostęp, jeśli zgubisz hasło passphrase."
+description: "Jak synchronizować canvasy między urządzeniami, chronić dane i odzyskiwać je za pomocą konta."
 section: settings
 sectionLabel: "Synchronizacja"
 order: 2

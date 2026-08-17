@@ -14,4 +14,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002) und Susan Goldin-Meadow (2003) 
 
 Für das Lernen ist die Implikation deutlich. Tippen aktiviert ein schmales, hochgradig eingeübtes motorisches Muster. Handschrift aktiviert ein reiches, variables motorisches Muster mit integriertem visuellem, räumlichem und propriozeptivem Feedback. Die EEG-Aufzeichnungen von van der Meer (2020) zeigen den Unterschied konkret: Handschrift bindet weite Hirnnetzwerke ein, die Tippen nicht erreicht.
 
-Fluera besteht auf dem Stift — dreizehn Brush Engines, Druck- und Neigungs-Tracking, Strichlatenz unter 15 Millisekunden — und zieht damit die These der verkörperten Kognition ernst durch. Die Hand bleibt im Loop, weil die Hand Teil des Denkens ist.
+Fluera besteht auf dem Stift — zwölf Brush Engines, Druck- und Neigungs-Tracking, latenzarme Freihandeingabe auf unterstützter Hardware — und zieht damit die These der verkörperten Kognition ernst durch. Die Hand bleibt im Loop, weil die Hand Teil des Denkens ist.

@@ -20,7 +20,7 @@ Casi todo el resto sale de aquí.
 
 ## Qué hacer en la primera sesión
 
-- Crea un canvas nuevo para un tema que estés estudiando esta semana.
+- Crea un único canvas para toda tu carrera y delimita dentro una región para el tema que estés estudiando esta semana.
 - Elige un pincel y quédate con él en la primera sesión. No te distraigas con la biblioteca de pinceles.
 - Escribe 8–15 conceptos a mano. Coloca cada uno donde tenga sentido espacialmente.
 - Dibuja flechas entre conceptos que crees que están relacionados.

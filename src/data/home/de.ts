@@ -3,7 +3,7 @@ import type { HomeData } from "../types";
 const data: HomeData = {
   steps: [
     { n: 1,  title: "Erfassen",                  verb: "Vorlesungstag",         description: "Schreib die Konzepte während der Vorlesung von Hand. Platziere sie im Raum. Der langsame Stift erzwingt mentale Verdichtung — genau dort entsteht die Encodierung." },
-    { n: 2,  title: "Rekonstruktion",             verb: "Am selben Abend",       description: "Schließ das Buch. Rekonstruiere, woran du dich erinnerst, auf einem leeren Canvas. Die roten Knoten, an denen du zögerst, sind die Karte dessen, was du wiederholen musst (Kapur, produktives Scheitern, 2008)." },
+    { n: 2,  title: "Rekonstruktion",             verb: "Am selben Abend",       description: "Schließ das Buch. Rekonstruiere, woran du dich erinnerst, in einem freien Bereich desselben Canvas. Die roten Knoten, an denen du zögerst, sind die Karte dessen, was du wiederholen musst (Kapur, produktives Scheitern, 2008)." },
     { n: 3,  title: "Sokratisch",                 verb: "Innerhalb von 48 h",    description: "Die KI fragt, du antwortest. Bewerte deine Sicherheit von 1 bis 5 vor jeder Auflösung. Metakognition explizit gemacht." },
     { n: 4,  title: "Centaur",                    verb: "Direkt danach",         description: "Ghost Map legt dein Denken über die ideale Karte. Hyperkorrektur verankert die Korrekturen im Gedächtnis (Butterfield und Metcalfe, 2001)." },
     { n: 5,  title: "Schlaf",                     verb: "In dieser Nacht",       description: "Tu nichts. Slow-Wave-Schlaf spielt den Tag erneut ab. Der Hippocampus überträgt die Spuren in den Cortex. Unsere Aufgabe ist es, aus dem Weg zu gehen." },
@@ -38,6 +38,34 @@ const data: HomeData = {
     { name: "Linux",   api: "OpenGL",      status: "Alpha" },
     { name: "Web",     api: "WebGPU",      status: "Demo" },
   ],
+  medicalUseCase: {
+    kicker: "Für die härtesten Studiengänge gebaut",
+    title: "Medizinstudium, auf einem einzigen Canvas.",
+    intro: "Anatomie, Physiologie, Pharmakologie. Tausende Fakten, die zusammenhängen müssen — und unter Prüfungsdruck abrufbar bleiben. Das Lernen, das in der Medizin wirklich funktioniert, ist genau das, das sich schwer anfühlt, während du es tust. Fluera macht daraus den Weg des geringsten Widerstands.",
+    steps: [
+      {
+        phase: "Vorlesungstag",
+        title: "Jedes Organsystem wird zu einer Region.",
+        description: "Schreib jede Lektion in ihre eigene Region desselben unendlichen Canvas — anatomische Strukturen, Wirkmechanismen, Stoffwechselwege. Die räumliche Position wird zum Gedächtnisanker. Zwölf Pinselengines und latenzarme Tinte auf unterstützten Tablets.",
+      },
+      {
+        phase: "Am selben Abend",
+        title: "Rekonstruier aus dem Gedächtnis, vor dem Buch.",
+        description: "Schließ das Vorlesungsmaterial. Versuch in einem freien Bereich desselben Canvas wieder aufzubauen, woran du dich erinnerst. Die Lücken, die du findest — der übersprungene Hirnnerv, der verwechselte Rezeptor — sind die Karte dessen, was heute Abend zu lernen ist. Produktives Scheitern, by design (Kapur, 2008).",
+      },
+      {
+        phase: "Innerhalb von 48 h",
+        title: "Sokratische Befragung auf dem Canvas, das du gebaut hast.",
+        description: "Die KI fragt, du antwortest. Vor jeder Auflösung sagst du deine Sicherheit von 1 bis 5 voraus. Jeder Fehler mit hoher Sicherheit — jedes Medikament, bei dem du dir sicher warst und danebenlagst — wird stärker verankert. Hyperkorrektur (Butterfield und Metcalfe, 2001).",
+      },
+      {
+        phase: "7–14 Tage vor der Prüfung",
+        title: "Fog of War auf dem System, in dem du am schwächsten bist.",
+        description: "Maskier Abschnitte des Canvas. Hol die Anatomie aus dem Gedächtnis zurück, bevor du aufdeckst. Fluera plant die Rückkehr mit FSRS — dem modernen Algorithmus für verteilte Wiederholung. Am Prüfungstag ist das Canvas selbst die Simulation.",
+      },
+    ],
+    closing: "Wenn das der Ablauf ist, den du mit Papier, PDFs und drei offenen Apps schon halb machst, macht Fluera daraus einen durchgehenden Kreislauf. Gebaut dafür, wie Gedächtnis funktioniert, getestet an Studiengängen, die nichts anderes verzeihen.",
+  },
 };
 
 export default data;

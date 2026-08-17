@@ -4,7 +4,7 @@
  *
  * Verifies:
  *   - Key routes are emitted (EN root, IT root, pricing, feature pages)
- *   - Phase-1/2 content landed correctly (Exam Session pillar, Team tier)
+ *   - V1 content landed correctly (Exam Session pillar, Free/Plus/Pro pricing)
  *   - Hidden Education tier is actually hidden everywhere visible
  *   - Sitemap-index exists (i18n routing healthy)
  *
@@ -39,6 +39,16 @@ function fileExists(rel) {
 
 function read(rel) {
   return readFileSync(resolve(DIST, rel), "utf8");
+}
+
+function hasPublicV1Tiers(html) {
+  return ["Free", "Plus", "Pro"].every((tier) => html.includes(`>${tier}<`))
+    && !html.includes(">Team<")
+    && !html.includes(">Education<");
+}
+
+function hasFaqSurface(html) {
+  return html.includes("<details") && html.includes("FAQPage");
 }
 
 console.log("Routes emitted");
@@ -77,24 +87,23 @@ for (const route of ROUTES) {
   check(`/${route}`, fileExists(route));
 }
 
-console.log("\nPhase 1/2 content");
+console.log("\nV1 content");
 {
   const home = read("index.html");
   check("homepage Step 11 = Exam Session", home.includes("Exam Session · Step 11"));
-  check("homepage pillar Exam Session present", home.includes("Simulated exams from your own canvas"));
-  check("homepage pricing snapshot has Team", home.includes(">Team<"));
+  check("homepage pillar Exam Session present", home.includes("A closed-book exam built from your own notes"));
+  check("homepage pricing snapshot has 3 public tiers (Free/Plus/Pro)", hasPublicV1Tiers(home));
 }
 {
   const pricing = read("pricing/index.html");
-  check("pricing page has Team tier", pricing.includes(">Team<") && pricing.includes("€19.99"));
+  check("pricing page has Plus €5.99", pricing.includes("€5.99"));
   check("pricing page has Pro €11.99", pricing.includes("€11.99"));
-  check("pricing page has 4 tiers (Free/Plus/Pro/Team)",
-    /Free/.test(pricing) && /Plus/.test(pricing) && /Pro/.test(pricing) && />Team</.test(pricing));
+  check("pricing page has 3 public tiers (Free/Plus/Pro)", hasPublicV1Tiers(pricing));
 }
 {
   const examEn = read("features/exam-session/index.html");
   check("EN /features/exam-session renders content",
-    examEn.includes("Exam Session") && examEn.includes("Hypercorrection") && examEn.includes("Confidence picker") || examEn.includes("confidence picker"));
+    examEn.includes("Exam Session") && examEn.includes("Hypercorrection") && (examEn.includes("Confidence picker") || examEn.includes("confidence picker")));
 }
 {
   const examIt = read("it/features/exam-session/index.html");
@@ -110,8 +119,8 @@ console.log("\nPhase 1/2 content");
 }
 {
   const pricingKo = read("ko/pricing/index.html");
-  check("KO /pricing has 4 Korean tiers + FAQ",
-    pricingKo.includes(">Team<") && pricingKo.includes("€19.99") && pricingKo.includes("자주 묻는 질문"));
+  check("KO /pricing has 3 public tiers + FAQ",
+    hasPublicV1Tiers(pricingKo) && hasFaqSurface(pricingKo));
 }
 {
   const homeHi = read("hi/index.html");
@@ -122,8 +131,8 @@ console.log("\nPhase 1/2 content");
 }
 {
   const pricingHi = read("hi/pricing/index.html");
-  check("HI /pricing has 4 Hindi tiers + FAQ",
-    pricingHi.includes(">Team<") && pricingHi.includes("€19.99") && pricingHi.includes("अक्सर पूछे जाने वाले प्रश्न"));
+  check("HI /pricing has 3 public tiers + FAQ",
+    hasPublicV1Tiers(pricingHi) && hasFaqSurface(pricingHi));
 }
 {
   const homePl = read("pl/index.html");
@@ -134,13 +143,13 @@ console.log("\nPhase 1/2 content");
 }
 {
   const pricingPl = read("pl/pricing/index.html");
-  check("PL /pricing has 4 Polish tiers + FAQ",
-    pricingPl.includes(">Team<") && pricingPl.includes("€19,99") && pricingPl.includes("Najczęściej zadawane pytania"));
+  check("PL /pricing has 3 public tiers + FAQ",
+    hasPublicV1Tiers(pricingPl) && hasFaqSurface(pricingPl));
 }
 {
   const homeAr = read("ar/index.html");
   check("AR homepage has Arabic body",
-    homeAr.includes("فضاء دراسة") && homeAr.includes("Exam Session"));
+    homeAr.includes("دراستك كاملة. لوحة واحدة.") && homeAr.includes("Exam Session"));
   check("AR homepage uses RTL direction",
     homeAr.includes('dir="rtl"'));
   check("AR homepage uses Arabic nav",
@@ -148,15 +157,15 @@ console.log("\nPhase 1/2 content");
 }
 {
   const pricingAr = read("ar/pricing/index.html");
-  check("AR /pricing has 4 Arabic tiers + FAQ",
-    pricingAr.includes(">Team<") && pricingAr.includes("€19.99") && pricingAr.includes("الأسئلة الشائعة"));
+  check("AR /pricing has 3 public tiers + FAQ",
+    hasPublicV1Tiers(pricingAr) && hasFaqSurface(pricingAr));
 }
 
 console.log("\nCatalogue");
 {
   const mk = read("catalogue/index.html");
   check("/catalogue renders the hero", mk.includes("Someone already worked this chapter out"));
-  check("/catalogue is linked from the nav", read("index.html").includes('href="/catalogue"'));
+  check("/catalogue is linked from the nav", read("index.html").includes('href="/catalogue/"'));
   // The page deliberately carries no catalog/usage numbers: the catalog is new and
   // any count would be a vanity claim. Guard the promise so it can't silently rot.
   check("/catalogue quotes no retention percentage",
@@ -191,7 +200,7 @@ console.log("\nEducation hidden (UI surface only)");
 {
   const home = read("index.html");
   check("homepage nav has no Education link",
-    !/href="\/education"[^>]*>\s*Education/i.test(home));
+    !/href="\/education\/?"[^>]*>\s*Education/i.test(home));
   check("homepage pricing snapshot has no Education card",
     !/<h3[^>]*>\s*Education\s*<\/h3>/.test(home));
 }
@@ -201,6 +210,65 @@ console.log("\nEducation hidden (UI surface only)");
     !pricing.includes(">Education<"));
   check("/pricing has no Enterprise CTA",
     !/Teaching a course\?|Running a department\?/i.test(pricing));
+}
+
+console.log("\nEvery localized homepage is the premium home");
+{
+  // The signature badge is short and unique per locale. A locale that silently
+  // falls back to English copy — or loses its translation — turns this red.
+  const HOME_BADGE = {
+    "": "INK → ATLAS → RECALL",
+    it: "INCHIOSTRO → ATLAS → RECUPERO",
+    es: "TINTA → ATLAS → RECUPERACIÓN",
+    "pt-br": "TINTA → ATLAS → RECUPERAÇÃO",
+    fr: "ENCRE → ATLAS → RAPPEL",
+    de: "TINTE → ATLAS → ABRUF",
+    ja: "インク → ATLAS → 想起",
+    ko: "잉크 → ATLAS → 인출",
+    hi: "स्याही → ATLAS → पुनःस्मरण",
+    ar: "حبر ← ATLAS ← استرجاع",
+    pl: "ATRAMENT → ATLAS → PRZYWOŁANIE",
+    nl: "INKT → ATLAS → OPHALEN",
+    sv: "BLÄCK → ATLAS → ÅTERKALLNING",
+    da: "BLÆK → ATLAS → GENKALDELSE",
+    no: "BLEKK → ATLAS → GJENHENTING",
+    fi: "MUSTE → ATLAS → PALAUTUS",
+  };
+
+  // Presence, not absence: each marker must be *there*, so an empty or truncated
+  // page fails instead of sliding through.
+  const REQUIRED = [
+    ["signature flow", "signature-flow"],
+    ["proof rail", "proof-rail"],
+    ["single-canvas visual", 'data-media-placeholder="home-canvas-ink-loop"'],
+    ["Ghost Map pillar", 'data-media-placeholder="home-ghost-loop"'],
+    ["Socratic pillar", 'data-media-placeholder="home-socratic-loop"'],
+    ["Fog of War pillar", 'data-media-placeholder="home-fog-loop"'],
+    ["Exam Session pillar", 'data-media-placeholder="home-exam-loop"'],
+    ["use-case timeline", 'id="use-case"'],
+    ["platform rail", "platform-rail"],
+    ["pricing preview", "pricing-preview-grid"],
+  ];
+
+  for (const [prefix, badge] of Object.entries(HOME_BADGE)) {
+    const route = prefix ? `${prefix}/index.html` : "index.html";
+    const label = prefix || "en";
+    const html = read(route);
+
+    const missing = REQUIRED.filter(([, marker]) => !html.includes(marker)).map(([n]) => n);
+    check(`/${label} homepage carries every premium section`, missing.length === 0, missing.join(", "));
+
+    // Four timeline cards and four signature steps — a partial render fails here.
+    check(`/${label} homepage has 4 use-case steps`,
+      (html.match(/timeline-card/g) || []).length === 4);
+    check(`/${label} homepage has 4 signature steps`,
+      (html.match(/signature-step/g) || []).length === 4);
+
+    check(`/${label} homepage copy is localized`, html.includes(badge));
+
+    // The retired pre-redesign grammar must not come back.
+    check(`/${label} homepage carries no retired glow-orb chrome`, !html.includes("glow-orb"));
+  }
 }
 
 console.log("\nResult");

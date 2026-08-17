@@ -14,4 +14,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002) e Susan Goldin-Meadow (2003) co
 
 Para a aprendizagem, a implicação é forte. Digitar ativa um padrão motor estreito, altamente praticado. Escrever à mão ativa um padrão motor rico, variável, com feedback visual, espacial e proprioceptivo integrado. Os registros de EEG de van der Meer (2020) mostram a diferença concretamente: a escrita à mão engaja redes cerebrais amplas que a digitação não alcança.
 
-A insistência do Fluera na caneta — treze brush engines, tracking de pressão e inclinação, latência de traço abaixo de 15 milissegundos — é a tese da cognição incorporada levada a sério. A mão fica no loop porque a mão é parte do pensamento.
+A insistência do Fluera na caneta — doze brush engines, tracking de pressão e inclinação, tinta de baixa latência em hardware compatível — é a tese da cognição incorporada levada a sério. A mão fica no loop porque a mão é parte do pensamento.

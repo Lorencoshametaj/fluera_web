@@ -2,8 +2,9 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 // ── i18n configuration ───────────────────────────────────────────────────
 // Locales must match the JSON files in src/locales/ and the Locale union
@@ -81,6 +82,52 @@ function buildLastmodMap() {
 
 const LASTMOD_MAP = buildLastmodMap();
 
+// ── Trailing-slash normalizer ────────────────────────────────────────────
+// The built site is directory-style (`/pricing/index.html`), but most source
+// hrefs are written without the slash (`/pricing`). GitHub Pages answers those
+// with a 301 to the slashed URL — one extra round-trip on every internal click
+// and a redirect flag on every audit. Rather than chase ~1.400 distinct hrefs
+// in 16 locales, rewrite them once at build time: an internal, extensionless
+// href/src gains its slash (before any #fragment or ?query). Files with an
+// extension, external URLs, mailto:, and lone "#" anchors are untouched.
+function trailingSlashNormalizer() {
+  const ATTR = /(href|src)="(\/[^"]*)"/g;
+  return {
+    name: "trailing-slash-normalizer",
+    hooks: {
+      "astro:build:done": ({ dir, pages, logger }) => {
+        const root = fileURLToPath(dir);
+        let edits = 0;
+        const files = [];
+        const walk = (d) => {
+          for (const e of readdirSync(d, { withFileTypes: true })) {
+            const full = join(d, e.name);
+            if (e.isDirectory()) walk(full);
+            else if (e.name.endsWith(".html")) files.push(full);
+          }
+        };
+        walk(root);
+        for (const file of files) {
+          const before = readFileSync(file, "utf8");
+          const after = before.replace(ATTR, (whole, attr, url) => {
+            const m = url.match(/^([^#?]*)([#?].*)?$/);
+            const path = m[1];
+            const tail = m[2] ?? "";
+            if (path === "" || path.endsWith("/")) return whole;
+            if (path.startsWith("//")) return whole; // protocol-relative
+            const last = path.slice(path.lastIndexOf("/") + 1);
+            if (last.includes(".")) return whole; // real file
+            edits++;
+            return `${attr}="${path}/${tail}"`;
+          });
+          if (after !== before) writeFileSync(file, after);
+        }
+        logger.info(`normalized ${edits} internal links to trailing-slash form`);
+      },
+    },
+  };
+}
+
 export default defineConfig({
   site: "https://fluera.dev",
   output: "static",
@@ -133,6 +180,7 @@ export default defineConfig({
       },
     }),
     mdx(),
+    trailingSlashNormalizer(),
   ],
   build: {
     inlineStylesheets: "auto",

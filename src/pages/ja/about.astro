@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 import { SITE } from "@/lib/site";
 ---
 
@@ -8,27 +9,25 @@ import { SITE } from "@/lib/site";
   description="Fluera はイタリアの小さなチームで作られています。私たちのストーリー、信念、そして決して越えない一線。"
   locale="ja"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">私たちについて</p>
-        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
-          学生だった頃に<br />欲しかった学習アプリを<br />私たちは作りました。
-        </h1>
-        <div class="prose-ink text-lg">
-          <p>
-            Fluera は不満から生まれました。ひとりは10年のキャリアを持つフルスタック開発者、もうひとりはクラスメートが同じ罠 ― 生産的に見えるが誰の記憶にも残らないアプリ ― にはまっていくのを見ていた学生でした。
-          </p>
-          <p>
-            私たちは研究を読みました。<em>大量に</em>。Bjork、Mueller、Roediger、van der Meer、O'Keefe。認知科学は半世紀前から明確です: 手書きはタイピングを上回り、想起はリレクチャーを上回り、間隔を空けることは詰め込みを上回り、摩擦はリソースです。これらをまともに扱うアプリを見つけられませんでした。だから自分たちで作りました。
-          </p>
-          <p>
-            その過程で、2D レンダリングエンジンをゼロから書きました ― 既製のスタックでは、6つのネイティブプラットフォーム上で60 FPSの筆圧感応インクを実現できなかったからです。エンジンは、認知機能が乗る基盤です。
-          </p>
-        </div>
+  <PageHero
+    kicker={"私たちについて"}
+    title={"学生だった頃に<br />欲しかった学習アプリを<br />私たちは作りました。"}
+    titleSize="xl"
+  >
+    <div slot="copy" class="mt-8">
+      <div class="prose-ink text-lg">
+        <p>
+          Fluera は不満から生まれました。ひとりは10年のキャリアを持つフルスタック開発者、もうひとりはクラスメートが同じ罠 ― 生産的に見えるが誰の記憶にも残らないアプリ ― にはまっていくのを見ていた学生でした。
+        </p>
+        <p>
+          私たちは研究を読みました。<em>大量に</em>。Bjork、Mueller、Roediger、van der Meer、O'Keefe。認知科学は半世紀前から明確です: 手書きはタイピングを上回り、想起はリレクチャーを上回り、間隔を空けることは詰め込みを上回り、摩擦はリソースです。これらをまともに扱うアプリを見つけられませんでした。だから自分たちで作りました。
+        </p>
+        <p>
+          その過程で、2D レンダリングエンジンをゼロから書きました ― 既製のスタックでは、対応クライアント全体で求める筆圧感応インク体験を実現できなかったからです。エンジンは、認知機能が乗る基盤です。
+        </p>
       </div>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
@@ -47,7 +46,7 @@ import { SITE } from "@/lib/site";
             <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
             <div>
               <strong class="text-paper-50 font-serif">あなたのノートのデータを売りません。</strong>
-              <p class="text-sm mt-1 text-paper-300">あなたのノートは保存時に暗号化され、同期時はエンドツーエンドで暗号化されます。誰のモデルの訓練にも使われません ― 私たち自身のものを含めて。</p>
+              <p class="text-sm mt-1 text-paper-300">ノートは端末上で保存時に暗号化されます。同期時は転送中（TLS）と EU インフラ上の保存時に暗号化されますが、エンドツーエンド暗号化ではないため、データ管理者である Fluera は技術的にアクセスできます。販売、広告利用、モデル学習には使用しません。</p>
             </div>
           </li>
           <li class="flex items-start gap-4">

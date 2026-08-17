@@ -1,0 +1,501 @@
+---
+import { SITE, localizedHref } from "@/lib/site";
+import type { Locale } from "@/lib/i18n";
+import type { BetaCopy } from "@/data/beta";
+
+export interface Props {
+  locale: Locale;
+  copy: BetaCopy;
+}
+
+const { locale, copy } = Astro.props;
+const blogHref = localizedHref("/blog", locale);
+
+// Deployment requires these two public Supabase values. Keep this guard in
+// sync with the production waitlist integration: placeholder values must never
+// produce a form that appears operational.
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL ?? "";
+const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? "";
+const configured =
+  supabaseUrl &&
+  supabaseKey &&
+  !supabaseUrl.includes("YOUR-PROJECT-REF") &&
+  !supabaseKey.includes("YOUR_ANON");
+
+const devices = [
+  ["ipad", "iPad + Apple Pencil"],
+  ["iphone", "iPhone"],
+  ["android_tablet", "Android tablet + stylus"],
+  ["android_phone", "Android phone"],
+  ["macos", "Mac (MacBook / iMac)"],
+  ["windows", "Windows PC"],
+  ["linux", "Linux desktop"],
+  ["web", "Web browser"],
+  ["altro", copy.other],
+] as const;
+
+const tools = [
+  ["anki", "Anki"],
+  ["notability", "Notability"],
+  ["goodnotes", "GoodNotes"],
+  ["onenote", "OneNote"],
+  ["obsidian", "Obsidian"],
+  ["notion", "Notion"],
+  ["paper", copy.paper],
+  ["pdf_reader", copy.pdfReader],
+  ["nessuno", copy.none],
+  ["altro", copy.other],
+] as const;
+
+const referrals = [
+  ["", copy.preferNot],
+  ["reddit", "Reddit"],
+  ["twitter", "Twitter / X"],
+  ["tiktok", "TikTok"],
+  ["instagram", "Instagram"],
+  ["youtube", "YouTube"],
+  ["telegram", "Telegram / WhatsApp"],
+  ["amici", copy.wordOfMouth],
+  ["google", copy.googleSearch],
+  ["hn", "Hacker News"],
+  ["altro", copy.other],
+] as const;
+---
+
+<div class="request-shell">
+  {!configured && (
+    <div role="status" class="offline-notice">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 8v5m0 3.5v.1M4.7 19h14.6a1.2 1.2 0 0 0 1-1.8L13 4.5a1.2 1.2 0 0 0-2 0L3.7 17.2a1.2 1.2 0 0 0 1 1.8Z" /></svg>
+      <p>
+        {copy.offlineBefore}
+        <a href={`mailto:${SITE.company.supportEmail}`}>{SITE.company.supportEmail}</a>{copy.offlineAfter}
+      </p>
+    </div>
+  )}
+
+  <div class="form-card">
+    <div class="form-heading">
+      <span>{copy.formEyebrow}</span>
+      <h2>{copy.formTitle}</h2>
+      <p>{copy.formIntro}</p>
+    </div>
+
+    <form id="waitlist-form" novalidate>
+      <div class="honeypot" aria-hidden="true">
+        <label>{copy.honeypot}: <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+      </div>
+
+      <div class="form-section first-section">
+        <div class="two-columns">
+          <div class="field-group">
+            <label class="field-label" for="f-name">{copy.name}</label>
+            <input id="f-name" name="name" type="text" class="field-control" placeholder={copy.namePlaceholder} maxlength="80" autocomplete="given-name" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="f-email">{copy.email} <span aria-hidden="true">*</span></label>
+            <input id="f-email" name="email" type="email" class="field-control" placeholder={copy.emailPlaceholder} required maxlength="254" autocomplete="email" />
+            <p class="field-hint">{copy.emailHint}</p>
+          </div>
+        </div>
+
+        <fieldset class="field-group">
+          <legend class="field-label">{copy.roleQuestion} <span aria-hidden="true">*</span></legend>
+          <div class="choice-grid role-grid">
+            {copy.roles.map((label, index) => {
+              const values = ["student", "professional", "educator", "other"];
+              return (
+                <label class="choice-pill">
+                  <input type="radio" name="role" value={values[index]} required={index === 0} />
+                  <span>{label}</span>
+                </label>
+              );
+            })}
+          </div>
+        </fieldset>
+
+        <div class="two-columns conditional-row">
+          <div class="field-group" data-show-when-role="student educator">
+            <label class="field-label" for="f-faculty">{copy.faculty}</label>
+            <input id="f-faculty" name="faculty" type="text" class="field-control" placeholder={copy.facultyPlaceholder} minlength="2" maxlength="120" />
+            <p class="field-hint">{copy.facultyHint}</p>
+          </div>
+
+          <div class="field-group" data-show-when-role="professional">
+            <label class="field-label" for="f-domain">{copy.workDomain}</label>
+            <input id="f-domain" name="work_domain" type="text" class="field-control" placeholder={copy.workDomainPlaceholder} minlength="2" maxlength="120" />
+            <p class="field-hint">{copy.workDomainHint}</p>
+          </div>
+
+          <div class="field-group" data-show-when-role="student">
+            <label class="field-label" for="f-year">{copy.studyYear}</label>
+            <select id="f-year" name="study_year" class="field-control field-select">
+              <option value="" disabled selected>{copy.select}</option>
+              {copy.years.map((label, index) => <option value={String(index)}>{label}</option>)}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="field-group device-field">
+          <label class="field-label" for="f-device">{copy.device} <span aria-hidden="true">*</span></label>
+          <select id="f-device" name="device" class="field-control field-select" required>
+            <option value="" disabled selected>{copy.select}</option>
+            {devices.map(([value, label]) => <option value={value}>{label}</option>)}
+          </select>
+          <p class="field-hint">{copy.deviceHint}</p>
+        </div>
+
+        <fieldset class="field-group">
+          <legend class="field-label">
+            {copy.currentTools} <span class="legend-note">({copy.pickAny})</span>
+          </legend>
+          <div class="choice-grid tools-grid">
+            {tools.map(([value, label]) => (
+              <label class="choice-pill compact">
+                <input type="checkbox" name="current_tools" value={value} />
+                <span>{label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="form-section final-section">
+        <div class="field-group">
+          <label class="field-label" for="f-pain">{copy.pain} <span aria-hidden="true">*</span></label>
+          <textarea id="f-pain" name="main_pain" rows="5" class="field-control field-textarea" placeholder={copy.painPlaceholder} required minlength="10" maxlength="2000"></textarea>
+          <p class="field-hint">{copy.painHint}</p>
+        </div>
+
+        <div class="field-group referral-field">
+          <label class="field-label" for="f-referral">{copy.referral}</label>
+          <select id="f-referral" name="referral_source" class="field-control field-select">
+            {referrals.map(([value, label]) => <option value={value}>{label}</option>)}
+          </select>
+        </div>
+
+        <label class="consent-row">
+          <input id="f-consent" type="checkbox" name="consent_privacy" required />
+          <span>
+            {copy.consentBeforePrivacy} <a href="/legal/privacy">{copy.privacyPolicy}</a> {copy.consentBetween} <a href="/legal/terms">{copy.terms}</a>{copy.consentAfterTerms}
+          </span>
+        </label>
+
+        <button id="submit-btn" type="submit" disabled={!configured} aria-disabled={configured ? "false" : "true"} class:list={["submit-button", { unavailable: !configured }]}>
+          <span id="submit-label">{configured ? copy.submit : copy.unavailable}</span>
+          <svg id="submit-spinner" class="hidden" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="3" stroke-opacity=".22"></circle>
+            <path d="M12 3a9 9 0 0 1 9 9" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+          </svg>
+        </button>
+
+        <div id="status-success" class="status-card status-success hidden" role="status">
+          <span class="status-mark" aria-hidden="true">✓</span>
+          <div>
+            <p class="status-title">{copy.successTitle}</p>
+            <p>{copy.successBody}</p>
+            <a href={blogHref}>{copy.blogLink}</a>
+          </div>
+        </div>
+
+        <div id="status-already" class="status-card status-already hidden" role="status">
+          <span class="status-mark" aria-hidden="true">→</span>
+          <p>{copy.already}</p>
+        </div>
+
+        <div id="status-error" class="status-card status-error hidden" role="alert">
+          <span class="status-mark" aria-hidden="true">!</span>
+          <div>
+            <p class="status-title">{copy.errorTitle}</p>
+            <p id="status-error-detail"></p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <p class="privacy-note">
+    {copy.privacyFooterBefore} <a href="/legal/privacy">{copy.privacyPolicy}</a>{copy.privacyFooterAfter}
+  </p>
+</div>
+
+<style>
+  .request-shell {
+    width: min(100%, 52rem);
+    margin-inline: auto;
+  }
+
+  .offline-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+    margin-bottom: 1rem;
+    padding: .875rem 1rem;
+    border: 1px solid rgb(96 165 250 / .24);
+    border-radius: .9rem;
+    background: rgb(37 99 235 / .07);
+    color: #cbd5e1;
+    font-size: .82rem;
+    line-height: 1.6;
+  }
+
+  .offline-notice svg { width: 1.1rem; flex: none; margin-top: .15rem; fill: none; stroke: #60a5fa; stroke-width: 1.7; }
+  .offline-notice a, .privacy-note a { color: #93c5fd; text-decoration: underline; text-underline-offset: 3px; }
+
+  .form-card {
+    overflow: hidden;
+    border: 1px solid rgb(255 255 255 / .1);
+    border-radius: 1.25rem;
+    background: linear-gradient(155deg, rgb(20 25 34 / .98), rgb(10 13 18 / .98));
+    box-shadow: 0 30px 80px rgb(0 0 0 / .22), inset 0 1px rgb(255 255 255 / .04);
+  }
+
+  .form-heading { padding: clamp(1.5rem, 4vw, 2.4rem); border-bottom: 1px solid rgb(255 255 255 / .07); }
+  .form-heading > span { display: block; margin-bottom: .65rem; color: #60a5fa; font: 600 .68rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; }
+  .form-heading h2 { color: #f8fafc; font-family: var(--font-serif, Georgia, serif); font-size: clamp(1.7rem, 4vw, 2.25rem); line-height: 1.08; }
+  .form-heading p { max-width: 42rem; margin-top: .7rem; color: #94a3b8; font-size: .9rem; line-height: 1.7; }
+
+  .form-section { display: grid; gap: 1.35rem; padding: clamp(1.5rem, 4vw, 2.4rem); border-top: 1px solid rgb(255 255 255 / .07); }
+  .first-section { border-top: 0; }
+  .two-columns { display: grid; gap: 1.25rem; }
+  .field-group { min-width: 0; margin: 0; padding: 0; border: 0; }
+  .field-label { display: block; margin-bottom: .5rem; color: #e2e8f0; font-size: .82rem; font-weight: 600; line-height: 1.45; }
+  .field-label > span:not(.legend-note) { color: #60a5fa; }
+  .legend-note { color: #64748b; font-weight: 400; }
+  .field-hint { margin-top: .42rem; color: #64748b; font-size: .72rem; line-height: 1.5; }
+
+  .field-control {
+    width: 100%;
+    min-height: 3rem;
+    padding: .77rem .9rem;
+    border: 1px solid rgb(255 255 255 / .1);
+    border-radius: .72rem;
+    outline: none;
+    background: rgb(2 6 12 / .58);
+    color: #f8fafc;
+    font: inherit;
+    font-size: .88rem;
+    transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+  }
+
+  .field-control::placeholder { color: #526071; }
+  .field-control:hover { border-color: rgb(255 255 255 / .18); }
+  .field-control:focus { border-color: #3b82f6; background: rgb(2 6 12 / .82); box-shadow: 0 0 0 3px rgb(37 99 235 / .15); }
+  .field-control:invalid:not(:placeholder-shown) { border-color: rgb(248 113 113 / .55); }
+  .field-select { color-scheme: dark; appearance: auto; }
+  .field-textarea { min-height: 8rem; resize: vertical; line-height: 1.6; }
+  .device-field, .referral-field { max-width: 27rem; }
+
+  .choice-grid { display: flex; flex-wrap: wrap; gap: .55rem; }
+  .choice-pill { position: relative; display: inline-flex; min-height: 2.75rem; align-items: center; cursor: pointer; }
+  .choice-pill input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  .choice-pill span {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    padding: .6rem .9rem;
+    border: 1px solid rgb(255 255 255 / .1);
+    border-radius: .72rem;
+    background: rgb(2 6 12 / .48);
+    color: #aeb9c8;
+    font-size: .79rem;
+    line-height: 1.3;
+    transition: border-color .18s ease, background .18s ease, color .18s ease;
+  }
+  .choice-pill.compact { min-height: 2.35rem; }
+  .choice-pill.compact span { min-height: 2.35rem; padding: .5rem .76rem; }
+  .choice-pill:hover span { border-color: rgb(96 165 250 / .4); color: #f8fafc; }
+  .choice-pill input:focus-visible + span { outline: 2px solid #60a5fa; outline-offset: 2px; }
+  .choice-pill input:checked + span { border-color: #3b82f6; background: rgb(37 99 235 / .15); color: #bfdbfe; box-shadow: inset 0 0 0 1px rgb(59 130 246 / .12); }
+
+  [data-show-when-role] { display: none; }
+  [data-show-when-role].is-visible { display: block; }
+  .conditional-row:empty { display: none; }
+  .honeypot { position: absolute; inset-inline-start: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+  .consent-row { display: grid; grid-template-columns: 1rem 1fr; gap: .75rem; align-items: start; color: #94a3b8; font-size: .78rem; line-height: 1.65; cursor: pointer; }
+  .consent-row input { width: 1rem; height: 1rem; margin-top: .18rem; accent-color: #2563eb; }
+  .consent-row a { color: #bfdbfe; text-decoration: underline; text-underline-offset: 3px; }
+
+  .submit-button {
+    display: inline-flex;
+    width: 100%;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: .65rem;
+    border: 1px solid #3b82f6;
+    border-radius: .78rem;
+    background: #2563eb;
+    color: white;
+    font-size: .88rem;
+    font-weight: 700;
+    box-shadow: 0 14px 35px rgb(37 99 235 / .2), inset 0 1px rgb(255 255 255 / .16);
+    transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+  }
+  .submit-button:not(:disabled):hover { transform: translateY(-1px); background: #3475ec; box-shadow: 0 18px 40px rgb(37 99 235 / .28); }
+  .submit-button:not(:disabled):active { transform: translateY(0); }
+  .submit-button:focus-visible { outline: 2px solid #93c5fd; outline-offset: 3px; }
+  .submit-button.unavailable { cursor: not-allowed; border-color: rgb(255 255 255 / .08); background: #202733; color: #788496; box-shadow: none; }
+  #submit-spinner { width: 1.1rem; height: 1.1rem; animation: beta-spin .8s linear infinite; }
+
+  .status-card { display: grid; grid-template-columns: 1.8rem 1fr; gap: .75rem; align-items: start; padding: 1rem; border-radius: .8rem; font-size: .78rem; line-height: 1.55; }
+  .status-card.hidden, #submit-spinner.hidden { display: none; }
+  .status-mark { display: grid; width: 1.65rem; height: 1.65rem; place-items: center; border-radius: 50%; font-weight: 700; }
+  .status-title { margin-bottom: .12rem; font-weight: 700; }
+  .status-card a { display: inline-block; margin-top: .5rem; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .status-success { border: 1px solid rgb(52 211 153 / .24); background: rgb(16 185 129 / .08); color: #a7f3d0; }
+  .status-success .status-mark { background: rgb(16 185 129 / .14); color: #6ee7b7; }
+  .status-already { border: 1px solid rgb(96 165 250 / .24); background: rgb(37 99 235 / .08); color: #bfdbfe; }
+  .status-already .status-mark { background: rgb(37 99 235 / .16); color: #93c5fd; }
+  .status-error { border: 1px solid rgb(248 113 113 / .26); background: rgb(239 68 68 / .08); color: #fecaca; }
+  .status-error .status-mark { background: rgb(239 68 68 / .14); color: #fca5a5; }
+
+  .privacy-note { max-width: 39rem; margin: 1rem auto 0; color: #64748b; text-align: center; font-size: .7rem; line-height: 1.6; }
+  @keyframes beta-spin { to { transform: rotate(360deg); } }
+
+  :global(html.light) .offline-notice { border-color: rgb(37 99 235 / .2); background: rgb(37 99 235 / .05); color: #475569; }
+  :global(html.light) .form-card { border-color: rgb(15 23 42 / .1); background: linear-gradient(155deg, #fff, #f8fafc); box-shadow: 0 30px 80px rgb(15 23 42 / .1), inset 0 1px #fff; }
+  :global(html.light) .form-heading, :global(html.light) .form-section { border-color: rgb(15 23 42 / .08); }
+  :global(html.light) .form-heading h2 { color: #0f172a; }
+  :global(html.light) .form-heading p, :global(html.light) .consent-row { color: #64748b; }
+  :global(html.light) .field-label { color: #1e293b; }
+  :global(html.light) .field-control, :global(html.light) .choice-pill span { border-color: rgb(15 23 42 / .12); background: #fff; color: #334155; }
+  :global(html.light) .field-control::placeholder { color: #94a3b8; }
+  :global(html.light) .field-control:hover, :global(html.light) .choice-pill:hover span { border-color: rgb(37 99 235 / .35); }
+  :global(html.light) .field-control:focus { background: #fff; }
+  :global(html.light) .field-select { color-scheme: light; }
+  :global(html.light) .choice-pill input:checked + span { background: rgb(37 99 235 / .08); color: #1d4ed8; }
+
+  @media (min-width: 640px) {
+    .two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .role-grid .choice-pill { flex: 1 1 calc(50% - .3rem); }
+    .role-grid .choice-pill span { width: 100%; justify-content: center; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .submit-button, .choice-pill span, .field-control { transition: none; }
+    #submit-spinner { animation: none; }
+  }
+</style>
+
+<script is:inline define:vars={{ supabaseUrl, supabaseKey, configured, sendingLabel: copy.sending, submitLabel: copy.submit, retryError: copy.retryError, offlineError: copy.offlineError }}>
+  const form = document.getElementById("waitlist-form");
+  const btn = document.getElementById("submit-btn");
+  const btnLabel = document.getElementById("submit-label");
+  const btnSpinner = document.getElementById("submit-spinner");
+  const okBox = document.getElementById("status-success");
+  const dupeBox = document.getElementById("status-already");
+  const errBox = document.getElementById("status-error");
+  const errDetail = document.getElementById("status-error-detail");
+  const renderedAt = Date.now();
+
+  const conditionalBlocks = Array.from(form.querySelectorAll("[data-show-when-role]"));
+  const facultyInput = form.querySelector('input[name="faculty"]');
+  const domainInput = form.querySelector('input[name="work_domain"]');
+  const yearSelect = form.querySelector('select[name="study_year"]');
+
+  function applyRoleVisibility() {
+    const role = (form.querySelector('input[name="role"]:checked') || {}).value || "";
+    conditionalBlocks.forEach((el) => {
+      const allowed = (el.getAttribute("data-show-when-role") || "").split(/\s+/);
+      const visible = allowed.includes(role);
+      el.classList.toggle("is-visible", visible);
+      el.querySelectorAll("input, select, textarea").forEach((field) => {
+        field.disabled = !visible;
+        if (!visible) field.required = false;
+      });
+    });
+    if (facultyInput) facultyInput.required = role === "student" || role === "educator";
+    if (domainInput) domainInput.required = role === "professional";
+    if (yearSelect) yearSelect.required = role === "student";
+  }
+
+  form.querySelectorAll('input[name="role"]').forEach((radio) => radio.addEventListener("change", applyRoleVisibility));
+  applyRoleVisibility();
+
+  function hideStatuses() {
+    okBox.classList.add("hidden");
+    dupeBox.classList.add("hidden");
+    errBox.classList.add("hidden");
+  }
+
+  function setLoading(loading) {
+    btn.disabled = !configured || loading;
+    btnLabel.textContent = loading ? sendingLabel : submitLabel;
+    btnSpinner.classList.toggle("hidden", !loading);
+  }
+
+  function showError(message) {
+    errDetail.textContent = message;
+    errBox.classList.remove("hidden");
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    hideStatuses();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    if (!configured) {
+      showError(offlineError);
+      return;
+    }
+    if (Date.now() - renderedAt < 2000) return;
+
+    const formData = new FormData(form);
+    const tools = Array.from(form.querySelectorAll('input[name="current_tools"]:checked')).map((input) => input.value);
+    const role = formData.get("role") || "";
+    const facultyVal = (formData.get("faculty") || "").trim();
+    const domainVal = (formData.get("work_domain") || "").trim();
+    const yearRaw = formData.get("study_year");
+    const yearVal = yearRaw ? parseInt(yearRaw, 10) : null;
+
+    const payload = {
+      p_email: (formData.get("email") || "").trim(),
+      p_faculty: facultyVal || domainVal || role,
+      p_study_year: Number.isFinite(yearVal) ? yearVal : 9,
+      p_device: formData.get("device"),
+      p_current_tools: tools,
+      p_main_pain: (formData.get("main_pain") || "").trim(),
+      p_consent_privacy: formData.get("consent_privacy") === "on",
+      p_name: (formData.get("name") || "").trim() || null,
+      p_referral_source: formData.get("referral_source") || null,
+      p_locale: navigator.language || null,
+      p_user_agent: navigator.userAgent.slice(0, 500),
+      p_honeypot: (formData.get("website") || "").trim() || null,
+    };
+
+    setLoading(true);
+    try {
+      const response = await fetch(`${supabaseUrl}/rest/v1/rpc/submit_waitlist`, {
+        method: "POST",
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error((await response.text()) || `HTTP ${response.status}`);
+      const result = await response.json();
+      if (result && result.already_signed) {
+        dupeBox.classList.remove("hidden");
+      } else {
+        okBox.classList.remove("hidden");
+        form.reset();
+        applyRoleVisibility();
+      }
+    } catch (error) {
+      console.error("Waitlist submit failed:", error);
+      showError(retryError);
+    } finally {
+      setLoading(false);
+    }
+  });
+</script>

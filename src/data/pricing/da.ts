@@ -82,7 +82,7 @@ const data: PricingData = {
     },
     {
       q: "Hvad sker der med mine canvases, hvis jeg opsiger Plus eller Pro?",
-      a: "Alt forbliver på din enhed (local-first), og de 3 grundpenslar + PNG-eksport fortsætter med at fungere i Free tier. Ekstra canvases bliver skrivebeskyttede, indtil du genaktiverer eller eksporterer. Intet slettes uden din eksplicitte handling.",
+      a: "Alt forbliver på din enhed (local-first), og de 3 grundpensler samt PNG-eksport fungerer fortsat med Free. Funktioner i den betalte plan sættes på pause, indtil du genaktiverer. Intet slettes uden din udtrykkelige handling.",
     },
     {
       q: "Hvorfor er der ingen gratis Pro-prøveperiode?",
@@ -98,7 +98,7 @@ const data: PricingData = {
     },
     {
       q: "Refunderingspolitik?",
-      a: "30 dage, ingen spørgsmål, både månedlig og årlig. Skriv til support@fluera.dev fra den adresse, du tilmeldte dig med.",
+      a: "Vilkår for refundering og fortrydelse afhænger af butik og købskanal. Den gældende politik vises før bekræftelse; skriv til support@fluera.dev fra din registrerede adresse, hvis du har brug for hjælp.",
     },
     {
       q: "Hvordan fungerer studieverifikation?",

@@ -35,7 +35,7 @@ import { SITE } from "@/lib/site";
         Hver notesbog i Fluera lever i en lokal SQLite-database krypteret med SQLCipher — en bredt revideret udvidelse, der transparent krypterer hver side af databasen med AES-256-CBC og kontrollerer integriteten pr. side med HMAC-SHA512.
       </p>
       <p>
-        Nøgleudledningen bruger PBKDF2 med SHA-256 og 256.000 iterationer (i tråd med OWASP). Adgangsfrasen opbevares i platformens keychain — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows, libsecret på Linux. Den sendes aldrig til vores servere.
+        Den lokale databasenøgle er en tilfældig 256-bit-nøgle, som Fluera genererer og gemmer i platformens sikre nøglelager — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows og libsecret på Linux. Den er hverken din kontoadgangskode eller en adgangsfrase til cloud-sync, og den lokale databasenøgle sendes aldrig til Flueras servere.
       </p>
 
       <h2>Under transport: TLS 1.3</h2>
@@ -48,7 +48,7 @@ import { SITE } from "@/lib/site";
         Cloud-sync, når den er aktiveret, sender dine notesbøger over TLS til vores sync-tjeneste (Supabase, region EU, eu-north-1), hvor de opbevares krypteret i hvile på infrastrukturniveau. Synkroniseringen er <em>ikke</em> end-to-end-krypteret: data lagres serverlæsbart (gzip-komprimeret), og Fluera kan som dataansvarlig teknisk tilgå indholdet. Vi sælger det aldrig og bruger det aldrig til annoncering. Synkronisering er opt-in pr. notesbog — du kan holde nogle notesbøger lokalt, mens du synkroniserer andre.
       </p>
       <p>
-        Vil du have, at indholdet aldrig forlader din enhed serverlæsbart, så lad være med at aktivere cloud-sync for den pågældende notesbog. Den lokale database forbliver krypteret med SQLCipher, og <code>.fluera</code>-eksporter er AES-256-GCM-krypterede.
+        Vil du have, at indholdet aldrig forlader din enhed serverlæsbart, så lad være med at aktivere cloud-sync for den pågældende notesbog. Den lokale database forbliver krypteret med SQLCipher. En adgangskodebeskyttet <code>.fluera</code>-eksport krypteres separat med AES-256-GCM; eksportadgangskoden beskytter kun filen og har intet med cloud-sync at gøre.
       </p>
 
       <h2>P2P-samarbejde: direkte, krypteret</h2>
@@ -77,9 +77,9 @@ import { SITE } from "@/lib/site";
         Enhver adgang til delte notesbøger — hvem, fra hvilken enhed, hvornår — skrives til en append-only audit-trail. Administratorer kan eksportere trailet som CSV eller JSON til compliance-kontroller. Trailet er write-once: fjernelse kræver en dokumenteret begrundelse og logges selv.
       </p>
 
-      <h2>Recovery og nøgletab</h2>
+      <h2>Datagendannelse</h2>
       <p>
-        Hvis du mister adgangsfrasen, bliver de krypterede data uigenkaldelige. Det er bevidst — alternativet ville være en recovery-sti, der nødvendigvis ville svække krypteringsmodellen. For institutionelle konti kan en valgfri, administratorforvalt recovery-nøgle konfigureres; det er en dokumenteret afvejning, som institutionen bevidst vælger.
+        Synkroniserede notesbøger er knyttet til din konto: efter den normale kontogendannelse kan du logge ind igen og hente dem på en ny enhed. Der findes ingen separat adgangsfrase til cloud-sync, som du skal huske. Kontogendannelse kan ikke genskabe en notesbog, der kun lå lokalt, hvis enhedens data er slettet; aktivér sync for de notesbøger, du vil kunne gendanne på tværs af enheder.
       </p>
 
       <h2>Responsible disclosure</h2>

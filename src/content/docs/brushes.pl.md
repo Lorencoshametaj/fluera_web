@@ -1,14 +1,14 @@
 ---
 lang: "pl"
 title: "Pędzle"
-description: "Trzynaście silników pędzli, każdy skalibrowany do innego rodzaju śladu. Krótki przewodnik po wyborze właściwego — i dlaczego liczy się to mniej, niż myślisz."
+description: "Dwanaście silników pędzli, każdy skalibrowany do innego rodzaju śladu. Krótki przewodnik po wyborze właściwego — i dlaczego liczy się to mniej, niż myślisz."
 section: canvas
 sectionLabel: "Canvas"
 order: 1
 updatedAt: 2026-04-20
 ---
 
-Fluera dostarcza trzynaście silników pędzli. Każdy to kompletny pipeline renderowania — nacisk, nachylenie, prędkość, fragment shadery per pędzel — nie podmiana tekstury. Brzmi jak dużo; w praktyce większość twojego uczenia się odbędzie się w jednym albo dwóch z nich.
+Fluera dostarcza dwanaście silników pędzli. Każdy to kompletny pipeline renderowania — nacisk, nachylenie, prędkość, fragment shadery per pędzel — nie podmiana tekstury. Brzmi jak dużo; w praktyce większość twojego uczenia się odbędzie się w jednym albo dwóch z nich.
 
 ## Krótka odpowiedź
 
@@ -19,7 +19,7 @@ Fluera dostarcza trzynaście silników pędzli. Każdy to kompletny pipeline ren
 
 Cała reszta jest do specyficznych sytuacji. Nie myśl o tym za dużo.
 
-## Trzynaście
+## Dwanaście
 
 | Pędzel              | Dobry do                                          | Notatki                                          |
 |---------------------|---------------------------------------------------|--------------------------------------------------|
@@ -35,11 +35,10 @@ Cała reszta jest do specyficznych sytuacji. Nie myśl o tym za dużo.
 | Lawowanie           | Odczucie wet-on-paper                             | Krwawienie koloru na krawędziach                 |
 | Spray               | Efekty cząsteczek, cienie                         | Zniekształcenie krawędzi                         |
 | Neon                | Świecące adnotacje                                | Zewnętrzne świecenie, fluorescencyjne nasycenie  |
-| Gumka               | Usuwanie piksel po pikselu, nie jest narzędziem delete | Świadoma historii — odsłania znaki pod spodem |
 
 ## Dlaczego silnik się liczy (krótko)
 
-Silnik Fluery zachowuje sygnały nacisku, nachylenia i prędkości z latencją poniżej 15 milisekund na iOS i macOS. To nie jest tylko kaprys produktowy. <a href="/pl/science/authors/van-der-meer">Praca EEG van der Meer</a> pokazała, że pisanie ręczne angażuje sieci sensomotoryczne, których pisanie na klawiaturze nie angażuje, a bogactwo tych sygnałów skaluje się z wiernością przechwytywania.
+Silnik Fluery zachowuje sygnały nacisku, nachylenia i prędkości dzięki atramentowi o niskiej latencji na obsługiwanym sprzęcie. To nie jest tylko kaprys produktowy. <a href="/pl/science/authors/van-der-meer">Praca EEG van der Meer</a> pokazała, że pisanie ręczne angażuje sieci sensomotoryczne, których pisanie na klawiaturze nie angażuje, a bogactwo tych sygnałów skaluje się z wiernością przechwytywania.
 
 W praktyce: canvas, który gubi pociągnięcia, opóźnia się pod naciskiem albo spłaszcza dane nachylenia, wyrzuca dokładnie ten sygnał, który czyni notatki ręczne poznawczo lepszymi. Zbudowaliśmy silnik od zera, bo żadna opcja off-the-shelf nie spełniała standardu.
 
@@ -52,7 +51,7 @@ Naciśnij i przytrzymaj dowolny pędzel w toolbarze. Otworzy się mały panel z:
 - **Stabilizacja** (żadna / miękka / mocna) — wygładza jitter bez zabijania osobowości
 - **Krzywa nacisku** — dostosowuje reakcję na lekki vs mocny nacisk
 
-Zmiany są per canvas, nie globalne, więc możesz mieć miękki ołówek w jednym notatniku i ostry w innym.
+Zmiany dotyczą bieżącego canvasu, zamiast modyfikować całą aplikację. Dzięki temu canvas całych studiów zachowuje własne ustawienia pędzli.
 
 ## Następne
 

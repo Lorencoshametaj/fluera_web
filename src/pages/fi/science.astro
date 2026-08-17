@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import LearningStep from "@/components/LearningStep.astro";
+import ScienceCanvasPath from "@/components/ScienceCanvasPath.astro";
 import AuthorCard from "@/components/AuthorCard.astro";
 import { getCollection } from "astro:content";
 
@@ -13,7 +13,7 @@ const authors = (await getCollection("authors", ({ data }) => data.lang === "fi"
 
 const steps = [
   { n: 1,  title: "Tallenna",                  verb: "Luentopäivä",        description: "Kirjoita käsitteet käsin luennon aikana. Sijoita ne tilaan. Kynän hitaus pakottaa tiivistämään — ja tiivistäminen on paikka, jossa enkoodaus syntyy." },
-  { n: 2,  title: "Rekonstruktio",             verb: "Saman illan aikana", description: "Sulje kirja. Rekonstruoi muistista tyhjälle canvasille se, mitä muistat. Punaiset solmut, joissa epäröit, ovat kartta siitä, mitä on opittava (Kapur, Productive Failure, 2008)." },
+  { n: 2,  title: "Rekonstruktio",             verb: "Saman illan aikana", description: "Sulje kirja. Rekonstruoi se, mitä muistat, saman canvaksen vapaalle alueelle. Punaiset solmut, joissa epäröit, ovat kartta siitä, mitä on opittava (Kapur, Productive Failure, 2008)." },
   { n: 3,  title: "Sokraattinen",              verb: "48 tunnin sisällä",  description: "Tekoäly kysyy, sinä vastaat. Ilmoitat varmuutesi 1–5 ennen jokaista paljastusta. Metakognitio tehty näkyväksi." },
   { n: 4,  title: "Centaur",                   verb: "Heti perään",        description: "Ghost Map peittää ajattelusi ihanteellisen kartan päälle. Hyperkorjaus kiinnittää korjaukset muistiin (Butterfield ja Metcalfe, 2001)." },
   { n: 5,  title: "Uni",                       verb: "Sinä yönä",          description: "Älä tee mitään. Hidasaaltouni toistaa päivän. Hippokampus luovuttaa jäljet neokorteksille." },
@@ -28,49 +28,28 @@ const steps = [
 ---
 
 <BaseLayout
+  bodyClass="science-page"
   title="Flueran taustalla oleva tiede"
   description="Fluera nojaa viiteen vuosikymmeneen muistitutkimusta — Bjork, Mueller, van der Meer, Roediger ja Nobel-palkittu hippokampaalisten paikkasolujen neurotiede. Tutustu 12-vaiheiseen sykliin ja jokaisen ominaisuuden taustalla oleviin periaatteisiin."
   locale="fi"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">Tiede</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          Viisi vuosikymmentä muistitutkimusta<br />yhden sovelluksen takana.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Jokainen Flueran ominaisuus viittaa julkaistuun tutkimukseen. Alla: 12-vaiheinen oppimissykli, 23 perustana olevaa periaatetta, kaksitoista mieltä, joiden varaan rakennamme, ja niiden rajojen merkitseminen, mitä emme vielä väitä.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#learning-cycle" class="btn-secondary">Sykliin</a>
-          <a href="#principles" class="btn-secondary">Periaatteiden hakemisto</a>
-          <a href="#authors" class="btn-secondary">Tekijät</a>
-          <a href="/fi/research" class="btn-secondary">Bibliografia →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">Sykli</p>
-        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Yksi canvas. Kaksitoista kognitiivista liikettä.</h2>
-        <p class="prose-ink text-lg max-w-prose">
-          Sykli on sekä peräkkäinen että iteratiivinen. Vaiheet 1–4 rakentavat enkoodauksen. Vaihe 5 (uni) on neuvottelematon biologia. Vaiheet 6–9 vakauttavat päivien ja viikkojen aikana. Vaiheet 10–12 tekevät tietämyksestä pysyvää ja siirrettävää.
-        </p>
-      </div>
-
-      <ol class="max-w-3xl list-none p-0">
-        {steps.map((s) => (
-          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
-        ))}
-      </ol>
-    </div>
-  </section>
+  <ScienceCanvasPath
+    locale="fi"
+    heroKicker={"Tiede"}
+    heroTitleHtml={"Viisi vuosikymmentä muistitutkimusta<br />yhden sovelluksen takana."}
+    heroDescription={"Jokainen Flueran ominaisuus viittaa julkaistuun tutkimukseen. Alla: 12-vaiheinen oppimissykli, 23 perustana olevaa periaatetta, kaksitoista mieltä, joiden varaan rakennamme, ja niiden rajojen merkitseminen, mitä emme vielä väitä."}
+    cycleKicker={"Sykli"}
+    cycleTitle={"Yksi canvas. Kaksitoista kognitiivista liikettä."}
+    cycleDescription={"Sykli on sekä peräkkäinen että iteratiivinen. Vaiheet 1–4 rakentavat enkoodauksen. Vaihe 5 (uni) on neuvottelematon biologia. Vaiheet 6–9 vakauttavat päivien ja viikkojen aikana. Vaiheet 10–12 tekevät tietämyksestä pysyvää ja siirrettävää."}
+    navigation={[
+      { href: "#learning-cycle", label: "Sykliin" },
+      { href: "#principles", label: "Periaatteiden hakemisto" },
+      { href: "#authors", label: "Tekijät" },
+      { href: "/fi/research", label: "Bibliografia →" },
+    ]}
+    steps={steps}
+  />
 
   <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">

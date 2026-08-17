@@ -14,4 +14,4 @@ O desenho experimental era simples: os estudantes assistiam às aulas e faziam a
 
 A conclusão é contraintuitiva na era da velocidade: a lentidão da captura força elaboração cognitiva no momento da codificação. A mão é o gargalo — e o gargalo é onde a aprendizagem acontece.
 
-A filosofia de produto inteira do Fluera parte daqui. A escrita à mão não é uma escolha skeuomórfica. É a ferramenta cognitiva. Treze brush engines. Pressão, inclinação, velocidade. Latência de traço abaixo de 15 milissegundos em cada dispositivo suportado. O canvas infinito não é estética — é o substrato que sua memória estava procurando.
+A filosofia de produto inteira do Fluera parte daqui. A escrita à mão não é uma escolha skeuomórfica. É a ferramenta cognitiva. Doze brush engines. Pressão, inclinação, velocidade. Tinta de baixa latência em hardware compatível. O canvas infinito não é estética — é o substrato que sua memória estava procurando.

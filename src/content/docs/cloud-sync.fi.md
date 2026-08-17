@@ -1,7 +1,7 @@
 ---
 lang: "fi"
 title: "Pilvisynkronointi"
-description: "Miten synkronoit canvas-näkymät laitteiden välillä, mitä salataan ja miten palautat tilanteen, jos salalauseesi katoaa."
+description: "Miten synkronoit canvas-näkymät laitteiden välillä, miten dataasi suojataan ja mitä voit odottaa."
 section: settings
 sectionLabel: "Asetukset"
 order: 2
@@ -13,8 +13,7 @@ Pilvisynkronointi on opt-in muistikirjakohtaisesti. Voit synkronoida yhden canva
 ## Synkronoinnin aktivointi ensimmäisellä laitteella
 
 1. Avaa **Asetukset → Yksityisyys** ja aktivoi **Pilvisynkronointi**.
-2. Luo tai syötä **synkronoinnin salalause**. Se on *erillinen* tilin salasanasta. Salalausetta käytetään salausavaimen johtamiseen — ja se säilytetään vain laitteellasi, ei koskaan palvelimillamme.
-3. Valitse, mitkä muistikirjat synkronoidaan. Klikkaa hiiren oikealla (tai paina pitkään) muistikirjaa → **Aktivoi synkronointi**.
+2. Valitse, mitkä muistikirjat synkronoidaan. Klikkaa hiiren oikealla (tai paina pitkään) muistikirjaa → **Aktivoi synkronointi**.
 
 Pieni pilvi-ikoni ilmestyy jokaiseen synkronoituun muistikirjaan. Punainen muunnelma osoittaa virhettä; harmaa keskeytystä.
 
@@ -22,22 +21,21 @@ Pieni pilvi-ikoni ilmestyy jokaiseen synkronoituun muistikirjaan. Punainen muunn
 
 1. Asenna Fluera toiselle laitteelle.
 2. Kirjaudu sisään samalla tilillä.
-3. Syötä *sama* synkronoinnin salalause kun sitä pyydetään. Salalausetta ei voi palauttaa — jos sitä ei ole, salatut tiedot eivät ole luettavissa uudella laitteella.
-4. Pilvisynkronointi käynnistyy. Odota, että ensimmäinen täysi synkronointi vie muutaman minuutin keskikokoiselle muistikirjalle.
+3. Pilvisynkronointi käynnistyy automaattisesti. Odota, että ensimmäinen täysi synkronointi vie muutaman minuutin keskikokoiselle muistikirjalle.
 
-## Mitä salataan ja miten
+## Miten synkronoitua dataasi suojataan
 
-- Jokainen muistikirja salataan paikallisesti muistikirjakohtaisella avaimella.
-- Nämä avaimet salataan root-avaimella, joka johdetaan synkronointisi salalauseesta PBKDF2-SHA256:lla, 256 000 iteraatiolla.
-- Vain salatut tavut päätyvät palvelimelle. Emme pysty lukemaan muistikirjojasi.
+- Laitteellasi paikallinen tietokanta salataan levossa SQLCipherillä (AES-256).
+- Synkronoitaessa data salataan siirron aikana TLS 1.3:lla ja moderneilla cipher suiteilla.
+- Palvelimillamme data tallennetaan EU-infrastruktuuriin (Supabase, `eu-north-1`) ja suojataan levossa infrastruktuuritason salauksella.
 
-Metatiedot (muistikirjojen otsikot, aikaleimat, koko) salataan myös — palvelin näkee läpinäkymättömiä blobeja ja synkronoinnin aikaleimoja.
+Selvyyden vuoksi: pilvisynkronointi ei ole **päästä päähän -salattua**. Rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä palvelun tarjoamiseen ja ylläpitoon. Emme koskaan myy dataasi, käytä sitä mainontaan tai mallien kouluttamiseen. Jos haluat kopion, jonka vain sinä voit avata, vie `.fluera`-tiedosto; nämä viennit salataan AES-256-GCM:llä.
 
-## Jos kadotat salalauseen
+## Datan palauttaminen
 
-Jos unohdat salalauseen eikä sinulla ole laitetta, jolla on yhä avain välimuistissa, salatut tietosi ovat **palautumattomissa**. Tämä on suunniteltua. Vaihtoehto — palvelinpuolen palautusmekanismi — rikkoisi päästä päähän -mallin, ja se on kompromissi, jota emme ole valmiita tekemään kuluttajatileille.
+Koska synkronoidut muistikirjat tallennetaan EU-palvelimillemme ja liitetään tiliisi, voit palauttaa ne kirjautumalla uudelleen millä tahansa laitteella. Erillistä salalausetta ei tarvitse muistaa eikä sitä voi kadottaa.
 
-**Education-tileille** voi konfiguroida valinnaisen palautusavaimen, jota ylläpitäjä säilyttää, käyttöönoton yhteydessä. Se on eksplisiittinen opt-in, dokumentoitu institutionaalisessa DPA:ssa ja auditoitu.
+Jos haluat salatun kopion, jonka vain sinä voit avata, vie `.fluera`-tiedosto (AES-256-GCM) ja säilytä sen salasana itse; Fluera ei voi lukea tätä tiedostoa.
 
 ## Konfliktien ratkaisu
 

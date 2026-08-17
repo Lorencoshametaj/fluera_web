@@ -2,6 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Sora Fluera";
+  src: url("/fonts/Sora-Bold.woff2") format("woff2"),
+       url("/fonts/Sora-Bold.ttf") format("truetype");
+  font-display: optional;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Playfair Fluera";
+  src: url("/fonts/PlayfairDisplay-SemiBoldItalic.woff2") format("woff2"),
+       url("/fonts/PlayfairDisplay-SemiBoldItalic.ttf") format("truetype");
+  font-display: optional;
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* Metric-matched fallbacks: the system face is scaled to occupy the same
+   space as the webfont, so the swap repaints in place instead of reflowing.
+   Without this, long headlines gain a line when Sora lands (~8% wider than
+   Arial-class faces): the hero section shifts (CLS 0.08) and the browser
+   re-records a later, larger LCP at font-arrival time.
+   Ratios measured from the actual font tables (weighted lowercase advance):
+   Sora-Bold 0.513em vs Arial-class 0.476em → 107.8%. Vertical overrides copy
+   the webfont's own hhea metrics so line boxes match exactly. */
+@font-face {
+  font-family: "Sora Fallback";
+  src: local("Arial Bold"), local("Arial");
+  font-weight: 700;
+  size-adjust: 107.8%;
+  ascent-override: 90%;   /* 0.97em ÷ 1.078 size-adjust */
+  descent-override: 26.9%; /* 0.29em ÷ 1.078 */
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Playfair Fallback";
+  src: local("Georgia Italic"), local("Georgia");
+  font-style: italic;
+  font-weight: 600;
+  size-adjust: 95.2%;
+  ascent-override: 113.7%; /* 1.082em ÷ 0.952 */
+  descent-override: 26.4%; /* 0.251em ÷ 0.952 */
+  line-gap-override: 0%;
+}
+
 @layer base {
   :root {
     color-scheme: dark;
@@ -43,9 +89,9 @@
   a { color: inherit; }
 
   h1, h2, h3, h4 {
-    font-family: theme("fontFamily.serif");
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-family: theme("fontFamily.sans");
+    font-weight: 600;
+    letter-spacing: -0.035em;
     /* Balance headline lines so no single word orphans onto its own line. */
     text-wrap: balance;
   }
@@ -77,9 +123,11 @@
   .hairline-strong { border-color: var(--hairline-strong); }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium;
+    transition: color 160ms ease-out, background-color 160ms ease-out, border-color 160ms ease-out, transform 120ms ease-out;
     @apply focus-visible:outline-offset-4;
   }
+  .btn:active { transform: translateY(1px); }
   .btn-primary {
     @apply btn bg-paper-50 text-ink-950 hover:bg-white;
   }
@@ -91,7 +139,7 @@
   }
 
   .pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-paper-200;
+    @apply inline-flex items-center gap-2 rounded-lg border border-white/10 bg-ink-900 px-3 py-1.5 text-xs font-medium text-paper-200;
   }
 
   .eyebrow {
@@ -285,22 +333,20 @@
   }
 
   .section {
-    @apply py-20 sm:py-28 md:py-36;
+    @apply py-20 sm:py-24 md:py-28;
   }
   .section-tight {
     @apply py-14 sm:py-20;
   }
 
   .card {
-    @apply rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm;
+    @apply rounded-xl border border-white/[0.08];
+    background-color: #1b1b1e;
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.025) inset;
   }
 
   .glow-orb {
-    @apply pointer-events-none absolute rounded-full blur-[80px];
-    /* Promote to its own GPU layer — avoids main-thread paint on every animation frame.
-       Reduces Total Blocking Time + Main-thread work on landing/hero sections. */
-    will-change: opacity, transform;
-    transform: translateZ(0);
+    display: none;
   }
 
   /* Respect prefers-reduced-motion — disable orb pulse for users who request reduced motion */
@@ -325,9 +371,65 @@
   }
 
   .noise::after {
-    content: "";
-    @apply pointer-events-none absolute inset-0 opacity-[0.015];
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    display: none;
+  }
+}
+
+/* Display headlines rag evenly instead of stranding a word per line. */
+h1, h2 { text-wrap: balance; }
+
+/* Product-marketing shell: same architectural geometry as the app chrome. */
+.homepage-hero .home-hero-grid {
+  display: grid;
+  align-items: center;
+  gap: clamp(3rem, 7vw, 6rem);
+}
+.homepage-hero h1 {
+  font-family: "Sora Fluera", "Sora Fallback", theme("fontFamily.sans");
+  font-weight: 700;
+  letter-spacing: -0.055em;
+}
+/* The headline is sized against its own COLUMN, not the viewport. The copy
+   column is the smaller grid share (~450px at desktop while the container is
+   1152px), so any vw-based size puts ~84px type in it — one word per line at
+   every desktop width. 10.5cqw ≈ 15–16 characters per line whatever the
+   column measures. Browsers without container queries keep the vw fallback. */
+.homepage-hero .home-hero-copy {
+  container-type: inline-size;
+}
+.homepage-hero h1 {
+  font-size: clamp(2.5rem, 10.5cqw, 5.25rem);
+}
+.homepage-hero h1 .text-gradient {
+  font-family: "Playfair Fluera", "Playfair Fallback", Georgia, serif;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: -0.045em;
+}
+:lang(ar) .homepage-hero h1,
+:lang(ar) .homepage-hero h1 .text-gradient,
+:lang(hi) .homepage-hero h1,
+:lang(hi) .homepage-hero h1 .text-gradient,
+:lang(ja) .homepage-hero h1,
+:lang(ja) .homepage-hero h1 .text-gradient,
+:lang(ko) .homepage-hero h1,
+:lang(ko) .homepage-hero h1 .text-gradient {
+  font-family: theme("fontFamily.sans");
+  font-style: normal;
+  letter-spacing: normal;
+}
+.homepage-hero .pill { border-color: rgb(91 141 239 / .24); }
+
+main p > a.text-accent-glow,
+main .prose-ink a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+@media (min-width: 1024px) {
+  .homepage-hero .home-hero-grid {
+    grid-template-columns: minmax(0, .9fr) minmax(480px, 1.1fr);
   }
 }
 
@@ -339,14 +441,14 @@
    ════════════════════════════════════════════════════════════════════════════ */
 html.light {
   color-scheme: light;
-  --body-bg: #faf9f6;
-  --body-fg: #16181d;
+  --body-bg: #ffffff;
+  --body-fg: #18181b;
   --muted-fg: #44505f;
   --dim-fg: #5f6b7a;
   --hairline: rgb(0 0 0 / 0.10);
   --hairline-strong: rgb(0 0 0 / 0.16);
 }
-body { transition: background-color 0.25s ease, color 0.25s ease; }
+body { transition: background-color 0.16s ease-out, color 0.16s ease-out; }
 
 /* Text tokens (light text → ink) */
 html.light .text-paper-50 { color: #16181d; }
@@ -355,17 +457,17 @@ html.light .text-paper-200 { color: #3a4150; }
 html.light .text-paper-300 { color: #586173; }
 html.light .text-ink-500 { color: #5b6675; }
 html.light .text-ink-600 { color: #717c8b; }
-html.light .text-ink-950 { color: #faf9f6; }
-html.light .text-accent-glow { color: #2563eb; }
+html.light .text-ink-950 { color: #ffffff; }
+html.light .text-accent-glow { color: #1d4ed8; }
 
 /* Backgrounds (dark → light) */
-html.light .bg-ink-950 { background-color: #faf9f6; }
-html.light .bg-ink-900 { background-color: #ffffff; }
+html.light .bg-ink-950 { background-color: #ffffff; }
+html.light .bg-ink-900 { background-color: #fbfbfc; }
 html.light .bg-ink-900\/40 { background-color: rgb(0 0 0 / 0.03); }
 html.light .bg-ink-900\/95 { background-color: rgb(255 255 255 / 0.95); }
-html.light .bg-ink-950\/95 { background-color: rgb(250 249 246 / 0.95); }
-html.light .bg-ink-950\/85 { background-color: rgb(250 249 246 / 0.85); }
-html.light .bg-ink-950\/70 { background-color: rgb(250 249 246 / 0.70); }
+html.light .bg-ink-950\/95 { background-color: rgb(255 255 255 / 0.97); }
+html.light .bg-ink-950\/85 { background-color: rgb(255 255 255 / 0.90); }
+html.light .bg-ink-950\/70 { background-color: rgb(255 255 255 / 0.82); }
 html.light .bg-paper-50 { background-color: #16181d; }
 
 /* Subtle surfaces (white-on-dark → black-on-light) */
@@ -401,7 +503,11 @@ html.light .eyebrow { color: #586173; }
 html.light .prose-ink { color: #3a4150; }
 html.light .prose-ink a { color: #2563eb; }
 html.light .prose-ink a:hover { color: #16181d; }
-html.light .card { border-color: rgb(0 0 0 / 0.08); background-color: rgb(0 0 0 / 0.02); }
+html.light .card {
+  border-color: #e5dece;
+  background-color: #faf8f2;
+  box-shadow: 0 1px 0 rgb(255 255 255 / .75) inset;
+}
 html.light .divider-dot::before { color: #5b6675; }
 
 /* prose-v2 (blog / docs / manifesto long-form) */
@@ -459,4 +565,26 @@ html.light .theme-icon-moon { display: none; }
 }
 :lang(ar) .font-mono {
   font-family: "SF Mono", "Geeza Pro", Tahoma, ui-monospace, monospace;
+}
+
+/* ── Entry title ──────────────────────────────────────────────────────
+   Blog posts, science authors and science principles are editorial detail
+   pages, not marketing pages: they get the Sora display face of the premium
+   surfaces at article scale, instead of the marketing hero. Keeping them on
+   the old serif display was the last place where the site ran two different
+   headline systems at once. */
+.entry-title {
+  max-width: 20ch;
+  margin: 0;
+  color: var(--body-fg);
+  font: 700 clamp(2.3rem, 4.6vw, 4.2rem)/1 "Sora Fluera", "Sora Fallback", system-ui, sans-serif;
+  letter-spacing: -0.05em;
+}
+:lang(ar) .entry-title,
+:lang(hi) .entry-title,
+:lang(ja) .entry-title,
+:lang(ko) .entry-title {
+  font-family: system-ui, sans-serif;
+  letter-spacing: normal;
+  line-height: 1.3;
 }

@@ -1,7 +1,7 @@
 ---
 title: Cross-Zone Bridges
 tagline: "Draw a line from chemistry to differential equations. Now they remember each other."
-shortDescription: "Persistent annotated bridges between distant canvas regions or separate notebooks. Declaring a transfer link is a generative encoding move — Fluera keeps the bridge alive across reflow, time travel, and Atlas."
+shortDescription: "Persistent annotated bridges between distant regions of the same canvas. Declaring a transfer link is a generative encoding move — Fluera keeps the bridge alive across reflow, time travel, and Atlas."
 status: beta
 stepInCycle: 9
 relatedPrinciples:
@@ -25,7 +25,7 @@ Cross-Zone Bridges turns the noticing into a first-class action.
 
 ## How it works
 
-Zoom out into [Atlas](/features/atlas) continent view. Pick two zones in different canvases — or two distant clusters in the same canvas. Tap **+ Bridge**, draw a line between them, and write a one-sentence annotation explaining *why* they belong together.
+Zoom out into [Atlas](/features/atlas) continent view. Pick two distant zones on the same canvas — even across different subjects. Tap **+ Bridge**, draw a line between them, and write a one-sentence annotation explaining *why* they belong together.
 
 That bridge is now persistent. It survives:
 
@@ -52,5 +52,5 @@ Vygotsky's **scaffolding** appears here as Atlas-mediated bridge suggestion: whe
 
 - **Bidirectional bridges** — model the asymmetry: chemistry → maths is often easier than maths → chemistry; the data can drive directionality-aware review.
 - **Bridge-driven Socratic** — questions that ask you to predict one side from the other, training transfer as a retrieval skill.
-- **Cross-canvas Exam scope** — opt to include all bridges in an Exam Session, putting interleaving to work across notebooks.
+- **Degree-wide Exam scope** — include every bridge in an Exam Session, putting interleaving to work across subject regions of the same canvas.
 - **Public bridge libraries** — for instructors who want to seed a course with a starter set of canonical cross-disciplinary connections.

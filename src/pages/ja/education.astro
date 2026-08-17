@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 
 const useCases = [
   {
@@ -32,24 +33,17 @@ const deployment = [
   locale="ja"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">大学・学校向け</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          現代の大学のための<br />認知インフラ。
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          学生のためのエビデンスに基づく学習ツール。情報システム部門のための SSO。学習の認知科学に関する教員トレーニング。パイロットは1クラス、1学期、無料から始まります。
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/ja/contact" class="btn-primary">アカデミック相談を予約 →</a>
-          <a href="/ja/" class="btn-secondary">背景にあるサイエンス</a>
-        </div>
-      </div>
+  <PageHero
+    kicker={"大学・学校向け"}
+    title={"現代の大学のための<br />認知インフラ。"}
+    titleSize="2xl"
+    description={"学生のためのエビデンスに基づく学習ツール。情報システム部門のための SSO。学習の認知科学に関する教員トレーニング。パイロットは1クラス、1学期、無料から始まります。"}
+  >
+    <div slot="copy" class="mt-9 flex flex-wrap gap-4">
+      <a href="/ja/contact" class="btn-primary">アカデミック相談を予約 →</a>
+      <a href="/ja/" class="btn-secondary">背景にあるサイエンス</a>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04]">
     <div class="container-site">

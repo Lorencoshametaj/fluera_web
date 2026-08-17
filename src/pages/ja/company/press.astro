@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 
 const factBullets = [
   "認知科学に基づく学習アプリ。プライベートベータ。2026年4月に iOS と macOS でリリース。",
-  "13種類の筆圧対応ブラシを備えた手書きの無限キャンバス。6プラットフォームでストロークレイテンシ15ミリ秒以下。",
+  "12種類の筆圧対応ブラシと、対応ハードウェアでの低遅延インク入力を備えた手書きの無限キャンバス。サポートされるすべてのプラットフォームで利用できます。",
   "答えを与えるのではなく問いを発するために設計された AI 機能。50年にわたる記憶研究に基づく。",
   "fluera_engine 上に構築。Flutter 向け独自の2D レンダリングエンジンで、外部の開発者にも提供。",
   "ミラノ拠点の2人チーム。公開時点で外部投資なし。",
@@ -15,9 +15,6 @@ const imageAssets = [
   { name: "ロゴ — カラー",                path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
   { name: "ロゴ — モノクロ (ライト)",    path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
   { name: "ロゴ — モノクロ (ダーク)",    path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
-  { name: "アプリスクリーンショット — iPad",  path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
-  { name: "アプリスクリーンショット — macOS", path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
-  { name: "創業者ポートレート",            path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
 ];
 
 const quotables = [
@@ -126,7 +123,7 @@ const quotables = [
       </div>
 
       <p class="mt-8 text-xs text-ink-500 max-w-xl">
-        注: 個別のアセットファイルは、プレスキットを正式公開するまでのプレースホルダーです。リンクは現時点では404を返します。プライベートベータを終えるタイミングで本物に差し替えます。
+        プロダクトのスクリーンショットと創業者の写真はリクエストに応じて提供します。チームにメールをいただければ、オリジナルをお送りします。
       </p>
     </div>
   </section>
@@ -162,7 +159,7 @@ const quotables = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">チームへの直通窓口。</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        プレスのお問い合わせは PR エージェンシーではなく、創業者本人に直接届きます。営業日24時間以内に返信します。多くは1時間以内です。
+        プレスのお問い合わせは PR エージェンシーではなく、創業者本人に直接届きます。営業日24時間以内に返信します。
       </p>
       <a href={`mailto:${SITE.company.contactEmail}?subject=%E3%83%97%E3%83%AC%E3%82%B9%E3%81%AE%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B`} class="btn-primary">
         {SITE.company.contactEmail}

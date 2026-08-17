@@ -1,0 +1,18 @@
+Fluera — Brand assets
+=====================
+
+Wordmark   "Fluera" — "Flu" set in Sora Bold, "era" in Playfair Display
+           SemiBold Italic. Always left-to-right, also in RTL contexts.
+
+Logo       fluera feather mark, 1024 × 1024 PNG (transparent background).
+           logo-full.png        full colour
+           logo-mono-light.png  single ink #16181D, for light backgrounds
+           logo-mono-dark.png   single ink #FFFFFF, for dark backgrounds
+
+Colours    Accent blue  #2563EB   (light-theme text-safe variant #1D4ED8)
+           Ink          #151517   Paper  #FAFAF7
+
+Clear space   Keep at least 25% of the mark's width free on every side.
+Don't          recolour the mark, add effects, or set the wordmark vertically.
+
+Press contact: hello@fluera.dev

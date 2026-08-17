@@ -6,7 +6,6 @@
         "appID": "7T5647HRV6.com.fluera.fluera",
         "paths": [
           "/collab/*",
-          "/c/*",
           "/s/*",
           "/i/*",
           "/u/*"

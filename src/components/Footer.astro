@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import logo from "@/assets/fluera_logo_tile.png";
+import logo from "@/assets/fluera_logo.png";
+import BrandWordmark from "@/components/BrandWordmark.astro";
 import { SITE, localizedHref } from "@/lib/site";
 import { localeFromPathname, t } from "@/lib/i18n";
 
@@ -18,7 +19,6 @@ const columns = [
       { key: "footer.product.catalogue",   href: "/catalogue" },
       { key: "footer.product.download",    href: "/download" },
       { key: "footer.product.pricing",   href: "/pricing" },
-      { key: "footer.product.demo",      href: "/demo", external: true },
       { key: "footer.product.changelog", href: "/changelog" },
     ],
   },
@@ -67,11 +67,11 @@ const columns = [
             densities={[1, 2]}
             format="webp"
             quality={90}
-            class="h-7 w-7 rounded-md object-contain"
+            class="brand-mark h-7 w-7 rounded-md object-contain"
             loading="lazy"
             decoding="async"
           />
-          <span class="text-sm font-medium text-paper-100">{SITE.name}</span>
+          <BrandWordmark size="sm" muted />
         </div>
         <p class="text-sm text-ink-500 leading-relaxed max-w-xs">
           {t("footer.tagline", locale)}
@@ -115,3 +115,7 @@ const columns = [
     </div>
   </div>
 </footer>
+
+<style>
+  .brand-mark { background: #2563eb; }
+</style>

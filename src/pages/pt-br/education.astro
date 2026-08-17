@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 
 const useCases = [
   {
@@ -32,24 +33,17 @@ const deployment = [
   locale="pt-br"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">Universidades e escolas</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          Infraestrutura cognitiva<br />para a universidade moderna.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Ferramentas de estudo baseadas em evidência para os seus estudantes. SSO para o seu TI. Treinamento docente sobre a ciência cognitiva da aprendizagem. Os pilotos começam com uma turma, um semestre, grátis.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/pt-br/contact" class="btn-primary">Agendar uma conversa acadêmica →</a>
-          <a href="/pt-br/" class="btn-secondary">A ciência por trás</a>
-        </div>
-      </div>
+  <PageHero
+    kicker={"Universidades e escolas"}
+    title={"Infraestrutura cognitiva<br />para a universidade moderna."}
+    titleSize="2xl"
+    description={"Ferramentas de estudo baseadas em evidência para os seus estudantes. SSO para o seu TI. Treinamento docente sobre a ciência cognitiva da aprendizagem. Os pilotos começam com uma turma, um semestre, grátis."}
+  >
+    <div slot="copy" class="mt-9 flex flex-wrap gap-4">
+      <a href="/pt-br/contact" class="btn-primary">Agendar uma conversa acadêmica →</a>
+      <a href="/pt-br/" class="btn-secondary">A ciência por trás</a>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04]">
     <div class="container-site">

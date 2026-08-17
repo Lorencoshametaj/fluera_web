@@ -14,4 +14,4 @@ Flow nie jest mistyczny. Csikszentmihalyi precyzyjnie zidentyfikował jego warun
 
 Dla narzędzia do nauki ma to bezkompromisowe konsekwencje. Żadnych modalnych popupów podczas pisania. Żadnych powiadomień. Żadnych zgrywalizowanych wezwań do streaków przyciągających uwagę. Żadnego AI oferującego niezamówione sugestie.
 
-Canvas Fluery jest zaprojektowany tak, żeby znikać podczas pisania. Toolbary się chowają. AI milczy, dopóki go nie wezwiesz. Nieskończony canvas usuwa scroll i paginację — najbardziej banalne formy przerwania. Latencja inputu jest utrzymywana poniżej 15 ms, bo latencja powyżej tego progu też jest formą przerwania — przerywa pętlę między ręką a myślą.
+Canvas Fluery jest zaprojektowany tak, żeby znikać podczas pisania. Toolbary się chowają. AI milczy, dopóki go nie wezwiesz. Nieskończony canvas usuwa scroll i paginację — najbardziej banalne formy przerwania. Atrament o niskiej latencji na obsługiwanym sprzęcie pomaga utrzymać rękę i myśl w tej samej pętli.

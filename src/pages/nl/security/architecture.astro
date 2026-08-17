@@ -35,7 +35,7 @@ import { SITE } from "@/lib/site";
         Elk Fluera-notitieboek leeft in een lokale SQLite-database, versleuteld met SQLCipher — een breed geaudit ed extensie die elke pagina van de database transparant versleutelt met AES-256-CBC en HMAC-SHA512-integriteitscontroles per pagina.
       </p>
       <p>
-        De sleutelafleiding gebruikt PBKDF2 met SHA-256, 256.000 iteraties (conform OWASP). De passphrase wordt bewaard in de keychain van het platform — Keychain op iOS/macOS, Keystore op Android, DPAPI op Windows, libsecret op Linux. Het wordt nooit naar onze servers gestuurd.
+        De sleutel van de lokale database is een willekeurige 256-bits sleutel die Fluera genereert en bewaart in de beveiligde sleutelopslag van het platform — Keychain op iOS/macOS, Keystore op Android, DPAPI op Windows en libsecret op Linux. Het is niet je accountwachtwoord of een cloud-syncpassphrase, en de lokale databasesleutel wordt nooit naar Flueras servers gestuurd.
       </p>
 
       <h2>In transit: TLS 1.3</h2>
@@ -48,7 +48,7 @@ import { SITE } from "@/lib/site";
         Cloud sync, indien ingeschakeld, slaat je notitieboeken op bij Supabase (EU-regio, eu-north-1). De gegevens zijn versleuteld in transit (TLS) en in rust op infrastructuurniveau. Cloud sync is niet end-to-end versleuteld: als verwerkingsverantwoordelijke kan Fluera de gesynchroniseerde inhoud benaderen. We verkopen die nooit en gebruiken die nooit voor advertenties. De synchronisatie is opt-in per notitieboek — je kunt sommige alleen lokaal houden terwijl je andere synchroniseert.
       </p>
       <p>
-        Wil je dat alleen jij toegang hebt tot je werk? Een lokale <code>.fluera</code>-export is versleuteld met AES-256-GCM, en je lokale database op het apparaat is in rust versleuteld met SQLCipher — beide blijven onleesbaar zonder jouw sleutel.
+        Je lokale database op het apparaat is in rust versleuteld met SQLCipher. Een met een wachtwoord beveiligde <code>.fluera</code>-export wordt afzonderlijk versleuteld met AES-256-GCM; het exportwachtwoord beschermt alleen dat bestand en staat los van cloud sync.
       </p>
 
       <h2>P2P-samenwerking: direct, versleuteld</h2>
@@ -77,9 +77,9 @@ import { SITE } from "@/lib/site";
         Elke toegang tot gedeelde notitieboeken — wie, vanaf welk apparaat, wanneer — wordt geschreven naar een append-only audittrail. Beheerders kunnen de trail exporteren als CSV of JSON voor compliance-controles. De trail is write-once: verwijderen vereist een gedocumenteerde motivatie en wordt zelf ook gelogd.
       </p>
 
-      <h2>Recovery en sleutelverlies</h2>
+      <h2>Gegevensherstel</h2>
       <p>
-        Als je je passphrase verliest, worden de versleutelde data onherstelbaar. Dat is opzettelijk — het alternatief zou een herstelpad zijn dat het versleutelingsmodel noodzakelijkerwijs zou verzwakken. Voor institutionele accounts kan een optionele recovery-sleutel worden geconfigureerd die de beheerder bewaart; het is een gedocumenteerde trade-off die de instelling bewust kiest.
+        Gesynchroniseerde notitieboeken zijn gekoppeld aan je account: na het normale accountherstel kun je opnieuw inloggen en ze op een nieuw apparaat downloaden. Er is geen aparte cloud-syncpassphrase om te onthouden. Accountherstel kan een notitieboek dat alleen lokaal stond niet reconstrueren als de apparaatgegevens zijn gewist; schakel sync in voor notitieboeken die je op meerdere apparaten wilt kunnen herstellen.
       </p>
 
       <h2>Responsible disclosure</h2>

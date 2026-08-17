@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="Una declaración en forma larga de qué es Fluera, qué se niega a ser y por qué el producto obvio era el equivocado."
   locale="es"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">Manifiesto</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">El espacio de estudio diseñado para cómo funciona la mente.</h1>
+  <PageHero
+    kicker={"Manifiesto"}
+    title={"El espacio de estudio diseñado para cómo funciona la mente."}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         Una declaración en forma larga de qué es Fluera, qué se niega a ser y por qué el producto obvio era el equivocado.
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">
@@ -107,7 +110,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <strong>No vamos a tener una IA que responda tus exámenes por ti.</strong> La satisfacción inmediata del usuario sería enorme. El resultado a largo plazo — atrofia de los músculos cognitivos que la herramienta debería fortalecer — sería una traición al objetivo declarado. Una IA que hace el trabajo en tu lugar es una IA que no te enseña nada.
       </p>
       <p>
-        <strong>No vamos a vender los datos de tus cuadernos.</strong> Cada cuaderno está cifrado en reposo con AES-256. La sincronización, cuando se activa, está cifrada de extremo a extremo. No entrenamos nuestros modelos con tu contenido. Tu escritura a mano, tu pensamiento, tus errores y tu crecimiento son tuyos. El hecho de que "tus datos son el producto" sea el default de la ed-tech en 2026 no lo hace tolerable.
+        <strong>No vamos a vender los datos de tus cuadernos.</strong> Cada cuaderno está cifrado en reposo en tu dispositivo con AES-256. Cuando se activa, la sincronización está cifrada en tránsito (TLS) y en reposo sobre infraestructura europea (Supabase, eu-north-1); no está cifrada de extremo a extremo, por lo que Fluera, como responsable del tratamiento, puede acceder técnicamente al contenido sincronizado. Nunca lo vendemos, lo usamos para publicidad ni para entrenar modelos. Tu escritura a mano, tu pensamiento, tus errores y tu crecimiento son tuyos. El hecho de que "tus datos son el producto" sea el default de la ed-tech en 2026 no lo hace tolerable.
       </p>
       <p>
         <strong>No vamos a tener engagement loops, publicidad ni streaks.</strong> La señal más fuerte que podríamos optimizar — usuarios activos diarios, duración de sesión, click-through en notificaciones — es también la que más probablemente corrompería el producto. Tu relación con el estudio no debería depender de una push notification. Preferimos que uses Fluera menos y aprendas más.

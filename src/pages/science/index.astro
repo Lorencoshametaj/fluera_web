@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import LearningStep from "@/components/LearningStep.astro";
+import ScienceCanvasPath from "@/components/ScienceCanvasPath.astro";
 import AuthorCard from "@/components/AuthorCard.astro";
 import { getCollection } from "astro:content";
 
@@ -21,7 +21,7 @@ const fields = [
 
 const steps = [
   { n: 1,  title: "Capture",              verb: "Lecture day",    description: "Write concepts by hand during the lecture. Position them in space. Compression — forced by the slowness of the pen — is where encoding begins." },
-  { n: 2,  title: "Reconstruct",          verb: "Same evening",   description: "Close the book. Rebuild what you remember on a blank canvas. The red nodes are the map of what to study next." },
+  { n: 2,  title: "Reconstruct",          verb: "Same evening",   description: "Close the book. Rebuild what you remember in a clear region of the same canvas. The red nodes are the map of what to study next." },
   { n: 3,  title: "Socratic",             verb: "Within 48h",     description: "The AI asks; you answer. Rate your confidence one to five before each reveal. Metacognition made explicit." },
   { n: 4,  title: "Centaur",              verb: "Right after",    description: "Ghost Map overlays your reasoning against the ideal. Hypercorrection makes the gaps permanent." },
   { n: 5,  title: "Sleep",                verb: "That night",     description: "Do nothing. Slow-wave sleep replays the day. The hippocampus hands traces to the neocortex." },
@@ -36,52 +36,28 @@ const steps = [
 ---
 
 <BaseLayout
+  bodyClass="science-page"
   title="The Science of Fluera"
   description="Fluera is built on five decades of memory research — Bjork, Mueller, van der Meer, Roediger, and the Nobel-winning neuroscience of place cells. Explore the 12-step learning cycle and the principles behind every feature."
 >
 
   <!-- HERO -->
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">The Science</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          Five decades of memory research,<br />informing one learning canvas.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Every Fluera feature traces back to published research. Below: the 12-step learning cycle, the 23 principles behind it, the twelve minds whose work we build on, and the edges of what we do not yet claim.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#learning-cycle" class="btn-secondary">Jump to the cycle</a>
-          <a href="#principles" class="btn-secondary">Principle index</a>
-          <a href="#authors" class="btn-secondary">Authors</a>
-          <a href="/research" class="btn-secondary">Bibliography →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 12-STEP CYCLE -->
-  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">The loop</p>
-        <h2 class="font-serif text-display-xl text-paper-50 mb-6">One canvas. Twelve cognitive moves.</h2>
-        <p class="prose-ink text-lg max-w-prose">
-          The cycle is sequential and iterative. Steps 1–4 build the encoding. Step 5 (sleep) is non-negotiable biology. Steps 6–9 consolidate across days and weeks. Steps 10–12 make the knowledge permanent and transferable.
-        </p>
-      </div>
-
-      <ol class="max-w-3xl list-none p-0">
-        {steps.map((s) => (
-          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <!-- PRINCIPLE INDEX -->
+  <ScienceCanvasPath
+    locale="en"
+    heroKicker={"The Science"}
+    heroTitleHtml={"Five decades of memory research,<br />informing one learning canvas."}
+    heroDescription={"Every Fluera feature traces back to published research. Below: the 12-step learning cycle, the 23 principles behind it, the twelve minds whose work we build on, and the edges of what we do not yet claim."}
+    cycleKicker={"The loop"}
+    cycleTitle={"One canvas. Twelve cognitive moves."}
+    cycleDescription={"The cycle is sequential and iterative. Steps 1–4 build the encoding. Step 5 (sleep) is non-negotiable biology. Steps 6–9 consolidate across days and weeks. Steps 10–12 make the knowledge permanent and transferable."}
+    navigation={[
+      { href: "#learning-cycle", label: "Jump to the cycle" },
+      { href: "#principles", label: "Principle index" },
+      { href: "#authors", label: "Authors" },
+      { href: "/research", label: "Bibliography →" },
+    ]}
+    steps={steps}
+  />
   <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
       <div class="max-w-3xl mb-10">
@@ -111,7 +87,7 @@ const steps = [
                 <span class="shrink-0 text-[10px] font-mono uppercase tracking-widest text-ink-500">{p.data.keyYear}</span>
               </div>
               <p class="text-sm text-paper-300 leading-relaxed line-clamp-3">{p.data.shortDescription}</p>
-              <span class="mt-3 inline-block text-[10px] font-mono uppercase tracking-widest text-accent-glow/70">
+              <span class="principle-field mt-3 inline-block text-[10px] font-mono uppercase tracking-widest text-accent-glow/70">
                 {p.data.fieldOfStudy}
               </span>
             </a>
@@ -129,10 +105,16 @@ const steps = [
       }
 
       /* ── Light-theme overrides for scoped science styles ─────────────────── */
+      /* #1d4ed8 is the site's light-theme blue: #2563eb only reached 4.21:1 on
+         the active pill's own tint, under the 4.5:1 AA floor for this size. */
       :global(html.light) .filter-pill-active {
         background: rgb(37 99 235 / 0.10);
         border-color: rgb(37 99 235 / 0.45);
-        color: #2563eb;
+        color: #1d4ed8;
+      }
+      /* The field-of-study label sat at 2.03:1 on the light card. */
+      :global(html.light) .principle-field {
+        color: #1d4ed8;
       }
     </style>
 

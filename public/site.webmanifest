@@ -4,8 +4,8 @@
   "description": "The study space your brain was built for.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#05070c",
-  "theme_color": "#05070c",
+  "background_color": "#151517",
+  "theme_color": "#151517",
   "icons": [
     { "src": "/favicon.png",          "sizes": "32x32",   "type": "image/png" },
     { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }

@@ -14,4 +14,4 @@ Koeasetelma oli yksinkertainen: opiskelijat seurasivat luentoja ja tekivät muis
 
 Päätelmä on nopeuden aikakaudella vastaintuitiivinen: keräämisen hitaus pakottaa kognitiiviseen elaboraatioon enkoodaushetkellä. Käsi on pullonkaula — ja pullonkaula on paikka, jossa oppiminen tapahtuu.
 
-Flueran koko tuotefilosofia lähtee tästä. Käsinkirjoitus ei ole skeuomorfinen valinta. Se on kognitiivinen työkalu. Kolmetoista sivellinmoottoria. Paine, kallistus, nopeus. Vetolatenssi alle 15 millisekuntia jokaisella tuetulla laitteella. Ääretön canvas ei ole estetiikkaa — se on substraatti, jota muistisi on etsinyt.
+Flueran koko tuotefilosofia lähtee tästä. Käsinkirjoitus ei ole skeuomorfinen valinta. Se on kognitiivinen työkalu. Kaksitoista sivellinmoottoria. Paine, kallistus, nopeus. Matalan viiveen muste tuetulla laitteistolla. Ääretön canvas ei ole estetiikkaa — se on substraatti, jota muistisi on etsinyt.

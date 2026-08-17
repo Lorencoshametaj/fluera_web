@@ -14,4 +14,4 @@ Flow er ikke mystisk. Csikszentmihalyi identifiserte forutsetningene presist: en
 
 For et læringsverktøy har dette konsekvenser uten mellomvei. Ingen modal popups under skriving. Ingen varsler. Ingen gamifiserte streak-rop som drar oppmerksomheten. Ingen KI som kommer med uoppfordrede forslag.
 
-Canvaset i Fluera er designet for å forsvinne under skrivingen. Verktøylinjene skjuler seg. KI-en holder seg stille til den blir kalt på. Det uendelige canvaset fjerner scrolling og paginering — de mest banale formene for avbrudd. Input-latensen holdes under 15 ms, fordi latens over den terskelen også er en form for avbrudd — den river opp løkken mellom hånd og tanke.
+Canvaset i Fluera er designet for å forsvinne under skrivingen. Verktøylinjene skjuler seg. KI-en holder seg stille til den blir kalt på. Det uendelige canvaset fjerner scrolling og paginering — de mest banale formene for avbrudd. Blekk med lav latens på støttet maskinvare hjelper med å holde hånd og tanke i samme loop.

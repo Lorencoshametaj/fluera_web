@@ -14,4 +14,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002) ja Susan Goldin-Meadow (2003) r
 
 Oppimiselle implikaatio on selkeä. Näppäily aktivoi kapean, vahvasti harjoitellun motorisen kuvion. Käsinkirjoitus aktivoi rikkaan, vaihtelevan motorisen kuvion integroidulla visuaalisella, tilallisella ja proprioseptisellä palautteella. Van der Meerin (2020) EEG-tallenteet näyttävät eron konkreettisesti: käsinkirjoitus sitouttaa laajoja aivoverkkoja, joita näppäily ei tavoita.
 
-Fluera vaatii kynää — kolmetoista sivellinmoottoria, paineen ja kallistuksen seuranta, vetolatenssi alle 15 millisekuntia — ja vie näin kehollisen kognition teesin tosissaan loppuun. Käsi pysyy silmukassa, koska käsi on osa ajattelua.
+Fluera vaatii kynää — kaksitoista sivellinmoottoria, paineen ja kallistuksen seuranta, matalan viiveen muste tuetulla laitteistolla — ja vie näin kehollisen kognition teesin tosissaan loppuun. Käsi pysyy silmukassa, koska käsi on osa ajattelua.

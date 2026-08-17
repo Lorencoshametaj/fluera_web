@@ -14,4 +14,4 @@ Mihaly Csikszentmihalyi katalogisierte die Vorbedingungen des Flow bei Schachspi
 
 Unterbrechung ist der Standard-Flow-Killer. Push-Benachrichtigungen, modale Dialoge, Kontextwechsel, unerwartete Bewegungen der UI. Jede einzelne durchbricht den Loop zwischen Hand und Denken und setzt die Aufwärmkosten zurück.
 
-Fluera ist um die Bewahrung des Flow herum entworfen. Keine Benachrichtigungen während des Schreibens. Toolbars verbergen sich von selbst. Die Input-Latenz wird unter 15 ms gehalten, weil höhere Latenz selbst eine Form von Unterbrechung ist. Die KI bleibt still, bis du sie rufst. Jede Interface-Entscheidung wird nach einer einzigen Frage bewertet: hilft sie dem Loop oder stört sie ihn?
+Fluera ist um die Bewahrung des Flow herum entworfen. Keine Benachrichtigungen während des Schreibens. Toolbars verbergen sich von selbst. Latenzarme Freihandeingabe auf unterstützter Hardware hilft, Hand und Gedanken in einem Loop zu halten. Die KI bleibt still, bis du sie rufst. Jede Interface-Entscheidung wird nach einer einzigen Frage bewertet: hilft sie dem Loop oder stört sie ihn?

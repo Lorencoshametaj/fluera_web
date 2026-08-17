@@ -12,7 +12,7 @@ Ce walkthrough te prend dix minutes et un sujet que tu étudies cette semaine. N
 
 ## Minutes 0–2 : crée le canvas
 
-Ouvre Fluera. Appuie sur **Nouveau canvas**. Donne-lui le nom du sujet (pas du cours — du *concept*). Choisis un pinceau — le stylo plume est un défaut sûr. Garde la largeur de trait par défaut pour l'instant.
+Ouvre Fluera. Appuie une seule fois sur **Nouveau canvas** et donne-lui le nom de ton cursus ou de ton parcours d'apprentissage : cet espace unique peut grandir avec toutes tes études. Délimite à l'intérieur une première région et donne à cette région le nom du sujet (pas du cours — du *concept*). Choisis un pinceau — le stylo plume est un choix sûr par défaut. Garde la largeur de trait par défaut pour l'instant.
 
 Le canvas est vide. C'est intentionnel — les templates n'aident pas ici.
 

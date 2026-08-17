@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 import { SITE } from "@/lib/site";
 ---
 
@@ -8,27 +9,25 @@ import { SITE } from "@/lib/site";
   description="Fluera wird von einem kleinen Team in Italien gebaut. Unsere Geschichte, unsere Überzeugungen, die Linie, die wir nicht überschreiten."
   locale="de"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">Über uns</p>
-        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
-          Wir bauen die Lern-App,<br />die wir gerne gehabt hätten,<br />als wir Studierende waren.
-        </h1>
-        <div class="prose-ink text-lg">
-          <p>
-            Fluera entstand aus Frust. Einer von uns ist Full-Stack-Entwickler mit zehn Jahren Erfahrung; der andere war Studierender, der seine Kommilitonen in derselben Falle landen sah — Apps, die produktiv wirkten, aber niemandem halfen, sich an etwas zu erinnern.
-          </p>
-          <p>
-            Wir haben die Forschung gelesen. <em>Viel</em> Forschung. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Die kognitive Wissenschaft ist seit einem halben Jahrhundert eindeutig: Handschrift schlägt Tippen, Abrufen schlägt Lesen, Spacing schlägt Cramming, Reibung ist eine Ressource. Wir haben keine App gefunden, die irgendetwas davon ernst nahm. Also haben wir eine gebaut.
-          </p>
-          <p>
-            Unterwegs haben wir eine 2D-Rendering-Engine von Grund auf geschrieben — weil kein fertiger Stack drucksensitive Tinte mit 60 FPS auf sechs nativen Plattformen liefern konnte. Die Engine ist das Substrat, auf dem die kognitiven Funktionen leben.
-          </p>
-        </div>
+  <PageHero
+    kicker={"Über uns"}
+    title={"Wir bauen die Lern-App,<br />die wir gerne gehabt hätten,<br />als wir Studierende waren."}
+    titleSize="xl"
+  >
+    <div slot="copy" class="mt-8">
+      <div class="prose-ink text-lg">
+        <p>
+          Fluera entstand aus Frust. Einer von uns ist Full-Stack-Entwickler mit zehn Jahren Erfahrung; der andere war Studierender, der seine Kommilitonen in derselben Falle landen sah — Apps, die produktiv wirkten, aber niemandem halfen, sich an etwas zu erinnern.
+        </p>
+        <p>
+          Wir haben die Forschung gelesen. <em>Viel</em> Forschung. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Die kognitive Wissenschaft ist seit einem halben Jahrhundert eindeutig: Handschrift schlägt Tippen, Abrufen schlägt Lesen, Spacing schlägt Cramming, Reibung ist eine Ressource. Wir haben keine App gefunden, die irgendetwas davon ernst nahm. Also haben wir eine gebaut.
+        </p>
+        <p>
+          Unterwegs haben wir eine 2D-Rendering-Engine von Grund auf geschrieben — weil kein fertiger Stack uns das gewünschte drucksensitive Tintenerlebnis über die unterstützten Clients hinweg bot. Die Engine ist das Substrat, auf dem die kognitiven Funktionen leben.
+        </p>
       </div>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
@@ -47,7 +46,7 @@ import { SITE } from "@/lib/site";
             <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
             <div>
               <strong class="text-paper-50 font-serif">Wir werden die Daten deiner Notizbücher nicht verkaufen.</strong>
-              <p class="text-sm mt-1 text-paper-300">Deine Notizen sind im Ruhezustand verschlüsselt, Ende-zu-Ende beim Synchronisieren und werden nie genutzt, um irgendwessen Modelle zu trainieren. Auch nicht unsere.</p>
+              <p class="text-sm mt-1 text-paper-300">Deine Notizen sind auf deinem Gerät im Ruhezustand verschlüsselt. Beim Synchronisieren werden sie während der Übertragung (TLS) und im Ruhezustand auf EU-Infrastruktur verschlüsselt; der Sync ist nicht Ende-zu-Ende, daher kann Fluera als Verantwortlicher technisch darauf zugreifen. Wir verkaufen sie nicht, nutzen sie nicht für Werbung und trainieren damit keine Modelle.</p>
             </div>
           </li>
           <li class="flex items-start gap-4">

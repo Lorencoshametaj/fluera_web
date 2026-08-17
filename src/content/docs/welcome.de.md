@@ -20,7 +20,7 @@ Fast alles andere folgt daraus.
 
 ## Was in der ersten Session zu tun ist
 
-- Erstell ein neues Canvas für ein Thema, das du diese Woche lernst.
+- Erstell ein einziges Canvas für dein gesamtes Studium und grenze darin eine Region für das Thema ab, das du diese Woche lernst.
 - Wähl einen Pinsel und bleib in der ersten Session dabei. Lass dich nicht von der Pinsel-Bibliothek ablenken.
 - Schreib 8–15 Konzepte per Hand. Positioniere jedes dort, wo es räumlich Sinn macht.
 - Zeichne Pfeile zwischen Konzepten, die du für verwandt hältst.

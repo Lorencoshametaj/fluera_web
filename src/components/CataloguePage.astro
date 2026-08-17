@@ -1,0 +1,452 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CatalogueMark from "@/components/CatalogueMark.astro";
+import type { CatalogueData } from "@/data/catalogue/types";
+import type { Locale } from "@/lib/i18n";
+import { localizedHref } from "@/lib/site";
+
+export interface Props {
+  locale: Locale;
+  catalogue: CatalogueData;
+}
+
+const { locale, catalogue } = Astro.props;
+const {
+  meta,
+  jsonLd,
+  hero,
+  unit,
+  install,
+  ranking,
+  discovery,
+  privacy,
+  creators,
+  safety,
+  status,
+} = catalogue;
+
+const routeHref = (href: string) => localizedHref(href, locale);
+const filterLabels = [...discovery.paragraphs[0].matchAll(/<strong[^>]*>(.*?)<\/strong>/g)]
+  .map((match) => match[1].replace(/<[^>]+>/g, ""))
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  ogImage={meta.ogImage}
+  jsonLd={jsonLd}
+  locale={locale}
+>
+  <section class="catalogue-hero">
+    <div class="container-site catalogue-hero-grid">
+      <div class="catalogue-hero-copy">
+        <CatalogueMark size={34} />
+        <p class="eyebrow">{hero.kicker}</p>
+        <h1 set:html={hero.title} />
+        <p class="hero-description" set:html={hero.description} />
+        <div class="catalogue-actions">
+          {hero.actions.map((action) => (
+            <a href={routeHref(action.href)} class={action.kind}>{action.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <figure class="template-anatomy" aria-label={hero.description}>
+        <div class="anatomy-heading">
+          <span><CatalogueMark size={19} /> Fluera</span>
+          <i>{String(unit.items.length).padStart(2, "0")}</i>
+        </div>
+        <svg viewBox="0 0 700 390" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <pattern id={`catalogue-grid-${locale}`} width="22" height="22" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="1" class="anatomy-dot" />
+            </pattern>
+          </defs>
+          <rect width="700" height="390" fill={`url(#catalogue-grid-${locale})`} />
+          <path class="frame-line" d="M79 73C179 43 335 57 456 42c76-9 136 7 164 53l-16 207c-93 18-183 2-282 24-90 20-184 13-246-21z" />
+          <path class="ink-line" d="M123 126c41-24 71 20 111-7 42-29 88 17 138-10M118 162c72 5 112-18 182 0 42 11 77 5 124-9M125 204c52-14 91 8 132-4 48-14 95-11 147 5" />
+          <path class="concept-line" d="M155 274c72-67 139-44 194-80 56-36 110 4 180-69" />
+          <circle class="concept-node" cx="155" cy="274" r="6" />
+          <circle class="concept-node" cx="349" cy="194" r="6" />
+          <circle class="concept-node" cx="529" cy="125" r="6" />
+          <path class="review-line" d="M132 318h408M132 318v-17M268 318v-27M404 318v-17M540 318v-35" />
+        </svg>
+        <ol class="anatomy-legend">
+          {unit.items.map((item, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{item.title}</strong>
+            </li>
+          ))}
+        </ol>
+      </figure>
+    </div>
+  </section>
+
+  <section class="catalogue-section unit-section">
+    <div class="container-site">
+      <header class="editorial-heading">
+        <p class="eyebrow">{unit.kicker}</p>
+        <h2 set:html={unit.title} />
+        <p>{unit.sub}</p>
+      </header>
+
+      <div class="canvas-layers">
+        <span class="layer-thread" aria-hidden="true"></span>
+        {unit.items.map((item, index) => (
+          <article class="canvas-layer">
+            <span class="layer-number">{String(index + 1).padStart(2, "0")}</span>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="catalogue-section install-section">
+    <div class="container-site split-section">
+      <div class="section-narrative">
+        <p class="eyebrow">{install.kicker}</p>
+        <h2 set:html={install.title} />
+        {install.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+
+      <ol class="install-sequence">
+        {install.steps.map((step) => (
+          <li>
+            <span>{step.step}</span>
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="catalogue-section ranking-section">
+    <div class="container-site">
+      <header class="editorial-heading editorial-heading-wide">
+        <p class="eyebrow">{ranking.kicker}</p>
+        <h2 set:html={ranking.title} />
+        <p>{ranking.sub}</p>
+      </header>
+
+      <div class="ranking-ledger">
+        {ranking.items.map((item, index) => (
+          <article>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{item.label}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+      <p class="evidence-note rich-copy" set:html={ranking.note} />
+    </div>
+  </section>
+
+  <section class="catalogue-section discovery-section">
+    <div class="container-site">
+      <header class="editorial-heading">
+        <p class="eyebrow">{discovery.kicker}</p>
+        <h2 set:html={discovery.title} />
+        <p>{discovery.sub}</p>
+      </header>
+
+      <div class="filter-axis" aria-label={discovery.kicker}>
+        {filterLabels.map((label, index) => (
+          <div>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <strong>{label}</strong>
+          </div>
+        ))}
+      </div>
+
+      <div class="discovery-grid">
+        <div class="rich-stack">
+          {discovery.paragraphs.map((paragraph) => <p class="rich-copy" set:html={paragraph} />)}
+        </div>
+        <div class="marks-index">
+          <h3>{discovery.marksHeading}</h3>
+          <dl>
+            {discovery.marks.map((mark, index) => (
+              <div>
+                <dt><span>{String(index + 1).padStart(2, "0")}</span>{mark.mark}</dt>
+                <dd>{mark.body}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+      <p class="canvas-note rich-copy" set:html={discovery.note} />
+    </div>
+  </section>
+
+  <section class="catalogue-section privacy-section">
+    <div class="container-site">
+      <header class="editorial-heading editorial-heading-wide">
+        <p class="eyebrow">{privacy.kicker}</p>
+        <h2 set:html={privacy.title} />
+        <p>{privacy.sub}</p>
+      </header>
+
+      <div class="privacy-index">
+        {privacy.items.map((item, index) => (
+          <article>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <a href={routeHref(privacy.action.href)} class="btn-secondary privacy-action">{privacy.action.label}</a>
+    </div>
+  </section>
+
+  <section class="catalogue-section creators-section">
+    <div class="container-site split-section">
+      <div class="section-narrative">
+        <p class="eyebrow">{creators.kicker}</p>
+        <h2 set:html={creators.title} />
+        {creators.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+
+      <div class="creator-ledger">
+        <h3>{creators.heading}</h3>
+        <ol>
+          {creators.benefits.map((benefit, index) => (
+            <li><span>{String(index + 1).padStart(2, "0")}</span><p>{benefit}</p></li>
+          ))}
+        </ol>
+        <p class="creator-note">{creators.note}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="catalogue-section safety-section">
+    <div class="container-site">
+      <header class="editorial-heading">
+        <p class="eyebrow">{safety.kicker}</p>
+        <h2 set:html={safety.title} />
+        <p>{safety.sub}</p>
+      </header>
+
+      <div class="safety-ledger">
+        {safety.items.map((item, index) => (
+          <article>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{item.label}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="catalogue-close">
+    <div class="container-site close-grid">
+      <div class="close-mark" aria-hidden="true">
+        <CatalogueMark size={124} />
+        <svg viewBox="0 0 520 170" preserveAspectRatio="none">
+          <path d="M-20 139C62 139 80 74 156 77s84 48 151 16 91-65 233-55" />
+          <circle cx="156" cy="77" r="5" /><circle cx="307" cy="93" r="5" /><circle cx="455" cy="48" r="5" />
+        </svg>
+      </div>
+      <div class="close-copy">
+        <p class="eyebrow">{status.kicker}</p>
+        <h2 set:html={status.title} />
+        {status.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <div class="catalogue-actions">
+          {status.actions.map((action) => (
+            <a href={routeHref(action.href)} class={action.kind}>{action.label}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .catalogue-hero { position:relative;overflow:hidden;border-bottom:1px solid var(--hairline); }
+    .catalogue-hero::before { content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgb(91 141 239 / .13) .65px,transparent .75px);background-size:24px 24px;mask-image:linear-gradient(110deg,transparent 8%,#000 72%,transparent 100%);opacity:.36; }
+    .catalogue-hero-grid { position:relative;display:grid;gap:clamp(48px,8vw,104px);align-items:center;padding-block:clamp(76px,10vw,126px); }
+    .catalogue-hero-copy>.catalogue-mark { display:block;margin-bottom:24px; }
+    .catalogue-hero-copy>.eyebrow,.editorial-heading>.eyebrow,.section-narrative>.eyebrow,.close-copy>.eyebrow { margin-bottom:22px;color:#2563eb; }
+    .catalogue-hero h1 { max-width:13ch;margin:0;color:var(--body-fg);font-family:"Sora Fluera","Sora Fallback",system-ui,sans-serif;font-size:clamp(3.2rem,6.2vw,6.35rem);font-weight:700;letter-spacing:-.06em;line-height:.95; }
+    .hero-description { max-width:690px;margin-top:28px;color:var(--muted-fg);font-size:clamp(1.02rem,1.45vw,1.22rem);line-height:1.68; }
+    .catalogue-actions { display:flex;flex-wrap:wrap;gap:12px;margin-top:34px; }
+
+    .template-anatomy { position:relative;min-height:500px;margin:0;overflow:hidden;border:1px solid var(--hairline);border-radius:18px;background:color-mix(in srgb,var(--body-bg) 94%,#2563eb 6%);box-shadow:0 32px 80px rgb(0 0 0 / .16);isolation:isolate; }
+    .anatomy-heading { position:absolute;z-index:3;inset-inline:24px;top:22px;display:flex;align-items:center;justify-content:space-between;padding-bottom:15px;border-bottom:1px solid var(--hairline);color:var(--body-fg); }
+    .anatomy-heading>span { display:flex;align-items:center;gap:9px;font-size:.76rem;font-weight:650; }
+    .anatomy-heading>i { color:var(--dim-fg);font:600 .6rem/1 ui-monospace,monospace;font-style:normal;letter-spacing:.15em; }
+    .template-anatomy>svg { position:absolute;inset:64px 0 92px;width:100%;height:calc(100% - 156px); }
+    .anatomy-dot { fill:color-mix(in srgb,var(--dim-fg) 18%,transparent); }
+    .frame-line { fill:rgb(37 99 235 / .025);stroke:rgb(37 99 235 / .28);stroke-width:1.35;stroke-dasharray:3 7; }
+    .ink-line { fill:none;stroke:var(--muted-fg);stroke-width:2;stroke-linecap:round;opacity:.48; }
+    .concept-line { fill:none;stroke:#2563eb;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:5 7; }
+    .concept-node { fill:var(--body-bg);stroke:#5b8def;stroke-width:2.5; }
+    .review-line { fill:none;stroke:var(--dim-fg);stroke-width:1.25;opacity:.5; }
+    .anatomy-legend { position:absolute;z-index:3;inset-inline:0;bottom:0;display:grid;grid-template-columns:repeat(3,1fr);margin:0;padding:0;border-top:1px solid var(--hairline);list-style:none;background:color-mix(in srgb,var(--body-bg) 93%,transparent);backdrop-filter:blur(12px); }
+    .anatomy-legend li { min-width:0;padding:17px 19px;border-inline-end:1px solid var(--hairline); }
+    .anatomy-legend li:last-child { border-inline-end:0; }
+    .anatomy-legend span { display:block;margin-bottom:6px;color:#2563eb;font:650 .52rem/1 ui-monospace,monospace;letter-spacing:.15em; }
+    .anatomy-legend strong { display:block;overflow:hidden;color:var(--body-fg);font-size:.69rem;line-height:1.35;text-overflow:ellipsis;white-space:nowrap; }
+
+    .catalogue-section { padding-block:clamp(84px,10vw,132px);border-bottom:1px solid var(--hairline); }
+    .install-section,.discovery-section,.creators-section { background:color-mix(in srgb,var(--body-bg) 95%,var(--body-fg) 5%); }
+    .editorial-heading { display:grid;grid-template-columns:minmax(0,.82fr) minmax(280px,.45fr);gap:22px clamp(40px,8vw,110px);align-items:end;margin-bottom:clamp(50px,7vw,86px); }
+    .editorial-heading>.eyebrow { grid-column:1/-1;margin-bottom:0; }
+    .editorial-heading h2,.section-narrative h2,.close-copy h2 { max-width:13ch;margin:0;color:var(--body-fg);font-family:"Sora Fluera","Sora Fallback",system-ui,sans-serif;font-size:clamp(2.55rem,5vw,5.05rem);font-weight:700;letter-spacing:-.055em;line-height:.98; }
+    .editorial-heading>p:last-child { max-width:580px;color:var(--muted-fg);font-size:.94rem;line-height:1.75; }
+    .editorial-heading-wide h2 { max-width:16ch; }
+
+    .canvas-layers { position:relative;overflow:hidden;border-block:1px solid var(--hairline); }
+    .layer-thread { position:absolute;z-index:2;inset-inline-start:43px;top:0;bottom:0;width:1px;background:linear-gradient(transparent,#2563eb 12%,#2563eb 88%,transparent);opacity:.55; }
+    .canvas-layer { position:relative;display:grid;grid-template-columns:64px minmax(180px,.45fr) minmax(280px,1fr);gap:22px;align-items:start;padding:30px 12px;border-bottom:1px solid var(--hairline); }
+    .canvas-layer:last-child { border-bottom:0; }
+    .layer-number { position:relative;z-index:3;width:26px;padding-block:7px;color:#2563eb;background:var(--body-bg);font:650 .58rem/1 ui-monospace,monospace;letter-spacing:.13em; }
+    .canvas-layer h3,.install-sequence h3,.ranking-ledger h3,.privacy-index h3,.creator-ledger h3,.safety-ledger h3 { color:var(--body-fg);font-family:"Playfair Fluera","Playfair Fallback",Georgia,serif;font-weight:600; }
+    .canvas-layer h3 { font-size:1.22rem;line-height:1.3; }
+    .canvas-layer p,.install-sequence p,.ranking-ledger p,.privacy-index p,.safety-ledger p { color:var(--muted-fg);font-size:.82rem;line-height:1.72; }
+
+    .split-section { display:grid;grid-template-columns:minmax(0,.85fr) minmax(360px,1.15fr);gap:clamp(60px,10vw,140px);align-items:start; }
+    .section-narrative { position:sticky;top:104px; }
+    .section-narrative h2 { max-width:14ch;margin-bottom:30px; }
+    .section-narrative>p:not(.eyebrow) { max-width:650px;margin-top:15px;color:var(--muted-fg);font-size:.94rem;line-height:1.75; }
+    .install-sequence { margin:0;padding:0;border-top:1px solid var(--hairline);list-style:none;counter-reset:install; }
+    .install-sequence li { display:grid;grid-template-columns:54px 1fr;gap:22px;padding:30px 0;border-bottom:1px solid var(--hairline); }
+    .install-sequence>li>span,.ranking-ledger>article>span,.privacy-index>article>span,.creator-ledger li>span,.safety-ledger>article>span { color:#2563eb;font:650 .58rem/1 ui-monospace,monospace;letter-spacing:.13em; }
+    .install-sequence h3 { margin-bottom:9px;font-size:1.25rem; }
+
+    .ranking-ledger { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--hairline);border-inline-start:1px solid var(--hairline); }
+    .ranking-ledger article { padding:30px;border-inline-end:1px solid var(--hairline);border-bottom:1px solid var(--hairline); }
+    .ranking-ledger h3 { margin:18px 0 10px;font-size:1.15rem; }
+    .evidence-note,.canvas-note { max-width:800px;margin-top:30px;padding-inline-start:18px;border-inline-start:2px solid #2563eb;color:var(--muted-fg);font-size:.79rem;line-height:1.72; }
+    .rich-copy :global(strong) { color:var(--body-fg);font-weight:650; }
+
+    .filter-axis { display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:48px;border-block:1px solid var(--hairline); }
+    .filter-axis>div { position:relative;padding:18px 20px;border-inline-end:1px solid var(--hairline); }
+    .filter-axis>div:last-child { border-inline-end:0; }
+    .filter-axis span { display:block;margin-bottom:8px;color:#2563eb;font:650 .54rem/1 ui-monospace,monospace;letter-spacing:.14em; }
+    .filter-axis strong { color:var(--body-fg);font-size:.78rem;font-weight:650; }
+    .discovery-grid { display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,.78fr);gap:clamp(54px,9vw,120px);align-items:start; }
+    .rich-stack { display:flex;flex-direction:column;gap:17px; }
+    .rich-stack p { color:var(--muted-fg);font-size:.91rem;line-height:1.78; }
+    .rich-stack :global(em) { color:var(--body-fg);font-family:"Playfair Fluera","Playfair Fallback",Georgia,serif; }
+    .marks-index { padding:28px;border:1px solid var(--hairline);border-radius:14px;background:var(--body-bg); }
+    .marks-index>h3,.creator-ledger>h3 { margin-bottom:24px;color:#2563eb;font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase; }
+    .marks-index dl { margin:0; }
+    .marks-index dl>div { padding-block:17px;border-top:1px solid var(--hairline); }
+    .marks-index dt { display:flex;gap:12px;color:var(--body-fg);font-family:"Playfair Fluera","Playfair Fallback",Georgia,serif;font-size:1.05rem;font-weight:600; }
+    .marks-index dt span { padding-top:5px;color:#2563eb;font:650 .5rem/1 ui-monospace,monospace;letter-spacing:.12em; }
+    .marks-index dd { margin:7px 0 0 31px;color:var(--muted-fg);font-size:.75rem;line-height:1.65; }
+    .canvas-note { max-width:920px;margin-top:42px; }
+
+    .privacy-index { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-block:1px solid var(--hairline); }
+    .privacy-index article { display:grid;grid-template-columns:46px 1fr;gap:16px;padding:30px 24px;border-bottom:1px solid var(--hairline); }
+    .privacy-index article:nth-child(odd) { border-inline-end:1px solid var(--hairline); }
+    .privacy-index article:nth-last-child(-n+2) { border-bottom:0; }
+    .privacy-index h3 { margin-bottom:10px;font-size:1.13rem;line-height:1.35; }
+    .privacy-action { margin-top:34px; }
+
+    .creator-ledger { overflow:hidden;border:1px solid var(--hairline);border-radius:15px;background:var(--body-bg); }
+    .creator-ledger>h3 { margin:0;padding:25px 27px;border-bottom:1px solid var(--hairline); }
+    .creator-ledger ol { margin:0;padding:0;list-style:none; }
+    .creator-ledger li { display:grid;grid-template-columns:38px 1fr;gap:14px;padding:18px 27px;border-bottom:1px solid var(--hairline); }
+    .creator-ledger li p { color:var(--muted-fg);font-size:.78rem;line-height:1.62; }
+    .creator-note { padding:22px 27px;color:var(--dim-fg);font-size:.67rem;line-height:1.65; }
+
+    .safety-ledger { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--hairline);border-inline-start:1px solid var(--hairline); }
+    .safety-ledger article { padding:28px;border-inline-end:1px solid var(--hairline);border-bottom:1px solid var(--hairline); }
+    .safety-ledger h3 { min-height:2.7em;margin:18px 0 10px;font-size:1.02rem;line-height:1.35; }
+
+    .catalogue-close { position:relative;overflow:hidden;padding-block:clamp(90px,12vw,150px); }
+    .catalogue-close::before { content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 15% 50%,rgb(37 99 235 / .09),transparent 38%); }
+    .close-grid { position:relative;display:grid;grid-template-columns:minmax(320px,.8fr) minmax(0,1.2fr);gap:clamp(60px,10vw,140px);align-items:center; }
+    .close-mark { position:relative;min-height:300px;color:var(--dim-fg);border:1px solid var(--hairline);border-radius:18px;background:color-mix(in srgb,var(--body-bg) 95%,#2563eb 5%); }
+    .close-mark>.catalogue-mark { position:absolute;z-index:2;inset-inline-start:36px;top:34px;opacity:.4; }
+    .close-mark svg { position:absolute;inset:0;width:100%;height:100%; }
+    .close-mark path { fill:none;stroke:#2563eb;stroke-width:2;stroke-linecap:round;stroke-dasharray:5 8; }
+    .close-mark circle { fill:var(--body-bg);stroke:#2563eb;stroke-width:2; }
+    .close-copy h2 { max-width:15ch;margin-bottom:28px; }
+    .close-copy>p:not(.eyebrow) { max-width:700px;margin-top:14px;color:var(--muted-fg);font-size:.89rem;line-height:1.76; }
+
+    @media(min-width:940px) {
+      .catalogue-hero-grid { grid-template-columns:minmax(0,.94fr) minmax(500px,1.06fr); }
+    }
+    @media(max-width:939px) {
+      .editorial-heading,.split-section,.discovery-grid,.close-grid { grid-template-columns:1fr; }
+      .section-narrative { position:static; }
+      .template-anatomy { max-width:760px;width:100%; }
+      .editorial-heading h2 { max-width:16ch; }
+      .close-mark { min-height:240px; }
+    }
+    @media(max-width:680px) {
+      .catalogue-hero-grid { padding-block:68px 78px; }
+      .catalogue-hero h1 { font-size:clamp(2.85rem,14vw,4.2rem); }
+      .template-anatomy { min-height:430px; }
+      .template-anatomy>svg { inset-block:64px 132px;height:calc(100% - 196px); }
+      .anatomy-legend { grid-template-columns:1fr; }
+      .anatomy-legend li { display:grid;grid-template-columns:30px 1fr;gap:8px;padding:9px 16px;border-inline-end:0;border-bottom:1px solid var(--hairline); }
+      .anatomy-legend li:last-child { border-bottom:0; }
+      .anatomy-legend span { margin:2px 0 0; }
+      .canvas-layer { grid-template-columns:48px 1fr;gap:12px 16px; }
+      .canvas-layer p { grid-column:2; }
+      .layer-thread { inset-inline-start:29px; }
+      .ranking-ledger,.privacy-index,.safety-ledger { grid-template-columns:1fr; }
+      .privacy-index article:nth-child(odd) { border-inline-end:0; }
+      .privacy-index article:nth-last-child(2) { border-bottom:1px solid var(--hairline); }
+      .filter-axis { grid-template-columns:1fr; }
+      .filter-axis>div { border-inline-end:0;border-bottom:1px solid var(--hairline); }
+      .filter-axis>div:last-child { border-bottom:0; }
+      .catalogue-actions { align-items:stretch;flex-direction:column; }
+      .catalogue-actions a { width:100%; }
+    }
+    @media(prefers-reduced-motion:no-preference) {
+      .concept-line,.close-mark path { animation:catalogue-thread 16s linear infinite; }
+      @keyframes catalogue-thread { to { stroke-dashoffset:-130; } }
+    }
+    :global(:lang(ar)) .catalogue-hero h1,
+    :global(:lang(hi)) .catalogue-hero h1,
+    :global(:lang(ja)) .catalogue-hero h1,
+    :global(:lang(ko)) .catalogue-hero h1,
+    :global(:lang(ar)) .editorial-heading h2,
+    :global(:lang(hi)) .editorial-heading h2,
+    :global(:lang(ja)) .editorial-heading h2,
+    :global(:lang(ko)) .editorial-heading h2,
+    :global(:lang(ar)) .section-narrative h2,
+    :global(:lang(hi)) .section-narrative h2,
+    :global(:lang(ja)) .section-narrative h2,
+    :global(:lang(ko)) .section-narrative h2,
+    :global(:lang(ar)) .close-copy h2,
+    :global(:lang(hi)) .close-copy h2,
+    :global(:lang(ja)) .close-copy h2,
+    :global(:lang(ko)) .close-copy h2 { font-family:system-ui,sans-serif;letter-spacing:normal; }
+    :global(:lang(ar)) .catalogue-hero h1,
+    :global(:lang(hi)) .catalogue-hero h1,
+    :global(:lang(ar)) .editorial-heading h2,
+    :global(:lang(hi)) .editorial-heading h2,
+    :global(:lang(ar)) .section-narrative h2,
+    :global(:lang(hi)) .section-narrative h2,
+    :global(:lang(ar)) .close-copy h2,
+    :global(:lang(hi)) .close-copy h2 { line-height:1.12; }
+    :global(:lang(ja)) .catalogue-hero h1,
+    :global(:lang(ko)) .catalogue-hero h1,
+    :global(:lang(ja)) .editorial-heading h2,
+    :global(:lang(ko)) .editorial-heading h2,
+    :global(:lang(ja)) .section-narrative h2,
+    :global(:lang(ko)) .section-narrative h2,
+    :global(:lang(ja)) .close-copy h2,
+    :global(:lang(ko)) .close-copy h2 { line-height:1.06; }
+    /* Column-sized type, appended last so it beats earlier media queries:
+     the h1 tracks its own column via cqw instead of the viewport, which
+     put desktop-scale type in a ~450px grid share (one word per line). */
+  .catalogue-hero-copy{container-type:inline-size}
+  .catalogue-hero h1{max-width:19ch;font-size:clamp(2.6rem,10.5cqw,5rem)}
+</style>
+</BaseLayout>

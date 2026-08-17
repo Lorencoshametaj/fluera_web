@@ -12,7 +12,7 @@ Dieser Walkthrough nimmt dir zehn Minuten und ein Thema, das du diese Woche lern
 
 ## Minute 0–2: Erstelle das Canvas
 
-Öffne Fluera. Tippe auf **Neues Canvas**. Gib ihm den Namen des Themas (nicht der Vorlesung — des *Konzepts*). Wähle einen Pinsel — Füllfederhalter ist ein sicherer Standard. Bleib für jetzt bei der Standard-Strichbreite.
+Öffne Fluera. Tippe einmal auf **Neues Canvas** und benenne es nach deinem Studium oder Lernweg: Dieser eine Raum kann mit dem gesamten Studium wachsen. Grenze darin die erste Region ab und benenne diese nach dem Thema (nicht nach der Vorlesung — nach dem *Konzept*). Wähle einen Pinsel — der Füllfederhalter ist ein sicherer Standard. Bleib für jetzt bei der Standard-Strichbreite.
 
 Das Canvas ist leer. Das ist Absicht — Templates helfen hier nicht.
 

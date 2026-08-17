@@ -14,4 +14,4 @@ Plan eksperymentu był prosty: studenci oglądali wykłady i robili notatki ręc
 
 Wniosek jest kontrintuicyjny w erze szybkości: powolność przechwytywania wymusza poznawcze opracowanie w momencie kodowania. Ręka jest wąskim gardłem — a wąskie gardło to miejsce, gdzie zachodzi uczenie się.
 
-Z tego punktu wychodzi cała filozofia produktu Fluera. Pisanie ręczne to nie skeuomorficzny wybór. To narzędzie poznawcze. Trzynaście silników pędzli. Nacisk, nachylenie, prędkość. Latencja pociągnięcia poniżej 15 milisekund na każdym wspieranym urządzeniu. Nieskończony canvas to nie estetyka — to substrat, którego szukała twoja pamięć.
+Z tego punktu wychodzi cała filozofia produktu Fluera. Pisanie ręczne to nie skeuomorficzny wybór. To narzędzie poznawcze. Dwanaście silników pędzli. Nacisk, nachylenie, prędkość. Atrament o niskiej latencji na obsługiwanym sprzęcie. Nieskończony canvas to nie estetyka — to substrat, którego szukała twoja pamięć.

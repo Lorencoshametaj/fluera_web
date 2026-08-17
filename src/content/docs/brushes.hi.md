@@ -1,14 +1,14 @@
 ---
 lang: "hi"
 title: "Brushes"
-description: "तेरह brush engines, हर एक एक अलग प्रकार के निशान के लिए कैलिब्रेटेड। सही चुनने के लिए एक छोटा guide — और क्यों यह आपकी सोच से कम मायने रखता है।"
+description: "बारह brush engines, हर एक एक अलग प्रकार के निशान के लिए कैलिब्रेटेड। सही चुनने के लिए एक छोटा guide — और क्यों यह आपकी सोच से कम मायने रखता है।"
 section: canvas
 sectionLabel: "कैनवास"
 order: 1
 updatedAt: 2026-04-20
 ---
 
-Fluera तेरह brush engines के साथ आता है। हर एक एक पूर्ण rendering pipeline है — pressure, tilt, velocity, per-brush fragment shaders — texture swap नहीं। बहुत लगता है; व्यवहार में, आपका अधिकांश सीखना इनमें से एक या दो में होगा।
+Fluera बारह brush engines के साथ आता है। हर एक एक पूर्ण rendering pipeline है — pressure, tilt, velocity, per-brush fragment shaders — texture swap नहीं। बहुत लगता है; व्यवहार में, आपका अधिकांश सीखना इनमें से एक या दो में होगा।
 
 ## छोटा उत्तर
 
@@ -19,7 +19,7 @@ Fluera तेरह brush engines के साथ आता है। हर �
 
 बाकी सब विशिष्ट स्थितियों के लिए है। ज़्यादा न सोचें।
 
-## तेरह
+## बारह
 
 | Brush               | इसके लिए अच्छा                                    | Notes                                          |
 |---------------------|---------------------------------------------------|------------------------------------------------|
@@ -35,11 +35,10 @@ Fluera तेरह brush engines के साथ आता है। हर �
 | Wash                | Wet-on-paper feel                                | Edges पर color bleed                           |
 | Spray               | Particle effects, shadows                        | Edges पर distortion                            |
 | Neon                | चमकदार annotations                               | Outer glow, fluorescent saturation             |
-| Eraser              | Pixel-by-pixel removal, यह delete tool नहीं है   | History-aware — नीचे के निशान प्रकट करता है   |
 
 ## क्यों engine मायने रखता है (जल्दी से)
 
-Fluera का engine iOS और macOS पर 15 milliseconds से नीचे की latency के साथ pressure, tilt और velocity signals को संरक्षित करता है। यह केवल product polish नहीं है। <a href="/hi/science/authors/van-der-meer">van der Meer का EEG काम</a> ने दिखाया कि हस्तलेखन उन sensorimotor नेटवर्कों को engage करता है जिन्हें typing engage नहीं करती, और इन signals की समृद्धि capture की fidelity के साथ scale करती है।
+Fluera का engine supported hardware पर low-latency ink के साथ pressure, tilt और velocity signals को संरक्षित करता है। यह केवल product polish नहीं है। <a href="/hi/science/authors/van-der-meer">van der Meer का EEG काम</a> ने दिखाया कि हस्तलेखन उन sensorimotor नेटवर्कों को engage करता है जिन्हें typing engage नहीं करती, और इन signals की समृद्धि capture की fidelity के साथ scale करती है।
 
 व्यावहारिक रूप में: एक कैनवास जो strokes खोता है, pressure के तहत lag करता है, या tilt डेटा को flatten करता है, वह कैनवास है जो ठीक उस signal को फेंक देता है जो हस्तलिखित notes को संज्ञानात्मक रूप से बेहतर बनाता है। हमने engine ज़ीरो से बनाया क्योंकि कोई off-the-shelf विकल्प मानक तक नहीं पहुँचता था।
 
@@ -52,7 +51,7 @@ Toolbar पर किसी भी brush को press और hold करें�
 - **Stabilization** (none / soft / firm) — व्यक्तित्व को मारे बिना jitter को smooth करता है
 - **Pressure curve** — हल्के बनाम मजबूत pressure पर response को adjust करता है
 
-बदलाव per-canvas हैं, global नहीं, इसलिए आप एक नोटबुक में soft pencil और दूसरी में sharp ले सकते हैं।
+बदलाव पूरी app पर नहीं, मौजूदा canvas पर लागू होते हैं। इसलिए आपकी पूरी degree वाला canvas अपनी brush settings बनाए रखता है।
 
 ## आगे
 

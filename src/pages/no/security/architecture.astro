@@ -35,7 +35,7 @@ import { SITE } from "@/lib/site";
         Hver notatbok i Fluera bor i en lokal, SQLCipher-kryptert SQLite-database — en bredt auditert utvidelse som transparent krypterer hver side av databasen med AES-256-CBC og kontrollerer integriteten per side med HMAC-SHA512.
       </p>
       <p>
-        Nøkkelavledningen bruker PBKDF2 med SHA-256 og 256 000 iterasjoner (i tråd med OWASP). Passfrasen oppbevares i plattformens keychain — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows, libsecret på Linux. Den sendes aldri til våre servere.
+        Nøkkelen til den lokale databasen er en tilfeldig 256-bits nøkkel som Fluera genererer og lagrer i plattformens sikre nøkkellager — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows og libsecret på Linux. Den er verken kontopassordet ditt eller en passfrase for skysynkronisering, og den lokale databasenøkkelen sendes aldri til Flueras servere.
       </p>
 
       <h2>I transitt: TLS 1.3</h2>
@@ -74,9 +74,9 @@ import { SITE } from "@/lib/site";
         All tilgang til delte notatbøker — hvem, fra hvilken enhet, når — skrives til et append-only audit-spor. Administratorer kan eksportere sporet som CSV eller JSON for compliance-kontroller. Sporet er write-once: fjerning krever en dokumentert begrunnelse og logges selv.
       </p>
 
-      <h2>Gjenoppretting og nøkkeltap</h2>
+      <h2>Gjenoppretting av data</h2>
       <p>
-        Hvis du mister passfrasen, blir de krypterte dataene ugjenopprettelige. Det er bevisst — alternativet ville være en gjenopprettingssti som nødvendigvis svekker krypteringsmodellen. For institusjonelle kontoer kan en valgfri, administrator-forvaltet gjenopprettingsnøkkel konfigureres; det er en dokumentert avveining som institusjonen velger bevisst.
+        Synkroniserte notatbøker er knyttet til kontoen din: etter vanlig kontogjenoppretting kan du logge inn igjen og laste dem ned på en ny enhet. Det finnes ingen egen passfrase for skysynkronisering som du må huske. Kontogjenoppretting kan ikke rekonstruere en notatbok som bare lå lokalt hvis enhetsdataene er slettet; aktiver synkronisering for notatbøker du vil kunne gjenopprette på tvers av enheter.
       </p>
 
       <h2>Responsible disclosure</h2>

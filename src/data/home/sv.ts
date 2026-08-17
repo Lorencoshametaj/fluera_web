@@ -3,7 +3,7 @@ import type { HomeData } from "../types";
 const data: HomeData = {
   steps: [
     { n: 1,  title: "Fånga",                       verb: "Föreläsningsdagen",     description: "Skriv begreppen för hand under föreläsningen. Placera dem i rummet. Den långsamma pennan tvingar fram mental komprimering — det är där inkodningen föds." },
-    { n: 2,  title: "Rekonstruktion",              verb: "Samma kväll",           description: "Stäng boken. Rekonstruera det du minns på en tom canvas. De röda noderna där du tvekar är kartan över vad du behöver repetera (Kapur, produktivt misslyckande, 2008)." },
+    { n: 2,  title: "Rekonstruktion",              verb: "Samma kväll",           description: "Stäng boken. Rekonstruera det du minns i en fri yta på samma canvas. De röda noderna där du tvekar är kartan över vad du behöver repetera (Kapur, produktivt misslyckande, 2008)." },
     { n: 3,  title: "Sokratisk",                   verb: "Inom 48 timmar",        description: "AI:n frågar, du svarar. Bedöm din säkerhet från 1 till 5 före varje avslöjande. Metakognition gjord explicit." },
     { n: 4,  title: "Centaur",                     verb: "Direkt efter",          description: "Ghost Map lägger ditt resonemang över den ideala kartan. Hyperkorrigering förankrar rättningarna i minnet (Butterfield och Metcalfe, 2001)." },
     { n: 5,  title: "Sömn",                        verb: "Den natten",            description: "Gör ingenting. Slow-wave-sömnen spelar upp dagen igen. Hippocampus för spåren vidare till cortex. Vårt jobb är att hålla oss undan." },
@@ -38,6 +38,34 @@ const data: HomeData = {
     { name: "Linux",   api: "OpenGL",      status: "Alpha" },
     { name: "Web",     api: "WebGPU",      status: "Demo" },
   ],
+  medicalUseCase: {
+    kicker: "Byggd för de tuffaste utbildningarna",
+    title: "Läkarutbildningen, på en enda canvas.",
+    intro: "Anatomi, fysiologi, farmakologi. Tusentals fakta som måste hänga ihop — och gå att plocka fram under tentapress. Den plugg som faktiskt fungerar på medicin är den som känns svår medan du gör den. Fluera gör just den till vägen med minst motstånd.",
+    steps: [
+      {
+        phase: "Föreläsningsdag",
+        title: "Varje organsystem blir en region.",
+        description: "Skriv varje föreläsning i sin egen region av samma oändliga canvas — anatomiska strukturer, läkemedelsmekanismer, metabola vägar. Platsen i rummet blir ett minnesankare. Tolv penselmotorer och bläck med låg latens på plattor som stöds.",
+      },
+      {
+        phase: "Samma kväll",
+        title: "Återskapa ur minnet, före boken.",
+        description: "Stäng föreläsningsmaterialet. Försök bygga upp det du minns i ett tomt område av samma canvas. Luckorna du hittar — kranialnerven du hoppade över, receptorn du blandade ihop — är kartan över vad som ska pluggas i kväll. Produktivt misslyckande, med avsikt (Kapur, 2008).",
+      },
+      {
+        phase: "Inom 48 h",
+        title: "Sokratiskt förhör på den canvas du själv byggde.",
+        description: "AI:n frågar, du svarar. Före varje avslöjande förutsäger du din säkerhet 1–5. Varje miss du gjorde med hög säkerhet — varje läkemedel du var säker på och hade fel om — förstärks hårdare. Hyperkorrigering (Butterfield och Metcalfe, 2001).",
+      },
+      {
+        phase: "7–14 dagar före tentan",
+        title: "Fog of War på det system du är svagast på.",
+        description: "Maskera delar av canvasen. Hämta tillbaka anatomin ur minnet innan du avslöjar. Fluera schemalägger återbesöken med FSRS — den moderna algoritmen för spridd repetition. På tentadagen är canvasen själv simuleringen.",
+      },
+    ],
+    closing: "Om det här är arbetssättet du redan halvvägs gör med papper, pdf:er och tre öppna appar, gör Fluera det till en enda sammanhängande slinga. Byggd för hur minnet fungerar, prövad mot utbildningar som inte förlåter något annat.",
+  },
 };
 
 export default data;

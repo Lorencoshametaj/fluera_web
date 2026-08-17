@@ -1,7 +1,7 @@
 ---
 lang: "no"
 title: "Sky-synkronisering"
-description: "Hvordan synkronisere canvas mellom enheter, hva som krypteres, og hvordan du gjenoppretter hvis du mister passfrasen."
+description: "Hvordan synkronisere canvas mellom enheter, hvordan dataene dine beskyttes, og hva du kan forvente."
 section: settings
 sectionLabel: "Innstillinger"
 order: 2
@@ -13,8 +13,7 @@ Sky-synkronisering er opt-in per notatbok. Du kan synkronisere ett canvas mens d
 ## Aktivere synkronisering på første enhet
 
 1. Åpne **Innstillinger → Personvern** og slå på **Sky-synkronisering**.
-2. Opprett eller skriv inn **synk-passfrasen** din. Den er *separat* fra kontopassordet. Passfrasen brukes til å utlede krypteringsnøkkelen — og lagres bare på enheten din, aldri på serverne våre.
-3. Velg hvilke notatbøker som skal synkroniseres. Høyreklikk (eller trykk og hold) på en notatbok → **Aktiver synkronisering**.
+2. Velg hvilke notatbøker som skal synkroniseres. Høyreklikk (eller trykk og hold) på en notatbok → **Aktiver synkronisering**.
 
 Et lite skyikon vises på hver synkronisert notatbok. En rød variant indikerer feil; en grå indikerer pause.
 
@@ -22,22 +21,21 @@ Et lite skyikon vises på hver synkronisert notatbok. En rød variant indikerer 
 
 1. Installer Fluera på den andre enheten.
 2. Logg inn med samme konto.
-3. Skriv inn *samme* synk-passfrase når du blir spurt. Passfrasen kan ikke gjenopprettes — hvis du ikke har den, kan ikke de krypterte dataene leses på den nye enheten.
-4. Sky-synkroniseringen starter. Forvent at første full synkronisering tar noen minutter for en notatbok av middels størrelse.
+3. Sky-synkroniseringen starter automatisk. Forvent at første full synkronisering tar noen minutter for en notatbok av middels størrelse.
 
-## Hva som krypteres og hvordan
+## Hvordan synkroniserte data beskyttes
 
-- Hver notatbok krypteres lokalt med en nøkkel per notatbok.
-- Disse nøklene krypteres med en rotnøkkel utledet fra synk-passfrasen din via PBKDF2-SHA256, 256 000 iterasjoner.
-- Bare de krypterte bytene når serveren. Vi kan ikke lese notatbøkene dine.
+- På enheten din krypteres den lokale databasen i hvile med SQLCipher (AES-256).
+- Når du synkroniserer, krypteres data under overføring med TLS 1.3 og moderne cipher suites.
+- På serverne våre lagres data på EU-infrastruktur (Supabase, `eu-north-1`) og beskyttes av kryptering i hvile på infrastrukturnivå.
 
-Metadata (notatboktitler, tidsstempler, størrelse) krypteres også — serveren ser ugjennomsiktige blobs og synk-tidsstempler.
+For å være tydelig: Sky-synkronisering er **ikke** ende-til-ende-kryptert. Som behandlingsansvarlig kan Fluera teknisk få tilgang til synkronisert innhold for å levere og drifte tjenesten. Vi selger aldri dataene dine, bruker dem aldri til annonsering og trener aldri modeller på dem. Hvis du vil ha en kopi som bare du kan åpne, eksporter en `.fluera`-fil; slike eksporter krypteres med AES-256-GCM.
 
-## Hvis du mister passfrasen
+## Gjenopprette dataene dine
 
-Hvis du glemmer passfrasen og ikke har en enhet som fortsatt har en nøkkel i hurtigminnet, er de krypterte dataene **ikke gjenopprettelige**. Det er by design. Alternativet — en server-side recovery-mekanisme — ville brutt ende-til-ende-modellen, og er en avveining vi ikke er villige til å gjøre for forbrukerkontoer.
+Fordi synkroniserte notatbøker lagres på EU-serverne våre og er knyttet til kontoen din, kan du gjenopprette dem ved å logge inn igjen på en hvilken som helst enhet. Det finnes ingen separat passfrase du må huske eller kan miste.
 
-For **Education-kontoer** kan en valgfri recovery-nøkkel som administratoren beholder, settes opp ved utrulling. Det er en eksplisitt opt-in, dokumentert i institusjonell DPA og revidert.
+Hvis du vil ha en kryptert kopi som bare du kan åpne, eksporter en `.fluera`-fil (AES-256-GCM) og oppbevar passordet selv; Fluera kan ikke lese denne filen.
 
 ## Konfliktløsning
 

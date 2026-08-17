@@ -1,0 +1,44 @@
+---
+export interface Props {
+  size?: "sm" | "md" | "lg";
+  muted?: boolean;
+}
+
+const { size = "md", muted = false } = Astro.props;
+---
+
+<span class={`brand-wordmark brand-wordmark-${size} ${muted ? "brand-wordmark-muted" : ""}`} role="img" aria-label="Fluera">
+  <span class="brand-wordmark-flu" aria-hidden="true">Flu</span><span class="brand-wordmark-era" aria-hidden="true">era</span>
+</span>
+
+<style>
+  .brand-wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    color: theme("colors.paper.50");
+    line-height: 1;
+    white-space: nowrap;
+    /* A wordmark is a fixed visual, not text: without this, the RTL pages
+       (Arabic) reverse the flex items and the logo renders as "eraFlu". */
+    direction: ltr;
+  }
+  .brand-wordmark-flu {
+    font-family: "Sora Fluera", "Sora Fallback", system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.052em;
+  }
+  .brand-wordmark-era {
+    margin-inline-start: 0.02em;
+    font-family: "Playfair Fluera", "Playfair Fallback", Georgia, serif;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 0.026em;
+  }
+  .brand-wordmark-sm { font-size: 1rem; }
+  .brand-wordmark-md { font-size: 1.125rem; }
+  .brand-wordmark-lg { font-size: clamp(2.5rem, 6vw, 5rem); }
+  .brand-wordmark-muted { color: theme("colors.paper.200"); }
+
+  :global(html.light) .brand-wordmark { color: #18181b; }
+  :global(html.light) .brand-wordmark-muted { color: #3f3f46; }
+</style>

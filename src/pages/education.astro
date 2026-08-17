@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 
 const useCases = [
   {
@@ -31,25 +32,17 @@ const deployment = [
   description="Bring evidence-based study tools to your faculty. Multi-seat licensing, SSO, audit log, faculty training on the 12-step learning cycle. Pilot programs available."
 >
 
-  <!-- HERO -->
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">For universities &amp; high schools</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          Cognitive infrastructure<br />for the modern university.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Evidence-based study tools for your students. SSO for your IT. Faculty training on the cognitive science of learning. Pilots start with one class, one semester, no charge.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/contact" class="btn-primary">Book a faculty conversation →</a>
-          <a href="/science" class="btn-secondary">Read the underlying science</a>
-        </div>
-      </div>
+  <PageHero
+    kicker={"For universities & high schools"}
+    title={"Cognitive infrastructure<br />for the modern university."}
+    titleSize="2xl"
+    description={"Evidence-based study tools for your students. SSO for your IT. Faculty training on the cognitive science of learning. Pilots start with one class, one semester, no charge."}
+  >
+    <div slot="copy" class="mt-9 flex flex-wrap gap-4">
+      <a href="/contact" class="btn-primary">Book a faculty conversation →</a>
+      <a href="/science" class="btn-secondary">Read the underlying science</a>
     </div>
-  </section>
+  </PageHero>
 
   <!-- USE CASES -->
   <section class="py-20 md:py-28 border-b border-white/[0.04]">

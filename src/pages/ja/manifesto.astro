@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="Fluera が何であり、何になることを拒み、なぜ「明白な製品」が間違っていたのか。長文による宣言。"
   locale="ja"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">マニフェスト</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">心の働きの上に建てた学習空間。</h1>
+  <PageHero
+    kicker={"マニフェスト"}
+    title={"心の働きの上に建てた学習空間。"}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         Fluera が何であり、何になることを拒み、なぜ「明白な製品」が間違っていたのか。長文による宣言。
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">
@@ -107,7 +110,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <strong>あなたの代わりに試験に答える AI は持ちません。</strong>ユーザーの即時満足は莫大なものになるでしょう。しかし長期的な結果 — ツールが強化するはずの認知の筋肉の萎縮 — は、宣言した目的への裏切りです。あなたの代わりに作業をする AI は、あなたに何も教えない AI です。
       </p>
       <p>
-        <strong>あなたのノートのデータを売りません。</strong>各ノートは AES-256 で保存時に暗号化されます。同期は、有効化された場合、エンドツーエンドで暗号化されます。あなたのコンテンツでモデルを訓練しません。あなたの手書き、あなたの思考、あなたの誤り、あなたの成長は、あなたのものです。「あなたのデータが商品です」が2026年のエドテックのデフォルトであっても、それを許容できることにはなりません。
+        <strong>あなたのノートのデータを売りません。</strong>各ノートは端末上で AES-256 により保存時に暗号化されます。同期は転送時（TLS）と EU インフラ上の保存時に暗号化されますが、エンドツーエンド暗号化ではなく、データ管理者である Fluera は技術的にアクセスできます。販売、広告利用、モデル学習には使用しません。あなたの手書き、思考、誤り、成長はあなたのものです。「あなたのデータが商品です」が2026年のエドテックのデフォルトであっても、それを許容できることにはなりません。
       </p>
       <p>
         <strong>エンゲージメントループ、広告、ストリークは持ちません。</strong>最適化できそうな最も強いシグナル — デイリーアクティブユーザー、セッション時間、通知のクリック率 — は、製品を腐らせる可能性が最も高いシグナルでもあります。あなたの学習との関係は、プッシュ通知に依存すべきではありません。私たちはあなたに、Fluera をより少なく使い、より多く学んでほしいのです。

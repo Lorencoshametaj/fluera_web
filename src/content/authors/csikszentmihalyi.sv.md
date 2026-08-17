@@ -14,4 +14,4 @@ Flow är inte mystiskt. Csikszentmihalyi identifierade förutsättningarna med p
 
 För ett studieverktyg har detta konsekvenser utan kompromisser. Inga modala popups under skrivande. Inga notifikationer. Inga gamifierade streak-rop som drar uppmärksamheten. Ingen AI som erbjuder oönskade förslag.
 
-Fluera-canvasen är utformad för att försvinna under skrivande. Verktygsraderna gömmer sig. AI:n är tyst tills den anropas. Den oändliga canvasen tar bort skrollning och paginering — de mest banala formerna av avbrott. Inputlatensen hålls under 15 millisekunder eftersom latens över denna tröskel också är en form av avbrott — den bryter loopen mellan hand och tanke.
+Fluera-canvasen är utformad för att försvinna under skrivande. Verktygsraderna gömmer sig. AI:n är tyst tills den anropas. Den oändliga canvasen tar bort skrollning och paginering — de mest banala formerna av avbrott. Bläck med låg latens på hårdvara som stöds hjälper till att hålla hand och tanke i samma loop.

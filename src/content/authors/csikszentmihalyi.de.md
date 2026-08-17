@@ -14,4 +14,4 @@ Flow ist nicht mystisch. Csikszentmihalyi identifizierte seine Vorbedingungen pr
 
 Für ein Lern-Tool hat das Konsequenzen ohne Mittelweg. Keine modalen Popups während des Schreibens. Keine Benachrichtigungen. Keine gamifizierten Streak-Aufrufe, die die Aufmerksamkeit ziehen. Keine KI, die unaufgefordert Vorschläge macht.
 
-Das Canvas von Fluera ist darauf ausgelegt, während des Schreibens zu verschwinden. Die Toolbars verbergen sich. Die KI bleibt still, bis sie aufgerufen wird. Das unendliche Canvas entfernt Scrollen und Paginierung — die banalsten Formen der Unterbrechung. Die Eingabelatenz wird unter 15 ms gehalten, weil Latenz oberhalb dieser Schwelle ebenfalls eine Form der Unterbrechung ist — sie zerreißt die Schleife zwischen Hand und Gedanke.
+Das Canvas von Fluera ist darauf ausgelegt, während des Schreibens zu verschwinden. Die Toolbars verbergen sich. Die KI bleibt still, bis sie aufgerufen wird. Das unendliche Canvas entfernt Scrollen und Paginierung — die banalsten Formen der Unterbrechung. Latenzarme Freihandeingabe auf unterstützter Hardware hilft, Hand und Gedanken in einem Loop zu halten.

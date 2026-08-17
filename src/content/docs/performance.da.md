@@ -1,29 +1,29 @@
 ---
 lang: "da"
 title: "Tuning af ydeevne"
-description: "Fluera er bygget til at holde 60 FPS på canvasser med hundredtusindvis af streger. Her er, hvad du skal tjekke, når det ikke sker."
+description: "Fluera sigter mod 60 FPS og blæk med lav latenstid på understøttet hardware. Den faktiske ydeevne varierer med enhed, canvas-kompleksitet og aktive funktioner."
 section: troubleshooting
 sectionLabel: "Fejlfinding"
 order: 2
 updatedAt: 2026-04-20
 ---
 
-Fluera-motoren er designet til at holde 60 FPS med streg-latens under 15 ms på moderne hardware — op til hundredtusindvis af streger pr. notesbog. Når den ikke gør det, er det som regel et af et lille sæt forhold, der er ansvarligt.
+Fluera-motoren sigter mod 60 FPS og blæk med lav latenstid på understøttet hardware. Den faktiske ydeevne varierer med enhed, input-stack, canvas-kompleksitet og aktive funktioner.
 
 ## Diagnose
 
 Åbn **Indstillinger → Avanceret → Ydeevne**. Du vil se:
 
 - **Aktuel FPS** — bør forblive på 60 (eller 120 på ProMotion-enheder)
-- **Streg-latens** — bør læse <15 ms på iOS/macOS, <20 ms på andre platforme
+- **Streg-latens** — sammenlign målingen med det dokumenterede mål for din enhed og input-stack; der findes ingen universel grænseværdi
 - **Hukommelsesforbrug** — absolut og som procent af enhedens budget
 - **Hit rate for tile cache** — bør være >90 % under normal zoom/pan
 
 Hvis noget her er rødt, ligger de sandsynlige skyldige på listen nedenfor.
 
-## Store canvasser (&gt; 200k streger)
+## Store canvasser
 
-Motoren kan klare det volumen, men to indstillinger betyder noget:
+Store canvasser kan kræve tuning. Start med disse to indstillinger:
 
 - **Hukommelsesbudget.** På enheder med mindre end 6 GB RAM er Flueras standard-hukommelsesbudget konservativt. Hvis du har masser af RAM og vil have hurtigere zoom-respons, så hæv det til *Generøst* i **Indstillinger → Canvas → Hukommelsesbudget**.
 - **Detaljeniveau.** Standard-LOD-politikken forenkler streger på meget lave zoom-niveauer. Hvis du bemærker streger med rystende udseende, når der er zoomet ud, så skift LOD til *Høj detalje* — men forvent ~10 % mere GPU-belastning.
@@ -37,13 +37,13 @@ Time Travel gemmer lyd sammen med streg-tidsstempler. For en 60 minutters forel�
 
 ## Specifikt for Apple Pencil
 
-På iPad holder standard-tilstanden *Predicted touch* streg-latensen under 8 ms. Hvis du har deaktiveret prædiktion (i Indstillinger → Canvas → Streg-latens → Standard), så skift tilbage til Predicted. Prædiktion er en Apple Pencil-API, ikke et gæt — den bruger hardwarens egen banepræstation.
+På iPad er standardtilstanden *Predicted touch* designet til at reducere den oplevede streg-latens. Resultatet varierer med iPad, Pencil, systemversion og canvas-belastning. Hvis du har deaktiveret prædiktion (i Indstillinger → Canvas → Streg-latens → Standard), så skift tilbage til Predicted. Prædiktion er en Apple Pencil-API, ikke et gæt — den bruger hardwarens egen banepræstation.
 
 ## Når intet hjælper
 
 Kør **Indstillinger → Avanceret → Eksportér diagnostik**. Du får en lille JSON-fil med samples af FPS, hukommelsesforbrug og (anonyme) enhedsoplysninger. Send den til [support@fluera.dev](mailto:support@fluera.dev) med en kort beskrivelse af, hvornår tingene bliver langsomme.
 
-Vi sporer ≈95 % af bruger-synlige ydelsesregressioner til et specifikt stykke kode inden for en time efter modtagelsen af et diagnostik-eksport. De resterende 5 % er ægte svære, og vi siger det til dig.
+Diagnostik hjælper support med at undersøge ydelsesproblemer. Undersøgelsens varighed og resultat afhænger af problemet og de tilgængelige data.
 
 ## Næste
 

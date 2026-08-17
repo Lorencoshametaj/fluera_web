@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 
 const useCases = [
   {
@@ -32,24 +33,17 @@ const deployment = [
   locale="hi"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">विश्वविद्यालय और स्कूल</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          आधुनिक विश्वविद्यालय के लिए<br />संज्ञानात्मक बुनियादी ढांचा।
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          आपके छात्रों के लिए साक्ष्य-आधारित अध्ययन उपकरण। आपकी IT के लिए SSO। अधिगम के संज्ञानात्मक विज्ञान पर फैकल्टी प्रशिक्षण। पायलट एक कक्षा, एक सेमेस्टर, मुफ़्त शुरू होते हैं।
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/hi/contact" class="btn-primary">शैक्षणिक कॉल बुक करें →</a>
-          <a href="/hi/" class="btn-secondary">आधार विज्ञान</a>
-        </div>
-      </div>
+  <PageHero
+    kicker={"विश्वविद्यालय और स्कूल"}
+    title={"आधुनिक विश्वविद्यालय के लिए<br />संज्ञानात्मक बुनियादी ढांचा।"}
+    titleSize="2xl"
+    description={"आपके छात्रों के लिए साक्ष्य-आधारित अध्ययन उपकरण। आपकी IT के लिए SSO। अधिगम के संज्ञानात्मक विज्ञान पर फैकल्टी प्रशिक्षण। पायलट एक कक्षा, एक सेमेस्टर, मुफ़्त शुरू होते हैं।"}
+  >
+    <div slot="copy" class="mt-9 flex flex-wrap gap-4">
+      <a href="/hi/contact" class="btn-primary">शैक्षणिक कॉल बुक करें →</a>
+      <a href="/hi/" class="btn-secondary">आधार विज्ञान</a>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04]">
     <div class="container-site">

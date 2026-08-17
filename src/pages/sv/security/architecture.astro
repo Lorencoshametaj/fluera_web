@@ -35,7 +35,7 @@ import { SITE } from "@/lib/site";
         Varje anteckningsbok i Fluera lever i en lokal SQLite-databas krypterad med SQLCipher — en brett auditerad utökning som transparent krypterar varje sida i databasen med AES-256-CBC och integritetskontroll via HMAC-SHA512 per sida.
       </p>
       <p>
-        Nyckelhärledning använder PBKDF2 med SHA-256, 256 000 iterationer (i linje med OWASP). Lösenfrasen lagras i plattformens keychain — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows, libsecret på Linux. Den skickas aldrig till våra servrar.
+        Nyckeln till den lokala databasen är en slumpmässig 256-bitarsnyckel som Fluera genererar och lagrar i plattformens säkra nyckellager — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows och libsecret på Linux. Den är varken ditt kontolösenord eller en lösenfras för molnsynkronisering, och den lokala databasnyckeln skickas aldrig till Flueras servrar.
       </p>
 
       <h2>I transit: TLS 1.3</h2>
@@ -74,9 +74,9 @@ import { SITE } from "@/lib/site";
         Varje åtkomst till delade anteckningsböcker — vem, från vilken enhet, när — skrivs till ett append-only-revisionsspår. Administratörer kan exportera spåret som CSV eller JSON för compliance-kontroller. Spåret är write-once: borttagning kräver en dokumenterad motivering och loggas i sin tur.
       </p>
 
-      <h2>Recovery och nyckelförlust</h2>
+      <h2>Dataåterställning</h2>
       <p>
-        Om du tappar lösenfrasen blir den krypterade datan oåterkallelig. Det är avsiktligt — alternativet vore en återställningsväg som med nödvändighet skulle försvaga krypteringsmodellen. För Institutional-konton är det möjligt att konfigurera en valfri recovery-nyckel som hålls av administratören; det är en dokumenterad trade-off där institutionen väljer medvetet.
+        Synkroniserade anteckningsböcker är kopplade till ditt konto: efter den vanliga kontoåterställningen kan du logga in igen och hämta dem på en ny enhet. Det finns ingen separat lösenfras för molnsynkronisering att komma ihåg. Kontoåterställning kan inte återskapa en anteckningsbok som bara lagrades lokalt om enhetsdata har raderats; aktivera synkronisering för anteckningsböcker du vill kunna återställa på flera enheter.
       </p>
 
       <h2>Responsible disclosure</h2>

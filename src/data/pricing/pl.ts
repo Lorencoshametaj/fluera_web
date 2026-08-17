@@ -82,7 +82,7 @@ const data: PricingData = {
     },
     {
       q: "Co stanie się z moimi canvasami, jeśli anuluję Plus lub Pro?",
-      a: "Wszystko zostaje na twoim urządzeniu (local-first), a 3 podstawowe pędzle + eksport PNG nadal działają w tier Free. Dodatkowe canvasy stają się tylko do odczytu, dopóki nie reaktywujesz lub nie wyeksportujesz. Nic nie jest usuwane bez twojej wyraźnej akcji.",
+      a: "Wszystko zostaje na twoim urządzeniu (local-first), a 3 podstawowe pędzle i eksport PNG nadal działają w planie Free. Funkcje płatnego planu zostają wstrzymane do czasu ponownej aktywacji. Nic nie jest usuwane bez twojej wyraźnej akcji.",
     },
     {
       q: "Dlaczego nie ma gratis trialu Pro?",
@@ -98,7 +98,7 @@ const data: PricingData = {
     },
     {
       q: "Polityka zwrotów?",
-      a: "30 dni, bez pytań, zarówno na planach miesięcznych jak i rocznych. Napisz do support@fluera.dev z adresu, z którego się zarejestrowałeś.",
+      a: "Warunki zwrotu i odstąpienia zależą od sklepu oraz kanału zakupu. Obowiązująca polityka jest wyświetlana przed potwierdzeniem; po pomoc napisz na support@fluera.dev z adresu użytego przy rejestracji.",
     },
     {
       q: "Jak działa weryfikacja studencka?",

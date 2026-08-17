@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Cifrado",
-    body: "Cada cuaderno de Fluera está cifrado en reposo con AES-256 vía SQLCipher. El tráfico es TLS 1.3 en tránsito. La sincronización entre tus dispositivos es cifrada de extremo a extremo con claves derivadas de tu passphrase — guardadas en el keychain de la plataforma, nunca enviadas a nuestros servidores.",
+    body: "Cada cuaderno de Fluera está cifrado en reposo en tu dispositivo con AES-256 mediante SQLCipher, y los archivos .fluera exportados se cifran con AES-256-GCM. El tráfico está cifrado en tránsito con TLS 1.3. El cloud sync no está cifrado de extremo a extremo: los cuadernos sincronizados se almacenan en infraestructura de la UE (Supabase, eu-north-1), cifrados en tránsito y en reposo a nivel de infraestructura. Como responsable del tratamiento, Fluera puede acceder técnicamente al contenido sincronizado, pero nunca lo vende, lo usa para publicidad ni para entrenar modelos.",
   },
   {
     title: "Propiedad de los datos",
@@ -38,7 +38,7 @@ const pillars = [
 >
   <PageHero
     kicker="Seguridad y privacidad"
-    title="Cifrado de extremo a extremo.<br />La clave la tienes tú."
+    title="Cifrado en reposo y en tránsito.<br />Servidores en la UE."
     titleSize="2xl"
     description="Cifrado por defecto. Sin ad-tech. Servidores en Europa. Exportación completa. La privacidad es una restricción de diseño, no una tarea de compliance."
     orbs

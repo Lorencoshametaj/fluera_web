@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import LearningStep from "@/components/LearningStep.astro";
+import ScienceCanvasPath from "@/components/ScienceCanvasPath.astro";
 import AuthorCard from "@/components/AuthorCard.astro";
 import { getCollection } from "astro:content";
 
@@ -13,7 +13,7 @@ const authors = (await getCollection("authors", ({ data }) => data.lang === "en"
 
 const steps = [
   { n: 1,  title: "कैप्चर",                  verb: "व्याख्यान का दिन",       description: "व्याख्यान के दौरान अवधारणाओं को हाथ से लिखें। उन्हें स्थान में रखें। पेन की धीमी गति संकुचन को मजबूर करती है — और संकुचन वहीं है जहां एन्कोडिंग जन्म लेती है।" },
-  { n: 2,  title: "पुनर्निर्माण",            verb: "उसी शाम",                description: "किताब बंद करें। जो याद है उसे खाली कैनवास पर पुनर्निर्माण करें। जिन लाल नोड्स पर हिचकिचाते हैं, वही अगले अध्ययन का मानचित्र हैं (Kapur, उत्पादक विफलता, 2008)।" },
+  { n: 2,  title: "पुनर्निर्माण",            verb: "उसी शाम",                description: "किताब बंद करें। जो याद है उसे उसी कैनवास के एक खाली हिस्से में पुनर्निर्माण करें। जिन लाल नोड्स पर हिचकिचाते हैं, वही अगले अध्ययन का मानचित्र हैं (Kapur, उत्पादक विफलता, 2008)।" },
   { n: 3,  title: "सोक्रेटिक",                verb: "48 घंटे के भीतर",        description: "AI पूछता है, आप उत्तर देते हैं। प्रत्येक प्रकटीकरण से पहले 1 से 5 तक आत्मविश्वास का मूल्यांकन। मेटाकॉग्निशन को स्पष्ट किया गया।" },
   { n: 4,  title: "सेंटॉर",                   verb: "तुरंत बाद",              description: "Ghost Map आपके तर्क को आदर्श मानचित्र पर ओवरले करता है। हाइपरकरेक्शन सुधारों को स्मृति में स्थिर करता है (Butterfield और Metcalfe, 2001)।" },
   { n: 5,  title: "नींद",                      verb: "उस रात",                description: "कुछ न करें। धीमी-तरंग नींद दिन को फिर से चलाती है। हिप्पोकैम्पस निशानों को नियोकोर्टेक्स को सौंप देता है।" },
@@ -28,49 +28,28 @@ const steps = [
 ---
 
 <BaseLayout
+  bodyClass="science-page"
   title="Fluera का विज्ञान"
   description="Fluera पांच दशकों के स्मृति अनुसंधान पर टिका है — Bjork, Mueller, van der Meer, Roediger, और नोबेल पुरस्कार विजेता place cell न्यूरोसाइंस। 12-चरण चक्र और हर विशेषता के पीछे सिद्धांतों का अन्वेषण करें।"
   locale="hi"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">विज्ञान</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          एक ऐप के पीछे<br />पांच दशकों का स्मृति अनुसंधान।
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Fluera की हर विशेषता प्रकाशित अनुसंधान पर वापस जाती है। नीचे: 12-चरण अधिगम चक्र, इसके आधार पर 23 सिद्धांत, हम जिन बारह दिमागों पर निर्भर हैं, और जो हम अभी तक दावा नहीं करते उसकी सीमाएं।
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#learning-cycle" class="btn-secondary">चक्र पर जाएं</a>
-          <a href="#principles" class="btn-secondary">सिद्धांत सूचकांक</a>
-          <a href="#authors" class="btn-secondary">लेखक</a>
-          <a href="/hi/research" class="btn-secondary">ग्रंथसूची →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">चक्र</p>
-        <h2 class="font-serif text-display-xl text-paper-50 mb-6">एक कैनवास। बारह संज्ञानात्मक चालें।</h2>
-        <p class="prose-ink text-lg max-w-prose">
-          चक्र अनुक्रमिक और पुनरावृत्तीय है। चरण 1-4 एन्कोडिंग बनाते हैं। चरण 5 (नींद) गैर-समझौता योग्य जीव विज्ञान है। चरण 6-9 दिनों और हफ्तों में समेकित करते हैं। चरण 10-12 ज्ञान को स्थायी और स्थानांतरण योग्य बनाते हैं।
-        </p>
-      </div>
-
-      <ol class="max-w-3xl list-none p-0">
-        {steps.map((s) => (
-          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
-        ))}
-      </ol>
-    </div>
-  </section>
+  <ScienceCanvasPath
+    locale="hi"
+    heroKicker={"विज्ञान"}
+    heroTitleHtml={"एक ऐप के पीछे<br />पांच दशकों का स्मृति अनुसंधान।"}
+    heroDescription={"Fluera की हर विशेषता प्रकाशित अनुसंधान पर वापस जाती है। नीचे: 12-चरण अधिगम चक्र, इसके आधार पर 23 सिद्धांत, हम जिन बारह दिमागों पर निर्भर हैं, और जो हम अभी तक दावा नहीं करते उसकी सीमाएं।"}
+    cycleKicker={"चक्र"}
+    cycleTitle={"एक कैनवास। बारह संज्ञानात्मक चालें।"}
+    cycleDescription={"चक्र अनुक्रमिक और पुनरावृत्तीय है। चरण 1-4 एन्कोडिंग बनाते हैं। चरण 5 (नींद) गैर-समझौता योग्य जीव विज्ञान है। चरण 6-9 दिनों और हफ्तों में समेकित करते हैं। चरण 10-12 ज्ञान को स्थायी और स्थानांतरण योग्य बनाते हैं।"}
+    navigation={[
+      { href: "#learning-cycle", label: "चक्र पर जाएं" },
+      { href: "#principles", label: "सिद्धांत सूचकांक" },
+      { href: "#authors", label: "लेखक" },
+      { href: "/hi/research", label: "ग्रंथसूची →" },
+    ]}
+    steps={steps}
+  />
 
   <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">

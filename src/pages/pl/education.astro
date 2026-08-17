@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 
 const useCases = [
   {
@@ -32,24 +33,17 @@ const deployment = [
   locale="pl"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-32 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">Uniwersytety i szkoły</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          Infrastruktura poznawcza<br />dla nowoczesnego uniwersytetu.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Narzędzie do nauki oparte na dowodach dla Twoich studentów. SSO dla Twojego IT. Szkolenie kadry z nauki poznawczej uczenia się. Pilotaże zaczynają się od jednej klasy, jednego semestru, za darmo.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/pl/contact" class="btn-primary">Umów rozmowę edukacyjną →</a>
-          <a href="/pl/" class="btn-secondary">Nauka stojąca u podstaw</a>
-        </div>
-      </div>
+  <PageHero
+    kicker={"Uniwersytety i szkoły"}
+    title={"Infrastruktura poznawcza<br />dla nowoczesnego uniwersytetu."}
+    titleSize="2xl"
+    description={"Narzędzie do nauki oparte na dowodach dla Twoich studentów. SSO dla Twojego IT. Szkolenie kadry z nauki poznawczej uczenia się. Pilotaże zaczynają się od jednej klasy, jednego semestru, za darmo."}
+  >
+    <div slot="copy" class="mt-9 flex flex-wrap gap-4">
+      <a href="/pl/contact" class="btn-primary">Umów rozmowę edukacyjną →</a>
+      <a href="/pl/" class="btn-secondary">Nauka stojąca u podstaw</a>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04]">
     <div class="container-site">

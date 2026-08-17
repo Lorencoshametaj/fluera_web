@@ -12,7 +12,7 @@ Este walkthrough usa dez minutos do seu tempo e um tópico que você está estud
 
 ## Minutos 0–2: Crie o canvas
 
-Abra o Fluera. Toque em **Novo canvas**. Dê o nome do tópico (não da aula — do *conceito*). Escolha um pincel — caneta tinteiro é um padrão seguro. Fique com a largura de traço padrão por enquanto.
+Abra o Fluera. Toque em **Novo canvas** uma única vez e dê a ele o nome da sua graduação ou jornada de aprendizagem: esse espaço único pode crescer com o curso inteiro. Delimite nele a primeira região e dê a essa região o nome do tópico (não da aula — do *conceito*). Escolha um pincel — a caneta-tinteiro é um padrão seguro. Fique com a largura de traço padrão por enquanto.
 
 O canvas está em branco. Isso é intencional — templates não ajudam aqui.
 

@@ -87,13 +87,14 @@ const browseLabel = BROWSE_LABEL[activeLocale] ?? "Browse";
   locale={locale}
   jsonLd={jsonLd}
   alternates={alternates}
+  bodyClass="docs-premium-page"
 >
   <!-- Mobile nav toggle -->
-  <div class="md:hidden sticky top-16 z-30 border-b border-white/[0.06] bg-ink-950/85 backdrop-blur-xl">
+  <div class="docs-mobile-nav md:hidden sticky top-16 z-30">
     <button
       id="docs-sidebar-btn"
       type="button"
-      class="w-full flex items-center justify-between px-6 py-3 text-sm text-paper-200"
+      class="docs-mobile-button"
       aria-expanded="false"
       aria-controls="docs-sidebar-mobile"
     >
@@ -103,33 +104,35 @@ const browseLabel = BROWSE_LABEL[activeLocale] ?? "Browse";
         </svg>
         {browseLabel} {rootLabel.toLowerCase()}
       </span>
-      <span id="docs-sidebar-chev" class="text-ink-500 transition-transform">▾</span>
+      <span id="docs-sidebar-chev" class="docs-mobile-chev">▾</span>
     </button>
-    <div id="docs-sidebar-mobile" hidden class="border-t border-white/[0.06]">
+    <div id="docs-sidebar-mobile" hidden class="docs-mobile-panel">
       <DocSidebar sections={sections} rootHref={rootHref} rootLabel={rootLabel} />
     </div>
   </div>
 
-  <div class="grid md:grid-cols-[16rem_minmax(0,1fr)] lg:grid-cols-[17rem_minmax(0,1fr)] max-w-[90rem] mx-auto">
+  <div class="docs-shell">
     <!-- Desktop sidebar -->
     <div class="hidden md:block">
       <DocSidebar sections={sections} rootHref={rootHref} rootLabel={rootLabel} />
     </div>
 
     <!-- Main content -->
-    <div class="min-w-0">
-      <article class="px-6 sm:px-8 lg:px-12 py-12 md:py-16 max-w-3xl">
-        <header class="mb-10 pb-8 border-b border-white/[0.06]">
+    <div class="docs-main">
+      <article class="docs-article">
+        <header class="docs-header">
+          <div class="docs-coordinate" aria-hidden="true"><span>FLUERA</span><i></i><b>∞</b></div>
           {sectionLabel && (
-            <p class="eyebrow mb-4 text-accent-glow">{sectionLabel}</p>
+            <p class="eyebrow docs-section-label">{sectionLabel}</p>
           )}
-          <h1 class="font-serif text-display-lg text-paper-50 mb-4">{title}</h1>
-          <p class="prose-ink text-lg max-w-prose">{description}</p>
+          <h1>{title}</h1>
+          <p class="docs-description">{description}</p>
           {updatedAt && (
-            <p class="mt-4 text-xs font-mono uppercase tracking-widest text-ink-500">
+            <p class="docs-updated">
               {updatedLabel} {updatedAt.toLocaleDateString(dateFormat, { year: "numeric", month: "long", day: "numeric" })}
             </p>
           )}
+          <svg class="docs-thread" viewBox="0 0 720 100" aria-hidden="true" preserveAspectRatio="none"><path d="M-20 77C93 81 138 25 227 45s117 48 203 10 145-48 310-16"/><circle cx="227" cy="45" r="4"/><circle cx="430" cy="55" r="4"/></svg>
         </header>
 
         <div class="prose-v2">
@@ -151,5 +154,22 @@ const browseLabel = BROWSE_LABEL[activeLocale] ?? "Browse";
       if (chev) chev.style.transform = open ? "" : "rotate(180deg)";
     });
   </script>
+
+  <style>
+    .docs-mobile-nav{border-bottom:1px solid var(--hairline);background:var(--body-bg)}
+    .docs-mobile-button{display:flex;width:100%;align-items:center;justify-content:space-between;padding:.85rem 1.4rem;color:var(--body-fg);font-size:.8rem}.docs-mobile-chev{color:var(--dim-fg);transition:transform .16s ease}.docs-mobile-panel{max-height:calc(100svh - 7.2rem);overflow-y:auto;border-top:1px solid var(--hairline)}
+    .docs-shell{display:grid;max-width:94rem;margin:0 auto}.docs-main{min-width:0}.docs-article{max-width:58rem;padding:clamp(2.5rem,5vw,5rem) clamp(1.5rem,5vw,5rem) clamp(5rem,9vw,8rem)}
+    .docs-header{position:relative;margin-bottom:clamp(2.75rem,5vw,4.5rem);padding:0 0 clamp(3rem,5vw,4rem);border-bottom:1px solid var(--hairline);overflow:hidden}.docs-section-label{margin:0 0 1.15rem;color:var(--dim-fg)}.docs-header h1{max-width:17ch;margin:0;color:var(--body-fg);font:700 clamp(2.6rem,5.7vw,5.4rem)/.96 "Sora Fluera","Sora Fallback",system-ui,sans-serif;letter-spacing:-.057em}.docs-description{max-width:43rem;margin:1.45rem 0 0;color:var(--muted-fg);font-size:clamp(1rem,1.4vw,1.15rem);line-height:1.7}.docs-updated{margin:1.15rem 0 0;color:var(--dim-fg);font:600 .58rem/1.4 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase}.docs-coordinate{position:absolute;z-index:2;top:.1rem;inset-inline-end:0;display:flex;align-items:center;gap:.55rem;color:#2563eb;font:650 .46rem/1 ui-monospace,monospace;letter-spacing:.12em}.docs-coordinate i{width:2.2rem;height:1px;background:currentColor;opacity:.4}.docs-coordinate b{font-size:.78rem;font-weight:500}.docs-thread{position:absolute;inset-inline:0;bottom:-.3rem;width:100%;height:82px}.docs-thread path{fill:none;stroke:#2563eb;stroke-width:1.4;stroke-dasharray:5 8;vector-effect:non-scaling-stroke;opacity:.38}.docs-thread circle{fill:var(--body-bg);stroke:#2563eb;stroke-width:1.4;vector-effect:non-scaling-stroke}
+    .docs-article :global(.prose-v2){max-width:48rem}.docs-article :global(.prose-v2>h2){margin-top:3.75rem;padding-top:1.1rem;border-top:1px solid var(--hairline);font-family:"Sora Fluera","Sora Fallback",system-ui,sans-serif;font-weight:650;letter-spacing:-.04em}.docs-article :global(.prose-v2>h3){font-family:"Sora Fluera","Sora Fallback",system-ui,sans-serif;font-weight:650;letter-spacing:-.025em}.docs-article :global(.prose-v2 blockquote){border-inline-start-color:#2563eb;background:color-mix(in srgb,var(--body-bg) 94%,#2563eb)}
+    @media(min-width:768px){.docs-shell{grid-template-columns:18rem minmax(0,1fr)}.docs-main{background-image:radial-gradient(circle,var(--hairline) .65px,transparent .75px);background-position:calc(100% - 2rem) 2rem;background-size:25px 25px;background-repeat:repeat-y}.docs-main::before{content:"";position:fixed;inset-block:4rem 0;inset-inline-start:calc((100vw - min(100vw,94rem))/2 + 18rem);width:1px;background:var(--hairline);pointer-events:none}}
+    @media(max-width:560px){.docs-coordinate{display:none}.docs-header h1{font-size:clamp(2.5rem,12vw,3.7rem)}}
+    :global(html.light) .docs-main{background-color:#fff}.docs-article :global(.prose-v2 a){text-decoration-thickness:1px;text-underline-offset:4px}
+    :global(:lang(ar)) .docs-header h1,:global(:lang(hi)) .docs-header h1,:global(:lang(ja)) .docs-header h1,:global(:lang(ko)) .docs-header h1{font-family:system-ui,sans-serif;letter-spacing:normal}
+    /* Column-sized type, appended last so it beats earlier media queries:
+     the h1 tracks its own column via cqw instead of the viewport, which
+     put desktop-scale type in a ~450px grid share (one word per line). */
+  .docs-header{container-type:inline-size}
+  .docs-header h1{font-size:clamp(2.5rem,8.5cqw,4.75rem)}
+</style>
 
 </BaseLayout>

@@ -14,4 +14,4 @@ Flow ei ole mystistä. Csikszentmihalyi tunnisti sen edellytykset täsmällisest
 
 Oppimistyökalulle tällä on seurauksia ilman keskitietä. Ei modaalisia ponnahdusikkunoita kirjoittamisen aikana. Ei ilmoituksia. Ei pelillistettyjä streak-vetoomuksia, jotka vetävät huomion. Ei tekoälyä, joka tekee pyytämättömiä ehdotuksia.
 
-Flueran canvas on suunniteltu katoamaan kirjoittamisen aikana. Työkalupalkit piiloutuvat. Tekoäly pysyy hiljaa, kunnes sitä kutsutaan. Ääretön canvas poistaa vierityksen ja sivuttamisen — yksinkertaisimmat keskeytysmuodot. Syötteen latenssi pidetään alle 15 ms, koska tämän kynnyksen ylittävä latenssi on niin ikään keskeytyksen muoto — se repii silmukan käden ja ajatuksen välillä.
+Flueran canvas on suunniteltu katoamaan kirjoittamisen aikana. Työkalupalkit piiloutuvat. Tekoäly pysyy hiljaa, kunnes sitä kutsutaan. Ääretön canvas poistaa vierityksen ja sivuttamisen — yksinkertaisimmat keskeytysmuodot. Matalan viiveen muste tuetulla laitteistolla auttaa pitämään käden ja ajatuksen samassa silmukassa.

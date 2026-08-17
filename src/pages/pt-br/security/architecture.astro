@@ -35,7 +35,7 @@ import { SITE } from "@/lib/site";
         Cada caderno do Fluera vive em um banco SQLite local criptografado com SQLCipher — uma extensão amplamente auditada que criptografa de forma transparente cada página do banco com AES-256-CBC e checagem de integridade HMAC-SHA512 por página.
       </p>
       <p>
-        A derivação da chave usa PBKDF2 com SHA-256, 256.000 iterações (alinhado ao OWASP). A passphrase é guardada no keychain da plataforma — Keychain no iOS/macOS, Keystore no Android, DPAPI no Windows, libsecret no Linux. Nunca é enviada aos nossos servidores.
+        A chave do banco de dados local é uma chave aleatória de 256 bits gerada pelo Fluera e guardada no armazenamento seguro da plataforma — Keychain no iOS/macOS, Keystore no Android, DPAPI no Windows e libsecret no Linux. Ela não é a senha da sua conta nem uma passphrase do cloud sync, e a chave local nunca é enviada aos servidores do Fluera.
       </p>
 
       <h2>Em trânsito: TLS 1.3</h2>
@@ -48,7 +48,7 @@ import { SITE } from "@/lib/site";
         O cloud sync, quando ativado, armazena os seus cadernos no servidor de sincronização (Supabase, região UE, eu-north-1). Os dados são criptografados em trânsito (TLS) e em repouso na infraestrutura. A sincronização <em>não</em> é ponta a ponta: o Fluera, como controlador de dados, pode tecnicamente acessar o conteúdo sincronizado — nunca o vende nem o usa para publicidade. A sincronização é opt-in por caderno — você pode manter alguns só locais enquanto sincroniza outros.
       </p>
       <p>
-        Para garantias mais fortes, o conteúdo que nunca sai do dispositivo permanece criptografado localmente com SQLCipher, e a exportação para arquivos <code>.fluera</code> é criptografada com AES-256-GCM — esses sim ilegíveis para nós.
+        O conteúdo mantido apenas no dispositivo permanece criptografado localmente com SQLCipher. Uma exportação <code>.fluera</code> protegida por senha é criptografada separadamente com AES-256-GCM; a senha de exportação protege somente esse arquivo e não faz parte do cloud sync.
       </p>
 
       <h2>Colaboração P2P: direta, criptografada</h2>
@@ -77,9 +77,9 @@ import { SITE } from "@/lib/site";
         Cada acesso aos cadernos compartilhados — quem, de qual dispositivo, quando — é escrito em uma trilha de auditoria append-only. Os administradores podem exportar a trilha em CSV ou JSON para controles de compliance. A trilha é write-once: a remoção exige uma motivação documentada e é, ela mesma, logada.
       </p>
 
-      <h2>Recovery e perda da chave</h2>
+      <h2>Recuperação de dados</h2>
       <p>
-        Se você perde a passphrase, os dados criptografados se tornam irrecuperáveis. É intencional — a alternativa seria um caminho de recovery que necessariamente enfraqueceria o modelo de criptografia. Para contas Institucionais, é possível configurar uma chave de recovery opcional guardada pelo administrador; é um trade-off documentado em que a instituição escolhe conscientemente.
+        Os cadernos sincronizados são vinculados à sua conta: depois do processo normal de recuperação da conta, entre novamente para baixá-los em outro dispositivo. Não existe uma passphrase separada do cloud sync para lembrar. A recuperação da conta não consegue reconstruir um caderno mantido apenas localmente se os dados do dispositivo forem apagados; ative o sync nos cadernos que você quer recuperar entre dispositivos.
       </p>
 
       <h2>Responsible disclosure</h2>

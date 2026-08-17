@@ -35,7 +35,7 @@ import { SITE } from "@/lib/site";
         Jokainen Flueran muistikirja elää paikallisessa, SQLCipher-salatussa SQLite-tietokannassa — laajasti auditoidussa laajennoksessa, joka salaa läpinäkyvästi jokaisen tietokannan sivun AES-256-CBC:llä ja varmistaa eheyden sivukohtaisesti HMAC-SHA512:lla.
       </p>
       <p>
-        Avaimen johtaminen käyttää PBKDF2:ta SHA-256:lla ja 256 000 iteraatiolla (OWASP-mukaisesti). Salalause säilytetään alustan avainsäilössä — Keychain iOS/macOS:ssa, Keystore Androidissa, DPAPI Windowsissa, libsecret Linuxissa. Sitä ei koskaan lähetetä palvelimillemme.
+        Paikallisen tietokannan avain on Flueran luoma satunnainen 256-bittinen avain, joka säilytetään alustan suojatussa avainsäilössä — Keychain iOS/macOS:ssa, Keystore Androidissa, DPAPI Windowsissa ja libsecret Linuxissa. Se ei ole tilisi salasana eikä pilvisynkronoinnin salalause, eikä paikallisen tietokannan avainta koskaan lähetetä Flueran palvelimille.
       </p>
 
       <h2>Siirrossa: TLS 1.3, moderni cipher suite</h2>
@@ -48,7 +48,7 @@ import { SITE } from "@/lib/site";
         Pilvisynkronointi, kun se on käytössä, tallentaa muistikirjasi Supabasen palvelimelle (EU-alue, eu-north-1). Data on suojattu siirrossa (TLS) ja lepotilassa infrastruktuuritasolla. Synkronointi ei ole päästä päähän -salattua: rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä, mutta emme koskaan myy sitä emmekä käytä sitä mainontaan. Synkronointi on muistikirjakohtainen opt-in — voit pitää jotkin muistikirjat vain paikallisina samalla kun synkronoit toisia.
       </p>
       <p>
-        Vain paikallisina pidettävät muistikirjat eivät koskaan poistu laitteeltasi: ne säilyvät SQLCipher-salatussa paikallisessa tietokannassa, ja '.fluera'-vientitiedostot salataan AES-256-GCM:llä.
+        Vain paikallisina pidettävät muistikirjat eivät koskaan poistu laitteeltasi, vaan säilyvät SQLCipher-salatussa paikallisessa tietokannassa. Salasanalla suojattu <code>.fluera</code>-vientitiedosto salataan erikseen AES-256-GCM:llä; vientisalasana suojaa vain kyseistä tiedostoa eikä liity pilvisynkronointiin.
       </p>
 
       <h2>P2P-yhteistyö: suora, salattu</h2>
@@ -77,9 +77,9 @@ import { SITE } from "@/lib/site";
         Jokainen pääsy jaettuihin muistikirjoihin — kuka, miltä laitteelta, milloin — kirjoitetaan append-only-auditointilokiin. Pääkäyttäjät voivat viedä lokin CSV- tai JSON-muodossa compliance-tarkastuksia varten. Loki on write-once: poisto vaatii dokumentoidun perustelun ja kirjataan itse.
       </p>
 
-      <h2>Palautus ja avaimen menetys</h2>
+      <h2>Tietojen palautus</h2>
       <p>
-        Jos kadotat salalauseen, salatusta datasta tulee palautumaton. Tämä on tarkoituksellista — vaihtoehto olisi palautuspolku, joka väistämättä heikentäisi salausmallia. Institutionaalisille tileille voidaan konfiguroida valinnainen pääkäyttäjän hallinnoima palautusavain; tämä on dokumentoitu trade-off, jonka instituutio valitsee tietoisesti.
+        Synkronoidut muistikirjat on liitetty tiliisi: tavallisen tilin palautuksen jälkeen voit kirjautua uudelleen ja ladata ne uudelle laitteelle. Pilvisynkronoinnissa ei ole erillistä salalausetta, joka pitäisi muistaa. Tilin palautus ei voi rakentaa uudelleen vain paikallisesti säilytettyä muistikirjaa, jos laitteen tiedot on poistettu; ota synkronointi käyttöön muistikirjoille, jotka haluat palauttaa eri laitteilla.
       </p>
 
       <h2>Vastuullinen paljastus</h2>

@@ -14,4 +14,4 @@ Forsøgsdesignet var enkelt: studerende fulgte forelæsninger og tog noter enten
 
 Konklusionen er kontraintuitiv i hastighedens tidsalder: langsomheden i indfangningen tvinger kognitiv elaboration i selve indkodningsøjeblikket. Hånden er flaskehalsen — og flaskehalsen er der, hvor læringen sker.
 
-Hele Flueras produktfilosofi udgår herfra. Håndskrift er ikke et skeuomorfisk valg. Det er det kognitive værktøj. Tretten brush-engines. Tryk, hældning, hastighed. Stregelatens under 15 millisekunder på hver understøttet enhed. Det uendelige canvas er ikke æstetik — det er substratet, din hukommelse har efterspurgt.
+Hele Flueras produktfilosofi udgår herfra. Håndskrift er ikke et skeuomorfisk valg. Det er det kognitive værktøj. Tolv brush-engines. Tryk, hældning, hastighed. Blæk med lav latenstid på understøttet hardware. Det uendelige canvas er ikke æstetik — det er substratet, din hukommelse har efterspurgt.

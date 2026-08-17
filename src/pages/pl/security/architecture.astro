@@ -35,7 +35,7 @@ import { SITE } from "@/lib/site";
         Każdy notatnik Fluery żyje w lokalnej bazie SQLite zaszyfrowanej za pomocą SQLCipher — szeroko zwalidowanego rozszerzenia, które przezroczyście szyfruje każdą stronę bazy danych za pomocą AES-256-CBC i przeprowadza kontrolę integralności HMAC-SHA512 na każdej stronie.
       </p>
       <p>
-        Wyprowadzanie klucza używa PBKDF2 z SHA-256, 256 000 iteracji (zgodnie z OWASP). Hasło jest przechowywane w pęku kluczy platformy — Keychain na iOS/macOS, Keystore na Androidzie, DPAPI na Windows, libsecret na Linuksie. Nigdy nie jest wysyłane na nasze serwery.
+        Klucz lokalnej bazy danych to losowy klucz 256-bitowy generowany przez Fluerę i przechowywany w bezpiecznym magazynie kluczy platformy — Keychain na iOS/macOS, Keystore na Androidzie, DPAPI na Windows i libsecret na Linuksie. Nie jest to hasło do konta ani hasło synchronizacji w chmurze, a klucz lokalnej bazy nigdy nie jest wysyłany na serwery Fluery.
       </p>
 
       <h2>W tranzycie: TLS 1.3</h2>
@@ -68,9 +68,9 @@ import { SITE } from "@/lib/site";
         Każdy dostęp do współdzielonych notatników — kto, z którego urządzenia, kiedy — jest zapisywany w dzienniku audytu append-only. Administratorzy mogą eksportować logi do CSV lub JSON do audytów zgodności. Logi są zapisywane raz: usunięcie wymaga udokumentowanego powodu i samo zostaje zarejestrowane.
       </p>
 
-      <h2>Odzyskiwanie i utrata klucza</h2>
+      <h2>Odzyskiwanie danych</h2>
       <p>
-        Jeśli stracisz hasło, zaszyfrowane dane stają się nie do odzyskania. Jest to celowe — alternatywa byłaby ścieżką odzyskiwania, która z konieczności osłabiłaby model szyfrowania. Dla kont instytucjonalnych można skonfigurować opcjonalny klucz odzyskiwania trzymany przez administratora; jest to udokumentowany kompromis, który instytucja świadomie wybiera.
+        Zsynchronizowane notatniki są powiązane z kontem: po standardowym odzyskaniu konta zaloguj się ponownie, aby pobrać je na nowym urządzeniu. Synchronizacja w chmurze nie ma osobnego hasła, które trzeba zapamiętać. Odzyskanie konta nie odtworzy notatnika przechowywanego wyłącznie lokalnie, jeśli dane urządzenia zostały usunięte; włącz synchronizację dla notatników, które chcesz odzyskiwać na różnych urządzeniach.
       </p>
 
       <h2>Odpowiedzialne ujawnianie</h2>

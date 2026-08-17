@@ -14,4 +14,4 @@ Forsøksdesignet var enkelt: studenter fulgte forelesninger og noterte enten for
 
 Konklusjonen er kontraintuitiv i en tid av hastighet: tregheten i opptaket tvinger fram kognitiv elaborering i selve innkodingsøyeblikket. Hånden er flaskehalsen — og flaskehalsen er stedet der læring skjer.
 
-Hele produktfilosofien til Fluera utgår herfra. Håndskrift er ikke et skeumorfistisk valg. Det er det kognitive verktøyet. Tretten pensel-motorer. Trykk, vinkel, hastighet. Strek-latens under 15 millisekunder på hver støttede enhet. Det uendelige canvaset er ikke estetikk — det er substratet hukommelsen din har vært på leting etter.
+Hele produktfilosofien til Fluera utgår herfra. Håndskrift er ikke et skeumorfistisk valg. Det er det kognitive verktøyet. Tolv pensel-motorer. Trykk, vinkel, hastighet. Blekk med lav latens på støttet maskinvare. Det uendelige canvaset er ikke estetikk — det er substratet hukommelsen din har vært på leting etter.

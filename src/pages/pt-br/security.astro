@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Criptografia",
-    body: "Cada caderno do Fluera é criptografado em repouso com AES-256 via SQLCipher. O tráfego é TLS 1.3 em trânsito. A sincronização entre os seus dispositivos é criptografada ponta a ponta com chaves derivadas da sua passphrase — guardadas no keychain da plataforma, nunca enviadas aos nossos servidores.",
+    body: "Cada caderno do Fluera é criptografado em repouso no seu dispositivo com AES-256 via SQLCipher, e os arquivos .fluera exportados são criptografados com AES-256-GCM. O tráfego é criptografado em trânsito com TLS 1.3. O cloud sync não é criptografado ponta a ponta: os cadernos sincronizados ficam na infraestrutura da UE (Supabase, eu-north-1), criptografados em trânsito e em repouso no nível da infraestrutura. Como controlador de dados, o Fluera pode acessar tecnicamente o conteúdo sincronizado, mas nunca o vende, usa para publicidade ou para treinar modelos.",
   },
   {
     title: "Propriedade dos dados",
@@ -38,7 +38,7 @@ const pillars = [
 >
   <PageHero
     kicker="Segurança e privacidade"
-    title="Criptografia ponta a ponta.<br />A chave fica com você."
+    title="Criptografado em repouso e em trânsito.<br />Servidores na UE."
     titleSize="2xl"
     description="Criptografia por padrão. Sem ad-tech. Servidores na Europa. Exportação completa. A privacidade é uma restrição de design, não uma tarefa de compliance."
     orbs

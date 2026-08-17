@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import LearningStep from "@/components/LearningStep.astro";
+import ScienceCanvasPath from "@/components/ScienceCanvasPath.astro";
 import AuthorCard from "@/components/AuthorCard.astro";
 import { getCollection } from "astro:content";
 
@@ -13,7 +13,7 @@ const authors = (await getCollection("authors", ({ data }) => data.lang === "en"
 
 const steps = [
   { n: 1,  title: "الالتقاط",                verb: "يوم المحاضرة",            description: "اكتب المفاهيم بخطّ يدك خلال المحاضرة. ضعها في موضع. بطء القلم يفرض الضغط — والضغط هو حيث يولد الترميز." },
-  { n: 2,  title: "إعادة البناء",            verb: "في المساء نفسه",          description: "أغلق الكتاب. أعد بناء ما تتذكّره على لوحة فارغة. العقد الحمراء التي تتعثّر فيها هي خريطة جلسة الدراسة التالية (Kapur، الفشل المنتج، 2008)." },
+  { n: 2,  title: "إعادة البناء",            verb: "في المساء نفسه",          description: "أغلق الكتاب. أعد بناء ما تتذكّره في مساحة خالية من اللوحة نفسها. العقد الحمراء التي تتعثّر فيها هي خريطة جلسة الدراسة التالية (Kapur، الفشل المنتج، 2008)." },
   { n: 3,  title: "السقراطية",                verb: "خلال 48 ساعة",            description: "الذكاء الاصطناعي يسأل، أنت تجيب. قبل كلّ كشف، قيّم الثقة من 1 إلى 5. ما وراء المعرفة تصبح صريحة." },
   { n: 4,  title: "القنطور",                  verb: "مباشرة بعد ذلك",          description: "Ghost Map يضع تفكيرك فوق الخريطة المثالية. المبالغة في التصحيح تُثبّت التصحيحات في الذاكرة (Butterfield وMetcalfe، 2001)." },
   { n: 5,  title: "النوم",                    verb: "تلك الليلة",              description: "لا تفعل شيئًا. نوم الموجات البطيئة يُعيد تشغيل اليوم. الحُصين يسلّم الآثار إلى القشرة المخّية الحديثة." },
@@ -28,49 +28,28 @@ const steps = [
 ---
 
 <BaseLayout
+  bodyClass="science-page"
   title="العلم وراء Fluera"
   description="ترتكز Fluera على خمسة عقود من أبحاث الذاكرة — Bjork وMueller وvan der Meer وRoediger، وعلم أعصاب خلايا المكان الحاصل على نوبل. اكتشف دورة الـ12 خطوة والمبادئ وراء كلّ ميزة."
   locale="ar"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">العلم</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          خمسة عقود من أبحاث الذاكرة<br />وراء تطبيق واحد.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          كلّ ميزة في Fluera تعود إلى أبحاث منشورة. أدناه: دورة التعلّم ذات الـ12 خطوة، و23 مبدأً يقوم عليها، واثنا عشر عقلًا نعتمد عليها، وحدود ما لم نَدّعِه بعد.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#learning-cycle" class="btn-secondary">انتقل إلى الدورة</a>
-          <a href="#principles" class="btn-secondary">فهرس المبادئ</a>
-          <a href="#authors" class="btn-secondary">المؤلّفون</a>
-          <a href="/ar/research" class="btn-secondary">المراجع ←</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">الدورة</p>
-        <h2 class="font-serif text-display-xl text-paper-50 mb-6">لوحة واحدة. اثنتا عشرة حركة معرفية.</h2>
-        <p class="prose-ink text-lg max-w-prose">
-          الدورة متسلسلة وتكرارية. الخطوات 1-4 تبني الترميز. الخطوة 5 (النوم) بيولوجيا غير قابلة للتفاوض. الخطوات 6-9 تُوحِّد على مدى أيّام وأسابيع. الخطوات 10-12 تجعل المعرفة دائمة وقابلة للانتقال.
-        </p>
-      </div>
-
-      <ol class="max-w-3xl list-none p-0">
-        {steps.map((s) => (
-          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
-        ))}
-      </ol>
-    </div>
-  </section>
+  <ScienceCanvasPath
+    locale="ar"
+    heroKicker={"العلم"}
+    heroTitleHtml={"خمسة عقود من أبحاث الذاكرة<br />وراء تطبيق واحد."}
+    heroDescription={"كلّ ميزة في Fluera تعود إلى أبحاث منشورة. أدناه: دورة التعلّم ذات الـ12 خطوة، و23 مبدأً يقوم عليها، واثنا عشر عقلًا نعتمد عليها، وحدود ما لم نَدّعِه بعد."}
+    cycleKicker={"الدورة"}
+    cycleTitle={"لوحة واحدة. اثنتا عشرة حركة معرفية."}
+    cycleDescription={"الدورة متسلسلة وتكرارية. الخطوات 1-4 تبني الترميز. الخطوة 5 (النوم) بيولوجيا غير قابلة للتفاوض. الخطوات 6-9 تُوحِّد على مدى أيّام وأسابيع. الخطوات 10-12 تجعل المعرفة دائمة وقابلة للانتقال."}
+    navigation={[
+      { href: "#learning-cycle", label: "انتقل إلى الدورة" },
+      { href: "#principles", label: "فهرس المبادئ" },
+      { href: "#authors", label: "المؤلّفون" },
+      { href: "/ar/research", label: "المراجع ←" },
+    ]}
+    steps={steps}
+  />
 
   <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">

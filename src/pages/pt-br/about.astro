@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 import { SITE } from "@/lib/site";
 ---
 
@@ -8,27 +9,25 @@ import { SITE } from "@/lib/site";
   description="Fluera é construído por um pequeno time na Itália. Nossa história, nossas convicções, a linha que não vamos cruzar."
   locale="pt-br"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">Sobre</p>
-        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
-          Construímos o app de estudo<br />que gostaríamos de ter tido<br />quando éramos estudantes.
-        </h1>
-        <div class="prose-ink text-lg">
-          <p>
-            Fluera nasceu de uma frustração. Um de nós, dev full-stack com dez anos de estrada; o outro, estudante vendo seus colegas caírem na mesma armadilha — apps que pareciam produtivos mas não ajudavam ninguém a lembrar de nada.
-          </p>
-          <p>
-            Lemos a pesquisa. <em>Muita</em> pesquisa. Bjork, Mueller, Roediger, van der Meer, O'Keefe. A ciência cognitiva é clara há meio século: escrever à mão bate digitar, recuperar bate reler, espaçar bate enfiar, atrito é um recurso. Não encontramos um app que levasse nada disso a sério. Então construímos um.
-          </p>
-          <p>
-            No caminho, escrevemos do zero um motor de renderização 2D — porque nenhum stack pronto conseguia entregar tinta sensível à pressão a 60 FPS em seis plataformas nativas. O motor é o substrato sobre o qual as funções cognitivas vivem.
-          </p>
-        </div>
+  <PageHero
+    kicker={"Sobre"}
+    title={"Construímos o app de estudo<br />que gostaríamos de ter tido<br />quando éramos estudantes."}
+    titleSize="xl"
+  >
+    <div slot="copy" class="mt-8">
+      <div class="prose-ink text-lg">
+        <p>
+          Fluera nasceu de uma frustração. Um de nós, dev full-stack com dez anos de estrada; o outro, estudante vendo seus colegas caírem na mesma armadilha — apps que pareciam produtivos mas não ajudavam ninguém a lembrar de nada.
+        </p>
+        <p>
+          Lemos a pesquisa. <em>Muita</em> pesquisa. Bjork, Mueller, Roediger, van der Meer, O'Keefe. A ciência cognitiva é clara há meio século: escrever à mão bate digitar, recuperar bate reler, espaçar bate enfiar, atrito é um recurso. Não encontramos um app que levasse nada disso a sério. Então construímos um.
+        </p>
+        <p>
+          No caminho, escrevemos do zero um motor de renderização 2D — porque nenhum stack pronto nos dava a experiência de tinta sensível à pressão que queríamos em cada plataforma compatível. O motor é o substrato sobre o qual as funções cognitivas vivem.
+        </p>
       </div>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
@@ -47,7 +46,7 @@ import { SITE } from "@/lib/site";
             <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
             <div>
               <strong class="text-paper-50 font-serif">Não vamos vender os dados dos seus cadernos.</strong>
-              <p class="text-sm mt-1 text-paper-300">Suas anotações são criptografadas em repouso, ponta a ponta quando sincronizadas, e nunca usadas para treinar modelos de ninguém. Os nossos inclusive.</p>
+              <p class="text-sm mt-1 text-paper-300">Suas anotações são criptografadas em repouso no seu dispositivo. Quando sincronizadas, são criptografadas em trânsito (TLS) e em repouso na infraestrutura da UE (Supabase, eu-north-1). O cloud sync não é criptografado ponta a ponta: como controlador de dados, o Fluera pode acessar tecnicamente o conteúdo, mas nunca o vende, usa para publicidade ou para treinar modelos de ninguém — inclusive os nossos.</p>
             </div>
           </li>
           <li class="flex items-start gap-4">

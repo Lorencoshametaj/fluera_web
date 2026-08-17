@@ -14,4 +14,4 @@ Mihaly Csikszentmihalyi ha catalogato le precondizioni del Flow attraverso scacc
 
 L'interruzione è il flow-killer di default. Push notification, dialog modali, context switch, movimenti inattesi dell'UI. Ognuna rompe il loop tra mano e pensiero e resetta il costo del warm-up.
 
-Fluera è progettato attorno alla preservazione del flow. Niente notifiche durante la scrittura. Le toolbar si nascondono da sole. La latenza di input è tenuta sotto i 15 ms perché una latenza superiore è essa stessa una forma di interruzione. L'IA resta in silenzio finché non la chiami. Ogni decisione di interfaccia viene valutata su una sola domanda: aiuta o ostacola il loop?
+Fluera è progettato attorno alla preservazione del flow. Niente notifiche durante la scrittura. Le toolbar si nascondono da sole. L'inchiostro a bassa latenza sull'hardware supportato aiuta a tenere mano e pensiero nello stesso loop. L'IA resta in silenzio finché non la chiami. Ogni decisione di interfaccia viene valutata su una sola domanda: aiuta o ostacola il loop?

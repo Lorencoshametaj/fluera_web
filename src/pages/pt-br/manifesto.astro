@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="Uma declaração em forma longa do que o Fluera é, do que ele se recusa a ser e por que o produto óbvio era o errado."
   locale="pt-br"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">Manifesto</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">O espaço de estudo construído sobre como a mente funciona.</h1>
+  <PageHero
+    kicker={"Manifesto"}
+    title={"O espaço de estudo construído sobre como a mente funciona."}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         Uma declaração em forma longa do que o Fluera é, do que ele se recusa a ser e por que o produto óbvio era o errado.
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">
@@ -107,7 +110,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <strong>Não vamos ter uma IA que responda às suas provas no seu lugar.</strong> A satisfação imediata do usuário seria enorme. O resultado de longo prazo — atrofia dos músculos cognitivos que a ferramenta deveria fortalecer — seria uma traição do objetivo declarado. Uma IA que faz o trabalho no seu lugar é uma IA que não te ensina nada.
       </p>
       <p>
-        <strong>Não vamos vender os dados dos seus cadernos.</strong> Cada caderno é criptografado em repouso com AES-256. A sincronização, quando ativada, é criptografada ponta a ponta. Não treinamos nossos modelos no seu conteúdo. Sua escrita à mão, seu pensamento, seus erros e seu crescimento são seus. O fato de "os seus dados são o produto" ser o default da ed-tech em 2026 não torna isso tolerável.
+        <strong>Não vamos vender os dados dos seus cadernos.</strong> Cada caderno é criptografado em repouso no seu dispositivo com AES-256. Quando ativada, a sincronização é criptografada em trânsito (TLS) e em repouso na infraestrutura da UE (Supabase, eu-north-1); ela não é criptografada ponta a ponta, então o Fluera, como controlador de dados, pode acessar tecnicamente o conteúdo sincronizado. Nunca o vendemos, usamos para publicidade ou para treinar modelos. Sua escrita à mão, seu pensamento, seus erros e seu crescimento são seus. O fato de "os seus dados são o produto" ser o default da ed-tech em 2026 não torna isso tolerável.
       </p>
       <p>
         <strong>Não vamos ter engagement loops, publicidade ou streaks.</strong> O sinal mais forte que poderíamos otimizar — usuários ativos diários, duração de sessão, click-through em notificações — é também o mais provável de corromper o produto. Sua relação com o estudo não deveria depender de uma push notification. Preferimos que você use o Fluera menos e aprenda mais.

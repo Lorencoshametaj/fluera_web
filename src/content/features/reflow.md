@@ -34,7 +34,7 @@ Three modes:
 
 - **Local reflow** — drag a single node; only its immediate cluster reorganises.
 - **Cluster reflow** — long-press a cluster; the whole region becomes draggable as a unit while internal structure preserves.
-- **Atlas reflow** — at continent zoom, drag a whole canvas in [Atlas](/features/atlas) view; subjects rearrange relative to each other.
+- **Atlas reflow** — at continent zoom, drag an entire subject region in [Atlas](/features/atlas) view; regions rearrange relative to each other within the same canvas.
 
 Undo and redo work at the reflow level. A bad rearrangement is one tap away from reverting — every layout state is a checkpoint.
 

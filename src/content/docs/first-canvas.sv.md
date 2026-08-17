@@ -12,7 +12,7 @@ Den här genomgången tar tio minuter av din tid och ett ämne du studerar denna
 
 ## Minut 0–2: Skapa canvasen
 
-Öppna Fluera. Tryck på **Ny canvas**. Ge den ämnets namn (inte föreläsningens — *begreppets*). Välj en pensel — reservoarpenna är ett säkert standardval. Behåll standardstreckbredden tills vidare.
+Öppna Fluera. Tryck en gång på **Ny canvas** och ge den namnet på din utbildning eller läranderesa: den här enda ytan kan växa med hela studietiden. Avgränsa den första regionen inuti och ge just den regionen ämnets namn (inte föreläsningens — *begreppets*). Välj en pensel — reservoarpenna är ett säkert standardval. Behåll standardstreckbredden tills vidare.
 
 Canvasen är tom. Det är medvetet — mallar hjälper inte här.
 

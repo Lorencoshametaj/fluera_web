@@ -14,4 +14,4 @@ Mihaly Csikszentmihalyi skatalogował warunki wstępne flow u szachistów, alpin
 
 Przerwanie to standardowy zabójca flow. Powiadomienia push, modalne dialogi, context switche, niespodziewane ruchy UI. Każde przerywa pętlę między ręką a myślą i resetuje koszt rozgrzewki.
 
-Fluera jest zaprojektowana wokół zachowania flow. Żadnych powiadomień podczas pisania. Toolbary chowają się same. Latencja inputu jest utrzymywana poniżej 15 ms, bo wyższa latencja jest sama w sobie formą przerwania. AI milczy, dopóki go nie wezwiesz. Każda decyzja interfejsowa jest oceniana jednym pytaniem: pomaga czy przeszkadza pętli?
+Fluera jest zaprojektowana wokół zachowania flow. Żadnych powiadomień podczas pisania. Toolbary chowają się same. Atrament o niskiej latencji na obsługiwanym sprzęcie pomaga utrzymać rękę i myśl w tej samej pętli. AI milczy, dopóki go nie wezwiesz. Każda decyzja interfejsowa jest oceniana jednym pytaniem: pomaga czy przeszkadza pętli?

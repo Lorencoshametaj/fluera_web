@@ -14,4 +14,4 @@ Mihaly Csikszentmihalyi a catalogué les préconditions du Flow chez les joueurs
 
 L'interruption est le tueur de flow par défaut. Notifications push, dialogues modaux, changements de contexte, mouvements inattendus de l'UI. Chacun rompt la boucle entre la main et la pensée, et remet à zéro le coût de mise en route.
 
-Fluera est conçu autour de la préservation du flow. Pas de notifications pendant l'écriture. Les barres d'outils se cachent d'elles-mêmes. La latence d'entrée est maintenue sous 15 ms parce qu'une latence supérieure est elle-même une forme d'interruption. L'IA reste silencieuse jusqu'à ce que tu l'appelles. Chaque décision d'interface est évaluée par une seule question : aide-t-elle ou gêne-t-elle la boucle ?
+Fluera est conçu autour de la préservation du flow. Pas de notifications pendant l'écriture. Les barres d'outils se cachent d'elles-mêmes. L'encre à faible latence sur le matériel pris en charge aide à garder la main et la pensée dans la même boucle. L'IA reste silencieuse jusqu'à ce que tu l'appelles. Chaque décision d'interface est évaluée par une seule question : aide-t-elle ou gêne-t-elle la boucle ?

@@ -46,5 +46,5 @@ Mueller and Oppenheimer (2014) and van der Meer (2020) round it out: the handwri
 Memory Palace is the oldest feature in Fluera — it's *the* canvas. Ongoing work:
 
 - **Guided palace tours** — auto-generated narrated walkthroughs of your own notebook, useful before an exam.
-- **Cross-canvas teleports** — bookmark positions across multiple canvases and jump between them by spatial cue.
+- **Region teleports** — bookmark distant positions on the same canvas and jump between them by spatial cue.
 - **Import from imagination** — voice-described places become canvas regions (experimental, R&D).

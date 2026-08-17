@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 
 const factBullets = [
   "Kognitiv studieapp i sluten beta, lanserad på iOS och macOS i april 2026.",
-  "Oändlig handskriven canvas med 13 tryckkänsliga penslar och streck-latens under 15 millisekunder, på sex plattformar.",
+  "Oändlig handskriven canvas med 12 tryckkänsliga penslar och bläck med låg latens på hårdvara som stöds, på alla plattformar som stöds.",
   "AI-funktioner designade för att ställa frågor, inte ge svar — förankrade i femtio år av minnesforskning.",
   "Byggd ovanpå fluera_engine, en egenutvecklad 2D-renderingsmotor för Flutter, även tillgänglig för externa utvecklare.",
   "Team på två med säte i Milano. Inget externt kapital fram till publiceringsdatumet.",
@@ -15,9 +15,6 @@ const imageAssets = [
   { name: "Logo — färg",              path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
   { name: "Logo — mono ljus",         path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
   { name: "Logo — mono mörk",         path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
-  { name: "App-screenshot — iPad",    path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
-  { name: "App-screenshot — macOS",   path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
-  { name: "Porträtt grundare",        path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
 ];
 
 const quotables = [
@@ -126,7 +123,7 @@ const quotables = [
       </div>
 
       <p class="mt-8 text-xs text-ink-500 max-w-xl">
-        Notera: enskilda assetfiler är platshållare tills vi publicerar det definitiva press kit. Länkarna returnerar 404 så länge — vi fyller dem när vi går ur den slutna betan.
+        Produktskärmbilder och grundarfoton finns på begäran — mejla teamet så svarar vi med originalen.
       </p>
     </div>
   </section>
@@ -162,7 +159,7 @@ const quotables = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">Direktlinje till teamet.</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        Pressfrågor går direkt till en grundare, inte till en PR-byrå. Svar inom 24 timmar på arbetsdagar — oftast inom en timme.
+        Pressfrågor går direkt till en grundare, inte till en PR-byrå. Svar inom 24 timmar på arbetsdagar.
       </p>
       <a href={`mailto:${SITE.company.contactEmail}?subject=Pressf%C3%B6rfr%C3%A5gan`} class="btn-primary">
         {SITE.company.contactEmail}

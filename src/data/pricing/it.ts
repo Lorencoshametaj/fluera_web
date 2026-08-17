@@ -97,7 +97,7 @@ const data: PricingData = {
     },
     {
       q: "Cosa succede ai miei canvas se cancello Plus o Pro?",
-      a: "Tutto resta sul tuo dispositivo (local-first) e i 3 pennelli base + export PNG continuano a funzionare nel tier Free. I canvas extra restano in sola lettura finché riattivi o esporti. Niente viene mai cancellato senza una tua azione esplicita.",
+      a: "Tutto resta sul tuo dispositivo (local-first), mentre i 3 pennelli base e l'export PNG continuano a funzionare con Free. Le funzioni legate al piano a pagamento si sospendono finché non lo riattivi. Niente viene cancellato senza una tua azione esplicita.",
     },
     {
       q: "Perché niente prova gratuita del Pro?",
@@ -113,7 +113,7 @@ const data: PricingData = {
     },
     {
       q: "C'è una politica di rimborso?",
-      a: "30 giorni, senza domande, sia su mensile che annuale. Scrivi a support@fluera.dev dall'indirizzo con cui ti sei iscritto.",
+      a: "I termini di rimborso e recesso dipendono dallo store e dal canale di acquisto. La policy applicabile viene mostrata prima della conferma; per assistenza scrivi a support@fluera.dev dall'indirizzo con cui ti sei iscritto.",
     },
     {
       q: "Come funziona la verifica studente?",

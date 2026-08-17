@@ -14,4 +14,4 @@ Flow is niet mystiek. Csikszentmihalyi identificeerde de voorwaarden ervan met p
 
 Voor een studietool heeft dat gevolgen zonder middenweg. Geen modale popups tijdens het schrijven. Geen notificaties. Geen gegamificeerde streak-meldingen die aandacht naar zich toetrekken. Geen AI die ongevraagd suggesties aanbiedt.
 
-Het canvas van Fluera is ontworpen om tijdens het schrijven te verdwijnen. Toolbars trekken zich terug. De AI blijft stil tot ze wordt aangeroepen. Het oneindige canvas verwijdert scrollen en pagineren — de meest banale vormen van onderbreking. De inputlatentie wordt onder de 15 ms gehouden omdat latentie boven die drempel ook een vorm van onderbreking is — het breekt de loop tussen hand en denken.
+Het canvas van Fluera is ontworpen om tijdens het schrijven te verdwijnen. Toolbars trekken zich terug. De AI blijft stil tot ze wordt aangeroepen. Het oneindige canvas verwijdert scrollen en pagineren — de meest banale vormen van onderbreking. Inkt met lage latentie op ondersteunde hardware helpt hand en gedachte in dezelfde loop te houden.

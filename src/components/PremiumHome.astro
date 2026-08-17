@@ -1,0 +1,185 @@
+---
+import HeroProductStage from "@/components/HeroProductStage.astro";
+import PillarFeature from "@/components/PillarFeature.astro";
+import ProductVisual from "@/components/ProductVisual.astro";
+import type { HomeCopy, HomeData, PricingData } from "@/data/types";
+import type { Locale } from "@/lib/i18n";
+import { localizedHref } from "@/lib/site";
+
+export interface Props {
+  locale: Locale;
+  home: HomeData;
+  pricing: PricingData;
+  copy: HomeCopy;
+}
+
+const { locale, home, pricing, copy } = Astro.props;
+const href = (path: string) => localizedHref(path, locale);
+
+// Structure of the four pillars — link target and visual are the same in every
+// locale, so only the words live in the per-locale copy file.
+const PILLAR_SHAPE = [
+  { href: "/features/ghost-map", visual: "ghost" as const },
+  { href: "/features/socratic-mode", visual: "socratic" as const },
+  { href: "/features/fog-of-war", visual: "fog" as const },
+  { href: "/features/exam-session", visual: "exam" as const },
+];
+const pillars = PILLAR_SHAPE.map((shape, index) => ({ ...copy.pillars[index], ...shape }));
+
+---
+
+<section class="homepage-hero relative overflow-hidden">
+  <div class="container-site home-hero-grid relative pt-20 md:pt-28 pb-20 md:pb-24">
+    <div class="home-hero-copy max-w-2xl">
+      <div class="pill mb-7"><span class="status-dot"></span>{copy.beta}</div>
+      <h1 class="text-display-2xl text-paper-50 mb-6 animate-fade-up">
+        {copy.titleA} <span class="text-gradient">{copy.titleB}</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-paper-200 leading-relaxed mb-4">{copy.intro}</p>
+      <p class="category-line mb-9">{copy.category}</p>
+      <div class="flex flex-wrap items-center gap-3 mb-7">
+        <a href={href("/beta")} class="btn-primary text-base px-6 py-3.5">{copy.primary}<span aria-hidden="true">→</span></a>
+        <a href="#signature" class="btn-secondary text-base px-6 py-3.5">{copy.secondary}</a>
+      </div>
+      <div class="hero-assurances"><span>{copy.noTracking}</span><i></i><span>{copy.private}</span></div>
+    </div>
+    <HeroProductStage locale={locale} />
+  </div>
+</section>
+
+<section class="proof-rail border-y border-white/[0.06]">
+  <div class="container-site grid grid-cols-2 lg:grid-cols-4">
+    {copy.proof.map(([value, label]) => (
+      <div class="proof-item"><strong>{value}</strong><span>{label}</span></div>
+    ))}
+  </div>
+</section>
+
+<section id="signature" class="section signature-section">
+  <div class="container-site">
+    <div class="section-intro-grid">
+      <div><p class="eyebrow text-accent-glow mb-5">{copy.flowKicker}</p><h2 class="text-display-xl text-paper-50">{copy.flowTitle}</h2></div>
+      <p class="prose-ink text-lg">{copy.flowBody}</p>
+    </div>
+    <div class="signature-flow mt-14">
+      {copy.flow.map(([title, body], index) => (
+        <article class="signature-step">
+          <div class="signature-head"><span>{String(index + 1).padStart(2, "0")}</span>{index < copy.flow.length - 1 && <i></i>}</div>
+          <h3>{title}</h3><p>{body}</p>
+        </article>
+      ))}
+    </div>
+    <div class="signature-preview mt-12">
+      <ProductVisual
+        kind="canvas"
+        slot="home-canvas-ink-loop"
+        locale={locale}
+        label={copy.previewLabel}
+      />
+      <div class="signature-preview-copy">
+        <span class="eyebrow text-accent-glow">{copy.previewBadge}</span>
+        <strong>{copy.previewTitle}</strong>
+        <p>{copy.previewBody}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pillar-features" class="section border-t border-white/[0.06] bg-ink-900/40">
+  <div class="container-site">
+    <div class="max-w-3xl mb-16"><p class="eyebrow text-accent-glow mb-5">{copy.pillarsKicker}</p><h2 class="text-display-xl text-paper-50">{copy.pillarsTitle}</h2></div>
+    <div class="space-y-20 md:space-y-24">
+      {pillars.map((pillar, index) => (
+        <PillarFeature {...pillar} status="beta" reverse={index % 2 === 1} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="use-case" class="section border-t border-white/[0.06]">
+  <div class="container-site">
+    <div class="section-intro-grid mb-14">
+      <div><p class="eyebrow text-accent-glow mb-5">{home.medicalUseCase.kicker}</p><h2 class="text-display-xl text-paper-50">{home.medicalUseCase.title}</h2></div>
+      <p class="prose-ink text-lg">{home.medicalUseCase.intro}</p>
+    </div>
+    <div class="timeline-grid">
+      {home.medicalUseCase.steps.map((step, index) => (
+        <article class="timeline-card"><span class="timeline-number">{String(index + 1).padStart(2, "0")}</span><p class="eyebrow text-accent-glow">{step.phase}</p><h3>{step.title}</h3><p>{step.description}</p></article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="trust" class="section border-y border-white/[0.06] bg-ink-900/40">
+  <div class="container-site trust-grid">
+    <article class="trust-statement">
+      <p class="eyebrow text-accent-glow mb-5">{copy.trustKicker}</p>
+      <h2 class="text-display-lg text-paper-50 mb-5">{copy.trustTitle}</h2>
+      <p class="prose-ink mb-7">{copy.trustBody}</p>
+      <a href={href("/science")} class="text-link">{copy.scienceLink} →</a>
+    </article>
+    <article class="trust-security">
+      <div class="security-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5.5 5.6v5.8c0 4.2 2.6 7.7 6.5 9.6 3.9-1.9 6.5-5.4 6.5-9.6V5.6L12 3Z"/><path d="m9 12 2 2 4-5"/></svg></div>
+      <h3>{copy.securityTitle}</h3><p>{copy.securityBody}</p>
+      <a href={href("/security/architecture")} class="text-link">{copy.securityLink} →</a>
+    </article>
+  </div>
+</section>
+
+<section id="platforms" class="section">
+  <div class="container-site">
+    <div class="section-intro-grid mb-12"><div><p class="eyebrow text-accent-glow mb-5">{copy.platformKicker}</p><h2 class="text-display-xl text-paper-50">{copy.platformTitle}</h2></div><p class="prose-ink text-lg">{copy.platformBody}</p></div>
+    <div class="platform-rail">
+      {home.platforms.map((platform) => (
+        <article><span>{platform.status}</span><strong>{platform.name}</strong><small>{platform.api}</small></article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section border-y border-white/[0.06] bg-ink-900/40">
+  <div class="container-site">
+    <div class="max-w-3xl mb-12"><p class="eyebrow text-accent-glow mb-5">{copy.pricingKicker}</p><h2 class="text-display-xl text-paper-50">{copy.pricingTitle}</h2></div>
+    <div class="pricing-preview-grid">
+      {pricing.tiers.map((tier) => (
+        <article class={`pricing-preview ${tier.highlighted ? "is-highlighted" : ""}`}>
+          <div class="pricing-name"><h3>{tier.name}</h3>{tier.badge && <span>{tier.badge}</span>}</div>
+          <p class="pricing-amount">{tier.price}</p><small>{tier.period}</small><p>{tier.tagline}</p>
+        </article>
+      ))}
+    </div>
+    <a href={href("/pricing")} class="btn-secondary mt-8">{copy.pricingLink} →</a>
+  </div>
+</section>
+
+<section id="beta-cta" class="section final-cta">
+  <div class="container-narrow text-center">
+    <div class="final-mark" aria-hidden="true"><span></span><i></i><span></span></div>
+    <p class="eyebrow text-accent-glow mb-5">{copy.finalKicker}</p>
+    <h2 class="text-display-xl text-paper-50 mb-6">{copy.finalTitle}</h2>
+    <p class="prose-ink text-lg max-w-2xl mx-auto mb-9">{copy.finalBody}</p>
+    <a href={href("/beta")} class="btn-primary text-base px-7 py-3.5">{copy.finalCta} →</a>
+  </div>
+</section>
+
+<style>
+  .status-dot { width:6px;height:6px;border-radius:50%;background:theme("colors.accent.glow"); }
+  .category-line { color:var(--body-fg); font-size:.95rem; font-weight:600; }
+  .hero-assurances { display:flex;align-items:center;gap:10px;color:var(--dim-fg);font-size:.75rem; }.hero-assurances i{width:3px;height:3px;border-radius:50%;background:currentColor;}
+  .proof-rail { background:theme("colors.ink.900"); }.proof-item{display:flex;flex-direction:column;gap:5px;padding:22px clamp(12px,3vw,28px);border-inline-start:1px solid rgb(255 255 255 / .06);}.proof-item:last-child{border-inline-end:1px solid rgb(255 255 255 / .06);}.proof-item strong{color:var(--body-fg);font-size:1rem;font-weight:600;}.proof-item span{color:var(--dim-fg);font-size:.72rem;line-height:1.35;}
+  .section-intro-grid{display:grid;gap:28px;align-items:end;}.section-intro-grid h2{max-width:760px;}.section-intro-grid>p{max-width:560px;}
+  .signature-section{position:relative;overflow:hidden}.signature-section::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgb(91 141 239 / .12) .65px,transparent .7px);background-size:24px 24px;mask-image:linear-gradient(100deg,transparent,#000 48%,transparent 90%);opacity:.35;}
+  .signature-flow{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.signature-step{position:relative;z-index:1}.signature-head{display:flex;align-items:center;gap:12px}.signature-head span{display:grid;place-items:center;width:34px;height:34px;color:theme("colors.accent.glow");border:1px solid rgb(91 141 239 / .35);border-radius:8px;background:rgb(37 99 235 / .12);font:600 9px ui-monospace,monospace}.signature-head i{height:1px;flex:1;background:linear-gradient(90deg,rgb(91 141 239 / .55),rgb(255 255 255 / .08));}.signature-step h3{margin-top:18px;color:var(--body-fg);font-size:1.05rem}.signature-step p{margin-top:8px;color:var(--muted-fg);font-size:.82rem;line-height:1.6;}
+  .signature-preview{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);align-items:center;gap:clamp(28px,6vw,72px);}.signature-preview-copy strong{display:block;margin:18px 0 12px;color:var(--body-fg);font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.1}.signature-preview-copy p{color:var(--muted-fg);line-height:1.7;}
+  .timeline-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgb(255 255 255 / .08);border-radius:16px;overflow:hidden;background:theme("colors.ink.900");}.timeline-card{position:relative;padding:26px;border-inline-start:1px solid rgb(255 255 255 / .07);}.timeline-card:first-child{border:0}.timeline-number{position:absolute;top:18px;inset-inline-end:18px;color:var(--dim-fg);font:600 .7rem ui-monospace,monospace}.timeline-card h3{margin:15px 0 10px;color:var(--body-fg);font-size:1.02rem;line-height:1.35}.timeline-card>p:last-child{color:var(--muted-fg);font-size:.79rem;line-height:1.65;}
+  .trust-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,7vw,90px);align-items:stretch}.trust-statement,.trust-security{padding:clamp(26px,4vw,44px);border:1px solid rgb(255 255 255 / .08);border-radius:16px;background:theme("colors.ink.950");}.trust-security{display:flex;flex-direction:column;align-items:flex-start}.security-mark{display:grid;place-items:center;width:44px;height:44px;margin-bottom:28px;color:theme("colors.accent.glow");border:1px solid rgb(91 141 239 / .35);border-radius:12px;background:rgb(37 99 235 / .12)}.security-mark svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.trust-security h3{color:var(--body-fg);font-size:1.6rem}.trust-security p{margin:14px 0 24px;color:var(--muted-fg);line-height:1.7}.text-link{color:theme("colors.accent.glow");font-size:.85rem;font-weight:600;text-decoration:underline;text-underline-offset:4px;}
+  .platform-rail{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid rgb(255 255 255 / .08);border-radius:16px;overflow:hidden}.platform-rail article{display:flex;flex-direction:column;gap:7px;padding:19px 16px;border-inline-start:1px solid rgb(255 255 255 / .07);background:theme("colors.ink.900");}.platform-rail article:first-child{border:0}.platform-rail span{color:theme("colors.accent.glow");font:600 8px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.12em}.platform-rail strong{color:var(--body-fg);font-size:.9rem}.platform-rail small{color:var(--dim-fg);font:9px ui-monospace,monospace;}
+  .pricing-preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.pricing-preview{padding:25px;border:1px solid rgb(255 255 255 / .08);border-radius:12px;background:theme("colors.ink.950");}.pricing-preview.is-highlighted{border-color:rgb(91 141 239 / .4);box-shadow:inset 0 2px 0 theme("colors.accent.ink")}.pricing-name{display:flex;align-items:center;justify-content:space-between}.pricing-name h3{color:var(--body-fg);font-size:.9rem}.pricing-name span{padding:4px 7px;color:theme("colors.accent.glow");border:1px solid rgb(91 141 239 / .3);border-radius:6px;font-size:.65rem}.pricing-amount{margin-top:25px;color:var(--body-fg);font-size:2rem;font-weight:600;letter-spacing:-.04em}.pricing-preview small{display:block;min-height:34px;margin-top:4px;color:var(--dim-fg);font-size:.67rem;line-height:1.4}.pricing-preview>p:last-child{margin-top:18px;color:var(--muted-fg);font-size:.8rem;line-height:1.6;}
+  .final-mark{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:28px}.final-mark span{width:54px;height:1px;background:rgb(91 141 239 / .35)}.final-mark i{width:6px;height:6px;border-radius:50%;background:theme("colors.accent.glow")}
+  @media(min-width:900px){.section-intro-grid{grid-template-columns:1.1fr .9fr}}
+  @media(max-width:899px){.signature-flow{grid-template-columns:repeat(2,1fr);gap:30px 18px}.timeline-grid{grid-template-columns:repeat(2,1fr)}.platform-rail{grid-template-columns:repeat(4,1fr)}.trust-grid{grid-template-columns:1fr}}
+  @media(max-width:640px){.proof-item{padding:18px 12px}.proof-item:nth-child(odd){border-inline-start:0}.proof-item:nth-child(n+3){border-top:1px solid rgb(255 255 255 / .06)}.signature-flow{grid-template-columns:1fr}.signature-head i{display:none}.signature-preview{grid-template-columns:1fr}.timeline-grid{grid-template-columns:1fr}.timeline-card{border-inline-start:0;border-top:1px solid rgb(255 255 255 / .07)}.platform-rail{grid-template-columns:repeat(2,1fr)}.pricing-preview-grid{grid-template-columns:1fr}.pricing-preview small{min-height:0}}
+  :global(html.light) .proof-rail,:global(html.light) .proof-item,:global(html.light) .timeline-grid,:global(html.light) .timeline-card,:global(html.light) .trust-statement,:global(html.light) .trust-security,:global(html.light) .platform-rail,:global(html.light) .platform-rail article,:global(html.light) .pricing-preview{border-color:rgb(0 0 0 / .09)}
+  :global(html.light) .proof-rail,:global(html.light) .timeline-grid,:global(html.light) .platform-rail article{background:#fbfbfc}:global(html.light) .trust-statement,:global(html.light) .trust-security,:global(html.light) .pricing-preview{background:#fff}:global(html.light) .text-link{color:#1d4ed8}
+  :global(html.light) .platform-rail span,:global(html.light) .pricing-name span{color:#1d4ed8}
+</style>

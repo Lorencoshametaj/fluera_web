@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="Fluera क्या है, क्या होने से इनकार करता है, और स्पष्ट उत्पाद गलत क्यों था, इसका लंबा बयान।"
   locale="hi"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">मैनिफेस्टो</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">मन के काम करने के तरीके पर निर्मित अध्ययन स्थान।</h1>
+  <PageHero
+    kicker={"मैनिफेस्टो"}
+    title={"मन के काम करने के तरीके पर निर्मित अध्ययन स्थान।"}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         Fluera क्या है, क्या होने से इनकार करता है, और स्पष्ट उत्पाद गलत क्यों था, इसका लंबा बयान।
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">
@@ -83,7 +86,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <strong>हमारे पास ऐसा AI नहीं होगा जो आपकी जगह आपकी परीक्षा का उत्तर दे।</strong> अल्पकालिक उपयोगकर्ता संतुष्टि बहुत बड़ी होगी। दीर्घकालिक परिणाम — संज्ञानात्मक मांसपेशियों का शोष जिसे उपकरण को मजबूत करना चाहिए — घोषित लक्ष्य का विश्वासघात होगा। एक AI जो आपकी जगह काम करता है वह AI है जो आपको कुछ नहीं सिखाता।
       </p>
       <p>
-        <strong>हम आपकी नोटबुक डेटा नहीं बेचेंगे।</strong> हर नोटबुक AES-256 के साथ विश्राम पर एन्क्रिप्टेड है। सिंक, सक्रिय होने पर, एंड-टू-एंड एन्क्रिप्टेड है। हम आपकी सामग्री पर अपने मॉडल नहीं प्रशिक्षित करते।
+        <strong>हम आपकी नोटबुक का डेटा नहीं बेचेंगे।</strong> हर नोटबुक आपके डिवाइस पर AES-256 के साथ विश्राम में एन्क्रिप्टेड है। Sync सक्रिय होने पर डेटा पारगमन में (TLS) और EU infrastructure (Supabase, eu-north-1) पर विश्राम में एन्क्रिप्टेड रहता है; यह एंड-टू-एंड एन्क्रिप्टेड नहीं है, इसलिए data controller के रूप में Fluera synced content तक तकनीकी रूप से पहुँच सकता है। हम इसे कभी बेचते नहीं, advertising के लिए उपयोग नहीं करते और इससे models train नहीं करते।
       </p>
       <p>
         <strong>हमारे पास कोई सहभागिता लूप, विज्ञापन, या स्ट्रीक नहीं होगा।</strong> सबसे मजबूत सिग्नल जिसे हम अनुकूलित कर सकते थे — दैनिक सक्रिय उपयोगकर्ता, सत्र अवधि, सूचनाओं पर क्लिक — वह भी सबसे अधिक संभावना है उत्पाद को भ्रष्ट करने की।

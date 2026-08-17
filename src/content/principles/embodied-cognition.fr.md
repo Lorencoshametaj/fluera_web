@@ -14,4 +14,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002) et Susan Goldin-Meadow (2003) o
 
 Pour l'apprentissage, l'implication est forte. Taper active un schéma moteur étroit, hautement entraîné. Écrire à la main active un schéma moteur riche, variable, avec un retour visuel, spatial et proprioceptif intégré. Les enregistrements EEG de van der Meer (2020) montrent la différence concrètement : l'écriture à la main engage de larges réseaux cérébraux que la frappe au clavier n'atteint pas.
 
-L'insistance de Fluera sur le stylo — treize moteurs de pinceau, suivi de pression et d'inclinaison, latence du tracé inférieure à 15 millisecondes — est la thèse de la cognition incarnée prise au sérieux. La main reste dans la boucle parce que la main fait partie de la pensée.
+L'insistance de Fluera sur le stylo — douze moteurs de pinceau, suivi de pression et d'inclinaison, encre à faible latence sur le matériel pris en charge — est la thèse de la cognition incarnée prise au sérieux. La main reste dans la boucle parce que la main fait partie de la pensée.

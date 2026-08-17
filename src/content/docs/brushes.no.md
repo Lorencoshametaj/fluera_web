@@ -1,14 +1,14 @@
 ---
 lang: "no"
 title: "Pensler"
-description: "Tretten brush engines, hver kalibrert for en annen type strek. En kort guide til å velge riktig — og hvorfor det betyr mindre enn du tror."
+description: "Tolv brush engines, hver kalibrert for en annen type strek. En kort guide til å velge riktig — og hvorfor det betyr mindre enn du tror."
 section: canvas
 sectionLabel: "Canvaset"
 order: 1
 updatedAt: 2026-04-20
 ---
 
-Fluera kommer med tretten brush engines. Hver er en komplett render-pipeline — trykk, helning, hastighet, fragment shaders per pensel — ikke en teksturbytte. Det høres mye ut; i praksis kommer mesteparten av læringen din til å skje i én eller to av dem.
+Fluera kommer med tolv brush engines. Hver er en komplett render-pipeline — trykk, helning, hastighet, fragment shaders per pensel — ikke en teksturbytte. Det høres mye ut; i praksis kommer mesteparten av læringen din til å skje i én eller to av dem.
 
 ## Det korte svaret
 
@@ -19,7 +19,7 @@ Fluera kommer med tretten brush engines. Hver er en komplett render-pipeline —
 
 Alt annet er for spesifikke situasjoner. Ikke tenk for mye på det.
 
-## De tretten
+## De tolv
 
 | Pensel              | Bra for                                            | Notater                                          |
 |---------------------|----------------------------------------------------|--------------------------------------------------|
@@ -35,11 +35,10 @@ Alt annet er for spesifikke situasjoner. Ikke tenk for mye på det.
 | Lavering            | Wet-on-paper-følelse                               | Fargeblødning i kantene                          |
 | Spray               | Partikkeleffekter, skygger                         | Forvrengning i kantene                           |
 | Neon                | Lysende notater                                    | Ytre glød, fluorescerende metning                |
-| Viskelær            | Pikselvis fjerning, ikke et delete-verktøy         | Historie-bevisst — avdekker streker under        |
 
 ## Hvorfor motoren betyr noe (kort)
 
-Fluera-motoren bevarer trykk-, helning- og hastighetssignalene med under 15 millisekunder latens på iOS og macOS. Det er ikke bare produktforfengelighet. <a href="/no/science/authors/van-der-meer">EEG-arbeidet til van der Meer</a> viste at håndskrift engasjerer sensorimotoriske nettverk som tasting ikke gjør, og rikdommen i de signalene skalerer med fideliteten i fangsten.
+Fluera-motoren bevarer trykk-, helning- og hastighetssignalene med blekk med lav latens på støttet maskinvare. Det er ikke bare produktforfengelighet. <a href="/no/science/authors/van-der-meer">EEG-arbeidet til van der Meer</a> viste at håndskrift engasjerer sensorimotoriske nettverk som tasting ikke gjør, og rikdommen i de signalene skalerer med fideliteten i fangsten.
 
 I praksis: et canvas som mister streker, henger under trykk eller flater ut helningsdata, kaster bort akkurat det signalet som gjør håndnotater kognitivt overlegne. Vi bygde motoren fra bunnen av fordi ingen off-the-shelf-løsning holdt målet.
 
@@ -52,7 +51,7 @@ Trykk og hold på en hvilken som helst pensel i verktøylinjen. Et lite panel å
 - **Stabilisering** (ingen / myk / fast) — glatter ut jitter uten å drepe personligheten
 - **Trykk-kurve** — justerer responsen på lette vs. harde trykk
 
-Endringene er per canvas, ikke globale, så du kan ha en myk blyant i én notatbok og en skarp i en annen.
+Endringene tilhører det aktuelle canvaset i stedet for å endre appen globalt. Canvaset for hele studiet beholder derfor sine egne penselinnstillinger.
 
 ## Neste
 

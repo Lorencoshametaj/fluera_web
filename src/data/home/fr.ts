@@ -3,7 +3,7 @@ import type { HomeData } from "../types";
 const data: HomeData = {
   steps: [
     { n: 1,  title: "Capture",                    verb: "Jour de cours",         description: "Écris les concepts à la main pendant le cours. Place-les dans l'espace. Le stylo lent force la compression mentale — c'est là que naît l'encodage." },
-    { n: 2,  title: "Reconstruction",             verb: "Le soir même",          description: "Ferme le livre. Reconstruis ce dont tu te souviens sur un canvas vierge. Les nœuds rouges où tu hésites sont la carte de ce qu'il faut réviser (Kapur, échec productif, 2008)." },
+    { n: 2,  title: "Reconstruction",             verb: "Le soir même",          description: "Ferme le livre. Reconstruis ce dont tu te souviens dans une zone libre du même canvas. Les nœuds rouges où tu hésites sont la carte de ce qu'il faut réviser (Kapur, échec productif, 2008)." },
     { n: 3,  title: "Socratique",                 verb: "Sous 48 h",             description: "L'IA pose les questions, tu réponds. Déclare ta confiance de 1 à 5 avant chaque révélation. La métacognition rendue explicite." },
     { n: 4,  title: "Centaure",                   verb: "Juste après",           description: "Ghost Map superpose ton raisonnement à la carte idéale. L'hypercorrection ancre les corrections dans la mémoire (Butterfield et Metcalfe, 2001)." },
     { n: 5,  title: "Sommeil",                    verb: "Cette nuit-là",         description: "Ne fais rien. Le sommeil à ondes lentes rejoue la journée. L'hippocampe transmet les traces au cortex. Notre travail est de ne pas être dans le chemin." },
@@ -38,6 +38,34 @@ const data: HomeData = {
     { name: "Linux",   api: "OpenGL",      status: "Alpha" },
     { name: "Web",     api: "WebGPU",      status: "Démo" },
   ],
+  medicalUseCase: {
+    kicker: "Conçu pour les cursus les plus exigeants",
+    title: "La médecine, sur un seul canvas.",
+    intro: "Anatomie, physiologie, pharmacologie. Des milliers de notions qui doivent rester reliées — et récupérables sous pression d’examen. Les révisions qui marchent vraiment en médecine sont celles qui semblent difficiles pendant qu’on les fait. Fluera en fait la voie de moindre résistance.",
+    steps: [
+      {
+        phase: "Jour de cours",
+        title: "Chaque système devient une région.",
+        description: "Écrivez chaque cours dans sa propre région du même canvas infini — structures anatomiques, mécanismes d’action, voies métaboliques. La position dans l’espace devient un ancrage mémoriel. Douze moteurs de brosse et une encre à faible latence sur les tablettes prises en charge.",
+      },
+      {
+        phase: "Le soir même",
+        title: "Reconstruisez de mémoire, avant le livre.",
+        description: "Fermez le support de cours. Essayez de reconstruire ce dont vous vous souvenez dans une zone libre du même canvas. Les trous que vous trouvez — le nerf crânien oublié, le récepteur confondu — sont la carte de ce qu’il faut réviser ce soir. Échec productif, par conception (Kapur, 2008).",
+      },
+      {
+        phase: "Sous 48 h",
+        title: "Interrogation socratique sur le canvas que vous avez construit.",
+        description: "L’IA demande, vous répondez. Avant chaque révélation, vous annoncez votre confiance de 1 à 5. Chaque erreur commise avec assurance — chaque médicament dont vous étiez sûr et que vous avez manqué — est renforcée plus fort. Hypercorrection (Butterfield et Metcalfe, 2001).",
+      },
+      {
+        phase: "7 à 14 jours avant l’examen",
+        title: "Fog of War sur le système où vous êtes le plus faible.",
+        description: "Masquez des sections du canvas. Retrouvez l’anatomie de mémoire avant de révéler. Fluera planifie les retours avec FSRS — l’algorithme moderne de répétition espacée. Le jour de l’examen, le canvas est lui-même la simulation.",
+      },
+    ],
+    closing: "Si c’est le flux que vous faites déjà à moitié avec du papier, des PDF et trois applications ouvertes, Fluera en fait une seule boucle continue. Construit pour la façon dont la mémoire fonctionne, éprouvé face à des cursus qui ne pardonnent rien d’autre.",
+  },
 };
 
 export default data;

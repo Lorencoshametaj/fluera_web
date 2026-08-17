@@ -20,7 +20,7 @@ Bijna al het andere volgt hieruit.
 
 ## Wat je doet in de eerste sessie
 
-- Maak een nieuw canvas voor een onderwerp dat je deze week bestudeert.
+- Maak één canvas voor je hele studie en baken daarin een regio af voor het onderwerp dat je deze week bestudeert.
 - Kies één kwast en blijf erbij tijdens de eerste sessie. Laat je niet afleiden door de kwastenbibliotheek.
 - Schrijf 8–15 concepten met de hand. Plaats elk concept waar het ruimtelijk logisch is.
 - Trek pijlen tussen concepten waarvan je denkt dat ze verband houden.

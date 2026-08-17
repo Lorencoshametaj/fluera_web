@@ -1,51 +1,49 @@
 ---
 lang: "de"
 title: "Cloud-Sync"
-description: "Wie du Canvas zwischen Geräten synchronisierst, was verschlüsselt wird und wie du dich erholst, wenn du die Passphrase verlierst."
+description: "So synchronisierst du Canvas zwischen Geräten, schützt deine Daten und stellst sie über dein Konto wieder her."
 section: settings
 sectionLabel: "Einstellungen"
 order: 2
-updatedAt: 2026-04-20
+updatedAt: 2026-08-12
 ---
 
-Cloud-Sync ist opt-in pro Heft. Du kannst ein Canvas synchronisieren und ein anderes strikt lokal halten. Nichts bewegt sich, bis du es sagst.
+Cloud-Sync ist für jedes Heft optional. Du kannst ein Canvas synchronisieren und ein anderes vollständig lokal halten. Es werden keine Daten hochgeladen, bevor du die Synchronisierung selbst aktivierst.
 
 ## Sync auf dem ersten Gerät aktivieren
 
 1. Öffne **Einstellungen → Datenschutz** und aktiviere **Cloud-Sync**.
-2. Erstelle oder gib deine **Sync-Passphrase** ein. Sie ist *getrennt* vom Konto-Passwort. Die Passphrase wird verwendet, um den Verschlüsselungsschlüssel abzuleiten — und bleibt nur auf deinem Gerät, nie auf unseren Servern.
-3. Wähle, welche Hefte synchronisiert werden sollen. Rechtsklick (oder gedrückt halten) auf ein Heft → **Sync aktivieren**.
+2. Wähle die Hefte aus, die synchronisiert werden sollen. Klicke mit der rechten Maustaste auf ein Heft (oder halte es gedrückt) → **Sync aktivieren**.
 
-Ein kleines Cloud-Symbol erscheint auf jedem synchronisierten Heft. Eine rote Variante zeigt einen Fehler an; eine graue eine Pause.
+Auf jedem synchronisierten Heft erscheint ein kleines Cloud-Symbol. Rot weist auf einen Fehler hin, Grau auf eine Pause.
 
 ## Ein zweites Gerät hinzufügen
 
 1. Installiere Fluera auf dem zweiten Gerät.
 2. Melde dich mit demselben Konto an.
-3. Gib *dieselbe* Sync-Passphrase ein, wenn du dazu aufgefordert wirst. Die Passphrase ist nicht wiederherstellbar — wenn du sie nicht hast, sind die verschlüsselten Daten auf dem neuen Gerät nicht lesbar.
-4. Cloud-Sync startet. Erwarte, dass die erste vollständige Synchronisierung für ein mittelgroßes Heft einige Minuten dauert.
+3. Cloud-Sync startet automatisch. Die erste vollständige Synchronisierung eines mittelgroßen Hefts kann einige Minuten dauern.
 
-## Was verschlüsselt wird und wie
+## So werden synchronisierte Daten geschützt
 
-- Jedes Heft wird lokal mit einem Schlüssel pro Heft verschlüsselt.
-- Diese Schlüssel werden mit einem Root-Key verschlüsselt, der über PBKDF2-SHA256 mit 256.000 Iterationen aus deiner Sync-Passphrase abgeleitet wird.
-- Nur die verschlüsselten Bytes erreichen den Server. Wir können deine Hefte nicht lesen.
+- Auf deinem Gerät wird die lokale Datenbank mit SQLCipher (AES-256) verschlüsselt gespeichert.
+- Während der Synchronisierung werden die Daten verschlüsselt über TLS übertragen.
+- Auf unseren Servern liegen sie auf EU-Infrastruktur (Supabase, Region `eu-north-1`) und sind dort auf Infrastrukturebene verschlüsselt.
 
-Die Metadaten (Hefttitel, Timestamps, Größe) werden ebenfalls verschlüsselt — der Server sieht opake Blobs und Sync-Timestamps.
+Zur Klarstellung: Cloud-Sync ist **nicht Ende-zu-Ende-verschlüsselt**. Als Verantwortlicher kann Fluera technisch auf synchronisierte Inhalte zugreifen, um den Dienst bereitzustellen und zu betreiben. Wir verkaufen deine Daten niemals und verwenden sie nie für Werbung.
 
-## Wenn du die Passphrase verlierst
+Wenn du ein Heft als passwortgeschützte `.fluera`-Datei exportierst, wird diese Datei separat mit AES-256-GCM verschlüsselt. Das Exportpasswort schützt nur diese Datei und ist kein Zugangsdatenbestandteil des Cloud-Syncs.
 
-Wenn du die Passphrase vergisst und kein Gerät mehr hast, das einen Schlüssel im Cache hält, sind deine verschlüsselten Daten **nicht wiederherstellbar**. Das ist by design. Die Alternative — ein serverseitiger Recovery-Mechanismus — würde das Ende-zu-Ende-Modell brechen, und das ist ein Trade-off, den wir bei Consumer-Konten nicht eingehen wollen.
+## Daten wiederherstellen
 
-Für **Education-Konten** kann optional ein vom Administrator verwalteter Recovery-Key bei der Bereitstellung konfiguriert werden. Es ist ein expliziter Opt-in, dokumentiert im institutionellen DPA und auditiert.
+Synchronisierte Hefte sind mit deinem Konto verknüpft. Nach der normalen Kontowiederherstellung kannst du dich auf einem neuen Gerät erneut anmelden und sie herunterladen. Es gibt keine separate Cloud-Sync-Passphrase, die du dir merken oder verlieren könntest.
 
-## Konfliktauflösung
+## Konflikte auflösen
 
-Wenn du dasselbe Canvas auf zwei Geräten gleichzeitig bearbeitest, während eines offline ist, nutzt Fluera ein CRDT mit Vector Clocks, um den Merge ohne Konflikte zu machen. Du verlierst keine Arbeit. In seltenen Fällen, in denen der automatische Merge mehrdeutig ist, siehst du einen "merge needed"-Marker am betroffenen Knoten und eine Side-by-Side-Ansicht zur Bestätigung.
+Wenn du dasselbe Canvas auf zwei Geräten bearbeitest, während eines offline ist, führt Fluera die Änderungen mithilfe eines CRDT mit Vector Clocks zusammen. In den seltenen Fällen, in denen der automatische Merge nicht eindeutig ist, erscheint am betroffenen Knoten ein Hinweis „Merge erforderlich“ mit einer Gegenüberstellung zur Bestätigung.
 
 ## Sync für ein bestimmtes Heft deaktivieren
 
-Rechtsklick (oder gedrückt halten) auf ein Heft → **Sync deaktivieren**. Die Cloud-Kopie wird sofort widerrufen. Die lokale Kopie bleibt unverändert.
+Klicke mit der rechten Maustaste auf ein Heft (oder halte es gedrückt) → **Sync deaktivieren**. Die Cloud-Kopie wird sofort widerrufen; die lokale Kopie bleibt unverändert.
 
 ## Weiter
 

@@ -1,0 +1,514 @@
+---
+import ProductVisual from "@/components/ProductVisual.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { baseFeatureSlug, featureVisualKind } from "@/lib/features";
+import { t, type Locale } from "@/lib/i18n";
+import { featureSeo } from "@/lib/seo-templates";
+import { localizedHref } from "@/lib/site";
+import { getCollection, getEntry, render, type CollectionEntry } from "astro:content";
+
+export interface Props {
+  feature: CollectionEntry<"features">;
+  locale: Locale;
+}
+
+type FeatureDetailCopy = {
+  step: string;
+  cycle: string;
+  scienceKicker: string;
+  scienceTitle: string;
+  authorsKicker: string;
+  authorsTitle: string;
+  betaTitle: string;
+  betaBody: string;
+  platformAssurance: string;
+};
+
+const COPY = {
+  en: {
+    step: "Step", cycle: "The cycle",
+    scienceKicker: "The science behind it", scienceTitle: "Principles this feature is built on.",
+    authorsKicker: "Whose work", authorsTitle: "The minds behind the evidence.",
+    betaTitle: "Try it in the beta.",
+    betaBody: "Request access on any platform. The client labels describe maturity; they do not limit who can join the beta.",
+    platformAssurance: "Access open across every platform",
+  },
+  it: {
+    step: "Passo", cycle: "Il ciclo",
+    scienceKicker: "La scienza dietro", scienceTitle: "Principi su cui poggia questa funzione.",
+    authorsKicker: "Chi c’è dietro", authorsTitle: "Le menti dietro l’evidenza.",
+    betaTitle: "Provalo nella beta.",
+    betaBody: "Richiedi l’accesso da qualsiasi piattaforma. Le etichette dei client ne descrivono la maturità, non limitano chi può entrare nella beta.",
+    platformAssurance: "Accesso aperto su tutte le piattaforme",
+  },
+  es: {
+    step: "Paso", cycle: "El ciclo",
+    scienceKicker: "La ciencia detrás", scienceTitle: "Principios sobre los que se apoya esta función.",
+    authorsKicker: "Quién está detrás", authorsTitle: "Las mentes detrás de la evidencia.",
+    betaTitle: "Pruébalo en la beta.",
+    betaBody: "Solicita acceso desde cualquier plataforma. Las etiquetas de los clientes describen su madurez; no limitan quién puede unirse a la beta.",
+    platformAssurance: "Acceso abierto en todas las plataformas",
+  },
+  "pt-br": {
+    step: "Passo", cycle: "O ciclo",
+    scienceKicker: "A ciência por trás", scienceTitle: "Princípios sobre os quais este recurso se apoia.",
+    authorsKicker: "Quem está por trás", authorsTitle: "As mentes por trás da evidência.",
+    betaTitle: "Teste na beta.",
+    betaBody: "Solicite acesso em qualquer plataforma. Os rótulos dos clientes descrevem a maturidade; não limitam quem pode participar da beta.",
+    platformAssurance: "Acesso aberto em todas as plataformas",
+  },
+  fr: {
+    step: "Étape", cycle: "Le cycle",
+    scienceKicker: "La science derrière", scienceTitle: "Les principes sur lesquels cette fonctionnalité s’appuie.",
+    authorsKicker: "Qui est derrière", authorsTitle: "Les esprits derrière les preuves.",
+    betaTitle: "Essaie dans la bêta.",
+    betaBody: "Demande l’accès sur n’importe quelle plateforme. Les libellés des clients indiquent leur maturité ; ils ne limitent pas l’accès à la bêta.",
+    platformAssurance: "Accès ouvert sur toutes les plateformes",
+  },
+  de: {
+    step: "Schritt", cycle: "Der Zyklus",
+    scienceKicker: "Die Wissenschaft dahinter", scienceTitle: "Prinzipien, auf denen diese Funktion aufbaut.",
+    authorsKicker: "Wer dahintersteht", authorsTitle: "Die Köpfe hinter den Belegen.",
+    betaTitle: "Teste es in der Beta.",
+    betaBody: "Fordere Zugang für jede Plattform an. Die Client-Labels beschreiben den Reifegrad; sie begrenzen nicht, wer an der Beta teilnehmen kann.",
+    platformAssurance: "Zugang auf allen Plattformen offen",
+  },
+  ja: {
+    step: "ステップ", cycle: "サイクル",
+    scienceKicker: "背後にあるサイエンス", scienceTitle: "この機能が依拠する原理。",
+    authorsKicker: "背後にいる人々", authorsTitle: "エビデンスの背後にある知性。",
+    betaTitle: "ベータで試してください。",
+    betaBody: "どのプラットフォームからでもアクセスをリクエストできます。クライアントのラベルは成熟度を示すもので、ベータへの参加を制限するものではありません。",
+    platformAssurance: "すべてのプラットフォームで受付中",
+  },
+  ko: {
+    step: "단계", cycle: "사이클",
+    scienceKicker: "배경 과학", scienceTitle: "이 기능이 의지하는 원리.",
+    authorsKicker: "배경 연구자", authorsTitle: "증거 뒤의 연구자들.",
+    betaTitle: "베타에서 시도하세요.",
+    betaBody: "어떤 플랫폼에서든 액세스를 요청할 수 있습니다. 클라이언트 라벨은 성숙도를 나타낼 뿐 베타 참여를 제한하지 않습니다.",
+    platformAssurance: "모든 플랫폼에서 액세스 신청 가능",
+  },
+  hi: {
+    step: "चरण", cycle: "चक्र",
+    scienceKicker: "पीछे का विज्ञान", scienceTitle: "यह विशेषता जिन सिद्धांतों पर टिकी है।",
+    authorsKicker: "पीछे के दिमाग", authorsTitle: "साक्ष्य के पीछे के दिमाग।",
+    betaTitle: "बीटा में आज़माएं।",
+    betaBody: "किसी भी प्लेटफ़ॉर्म के लिए एक्सेस का अनुरोध करें। क्लाइंट लेबल परिपक्वता बताते हैं; वे यह सीमित नहीं करते कि बीटा में कौन शामिल हो सकता है।",
+    platformAssurance: "सभी प्लेटफ़ॉर्म पर एक्सेस खुला है",
+  },
+  pl: {
+    step: "Krok", cycle: "Cykl",
+    scienceKicker: "Nauka stojąca za tym", scienceTitle: "Zasady, na których opiera się ta funkcja.",
+    authorsKicker: "Umysły stojące za tym", authorsTitle: "Umysły stojące za dowodami.",
+    betaTitle: "Wypróbuj w becie.",
+    betaBody: "Poproś o dostęp na dowolnej platformie. Etykiety klientów opisują ich dojrzałość; nie ograniczają tego, kto może dołączyć do bety.",
+    platformAssurance: "Dostęp otwarty na wszystkich platformach",
+  },
+  ar: {
+    step: "الخطوة", cycle: "الدورة",
+    scienceKicker: "العلم وراء ذلك", scienceTitle: "المبادئ التي ترتكز عليها هذه الميزة.",
+    authorsKicker: "العقول وراء ذلك", authorsTitle: "العقول وراء الدليل.",
+    betaTitle: "جرّبه في البيتا.",
+    betaBody: "اطلب الوصول على أي منصة. تصف تسميات العملاء مستوى النضج، ولا تحدد من يمكنه الانضمام إلى البيتا.",
+    platformAssurance: "الوصول مفتوح على جميع المنصات",
+  },
+  nl: {
+    step: "Stap", cycle: "De cyclus",
+    scienceKicker: "De wetenschap erachter", scienceTitle: "Principes waarop deze functie voortbouwt.",
+    authorsKicker: "Wie erachter staat", authorsTitle: "De geesten achter het bewijs.",
+    betaTitle: "Test het in de bèta.",
+    betaBody: "Vraag toegang aan op elk platform. De clientlabels beschrijven de volwassenheid; ze beperken niet wie aan de bèta kan deelnemen.",
+    platformAssurance: "Toegang open op alle platforms",
+  },
+  sv: {
+    step: "Steg", cycle: "Cykeln",
+    scienceKicker: "Vetenskapen bakom", scienceTitle: "Principer som denna funktion bygger på.",
+    authorsKicker: "Vem som står bakom", authorsTitle: "Sinnena bakom bevisen.",
+    betaTitle: "Testa det i betan.",
+    betaBody: "Begär åtkomst på valfri plattform. Klientetiketterna beskriver mognadsgrad; de begränsar inte vem som kan delta i betan.",
+    platformAssurance: "Åtkomst öppen på alla plattformar",
+  },
+  da: {
+    step: "Trin", cycle: "Cyklussen",
+    scienceKicker: "Videnskaben bag", scienceTitle: "Principper, denne funktion bygger på.",
+    authorsKicker: "Hvem der står bag", authorsTitle: "Hjernerne bag belæggene.",
+    betaTitle: "Test det i betaen.",
+    betaBody: "Anmod om adgang på enhver platform. Klientetiketterne beskriver modenhed; de begrænser ikke, hvem der kan deltage i betaen.",
+    platformAssurance: "Adgang åben på alle platforme",
+  },
+  no: {
+    step: "Steg", cycle: "Syklusen",
+    scienceKicker: "Vitenskapen bak", scienceTitle: "Prinsipper denne funksjonen bygger på.",
+    authorsKicker: "Hvem som står bak", authorsTitle: "Hodene bak evidensen.",
+    betaTitle: "Test det i betaen.",
+    betaBody: "Be om tilgang på hvilken som helst plattform. Klientetikettene beskriver modenhet; de begrenser ikke hvem som kan delta i betaen.",
+    platformAssurance: "Tilgang åpen på alle plattformer",
+  },
+  fi: {
+    step: "Vaihe", cycle: "Sykli",
+    scienceKicker: "Taustalla oleva tiede", scienceTitle: "Periaatteet, joiden varaan tämä ominaisuus rakentuu.",
+    authorsKicker: "Tekijät taustalla", authorsTitle: "Tutkijat todistusaineiston takana.",
+    betaTitle: "Kokeile sitä betassa.",
+    betaBody: "Pyydä pääsyä millä tahansa alustalla. Asiakasohjelmien tunnisteet kuvaavat kypsyystasoa; ne eivät rajoita sitä, kuka voi liittyä betaan.",
+    platformAssurance: "Pääsy avoinna kaikilla alustoilla",
+  },
+} satisfies Record<Locale, FeatureDetailCopy>;
+
+const { feature, locale } = Astro.props;
+const copy = COPY[locale];
+const featureSlug = baseFeatureSlug(feature.id);
+const visualKind = featureVisualKind(feature.id);
+const href = (path: string) => localizedHref(path, locale);
+
+const allFeatures = await getCollection("features", () => true);
+const seo = featureSeo({ feature, allFeatures, pathname: Astro.url.pathname });
+const { Content } = await render(feature);
+
+const localeSuffix = locale === "en" ? "" : `.${locale}`;
+const stripLocaleSuffix = (id: string) => id.replace(
+  /\.(it|es|pt-br|fr|de|ja|ko|hi|pl|ar|nl|sv|da|no|fi)$/,
+  "",
+);
+
+async function resolveLocalized<T extends "principles" | "authors">(
+  collection: T,
+  ref: { id: string },
+) {
+  const baseId = stripLocaleSuffix(ref.id);
+  const localizedId = `${baseId}${localeSuffix}`;
+  return (await getEntry(collection, localizedId)) ?? (await getEntry(collection, baseId));
+}
+
+const principles = (
+  await Promise.all(feature.data.relatedPrinciples.map((ref) => resolveLocalized("principles", ref)))
+).filter(Boolean);
+const authors = (
+  await Promise.all(feature.data.relatedAuthors.map((ref) => resolveLocalized("authors", ref)))
+).filter(Boolean);
+
+const statusKey = feature.data.status === "stable"
+  ? "status.available"
+  : feature.data.status === "coming-soon"
+    ? "status.comingSoon"
+    : "status.beta";
+const statusStyle: Record<string, string> = {
+  stable: "text-signal-ok border-signal-ok/30",
+  beta: "text-accent-glow border-accent-glow/30",
+  "coming-soon": "text-signal-warn border-signal-warn/30",
+};
+---
+
+<BaseLayout
+  jsonLd={seo.jsonLd}
+  alternates={seo.alternates}
+  ogImage={seo.ogImage}
+  title={`${feature.data.title} — Fluera`}
+  description={feature.data.shortDescription}
+  locale={locale}
+>
+  <section class="feature-detail-hero border-b border-white/[0.06]">
+    <div class="container-site py-16 md:py-24">
+      <nav class="feature-breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={href("/features")}>{t("nav.features", locale)}</a></li>
+          <li aria-current="page">{feature.data.title}</li>
+        </ol>
+      </nav>
+
+      <div class="feature-hero-grid">
+        <header class="feature-hero-copy">
+          <div class="feature-meta">
+            {feature.data.stepInCycle && (
+              <span class="eyebrow text-accent-glow">
+                {copy.step} {feature.data.stepInCycle} <i aria-hidden="true">·</i> {copy.cycle}
+              </span>
+            )}
+            <span class={`pill text-[11px] ${statusStyle[feature.data.status]}`}>
+              {t(statusKey, locale)}
+            </span>
+          </div>
+
+          <h1 class="text-display-xl text-paper-50">{feature.data.title}</h1>
+          <p class="feature-tagline">{feature.data.tagline}</p>
+          <p class="prose-ink text-lg">{feature.data.shortDescription}</p>
+
+          <div class="feature-hero-cta">
+            <a href={href("/beta")} class="btn-primary">{t("cta.requestAccess", locale)}</a>
+            <span>{copy.platformAssurance}</span>
+          </div>
+        </header>
+
+        <ProductVisual
+          kind={visualKind}
+          slot={`feature-${featureSlug}-${visualKind}`}
+          locale={locale}
+          label={`${feature.data.title} — ${feature.data.shortDescription}`}
+          class="feature-detail-visual"
+        />
+      </div>
+    </div>
+  </section>
+
+  <article class="feature-prose-section border-b border-white/[0.06]">
+    <div class="container-prose prose-v2">
+      <Content />
+    </div>
+  </article>
+
+  {principles.length > 0 && (
+    <section class="feature-evidence-section border-b border-white/[0.06] bg-ink-900/40">
+      <div class="container-site">
+        <div class="feature-section-heading">
+          <p class="eyebrow text-accent-glow">{copy.scienceKicker}</p>
+          <h2 class="text-display-lg text-paper-50">{copy.scienceTitle}</h2>
+        </div>
+        <ul class="feature-card-grid feature-principle-grid">
+          {principles.map((principle) => principle && (
+            <li>
+              <a
+                href={href(`/science/principles/${stripLocaleSuffix(principle.id)}`)}
+                class="feature-evidence-card"
+              >
+                <div>
+                  <h3>{principle.data.title}</h3>
+                  <span>{principle.data.keyYear}</span>
+                </div>
+                <p>{principle.data.shortDescription}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {authors.length > 0 && (
+    <section class="feature-evidence-section border-b border-white/[0.06]">
+      <div class="container-site">
+        <div class="feature-section-heading">
+          <p class="eyebrow text-accent-glow">{copy.authorsKicker}</p>
+          <h2 class="text-display-lg text-paper-50">{copy.authorsTitle}</h2>
+        </div>
+        <ul class="feature-card-grid feature-author-grid">
+          {authors.map((author) => author && (
+            <li>
+              <a
+                href={href(`/science/authors/${stripLocaleSuffix(author.id)}`)}
+                class="feature-evidence-card"
+              >
+                <div>
+                  <h3>{author.data.name}</h3>
+                  {author.data.nobelLaureate && <span>Nobel</span>}
+                </div>
+                <small>{author.data.years}</small>
+                <p>{author.data.shortBio}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <section class="feature-final-cta bg-ink-900/40">
+    <div class="container-narrow text-center">
+      <div class="feature-final-mark" aria-hidden="true"><span></span><i></i><span></span></div>
+      <h2 class="text-display-lg text-paper-50">{copy.betaTitle}</h2>
+      <p class="prose-ink">{copy.betaBody}</p>
+      <div class="feature-final-actions">
+        <a href={href("/beta")} class="btn-primary">{t("cta.requestAccess", locale)}</a>
+        <a href={href("/features")} class="btn-secondary">{t("cta.backToFeatures", locale)}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .feature-detail-hero {
+    position: relative;
+    overflow: hidden;
+  }
+  .feature-detail-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgb(91 141 239 / .12) .65px, transparent .7px);
+    background-size: 24px 24px;
+    mask-image: linear-gradient(105deg, transparent 7%, #000 52%, transparent 92%);
+    opacity: .3;
+  }
+  .feature-breadcrumb {
+    position: relative;
+    z-index: 1;
+    margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .feature-breadcrumb ol {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    color: var(--dim-fg);
+    font: 600 .67rem/1.3 ui-monospace, monospace;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+  .feature-breadcrumb li + li::before {
+    content: "/";
+    margin-inline-end: .65rem;
+    color: var(--hairline-strong);
+  }
+  .feature-breadcrumb a { transition: color 160ms ease-out; }
+  .feature-breadcrumb a:hover { color: var(--body-fg); }
+  .feature-breadcrumb [aria-current="page"] {
+    max-width: 28ch;
+    overflow: hidden;
+    color: var(--muted-fg);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .feature-hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    align-items: center;
+    gap: clamp(2.75rem, 7vw, 6.5rem);
+  }
+  .feature-hero-copy { max-width: 40rem; }
+  .feature-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-bottom: 1.35rem;
+  }
+  .feature-meta i { margin-inline: .2rem; font-style: normal; color: var(--dim-fg); }
+  .feature-hero-copy h1 { margin-bottom: 1.25rem; }
+  .feature-tagline {
+    margin-bottom: 1.2rem;
+    color: var(--body-fg);
+    font-size: clamp(1.3rem, 2.35vw, 1.85rem);
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -.025em;
+  }
+  .feature-hero-cta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .feature-hero-cta > span {
+    max-width: 24ch;
+    color: var(--dim-fg);
+    font-size: .72rem;
+    line-height: 1.45;
+  }
+  :global(.feature-detail-visual .degree-field) {
+    box-shadow: 0 30px 80px rgb(0 0 0 / .22);
+  }
+  .feature-prose-section { padding: clamp(4rem, 8vw, 7rem) 0; }
+  .feature-evidence-section { padding: clamp(4rem, 7vw, 6rem) 0; }
+  .feature-section-heading {
+    display: grid;
+    gap: 1rem;
+    max-width: 48rem;
+    margin-bottom: 2.5rem;
+  }
+  .feature-card-grid {
+    display: grid;
+    gap: .75rem;
+    list-style: none;
+    padding: 0;
+  }
+  .feature-principle-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .feature-author-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .feature-evidence-card {
+    display: block;
+    height: 100%;
+    padding: 1.35rem;
+    border: 1px solid var(--hairline);
+    border-radius: .8rem;
+    background: color-mix(in srgb, var(--body-bg) 94%, var(--body-fg));
+    transition: border-color 160ms ease-out, transform 160ms ease-out, background-color 160ms ease-out;
+  }
+  .feature-evidence-card:hover {
+    border-color: rgb(91 141 239 / .45);
+    transform: translateY(-2px);
+  }
+  .feature-evidence-card > div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: .75rem;
+  }
+  .feature-evidence-card h3 {
+    color: var(--body-fg);
+    font-size: .95rem;
+    line-height: 1.35;
+    letter-spacing: -.02em;
+  }
+  .feature-evidence-card span,
+  .feature-evidence-card small {
+    color: var(--dim-fg);
+    font: 600 .62rem/1.3 ui-monospace, monospace;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .feature-evidence-card small { display: block; margin: -.25rem 0 .75rem; }
+  .feature-evidence-card p {
+    display: -webkit-box;
+    overflow: hidden;
+    color: var(--muted-fg);
+    font-size: .82rem;
+    line-height: 1.55;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+  .feature-final-cta { padding: clamp(4.5rem, 9vw, 7rem) 0; }
+  .feature-final-cta h2 { margin-bottom: 1rem; }
+  .feature-final-cta p { max-width: 42rem; margin-inline: auto; }
+  .feature-final-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    margin-bottom: 1.6rem;
+  }
+  .feature-final-mark span { width: 3.25rem; height: 1px; background: rgb(91 141 239 / .35); }
+  .feature-final-mark i { width: .35rem; height: .35rem; border-radius: 50%; background: theme("colors.accent.glow"); }
+  .feature-final-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 2rem;
+  }
+  @media (min-width: 900px) {
+    .feature-hero-grid { grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); }
+  }
+  @media (max-width: 899px) {
+    .feature-hero-grid { max-width: 46rem; }
+    .feature-principle-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .feature-author-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .feature-breadcrumb [aria-current="page"] { display: none; }
+    .feature-breadcrumb li + li::before { display: none; }
+    .feature-hero-copy h1 { font-size: clamp(2.55rem, 14vw, 4rem); }
+    .feature-hero-cta { align-items: flex-start; flex-direction: column; }
+    .feature-principle-grid,
+    .feature-author-grid { grid-template-columns: 1fr; }
+  }
+  :global(html.light) .feature-detail-hero::before {
+    background-image: radial-gradient(circle, rgb(37 99 235 / .09) .65px, transparent .7px);
+  }
+  /* Column-sized type, appended last so it beats earlier media queries:
+     the h1 tracks its own column via cqw instead of the viewport, which
+     put desktop-scale type in a ~450px grid share (one word per line). */
+  .feature-hero-copy{container-type:inline-size}
+  .feature-hero-copy h1{max-width:19ch;font-size:clamp(2.4rem,9.5cqw,4.5rem)}
+</style>

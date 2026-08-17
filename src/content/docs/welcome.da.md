@@ -20,7 +20,7 @@ Næsten alt andet udspringer derfra.
 
 ## Hvad du skal gøre i den første session
 
-- Opret et nyt canvas til et emne, du studerer i denne uge.
+- Opret ét canvas til hele dit studieforløb, og afgræns derefter en region til det emne, du studerer i denne uge.
 - Vælg en pensel, og bliv ved den i den første session. Lad dig ikke distrahere af penselbiblioteket.
 - Skriv 8-15 begreber i hånden. Placér hver enkelt der, hvor det giver mening rumligt.
 - Tegn pile mellem begreber, du tror er beslægtede.

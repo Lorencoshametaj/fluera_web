@@ -3,7 +3,7 @@ export const SITE = {
   domain: "fluera.dev",
   url: "https://fluera.dev",
   description:
-    "A learning canvas, not a note app — handwrite on an infinite canvas and Fluera maps your whole degree, then studies you back. Built on 50 years of memory science. iOS, Android, macOS, Windows, Web.",
+    "A learning canvas, not a note app — handwrite on an infinite canvas and Fluera maps your whole degree, then studies you back. Built on 50 years of memory science. iOS, iPadOS, Android, macOS, Windows, Linux, Web.",
   tagline: "The notebook that studies you back.",
   company: {
     legalName: "Lorenco Shametaj",
@@ -43,9 +43,8 @@ export const PRIMARY_CTA = {
  *   2. Set your username in the Buttondown dashboard (e.g. "fluera")
  *   3. Replace `username` below with your actual Buttondown username
  *
- * While `username` is empty, the form falls back to localStorage and shows
- * the Phase-2 disclaimer. Once set, posts go directly to Buttondown's
- * public embed endpoint — no API key exposed client-side.
+ * While `username` is empty, the capture is not rendered. Once set, posts go
+ * directly to Buttondown's public embed endpoint — no API key exposed client-side.
  */
 export const NEWSLETTER = {
   provider: "buttondown" as const,
@@ -73,6 +72,7 @@ export const LOCALE_AVAILABLE_PATHS = new Set<string>([
   "/contact",
   "/contact/sales",
   "/download",
+  "/docs",
   "/security",
   "/security/architecture",
   "/security/sub-processors",
@@ -96,6 +96,26 @@ export const LOCALE_NATIVE_PATHS = new Set<string>([
   "/legal/privacy",
   "/legal/terms",
 ]);
+
+/** Dynamic routes that exist below every registered locale prefix. */
+export const LOCALE_AVAILABLE_PREFIXES = [
+  "/blog/",
+  "/docs/",
+  "/features/",
+  "/science/authors/",
+  "/science/principles/",
+] as const;
+
+function normalizedRoutePath(path: string): string {
+  if (path === "/") return path;
+  return path.replace(/\/+$/, "") || "/";
+}
+
+export function isLocalizedPath(path: string): boolean {
+  const normalized = normalizedRoutePath(path);
+  return LOCALE_AVAILABLE_PATHS.has(normalized)
+    || LOCALE_AVAILABLE_PREFIXES.some((prefix) => normalized.startsWith(prefix));
+}
 
 /** @deprecated use LOCALE_AVAILABLE_PATHS — kept for backwards compatibility. */
 export const IT_AVAILABLE_PATHS = LOCALE_AVAILABLE_PATHS;
@@ -125,9 +145,10 @@ export function localizedHref(href: string, locale: Locale | boolean): string {
   // Split off hash + query for matching the bare path.
   const [bare, ...rest] = href.split(/([#?])/);
   const path = bare === "" ? "/" : bare;
+  const normalizedPath = normalizedRoutePath(path);
 
-  if (LOCALE_NATIVE_PATHS.has(path)) return href;
-  if (LOCALE_AVAILABLE_PATHS.has(path)) {
+  if (LOCALE_NATIVE_PATHS.has(normalizedPath)) return href;
+  if (isLocalizedPath(path)) {
     const prefix = path === "/" ? `/${targetLocale}/` : `/${targetLocale}${path}`;
     return prefix + rest.join("");
   }
@@ -156,7 +177,7 @@ export function basePathFromPathname(pathname: string): string {
 export function languageSwitchHref(currentPathname: string, targetLocale: Locale): string {
   const basePath = basePathFromPathname(currentPathname);
   if (targetLocale === DEFAULT_LOCALE) return basePath;
-  if (LOCALE_AVAILABLE_PATHS.has(basePath)) {
+  if (isLocalizedPath(basePath)) {
     return basePath === "/" ? `/${targetLocale}/` : `/${targetLocale}${basePath}`;
   }
   return `/${targetLocale}/`;
@@ -168,7 +189,6 @@ export const FOOTER_NAV = {
     { label: "Catalogue",          href: "/catalogue" },
     { label: "Download",           href: "/download" },
     { label: "Pricing",            href: "/pricing" },
-    { label: "Live demo",          href: "/demo", external: true },
     { label: "Changelog",          href: "/changelog" },
   ],
   science: [

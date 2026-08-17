@@ -1,0 +1,534 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { PricingData } from "@/data/types";
+import type { Locale } from "@/lib/i18n";
+import { localizedHref } from "@/lib/site";
+
+export interface Props {
+  locale: Locale;
+  pricing: PricingData;
+}
+
+type PageCopy = {
+  metaTitle: string;
+  metaDescription: string;
+  kicker: string;
+  status: string;
+  title: string;
+  body: string;
+  continuum: string;
+  credits: string;
+  plansKicker: string;
+  plansTitle: string;
+  included: string;
+  request: string;
+  betaNote: string;
+  faqKicker: string;
+  faqTitle: string;
+};
+
+const COPY: Record<Locale, PageCopy> = {
+  en: {
+    metaTitle: "Pricing",
+    metaDescription: "Compare Fluera Free, Plus, and Pro: three beta plans for one continuous learning canvas.",
+    kicker: "Transparent pricing",
+    status: "Private beta · Current planned rates",
+    title: "One canvas.<br />Three levels of depth.",
+    body: "The full canvas starts free. Plus expands cloud and AI capacity. Pro adds the advanced study layer. During the beta, access opens by cohort.",
+    continuum: "One continuous canvas",
+    credits: "AI credits / 30 days",
+    plansKicker: "The three plans",
+    plansTitle: "Choose capacity, not a different product.",
+    included: "Included",
+    request: "Request access",
+    betaNote: "These are Fluera’s current intended public rates. During the beta, access timing can vary by cohort; purchase terms are shown before any subscription is confirmed.",
+    faqKicker: "Plain answers",
+    faqTitle: "Before you choose.",
+  },
+  it: {
+    metaTitle: "Prezzi",
+    metaDescription: "Confronta Fluera Free, Plus e Pro: tre piani beta per un unico canvas di apprendimento continuo.",
+    kicker: "Prezzi trasparenti",
+    status: "Beta privata · Tariffe attualmente previste",
+    title: "Un solo canvas.<br />Tre livelli di profondità.",
+    body: "Il canvas completo parte da Free. Plus amplia cloud e capacità AI. Pro aggiunge lo strato di studio avanzato. Durante la beta, l’accesso si apre per coorti.",
+    continuum: "Un unico canvas continuo",
+    credits: "Crediti AI / 30 giorni",
+    plansKicker: "I tre piani",
+    plansTitle: "Scegli la capacità, non un prodotto diverso.",
+    included: "Include",
+    request: "Richiedi accesso",
+    betaNote: "Queste sono le tariffe pubbliche attualmente previste per Fluera. Durante la beta, i tempi di accesso possono variare per coorte; i termini di acquisto vengono mostrati prima di confermare qualsiasi abbonamento.",
+    faqKicker: "Risposte chiare",
+    faqTitle: "Prima di scegliere.",
+  },
+  es: {
+    metaTitle: "Precios",
+    metaDescription: "Compara Fluera Free, Plus y Pro: tres planes beta para un único canvas de aprendizaje continuo.",
+    kicker: "Precios transparentes",
+    status: "Beta privada · Tarifas previstas actualmente",
+    title: "Un solo canvas.<br />Tres niveles de profundidad.",
+    body: "El canvas completo empieza con Free. Plus amplía la nube y la capacidad de IA. Pro añade la capa de estudio avanzada. Durante la beta, el acceso se abre por cohortes.",
+    continuum: "Un único canvas continuo",
+    credits: "Créditos de IA / 30 días",
+    plansKicker: "Los tres planes",
+    plansTitle: "Elige capacidad, no un producto distinto.",
+    included: "Incluye",
+    request: "Solicitar acceso",
+    betaNote: "Estas son las tarifas públicas previstas actualmente para Fluera. Durante la beta, los tiempos de acceso pueden variar según la cohorte; las condiciones de compra se muestran antes de confirmar cualquier suscripción.",
+    faqKicker: "Respuestas claras",
+    faqTitle: "Antes de elegir.",
+  },
+  "pt-br": {
+    metaTitle: "Preços",
+    metaDescription: "Compare Fluera Free, Plus e Pro: três planos beta para um único canvas de aprendizagem contínuo.",
+    kicker: "Preços transparentes",
+    status: "Beta privada · Valores previstos atualmente",
+    title: "Um só canvas.<br />Três níveis de profundidade.",
+    body: "O canvas completo começa no Free. Plus amplia nuvem e capacidade de IA. Pro adiciona a camada avançada de estudo. Durante a beta, o acesso abre por coortes.",
+    continuum: "Um único canvas contínuo",
+    credits: "Créditos de IA / 30 dias",
+    plansKicker: "Os três planos",
+    plansTitle: "Escolha capacidade, não outro produto.",
+    included: "Inclui",
+    request: "Solicitar acesso",
+    betaNote: "Estes são os valores públicos atualmente previstos para o Fluera. Durante a beta, o tempo de acesso pode variar por coorte; os termos de compra aparecem antes da confirmação de qualquer assinatura.",
+    faqKicker: "Respostas claras",
+    faqTitle: "Antes de escolher.",
+  },
+  fr: {
+    metaTitle: "Tarifs",
+    metaDescription: "Comparez Fluera Free, Plus et Pro : trois offres bêta pour un seul canvas d’apprentissage continu.",
+    kicker: "Tarifs transparents",
+    status: "Bêta privée · Tarifs actuellement prévus",
+    title: "Un seul canvas.<br />Trois niveaux de profondeur.",
+    body: "Le canvas complet commence avec Free. Plus étend le cloud et la capacité IA. Pro ajoute la couche d’étude avancée. Pendant la bêta, l’accès s’ouvre par cohortes.",
+    continuum: "Un seul canvas continu",
+    credits: "Crédits IA / 30 jours",
+    plansKicker: "Les trois offres",
+    plansTitle: "Choisissez la capacité, pas un autre produit.",
+    included: "Inclus",
+    request: "Demander l’accès",
+    betaNote: "Il s’agit des tarifs publics actuellement prévus pour Fluera. Pendant la bêta, le délai d’accès peut varier selon la cohorte ; les conditions d’achat sont affichées avant toute confirmation d’abonnement.",
+    faqKicker: "Réponses claires",
+    faqTitle: "Avant de choisir.",
+  },
+  de: {
+    metaTitle: "Preise",
+    metaDescription: "Vergleiche Fluera Free, Plus und Pro: drei Beta-Tarife für eine durchgehende Lernfläche.",
+    kicker: "Transparente Preise",
+    status: "Private Beta · Aktuell vorgesehene Preise",
+    title: "Ein Canvas.<br />Drei Stufen Tiefe.",
+    body: "Das vollständige Canvas beginnt mit Free. Plus erweitert Cloud- und KI-Kapazität. Pro ergänzt die fortgeschrittene Lernschicht. In der Beta wird der Zugang kohortenweise geöffnet.",
+    continuum: "Ein durchgehendes Canvas",
+    credits: "KI-Credits / 30 Tage",
+    plansKicker: "Die drei Tarife",
+    plansTitle: "Wähle Kapazität, nicht ein anderes Produkt.",
+    included: "Enthalten",
+    request: "Zugang anfragen",
+    betaNote: "Dies sind die derzeit vorgesehenen öffentlichen Preise für Fluera. Während der Beta kann der Zugangszeitpunkt je nach Kohorte variieren; die Kaufbedingungen werden vor jeder Abo-Bestätigung angezeigt.",
+    faqKicker: "Klare Antworten",
+    faqTitle: "Vor der Entscheidung.",
+  },
+  ja: {
+    metaTitle: "料金",
+    metaDescription: "Fluera Free、Plus、Proを比較。ひとつの連続した学習キャンバスのための3つのベータプランです。",
+    kicker: "透明な料金体系",
+    status: "プライベートベータ · 現在予定している料金",
+    title: "ひとつのキャンバス。<br />深さは3段階。",
+    body: "完全なキャンバスはFreeから。PlusはクラウドとAIの容量を拡張し、Proは高度な学習レイヤーを加えます。ベータ期間中はコホートごとにアクセスを開放します。",
+    continuum: "ひとつの連続したキャンバス",
+    credits: "AIクレジット / 30日",
+    plansKicker: "3つのプラン",
+    plansTitle: "別の製品ではなく、必要な容量を選ぶ。",
+    included: "含まれるもの",
+    request: "アクセスを申請",
+    betaNote: "表示価格は、Flueraが現在予定している一般公開料金です。ベータ期間中はコホートによりアクセス時期が異なる場合があり、購入条件はサブスクリプション確定前に表示されます。",
+    faqKicker: "明確な回答",
+    faqTitle: "選ぶ前に。",
+  },
+  ko: {
+    metaTitle: "요금",
+    metaDescription: "하나의 연속된 학습 캔버스를 위한 Fluera Free, Plus, Pro 베타 플랜을 비교하세요.",
+    kicker: "투명한 요금",
+    status: "비공개 베타 · 현재 예정 요금",
+    title: "하나의 캔버스.<br />세 단계의 깊이.",
+    body: "전체 캔버스는 Free에서 시작합니다. Plus는 클라우드와 AI 용량을 넓히고, Pro는 고급 학습 레이어를 더합니다. 베타 기간에는 코호트별로 액세스가 열립니다.",
+    continuum: "하나로 이어진 캔버스",
+    credits: "AI 크레딧 / 30일",
+    plansKicker: "세 가지 플랜",
+    plansTitle: "다른 제품이 아니라 필요한 용량을 선택하세요.",
+    included: "포함 사항",
+    request: "액세스 요청",
+    betaNote: "표시된 금액은 Fluera가 현재 예정한 공개 요금입니다. 베타 기간에는 코호트에 따라 액세스 시점이 달라질 수 있으며, 구매 조건은 구독 확정 전에 표시됩니다.",
+    faqKicker: "명확한 답변",
+    faqTitle: "선택하기 전에.",
+  },
+  hi: {
+    metaTitle: "मूल्य",
+    metaDescription: "एक निरंतर लर्निंग कैनवास के लिए Fluera Free, Plus और Pro के तीन बीटा प्लान की तुलना करें।",
+    kicker: "पारदर्शी मूल्य",
+    status: "निजी बीटा · वर्तमान प्रस्तावित दरें",
+    title: "एक कैनवास।<br />गहराई के तीन स्तर।",
+    body: "पूरा कैनवास Free से शुरू होता है। Plus क्लाउड और AI क्षमता बढ़ाता है। Pro उन्नत अध्ययन परत जोड़ता है। बीटा के दौरान एक्सेस कोहोर्ट के अनुसार खुलता है।",
+    continuum: "एक निरंतर कैनवास",
+    credits: "AI क्रेडिट / 30 दिन",
+    plansKicker: "तीन प्लान",
+    plansTitle: "अलग उत्पाद नहीं, अपनी ज़रूरत की क्षमता चुनें।",
+    included: "शामिल",
+    request: "एक्सेस का अनुरोध करें",
+    betaNote: "ये Fluera की वर्तमान प्रस्तावित सार्वजनिक दरें हैं। बीटा के दौरान एक्सेस का समय कोहोर्ट के अनुसार बदल सकता है; किसी भी सब्सक्रिप्शन की पुष्टि से पहले खरीद की शर्तें दिखाई जाती हैं।",
+    faqKicker: "स्पष्ट उत्तर",
+    faqTitle: "चुनने से पहले।",
+  },
+  pl: {
+    metaTitle: "Cennik",
+    metaDescription: "Porównaj Fluera Free, Plus i Pro: trzy plany beta dla jednego ciągłego canvasu do nauki.",
+    kicker: "Przejrzyste ceny",
+    status: "Prywatna beta · Obecnie planowane ceny",
+    title: "Jeden canvas.<br />Trzy poziomy głębi.",
+    body: "Pełny canvas zaczyna się od Free. Plus rozszerza chmurę i możliwości AI. Pro dodaje zaawansowaną warstwę nauki. W becie dostęp jest otwierany kohortami.",
+    continuum: "Jeden ciągły canvas",
+    credits: "Kredyty AI / 30 dni",
+    plansKicker: "Trzy plany",
+    plansTitle: "Wybierasz możliwości, nie inny produkt.",
+    included: "W planie",
+    request: "Poproś o dostęp",
+    betaNote: "To obecnie planowane publiczne ceny Fluera. Podczas bety termin dostępu może zależeć od kohorty; warunki zakupu są wyświetlane przed potwierdzeniem subskrypcji.",
+    faqKicker: "Jasne odpowiedzi",
+    faqTitle: "Zanim wybierzesz.",
+  },
+  ar: {
+    metaTitle: "الأسعار",
+    metaDescription: "قارن بين خطط Fluera ‏Free وPlus وPro: ثلاث خطط تجريبية للوحة تعلم واحدة متصلة.",
+    kicker: "أسعار واضحة",
+    status: "بيتا خاصة · الأسعار المخطط لها حاليًا",
+    title: "لوحة واحدة.<br />ثلاثة مستويات من العمق.",
+    body: "تبدأ اللوحة الكاملة مع Free. توسّع Plus سعة السحابة والذكاء الاصطناعي، وتضيف Pro طبقة الدراسة المتقدمة. خلال البيتا يُفتح الوصول على دفعات.",
+    continuum: "لوحة واحدة متصلة",
+    credits: "رصيد الذكاء الاصطناعي / 30 يومًا",
+    plansKicker: "الخطط الثلاث",
+    plansTitle: "اختر السعة، لا منتجًا مختلفًا.",
+    included: "يتضمن",
+    request: "اطلب الوصول",
+    betaNote: "هذه هي الأسعار العامة التي تخطط Fluera لتقديمها حاليًا. خلال البيتا قد يختلف موعد الوصول حسب الدفعة، وتظهر شروط الشراء قبل تأكيد أي اشتراك.",
+    faqKicker: "إجابات واضحة",
+    faqTitle: "قبل أن تختار.",
+  },
+  nl: {
+    metaTitle: "Prijzen",
+    metaDescription: "Vergelijk Fluera Free, Plus en Pro: drie bètaplannen voor één doorlopend leercanvas.",
+    kicker: "Transparante prijzen",
+    status: "Privébèta · Momenteel geplande tarieven",
+    title: "Eén canvas.<br />Drie niveaus van diepgang.",
+    body: "Het volledige canvas begint met Free. Plus breidt cloud- en AI-capaciteit uit. Pro voegt de geavanceerde studielaag toe. Tijdens de bèta opent de toegang per cohort.",
+    continuum: "Eén doorlopend canvas",
+    credits: "AI-credits / 30 dagen",
+    plansKicker: "De drie plannen",
+    plansTitle: "Kies capaciteit, geen ander product.",
+    included: "Inbegrepen",
+    request: "Toegang aanvragen",
+    betaNote: "Dit zijn de momenteel geplande openbare tarieven voor Fluera. Tijdens de bèta kan het toegangsmoment per cohort verschillen; aankoopvoorwaarden worden getoond voordat een abonnement wordt bevestigd.",
+    faqKicker: "Duidelijke antwoorden",
+    faqTitle: "Voordat je kiest.",
+  },
+  sv: {
+    metaTitle: "Priser",
+    metaDescription: "Jämför Fluera Free, Plus och Pro: tre betaplaner för en sammanhängande studiecanvas.",
+    kicker: "Transparenta priser",
+    status: "Privat beta · Nu planerade priser",
+    title: "En canvas.<br />Tre nivåer av djup.",
+    body: "Hela canvasen börjar med Free. Plus utökar moln- och AI-kapaciteten. Pro lägger till det avancerade studielagret. Under betan öppnas åtkomst kohortvis.",
+    continuum: "En sammanhängande canvas",
+    credits: "AI-krediter / 30 dagar",
+    plansKicker: "De tre planerna",
+    plansTitle: "Välj kapacitet, inte en annan produkt.",
+    included: "Ingår",
+    request: "Begär åtkomst",
+    betaNote: "Det här är Flueras nu planerade publika priser. Under betan kan tidpunkten för åtkomst variera mellan kohorter; köpvillkoren visas innan en prenumeration bekräftas.",
+    faqKicker: "Tydliga svar",
+    faqTitle: "Innan du väljer.",
+  },
+  da: {
+    metaTitle: "Priser",
+    metaDescription: "Sammenlign Fluera Free, Plus og Pro: tre betaplaner til ét sammenhængende læringscanvas.",
+    kicker: "Gennemsigtige priser",
+    status: "Privat beta · Aktuelt planlagte priser",
+    title: "Ét canvas.<br />Tre niveauer af dybde.",
+    body: "Det fulde canvas starter med Free. Plus udvider cloud- og AI-kapaciteten. Pro tilføjer det avancerede studielag. Under betaen åbnes adgangen kohortevis.",
+    continuum: "Ét sammenhængende canvas",
+    credits: "AI-kreditter / 30 dage",
+    plansKicker: "De tre planer",
+    plansTitle: "Vælg kapacitet, ikke et andet produkt.",
+    included: "Inkluderet",
+    request: "Anmod om adgang",
+    betaNote: "Dette er Flueras aktuelt planlagte offentlige priser. Under betaen kan tidspunktet for adgang variere efter kohorte; købsvilkårene vises, før et abonnement bekræftes.",
+    faqKicker: "Klare svar",
+    faqTitle: "Før du vælger.",
+  },
+  no: {
+    metaTitle: "Priser",
+    metaDescription: "Sammenlign Fluera Free, Plus og Pro: tre betaplaner for ett sammenhengende læringscanvas.",
+    kicker: "Tydelige priser",
+    status: "Privat beta · Nå planlagte priser",
+    title: "Ett canvas.<br />Tre nivåer av dybde.",
+    body: "Hele canvaset starter med Free. Plus utvider sky- og AI-kapasiteten. Pro legger til det avanserte studielaget. Under betaen åpnes tilgangen kohortvis.",
+    continuum: "Ett sammenhengende canvas",
+    credits: "AI-kreditter / 30 dager",
+    plansKicker: "De tre planene",
+    plansTitle: "Velg kapasitet, ikke et annet produkt.",
+    included: "Inkludert",
+    request: "Be om tilgang",
+    betaNote: "Dette er Flueras nå planlagte offentlige priser. Under betaen kan tidspunktet for tilgang variere etter kohort; kjøpsvilkårene vises før et abonnement bekreftes.",
+    faqKicker: "Tydelige svar",
+    faqTitle: "Før du velger.",
+  },
+  fi: {
+    metaTitle: "Hinnoittelu",
+    metaDescription: "Vertaa Fluera Free-, Plus- ja Pro-paketteja: kolme betapakettia yhdelle jatkuvalle oppimiskanvakselle.",
+    kicker: "Läpinäkyvä hinnoittelu",
+    status: "Yksityinen beta · Tällä hetkellä suunnitellut hinnat",
+    title: "Yksi canvas.<br />Kolme syvyystasoa.",
+    body: "Täysi canvas alkaa Free-paketista. Plus laajentaa pilvi- ja AI-kapasiteettia. Pro lisää edistyneen opiskelukerroksen. Betan aikana käyttöoikeus avataan kohorteittain.",
+    continuum: "Yksi yhtenäinen canvas",
+    credits: "AI-krediitit / 30 päivää",
+    plansKicker: "Kolme pakettia",
+    plansTitle: "Valitse kapasiteetti, älä eri tuotetta.",
+    included: "Sisältää",
+    request: "Pyydä käyttöoikeutta",
+    betaNote: "Nämä ovat Flueran tällä hetkellä suunnitellut julkiset hinnat. Betan aikana käyttöoikeuden ajankohta voi vaihdella kohortin mukaan; ostoehdot näytetään ennen tilauksen vahvistamista.",
+    faqKicker: "Selkeät vastaukset",
+    faqTitle: "Ennen valintaa.",
+  },
+};
+
+const { locale, pricing } = Astro.props;
+const copy = COPY[locale];
+const { tiers, faq } = pricing;
+const arrow = locale === "ar" ? "←" : "→";
+const creditValues = [100, 500, 2000];
+const cleanFeature = (feature: string) => feature.replace(/^[📍⏱🎤🤝🔍️\s]+/u, "");
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+---
+
+<BaseLayout
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  locale={locale}
+  jsonLd={jsonLd}
+>
+  <section class="pricing-hero border-b border-white/[0.06]">
+    <div class="container-site pricing-hero-grid py-20 md:py-28">
+      <div class="pricing-hero-copy">
+        <div class="pricing-status"><span></span>{copy.status}</div>
+        <p class="eyebrow text-accent-glow mb-6">{copy.kicker}</p>
+        <h1 class="text-display-2xl text-paper-50 mb-6" set:html={copy.title} />
+        <p class="prose-ink text-lg md:text-xl max-w-2xl">{copy.body}</p>
+      </div>
+
+      <figure class="pricing-continuum">
+        <div class="continuum-heading">
+          <span>{copy.continuum}</span>
+          <i>∞</i>
+        </div>
+        <svg viewBox="0 0 720 250" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <pattern id={`pricing-dots-${locale}`} width="18" height="18" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="1" class="pricing-dot" />
+            </pattern>
+          </defs>
+          <rect width="720" height="250" fill={`url(#pricing-dots-${locale})`} />
+          <path class="contour contour-a" d="M-24 207C87 111 183 157 254 92s167-43 225 13 136 67 268-35" />
+          <path class="contour contour-b" d="M-31 229C78 151 194 198 276 133s151-45 216 5 138 59 258-12" />
+          <path class="continuum-line-shadow" d="M54 173C164 172 201 132 337 125s205-42 329-71" />
+          <path class="continuum-line" d="M54 173C164 172 201 132 337 125s205-42 329-71" />
+        </svg>
+        <div class="continuum-nodes">
+          {tiers.slice(0, 3).map((tier, index) => (
+            <div class={`continuum-node node-${index + 1}`}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{tier.name}</strong>
+              <b>{creditValues[index]}</b>
+              <small>{copy.credits}</small>
+            </div>
+          ))}
+        </div>
+        <figcaption class="sr-only">{copy.continuum}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section pricing-plans-section">
+    <div class="container-site">
+      <div class="pricing-section-intro">
+        <div>
+          <p class="eyebrow text-accent-glow mb-5">{copy.plansKicker}</p>
+          <h2 class="text-display-xl text-paper-50">{copy.plansTitle}</h2>
+        </div>
+        <p class="pricing-beta-note">{copy.betaNote}</p>
+      </div>
+
+      <div class="pricing-grid mt-14">
+        {tiers.slice(0, 3).map((tier, index) => (
+          <article class:list={["pricing-plan", tier.highlighted && "is-highlighted"]}>
+            <header class="plan-header">
+              <span class="plan-index">{String(index + 1).padStart(2, "0")}</span>
+              <div class="plan-name-row">
+                <h2>{tier.name}</h2>
+                {tier.badge && <span class="plan-badge">{tier.badge}</span>}
+              </div>
+              <div class="plan-price">
+                <strong>{tier.price}</strong>
+                <span>{tier.period}</span>
+              </div>
+              <p>{tier.tagline}</p>
+            </header>
+
+            <div class="plan-capacity">
+              <div><span style={`--capacity:${[5, 25, 100][index]}%`}></span></div>
+              <strong>{creditValues[index]}</strong>
+              <small>{copy.credits}</small>
+            </div>
+
+            <div class="plan-features">
+              <p class="eyebrow">{copy.included}</p>
+              <ul>
+                {tier.features.map((feature) => (
+                  <li>
+                    <svg viewBox="0 0 18 18" aria-hidden="true"><path d="m4 9.5 3.1 3L14 5.8" /></svg>
+                    <span>{cleanFeature(feature)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <a href={localizedHref(tier.cta.href, locale)} class={tier.highlighted ? "btn-primary plan-cta" : "btn-secondary plan-cta"}>
+              {copy.request} <span aria-hidden="true">{arrow}</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section pricing-faq border-t border-white/[0.06] bg-ink-900/40">
+    <div class="container-site faq-grid">
+      <div class="faq-heading">
+        <p class="eyebrow text-accent-glow mb-5">{copy.faqKicker}</p>
+        <h2 class="text-display-lg text-paper-50">{copy.faqTitle}</h2>
+      </div>
+      <div class="faq-list">
+        {faq.map((item, index) => (
+          <details class="faq-item" open={index === 0}>
+            <summary>
+              <span>{item.q}</span>
+              <i aria-hidden="true"></i>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .pricing-hero { position:relative;overflow:hidden; }
+    .pricing-hero::before { content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,rgb(91 141 239 / .12) .7px,transparent .8px);background-size:25px 25px;mask-image:linear-gradient(105deg,transparent 8%,#000 60%,transparent 95%);opacity:.35; }
+    .pricing-hero-grid { position:relative;display:grid;gap:clamp(42px,8vw,96px);align-items:center; }
+    .pricing-hero-copy h1 { max-width:800px;letter-spacing:-.055em; }
+    .pricing-status { display:inline-flex;align-items:center;gap:9px;margin-bottom:24px;padding:7px 10px;color:var(--muted-fg);border:1px solid rgb(91 141 239 / .24);border-radius:8px;background:rgb(37 99 235 / .07);font-size:.72rem;font-weight:600; }
+    .pricing-status span { width:6px;height:6px;border-radius:50%;background:theme("colors.accent.glow");box-shadow:0 0 0 4px rgb(91 141 239 / .1); }
+
+    .pricing-continuum { position:relative;min-height:360px;margin:0;overflow:hidden;border:1px solid rgb(255 255 255 / .09);border-radius:18px;background:#221e16;box-shadow:0 28px 75px rgb(0 0 0 / .25);isolation:isolate; }
+    .continuum-heading { position:absolute;z-index:3;top:21px;inset-inline:22px;display:flex;align-items:center;justify-content:space-between;color:#f2ece0; }
+    .continuum-heading span { padding-inline-start:11px;border-inline-start:2px solid #5b8def;font-size:.78rem;font-weight:650; }
+    .continuum-heading i { color:rgb(242 236 224 / .3);font:400 34px/1 Georgia,serif;font-style:normal; }
+    .pricing-continuum>svg { position:absolute;inset:62px 0 0;width:100%;height:calc(100% - 62px); }
+    .pricing-dot { fill:rgb(229 222 206 / .11); }
+    .contour { fill:none;stroke:rgb(91 141 239 / .14);stroke-width:1.2;stroke-dasharray:4 8; }
+    .contour-b { stroke:rgb(229 222 206 / .1); }
+    .continuum-line-shadow,.continuum-line { fill:none;stroke-linecap:round;stroke-linejoin:round; }
+    .continuum-line-shadow { stroke:rgb(0 0 0 / .5);stroke-width:9; }
+    .continuum-line { stroke:#5b8def;stroke-width:2.5;stroke-dasharray:5 7; }
+    .continuum-nodes { position:absolute;z-index:2;inset:80px 34px 28px; }
+    .continuum-node { position:absolute;display:flex;flex-direction:column;min-width:104px;padding:12px;color:#f2ece0;border:1px solid rgb(229 222 206 / .14);border-radius:9px;background:#221e16;box-shadow:0 12px 35px rgb(0 0 0 / .2); }
+    .continuum-node::before { content:"";position:absolute;width:10px;height:10px;border:2px solid #5b8def;border-radius:50%;background:#221e16; }
+    .continuum-node>span { color:#5b8def;font:650 .55rem/1 ui-monospace,monospace;letter-spacing:.12em; }
+    .continuum-node strong { margin-top:7px;font-size:.9rem; }
+    .continuum-node b { margin-top:14px;font-size:1.45rem;letter-spacing:-.04em; }
+    .continuum-node small { margin-top:2px;color:#a79e8a;font-size:.54rem; }
+    .node-1 { inset-inline-start:1%;bottom:3%; }.node-1::before{inset-inline-start:15px;top:-31px}
+    .node-2 { inset-inline-start:43%;top:29%; }.node-2::before{inset-inline-start:50%;bottom:-30px}
+    .node-3 { inset-inline-end:0;top:0; }.node-3::before{inset-inline-end:16px;bottom:-29px}
+
+    .pricing-section-intro { display:grid;gap:26px;align-items:end; }
+    .pricing-section-intro h2 { max-width:760px; }
+    .pricing-beta-note { max-width:520px;color:var(--dim-fg);font-size:.78rem;line-height:1.7; }
+    .pricing-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch; }
+    .pricing-plan { position:relative;display:flex;flex-direction:column;min-width:0;padding:clamp(22px,3vw,30px);overflow:hidden;border:1px solid rgb(255 255 255 / .09);border-radius:16px;background:theme("colors.ink.900"); }
+    .pricing-plan.is-highlighted { border-color:rgb(91 141 239 / .42);box-shadow:inset 0 2px 0 theme("colors.accent.ink"),0 22px 55px rgb(0 0 0 / .12); }
+    .plan-index { display:block;margin-bottom:22px;color:var(--dim-fg);font:650 .63rem/1 ui-monospace,monospace;letter-spacing:.14em; }
+    .plan-name-row { display:flex;align-items:center;justify-content:space-between;gap:12px; }
+    .plan-name-row h2 { color:var(--body-fg);font-size:1.35rem; }
+    .plan-badge { padding:5px 8px;color:theme("colors.accent.glow");border:1px solid rgb(91 141 239 / .3);border-radius:6px;background:rgb(37 99 235 / .09);font-size:.62rem;font-weight:650; }
+    .plan-price { margin-top:28px; }
+    .plan-price strong { display:block;color:var(--body-fg);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:650;letter-spacing:-.06em;line-height:1; }
+    .plan-price span { display:block;min-height:34px;margin-top:7px;color:var(--dim-fg);font-size:.68rem;line-height:1.45; }
+    .plan-header>p { min-height:68px;margin-top:20px;color:var(--muted-fg);font-size:.83rem;line-height:1.65; }
+    .plan-capacity { display:grid;grid-template-columns:1fr auto;gap:7px 12px;align-items:end;margin:25px 0;padding:17px 0;border-block:1px solid rgb(255 255 255 / .07); }
+    .plan-capacity>div { grid-column:1/-1;height:3px;overflow:hidden;border-radius:99px;background:rgb(255 255 255 / .07); }
+    .plan-capacity>div span { display:block;width:var(--capacity);height:100%;border-radius:inherit;background:linear-gradient(90deg,#2563eb,#5b8def); }
+    .plan-capacity strong { color:var(--body-fg);font-size:1rem; }.plan-capacity small{color:var(--dim-fg);font-size:.62rem;}
+    .plan-features { flex:1; }
+    .plan-features>.eyebrow { margin-bottom:17px;color:var(--dim-fg);font-size:.6rem; }
+    .plan-features ul { display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none; }
+    .plan-features li { display:grid;grid-template-columns:16px 1fr;gap:9px;color:var(--muted-fg);font-size:.75rem;line-height:1.55; }
+    .plan-features svg { width:15px;height:15px;margin-top:1px;fill:none;stroke:theme("colors.accent.glow");stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round; }
+    .plan-cta { width:100%;margin-top:28px; }
+
+    .faq-grid { display:grid;gap:48px;align-items:start; }
+    .faq-heading { position:sticky;top:100px; }
+    .faq-list { border-top:1px solid rgb(255 255 255 / .08); }
+    .faq-item { border-bottom:1px solid rgb(255 255 255 / .08); }
+    .faq-item summary { display:flex;align-items:flex-start;justify-content:space-between;gap:28px;padding:22px 0;color:var(--body-fg);cursor:pointer;font-size:1rem;font-weight:600;list-style:none; }
+    .faq-item summary::-webkit-details-marker { display:none; }
+    .faq-item summary i { position:relative;width:16px;height:16px;margin-top:3px;flex:none; }
+    .faq-item summary i::before,.faq-item summary i::after { content:"";position:absolute;inset-inline-start:0;top:7px;width:16px;height:1px;background:var(--dim-fg);transition:transform .18s ease; }
+    .faq-item summary i::after { transform:rotate(90deg); }.faq-item[open] summary i::after{transform:rotate(0)}
+    .faq-item>p { max-width:720px;padding-block:0 22px;padding-inline-end:42px;color:var(--muted-fg);font-size:.85rem;line-height:1.75; }
+
+    @media(min-width:900px){.pricing-hero-grid{grid-template-columns:minmax(0,.9fr) minmax(480px,1.1fr)}.pricing-section-intro{grid-template-columns:1.1fr .9fr}.faq-grid{grid-template-columns:minmax(220px,.65fr) minmax(0,1.35fr)}}
+    @media(max-width:899px){.pricing-grid{grid-template-columns:1fr}.plan-header>p{min-height:0}.pricing-plan{max-width:680px;width:100%;margin-inline:auto}.faq-heading{position:static}}
+    @media(max-width:560px){.pricing-continuum{min-height:330px}.continuum-nodes{inset-inline:20px}.continuum-node{min-width:88px;padding:10px}.continuum-node small{max-width:72px}.node-2{inset-inline-start:35%}.pricing-section-intro h2{font-size:clamp(2rem,11vw,3.2rem)}}
+    @media(prefers-reduced-motion:no-preference){.continuum-line{animation:pricing-route 15s linear infinite}@keyframes pricing-route{to{stroke-dashoffset:-120}}}
+
+    /* accent.glow on the badge's own light tint is 2.85:1 — under the 4.5:1 AA
+       floor at this size. #1d4ed8 is the site's light-theme blue. */
+    :global(html.light) .plan-badge { color:#1d4ed8; }
+    :global(html.light) .pricing-continuum { background:#faf8f2;border-color:rgb(61 54 41 / .13);box-shadow:0 24px 60px rgb(49 43 31 / .13); }
+    :global(html.light) .continuum-heading,:global(html.light) .continuum-node { color:#23211b; }
+    :global(html.light) .continuum-heading i { color:rgb(35 33 27 / .2); }
+    :global(html.light) .pricing-dot { fill:rgb(110 102 86 / .12); }
+    :global(html.light) .continuum-node { border-color:rgb(61 54 41 / .14);background:rgb(255 253 248 / .92);box-shadow:0 12px 35px rgb(49 43 31 / .11); }
+    :global(html.light) .continuum-node::before { background:#faf8f2; }
+    :global(html.light) .continuum-node small { color:#6e6656; }
+    :global(html.light) .continuum-line-shadow { stroke:rgb(255 255 255 / .75); }
+    :global(html.light) .pricing-plan,:global(html.light) .faq-list,:global(html.light) .faq-item,:global(html.light) .plan-capacity { border-color:rgb(0 0 0 / .09); }
+    :global(html.light) .pricing-plan { background:#fff; }
+    :global(html.light) .plan-capacity>div { background:rgb(0 0 0 / .07); }
+    /* Column-sized type, appended last so it beats earlier media queries:
+     the h1 tracks its own column via cqw instead of the viewport, which
+     put desktop-scale type in a ~450px grid share (one word per line). */
+  .pricing-hero-copy{container-type:inline-size}
+  .pricing-hero-copy h1{font-size:clamp(2.5rem,10.5cqw,5rem)}
+</style>
+</BaseLayout>

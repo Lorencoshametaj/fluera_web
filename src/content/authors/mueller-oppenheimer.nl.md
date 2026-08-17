@@ -14,4 +14,4 @@ Het experimentele ontwerp was simpel: studenten volgden colleges en maakten met 
 
 De conclusie is contra-intuïtief in het tijdperk van snelheid: de traagheid van het vastleggen dwingt cognitieve elaboratie af op het moment van codering. De hand is het knelpunt — en het knelpunt is waar leren plaatsvindt.
 
-De hele productfilosofie van Fluera vertrekt hiervandaan. Handschrift is geen skeuomorfische keuze. Het is de cognitieve tool. Dertien brush engines. Druk, tilt, snelheid. Streek-latentie onder de 15 milliseconden op elk ondersteund apparaat. Het oneindige canvas is geen esthetiek — het is het substraat dat je geheugen aan het zoeken was.
+De hele productfilosofie van Fluera vertrekt hiervandaan. Handschrift is geen skeuomorfische keuze. Het is de cognitieve tool. Twaalf brush engines. Druk, tilt, snelheid. Inkt met lage latentie op ondersteunde hardware. Het oneindige canvas is geen esthetiek — het is het substraat dat je geheugen aan het zoeken was.

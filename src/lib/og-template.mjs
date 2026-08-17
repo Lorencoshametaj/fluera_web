@@ -2,12 +2,12 @@
 // Satori accepts `{ type, props: { style, children } }` objects directly.
 
 const COLORS = {
-  bg: "#05070c",
-  bgGradient: "#0a0e16",
+  bg: "#151517",
+  bgGradient: "#1b1b1e",
   paperFg: "#fafaf7",
-  inkFg: "#9ca3af",
-  accent: "#fbbf24",
-  brand: "#fbbf24",
+  inkFg: "#9a9a9c",
+  accent: "#5b8def",
+  brand: "#2563eb",
 };
 
 const KIND_LABEL = {
@@ -34,7 +34,7 @@ export function createOgCard({ kind, title, subtitle, mark = false }) {
         width: "1200px",
         height: "630px",
         backgroundColor: COLORS.bg,
-        backgroundImage: `radial-gradient(circle at 75% 25%, ${COLORS.bgGradient} 0%, ${COLORS.bg} 60%)`,
+        backgroundImage: `linear-gradient(110deg, ${COLORS.bg} 0%, ${COLORS.bg} 66%, ${COLORS.bgGradient} 66%, ${COLORS.bgGradient} 100%)`,
         flexDirection: "column",
         justifyContent: "space-between",
         padding: "72px",
@@ -74,7 +74,7 @@ export function createOgCard({ kind, title, subtitle, mark = false }) {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: COLORS.bg,
+                color: COLORS.paperFg,
                 fontSize: "20px",
                 fontWeight: 700,
               },

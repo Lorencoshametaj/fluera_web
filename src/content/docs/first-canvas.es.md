@@ -12,7 +12,7 @@ Este walkthrough usa diez minutos de tu tiempo y un tema que estás estudiando e
 
 ## Minutos 0–2: Crea el canvas
 
-Abre Fluera. Toca **Nuevo canvas**. Dale el nombre del tema (no de la clase — del *concepto*). Elige un pincel — bolígrafo de tinta es un valor por defecto seguro. Quédate con el ancho de trazo por defecto por ahora.
+Abre Fluera. Toca **Nuevo canvas** una sola vez y dale el nombre de tu carrera o recorrido de aprendizaje: este espacio único puede crecer con todos tus estudios. Delimita dentro la primera región y dale a esa región el nombre del tema (no de la clase — del *concepto*). Elige un pincel — la pluma estilográfica es un valor seguro por defecto. Quédate con el ancho de trazo por defecto por ahora.
 
 El canvas está en blanco. Es intencional — las plantillas no ayudan aquí.
 

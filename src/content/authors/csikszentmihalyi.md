@@ -13,4 +13,4 @@ Flow is not mystical. Csikszentmihalyi identified its preconditions precisely: a
 
 For a study tool, this has uncompromising consequences. No modal popups during writing. No notifications. No gamified streak reminders that pull attention. No AI volunteering suggestions that were not asked for.
 
-Fluera's canvas is designed to disappear during writing. Toolbars auto-hide. The AI is silent unless summoned. The infinite canvas removes scroll and pagination — the most mundane forms of interruption. Input latency is kept under 15 ms because latency above that threshold is a form of interruption too — it breaks the loop between hand and thought.
+Fluera's canvas is designed to disappear during writing. Toolbars auto-hide. The AI is silent unless summoned. The infinite canvas removes scroll and pagination — the most mundane forms of interruption. Low-latency ink on supported hardware helps keep hand and thought in one loop.

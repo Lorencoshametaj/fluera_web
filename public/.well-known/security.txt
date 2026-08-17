@@ -1,0 +1,31 @@
+# Fluera — canale per le segnalazioni di sicurezza (RFC 9116)
+#
+# Perché esiste: fino al 2026-08-07 non c'era alcun canale dichiarato, e chi
+# avesse trovato una vulnerabilità sarebbe finito nella coda del supporto
+# ordinario, senza sapere se qualcuno l'avrebbe letta. (Voce V4 del registro
+# dei rischi residui.)
+#
+# ⚠️ `Expires` NON è decorativo: RFC 9116 §2.5.5 dice che i client DEVONO
+# ignorare un file scaduto. Un security.txt scaduto non è un canale vecchio,
+# è di nuovo NESSUN canale — in silenzio. Per questo la data è sorvegliata da
+# `tools/security_txt_is_fresh.sh`, che diventa rosso in CI trenta giorni
+# prima della scadenza.
+
+Contact: mailto:support@fluera.dev
+Expires: 2027-02-07T00:00:00.000Z
+Preferred-Languages: it, en
+Canonical: https://fluera.dev/.well-known/security.txt
+
+# Cosa aspettarsi, detto invece che sottinteso:
+#
+#   • Fluera è sviluppata da una persona sola. Non c'è un turno di reperibilità
+#     e non c'è un programma di ricompense.
+#   • Prima risposta: entro 5 giorni lavorativi.
+#   • `support@fluera.dev` è verificato come funzionante (2026-08-06). Un
+#     indirizzo dedicato `security@` sarebbe preferibile, e arriverà quando
+#     sarà verificato allo stesso modo: un indirizzo che suona giusto ma non
+#     riceve è peggio di uno generico che riceve.
+#
+# Per le richieste GDPR (accesso, cancellazione, portabilità) l'indirizzo è
+# un altro — lorenco@fluera.dev — perché hanno una scadenza di legge di 30
+# giorni (art. 12.3) e vanno trattate come tali.

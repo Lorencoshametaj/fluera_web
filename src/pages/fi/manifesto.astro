@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="Pitkä selitys siitä, mikä Fluera on, mitä Fluera kieltäytyy olemasta, ja miksi ilmeinen tuote oli väärä."
   locale="fi"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">Manifesti</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">Oppimistila, joka on rakennettu sille, miten mieli toimii.</h1>
+  <PageHero
+    kicker={"Manifesti"}
+    title={"Oppimistila, joka on rakennettu sille, miten mieli toimii."}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         Pitkä selitys siitä, mikä Fluera on, mitä Fluera kieltäytyy olemasta, ja miksi ilmeinen tuote oli väärä.
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">
@@ -107,7 +110,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <strong>Meillä ei ole tekoälyä, joka vastaa tenteistäsi puolestasi.</strong> Välittömän käyttäjätyytyväisyyden voitto olisi valtava. Pitkän aikavälin lopputulos — niiden kognitiivisten lihasten surkastuminen, joita työkalun pitäisi vahvistaa — olisi petos ilmoitetulle tavoitteelle. Tekoäly, joka tekee työn puolestasi, on tekoäly, joka ei opeta sinulle mitään.
       </p>
       <p>
-        <strong>Emme myy muistikirjojesi dataa.</strong> Jokainen muistikirja on lepotilassa AES-256-salattu. Synkronointi on, jos käytössä, päästä päähän salattu. Emme kouluta mallejamme sisällölläsi. Käsialasi, ajattelusi, virheesi ja kasvusi kuuluvat sinulle. Se että "datasi on tuote" on EdTechin oletus vuonna 2026 ei tee siitä siedettävää.
+        <strong>Emme myy muistikirjojesi dataa.</strong> Jokainen muistikirja salataan laitteellasi levossa AES-256:lla. Kun synkronointi on käytössä, data suojataan siirrossa (TLS) ja levossa EU-infrastruktuurissa (Supabase, eu-north-1); synkronointi ei ole päästä päähän -salattua, joten rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä. Emme koskaan myy sitä, käytä sitä mainontaan tai mallien kouluttamiseen. Käsialasi, ajattelusi, virheesi ja kasvusi kuuluvat sinulle. Se että "datasi on tuote" on EdTechin oletus vuonna 2026 ei tee siitä siedettävää.
       </p>
       <p>
         <strong>Meillä ei ole engagement-silmukoita, mainoksia eikä streakeja.</strong> Vahvin signaali, jota voisimme optimoida — päivittäiset aktiiviset käyttäjät, istunnon kesto, ilmoitusten klikkaus — on myös se, joka todennäköisimmin turmelee tuotteen. Suhteesi oppimiseen ei pitäisi riippua push-ilmoituksesta. Toivomme mieluummin, että käytät Flueraa vähemmän ja opit enemmän.

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import LearningStep from "@/components/LearningStep.astro";
+import ScienceCanvasPath from "@/components/ScienceCanvasPath.astro";
 import AuthorCard from "@/components/AuthorCard.astro";
 import { getCollection } from "astro:content";
 
@@ -13,7 +13,7 @@ const authors = (await getCollection("authors", ({ data }) => data.lang === "no"
 
 const steps = [
   { n: 1,  title: "Innfanging",                verb: "Forelesningsdagen",     description: "Skriv konseptene for hånd mens forelesningen pågår. Plasser dem i rommet. Pennens langsomhet tvinger fram komprimering — og komprimering er der innkoding oppstår." },
-  { n: 2,  title: "Rekonstruksjon",            verb: "Samme kveld",           description: "Lukk boka. Rekonstruer det du husker, på et tomt canvas. De røde nodene der du nøler, er kartet over det som skal læres (Kapur, Productive Failure, 2008)." },
+  { n: 2,  title: "Rekonstruksjon",            verb: "Samme kveld",           description: "Lukk boka. Rekonstruer det du husker, i et ledig område på det samme canvaset. De røde nodene der du nøler, er kartet over det som skal læres (Kapur, Productive Failure, 2008)." },
   { n: 3,  title: "Sokratisk",                 verb: "Innen 48 t",            description: "KI-en spør, du svarer. Du forklarer tilliten din fra 1 til 5 før hver oppløsning. Metakognisjon gjort eksplisitt." },
   { n: 4,  title: "Centaur",                   verb: "Rett etter",            description: "Ghost Map legger din tenkning over det ideelle kartet. Hyperkorreksjon fester korrigeringene i hukommelsen (Butterfield og Metcalfe, 2001)." },
   { n: 5,  title: "Søvn",                      verb: "Den natten",            description: "Ikke gjør noe. Slow-wave-søvn spiller dagen om igjen. Hippocampus overleverer sporene til neocortex." },
@@ -28,49 +28,28 @@ const steps = [
 ---
 
 <BaseLayout
+  bodyClass="science-page"
   title="Vitenskapen bak Fluera"
   description="Fluera hviler på fem tiår med forskning på hukommelsen — Bjork, Mueller, van der Meer, Roediger og den nobelprisbelønte nevrovitenskapen om place cells. Utforsk 12-stegs-syklusen og prinsippene bak hver funksjon."
   locale="no"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">Vitenskapen</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          Fem tiår med hukommelsesforskning<br />bak én enkelt app.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Hver funksjon i Fluera viser til publisert forskning. Her nede: læringssyklusen i 12 steg, de 23 prinsippene i bunnen, de tolv hodene vi bygger på, og grensene for det vi enda ikke hevder.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#learning-cycle" class="btn-secondary">Til syklusen</a>
-          <a href="#principles" class="btn-secondary">Prinsippindeks</a>
-          <a href="#authors" class="btn-secondary">Forfattere</a>
-          <a href="/no/research" class="btn-secondary">Bibliografi →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">Syklusen</p>
-        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Ett canvas. Tolv kognitive bevegelser.</h2>
-        <p class="prose-ink text-lg max-w-prose">
-          Syklusen er sekvensiell og iterativ. Steg 1–4 bygger innkodingen. Steg 5 (søvn) er ikke-forhandlbar biologi. Steg 6–9 konsoliderer over dager og uker. Steg 10–12 gjør kunnskapen permanent og overførbar.
-        </p>
-      </div>
-
-      <ol class="max-w-3xl list-none p-0">
-        {steps.map((s) => (
-          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
-        ))}
-      </ol>
-    </div>
-  </section>
+  <ScienceCanvasPath
+    locale="no"
+    heroKicker={"Vitenskapen"}
+    heroTitleHtml={"Fem tiår med hukommelsesforskning<br />bak én enkelt app."}
+    heroDescription={"Hver funksjon i Fluera viser til publisert forskning. Her nede: læringssyklusen i 12 steg, de 23 prinsippene i bunnen, de tolv hodene vi bygger på, og grensene for det vi enda ikke hevder."}
+    cycleKicker={"Syklusen"}
+    cycleTitle={"Ett canvas. Tolv kognitive bevegelser."}
+    cycleDescription={"Syklusen er sekvensiell og iterativ. Steg 1–4 bygger innkodingen. Steg 5 (søvn) er ikke-forhandlbar biologi. Steg 6–9 konsoliderer over dager og uker. Steg 10–12 gjør kunnskapen permanent og overførbar."}
+    navigation={[
+      { href: "#learning-cycle", label: "Til syklusen" },
+      { href: "#principles", label: "Prinsippindeks" },
+      { href: "#authors", label: "Forfattere" },
+      { href: "/no/research", label: "Bibliografi →" },
+    ]}
+    steps={steps}
+  />
 
   <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">

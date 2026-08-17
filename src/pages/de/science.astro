@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import LearningStep from "@/components/LearningStep.astro";
+import ScienceCanvasPath from "@/components/ScienceCanvasPath.astro";
 import AuthorCard from "@/components/AuthorCard.astro";
 import { getCollection } from "astro:content";
 
@@ -13,7 +13,7 @@ const authors = (await getCollection("authors", ({ data }) => data.lang === "de"
 
 const steps = [
   { n: 1,  title: "Erfassen",                  verb: "Tag der Vorlesung",   description: "Schreibe die Konzepte während der Vorlesung von Hand. Positioniere sie im Raum. Die Langsamkeit des Stifts erzwingt Kompression — und Kompression ist der Ort, an dem Enkodierung entsteht." },
-  { n: 2,  title: "Rekonstruktion",            verb: "Am selben Abend",     description: "Schließe das Buch. Rekonstruiere, was du erinnerst, auf einem leeren Canvas. Die roten Knoten, an denen du zögerst, sind die Karte dessen, was zu lernen ist (Kapur, Productive Failure, 2008)." },
+  { n: 2,  title: "Rekonstruktion",            verb: "Am selben Abend",     description: "Schließe das Buch. Rekonstruiere, was du erinnerst, in einem freien Bereich desselben Canvas. Die roten Knoten, an denen du zögerst, sind die Karte dessen, was zu lernen ist (Kapur, Productive Failure, 2008)." },
   { n: 3,  title: "Sokratisch",                verb: "Innerhalb von 48 h",  description: "Die KI fragt, du antwortest. Du erklärst deine Konfidenz von 1 bis 5 vor jeder Auflösung. Metakognition explizit gemacht." },
   { n: 4,  title: "Centaur",                   verb: "Direkt danach",       description: "Ghost Map überlagert dein Denken auf die ideale Karte. Hyperkorrektur fixiert die Korrekturen im Gedächtnis (Butterfield und Metcalfe, 2001)." },
   { n: 5,  title: "Schlaf",                    verb: "In jener Nacht",      description: "Tu nichts. Der Slow-Wave-Schlaf spielt den Tag erneut ab. Der Hippocampus übergibt die Spuren an den Neokortex." },
@@ -28,49 +28,28 @@ const steps = [
 ---
 
 <BaseLayout
+  bodyClass="science-page"
   title="Die Wissenschaft hinter Fluera"
   description="Fluera stützt sich auf fünf Jahrzehnte Forschung über das Gedächtnis — Bjork, Mueller, van der Meer, Roediger und die mit dem Nobelpreis ausgezeichnete Neurowissenschaft der Place Cells. Erkunde den 12-Schritte-Zyklus und die Prinzipien hinter jeder Funktion."
   locale="de"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">Die Wissenschaft</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          Fünf Jahrzehnte Gedächtnisforschung<br />hinter einer einzigen App.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Jede Funktion in Fluera verweist auf publizierte Forschung. Hier unten: der Lernzyklus in 12 Schritten, die 23 Prinzipien an der Basis, die zwölf Köpfe, auf denen wir aufbauen, und die Grenzen dessen, was wir noch nicht beanspruchen.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#learning-cycle" class="btn-secondary">Zum Zyklus</a>
-          <a href="#principles" class="btn-secondary">Index der Prinzipien</a>
-          <a href="#authors" class="btn-secondary">Autoren</a>
-          <a href="/de/research" class="btn-secondary">Bibliografie →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">Der Zyklus</p>
-        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Ein Canvas. Zwölf kognitive Bewegungen.</h2>
-        <p class="prose-ink text-lg max-w-prose">
-          Der Zyklus ist sequenziell und iterativ. Schritte 1–4 bauen die Enkodierung auf. Schritt 5 (Schlaf) ist nicht verhandelbare Biologie. Schritte 6–9 konsolidieren über Tage und Wochen. Schritte 10–12 machen das Wissen permanent und übertragbar.
-        </p>
-      </div>
-
-      <ol class="max-w-3xl list-none p-0">
-        {steps.map((s) => (
-          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
-        ))}
-      </ol>
-    </div>
-  </section>
+  <ScienceCanvasPath
+    locale="de"
+    heroKicker={"Die Wissenschaft"}
+    heroTitleHtml={"Fünf Jahrzehnte Gedächtnisforschung<br />hinter einer einzigen App."}
+    heroDescription={"Jede Funktion in Fluera verweist auf publizierte Forschung. Hier unten: der Lernzyklus in 12 Schritten, die 23 Prinzipien an der Basis, die zwölf Köpfe, auf denen wir aufbauen, und die Grenzen dessen, was wir noch nicht beanspruchen."}
+    cycleKicker={"Der Zyklus"}
+    cycleTitle={"Ein Canvas. Zwölf kognitive Bewegungen."}
+    cycleDescription={"Der Zyklus ist sequenziell und iterativ. Schritte 1–4 bauen die Enkodierung auf. Schritt 5 (Schlaf) ist nicht verhandelbare Biologie. Schritte 6–9 konsolidieren über Tage und Wochen. Schritte 10–12 machen das Wissen permanent und übertragbar."}
+    navigation={[
+      { href: "#learning-cycle", label: "Zum Zyklus" },
+      { href: "#principles", label: "Index der Prinzipien" },
+      { href: "#authors", label: "Autoren" },
+      { href: "/de/research", label: "Bibliografie →" },
+    ]}
+    steps={steps}
+  />
 
   <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">

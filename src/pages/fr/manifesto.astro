@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="Une déclaration en forme longue de ce que Fluera est, de ce qu'il refuse d'être et de la raison pour laquelle le produit évident était le mauvais."
   locale="fr"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">Manifeste</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">L'espace d'étude construit sur le fonctionnement de l'esprit.</h1>
+  <PageHero
+    kicker={"Manifeste"}
+    title={"L'espace d'étude construit sur le fonctionnement de l'esprit."}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         Une déclaration en forme longue de ce que Fluera est, de ce qu'il refuse d'être et de la raison pour laquelle le produit évident était le mauvais.
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">
@@ -107,7 +110,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <strong>Nous n'aurons pas d'IA qui répond à tes examens à ta place.</strong> La satisfaction utilisateur immédiate serait énorme. Le résultat à long terme — l'atrophie des muscles cognitifs que l'outil est censé renforcer — serait une trahison de l'objectif déclaré. Une IA qui fait le travail à ta place est une IA qui ne t'apprend rien.
       </p>
       <p>
-        <strong>Nous ne vendrons pas les données de tes cahiers.</strong> Chaque cahier est chiffré au repos avec AES-256. La synchronisation, lorsqu'elle est activée, est chiffrée de bout en bout. Nous n'entraînons pas nos modèles sur ton contenu. Ton écriture à la main, ta pensée, tes erreurs et ta croissance t'appartiennent. Le fait que "tes données sont le produit" soit le défaut de l'ed-tech en 2026 ne le rend pas tolérable.
+        <strong>Nous ne vendrons pas les données de tes cahiers.</strong> Chaque cahier est chiffré au repos sur ton appareil avec AES-256. La synchronisation est chiffrée en transit (TLS) et au repos sur une infrastructure européenne ; elle n’est pas chiffrée de bout en bout, et Fluera peut donc techniquement accéder au contenu synchronisé comme responsable du traitement. Nous ne le vendons pas, ne l’utilisons pas pour la publicité et n’entraînons pas nos modèles sur ton contenu. Ton écriture à la main, ta pensée, tes erreurs et ta croissance t'appartiennent. Le fait que "tes données sont le produit" soit le défaut de l'ed-tech en 2026 ne le rend pas tolérable.
       </p>
       <p>
         <strong>Nous n'aurons pas d'engagement loops, de publicité ni de streaks.</strong> Le signal le plus fort que nous pourrions optimiser — utilisateurs actifs quotidiens, durée de session, click-through sur les notifications — est aussi le plus susceptible de corrompre le produit. Ta relation à l'étude ne devrait pas dépendre d'une push notification. Nous préférons que tu utilises Fluera moins et que tu apprennes plus.

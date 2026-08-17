@@ -14,4 +14,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002) og Susan Goldin-Meadow (2003) h
 
 For læring er implikationen tydelig. Tastning aktiverer et smalt, højt indøvet motorisk mønster. Håndskrift aktiverer et rigt, variabelt motorisk mønster med integreret visuel, rumlig og proprioceptiv feedback. Van der Meers EEG-optagelser fra 2020 viser forskellen konkret: håndskrift inddrager vide hjernenetværk, som tastning ikke når.
 
-Fluera insisterer på pennen — tretten brush engines, tryk- og hældningssporing, stregelatens under 15 millisekunder — og fører dermed kropsliggjort kognitions tese alvorligt igennem. Hånden bliver i loopet, fordi hånden er del af tænkningen.
+Fluera insisterer på pennen — tolv brush engines, tryk- og hældningssporing, blæk med lav latenstid på understøttet hardware — og fører dermed kropsliggjort kognitions tese alvorligt igennem. Hånden bliver i loopet, fordi hånden er del af tænkningen.

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="Fluera가 무엇인지, 무엇이 되기를 거부하는지, 그리고 왜 명백한 제품이 잘못된 제품이었는지에 대한 긴 형식의 선언."
   locale="ko"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">매니페스토</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">기억의 작동 방식 위에 구축된 학습 공간.</h1>
+  <PageHero
+    kicker={"매니페스토"}
+    title={"기억의 작동 방식 위에 구축된 학습 공간."}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         Fluera가 무엇인지, 무엇이 되기를 거부하는지, 그리고 왜 명백한 제품이 잘못된 제품이었는지에 대한 긴 형식의 선언.
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">
@@ -83,7 +86,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <strong>당신을 대신해서 시험에 답하는 AI를 만들지 않습니다.</strong> 단기 사용자 만족도는 거대할 것입니다. 장기 결과 — 도구가 강화해야 할 인지 근육의 위축 — 는 명시된 목표의 배신이 됩니다.
       </p>
       <p>
-        <strong>당신의 노트북 데이터를 팔지 않습니다.</strong> 모든 노트북은 AES-256으로 정지 시 암호화됩니다. 활성화될 때 동기화는 종단 간 암호화됩니다. 우리 모델을 당신의 콘텐츠로 훈련하지 않습니다.
+        <strong>당신의 노트북 데이터를 팔지 않습니다.</strong> 모든 노트북은 기기에서 AES-256으로 저장 시 암호화됩니다. 동기화 데이터는 전송 중(TLS)과 EU 인프라 저장 시 암호화되지만 종단 간 암호화는 아닙니다. 데이터 관리자인 Fluera는 기술적으로 접근할 수 있으나 이를 판매하거나 광고 및 모델 학습에 사용하지 않습니다.
       </p>
       <p>
         <strong>참여 루프, 광고, 스트릭이 없을 것입니다.</strong> 우리가 최적화할 수 있는 가장 강한 신호 — 일일 활성 사용자, 세션 지속 시간, 알림 클릭률 — 는 또한 제품을 부패시킬 가능성이 가장 높습니다.

@@ -1,53 +1,51 @@
 ---
 lang: "fr"
-title: "Cloud sync"
-description: "Comment synchroniser des canvas entre appareils, ce qui est chiffré et comment récupérer si tu perds la passphrase."
+title: "Synchronisation cloud"
+description: "Comment synchroniser des canvas entre appareils, protéger tes données et les récupérer grâce à ton compte."
 section: settings
 sectionLabel: "Réglages"
 order: 2
-updatedAt: 2026-04-20
+updatedAt: 2026-08-12
 ---
 
-Le cloud sync est opt-in par cahier. Tu peux synchroniser un canvas tout en gardant un autre strictement local. Rien ne bouge tant que tu ne le dis pas.
+La synchronisation cloud est facultative pour chaque cahier. Tu peux synchroniser un canvas tout en gardant un autre entièrement local. Aucune donnée n’est envoyée tant que tu n’actives pas toi-même la synchronisation.
 
-## Activer le sync sur le premier appareil
+## Activer la synchronisation sur le premier appareil
 
-1. Ouvre **Réglages → Confidentialité** et active **Cloud sync**.
-2. Crée ou saisis ta **passphrase de sync**. Elle est *séparée* du mot de passe du compte. La passphrase sert à dériver la clé de chiffrement — et reste uniquement sur ton appareil, jamais sur nos serveurs.
-3. Choisis quels cahiers synchroniser. Clic droit (ou appui long) sur un cahier → **Activer le sync**.
+1. Ouvre **Réglages → Confidentialité** et active **Synchronisation cloud**.
+2. Choisis les cahiers à synchroniser. Fais un clic droit (ou un appui long) sur un cahier → **Activer la synchronisation**.
 
-Une petite icône de cloud apparaît sur chaque cahier synchronisé. Une variante rouge indique une erreur ; une variante grise indique une pause.
+Une petite icône de nuage apparaît sur chaque cahier synchronisé. Le rouge signale une erreur, le gris une pause.
 
 ## Ajouter un deuxième appareil
 
 1. Installe Fluera sur le deuxième appareil.
 2. Connecte-toi avec le même compte.
-3. Saisis la *même* passphrase de sync quand on te le demande. La passphrase n'est pas récupérable — si tu ne l'as pas, les données chiffrées ne sont pas lisibles sur le nouvel appareil.
-4. Le cloud sync démarre. La première synchronisation complète d'un cahier de taille moyenne prend quelques minutes.
+3. La synchronisation cloud démarre automatiquement. La première synchronisation complète d’un cahier de taille moyenne peut prendre quelques minutes.
 
-## Ce qui est chiffré et comment
+## Comment les données synchronisées sont protégées
 
-- Chaque cahier est chiffré localement avec une clé par cahier.
-- Ces clés sont chiffrées avec une root key dérivée de ta passphrase de sync via PBKDF2-SHA256, 256 000 itérations.
-- Seuls les octets chiffrés arrivent au serveur. On ne peut pas lire tes cahiers.
+- Sur ton appareil, la base de données locale est chiffrée au repos avec SQLCipher (AES-256).
+- Pendant la synchronisation, les données transitent via une connexion chiffrée TLS.
+- Sur nos serveurs, elles sont stockées sur une infrastructure européenne (Supabase, région `eu-north-1`) avec un chiffrement au repos au niveau de l’infrastructure.
 
-Les métadonnées (titres des cahiers, timestamps, taille) sont également chiffrées — le serveur voit des blobs opaques et des timestamps de sync.
+Pour être clair : la synchronisation cloud **n’est pas chiffrée de bout en bout**. En tant que responsable du traitement, Fluera peut techniquement accéder au contenu synchronisé pour fournir et exploiter le service. Nous ne vendons jamais tes données et ne les utilisons jamais à des fins publicitaires.
 
-## Si tu perds la passphrase
+Si tu exportes un cahier sous forme de fichier `.fluera` protégé par mot de passe, ce fichier est chiffré séparément avec AES-256-GCM. Le mot de passe d’exportation protège uniquement ce fichier et ne sert pas à la synchronisation cloud.
 
-Si tu oublies la passphrase et que tu n'as aucun appareil avec une clé encore en cache, tes données chiffrées sont **irrécupérables**. C'est par design. L'alternative — un mécanisme de recovery côté serveur — casserait le modèle de bout en bout et c'est un trade-off qu'on n'est pas prêts à faire pour les comptes consumer.
+## Récupérer tes données
 
-Pour les **comptes Education**, une clé de recovery optionnelle détenue par l'administrateur peut être configurée au moment du déploiement. C'est un opt-in explicite, documenté dans le DPA institutionnel et audité.
+Les cahiers synchronisés sont associés à ton compte. Après la procédure habituelle de récupération du compte, reconnecte-toi sur un nouvel appareil pour les télécharger. Il n’existe aucune phrase secrète distincte pour la synchronisation cloud que tu pourrais oublier ou perdre.
 
-## Résolution de conflits
+## Résolution des conflits
 
-Si tu modifies le même canvas sur deux appareils en même temps alors que l'un est offline, Fluera utilise un CRDT avec vector clocks pour faire le merge sans conflit. Tu ne perdras pas de travail. Dans les rares cas où le merge automatique est ambigu, tu verras un marqueur "merge needed" sur le nœud concerné et une vue côte à côte pour confirmer.
+Si tu modifies le même canvas sur deux appareils tandis que l’un est hors ligne, Fluera fusionne les changements à l’aide d’un CRDT avec horloges vectorielles. Dans les rares cas où la fusion automatique est ambiguë, un indicateur « fusion nécessaire » et une vue côte à côte te permettent de confirmer.
 
-## Désactiver le sync pour un cahier précis
+## Désactiver la synchronisation pour un cahier
 
-Clic droit (ou appui long) sur un cahier → **Désactiver le sync**. La copie cloud est révoquée immédiatement. La copie locale reste intacte.
+Fais un clic droit (ou un appui long) sur un cahier → **Désactiver la synchronisation**. La copie cloud est immédiatement révoquée ; la copie locale reste intacte.
 
 ## Suite
 
-- [FAQ et troubleshooting](/fr/docs/faq)
+- [FAQ et dépannage](/fr/docs/faq)
 - [Architecture de sécurité](/fr/security/architecture)

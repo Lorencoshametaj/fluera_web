@@ -20,7 +20,7 @@ Nästan allt annat följer av dem.
 
 ## Vad du gör i första sessionen
 
-- Skapa en ny canvas för ett ämne du studerar denna vecka.
+- Skapa en enda canvas för hela utbildningen och avgränsa sedan en region för ämnet du studerar denna vecka.
 - Välj en pensel och håll dig till den i första sessionen. Bli inte distraherad av penselbiblioteket.
 - Skriv 8–15 begrepp för hand. Placera var och en där det känns rätt rumsligt.
 - Rita pilar mellan begrepp du tror är relaterade.

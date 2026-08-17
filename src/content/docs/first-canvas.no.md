@@ -12,7 +12,7 @@ Denne walkthroughen tar ti minutter av tiden din og et tema du jobber med denne 
 
 ## Minutt 0–2: Opprett canvaset
 
-Åpne Fluera. Trykk **Nytt canvas**. Gi det navnet på temaet (ikke forelesningen — *begrepet*). Velg en pensel — fyllepenn er et trygt standardvalg. Behold standard strekbredde foreløpig.
+Åpne Fluera. Trykk én gang på **Nytt canvas**, og gi det navnet på studiet eller læringsreisen din: Dette ene rommet kan vokse med hele studieløpet. Avgrens den første regionen i det, og gi selve regionen navn etter temaet (ikke forelesningen — *begrepet*). Velg en pensel — fyllepenn er et trygt standardvalg. Behold standard strekbredde foreløpig.
 
 Canvaset er blankt. Det er med vilje — maler hjelper ikke her.
 

@@ -20,7 +20,7 @@ Lähes kaikki muu seuraa näistä.
 
 ## Mitä tehdä ensimmäisessä istunnossa
 
-- Luo uusi canvas aiheelle, jota opiskelet tällä viikolla.
+- Luo yksi canvas koko tutkintoasi varten ja rajaa siitä alue tällä viikolla opiskelemaasi aihetta varten.
 - Valitse sivellin ja pysy siinä ensimmäisen istunnon ajan. Älä anna sivellinkirjaston häiritä.
 - Kirjoita 8–15 käsitettä käsin. Sijoita jokainen sinne missä se on tilallisesti järkevä.
 - Piirrä nuolia käsitteiden välille, joita pidät yhdistyneinä.

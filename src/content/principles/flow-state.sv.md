@@ -14,4 +14,4 @@ Mihaly Csikszentmihalyi katalogiserade flow-tillståndets förutsättningar hos 
 
 Avbrott är standard-flow-dödaren. Push-notifikationer, modala dialoger, kontextväxlingar, oväntade UI-rörelser. Var och en bryter loopen mellan hand och tanke och nollställer uppvärmningskostnaden.
 
-Fluera är utformad kring bevarande av flow. Inga notifikationer under skrivande. Verktygsraderna gömmer sig själva. Inputlatensen hålls under 15 ms eftersom högre latens i sig är en form av avbrott. AI:n är tyst tills du anropar. Varje gränssnittsbeslut bedöms mot en enda fråga: hjälper eller stör det loopen?
+Fluera är utformad kring bevarande av flow. Inga notifikationer under skrivande. Verktygsraderna gömmer sig själva. Bläck med låg latens på hårdvara som stöds hjälper till att hålla hand och tanke i samma loop. AI:n är tyst tills du anropar. Varje gränssnittsbeslut bedöms mot en enda fråga: hjälper eller stör det loopen?

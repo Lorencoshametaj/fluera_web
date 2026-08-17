@@ -16,7 +16,7 @@ Avaa **Asetukset → Yksityisyys**. Näet neljä kytkintä, kaikki oletuksena po
 
 - **Tuoteanalytiikka.** Anonyymit istuntotiedot — ominaisuuksien kutsumäärät, istunnon kesto, AI-kutsujen kestot. Ei koskaan sisältöä. Käyttäjätunnus SHA-256-hashattu, säilytys 180 päivää.
 - **AI-toiminnot.** Tarvitaan Socraticin, Ghost Mapin, LaTeX-OCR:n ja Fog of Warin käyttöön. Canvasista valittu teksti lähetetään Google Geminille palvelinpuolen proxymme kautta. Ei koskaan koko muistikirjaa.
-- **Pilvisynkronointi.** Tarvitaan canvas-näkymien synkronointiin laitteiden välillä. Kaikki muistikirjat salataan laitteellasi ennen lataamista. Pilvi säilyttää salakirjoitusta.
+- **Pilvisynkronointi.** Tarvitaan canvas-näkymien synkronointiin laitteiden välillä. Synkronoitu data salataan siirrossa (TLS) ja levossa EU-infrastruktuurissa (Supabase, eu-north-1). Synkronointi ei ole päästä päähän -salattua: rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä, mutta emme koskaan myy sitä, käytä sitä mainontaan tai mallien kouluttamiseen.
 - **Kaatumisraportointi.** Stack tracet ja laitteen metatiedot, kun sovellus kaatuu. Ei käyttäjäsisältöä. Käsitellään Sentryllä asetuksella `sendDefaultPii: false`.
 
 Jokainen kytkin on itsenäinen. Voit aktivoida pilvisynkronoinnin ilman analytiikkaa. Voit käyttää AI:ta ilman kaatumisraportointia. Oikeudet ovat tarkoituksella granulaarisia.
@@ -29,7 +29,7 @@ Erillinen yllä olevista neljästä pilvisuostumuksesta: oletuksena Fluera indek
 
 - Canvas-näkymiesi sisältöä (salattu levossa SQLCipherillä, AES-256)
 - Kysymyksiä, joita AI esittää, tai vastauksiasi
-- Ääntä, jota tallennat Time Travelilla (säilytetään paikallisesti; opt-in-synkronointi salaa ennen lataamista)
+- Ääntä, jota tallennat Time Travelilla (säilytetään paikallisesti; opt-in-synkronointi salaa sen siirrossa TLS:llä ja levossa EU-infrastruktuurissa, ei päästä päähän)
 - Henkilökohtaisesti tunnistettavia tietoja missään muodossa ilman eksplisiittistä suostumusta
 
 ## Miten varmistat
@@ -44,7 +44,7 @@ Tilitason poistoa varten (täysi oikeus tulla unohdetuksi) kirjoita osoitteeseen
 
 ## Education-tilit
 
-Jos instituutiosi hallinnoi Fluera-tiliäsi, yllä olevat käyttäytymiset pätevät edelleen *sinun* tietoihisi. Ylläpitäjä voi nähdä koostettuja käyttötilastoja vaatimustenmukaisuusauditointia varten (audit trailin kautta), mutta ei pysty lukemaan muistikirjojesi sisältöä. Salaus toteutetaan laitteellasi; avain on keychainissasi, ei missään ylläpitojärjestelmässä.
+Jos instituutiosi hallinnoi Fluera-tiliäsi, yllä olevat käytännöt pätevät edelleen *sinun* dataasi. Ylläpitäjä voi nähdä koostettuja käyttötilastoja vaatimustenmukaisuusauditointia varten (audit trailin kautta), mutta ei voi lukea muistikirjojesi sisältöä. Laitteellasi paikallinen tietokanta salataan levossa SQLCipherillä, ja avain säilyy keychainissasi, ei ylläpitojärjestelmässä. Pilvisynkronointi ei ole päästä päähän -salattua: rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä, mutta emme koskaan myy sitä, käytä sitä mainontaan tai mallien kouluttamiseen.
 
 ## Seuraavaksi
 

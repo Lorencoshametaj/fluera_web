@@ -16,10 +16,13 @@ export interface Props {
   hideChrome?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   bodyClass?: string;
+  /** Per-locale URLs of this page's real translations. Shared by Head (hreflang)
+   *  and Nav (language switcher) so neither invents a URL that doesn't exist. */
+  alternates?: Partial<Record<Locale, string>>;
 }
 
 const detectedLocale = localeFromPathname(Astro.url.pathname);
-const { locale = detectedLocale, hideChrome = false, bodyClass = "", ...headProps } = Astro.props;
+const { locale = detectedLocale, hideChrome = false, bodyClass = "", alternates, ...headProps } = Astro.props;
 
 // RTL locales — set on <html dir="rtl"> so logical properties flip the layout.
 // Logical Tailwind classes (ps-*, pe-*, ms-*, me-*, start-*, end-*, text-start,
@@ -32,7 +35,7 @@ const dir = RTL_LOCALES.has(locale) ? "rtl" : "ltr";
 <!doctype html>
 <html lang={locale} dir={dir} class="scroll-smooth">
   <head>
-    <Head {...headProps} locale={locale} />
+    <Head {...headProps} alternates={alternates} locale={locale} localeBannerBoot={!hideChrome} />
     {locale === "ar" && (
       <>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,8 +48,8 @@ const dir = RTL_LOCALES.has(locale) ? "rtl" : "ltr";
     {!hideChrome && (
       <a href="#main-content" class="skip-link">{t("nav.skipToContent", locale)}</a>
     )}
-    {!hideChrome && <Nav />}
-    {!hideChrome && <LocaleBanner />}
+    {!hideChrome && <Nav alternates={alternates} />}
+    {!hideChrome && <LocaleBanner alternates={alternates} />}
     <main id="main-content" class={hideChrome ? "" : "pt-16"} tabindex="-1">
       <slot />
     </main>

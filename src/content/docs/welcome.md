@@ -19,7 +19,7 @@ Almost everything else follows from these three.
 
 ## What to do in your first session
 
-- Create a new canvas for a topic you are actively studying this week.
+- Create one canvas for your whole degree, then mark out a region inside it for the topic you are actively studying this week.
 - Pick one brush and stay with it for the first session. Don't get distracted by the brush library.
 - Write 8–15 concepts by hand. Place each one in a position that feels right spatially.
 - Draw arrows between concepts you think are related.

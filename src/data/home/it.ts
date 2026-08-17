@@ -3,7 +3,7 @@ import type { HomeData } from "../types";
 const data: HomeData = {
   steps: [
     { n: 1,  title: "Cattura",             verb: "Giorno lezione",        description: "Scrivi i concetti a mano durante la lezione. Posizionali nello spazio. La penna lenta forza la compressione mentale — è lì che nasce la codifica." },
-    { n: 2,  title: "Ricostruzione",       verb: "Stessa sera",           description: "Chiudi il libro. Ricostruisci ciò che ricordi su un canvas vuoto. I nodi rossi dove vacilli sono la mappa di cosa studiare (Kapur, productive failure, 2008)." },
+    { n: 2,  title: "Ricostruzione",       verb: "Stessa sera",           description: "Chiudi il libro. Ricostruisci ciò che ricordi in una zona libera dello stesso canvas. I nodi rossi dove vacilli sono la mappa di cosa studiare (Kapur, productive failure, 2008)." },
     { n: 3,  title: "Socratica",           verb: "Entro 48h",             description: "L'IA chiede, tu rispondi. Dichiari la tua confidenza da 1 a 5 prima di ogni rivelazione. Metacognizione resa esplicita." },
     { n: 4,  title: "Centauro",            verb: "Subito dopo",           description: "Ghost Map sovrappone il tuo ragionamento alla mappa ideale. L'ipercorrezione fissa le correzioni nella memoria (Butterfield & Metcalfe, 2001)." },
     { n: 5,  title: "Sonno",               verb: "Quella notte",          description: "Non fare nulla. Il sonno a onde lente rigioca il giorno. L'ippocampo passa le tracce alla corteccia. Noi ci facciamo da parte." },
@@ -44,7 +44,7 @@ const data: HomeData = {
     sub: "La maggior parte delle app di studio ottimizza la parte di studio che sembra già produttiva — cattura, formattazione, ripasso. Fluera ottimizza la parte che produce memoria.",
     columns: { fluera: "Fluera", goodNotes: "GoodNotes", notion: "Notion", anki: "Anki" },
     rows: [
-      { feature: "Handwriting nativo + canvas infinito", fluera: "Sì — sei piattaforme", goodNotes: "Sì — Apple-first", notion: "No", anki: "No" },
+      { feature: "Handwriting nativo + canvas infinito", fluera: "Sì — ogni piattaforma supportata", goodNotes: "Sì — Apple-first", notion: "No", anki: "No" },
       { feature: "Forza il recupero prima della risposta", fluera: "Sì — modalità Socratica", goodNotes: "No", notion: "No", anki: "Sì — per design" },
       { feature: "Ripetizione spaziata integrata (FSRS)", fluera: "Sì — FSRS moderno", goodNotes: "No", notion: "No", anki: "Sì — SM-2 storico" },
       { feature: "Ipercorrezione sugli errori sicuri", fluera: "Sì — Ghost Map", goodNotes: "No", notion: "No", anki: "No" },
@@ -62,13 +62,13 @@ const data: HomeData = {
     steps: [
       {
         phase: "Giorno della lezione",
-        title: "Un canvas per ogni apparato.",
-        description: "Scrivi ogni lezione a mano su un canvas infinito — strutture anatomiche, meccanismi farmacologici, vie metaboliche. La posizione nello spazio diventa àncora di memoria. Tredici brush engine, latenza tratto sotto i 15ms su iPad e tablet Android.",
+        title: "Ogni apparato diventa una regione.",
+        description: "Scrivi ogni lezione nella sua regione dello stesso canvas infinito — strutture anatomiche, meccanismi farmacologici, vie metaboliche. La posizione nello spazio diventa àncora di memoria. Dodici brush engine e inchiostro a bassa latenza sui tablet supportati.",
       },
       {
         phase: "Stessa sera",
         title: "Ricostruisci dalla memoria, prima del libro.",
-        description: "Chiudi il materiale della lezione. Prova a ricostruire ciò che ricordi su un canvas vuoto. I vuoti che trovi — il nervo cranico saltato, il recettore confuso — sono la mappa di cosa studiare stasera. Productive failure, per design (Kapur, 2008).",
+        description: "Chiudi il materiale della lezione. Prova a ricostruire ciò che ricordi in una zona libera dello stesso canvas. I vuoti che trovi — il nervo cranico saltato, il recettore confuso — sono la mappa di cosa studiare stasera. Productive failure, per design (Kapur, 2008).",
       },
       {
         phase: "Entro 48 ore",

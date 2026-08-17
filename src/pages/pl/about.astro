@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 import { SITE } from "@/lib/site";
 ---
 
@@ -8,27 +9,25 @@ import { SITE } from "@/lib/site";
   description="Fluera jest tworzona przez mały zespół we Włoszech. Nasza historia, nasze przekonania, linia, której nie przekroczymy."
   locale="pl"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">O nas</p>
-        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
-          Zbudowaliśmy aplikację<br />do nauki, której chcieliśmy<br />jako studenci.
-        </h1>
-        <div class="prose-ink text-lg">
-          <p>
-            Fluera narodziła się z frustracji. Jeden z nas, deweloper full-stack z dziesięcioletnim doświadczeniem; drugi, student obserwujący, jak jego rówieśnicy wpadają w tę samą pułapkę — aplikacje, które wyglądają na produktywne, ale nie pomagają niczego zapamiętać.
-          </p>
-          <p>
-            Czytaliśmy badania. <em>Wiele</em> badań. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Nauka poznawcza jest jasna od pół wieku: pisanie ręczne pokonuje pisanie na klawiaturze, wydobywanie pokonuje ponowne czytanie, rozłożenie pokonuje zakuwanie, tarcie jest cechą. Nie znaleźliśmy żadnej aplikacji, która brałaby cokolwiek z tego na poważnie. Więc zbudowaliśmy taką.
-          </p>
-          <p>
-            Po drodze napisaliśmy silnik renderowania 2D od zera — bo żaden gotowy stos nie poradziłby sobie z czułym na nacisk atramentem przy 60 FPS na sześciu natywnych platformach. Silnik to substrat, na którym żyją funkcje poznawcze.
-          </p>
-        </div>
+  <PageHero
+    kicker={"O nas"}
+    title={"Zbudowaliśmy aplikację<br />do nauki, której chcieliśmy<br />jako studenci."}
+    titleSize="xl"
+  >
+    <div slot="copy" class="mt-8">
+      <div class="prose-ink text-lg">
+        <p>
+          Fluera narodziła się z frustracji. Jeden z nas, deweloper full-stack z dziesięcioletnim doświadczeniem; drugi, student obserwujący, jak jego rówieśnicy wpadają w tę samą pułapkę — aplikacje, które wyglądają na produktywne, ale nie pomagają niczego zapamiętać.
+        </p>
+        <p>
+          Czytaliśmy badania. <em>Wiele</em> badań. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Nauka poznawcza jest jasna od pół wieku: pisanie ręczne pokonuje pisanie na klawiaturze, wydobywanie pokonuje ponowne czytanie, rozłożenie pokonuje zakuwanie, tarcie jest cechą. Nie znaleźliśmy żadnej aplikacji, która brałaby cokolwiek z tego na poważnie. Więc zbudowaliśmy taką.
+        </p>
+        <p>
+          Po drodze napisaliśmy silnik renderowania 2D od zera — bo żaden gotowy stos nie dawał nam oczekiwanego doświadczenia czułego na nacisk atramentu we wspieranych klientach. Silnik to substrat, na którym żyją funkcje poznawcze.
+        </p>
       </div>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">

@@ -1,0 +1,148 @@
+---
+import ProductVisual from "@/components/ProductVisual.astro";
+import { localeFromPathname, type Locale } from "@/lib/i18n";
+
+export interface Props {
+  locale?: Locale;
+}
+
+type HeroVisualCopy = {
+  label: string;
+  ink: string;
+  concepts: string;
+  recall: string;
+};
+
+const COPY = {
+  en: {
+    label: "Atlas preview: handwritten notes become a map of your degree",
+    ink: "INK",
+    concepts: "CONCEPTS",
+    recall: "RECALL",
+  },
+  it: {
+    label: "Anteprima di Atlas: gli appunti diventano una mappa della laurea",
+    ink: "INCHIOSTRO",
+    concepts: "CONCETTI",
+    recall: "RECUPERO",
+  },
+  es: {
+    label: "Vista previa de Atlas: las notas manuscritas se convierten en un mapa de tu carrera",
+    ink: "TINTA",
+    concepts: "CONCEPTOS",
+    recall: "RECUPERACIÓN",
+  },
+  "pt-br": {
+    label: "Prévia do Atlas: suas notas manuscritas viram um mapa da graduação",
+    ink: "TINTA",
+    concepts: "CONCEITOS",
+    recall: "RECUPERAÇÃO",
+  },
+  fr: {
+    label: "Aperçu d’Atlas : vos notes manuscrites deviennent la carte de votre cursus",
+    ink: "ENCRE",
+    concepts: "CONCEPTS",
+    recall: "RAPPEL",
+  },
+  de: {
+    label: "Atlas-Vorschau: Handschriftliche Notizen werden zur Karte deines Studiums",
+    ink: "TINTE",
+    concepts: "KONZEPTE",
+    recall: "ABRUF",
+  },
+  ja: {
+    label: "Atlasのプレビュー：手書きノートが学びの地図になります",
+    ink: "インク",
+    concepts: "概念",
+    recall: "想起",
+  },
+  ko: {
+    label: "Atlas 미리보기: 손글씨 노트가 전공 지도로 바뀝니다",
+    ink: "잉크",
+    concepts: "개념",
+    recall: "인출",
+  },
+  hi: {
+    label: "Atlas पूर्वावलोकन: हस्तलिखित नोट्स आपकी डिग्री का मानचित्र बनते हैं",
+    ink: "स्याही",
+    concepts: "अवधारणाएँ",
+    recall: "पुनःस्मरण",
+  },
+  ar: {
+    label: "معاينة Atlas: تتحول ملاحظاتك المكتوبة بخط اليد إلى خريطة لتخصصك",
+    ink: "حبر",
+    concepts: "مفاهيم",
+    recall: "استرجاع",
+  },
+  pl: {
+    label: "Podgląd Atlas: odręczne notatki stają się mapą Twoich studiów",
+    ink: "ATRAMENT",
+    concepts: "POJĘCIA",
+    recall: "PRZYWOŁANIE",
+  },
+  nl: {
+    label: "Atlas-voorbeeld: handgeschreven notities worden een kaart van je studie",
+    ink: "INKT",
+    concepts: "CONCEPTEN",
+    recall: "OPHALEN",
+  },
+  sv: {
+    label: "Förhandsvisning av Atlas: handskrivna anteckningar blir en karta över din utbildning",
+    ink: "BLÄCK",
+    concepts: "BEGREPP",
+    recall: "ÅTERKALLNING",
+  },
+  da: {
+    label: "Atlas-forhåndsvisning: håndskrevne noter bliver et kort over din uddannelse",
+    ink: "BLÆK",
+    concepts: "BEGREBER",
+    recall: "GENKALDELSE",
+  },
+  no: {
+    label: "Atlas-forhåndsvisning: håndskrevne notater blir et kart over studiet ditt",
+    ink: "BLEKK",
+    concepts: "BEGREPER",
+    recall: "GJENHENTING",
+  },
+  fi: {
+    label: "Atlas-esikatselu: käsinkirjoitetuista muistiinpanoista syntyy opintojesi kartta",
+    ink: "MUSTE",
+    concepts: "KÄSITTEET",
+    recall: "PALAUTUS",
+  },
+} satisfies Record<Locale, HeroVisualCopy>;
+
+const locale = Astro.props.locale ?? localeFromPathname(Astro.url.pathname);
+const copy = COPY[locale];
+---
+
+<div class="hero-product-stage">
+  <div class="hero-stage-rule" aria-hidden="true"><span></span><i></i><span></span></div>
+  <ProductVisual kind="atlas" slot="home-hero-atlas-loop" label={copy.label} locale={locale} />
+  <div class="hero-stage-caption" aria-hidden="true">
+    <span>{copy.ink}</span><i></i><span>{copy.concepts}</span><i></i><span>ATLAS</span><i></i><span>{copy.recall}</span>
+  </div>
+</div>
+
+<style>
+  .hero-product-stage { position: relative; min-width: 0; }
+  .hero-product-stage::before {
+    content: "";
+    position: absolute;
+    inset: 8% -8% -8% 8%;
+    z-index: -1;
+    border: 1px solid rgb(91 141 239 / .15);
+    border-radius: 16px;
+    background-image: radial-gradient(circle, rgb(91 141 239 / .22) .65px, transparent .7px);
+    background-size: 20px 20px;
+    mask-image: linear-gradient(135deg, #000, transparent 74%);
+  }
+  .hero-stage-rule { display:flex; align-items:center; gap:8px; margin:0 0 12px 4px; color:var(--dim-fg); }
+  .hero-stage-rule span { width:30px; height:1px; background:currentColor; opacity:.35; }
+  .hero-stage-rule i { width:4px; height:4px; border-radius:50%; background:theme("colors.accent.glow"); }
+  .hero-stage-caption { display:flex; align-items:center; justify-content:center; gap:8px; margin-top:12px; color:var(--dim-fg); font:500 8px/1 ui-monospace,monospace; letter-spacing:.14em; }
+  .hero-stage-caption i { width:22px; height:1px; background:currentColor; opacity:.4; }
+
+  @media (max-width: 1023px) { .hero-product-stage { margin-top: 56px; } }
+  @media (max-width: 640px) { .hero-product-stage { margin-top: 44px; }.hero-stage-caption { gap:5px; letter-spacing:.08em; }.hero-stage-caption i{width:10px;} }
+</style>

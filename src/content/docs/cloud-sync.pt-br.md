@@ -1,7 +1,7 @@
 ---
 lang: "pt-br"
 title: "Cloud sync"
-description: "Como sincronizar canvas entre dispositivos, o que é criptografado e como recuperar se você perder a passphrase."
+description: "Como sincronizar canvas entre dispositivos, como os seus dados são protegidos e o que esperar."
 section: settings
 sectionLabel: "Configurações"
 order: 2
@@ -13,8 +13,7 @@ O cloud sync é opt-in por caderno. Você pode sincronizar um canvas mantendo ou
 ## Ativando o sync no primeiro dispositivo
 
 1. Abra **Configurações → Privacidade** e ative **Cloud sync**.
-2. Crie ou insira sua **passphrase de sync**. Ela é *separada* da senha da conta. A passphrase é usada para derivar a chave de criptografia — e fica guardada apenas no seu dispositivo, nunca nos nossos servidores.
-3. Escolha quais cadernos sincronizar. Clique direito (ou pressione e segure) em um caderno → **Ativar sync**.
+2. Escolha quais cadernos sincronizar. Clique direito (ou pressione e segure) em um caderno → **Ativar sync**.
 
 Um pequeno ícone de nuvem aparece em cada caderno sincronizado. Uma variante vermelha indica erro; uma cinza indica pausa.
 
@@ -22,22 +21,21 @@ Um pequeno ícone de nuvem aparece em cada caderno sincronizado. Uma variante ve
 
 1. Instale o Fluera no segundo dispositivo.
 2. Entre com a mesma conta.
-3. Insira a *mesma* passphrase de sync quando solicitado. A passphrase não é recuperável — se você não tiver ela, os dados criptografados não são legíveis no novo dispositivo.
-4. O cloud sync começa. Espere que a primeira sincronização completa leve alguns minutos para um caderno de tamanho médio.
+3. O cloud sync começa automaticamente. Espere que a primeira sincronização completa leve alguns minutos para um caderno de tamanho médio.
 
-## O que é criptografado e como
+## Como os seus dados sincronizados são protegidos
 
-- Cada caderno é criptografado localmente com uma chave por caderno.
-- Essas chaves são criptografadas com uma root key derivada da sua passphrase de sync via PBKDF2-SHA256, 256.000 iterações.
-- Apenas os bytes criptografados chegam ao servidor. Não conseguimos ler os seus cadernos.
+- No seu dispositivo, o banco de dados local é criptografado em repouso com SQLCipher (AES-256).
+- Ao sincronizar, os dados viajam criptografados em trânsito (TLS 1.3 com cipher suites modernas).
+- Nos nossos servidores, os dados ficam na infraestrutura da UE (Supabase, `eu-north-1`) e são protegidos por criptografia em repouso no nível da infraestrutura.
 
-Os metadados (títulos dos cadernos, timestamps, tamanho) também são criptografados — o servidor vê blobs opacos e timestamps de sync.
+Para deixar claro: o cloud sync **não** é criptografado ponta a ponta. Como controlador de dados, o Fluera pode acessar tecnicamente o conteúdo sincronizado para fornecer e operar o serviço. Nunca vendemos os seus dados, usamos para publicidade ou para treinar modelos. Se você quiser uma cópia que só você possa abrir, exporte um arquivo `.fluera`; essas exportações são criptografadas com AES-256-GCM.
 
-## Se você perder a passphrase
+## Recuperando os seus dados
 
-Se você esquecer a passphrase e não tiver um dispositivo que ainda tenha uma chave em cache, os seus dados criptografados ficam **irrecuperáveis**. Isso é por design. A alternativa — um mecanismo de recovery do lado do servidor — quebraria o modelo ponta a ponta e é um trade-off que não estamos dispostos a fazer para contas consumer.
+Como os cadernos sincronizados ficam nos nossos servidores da UE e são vinculados à sua conta, você pode recuperá-los entrando novamente em qualquer dispositivo. Não há uma passphrase separada para lembrar ou perder.
 
-Para **contas Education**, uma chave de recovery opcional mantida pelo administrador pode ser configurada no momento da implantação. É um opt-in explícito, documentado no DPA institucional e auditado.
+Se você quiser uma cópia criptografada que só você possa abrir, exporte um arquivo `.fluera` (AES-256-GCM) e guarde a senha; o Fluera não consegue ler esse arquivo.
 
 ## Resolução de conflitos
 

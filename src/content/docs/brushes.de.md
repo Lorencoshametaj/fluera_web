@@ -1,14 +1,14 @@
 ---
 lang: "de"
 title: "Pinsel"
-description: "Dreizehn Brush Engines, jede für einen anderen Strichtyp kalibriert. Ein kurzer Leitfaden zur Wahl des richtigen — und warum es weniger wichtig ist, als du denkst."
+description: "Zwölf Brush Engines, jede für einen anderen Strichtyp kalibriert. Ein kurzer Leitfaden zur Wahl des richtigen — und warum es weniger wichtig ist, als du denkst."
 section: canvas
 sectionLabel: "Das Canvas"
 order: 1
 updatedAt: 2026-04-20
 ---
 
-Fluera kommt mit dreizehn Brush Engines. Jede ist eine vollständige Render-Pipeline — Druck, Neigung, Geschwindigkeit, Fragment Shader pro Pinsel — kein Texturwechsel. Klingt nach viel; in der Praxis findet der Großteil deines Lernens in einem oder zwei davon statt.
+Fluera kommt mit zwölf Brush Engines. Jede ist eine vollständige Render-Pipeline — Druck, Neigung, Geschwindigkeit, Fragment Shader pro Pinsel — kein Texturwechsel. Klingt nach viel; in der Praxis findet der Großteil deines Lernens in einem oder zwei davon statt.
 
 ## Die kurze Antwort
 
@@ -19,7 +19,7 @@ Fluera kommt mit dreizehn Brush Engines. Jede ist eine vollständige Render-Pipe
 
 Alles andere ist für spezifische Situationen. Überdenk es nicht.
 
-## Die dreizehn
+## Die zwölf
 
 | Pinsel              | Gut für                                          | Notizen                                          |
 |---------------------|--------------------------------------------------|--------------------------------------------------|
@@ -35,11 +35,10 @@ Alles andere ist für spezifische Situationen. Überdenk es nicht.
 | Lavierung           | Wet-on-Paper-Gefühl                              | Farbblutung an den Rändern                       |
 | Spray               | Partikeleffekte, Schatten                        | Verzerrung an den Rändern                        |
 | Neon                | Leuchtende Anmerkungen                           | Außenglühen, fluoreszierende Sättigung           |
-| Radiergummi         | Pixelweises Entfernen, kein Delete-Werkzeug      | History-bewusst — legt Markierungen darunter frei |
 
 ## Warum die Engine zählt (kurz)
 
-Die Engine von Fluera bewahrt die Druck-, Neigungs- und Geschwindigkeitssignale mit einer Latenz unter 15 Millisekunden auf iOS und macOS. Das ist nicht nur Produkt-Eitelkeit. <a href="/de/science/authors/van-der-meer">Van der Meers EEG-Arbeit</a> hat gezeigt, dass Handschrift sensomotorische Netzwerke aktiviert, die das Tippen nicht aktiviert, und der Reichtum dieser Signale skaliert mit der Erfassungstreue.
+Die Engine von Fluera bewahrt Druck-, Neigungs- und Geschwindigkeitssignale mit latenzarmer Freihandeingabe auf unterstützter Hardware. Das ist nicht nur Produkt-Eitelkeit. <a href="/de/science/authors/van-der-meer">Van der Meers EEG-Arbeit</a> hat gezeigt, dass Handschrift sensomotorische Netzwerke aktiviert, die das Tippen nicht aktiviert, und der Reichtum dieser Signale skaliert mit der Erfassungstreue.
 
 In praktischer Hinsicht: Ein Canvas, das Striche verliert, unter Druck verzögert oder die Neigungsdaten flach macht, wirft genau das Signal weg, das handschriftliche Notizen kognitiv überlegen macht. Wir haben die Engine von Grund auf gebaut, weil keine Standardlösung den Anspruch erfüllte.
 
@@ -52,7 +51,7 @@ Halte einen beliebigen Pinsel in der Toolbar gedrückt. Ein kleines Panel öffne
 - **Stabilisierung** (keine / weich / fest) — glättet Jitter, ohne die Persönlichkeit zu töten
 - **Druckkurve** — passt die Reaktion auf leichten vs. starken Druck an
 
-Die Änderungen sind pro Canvas, nicht global, also kannst du in einem Heft einen weichen Bleistift haben und in einem anderen einen scharfen.
+Die Änderungen gehören zum aktuellen Canvas, statt die App global zu verändern. So behält das Canvas deines Studiums seine eigene Pinselkonfiguration.
 
 ## Weiter
 

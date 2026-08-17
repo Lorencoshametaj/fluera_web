@@ -20,7 +20,9 @@ import PageHero from "@/components/PageHero.astro";
   </PageHero>
 
   <!-- 🔗 Legacy dynamic-link rescue. fluera.dev is static GitHub Pages: the
-       serverless routes the app once baked into share artefacts — /i/{code}
+       serverless routes the app once baked into share artefacts — /collab/{roomId}
+       (live-session invites, which older builds emitted against this host and
+       which iOS still claims here through the AASA), /i/{code}
        (referral end-card/QR, old Vercel api/i.ts that never deployed) and
        /s/{hash} (template share) — can only 404 here. GitHub Pages serves THIS
        page for every unknown path, so a tiny client redirect rescues every
@@ -30,7 +32,9 @@ import PageHero from "@/components/PageHero.astro";
        server redirect) — this is a user-rescue hop, not cloaking. -->
   <script is:inline>
     (function () {
-      var m = location.pathname.match(/^\/(i|s|u)\/([A-Za-z0-9]{4,64})\/?$/);
+      var m = location.pathname.match(
+        /^\/(i|s|u|c|collab)\/([A-Za-z0-9]{4,64})\/?$/,
+      );
       if (!m) return;
       var target =
         "https://share.fluera.dev/" +

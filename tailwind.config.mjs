@@ -6,19 +6,14 @@ export default {
     extend: {
       colors: {
         ink: {
-          // Enterprise dark — a calm COOL SLATE, not near-black. The whole ramp is
-          // lifted together (base #161b24 → raised surfaces) so depth/hierarchy is
-          // preserved while large areas read premium rather than pitch-black.
-          950: "#161b24", // base background
-          900: "#1c222d", // raised: nav, ink-900/40 panels
-          850: "#222935", // panels, dropdowns
-          800: "#29313f", // cards (strong), code blocks, gradient top
-          700: "#343f52", // hairline-strong / scrollbar thumb
-          600: "#46546c", // dim text, dividers
-          // Lifted to #7c8cac so `text-ink-500` on the slate base still clears
-          // WCAG AA (~4.7:1, normal text); the brighter base would otherwise drop
-          // muted microcopy below AA. ~84 spots site-wide.
-          500: "#7c8cac",
+          // Canonical Calm Precision neutrals, shared with the app shell.
+          950: "#151517",
+          900: "#1b1b1e",
+          850: "#202024",
+          800: "#242427",
+          700: "#2c2c30",
+          600: "#5e5e6a",
+          500: "#9a9a9c",
         },
         paper: {
           50: "#fafaf7",
@@ -34,8 +29,8 @@ export default {
           // on the dark ground (2.39:1). This one clears it at 3.09:1 and still
           // carries white text at 5.17:1.
           ink: "#2563eb",
-          glow: "#38bdf8",
-          warm: "#c98a5b",
+          glow: "#5b8def",
+          warm: "#2563eb",
         },
         signal: {
           ok: "#10b981",
@@ -44,8 +39,8 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['"Source Serif 4"', '"Source Serif Pro"', "Georgia", "serif"],
-        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        serif: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        sans: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
         mono: ['"JetBrains Mono"', '"Fira Code"', "ui-monospace", "monospace"],
       },
       fontSize: {
@@ -59,9 +54,9 @@ export default {
         content: "72rem",
       },
       animation: {
-        "fade-up": "fadeUp 0.8s ease-out both",
-        "fade-in": "fadeIn 1.2s ease-out both",
-        "orb-pulse": "orbPulse 8s ease-in-out infinite",
+        "fade-up": "fadeUp 0.22s ease-out both",
+        "fade-in": "fadeIn 0.22s ease-out both",
+        "orb-pulse": "none",
       },
       keyframes: {
         fadeUp: {

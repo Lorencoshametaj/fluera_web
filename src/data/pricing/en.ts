@@ -98,7 +98,7 @@ const data: PricingData = {
     },
     {
       q: "What happens to my canvases if I cancel Plus or Pro?",
-      a: "Everything stays on your device (local-first) and the 3 base brushes + PNG export keep working in the Free tier. Extra canvases become read-only until you reactivate or export. Nothing is ever deleted without an explicit action from you.",
+      a: "Everything stays on your device (local-first), and the 3 base brushes plus PNG export keep working on Free. Features tied to a paid plan pause until you reactivate. Nothing is deleted without an explicit action from you.",
     },
     {
       q: "Why no free trial of Pro?",
@@ -114,7 +114,7 @@ const data: PricingData = {
     },
     {
       q: "Refund policy?",
-      a: "30 days, no questions asked, on both monthly and annual plans. Email support@fluera.dev from the address you signed up with.",
+      a: "Refund and withdrawal terms depend on the store and purchase channel. The applicable policy is shown before you confirm; for help, email support@fluera.dev from the address you signed up with.",
     },
     {
       q: "How does student verification work?",

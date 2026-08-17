@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import LearningStep from "@/components/LearningStep.astro";
+import ScienceCanvasPath from "@/components/ScienceCanvasPath.astro";
 import AuthorCard from "@/components/AuthorCard.astro";
 import { getCollection } from "astro:content";
 
@@ -15,7 +15,7 @@ const authors = (await getCollection("authors", ({ data }) => data.lang === "en"
 
 const steps = [
   { n: 1,  title: "캡처",                  verb: "강의 당일",          description: "강의 중에 개념을 손으로 적으세요. 공간에 배치하세요. 펜의 느림이 강요하는 압축 — 거기서 부호화가 시작됩니다." },
-  { n: 2,  title: "재구성",                 verb: "그날 저녁",          description: "책을 덮으세요. 기억나는 것을 빈 캔버스에 다시 만드세요. 망설이는 빨간 노드가 다음에 공부할 것의 지도입니다 (Kapur, 생산적 실패, 2008)." },
+  { n: 2,  title: "재구성",                 verb: "그날 저녁",          description: "책을 덮으세요. 기억나는 것을 같은 캔버스의 비어 있는 영역에 다시 만드세요. 망설이는 빨간 노드가 다음에 공부할 것의 지도입니다 (Kapur, 생산적 실패, 2008)." },
   { n: 3,  title: "소크라테스식",            verb: "48시간 이내",         description: "AI가 묻고 당신이 답합니다. 각 공개 전에 1부터 5까지 확신도를 평가하세요. 메타인지를 명시화합니다." },
   { n: 4,  title: "켄타우로스",              verb: "직후",              description: "Ghost Map이 당신의 추론을 이상적인 지도와 겹쳐 보여줍니다. 하이퍼코렉션이 격차를 영속적으로 만듭니다 (Butterfield와 Metcalfe, 2001)." },
   { n: 5,  title: "수면",                    verb: "그날 밤",            description: "아무것도 하지 마세요. 서파 수면이 하루를 재생합니다. 해마가 흔적을 신피질에 넘겨줍니다." },
@@ -30,49 +30,28 @@ const steps = [
 ---
 
 <BaseLayout
+  bodyClass="science-page"
   title="Fluera의 과학"
   description="Fluera는 50년의 기억 연구 위에 있습니다 — Bjork, Mueller, van der Meer, Roediger, 그리고 노벨상 수상 place cell 신경과학. 12단계 사이클과 모든 기능 뒤의 원리를 탐색합니다."
   locale="ko"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">과학</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          하나의 앱 뒤에 있는<br />50년의 기억 연구.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Fluera의 모든 기능은 게재된 연구로 거슬러 올라갑니다. 아래: 12단계 학습 사이클, 그 기반의 23개 원리, 우리가 의지하는 12명의 마음, 그리고 우리가 아직 주장하지 않는 것의 한계.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#learning-cycle" class="btn-secondary">사이클로 이동</a>
-          <a href="#principles" class="btn-secondary">원리 인덱스</a>
-          <a href="#authors" class="btn-secondary">저자</a>
-          <a href="/ko/research" class="btn-secondary">참고 문헌 →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">사이클</p>
-        <h2 class="font-serif text-display-xl text-paper-50 mb-6">하나의 캔버스. 12개 인지적 동작.</h2>
-        <p class="prose-ink text-lg max-w-prose">
-          사이클은 순차적이고 반복적입니다. 1-4단계는 부호화를 구축합니다. 5단계 (수면)은 비협상의 생물학입니다. 6-9단계는 며칠과 몇 주에 걸쳐 통합합니다. 10-12단계는 지식을 영구적이고 전이 가능하게 만듭니다.
-        </p>
-      </div>
-
-      <ol class="max-w-3xl list-none p-0">
-        {steps.map((s) => (
-          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
-        ))}
-      </ol>
-    </div>
-  </section>
+  <ScienceCanvasPath
+    locale="ko"
+    heroKicker={"과학"}
+    heroTitleHtml={"하나의 앱 뒤에 있는<br />50년의 기억 연구."}
+    heroDescription={"Fluera의 모든 기능은 게재된 연구로 거슬러 올라갑니다. 아래: 12단계 학습 사이클, 그 기반의 23개 원리, 우리가 의지하는 12명의 마음, 그리고 우리가 아직 주장하지 않는 것의 한계."}
+    cycleKicker={"사이클"}
+    cycleTitle={"하나의 캔버스. 12개 인지적 동작."}
+    cycleDescription={"사이클은 순차적이고 반복적입니다. 1-4단계는 부호화를 구축합니다. 5단계 (수면)은 비협상의 생물학입니다. 6-9단계는 며칠과 몇 주에 걸쳐 통합합니다. 10-12단계는 지식을 영구적이고 전이 가능하게 만듭니다."}
+    navigation={[
+      { href: "#learning-cycle", label: "사이클로 이동" },
+      { href: "#principles", label: "원리 인덱스" },
+      { href: "#authors", label: "저자" },
+      { href: "/ko/research", label: "참고 문헌 →" },
+    ]}
+    steps={steps}
+  />
 
   <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">

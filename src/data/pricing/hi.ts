@@ -85,7 +85,7 @@ const data: PricingData = {
     },
     {
       q: "अगर मैं Plus या Pro रद्द कर दूँ तो मेरे canvases का क्या होगा?",
-      a: "सब आपके device पर रहता है (local-first), और 3 बेस ब्रश + PNG export Free tier में काम करते रहते हैं। अतिरिक्त canvases reactivate या export करने तक read-only हो जाते हैं। आपकी explicit action के बिना कुछ भी delete नहीं होता।",
+      a: "सब कुछ आपके डिवाइस पर रहता है (local-first), और 3 बेस ब्रश तथा PNG export Free में काम करते रहते हैं। भुगतान वाले प्लान की सुविधाएँ दोबारा सक्रिय करने तक रुक जाती हैं। आपकी स्पष्ट कार्रवाई के बिना कुछ भी हटाया नहीं जाता।",
     },
     {
       q: "Pro का मुफ़्त trial क्यों नहीं है?",
@@ -101,7 +101,7 @@ const data: PricingData = {
     },
     {
       q: "रिफ़ंड पॉलिसी?",
-      a: "30 दिन, बिना सवाल, monthly और annual दोनों plans पर। जिस address से रजिस्टर किया उससे support@fluera.dev पर email करें।",
+      a: "रिफ़ंड और वापसी की शर्तें स्टोर और खरीद चैनल पर निर्भर करती हैं। लागू नीति पुष्टि से पहले दिखाई जाती है; सहायता के लिए अपने पंजीकृत पते से support@fluera.dev पर लिखें।",
     },
     {
       q: "Student verification कैसे काम करता है?",

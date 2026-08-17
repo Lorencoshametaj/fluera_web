@@ -14,4 +14,4 @@ Le flow n'a rien de mystique. Csikszentmihalyi en a identifié les précondition
 
 Pour un outil d'étude, cela a des conséquences sans demi-mesure. Pas de popups modaux pendant l'écriture. Pas de notifications. Pas d'appels à la streak gamifiée tirant l'attention. Pas d'IA proposant des suggestions non sollicitées.
 
-Le canvas de Fluera est conçu pour disparaître pendant l'écriture. Les toolbars se cachent. L'IA reste silencieuse jusqu'à ce qu'elle soit invoquée. Le canvas infini supprime le scroll et la pagination — les formes les plus banales d'interruption. La latence d'input est maintenue sous 15 ms parce qu'une latence au-dessus de ce seuil est elle aussi une forme d'interruption — elle brise la boucle entre la main et la pensée.
+Le canvas de Fluera est conçu pour disparaître pendant l'écriture. Les toolbars se cachent. L'IA reste silencieuse jusqu'à ce qu'elle soit invoquée. Le canvas infini supprime le scroll et la pagination — les formes les plus banales d'interruption. L'encre à faible latence sur le matériel pris en charge aide à garder la main et la pensée dans la même boucle.

@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 
 const factBullets = [
   "App d'étude cognitive en bêta privée, lancée sur iOS et macOS en avril 2026.",
-  "Canvas infini manuscrit avec 13 pinceaux sensibles à la pression et latence de trait sous les 15 millisecondes, sur six plateformes.",
+  "Canvas infini manuscrit avec 12 pinceaux sensibles à la pression et une encre à faible latence sur le matériel pris en charge, sur toutes les plateformes prises en charge.",
   "Fonctionnalités d'IA pensées pour poser des questions, pas pour donner des réponses — ancrées dans cinquante ans de recherche sur la mémoire.",
   "Construit sur fluera_engine, un moteur de rendu 2D propriétaire pour Flutter, également disponible pour les développeurs externes.",
   "Équipe de deux personnes basée à Milan. Aucun investissement externe à la date de publication.",
@@ -15,9 +15,6 @@ const imageAssets = [
   { name: "Logo — couleur",          path: "/press/logo-full.png",         size: "1024 × 1024 PNG" },
   { name: "Logo — monochrome clair", path: "/press/logo-mono-light.png",   size: "1024 × 1024 PNG" },
   { name: "Logo — monochrome sombre",path: "/press/logo-mono-dark.png",    size: "1024 × 1024 PNG" },
-  { name: "Capture de l'app — iPad", path: "/press/screen-ipad-hero.png",  size: "2388 × 1668 PNG" },
-  { name: "Capture de l'app — macOS",path: "/press/screen-macos-hero.png", size: "2560 × 1600 PNG" },
-  { name: "Portrait fondateur",      path: "/press/founder-lorenzo.jpg",   size: "2000 × 2000 JPG" },
 ];
 
 const quotables = [
@@ -126,7 +123,7 @@ const quotables = [
       </div>
 
       <p class="mt-8 text-xs text-ink-500 max-w-xl">
-        Note : les fichiers individuels des ressources sont des placeholders en attendant la publication du press kit définitif. Les liens renvoient un 404 pour l'instant — nous les remplirons à la sortie de la bêta privée.
+        Les captures du produit et les photos des fondateurs sont disponibles sur demande — écrivez à l’équipe et nous répondons avec les originaux.
       </p>
     </div>
   </section>
@@ -162,7 +159,7 @@ const quotables = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">Ligne directe avec l'équipe.</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        Les demandes presse arrivent directement à un fondateur, pas à une agence de PR. Réponse sous 24 heures les jours ouvrés — souvent en une heure.
+        Les demandes presse arrivent directement à un fondateur, pas à une agence de PR. Réponse sous 24 heures les jours ouvrés.
       </p>
       <a href={`mailto:${SITE.company.contactEmail}?subject=Demande%20presse`} class="btn-primary">
         {SITE.company.contactEmail}

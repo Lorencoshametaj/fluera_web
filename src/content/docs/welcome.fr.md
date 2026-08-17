@@ -20,7 +20,7 @@ Presque tout le reste en découle.
 
 ## Quoi faire à la première session
 
-- Crée un nouveau canvas pour un sujet que tu étudies cette semaine.
+- Crée un seul canvas pour tout ton cursus, puis délimite à l'intérieur une région pour le sujet que tu étudies cette semaine.
 - Choisis un pinceau et garde-le pour la première session. Ne te disperse pas dans la bibliothèque de pinceaux.
 - Écris 8–15 concepts à la main. Place chacun là où ça a du sens spatialement.
 - Dessine des flèches entre les concepts que tu penses liés.

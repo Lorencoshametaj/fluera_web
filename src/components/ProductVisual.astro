@@ -1,0 +1,157 @@
+---
+import { localeFromPathname, type Locale } from "@/lib/i18n";
+
+export type VisualKind = "atlas" | "ghost" | "socratic" | "fog" | "exam" | "canvas";
+
+export interface Props {
+  kind?: VisualKind;
+  slot?: string;
+  label?: string;
+  locale?: Locale;
+  class?: string;
+}
+
+/* Accessible name for the slot, per locale. */
+const COPY = {
+  en: "One canvas — your whole degree",
+  it: "Un solo canvas — tutta la triennale",
+  es: "Un solo lienzo — toda tu carrera",
+  "pt-br": "Um só canvas — toda a graduação",
+  fr: "Une seule toile — tout votre cursus",
+  de: "Eine Leinwand — dein ganzes Studium",
+  ja: "ひとつのキャンバス — 学びのすべて",
+  ko: "하나의 캔버스 — 전공 전체",
+  hi: "एक कैनवास — आपकी पूरी डिग्री",
+  ar: "لوحة واحدة — دراستك كاملة",
+  pl: "Jedno płótno — całe studia",
+  nl: "Eén canvas — je hele opleiding",
+  sv: "En enda canvas — hela din utbildning",
+  da: "Ét canvas — hele din uddannelse",
+  no: "Ett lerret — hele studiet",
+  fi: "Yksi canvas — koko tutkintosi",
+} satisfies Record<Locale, string>;
+
+/* Feature names are brand vocabulary — invariant across locales. */
+const KIND_LABEL: Record<VisualKind, string> = {
+  atlas: "ATLAS",
+  canvas: "CANVAS",
+  ghost: "GHOST MAP",
+  socratic: "SOCRATIC MODE",
+  fog: "FOG OF WAR",
+  exam: "EXAM SESSION",
+};
+
+const {
+  kind = "atlas",
+  slot = `home-${kind}-field`,
+  label,
+  locale: localeProp,
+  class: className = "",
+} = Astro.props;
+
+const locale = localeProp ?? localeFromPathname(Astro.url.pathname);
+const accessibleLabel = label ?? COPY[locale];
+const visualId = slot.toLowerCase().replace(/[^a-z0-9_-]+/g, "-");
+---
+
+<!--
+  MEDIA PLACEHOLDER: {slot}
+  A deliberately simple, quiet surface holding the spot for the real product
+  capture (formats and durations in docs/site_media_placeholders.md). The real
+  asset replaces this figure in place, without layout changes. No code-drawn
+  illustration belongs here: for an ink product, only real ink clears the bar.
+-->
+<figure
+  class={`degree-visual ${className}`}
+  data-media-placeholder={slot}
+>
+  <div class="degree-field" aria-hidden="true">
+    <svg class="field-map" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id={`degree-dots-${visualId}`} width="22" height="22" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.1" class="grid-dot" />
+        </pattern>
+      </defs>
+      <rect width="1000" height="620" fill={`url(#degree-dots-${visualId})`} />
+    </svg>
+
+    <div class="field-mark">
+      <span class="mark-infinity">∞</span>
+      <span class="mark-label">{KIND_LABEL[kind]}</span>
+    </div>
+  </div>
+  <figcaption class="sr-only">{accessibleLabel}</figcaption>
+</figure>
+
+<style>
+  .degree-visual {
+    position: relative;
+    width: 100%;
+    margin: 0;
+  }
+
+  .degree-field {
+    --field-bg: #10141f;
+    --field-bg-lift: #1a2132;
+    --field-ink: #eef1f8;
+    --field-muted: #8e97ad;
+    --field-faint: rgb(148 163 198 / .16);
+    --field-grid: rgb(148 163 198 / .13);
+    --field-blue: #6ea1ff;
+    position: relative;
+    aspect-ratio: 16 / 10;
+    min-height: 300px;
+    overflow: hidden;
+    color: var(--field-ink);
+    border: 1px solid rgb(122 154 228 / .2);
+    border-radius: 18px;
+    background:
+      radial-gradient(120% 100% at 18% 0%, var(--field-bg-lift) 0%, transparent 55%),
+      var(--field-bg);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / .07),
+      0 30px 80px rgb(3 6 18 / .5);
+    isolation: isolate;
+  }
+
+  .field-map { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .grid-dot { fill: var(--field-grid); }
+
+  .field-mark {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .mark-infinity {
+    color: var(--field-muted);
+    font: 400 44px/1 Georgia, serif;
+    opacity: .55;
+  }
+  .mark-label {
+    color: var(--field-muted);
+    font: 650 8px/1 ui-monospace, monospace;
+    letter-spacing: .22em;
+    opacity: .8;
+  }
+
+  :global(html.light) .degree-field {
+    --field-bg: #faf8f2;
+    --field-bg-lift: #fffdf8;
+    --field-ink: #23211b;
+    --field-muted: #6e6656;
+    --field-faint: rgb(61 54 41 / .14);
+    --field-grid: rgb(110 102 86 / .12);
+    --field-blue: #2563eb;
+    border-color: #e5dece;
+    box-shadow: 0 24px 60px rgb(49 43 31 / .13);
+  }
+
+  @media (max-width: 640px) {
+    .degree-field { min-height: 250px; aspect-ratio: 4 / 3; border-radius: 14px; }
+    .mark-infinity { font-size: 36px; }
+  }
+</style>

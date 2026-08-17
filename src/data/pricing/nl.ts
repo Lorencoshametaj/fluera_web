@@ -82,7 +82,7 @@ const data: PricingData = {
     },
     {
       q: "Wat gebeurt er met mijn canvases als ik Plus of Pro opzeg?",
-      a: "Alles blijft op je apparaat (local-first) en de 3 basispenselen + PNG-export blijven werken in de Free-tier. Extra canvases worden alleen-lezen totdat je heractiveert of exporteert. Niets wordt verwijderd zonder een expliciete actie van jou.",
+      a: "Alles blijft op je apparaat (local-first), en de 3 basispenselen en PNG-export blijven werken met Free. Functies van het betaalde plan pauzeren tot je opnieuw activeert. Niets wordt verwijderd zonder een expliciete actie van jou.",
     },
     {
       q: "Waarom geen gratis Pro-proefperiode?",
@@ -98,7 +98,7 @@ const data: PricingData = {
     },
     {
       q: "Terugbetalingsbeleid?",
-      a: "30 dagen, zonder vragen, op zowel maandelijkse als jaarlijkse plannen. Mail naar support@fluera.dev vanaf het adres waarmee je je hebt aangemeld.",
+      a: "Voorwaarden voor terugbetaling en herroeping hangen af van de winkel en het aankoopkanaal. Het geldende beleid wordt vóór bevestiging getoond; mail voor hulp vanaf je geregistreerde adres naar support@fluera.dev.",
     },
     {
       q: "Hoe werkt studentenverificatie?",

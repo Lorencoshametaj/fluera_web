@@ -14,4 +14,4 @@ Mihaly Csikszentmihalyi catalogou as precondições do Flow em xadrezistas, alpi
 
 A interrupção é o flow-killer padrão. Push notifications, diálogos modais, context switches, movimentos inesperados da UI. Cada um quebra o loop entre mão e pensamento e reseta o custo de warm-up.
 
-O Fluera é projetado em torno da preservação do flow. Sem notificações durante a escrita. As toolbars se escondem sozinhas. A latência de input é mantida abaixo de 15 ms porque latência superior é, ela mesma, uma forma de interrupção. A IA fica em silêncio até você chamar. Cada decisão de interface é avaliada por uma única pergunta: ajuda ou atrapalha o loop?
+O Fluera é projetado em torno da preservação do flow. Sem notificações durante a escrita. As toolbars se escondem sozinhas. A tinta de baixa latência em hardware compatível ajuda a manter mão e pensamento no mesmo loop. A IA fica em silêncio até você chamar. Cada decisão de interface é avaliada por uma única pergunta: ajuda ou atrapalha o loop?

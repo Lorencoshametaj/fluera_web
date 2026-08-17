@@ -1,29 +1,29 @@
 ---
 lang: "es"
 title: "Tuning de rendimiento"
-description: "Fluera está construida para mantener 60 FPS en canvas con cientos de miles de trazos. Aquí está qué comprobar cuando eso no ocurre."
+description: "Fluera apunta a 60 FPS y tinta de baja latencia en hardware compatible. El rendimiento real varía según el dispositivo, la complejidad del canvas y las funciones activas."
 section: troubleshooting
 sectionLabel: "Troubleshooting"
 order: 2
 updatedAt: 2026-04-20
 ---
 
-El motor de Fluera está diseñado para quedarse a 60 FPS con latencia de trazo por debajo de 15 ms en hardware moderno — hasta cientos de miles de trazos por cuaderno. Cuando no se queda, normalmente uno de un pequeño conjunto de cosas es responsable.
+El motor de Fluera apunta a 60 FPS y tinta de baja latencia en hardware compatible. El rendimiento real varía según el dispositivo, la pila de entrada, la complejidad del canvas y las funciones activas.
 
 ## Diagnóstico
 
 Abre **Configuración → Avanzado → Rendimiento**. Verás:
 
 - **FPS actual** — debe quedarse en 60 (o 120 en dispositivos ProMotion)
-- **Latencia de trazo** — debe leer <15 ms en iOS/macOS, <20 ms en otras plataformas
+- **Latencia de trazo** — compara la lectura con el objetivo documentado para tu dispositivo y pila de entrada; no hay un umbral universal
 - **Memoria usada** — absoluta y como porcentaje del budget del dispositivo
 - **Hit rate de la tile cache** — debe ser >90% durante zoom/pan normales
 
 Si algo aquí está rojo, los culpables probables están en la lista de abajo.
 
-## Canvas grandes (&gt; 200k trazos)
+## Canvas grandes
 
-El motor aguanta ese volumen, pero dos ajustes importan:
+Los canvas grandes pueden requerir ajustes. Empieza por estas dos opciones:
 
 - **Budget de memoria.** En dispositivos con menos de 6 GB de RAM, el budget de memoria por defecto de Fluera es conservador. Si tienes mucha RAM y quieres respuestas de zoom más rápidas, súbelo a *Generoso* en **Configuración → Canvas → Budget de memoria**.
 - **Nivel de detalle.** La política de LOD por defecto simplifica los trazos en niveles de zoom muy bajos. Si notas trazos con apariencia tembleque cuando el zoom está alejado, cambia el LOD a *Alto detalle* — pero espera ~10% más de carga de GPU.
@@ -37,13 +37,13 @@ Time Travel almacena el audio junto con los timestamps de los trazos. Para una c
 
 ## Apple Pencil específicamente
 
-En el iPad, el modo por defecto *Predicted touch* mantiene la latencia de trazo por debajo de 8 ms. Si has deshabilitado la predicción (en Configuración → Canvas → Latencia de trazo → Estándar), vuelve a Predicted. La predicción es una API de Apple Pencil, no un guess — usa la predicción de trayectoria del propio hardware.
+En el iPad, el modo por defecto *Predicted touch* está diseñado para reducir la latencia percibida del trazo. El resultado varía según el iPad, el Pencil, la versión del sistema y la carga del canvas. Si has deshabilitado la predicción (en Configuración → Canvas → Latencia de trazo → Estándar), vuelve a Predicted. La predicción es una API de Apple Pencil, no un guess — usa la predicción de trayectoria del propio hardware.
 
 ## Cuando nada ayuda
 
 Ejecuta **Configuración → Avanzado → Exportar diagnóstico**. Obtienes un pequeño archivo JSON con muestras de FPS, uso de memoria e información (anónima) del dispositivo. Mándalo a [support@fluera.dev](mailto:support@fluera.dev) con una descripción corta de cuándo las cosas se ralentizan.
 
-Logamos ≈95% de las regresiones de rendimiento visibles para el usuario en un trozo específico de código en menos de una hora después de recibir un export de diagnóstico. El 5% restante son genuinamente difíciles y te lo diremos.
+Los datos de diagnóstico ayudan al equipo de soporte a investigar problemas de rendimiento. El tiempo y el resultado de la investigación varían según el problema y los datos disponibles.
 
 ## Siguiente
 

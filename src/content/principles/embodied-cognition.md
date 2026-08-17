@@ -13,4 +13,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002), and Susan Goldin-Meadow (2003)
 
 For learning, this has hard consequences. Typing activates a narrow, highly practised motor pattern. Handwriting activates a rich, variable motor pattern with integrated visual, spatial, and proprioceptive feedback. Van der Meer's EEG recordings (2020) show the difference concretely: handwriting engages broad brain networks that typing does not.
 
-Fluera's insistence on the pen — thirteen brush engines, pressure and tilt tracking, sub-15-millisecond stroke latency — is the embodied-cognition thesis taken seriously. The hand stays in the loop because the hand is part of the thinking.
+Fluera's insistence on the pen — twelve brush engines, pressure and tilt tracking, low-latency ink on supported hardware — is the embodied-cognition thesis taken seriously. The hand stays in the loop because the hand is part of the thinking.

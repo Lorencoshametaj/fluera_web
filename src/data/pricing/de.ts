@@ -82,7 +82,7 @@ const data: PricingData = {
     },
     {
       q: "Was passiert mit meinen Canvases, wenn ich Plus oder Pro kündige?",
-      a: "Alles bleibt auf deinem Gerät (local-first) und die 3 Basis-Pinsel + PNG-Export funktionieren weiter im Free-Tier. Zusätzliche Canvases werden schreibgeschützt, bis du reaktivierst oder exportierst. Nichts wird ohne deine explizite Aktion gelöscht.",
+      a: "Alles bleibt auf deinem Gerät (local-first), und die 3 Basis-Pinsel sowie der PNG-Export funktionieren mit Free weiter. Funktionen des kostenpflichtigen Tarifs pausieren bis zur Reaktivierung. Nichts wird ohne deine ausdrückliche Aktion gelöscht.",
     },
     {
       q: "Warum keine kostenlose Pro-Probephase?",
@@ -98,7 +98,7 @@ const data: PricingData = {
     },
     {
       q: "Gibt es eine Rückerstattungsregelung?",
-      a: "30 Tage, ohne Fragen, sowohl für Monats- als auch Jahresabos. E-Mail an support@fluera.dev von der Adresse, mit der du dich registriert hast.",
+      a: "Erstattungs- und Widerrufsbedingungen hängen vom Store und Kaufkanal ab. Die geltende Regelung wird vor der Bestätigung angezeigt; bei Fragen schreib von deiner registrierten Adresse an support@fluera.dev.",
     },
     {
       q: "Wie funktioniert die Studentenverifikation?",

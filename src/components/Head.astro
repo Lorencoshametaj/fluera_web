@@ -17,6 +17,8 @@ export interface Props {
    * which routes to each locale's matching static page or homepage.
    */
   alternates?: Partial<Record<Locale, string>>;
+  /** Run the pre-paint locale-banner decision (off for chromeless pages). */
+  localeBannerBoot?: boolean;
 }
 
 const {
@@ -28,7 +30,17 @@ const {
   locale = "en",
   jsonLd,
   alternates,
+  localeBannerBoot = true,
 } = Astro.props;
+
+// The locale banner must be decided BEFORE first paint: shown after load it
+// pushes the whole page down (~0.09 CLS for every cross-language visitor).
+// This blocking script stamps the preferred locale on <html data-lb="…">;
+// CSS does the rest at first paint. Matching goes through ALL site locales:
+// the visitor's best-matching language wins, and when that IS the page's
+// locale no banner shows (the old variant-list matching skipped the current
+// locale, so an Italian browser on the Italian page got offered English).
+const bannerBootLocales = LOCALES;
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
 const ogImageUrl = new URL(ogImage, SITE.url).toString();
@@ -52,30 +64,34 @@ const HREFLANG_CODE: Record<Locale, string> = {
   sv: "sv", da: "da", no: "no", fi: "fi",
 };
 
-// Build hreflang alternates for all 16 locales + x-default (= EN root).
-// Explicit alternates win; otherwise fall back to languageSwitchHref() which
-// routes to each locale's matching static page (or homepage if untranslated).
-const hreflangLinks = LOCALES.map((loc) => {
-  const explicit = alternates?.[loc];
-  const path = explicit ?? languageSwitchHref(Astro.url.pathname, loc);
-  return {
+// Build hreflang alternates + x-default (= EN root).
+// Two regimes, and they must not mix:
+//  - No explicit map: the page exists in every locale (static mirrored pages),
+//    so languageSwitchHref() prefix-swaps the current path for all 16.
+//  - Explicit map: the page KNOWS which translations exist (content lookup).
+//    Locales absent from the map have no translation — emitting a prefix-swapped
+//    URL for them advertises a 404 to search engines, so they are omitted.
+// Alternate URLs must name the page's final form (…/path/), not the 301 that
+// leads there — the canonical and the sitemap already carry the slash.
+const withSlash = (p: string) => (p.endsWith("/") || /\.[a-z0-9]+$/i.test(p) ? p : `${p}/`);
+const hreflangLinks = LOCALES.flatMap((loc) => {
+  const path = alternates
+    ? alternates[loc]
+    : languageSwitchHref(Astro.url.pathname, loc);
+  if (!path) return [];
+  return [{
     code: HREFLANG_CODE[loc],
-    href: new URL(path, SITE.url).toString(),
-  };
+    href: new URL(withSlash(path), SITE.url).toString(),
+  }];
 });
 const xDefaultHref = new URL(
-  alternates?.[DEFAULT_LOCALE] ?? languageSwitchHref(Astro.url.pathname, DEFAULT_LOCALE),
+  withSlash(
+    alternates
+      ? (alternates[DEFAULT_LOCALE] ?? "/")
+      : languageSwitchHref(Astro.url.pathname, DEFAULT_LOCALE),
+  ),
   SITE.url,
 ).toString();
-
-const plausibleOrigin = (() => {
-  try {
-    return new URL(import.meta.env.PUBLIC_PLAUSIBLE_SRC
-      ?? "https://plausible.io/js/script.outbound-links.tagged-events.js").origin;
-  } catch {
-    return null;
-  }
-})();
 
 // Plausible analytics — opt-in via env var. The "outbound-links + tagged-events"
 // script gives us automatic outbound link tracking PLUS support for custom events
@@ -85,6 +101,13 @@ const plausibleOrigin = (() => {
 const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
 const plausibleSrc = import.meta.env.PUBLIC_PLAUSIBLE_SRC
   ?? "https://plausible.io/js/script.outbound-links.tagged-events.js";
+const plausibleOrigin = plausibleDomain ? (() => {
+  try {
+    return new URL(plausibleSrc).origin;
+  } catch {
+    return null;
+  }
+})() : null;
 ---
 
 <meta charset="UTF-8" />
@@ -134,35 +157,46 @@ const plausibleSrc = import.meta.env.PUBLIC_PLAUSIBLE_SRC
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImageUrl} />
 
-<meta name="theme-color" content="#05070c" />
-<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#151517" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+<meta name="color-scheme" content="dark light" />
 
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+{/* Every page's LCP is a display headline set in these two faces: preloading
+    them removes the swap flash without blocking render (font-display: swap). */}
+<link rel="preload" href="/fonts/Sora-Bold.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/PlayfairDisplay-SemiBoldItalic.woff2" as="font" type="font/woff2" crossorigin />
+
+{localeBannerBoot && (
+  <script is:inline define:vars={{ current: locale, avail: bannerBootLocales }}>
+    (() => {
+      try {
+        const raw = localStorage.getItem("fluera.localeBanner.dismissed");
+        if (raw && (Date.now() - new Date(raw).getTime()) / 864e5 < 30) return;
+      } catch (e) { /* private browsing: show the banner */ }
+      const langs = (navigator.languages || [navigator.language || "en"])
+        .map((l) => (l || "").toLowerCase());
+      for (const nl of langs) {
+        const hit = avail.includes(nl) ? nl : (avail.includes(nl.split("-")[0]) ? nl.split("-")[0] : null);
+        if (hit) {
+          // First match decides: if it IS this page's locale, no banner.
+          if (hit !== current) document.documentElement.dataset.lb = hit;
+          return;
+        }
+      }
+    })();
+  </script>
+)}
+
 {plausibleOrigin && (
   <>
     <link rel="dns-prefetch" href={plausibleOrigin} />
     <link rel="preconnect" href={plausibleOrigin} crossorigin />
   </>
 )}
-{/* Async font loading — preload then swap to stylesheet. Falls back via <noscript>. */}
-<link
-  rel="preload"
-  as="style"
-  href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-  onload="this.onload=null;this.rel='stylesheet'"
-/>
-<noscript>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-  />
-</noscript>
-
 {jsonLdArray.map((item) => (
   <script type="application/ld+json" set:html={JSON.stringify(item)} />
 ))}

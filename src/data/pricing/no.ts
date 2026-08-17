@@ -82,7 +82,7 @@ const data: PricingData = {
     },
     {
       q: "Hva skjer med lerretene mine hvis jeg sier opp Plus eller Pro?",
-      a: "Alt forblir på enheten din (local-first), og de 3 grunnpenslene + PNG-eksport fortsetter å fungere i Free tier. Ekstra lerret blir skrivebeskyttet til du reaktiverer eller eksporterer. Ingenting slettes uten din eksplisitte handling.",
+      a: "Alt forblir på enheten din (local-first), og de 3 grunnpenslene samt PNG-eksport fortsetter å fungere med Free. Funksjoner i den betalte planen settes på pause til du reaktiverer. Ingenting slettes uten din uttrykkelige handling.",
     },
     {
       q: "Hvorfor er det ingen gratis Pro-prøveperiode?",
@@ -98,7 +98,7 @@ const data: PricingData = {
     },
     {
       q: "Refusjonspolicy?",
-      a: "30 dager, uten spørsmål, både månedlig og årlig. Send e-post til support@fluera.dev fra adressen du registrerte deg med.",
+      a: "Vilkår for refusjon og angrerett avhenger av butikk og kjøpskanal. Gjeldende policy vises før bekreftelse; send e-post til support@fluera.dev fra den registrerte adressen din hvis du trenger hjelp.",
     },
     {
       q: "Hvordan fungerer studentverifisering?",

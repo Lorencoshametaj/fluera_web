@@ -1,14 +1,14 @@
 ---
 lang: "fi"
 title: "Siveltimet"
-description: "Kolmetoista sivellinmoottoria, jokainen kalibroitu eri vetotyypille. Lyhyt opas oikean valitsemiseen — ja miksi sillä on vähemmän väliä kuin luulet."
+description: "Kaksitoista sivellinmoottoria, jokainen kalibroitu eri vetotyypille. Lyhyt opas oikean valitsemiseen — ja miksi sillä on vähemmän väliä kuin luulet."
 section: canvas
 sectionLabel: "Canvas"
 order: 1
 updatedAt: 2026-04-20
 ---
 
-Fluera tulee kolmellatoista sivellinmoottorilla. Jokainen on täydellinen renderöintiputki — paine, kallistus, nopeus, fragment shader per sivellin — ei tekstuurivaihtoa. Kuulostaa paljolta; käytännössä suurin osa oppimisestasi tapahtuu yhdessä tai kahdessa niistä.
+Fluera tulee kahdellatoista sivellinmoottorilla. Jokainen on täydellinen renderöintiputki — paine, kallistus, nopeus, fragment shader per sivellin — ei tekstuurivaihtoa. Kuulostaa paljolta; käytännössä suurin osa oppimisestasi tapahtuu yhdessä tai kahdessa niistä.
 
 ## Lyhyt vastaus
 
@@ -19,7 +19,7 @@ Fluera tulee kolmellatoista sivellinmoottorilla. Jokainen on täydellinen render
 
 Kaikki muu on tiettyjä tilanteita varten. Älä mieti liikaa.
 
-## Kolmetoista
+## Kaksitoista
 
 | Sivellin            | Hyvä                                              | Huomiot                                          |
 |---------------------|---------------------------------------------------|--------------------------------------------------|
@@ -35,11 +35,10 @@ Kaikki muu on tiettyjä tilanteita varten. Älä mieti liikaa.
 | Lavaus              | Wet-on-paper-tunne                                | Värin vuotaminen reunoilla                       |
 | Suihke              | Hiukkasefektejä, varjoja                          | Vääristymä reunoilla                             |
 | Neon                | Hohtavat annotaatiot                              | Ulkoinen hehku, fluoresoiva kylläisyys           |
-| Pyyhekumi           | Pikselikohtainen poisto, ei delete-työkalua       | Historia-tietoinen — paljastaa allaolevat merkit |
 
 ## Miksi moottorilla on väliä (lyhyesti)
 
-Flueran moottori säilyttää paine-, kallistus- ja nopeussignaalit alle 15 millisekunnin latenssilla iOS:ssä ja macOS:ssä. Tämä ei ole vain tuoteyturhamaisuutta. <a href="/fi/science/authors/van-der-meer">Van der Meerin EEG-työ</a> osoitti, että käsinkirjoitus aktivoi sensomotorisia verkkoja, joita näppäily ei aktivoi, ja näiden signaalien rikkaus skaalaa keräämisen uskollisuuden kanssa.
+Flueran moottori säilyttää paine-, kallistus- ja nopeussignaalit matalan viiveen musteella tuetulla laitteistolla. Tämä ei ole vain tuoteyturhamaisuutta. <a href="/fi/science/authors/van-der-meer">Van der Meerin EEG-työ</a> osoitti, että käsinkirjoitus aktivoi sensomotorisia verkkoja, joita näppäily ei aktivoi, ja näiden signaalien rikkaus skaalaa keräämisen uskollisuuden kanssa.
 
 Käytännössä: canvas, joka kadottaa vetoja, viivästyy paineen alla tai litistää kallistusdataa, heittää pois juuri sen signaalin, joka tekee käsinkirjoitetuista muistiinpanoista kognitiivisesti ylivertaisia. Rakensimme moottorin alusta lähtien, koska mikään valmis ratkaisu ei täyttänyt vaatimusta.
 
@@ -52,7 +51,7 @@ Pidä mitä tahansa työkalupalkin sivellintä painettuna. Pieni paneeli avautuu
 - **Vakautus** (ei mitään / pehmeä / kova) — silottaa värinää tappamatta persoonallisuutta
 - **Painekäyrä** — säätää reaktiota kevyeen vs. voimakkaaseen paineeseen
 
-Muutokset ovat canvas-kohtaisia, eivät globaaleja, joten voit pitää yhdessä muistikirjassa pehmeää lyijykynää ja toisessa terävää.
+Muutokset kuuluvat nykyiseen canvasiin eivätkä muuta koko sovellusta. Koko tutkintosi canvas säilyttää näin omat sivellinasetuksensa.
 
 ## Eteenpäin
 

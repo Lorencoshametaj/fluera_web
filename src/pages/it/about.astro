@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 import { SITE } from "@/lib/site";
 ---
 
@@ -8,27 +9,25 @@ import { SITE } from "@/lib/site";
   description="Fluera è costruito da un piccolo team in Italia. La nostra storia, le nostre convinzioni, la linea che non attraverseremo."
   locale="it"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">Chi siamo</p>
-        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
-          Abbiamo costruito il canvas per imparare<br />che avremmo voluto avere<br />da studenti.
-        </h1>
-        <div class="prose-ink text-lg">
-          <p>
-            Fluera è nato da una frustrazione. Uno di noi, sviluppatore full-stack con dieci anni alle spalle; l'altro, studente che vedeva i propri coetanei cadere nella stessa trappola — app che sembravano produttive ma non aiutavano a ricordare nulla.
-          </p>
-          <p>
-            Abbiamo letto la ricerca. <em>Molta</em> ricerca. Bjork, Mueller, Roediger, van der Meer, O'Keefe. La scienza cognitiva è chiara da mezzo secolo: la scrittura a mano batte la digitazione, il recupero batte la rilettura, lo spacing batte il cramming, la frizione è una feature. Non trovavamo un'app che prendesse niente di tutto questo sul serio. Così ne abbiamo costruita una.
-          </p>
-          <p>
-            Lungo il percorso abbiamo scritto da zero un motore di rendering 2D — perché nessuno stack off-the-shelf riusciva a gestire inchiostro pressure-sensitive a 60 FPS su sei piattaforme native. Il motore è il substrato su cui vivono le funzioni cognitive.
-          </p>
-        </div>
+  <PageHero
+    kicker={"Chi siamo"}
+    title={"Abbiamo costruito il canvas per imparare<br />che avremmo voluto avere<br />da studenti."}
+    titleSize="xl"
+  >
+    <div slot="copy" class="mt-8">
+      <div class="prose-ink text-lg">
+        <p>
+          Fluera è nato da una frustrazione. Uno di noi, sviluppatore full-stack con dieci anni alle spalle; l'altro, studente che vedeva i propri coetanei cadere nella stessa trappola — app che sembravano produttive ma non aiutavano a ricordare nulla.
+        </p>
+        <p>
+          Abbiamo letto la ricerca. <em>Molta</em> ricerca. Bjork, Mueller, Roediger, van der Meer, O'Keefe. La scienza cognitiva è chiara da mezzo secolo: la scrittura a mano batte la digitazione, il recupero batte la rilettura, lo spacing batte il cramming, la frizione è una feature. Non trovavamo un'app che prendesse niente di tutto questo sul serio. Così ne abbiamo costruita una.
+        </p>
+        <p>
+          Lungo il percorso abbiamo scritto da zero un motore di rendering 2D — perché nessuno stack off-the-shelf ci dava l’esperienza di inchiostro pressure-sensitive che volevamo su ogni piattaforma supportata. Il motore è il substrato su cui vivono le funzioni cognitive.
+        </p>
       </div>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">

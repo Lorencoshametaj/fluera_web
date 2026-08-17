@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="En grundig forklaring av hva Fluera er, hva Fluera nekter å være, og hvorfor det opplagte produktet var det feile."
   locale="no"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">Manifest</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">Læringsrommet, bygd på hvordan sinnet faktisk fungerer.</h1>
+  <PageHero
+    kicker={"Manifest"}
+    title={"Læringsrommet, bygd på hvordan sinnet faktisk fungerer."}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         En grundig forklaring av hva Fluera er, hva Fluera nekter å være, og hvorfor det opplagte produktet var det feile.
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">
@@ -107,7 +110,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <strong>Vi vil ikke ha en KI som besvarer eksamenene dine for deg.</strong> Den umiddelbare brukertilfredsheten ville vært enorm. Det langsiktige utfallet — atrofien av de kognitive musklene verktøyet skal styrke — ville vært et svik mot det erklærte målet. En KI som gjør arbeidet for deg er en KI som ikke lærer deg noe.
       </p>
       <p>
-        <strong>Vi vil ikke selge dataene fra notatbøkene dine.</strong> Hver notatbok er kryptert i ro med AES-256. Synkronisering, når den er aktivert, er ende-til-ende-kryptert. Vi trener ikke modellene våre på innholdet ditt. Håndskriften din, tenkningen din, feilene dine og veksten din tilhører deg. At "dataene dine er produktet" er standard i edtech i 2026, gjør det ikke tålelig.
+        <strong>Vi vil ikke selge dataene fra notatbøkene dine.</strong> Hver notatbok er kryptert i hvile på enheten med AES-256. Når synkronisering er aktivert, krypteres data under overføring (TLS) og i hvile på EU-infrastruktur (Supabase, eu-north-1); synkroniseringen er ikke ende-til-ende-kryptert, så Fluera kan som behandlingsansvarlig teknisk få tilgang til synkronisert innhold. Vi selger det aldri, bruker det aldri til annonsering og trener aldri modeller på det. Håndskriften din, tenkningen din, feilene dine og veksten din tilhører deg. At "dataene dine er produktet" er standard i edtech i 2026, gjør det ikke tålelig.
       </p>
       <p>
         <strong>Vi vil ikke ha engasjementsløkker, reklame eller streaks.</strong> Det sterkeste signalet vi kunne optimalisert for — daglige aktive brukere, øktvarighet, klikkrate på varsler — er også det som mest sannsynlig vil korrumpere produktet. Forholdet ditt til læring skal ikke avhenge av en push-varsling. Vi vil heller at du bruker Fluera mindre og lærer mer.

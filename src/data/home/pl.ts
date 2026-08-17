@@ -3,7 +3,7 @@ import type { HomeData } from "../types";
 const data: HomeData = {
   steps: [
     { n: 1,  title: "Uchwycenie",          verb: "Dzień wykładu",          description: "Pisz pojęcia ręcznie podczas wykładu. Umieszczaj je w przestrzeni. Spowolnienie pióra wymusza kompresję — tu zaczyna się kodowanie." },
-    { n: 2,  title: "Rekonstrukcja",       verb: "Tego samego wieczoru",   description: "Zamknij książkę. Zrekonstruuj na pustej kanwie to, co pamiętasz. Czerwone węzły, na których się zacinasz, są mapą następnej sesji nauki (Kapur, produktywna porażka, 2008)." },
+    { n: 2,  title: "Rekonstrukcja",       verb: "Tego samego wieczoru",   description: "Zamknij książkę. Zrekonstruuj w wolnym obszarze tej samej kanwy to, co pamiętasz. Czerwone węzły, na których się zacinasz, są mapą następnej sesji nauki (Kapur, produktywna porażka, 2008)." },
     { n: 3,  title: "Sokratejski",         verb: "W ciągu 48 godzin",      description: "AI pyta, ty odpowiadasz. Przed każdym ujawnieniem oceń pewność od 1 do 5. Metakognicja staje się jawna." },
     { n: 4,  title: "Centaur",             verb: "Natychmiast potem",      description: "Ghost Map nakłada Twoje rozumowanie na idealną mapę. Hiperkorekcja utrwala lukę (Butterfield i Metcalfe, 2001)." },
     { n: 5,  title: "Sen",                 verb: "Tej nocy",               description: "Nic nie rób. Sen wolnofalowy odtwarza dzień. Hipokamp przekazuje ślady do kory nowej. Naszą rolą jest zejść z drogi." },
@@ -38,6 +38,34 @@ const data: HomeData = {
     { name: "Linux",   api: "OpenGL",      status: "alpha" },
     { name: "Web",     api: "WebGPU",      status: "demo" },
   ],
+  medicalUseCase: {
+    kicker: "Zbudowany pod najtrudniejsze kierunki",
+    title: "Medycyna, na jednym canvasie.",
+    intro: "Anatomia, fizjologia, farmakologia. Tysiące faktów, które muszą pozostać połączone — i możliwe do wydobycia pod presją egzaminu. Nauka, która naprawdę działa na medycynie, to ta, która w trakcie wydaje się trudna. Fluera czyni z niej drogę najmniejszego oporu.",
+    steps: [
+      {
+        phase: "Dzień wykładu",
+        title: "Każdy układ staje się regionem.",
+        description: "Zapisuj każdy wykład w jego własnym regionie tego samego nieskończonego canvasu — struktury anatomiczne, mechanizmy działania leków, szlaki metaboliczne. Położenie w przestrzeni staje się kotwicą pamięci. Dwanaście silników pędzla i atrament o niskim opóźnieniu na obsługiwanych tabletach.",
+      },
+      {
+        phase: "Tego samego wieczoru",
+        title: "Odtwórz z pamięci, przed książką.",
+        description: "Zamknij materiały z wykładu. Spróbuj odbudować to, co pamiętasz, w wolnym obszarze tego samego canvasu. Luki, które znajdziesz — pominięty nerw czaszkowy, pomylony receptor — są mapą tego, czego trzeba się nauczyć dziś wieczorem. Produktywna porażka, z założenia (Kapur, 2008).",
+      },
+      {
+        phase: "W ciągu 48 godzin",
+        title: "Sokratejskie odpytywanie na canvasie, który sam zbudowałeś.",
+        description: "AI pyta, ty odpowiadasz. Przed każdym odsłonięciem przewidujesz swoją pewność od 1 do 5. Każdy błąd popełniony z wysoką pewnością — każdy lek, którego byłeś pewien i pomyliłeś — zostaje wzmocniony mocniej. Hiperkorekcja (Butterfield i Metcalfe, 2001).",
+      },
+      {
+        phase: "7–14 dni przed egzaminem",
+        title: "Fog of War na układzie, w którym jesteś najsłabszy.",
+        description: "Zasłoń fragmenty canvasu. Wyciągnij anatomię z pamięci, zanim odsłonisz. Fluera planuje powroty algorytmem FSRS — nowoczesnym algorytmem powtórek rozłożonych w czasie. W dniu egzaminu sam canvas jest symulacją.",
+      },
+    ],
+    closing: "Jeśli to jest ten sposób pracy, który już w połowie realizujesz na papierze, w PDF-ach i w trzech otwartych aplikacjach, Fluera zamienia go w jedną ciągłą pętlę. Zbudowana pod to, jak działa pamięć, sprawdzona na kierunkach, które nie wybaczają niczego innego.",
+  },
 };
 
 export default data;

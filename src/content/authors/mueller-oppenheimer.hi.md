@@ -14,4 +14,4 @@ order: 10
 
 निष्कर्ष गति के युग में counter-intuitive है: capture की धीमी गति encoding के क्षण में संज्ञानात्मक elaboration को मजबूर करती है। हाथ bottleneck है — और bottleneck वहीं है जहाँ सीखना होता है।
 
-Fluera का संपूर्ण product दर्शन यहीं से शुरू होता है। हस्तलेखन एक skeuomorphic विकल्प नहीं है। यह संज्ञानात्मक उपकरण है। तेरह brush engines। दबाव, झुकाव, गति। हर समर्थित डिवाइस पर 15 milliseconds से नीचे की stroke latency। अनंत कैनवास सौंदर्यशास्त्र नहीं है — यह वह substrate है जिसे आपकी स्मृति खोज रही थी।
+Fluera का संपूर्ण product दर्शन यहीं से शुरू होता है। हस्तलेखन एक skeuomorphic विकल्प नहीं है। यह संज्ञानात्मक उपकरण है। बारह brush engines। दबाव, झुकाव, गति। Supported hardware पर low-latency ink। अनंत कैनवास सौंदर्यशास्त्र नहीं है — यह वह substrate है जिसे आपकी स्मृति खोज रही थी।

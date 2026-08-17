@@ -14,4 +14,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002) en Susan Goldin-Meadow (2003) b
 
 Voor het leren is de implicatie sterk. Typen activeert een nauw, geoefend motorisch patroon. Handschrift activeert een rijk, variabel motorisch patroon met geïntegreerde visuele, ruimtelijke en proprioceptieve feedback. De EEG-opnames van van der Meer (2020) maken het verschil concreet: handschrift activeert brede breinnetwerken die typen niet bereikt.
 
-De nadruk van Fluera op de pen — dertien brush engines, druk- en tilt-tracking, streek-latentie onder de 15 milliseconden — is de these van de belichaamde cognitie serieus genomen. De hand blijft in de loop omdat de hand onderdeel is van het denken.
+De nadruk van Fluera op de pen — twaalf brush engines, druk- en tilt-tracking, inkt met lage latentie op ondersteunde hardware — is de these van de belichaamde cognitie serieus genomen. De hand blijft in de loop omdat de hand onderdeel is van het denken.

@@ -1,0 +1,402 @@
+---
+import type { Locale } from "@/lib/i18n";
+
+export interface ScienceStep {
+  n: number;
+  title: string;
+  verb: string;
+  description: string;
+}
+
+export interface ScienceNavigationItem {
+  href: string;
+  label: string;
+}
+
+export interface Props {
+  locale: Locale;
+  heroKicker: string;
+  heroTitleHtml: string;
+  heroDescription: string;
+  cycleKicker: string;
+  cycleTitle: string;
+  cycleDescription: string;
+  navigation: ScienceNavigationItem[];
+  steps: ScienceStep[];
+}
+
+const {
+  locale,
+  heroKicker,
+  heroTitleHtml,
+  heroDescription,
+  cycleKicker,
+  cycleTitle,
+  cycleDescription,
+  navigation,
+  steps,
+} = Astro.props;
+
+const positions = [
+  [50, 430], [142, 345], [230, 398], [322, 270],
+  [410, 154], [500, 222], [586, 355], [674, 300],
+  [756, 178], [836, 250], [910, 386], [992, 328],
+] as const;
+const routePoints = positions.map(([x, y]) => `${x},${y}`).join(" ");
+---
+
+<!-- A conceptual, code-rendered map of the published 12-step inventory. -->
+<section class="science-canvas-hero border-b border-white/[0.06]" data-locale={locale}>
+  <div class="container-site science-hero-grid">
+    <header class="science-hero-copy">
+      <p class="eyebrow text-accent-glow">{heroKicker}</p>
+      <h1 class="text-display-xl text-paper-50" set:html={heroTitleHtml} />
+      <p class="prose-ink text-xl">{heroDescription}</p>
+      <nav class="science-jump-nav" aria-label={heroKicker}>
+        {navigation.map((item) => (
+          <a href={item.href} class="btn-secondary">{item.label}</a>
+        ))}
+      </nav>
+    </header>
+
+    <figure class="science-field" aria-hidden="true">
+      <div class="science-field-meta">
+        <span>01 — {String(steps.length).padStart(2, "0")}</span>
+        <strong>{cycleTitle}</strong>
+      </div>
+
+      <svg viewBox="0 -45 1040 650" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id={`science-dots-${locale}`} width="22" height="22" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1" class="science-dot" />
+          </pattern>
+          <marker id={`science-arrow-${locale}`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M0 0 10 5 0 10Z" class="science-arrow" />
+          </marker>
+        </defs>
+
+        <rect width="1040" height="560" class="science-ground" />
+        <rect width="1040" height="560" fill={`url(#science-dots-${locale})`} />
+
+        <g class="science-territories">
+          <path d="M-42 35C106-32 305 3 358 125c45 103-30 211-157 221-132 10-260-74-279-178Z" />
+          <path d="M342-38c174-15 378 26 430 147 40 93-25 179-139 199-130 23-266-34-305-128-28-68-12-146 14-218Z" />
+          <path d="M-53 314c111-43 267-23 344 67 67 78 31 168-61 211-117 54-298 15-354-91Z" />
+          <path d="M451 297c151-56 351-19 449 84 75 78 47 174-49 224-131 69-334 16-400-108-36-67-42-142 0-200Z" />
+        </g>
+
+        <polyline class="science-route-shadow" points={routePoints} />
+        <polyline
+          class="science-route"
+          points={routePoints}
+          marker-end={`url(#science-arrow-${locale})`}
+        />
+
+        {steps.map((step, index) => {
+          const [x, y] = positions[index] ?? positions[positions.length - 1];
+          return (
+            <g class="science-node" transform={`translate(${x} ${y})`}>
+              <title>{step.n}. {step.title} — {step.verb}</title>
+              <circle r={index === 4 ? 22 : 17} />
+              <text y="4">{String(step.n).padStart(2, "0")}</text>
+            </g>
+          );
+        })}
+
+        <g class="science-ink science-ink-a" transform="translate(88 110)">
+          <path d="M0 79c34-54 67-54 100 0s67 54 101 0M0 101h211M15 18v105" />
+        </g>
+        <g class="science-ink science-ink-b" transform="translate(690 395)">
+          <path d="m0 29 37-21 38 21v43L37 93 0 72Zm75 0 38-21 37 21v43l-37 21-38-21M113 8v-31M150 72l32 18" />
+        </g>
+      </svg>
+
+      <span class="science-continuation science-continuation-start">−∞</span>
+      <span class="science-continuation science-continuation-end">+∞</span>
+    </figure>
+  </div>
+</section>
+
+<section id="learning-cycle" class="science-cycle-section border-b border-white/[0.06]">
+  <div class="container-site">
+    <div class="science-cycle-intro">
+      <div>
+        <p class="eyebrow text-accent-glow">{cycleKicker}</p>
+        <h2 class="text-display-xl text-paper-50">{cycleTitle}</h2>
+      </div>
+      <p class="prose-ink text-lg">{cycleDescription}</p>
+    </div>
+
+    <div class="science-cycle-surface">
+      <svg class="science-cycle-watermark" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-30 505C112 530 152 383 249 339s173-18 229-112c49-83 127-75 178 7 43 69 48 153 139 168 92 14 133-81 242-61" />
+      </svg>
+      <ol class="science-step-grid">
+        {steps.map((step) => (
+          <li>
+            <div class="science-step-head">
+              <span>{String(step.n).padStart(2, "0")}</span>
+              <i aria-hidden="true"></i>
+              <small>{step.verb}</small>
+            </div>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .science-canvas-hero {
+    position: relative;
+    overflow: hidden;
+  }
+  .science-canvas-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgb(91 141 239 / .1) .65px, transparent .7px);
+    background-size: 25px 25px;
+    mask-image: linear-gradient(110deg, transparent 2%, #000 57%, transparent 96%);
+    opacity: .25;
+  }
+  .science-hero-grid {
+    position: relative;
+    display: grid;
+    align-items: center;
+    gap: clamp(3rem, 7vw, 6.5rem);
+    padding-top: clamp(4.5rem, 9vw, 7.5rem);
+    padding-bottom: clamp(4.5rem, 9vw, 7rem);
+  }
+  .science-hero-copy { max-width: 43rem; }
+  .science-hero-copy .eyebrow { margin-bottom: 1.5rem; }
+  .science-hero-copy h1 { margin-bottom: 1.5rem; }
+  .science-jump-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem;
+    margin-top: 2rem;
+  }
+  .science-field {
+    --science-bg: #221e16;
+    --science-ink: #f2ece0;
+    --science-muted: #a79e8a;
+    --science-grid: rgb(229 222 206 / .1);
+    --science-line: #5b8def;
+    position: relative;
+    aspect-ratio: 16 / 10;
+    min-height: 310px;
+    overflow: hidden;
+    border: 1px solid rgb(229 222 206 / .13);
+    border-radius: 18px;
+    background: var(--science-bg);
+    box-shadow: 0 28px 78px rgb(0 0 0 / .23);
+    isolation: isolate;
+  }
+  .science-field svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .science-ground { fill: var(--science-bg); }
+  .science-dot { fill: var(--science-grid); }
+  .science-territories path {
+    fill: rgb(91 141 239 / .035);
+    stroke: rgb(91 141 239 / .17);
+    stroke-width: 1.2;
+    vector-effect: non-scaling-stroke;
+  }
+  .science-territories path:nth-child(2) { fill: rgb(173 93 195 / .032); stroke: rgb(173 93 195 / .15); }
+  .science-territories path:nth-child(3) { fill: rgb(91 179 95 / .03); stroke: rgb(91 179 95 / .14); }
+  .science-territories path:nth-child(4) { fill: rgb(244 113 70 / .026); stroke: rgb(244 113 70 / .13); }
+  .science-route-shadow,
+  .science-route { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .science-route-shadow { stroke: rgb(0 0 0 / .5); stroke-width: 8; }
+  .science-route { stroke: var(--science-line); stroke-width: 2.4; stroke-dasharray: 5 7; }
+  .science-arrow { fill: var(--science-line); }
+  .science-node circle { fill: var(--science-bg); stroke: var(--science-line); stroke-width: 2; }
+  .science-node:nth-of-type(5) circle { fill: rgb(91 141 239 / .12); }
+  .science-node text {
+    fill: var(--science-ink);
+    font: 650 8px/1 ui-monospace, monospace;
+    text-anchor: middle;
+  }
+  .science-ink { fill: none; stroke: var(--science-muted); stroke-width: 1.8; stroke-linecap: round; opacity: .42; }
+  .science-field-meta {
+    position: absolute;
+    z-index: 2;
+    top: 20px;
+    inset-inline-start: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    max-width: min(58%, 22rem);
+    padding: .7rem .8rem;
+    border-inline-start: 2px solid var(--science-line);
+    background: linear-gradient(90deg, var(--science-bg) 78%, transparent);
+  }
+  .science-field-meta span {
+    color: var(--science-line);
+    font: 650 .5rem/1 ui-monospace, monospace;
+    letter-spacing: .14em;
+  }
+  .science-field-meta strong {
+    overflow: hidden;
+    color: var(--science-ink);
+    font-size: clamp(.72rem, 1.25vw, .95rem);
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .science-continuation {
+    position: absolute;
+    z-index: 2;
+    top: 54%;
+    color: var(--science-muted);
+    font: 500 .45rem/1 ui-monospace, monospace;
+  }
+  .science-continuation-start { inset-inline-start: .4rem; }
+  .science-continuation-end { inset-inline-end: .4rem; }
+  .science-cycle-section { padding: clamp(5rem, 9vw, 7.5rem) 0; }
+  .science-cycle-intro {
+    display: grid;
+    align-items: end;
+    gap: 2rem;
+    margin-bottom: 3.25rem;
+  }
+  .science-cycle-intro .eyebrow { margin-bottom: 1.25rem; }
+  .science-cycle-intro > p { max-width: 38rem; }
+  .science-cycle-surface {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    border-radius: 1rem;
+    background-color: color-mix(in srgb, var(--body-bg) 96%, var(--body-fg));
+    background-image: radial-gradient(circle, var(--hairline-strong) .65px, transparent .7px);
+    background-size: 24px 24px;
+  }
+  .science-cycle-watermark {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .16;
+  }
+  .science-cycle-watermark path {
+    fill: none;
+    stroke: theme("colors.accent.glow");
+    stroke-width: 2;
+    stroke-dasharray: 5 9;
+    vector-effect: non-scaling-stroke;
+  }
+  .science-step-grid {
+    position: relative;
+    display: grid;
+    list-style: none;
+    padding: 0;
+  }
+  .science-step-grid li {
+    min-width: 0;
+    padding: clamp(1.4rem, 2.8vw, 2rem);
+    border-top: 1px solid var(--hairline);
+    border-inline-start: 1px solid var(--hairline);
+    background: color-mix(in srgb, var(--body-bg) 96%, var(--body-fg));
+  }
+  .science-step-head { display: flex; align-items: center; gap: .7rem; }
+  .science-step-head span {
+    color: theme("colors.accent.glow");
+    font: 650 .65rem/1 ui-monospace, monospace;
+  }
+  .science-step-head i { flex: 1; height: 1px; background: linear-gradient(90deg, rgb(91 141 239 / .5), transparent); }
+  .science-step-head small {
+    color: var(--dim-fg);
+    font: 600 .56rem/1.25 ui-monospace, monospace;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+  .science-step-grid h3 {
+    margin-top: 1.1rem;
+    color: var(--body-fg);
+    font-size: 1.1rem;
+    line-height: 1.25;
+  }
+  .science-step-grid p {
+    margin-top: .65rem;
+    color: var(--muted-fg);
+    font-size: .82rem;
+    line-height: 1.65;
+  }
+  @media (min-width: 900px) {
+    .science-hero-grid { grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); }
+    .science-cycle-intro { grid-template-columns: 1.05fr .95fr; }
+    .science-step-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .science-step-grid li:nth-child(-n+3) { border-top: 0; }
+    .science-step-grid li:nth-child(3n+1) { border-inline-start: 0; }
+  }
+  @media (min-width: 600px) and (max-width: 899px) {
+    .science-hero-grid { max-width: 48rem; }
+    .science-step-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .science-step-grid li:nth-child(-n+2) { border-top: 0; }
+    .science-step-grid li:nth-child(2n+1) { border-inline-start: 0; }
+  }
+  @media (max-width: 599px) {
+    .science-jump-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .science-jump-nav :global(a) { min-width: 0; padding-inline: .8rem; }
+    .science-field { min-height: 265px; }
+    .science-cycle-watermark { display: none; }
+    .science-step-grid li { border-inline-start: 0; }
+    .science-step-grid li:first-child { border-top: 0; }
+  }
+  :global(html.light) .science-field {
+    --science-bg: #f7f4ec;
+    --science-ink: #1d2733;
+    --science-muted: #657083;
+    --science-grid: rgb(37 99 235 / .1);
+    border-color: rgb(0 0 0 / .1);
+    box-shadow: 0 28px 70px rgb(28 35 45 / .12);
+  }
+  :global(html.light) .science-route-shadow { stroke: rgb(255 255 255 / .7); }
+  :global(html.light) .science-step-head span { color: #2563eb; }
+
+  /* Keep the collection, authors, essays and transparency statement in the
+     same quieter editorial system without changing their content or filters. */
+  :global(body.science-page main > section:not(.science-canvas-hero, .science-cycle-section) h2),
+  :global(body.science-page #principles h3),
+  :global(body.science-page #authors h3) {
+    font-family: theme("fontFamily.sans");
+    font-weight: 600;
+    letter-spacing: -.035em;
+  }
+  :global(body.science-page #principles .card),
+  :global(body.science-page #authors article.card) {
+    border-color: var(--hairline);
+    border-radius: .8rem;
+    background: color-mix(in srgb, var(--body-bg) 94%, var(--body-fg));
+    transition: border-color 160ms ease-out, transform 160ms ease-out, background-color 160ms ease-out;
+  }
+  :global(body.science-page #principles .card:hover),
+  :global(body.science-page #authors a:hover article.card) {
+    border-color: rgb(91 141 239 / .42);
+    background: color-mix(in srgb, var(--body-bg) 89%, var(--body-fg));
+    transform: translateY(-2px);
+  }
+  :global(body.science-page main > section:nth-last-of-type(3) .container-prose),
+  :global(body.science-page main > section:nth-last-of-type(2) .container-prose) {
+    position: relative;
+    padding-inline-start: clamp(2rem, 5vw, 4rem);
+  }
+  :global(body.science-page main > section:nth-last-of-type(3) .container-prose::before),
+  :global(body.science-page main > section:nth-last-of-type(2) .container-prose::before) {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 1rem;
+    width: 1px;
+    background: linear-gradient(180deg, theme("colors.accent.glow"), transparent 85%);
+    opacity: .5;
+  }
+  /* Column-sized type, appended last so it beats earlier media queries:
+     the h1 tracks its own column via cqw instead of the viewport, which
+     put desktop-scale type in a ~450px grid share (one word per line). */
+  .science-hero-copy{container-type:inline-size}
+  .science-hero-copy h1{font-size:clamp(2.4rem,9.5cqw,4.5rem)}
+</style>

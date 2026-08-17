@@ -82,7 +82,7 @@ const data: PricingData = {
     },
     {
       q: "Vad händer med mina canvases om jag säger upp Plus eller Pro?",
-      a: "Allt stannar på din enhet (local-first) och de 3 baspenslarna + PNG-export fortsätter fungera i Free tier. Extra canvases blir skrivskyddade tills du återaktiverar eller exporterar. Inget raderas utan din uttryckliga åtgärd.",
+      a: "Allt stannar på din enhet (local-first), och de 3 baspenslarna samt PNG-export fortsätter fungera med Free. Funktioner i den betalda planen pausas tills du återaktiverar. Inget raderas utan din uttryckliga åtgärd.",
     },
     {
       q: "Varför finns det ingen gratis Pro-provperiod?",
@@ -98,7 +98,7 @@ const data: PricingData = {
     },
     {
       q: "Återbetalningspolicy?",
-      a: "30 dagar, inga frågor, både månadsvis och årsvis. Mejla support@fluera.dev från adressen du registrerade dig med.",
+      a: "Villkor för återbetalning och ångerrätt beror på butik och köpkanal. Gällande policy visas före bekräftelse; mejla support@fluera.dev från din registrerade adress om du behöver hjälp.",
     },
     {
       q: "Hur fungerar studentverifiering?",

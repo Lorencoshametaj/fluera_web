@@ -14,4 +14,4 @@ Il disegno sperimentale era semplice: gli studenti guardavano lezioni e prendeva
 
 La conclusione è controintuitiva nell'era della velocità: la lentezza della cattura forza elaborazione cognitiva al momento della codifica. La mano è il collo di bottiglia — e il collo di bottiglia è dove avviene l'apprendimento.
 
-L'intera filosofia di prodotto di Fluera parte da qui. La scrittura a mano non è una scelta skeumorfica. È lo strumento cognitivo. Tredici brush engine. Pressione, inclinazione, velocità. Latenza tratto sub-15 millisecondi su ogni dispositivo supportato. Il canvas infinito non è un'estetica — è il substrato che la tua memoria stava cercando.
+L'intera filosofia di prodotto di Fluera parte da qui. La scrittura a mano non è una scelta skeumorfica. È lo strumento cognitivo. Dodici brush engine. Pressione, inclinazione, velocità. Inchiostro a bassa latenza sull'hardware supportato. Il canvas infinito non è un'estetica — è il substrato che la tua memoria stava cercando.

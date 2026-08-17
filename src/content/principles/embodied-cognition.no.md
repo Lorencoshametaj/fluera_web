@@ -14,4 +14,4 @@ Lawrence Barsalou (1999), Margaret Wilson (2002) og Susan Goldin-Meadow (2003) b
 
 For læring er implikasjonen tydelig. Tasting aktiverer et smalt, høyt innøvd motorisk mønster. Håndskrift aktiverer et rikt, variabelt motorisk mønster med integrert visuelt, romlig og proprioseptivt feedback. EEG-opptakene til van der Meer (2020) viser forskjellen konkret: håndskrift binder inn vide hjernenettverk som tasting ikke når.
 
-Fluera insisterer på pennen — tretten pensel-motorer, sporing av trykk og vinkel, strek-latens under 15 millisekunder — og fører dermed tesen om kroppsliggjort kognisjon ærlig gjennom. Hånden blir værende i loopen, fordi hånden er en del av tenkningen.
+Fluera insisterer på pennen — tolv pensel-motorer, sporing av trykk og vinkel, blekk med lav latens på støttet maskinvare — og fører dermed tesen om kroppsliggjort kognisjon ærlig gjennom. Hånden blir værende i loopen, fordi hånden er en del av tenkningen.

@@ -1,70 +1,79 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1a2030"/>
-      <stop offset="55%" stop-color="#161b24"/>
-      <stop offset="100%" stop-color="#11151d"/>
-    </linearGradient>
-    <radialGradient id="orb1" cx="0.22" cy="0.35" r="0.55">
-      <stop offset="0%" stop-color="#2563eb" stop-opacity="0.55"/>
-      <stop offset="60%" stop-color="#2563eb" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="orb2" cx="0.88" cy="0.82" r="0.45">
-      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
-      <stop offset="70%" stop-color="#38bdf8" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.025)" stroke-width="1"/>
+    <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.75" fill="#5b8def" opacity="0.12"/>
     </pattern>
-    <linearGradient id="accentText" x1="0" y1="0" x2="1" y2="0.5">
-      <stop offset="0%" stop-color="#fafaf7"/>
-      <stop offset="100%" stop-color="#38bdf8"/>
-    </linearGradient>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#grid)"/>
-  <rect width="1200" height="630" fill="url(#orb1)"/>
-  <rect width="1200" height="630" fill="url(#orb2)"/>
+  <rect width="1200" height="630" fill="#151517"/>
+  <rect x="786" width="414" height="630" fill="#111216"/>
+  <rect x="786" width="414" height="630" fill="url(#dots)"/>
+  <rect x="786" width="4" height="630" fill="#2563eb"/>
 
   <!-- top hairline -->
-  <rect x="80" y="78" width="1040" height="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="72" y="72" width="1056" height="1" fill="#ffffff" opacity="0.08"/>
 
   <!-- logo + wordmark -->
-  <g transform="translate(80, 100)">
+  <g transform="translate(72, 96)">
+    <rect width="48" height="48" rx="12" fill="#2563eb"/>
     <image href="/assets/fluera_logo.png" x="0" y="0" width="48" height="48" preserveAspectRatio="xMidYMid meet"/>
-    <text x="64" y="33" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#fafaf7" font-weight="500" letter-spacing="-0.3">Fluera</text>
+    <text x="64" y="33" font-family="system-ui, sans-serif" font-size="22" fill="#fafaf7" font-weight="650" letter-spacing="0.4">Fluera</text>
   </g>
 
   <!-- kicker -->
-  <g transform="translate(80, 198)">
-    <text font-family="JetBrains Mono, ui-monospace, monospace" font-size="14" fill="#38bdf8" letter-spacing="3" font-weight="500">
-      OUTGROW YOUR OWN MEMORY
+  <g transform="translate(72, 202)">
+    <text font-family="ui-monospace, monospace" font-size="13" fill="#5b8def" letter-spacing="2.8" font-weight="600">
+      THE FLUERA SIGNATURE
     </text>
   </g>
 
   <!-- headline -->
-  <g transform="translate(80, 300)">
-    <text font-family="Source Serif 4, Georgia, serif" font-size="92" font-weight="500" letter-spacing="-2.5">
-      <tspan x="0" dy="0" fill="#fafaf7">The learning canvas</tspan>
-      <tspan x="0" dy="102" fill="#fafaf7">that studies</tspan>
-      <tspan x="0" dy="102" fill="url(#accentText)" font-style="italic">you back.</tspan>
+  <g transform="translate(72, 294)">
+    <text font-family="system-ui, sans-serif" font-size="78" font-weight="700" letter-spacing="-3.2">
+      <tspan x="0" dy="0" fill="#fafaf7">The canvas that</tspan>
+      <tspan x="0" dy="92" fill="#5b8def">studies you back.</tspan>
     </text>
   </g>
 
+  <!-- signature flow -->
+  <g transform="translate(824, 186)" font-family="ui-monospace, monospace">
+    <g>
+      <rect width="300" height="58" rx="10" fill="#1b1b1e" stroke="#5b8def" stroke-opacity="0.35"/>
+      <text x="24" y="35" font-size="14" fill="#fafaf7" letter-spacing="2">01  INK</text>
+    </g>
+    <path d="M150 58v32" stroke="#5b8def" stroke-opacity="0.55"/>
+    <circle cx="150" cy="75" r="3" fill="#5b8def"/>
+    <g transform="translate(0,90)">
+      <rect width="300" height="58" rx="10" fill="#1b1b1e" stroke="#ffffff" stroke-opacity="0.1"/>
+      <text x="24" y="35" font-size="14" fill="#fafaf7" letter-spacing="2">02  CONCEPTS</text>
+    </g>
+    <path d="M150 148v32" stroke="#5b8def" stroke-opacity="0.55"/>
+    <circle cx="150" cy="165" r="3" fill="#5b8def"/>
+    <g transform="translate(0,180)">
+      <rect width="300" height="58" rx="10" fill="#1b1b1e" stroke="#ffffff" stroke-opacity="0.1"/>
+      <text x="24" y="35" font-size="14" fill="#fafaf7" letter-spacing="2">03  ATLAS</text>
+    </g>
+    <path d="M150 238v32" stroke="#5b8def" stroke-opacity="0.55"/>
+    <circle cx="150" cy="255" r="3" fill="#5b8def"/>
+    <g transform="translate(0,270)">
+      <rect width="300" height="58" rx="10" fill="#1b1b1e" stroke="#2563eb" stroke-opacity="0.8"/>
+      <text x="24" y="35" font-size="14" fill="#5b8def" letter-spacing="2">04  RECALL</text>
+    </g>
+  </g>
+
   <!-- bottom hairline -->
-  <rect x="80" y="555" width="1040" height="1" fill="rgba(255,255,255,0.06)"/>
+  <rect x="72" y="548" width="666" height="1" fill="#ffffff" opacity="0.08"/>
 
   <!-- platforms -->
-  <g transform="translate(80, 585)">
-    <text font-family="JetBrains Mono, ui-monospace, monospace" font-size="14" fill="#6b7280" letter-spacing="3.5" font-weight="400">
-      iOS &#183; ANDROID &#183; MACOS &#183; WINDOWS &#183; LINUX &#183; WEB
+  <g transform="translate(72, 580)">
+    <text font-family="ui-monospace, monospace" font-size="12" fill="#9a9a9c" letter-spacing="2.2" font-weight="500">
+      iOS &#183; iPadOS &#183; ANDROID &#183; MACOS &#183; WINDOWS &#183; LINUX &#183; WEB
     </text>
   </g>
 
   <!-- url -->
-  <g transform="translate(1120, 585)">
-    <text font-family="JetBrains Mono, ui-monospace, monospace" font-size="14" fill="#6b7280" letter-spacing="1" text-anchor="end">
+  <g transform="translate(1128, 580)">
+    <text font-family="ui-monospace, monospace" font-size="12" fill="#9a9a9c" letter-spacing="1" text-anchor="end">
       fluera.dev
     </text>
   </g>

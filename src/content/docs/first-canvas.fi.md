@@ -12,7 +12,7 @@ Tämä walkthrough vie sinulta kymmenen minuuttia ja yhden aiheen, jota opiskele
 
 ## Minuutti 0–2: Luo canvas
 
-Avaa Fluera. Napauta **Uusi canvas**. Anna sille aiheen nimi (ei luennon — *käsitteen*). Valitse sivellin — täytekynä on turvallinen oletus. Pysy oletusvedonleveydessä toistaiseksi.
+Avaa Fluera. Napauta **Uusi canvas** vain kerran ja nimeä se tutkintosi tai oppimispolkusi mukaan: tämä yksi tila voi kasvaa koko opintojesi mukana. Rajaa sen sisälle ensimmäinen alue ja nimeä juuri se aiheen mukaan (ei luennon — *käsitteen*). Valitse sivellin — täytekynä on turvallinen oletus. Pysy oletusvedonleveydessä toistaiseksi.
 
 Canvas on tyhjä. Tämä on tarkoituksellista — mallipohjat eivät tässä auta.
 

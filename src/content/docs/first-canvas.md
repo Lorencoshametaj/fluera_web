@@ -11,7 +11,7 @@ This walk-through uses ten minutes of your time and one topic you are studying t
 
 ## Minutes 0–2: Create the canvas
 
-Open Fluera. Tap **New canvas**. Name it after the topic (not the lecture — the *concept*). Pick a brush — fountain pen is a safe default. Stay with the default stroke width for now.
+Open Fluera. Tap **New canvas** once and name it after your degree or learning journey: this single space can grow with the whole course. Mark out your first region inside it and name that after the topic (not the lecture — the *concept*). Pick a brush — fountain pen is a safe default. Stay with the default stroke width for now.
 
 The canvas is blank. That is intentional — templates are not helpful here.
 

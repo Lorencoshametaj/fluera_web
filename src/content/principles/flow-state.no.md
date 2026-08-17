@@ -14,4 +14,4 @@ Mihaly Csikszentmihalyi katalogiserte forutsetningene for flow hos sjakkspillere
 
 Avbrudd er den standard flow-dreperen. Push-varsler, modale dialoger, kontekstskifter, uventede UI-bevegelser. Hver enkelt bryter loopen mellom hånd og tanke og nullstiller oppvarmingskostnadene.
 
-Fluera er designet rundt bevaring av flow. Ingen varsler under skriving. Verktøylinjer skjuler seg av seg selv. Input-latensen holdes under 15 ms, fordi høyere latens i seg selv er en form for avbrudd. KI-en holder seg stille til du roper på den. Hver grensesnitts-beslutning vurderes etter ett enkelt spørsmål: hjelper den loopen eller forstyrrer den den?
+Fluera er designet rundt bevaring av flow. Ingen varsler under skriving. Verktøylinjer skjuler seg av seg selv. Blekk med lav latens på støttet maskinvare hjelper med å holde hånd og tanke i samme loop. KI-en holder seg stille til du roper på den. Hver grensesnitts-beslutning vurderes etter ett enkelt spørsmål: hjelper den loopen eller forstyrrer den den?

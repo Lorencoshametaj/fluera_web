@@ -1,7 +1,7 @@
 ---
 title: Atlas
 tagline: "Zoom out to continent view. Watch your subjects pull on each other."
-shortDescription: "Atlas surfaces concept-level bridges across all your canvases — chemistry pulling on calculus, history echoing in economics. Transfer of learning made visually navigable."
+shortDescription: "Atlas surfaces concept-level bridges across distant regions of your single canvas — chemistry pulling on calculus, history echoing in economics. Transfer of learning made visually navigable."
 status: beta
 stepInCycle: 9
 relatedPrinciples:
@@ -24,7 +24,7 @@ Atlas makes those bridges visible from the first week of the semester.
 
 ## How it works
 
-Pinch out. Keep pinching. Your individual canvases — biology, organic chemistry, statistics, philosophy — recede into a **continent view**. Atlas runs in the background as you zoom: it reads cluster names, stroke OCR, and the relationships you've drawn, and projects a map.
+Pinch out. Keep pinching. The subject regions in your canvas — biology, organic chemistry, statistics, philosophy — recede into a **continent view**. Atlas runs in the background as you zoom: it reads cluster names, stroke OCR, and the relationships you've drawn, and projects a map of the same continuous space.
 
 Tap any concept and the menu opens with Atlas actions:
 
@@ -38,15 +38,15 @@ The continent view is not just visual sugar. It's the substrate where [Cross-Zon
 
 ## The science behind it
 
-Joseph Novak's **concept mapping** research (1984, refined through 2010) established the foundation: students who *build* a concept map outperform those who *study* a pre-built one across disciplines and grade levels. The act of declaring a relationship — even a wrong one — is itself a generative encoding move. Atlas extends this from per-canvas to cross-canvas.
+Joseph Novak's **concept mapping** research (1984, refined through 2010) established the foundation: students who *build* a concept map outperform those who *study* a pre-built one across disciplines and grade levels. The act of declaring a relationship — even a wrong one — is itself a generative encoding move. Atlas extends this from clusters to regions to the scale of the whole canvas.
 
-O'Keefe and Moser's Nobel-winning work (2014) on **place cells and grid cells** explains why the continent metaphor is more than decoration. The hippocampus uses the same neural circuitry to navigate physical space and to navigate semantic space. Zooming out across canvases recruits exactly the spatial circuitry your brain evolved for survival, now wired to chemistry and history.
+O'Keefe and Moser's Nobel-winning work (2014) on **place cells and grid cells** explains why the continent metaphor is more than decoration. The hippocampus uses the same neural circuitry to navigate physical space and to navigate semantic space. Zooming out across the whole canvas recruits exactly the spatial circuitry your brain evolved for survival, now wired to chemistry and history.
 
 Vygotsky's **Zone of Proximal Development** (1978) frames Atlas's AI behaviour. Atlas doesn't explain; it scaffolds. The "find analogies" prompt narrows progressively until you make the connection yourself — the kind of guided discovery that produces durable transfer, not the kind of fluent explanation that produces the illusion of mastery.
 
 ## What's coming
 
 - **Atlas timeline** — see how your continent grew week by week; replay a semester's worth of conceptual evolution.
-- **Cross-canvas Exam Sessions** — one session that interleaves clusters from multiple subjects, training transfer directly.
-- **Atlas tags** — auto-detected thematic spines (e.g. "equilibrium", "feedback", "compositionality") that surface across distant canvases.
+- **Cross-region Exam Sessions** — one session that interleaves clusters from multiple subject regions in the same canvas, training transfer directly.
+- **Atlas tags** — auto-detected thematic spines (e.g. "equilibrium", "feedback", "compositionality") that surface across distant regions.
 - **Atlas-driven Socratic** — questions that bridge two subjects you haven't yet connected.

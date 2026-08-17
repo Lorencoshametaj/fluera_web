@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import LearningStep from "@/components/LearningStep.astro";
+import ScienceCanvasPath from "@/components/ScienceCanvasPath.astro";
 import AuthorCard from "@/components/AuthorCard.astro";
 import { getCollection } from "astro:content";
 
@@ -13,7 +13,7 @@ const authors = (await getCollection("authors", ({ data }) => data.lang === "nl"
 
 const steps = [
   { n: 1,  title: "Vastleggen",                verb: "Op de lesdag",         description: "Schrijf de concepten met de hand op tijdens de les. Plaats ze in de ruimte. De traagheid van de pen dwingt compressie af — en compressie is waar codering geboren wordt." },
-  { n: 2,  title: "Reconstructie",             verb: "Diezelfde avond",      description: "Sluit het boek. Reconstrueer wat je je herinnert op een leeg canvas. De rode knopen waar je aarzelt zijn de kaart van wat je moet bestuderen (Kapur, productief falen, 2008)." },
+  { n: 2,  title: "Reconstructie",             verb: "Diezelfde avond",      description: "Sluit het boek. Reconstrueer wat je je herinnert in een vrij gedeelte van hetzelfde canvas. De rode knopen waar je aarzelt zijn de kaart van wat je moet bestuderen (Kapur, productief falen, 2008)." },
   { n: 3,  title: "Socratisch",                verb: "Binnen 48 uur",        description: "De AI vraagt, jij antwoordt. Je verklaart je vertrouwen van 1 tot 5 vóór elke onthulling. Metacognitie expliciet gemaakt." },
   { n: 4,  title: "Centaur",                   verb: "Kort daarna",          description: "Ghost Map legt jouw redenering over de ideale kaart. Hypercorrectie verankert de correcties in het geheugen (Butterfield en Metcalfe, 2001)." },
   { n: 5,  title: "Slaap",                     verb: "Die nacht",            description: "Doe niets. De trage slaapgolven spelen de dag opnieuw af. De hippocampus geeft de sporen door aan de neocortex." },
@@ -28,49 +28,28 @@ const steps = [
 ---
 
 <BaseLayout
+  bodyClass="science-page"
   title="De wetenschap achter Fluera"
   description="Fluera leunt op vijf decennia geheugenonderzoek — Bjork, Mueller, van der Meer, Roediger en de Nobel-bekroonde neurowetenschap van place cells. Verken de cyclus van 12 stappen en de principes achter elke functie."
   locale="nl"
 >
 
-  <section class="py-20 md:py-28 border-b border-white/[0.04] relative overflow-hidden noise">
-    <div class="glow-orb h-[500px] w-[500px] -top-32 -start-40 bg-accent-ink/25 animate-orb-pulse"></div>
-    <div class="container-site relative">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">De wetenschap</p>
-        <h1 class="font-serif text-display-2xl text-paper-50 mb-6">
-          Vijf decennia geheugenonderzoek<br />achter één enkele app.
-        </h1>
-        <p class="prose-ink text-xl max-w-2xl mb-10">
-          Elke functie van Fluera verwijst naar gepubliceerd onderzoek. Hieronder: de leercyclus in 12 stappen, de 23 principes die de basis vormen, de twaalf denkers waarop we voortbouwen, en de grenzen van wat we nog niet pretenderen.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#learning-cycle" class="btn-secondary">Naar de cyclus</a>
-          <a href="#principles" class="btn-secondary">Index van principes</a>
-          <a href="#authors" class="btn-secondary">Auteurs</a>
-          <a href="/nl/research" class="btn-secondary">Bibliografie →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="learning-cycle" class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl mb-14">
-        <p class="eyebrow mb-6 text-accent-glow">De cyclus</p>
-        <h2 class="font-serif text-display-xl text-paper-50 mb-6">Eén canvas. Twaalf cognitieve bewegingen.</h2>
-        <p class="prose-ink text-lg max-w-prose">
-          De cyclus is sequentieel en iteratief. Stappen 1–4 bouwen de codering. Stap 5 (slaap) is onverhandelbare biologie. Stappen 6–9 consolideren over dagen en weken. Stappen 10–12 maken de kennis permanent en overdraagbaar.
-        </p>
-      </div>
-
-      <ol class="max-w-3xl list-none p-0">
-        {steps.map((s) => (
-          <LearningStep n={s.n} title={s.title} verb={s.verb} description={s.description} />
-        ))}
-      </ol>
-    </div>
-  </section>
+  <ScienceCanvasPath
+    locale="nl"
+    heroKicker={"De wetenschap"}
+    heroTitleHtml={"Vijf decennia geheugenonderzoek<br />achter één enkele app."}
+    heroDescription={"Elke functie van Fluera verwijst naar gepubliceerd onderzoek. Hieronder: de leercyclus in 12 stappen, de 23 principes die de basis vormen, de twaalf denkers waarop we voortbouwen, en de grenzen van wat we nog niet pretenderen."}
+    cycleKicker={"De cyclus"}
+    cycleTitle={"Eén canvas. Twaalf cognitieve bewegingen."}
+    cycleDescription={"De cyclus is sequentieel en iteratief. Stappen 1–4 bouwen de codering. Stap 5 (slaap) is onverhandelbare biologie. Stappen 6–9 consolideren over dagen en weken. Stappen 10–12 maken de kennis permanent en overdraagbaar."}
+    navigation={[
+      { href: "#learning-cycle", label: "Naar de cyclus" },
+      { href: "#principles", label: "Index van principes" },
+      { href: "#authors", label: "Auteurs" },
+      { href: "/nl/research", label: "Bibliografie →" },
+    ]}
+    steps={steps}
+  />
 
   <section id="principles" class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">

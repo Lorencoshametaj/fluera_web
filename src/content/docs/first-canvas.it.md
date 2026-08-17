@@ -12,7 +12,7 @@ Questo walkthrough usa dieci minuti del tuo tempo e un argomento che stai studia
 
 ## Minuti 0–2: Crea il canvas
 
-Apri Fluera. Tocca **Nuovo canvas**. Dagli il nome dell'argomento (non della lezione — del *concetto*). Scegli un pennello — penna stilografica è un default sicuro. Resta con lo spessore di tratto di default per ora.
+Apri Fluera. Tocca **Nuovo canvas** una sola volta e dagli il nome della laurea o del tuo percorso: questo spazio unico può crescere con l'intero corso di studi. Al suo interno delimita la prima regione e assegna a quella il nome dell'argomento (non della lezione — del *concetto*). Scegli un pennello — la penna stilografica è un default sicuro. Resta con lo spessore di tratto di default per ora.
 
 Il canvas è vuoto. È intenzionale — i template non aiutano qui.
 

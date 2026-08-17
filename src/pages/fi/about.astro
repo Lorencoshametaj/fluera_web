@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 import { SITE } from "@/lib/site";
 ---
 
@@ -8,27 +9,25 @@ import { SITE } from "@/lib/site";
   description="Flueran rakentaa pieni tiimi Italiassa. Tarinamme, vakaumuksemme ja raja, jota emme ylitä."
   locale="fi"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-site">
-      <div class="max-w-3xl">
-        <p class="eyebrow mb-6 text-accent-glow">Tietoa meistä</p>
-        <h1 class="font-serif text-display-xl text-paper-50 mb-8">
-          Rakensimme opiskelusovelluksen,<br />jonka olisimme halunneet,<br />kun olimme opiskelijoita.
-        </h1>
-        <div class="prose-ink text-lg">
-          <p>
-            Fluera syntyi turhautumisesta. Toinen meistä, kymmenen vuoden kokemus full-stack-kehittäjänä; toinen, opiskelija, joka näki kavereidensa lankeavan samaan ansaan — sovelluksiin, jotka tuntuivat tuottavilta mutta eivät auttaneet ketään muistamaan mitään.
-          </p>
-          <p>
-            Luimme tutkimuksen. <em>Paljon</em> tutkimusta. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Kognitiotiede on ollut selkeä puoli vuosisataa: käsin kirjoittaminen voittaa näppäilyn, palauttaminen voittaa uudelleenlukemisen, jaksottaminen voittaa pänttäämisen, kitka on voimavara. Emme löytäneet yhtäkään sovellusta, joka olisi ottanut tämän vakavasti. Joten rakensimme sellaisen.
-          </p>
-          <p>
-            Matkan varrella kirjoitimme tyhjästä 2D-renderöintimoottorin — koska mikään valmis stack ei pystynyt toimittamaan painearkaa mustetta 60 FPS:llä kuudella natiivilla alustalla. Moottori on substraatti, jonka päällä kognitiiviset toiminnot elävät.
-          </p>
-        </div>
+  <PageHero
+    kicker={"Tietoa meistä"}
+    title={"Rakensimme opiskelusovelluksen,<br />jonka olisimme halunneet,<br />kun olimme opiskelijoita."}
+    titleSize="xl"
+  >
+    <div slot="copy" class="mt-8">
+      <div class="prose-ink text-lg">
+        <p>
+          Fluera syntyi turhautumisesta. Toinen meistä, kymmenen vuoden kokemus full-stack-kehittäjänä; toinen, opiskelija, joka näki kavereidensa lankeavan samaan ansaan — sovelluksiin, jotka tuntuivat tuottavilta mutta eivät auttaneet ketään muistamaan mitään.
+        </p>
+        <p>
+          Luimme tutkimuksen. <em>Paljon</em> tutkimusta. Bjork, Mueller, Roediger, van der Meer, O'Keefe. Kognitiotiede on ollut selkeä puoli vuosisataa: käsin kirjoittaminen voittaa näppäilyn, palauttaminen voittaa uudelleenlukemisen, jaksottaminen voittaa pänttäämisen, kitka on voimavara. Emme löytäneet yhtäkään sovellusta, joka olisi ottanut tämän vakavasti. Joten rakensimme sellaisen.
+        </p>
+        <p>
+          Matkan varrella kirjoitimme tyhjästä 2D-renderöintimoottorin — koska mikään valmis stack ei antanut haluamaamme paineherkkää mustekokemusta tuetuissa asiakasohjelmissa. Moottori on substraatti, jonka päällä kognitiiviset toiminnot elävät.
+        </p>
       </div>
     </div>
-  </section>
+  </PageHero>
 
   <section class="py-20 md:py-28 border-b border-white/[0.04] bg-ink-900/40">
     <div class="container-site">
@@ -47,7 +46,7 @@ import { SITE } from "@/lib/site";
             <span class="mt-2 h-1.5 w-1.5 rounded-full bg-accent-glow shrink-0"></span>
             <div>
               <strong class="text-paper-50 font-serif">Emme myy muistikirjojesi dataa.</strong>
-              <p class="text-sm mt-1 text-paper-300">Muistiinpanosi on salattu levossa, päästä päähän synkronoituna, eikä koskaan käytetä kenenkään mallien koulutukseen. Myöskään meidän.</p>
+              <p class="text-sm mt-1 text-paper-300">Muistiinpanosi salataan laitteellasi levossa. Synkronoitaessa ne suojataan siirrossa (TLS) ja levossa EU-infrastruktuurissa (Supabase, eu-north-1). Pilvisynkronointi ei ole päästä päähän -salattua: rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä, mutta emme koskaan myy sitä, käytä sitä mainontaan tai kenenkään mallien kouluttamiseen — omamme mukaan lukien.</p>
             </div>
           </li>
           <li class="flex items-start gap-4">

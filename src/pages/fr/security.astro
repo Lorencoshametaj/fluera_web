@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Chiffrement",
-    body: "Chaque cahier Fluera est chiffré au repos en AES-256 via SQLCipher. Le trafic est en TLS 1.3 en transit. La sync entre tes appareils est chiffrée de bout en bout avec des clés dérivées de ta passphrase — gardées dans le keychain de la plateforme, jamais envoyées à nos serveurs.",
+    body: "Chaque cahier Fluera est chiffré sur ton appareil en AES-256 via SQLCipher. Le trafic est protégé par TLS 1.3. Le cloud sync est chiffré en transit et au repos sur une infrastructure européenne, mais pas de bout en bout : en tant que responsable du traitement, Fluera peut techniquement accéder au contenu synchronisé. Nous ne le vendons jamais et ne l’utilisons jamais à des fins publicitaires.",
   },
   {
     title: "Propriété des données",
@@ -38,7 +38,7 @@ const pillars = [
 >
   <PageHero
     kicker="Sécurité et confidentialité"
-    title="Chiffrement de bout en bout.<br />La clé reste chez toi."
+    title="Chiffré en local.<br />Un cloud sync expliqué sans détour."
     titleSize="2xl"
     description="Chiffrement par défaut. Pas d'ad-tech. Serveurs en Europe. Export complet. La confidentialité est une contrainte de design, pas une tâche de conformité."
     orbs

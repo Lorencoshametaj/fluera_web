@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="Una dichiarazione in forma lunga di cosa è Fluera, cosa si rifiuta di essere e perché il prodotto ovvio era quello sbagliato."
   locale="it"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">Manifesto</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">Il quaderno che studia te.</h1>
+  <PageHero
+    kicker={"Manifesto"}
+    title={"Il quaderno che studia te."}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         Una dichiarazione in forma lunga di cosa è Fluera, cosa si rifiuta di essere e perché il prodotto ovvio era quello sbagliato.
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">

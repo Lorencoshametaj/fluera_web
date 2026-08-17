@@ -35,7 +35,7 @@ import { SITE } from "@/lib/site";
         Ogni quaderno Fluera vive in un database SQLite locale cifrato con SQLCipher — un'estensione ampiamente verificata che cifra trasparentemente ogni pagina del database con AES-256-CBC e integrity check HMAC-SHA512 per pagina.
       </p>
       <p>
-        La derivazione della chiave usa PBKDF2 con SHA-256, 256.000 iterazioni (allineato a OWASP). La passphrase è custodita nel keychain della piattaforma — Keychain su iOS/macOS, Keystore su Android, DPAPI su Windows, libsecret su Linux. Non viene mai inviata ai nostri server.
+        La chiave del database locale è una chiave casuale a 256 bit generata da Fluera e custodita nell'archivio sicuro della piattaforma — Keychain su iOS/macOS, Keystore su Android, DPAPI su Windows e libsecret su Linux. Non è la password dell'account né una passphrase del cloud sync, e la chiave del database locale non viene inviata ai server Fluera.
       </p>
 
       <h2>In transito: TLS 1.3</h2>
@@ -74,9 +74,9 @@ import { SITE } from "@/lib/site";
         Ogni accesso ai quaderni condivisi — chi, da quale dispositivo, quando — viene scritto in un audit log append-only. Gli amministratori possono esportare il log in CSV o JSON per i controlli di compliance. Il log è write-once: la cancellazione richiede una motivazione documentata ed è a sua volta loggata.
       </p>
 
-      <h2>Recovery e perdita della chiave</h2>
+      <h2>Recupero dei dati</h2>
       <p>
-        Se perdi la passphrase, i dati cifrati diventano irrecuperabili. È intenzionale — l'alternativa sarebbe un percorso di recovery che indebolirebbe necessariamente il modello di cifratura. Per gli account Istituzionali, si può configurare una chiave di recovery opzionale custodita dall'amministratore; è un trade-off documentato su cui l'istituzione sceglie consapevolmente.
+        I quaderni sincronizzati sono associati al tuo account: dopo il normale flusso di recupero dell'account, accedi di nuovo per scaricarli su un nuovo dispositivo. Non esiste una passphrase separata del cloud sync da ricordare o perdere. Il recupero dell'account non può ricostruire un quaderno rimasto solo locale se i dati del dispositivo sono stati cancellati; attiva il sync per i quaderni che vuoi poter recuperare su altri dispositivi.
       </p>
 
       <h2>Responsible disclosure</h2>

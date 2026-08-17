@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
@@ -7,15 +8,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="Eine ausführliche Erklärung dessen, was Fluera ist, was Fluera sich weigert zu sein, und warum das offensichtliche Produkt das falsche war."
   locale="de"
 >
-  <section class="py-20 md:py-28 border-b border-white/[0.04]">
-    <div class="container-prose">
-      <p class="eyebrow mb-6 text-accent-glow">Manifest</p>
-      <h1 class="font-serif text-display-2xl text-paper-50 mb-8">Der Lernraum, gebaut auf der Funktionsweise des Verstandes.</h1>
+  <PageHero
+    kicker={"Manifest"}
+    title={"Der Lernraum, gebaut auf der Funktionsweise des Verstandes."}
+    titleSize="2xl"
+  >
+    <div slot="copy" class="mt-8">
       <p class="prose-ink text-xl italic">
         Eine ausführliche Erklärung dessen, was Fluera ist, was Fluera sich weigert zu sein, und warum das offensichtliche Produkt das falsche war.
       </p>
     </div>
-  </section>
+  </PageHero>
 
   <article class="py-16 md:py-20">
     <div class="container-prose prose-v2 prose-v2-essay">
@@ -107,7 +110,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         <strong>Wir werden keine KI haben, die deine Prüfungen für dich beantwortet.</strong> Die unmittelbare Nutzerzufriedenheit wäre enorm. Das langfristige Ergebnis — die Atrophie der kognitiven Muskeln, die das Werkzeug stärken sollte — wäre ein Verrat am erklärten Ziel. Eine KI, die die Arbeit für dich erledigt, ist eine KI, die dich nichts lehrt.
       </p>
       <p>
-        <strong>Wir werden die Daten deiner Hefte nicht verkaufen.</strong> Jedes Heft ist im Ruhezustand mit AES-256 verschlüsselt. Die Synchronisierung, wenn sie aktiviert ist, ist Ende-zu-Ende verschlüsselt. Wir trainieren unsere Modelle nicht auf deinen Inhalten. Deine Handschrift, dein Denken, deine Fehler und dein Wachstum gehören dir. Dass „deine Daten sind das Produkt" der Default der EdTech im Jahr 2026 ist, macht das nicht erträglich.
+        <strong>Wir werden die Daten deiner Hefte nicht verkaufen.</strong> Jedes Heft ist auf deinem Gerät im Ruhezustand mit AES-256 verschlüsselt. Die Synchronisierung wird beim Transport (TLS) und im Ruhezustand auf EU-Infrastruktur verschlüsselt; sie ist nicht Ende-zu-Ende-verschlüsselt, sodass Fluera als Verantwortlicher technisch auf synchronisierte Inhalte zugreifen kann. Wir verkaufen sie nicht, nutzen sie nicht für Werbung und trainieren unsere Modelle nicht auf deinen Inhalten. Deine Handschrift, dein Denken, deine Fehler und dein Wachstum gehören dir. Dass „deine Daten sind das Produkt" der Default der EdTech im Jahr 2026 ist, macht das nicht erträglich.
       </p>
       <p>
         <strong>Wir werden keine Engagement-Loops, keine Werbung und keine Streaks haben.</strong> Das stärkste Signal, das wir optimieren könnten — tägliche aktive Nutzer, Sitzungsdauer, Click-Through bei Benachrichtigungen — ist auch jenes, das das Produkt am wahrscheinlichsten korrumpiert. Deine Beziehung zum Lernen sollte nicht von einer Push-Benachrichtigung abhängen. Wir hätten lieber, dass du Fluera weniger nutzt und mehr lernst.

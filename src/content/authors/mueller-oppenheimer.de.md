@@ -14,4 +14,4 @@ Das Versuchsdesign war einfach: Studierende verfolgten Vorlesungen und machten N
 
 Die Schlussfolgerung ist im Zeitalter der Geschwindigkeit kontraintuitiv: Die Langsamkeit der Erfassung erzwingt kognitive Elaboration im Moment der Enkodierung. Die Hand ist der Engpass — und der Engpass ist der Ort, an dem das Lernen geschieht.
 
-Die gesamte Produktphilosophie von Fluera geht von hier aus. Handschrift ist keine skeuomorphe Wahl. Sie ist das kognitive Werkzeug. Dreizehn Brush-Engines. Druck, Neigung, Geschwindigkeit. Strichlatenz unter 15 Millisekunden auf jedem unterstützten Gerät. Das unendliche Canvas ist keine Ästhetik — es ist das Substrat, nach dem dein Gedächtnis gesucht hat.
+Die gesamte Produktphilosophie von Fluera geht von hier aus. Handschrift ist keine skeuomorphe Wahl. Sie ist das kognitive Werkzeug. Zwölf Brush-Engines. Druck, Neigung, Geschwindigkeit. Latenzarme Freihandeingabe auf unterstützter Hardware. Das unendliche Canvas ist keine Ästhetik — es ist das Substrat, nach dem dein Gedächtnis gesucht hat.

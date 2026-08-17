@@ -30,7 +30,7 @@ Depois — dias, semanas ou meses — você toca em qualquer traço no seu canva
 
 Você desliza o áudio e vê o canvas se reproduzir traço por traço, no ritmo original ou acelerado. Vê a sua mente em trabalho.
 
-Todo o storage é local por padrão, criptografado com SQLCipher. A sincronização do áudio é opt-in e criptografada ponta a ponta quando ativada.
+Todo o armazenamento é local por padrão e criptografado com SQLCipher. A sincronização do áudio é opt-in: quando ativada, os dados são criptografados em trânsito (TLS) e em repouso na infraestrutura da UE (Supabase, eu-north-1). Ela não é criptografada ponta a ponta: como controlador de dados, o Fluera pode acessar tecnicamente o conteúdo sincronizado, mas nunca o vende, usa para publicidade ou para treinar modelos.
 
 ## A ciência por trás
 

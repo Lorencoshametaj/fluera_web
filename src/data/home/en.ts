@@ -3,7 +3,7 @@ import type { HomeData } from "../types";
 const data: HomeData = {
   steps: [
     { n: 1,  title: "Capture",              verb: "Lecture day",    description: "Write concepts by hand during the lecture. Position them in space. Compression — forced by the slowness of the pen — is where encoding begins." },
-    { n: 2,  title: "Reconstruct",          verb: "Same evening",   description: "Close the book. Rebuild what you remember on a blank canvas. The red nodes where you falter are the map of what to study next (Kapur, productive failure, 2008)." },
+    { n: 2,  title: "Reconstruct",          verb: "Same evening",   description: "Close the book. Rebuild what you remember in a clear region of the same canvas. The red nodes where you falter are the map of what to study next (Kapur, productive failure, 2008)." },
     { n: 3,  title: "Socratic",             verb: "Within 48h",     description: "The AI asks; you answer. Rate your confidence one to five before each reveal. Metacognition made explicit." },
     { n: 4,  title: "Centaur",              verb: "Right after",    description: "Ghost Map overlays your reasoning against the ideal. Hypercorrection makes the gaps permanent (Butterfield & Metcalfe, 2001)." },
     { n: 5,  title: "Sleep",                verb: "That night",     description: "Do nothing. Slow-wave sleep replays the day. The hippocampus hands traces to the neocortex. Our job is to get out of the way." },
@@ -44,7 +44,7 @@ const data: HomeData = {
     sub: "GoodNotes and Apple Notes give you the canvas. Anki gives you spaced repetition. Desmos graphs your formulas — in a separate tab. Each does one slice; Fluera runs the whole loop on the handwriting you already wrote.",
     columns: { fluera: "Fluera", goodNotes: "GoodNotes", notion: "Notion", anki: "Anki" },
     rows: [
-      { feature: "Native handwriting + infinite canvas", fluera: "Yes — six platforms", goodNotes: "Yes — Apple-first", notion: "No", anki: "No" },
+      { feature: "Native handwriting + infinite canvas", fluera: "Yes — every supported platform", goodNotes: "Yes — Apple-first", notion: "No", anki: "No" },
       { feature: "Handwritten formula → live, draggable graph", fluera: "Yes — from your ink", goodNotes: "No", notion: "No", anki: "No" },
       { feature: "Forces retrieval before reveal", fluera: "Yes — Socratic mode", goodNotes: "No", notion: "No", anki: "Yes — by design" },
       { feature: "Spaced repetition built-in (FSRS)", fluera: "Yes — modern FSRS", goodNotes: "No", notion: "No", anki: "Yes — SM-2 legacy" },
@@ -63,13 +63,13 @@ const data: HomeData = {
     steps: [
       {
         phase: "Lecture day",
-        title: "One canvas per organ system.",
-        description: "Write each lesson by hand on an infinite canvas — anatomical structures, drug mechanisms, pathways. Spatial position becomes memory anchor. Thirteen brush engines, sub-15ms latency on iPad and Android tablets.",
+        title: "Every organ system becomes a region.",
+        description: "Write each lesson in its own region of the same infinite canvas — anatomical structures, drug mechanisms, pathways. Spatial position becomes a memory anchor. Twelve brush engines and low-latency ink on supported tablets.",
       },
       {
         phase: "Same evening",
         title: "Reconstruct from memory, before the book.",
-        description: "Close the lecture material. Try to rebuild what you remember on a blank canvas. The gaps you find — the cranial nerve you skipped, the receptor you confused — are the map of what to study tonight. Productive failure, by design (Kapur, 2008).",
+        description: "Close the lecture material. Try to rebuild what you remember in a clear region of the same canvas. The gaps you find — the cranial nerve you skipped, the receptor you confused — are the map of what to study tonight. Productive failure, by design (Kapur, 2008).",
       },
       {
         phase: "Within 48h",

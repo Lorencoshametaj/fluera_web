@@ -14,4 +14,4 @@ El diseño experimental era simple: los estudiantes asistían a las clases y tom
 
 La conclusión es contraintuitiva en la era de la velocidad: la lentitud de la captura fuerza elaboración cognitiva en el momento de la codificación. La mano es el cuello de botella —y el cuello de botella es donde sucede el aprendizaje.
 
-La filosofía de producto entera de Fluera parte de aquí. La escritura a mano no es una elección esqueuomórfica. Es la herramienta cognitiva. Trece brush engines. Presión, inclinación, velocidad. Latencia de trazo por debajo de 15 milisegundos en cada dispositivo soportado. El canvas infinito no es estética —es el sustrato que tu memoria estaba buscando.
+La filosofía de producto entera de Fluera parte de aquí. La escritura a mano no es una elección esqueuomórfica. Es la herramienta cognitiva. Doce brush engines. Presión, inclinación, velocidad. Tinta de baja latencia en hardware compatible. El canvas infinito no es estética —es el sustrato que tu memoria estaba buscando.
