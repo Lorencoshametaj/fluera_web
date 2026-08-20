@@ -11,7 +11,14 @@ module.exports = {
   ci: {
     collect: {
       staticDistDir: "./dist",
-      numberOfRuns: 1,
+      // Three runs, not one. A single sample on a shared CI runner is not a
+      // measurement of the site: three runs of the SAME page on the SAME build
+      // scored 95 / 85 / 90 here — a ten-point spread with nothing changed.
+      // That is why this gate flipped between success and failure across
+      // commits that touched only a legal page and a CLAUDE.md, neither of
+      // which is in the URL list below. The 0.95 floor is untouched; only the
+      // precision of the measurement changes.
+      numberOfRuns: 3,
       // Trailing slashes: the built pages live at /path/index.html, so the
       // slashless form is a 301 — auditing it fails the `redirects` assertion
       // for a defect the page doesn't have. (/engine IS a redirect to /, so
@@ -51,6 +58,10 @@ module.exports = {
 
     assert: {
       preset: "lighthouse:recommended",
+      // Assert against the representative run (median by FCP/TTI), so every
+      // audit in a verdict comes from one coherent load — not a chimera of
+      // metrics picked from three different runs.
+      aggregationMethod: "median-run",
       assertions: {
         // ─── Category-level score floors ────────────────────────────────
         "categories:performance":     ["error", { minScore: 0.95 }],
