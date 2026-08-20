@@ -4,53 +4,47 @@ import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
-  title="Institutionelle case-studier"
-  description="Rigtige historier fra universiteter, gymnasier og kurser, der bruger Fluera. Tom indtil videre: pilotprogrammerne er ved at afslutte deres første semestre."
+  title="Casestudier for uddannelse"
+  description="Vi har endnu ikke kørt et pilotprojekt. Denne side står tom, indtil ét opfylder tre betingelser, vi har skrevet ned på forhånd."
   locale="da"
 >
 
   <PageHero
-    kicker="Case-studier"
-    title="Piloterne kører.<br />Historierne kommer senere."
-    description="Vi udgiver ikke en case-undersøgelse, før en pilot har afsluttet mindst ét semester, institutionen har underskrevet, og de anonymiserede studenterdata er tjekket for nøjagtighed. Andet semester 2026- og første semester 2027-kohorterne kører — denne side fyldes, så snart de slutter."
+    kicker="Casestudier"
+    title="Ingen casestudier endnu.<br />Det er det ærlige svar."
+    description="Vi har endnu ikke kørt et pilotprojekt. I stedet for at fylde denne side med noget, der ligner dokumentation uden at være det, står her de tre betingelser, et pilotprojekt skal opfylde, før noget som helst vises her — skrevet ned på forhånd, så du kan holde os fast på dem."
     breadcrumb={{ label: "Uddannelse", href: "/da/education" }}
   />
 
   <section class="py-20 md:py-24 border-b border-white/[0.04]">
     <div class="container-site max-w-4xl">
       <div class="grid md:grid-cols-3 gap-4">
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">2. semester 2026 · I gang</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">En præklinisk medicinerkohorte</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            ~30 førsteårsmedicinere, der bruger Fluera til et semester med anatomi og biokemi. Udgivelse ved semesterets afslutning.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Et helt semester</h2>
+          <p class="text-sm text-paper-300">
+            Ikke en demo, ikke to ugers prøve. Et hold bruger Fluera et helt semester, eksamener inklusive, før vi skriver en linje om det.
           </p>
-          <p class="text-xs font-mono text-ink-500">Planlagt 1. kvartal 2027</p>
         </article>
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">2. semester 2026 · I gang</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">Mikroøkonomi på bachelor</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            Et begrebstæt mikroøkonomi-kursus. Fokus: hvordan 12-trins-cyklussen holder, når materialet er abstrakt frem for faktuelt.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Underviserens godkendelse</h2>
+          <p class="text-sm text-paper-300">
+            Underviseren læser det, vi har skrevet, og godkender det, før det går online. Er hun uenig i vores læsning af semestret, bliver det ikke udgivet.
           </p>
-          <p class="text-xs font-mono text-ink-500">Planlagt 2. kvartal 2027</p>
         </article>
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">1. semester 2027 · Starter</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">Et masterseminar i jura</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            Forfatningsfortolkning. Mindre kohorte, dybere engagement. Fokus på Ghost Map til sammenligning af retspraksis.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Tal, anonymiserede og efterprøvede</h2>
+          <p class="text-sm text-paper-300">
+            Aggregerede, anonymiserede og kontrolleret for korrekthed. Ingen leverandørvalgte anekdoter, ingen citater uden hele konteksten.
           </p>
-          <p class="text-xs font-mono text-ink-500">Planlagt 3. kvartal 2027</p>
         </article>
       </div>
 
       <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
-        <h2 class="font-serif text-xl text-paper-50 mb-2">Vil du starte en pilot?</h2>
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Vil du være den første?</h2>
         <p class="text-sm text-paper-200 mb-4 leading-relaxed">
-          Vi kører én pilot pr. semester — en klasse, tredive studerende, ét semester, uden omkostninger. Til gengæld beder vi om struktureret feedback og muligheden for at udgive en anonymiseret case-undersøgelse til sidst.
+          Vi kører ét pilotprojekt pr. semester — ét hold, ét semester, gratis. Til gengæld beder vi om struktureret feedback og muligheden for at udgive et anonymiseret casestudie til sidst, under de tre betingelser ovenfor.
         </p>
-        <a href="/da/contact/sales" class="btn-primary">Start en pilotsamtale →</a>
+        <a href="/contact/sales" class="btn-primary">Tal om et pilotprojekt →</a>
       </div>
     </div>
   </section>
@@ -58,7 +52,7 @@ import PageHero from "@/components/PageHero.astro";
   <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-narrow text-center">
       <p class="text-sm text-ink-500 max-w-xl mx-auto">
-        Hvorfor vente? Fordi en case-undersøgelse med rigtige tal tager tid at indsamle ærligt — og at udgive „case-studier" baseret på leverandørselekterede anekdoter er præcis den slags indhold, vi ikke vil producere.
+        Hvorfor er denne side tom? Fordi et casestudie med rigtige tal tager tid at indsamle ærligt — og at udgive «casestudier» af marketingkvalitet baseret på leverandørvalgte anekdoter er præcis den genre indhold, vi ikke vil producere. En tom side er den version af denne side, vi kan forsvare.
       </p>
     </div>
   </section>

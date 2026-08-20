@@ -4,7 +4,7 @@ title: "Verkörperte Kognition"
 shortDescription: "Denken ist kein rein zerebrales Phänomen. Körper, Geste, motorisches Handeln und Interaktion mit der Umwelt sind Bestandteile kognitiver Prozesse, nicht bloß Beiwerk."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

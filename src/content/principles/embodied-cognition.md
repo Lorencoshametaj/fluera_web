@@ -3,7 +3,7 @@ title: Embodied Cognition
 shortDescription: "Thinking is not a purely cerebral phenomenon. Body, gesture, motor action and environmental interaction are constitutive of cognitive processes, not accessories."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

@@ -4,7 +4,7 @@ title: "أثر التوليد"
 shortDescription: "المعلومة التي تُولّدها بنفسك — مكتوبةً بكلماتك، مرسومةً، مشروحةً — تُسترجَع أفضل بكثير من المعلومة المستهلَكة سلبياً، حتى لو كان المحتوى نفسه."
 keyYear: "1978"
 fieldOfStudy: memory
-primaryAuthors: [joseph-novak, mueller-oppenheimer]
+primaryAuthors: [joseph-novak, flanigan]
 appliedInFeatures: [memory-palace, ghost-map, socratic-mode]
 evidenceStrength: strong
 order: 5

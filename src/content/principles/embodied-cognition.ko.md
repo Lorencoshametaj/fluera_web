@@ -4,7 +4,7 @@ title: "체화된 인지"
 shortDescription: "사고는 순전히 대뇌적 현상이 아닙니다. 신체, 몸짓, 운동 행동 및 환경 상호작용은 인지 과정에 부속물이 아닌 구성적입니다."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

@@ -1,17 +1,17 @@
 ---
 lang: "nl"
 title: "Codering door handschrift"
-shortDescription: "Met de hand schrijven produceert diepere codering dan typen — zelfs wanneer de getypte aantekeningen vollediger zijn. De traagheid van de pen dwingt compressie, parafrasering en selectie af, en dat is waar het leren woont."
-keyYear: "2014"
+shortDescription: "De hand wint op prestatie met een kleine maar betrouwbare marge; het toetsenbord wint op volume. Het voordeel wordt niet verbruikt terwijl je schrijft — het groeit als je je aantekeningen herleest, en dan wordt het geïnd."
+keyYear: "2024"
 fieldOfStudy: embodiment
-primaryAuthors: [mueller-oppenheimer, van-der-meer]
+primaryAuthors: [flanigan, van-der-meer]
 appliedInFeatures: [memory-palace, ghost-map]
-evidenceStrength: strong
+evidenceStrength: moderate
 order: 22
 ---
 
-Pam Mueller (Princeton) en Daniel Oppenheimer (UCLA) deden de sleutelstudie in 2014. Studenten maakten in colleges aantekeningen met de hand of op laptop. De laptopnotities waren vollediger, vaak letterlijk. Een week later domineerden de handschrijvers, bij conceptuele vragen, op grote afstand de laptopgebruikers.
+Abraham Flanigan en collega's beslechtten de discussie in 2024 door 24 studies met zo'n 3.000 studenten samen te nemen. Typen wint op volume: getypte aantekeningen bevatten veel meer woorden. De hand wint op prestatie, met een kleine maar betrouwbare marge — Hedges' g = 0,248 (p < 0,001). En je aantekeningen vóór de toets herlezen maakt dat voordeel groter, niet kleiner.
 
-De hand is trager. Traagheid dwingt selectie af. Selectie is verwerking. Verwerking is codering. Het is niet dat handschrift *een betere input* is dan typen — het is dat het knelpunt van de hand de geest beschermt tegen oppervlakkige transcriptie.
+De hand is trager, en de eenvoudigste lezing van dat verschil blijft de beste: traagheid dwingt selectie af, selectie is verwerking, verwerking is codering. Het is niet dat handschrift *een betere input* is dan typen — het is dat het knelpunt van de hand de geest beschermt tegen oppervlakkige transcriptie.
 
-Het EEG-werk van Audrey van der Meer uit 2020 maakte het mechanisme zichtbaar. Handschrift recruteert brede, sensorimotorische, visuele en linguïstische netwerken; typen activeert een nauw subset. Meer actieve netwerken op het moment van codering betekent later meer ophaalpaden. De engine van Fluera is gebouwd om dit te behouden — niet als esthetisch eerbetoon, maar als structurele pedagogie.
+Het high-density EEG-werk van Audrey van der Meer laat zien wat er in het brein verschilt: handschrift levert bredere, sterker verbonden activatie in visuele, motorische en sensorische gebieden dan typen. Dat is een neuraal correlaat, geen maat voor hoeveel je leert of onthoudt. Het voordeel zelf wordt later geïnd, op de dag dat je terugkomt op de pagina — en voor die dag is de engine van Fluera gebouwd.

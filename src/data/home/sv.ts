@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "Flow — maximal kognitiv prestation när utmaning och förmåga balanseras med omedelbar återkoppling.", year: "1990" },
     { name: "Joseph Novak",            contribution: "Begreppskartor — att bygga en karta slår att studera en färdig, i vilken disciplin som helst.", year: "1984" },
     { name: "O'Keefe och Moser",       contribution: "Place cells och grid cells — hjärnans biologiska GPS. Därför fungerar minnespalatset.", year: "Nobel 2014", nobel: true },
-    { name: "Mueller och Oppenheimer", contribution: "Handskrivna anteckningar slår laptop-anteckningar på konceptuella frågor — även när laptop-versionen är fullständigare.", year: "2014" },
+    { name: "Flanigan m.fl.", contribution: "Över 24 studier presterar handskrivna anteckningar något bättre än tangentbordsskrivna — en liten fördel som växer när du repeterar dem.", year: "2024" },
     { name: "Audrey van der Meer",     contribution: "EEG-evidens: handskrift aktiverar bredare hjärnnätverk än att skriva på tangentbord.", year: "2020" },
     { name: "Roediger och Karpicke",   contribution: "Återkallelsepraktik — testet mäter inte minnet, det skapar det.", year: "2006" },
   ],

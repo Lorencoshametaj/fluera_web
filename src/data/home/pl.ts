@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "Flow — szczyt wydajności poznawczej, gdy wyzwanie odpowiada umiejętnościom, a informacja zwrotna jest natychmiastowa.", year: "1990" },
     { name: "Joseph Novak",            contribution: "Mapowanie pojęć — tworzenie mapy przewyższa studiowanie gotowej, niezależnie od dziedziny.", year: "1984" },
     { name: "O'Keefe i Moser",         contribution: "Komórki miejsca i komórki sieci — wbudowany GPS mózgu. Dlaczego pałace pamięci działają.", year: "Nobel 2014", nobel: true },
-    { name: "Mueller i Oppenheimer",   contribution: "Notatki ręczne pokonują notatki na laptopie w pytaniach pojęciowych — nawet gdy notatki na laptopie są pełniejsze.", year: "2014" },
+    { name: "Flanigan i wsp.", contribution: "W 24 badaniach notatki ręczne wypadają nieco lepiej niż pisane na klawiaturze — niewielka przewaga, która rośnie przy powtarzaniu.", year: "2024" },
     { name: "Audrey van der Meer",     contribution: "Dowody EEG, że pisanie ręczne aktywuje szersze sieci mózgowe niż pisanie na klawiaturze.", year: "2020" },
     { name: "Roediger i Karpicke",     contribution: "Praktyka wydobywania — testowanie nie mierzy pamięci, ono ją tworzy.", year: "2006" },
   ],

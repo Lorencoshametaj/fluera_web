@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "Flow — desempenho cognitivo máximo quando desafio e habilidade se equilibram com feedback imediato.", year: "1990" },
     { name: "Joseph Novak",            contribution: "Mapeamento conceitual — construir um mapa supera estudar um pronto, em qualquer disciplina.", year: "1984" },
     { name: "O'Keefe e Moser",         contribution: "Place cells e grid cells — o GPS biológico do cérebro. Por que o Palácio da Memória funciona.", year: "Nobel 2014", nobel: true },
-    { name: "Mueller e Oppenheimer",   contribution: "Anotações à mão superam as no laptop em questões conceituais — mesmo quando as do laptop são mais completas.", year: "2014" },
+    { name: "Flanigan e colegas", contribution: "Em 24 estudos, anotações à mão rendem um pouco mais que as digitadas — vantagem pequena, que cresce ao revisá-las.", year: "2024" },
     { name: "Audrey van der Meer",     contribution: "Evidência por EEG: a escrita à mão ativa redes cerebrais mais amplas do que a digitação.", year: "2020" },
     { name: "Roediger e Karpicke",     contribution: "Prática de recuperação — o teste não mede a memória, ele a cria.", year: "2006" },
   ],

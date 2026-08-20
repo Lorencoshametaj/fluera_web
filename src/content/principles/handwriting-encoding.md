@@ -1,16 +1,16 @@
 ---
 title: Handwriting Encoding
-shortDescription: "Writing by hand produces deeper encoding than typing — even when typed notes are more complete. The slowness of the pen forces compression, paraphrase and selection, which is where learning lives."
-keyYear: "2014"
+shortDescription: "Handwriting wins on achievement by a small but reliable margin; typing wins on volume. The advantage is not spent while you write — it grows when you review the notes, and that is the day it is collected."
+keyYear: "2024"
 fieldOfStudy: embodiment
-primaryAuthors: [mueller-oppenheimer, van-der-meer]
+primaryAuthors: [flanigan, van-der-meer]
 appliedInFeatures: [memory-palace, ghost-map]
-evidenceStrength: strong
+evidenceStrength: moderate
 order: 22
 ---
 
-Pam Mueller (Princeton) and Daniel Oppenheimer (UCLA) ran the landmark 2014 study. Students took lecture notes by hand or on a laptop. Laptop notes were more complete, often verbatim. A week later, on conceptual questions, handwriters outperformed laptop users substantially.
+Abraham Flanigan and colleagues settled the argument in 2024, pooling 24 studies of roughly 3,000 college students. Typing wins on volume: typed notes hold far more words. Handwriting wins on achievement, by a small but reliable margin — Hedges' g = 0.248 (p < 0.001). And reviewing the notes before the test made that advantage larger, not smaller.
 
-The hand is slower. Slowness forces selection. Selection is processing. Processing is encoding. It is not that handwriting is *better input* than typing — it is that the bottleneck of the hand protects the mind from shallow transcription.
+The hand is slower, and the plainest reading of the gap is still the best one: slowness forces selection, selection is processing, processing is encoding. It is not that handwriting is *better input* than typing — it is that the bottleneck of the hand protects the mind from shallow transcription.
 
-Audrey van der Meer's 2020 EEG work made the mechanism visible. Handwriting recruits broad sensorimotor, visual and linguistic networks; typing engages a narrow subset. More active networks at encoding means more retrieval routes later. Fluera's engine was built to preserve this — not as aesthetic homage but as load-bearing pedagogy.
+Audrey van der Meer's high-density EEG work shows what differs in the brain: handwriting produces broader, more connected activation across visual, motor and sensory regions than typing does. That is a neural correlate, not a measure of how much is learned or remembered. The advantage itself is collected later, on the day you come back to the page — and that is the day Fluera's engine was built for.

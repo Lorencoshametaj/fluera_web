@@ -1,17 +1,17 @@
 ---
 lang: "it"
 title: "Codifica via scrittura a mano"
-shortDescription: "Scrivere a mano produce una codifica più profonda della digitazione — anche quando gli appunti digitati sono più completi. La lentezza della penna forza compressione, parafrasi e selezione, cioè dove vive l'apprendimento."
-keyYear: "2014"
+shortDescription: "La mano vince sul rendimento con un margine piccolo ma affidabile; la tastiera vince sul volume. Il vantaggio non si consuma mentre scrivi — cresce quando ripassi gli appunti, ed è quello il giorno in cui lo riscuoti."
+keyYear: "2024"
 fieldOfStudy: embodiment
-primaryAuthors: [mueller-oppenheimer, van-der-meer]
+primaryAuthors: [flanigan, van-der-meer]
 appliedInFeatures: [memory-palace, ghost-map]
-evidenceStrength: strong
+evidenceStrength: moderate
 order: 22
 ---
 
-Pam Mueller (Princeton) e Daniel Oppenheimer (UCLA) hanno condotto lo studio-cardine del 2014. Gli studenti prendevano appunti in lezione a mano o al laptop. Gli appunti al laptop erano più completi, spesso letterali. Una settimana dopo, sulle domande concettuali, i manoscritti superavano nettamente i laptop-takers.
+Abraham Flanigan e colleghi hanno chiuso la questione nel 2024, mettendo insieme 24 studi e circa 3.000 studenti universitari. La tastiera vince sul volume: gli appunti digitati contengono molte più parole. La mano vince sul rendimento, con un margine piccolo ma affidabile — Hedges' g = 0,248 (p < 0,001). E ripassare gli appunti prima della verifica rende quel vantaggio più grande, non più piccolo.
 
-La mano è più lenta. La lentezza forza selezione. La selezione è elaborazione. L'elaborazione è codifica. Non è che scrivere a mano sia *un input migliore* della digitazione — è che il collo di bottiglia della mano protegge la mente dalla trascrizione superficiale.
+La mano è più lenta, e la lettura più semplice di quello scarto resta la migliore: la lentezza forza selezione, la selezione è elaborazione, l'elaborazione è codifica. Non è che scrivere a mano sia *un input migliore* della digitazione — è che il collo di bottiglia della mano protegge la mente dalla trascrizione superficiale.
 
-Il lavoro EEG del 2020 di Audrey van der Meer ha reso visibile il meccanismo. La scrittura a mano recluta reti ampie, sensori-motorie, visive e linguistiche; la digitazione ne ingaggia un sottoinsieme stretto. Più reti attive al momento della codifica significa più percorsi di recupero in seguito. Il motore di Fluera è stato costruito per preservare questo — non come omaggio estetico, ma come pedagogia portante.
+Il lavoro EEG ad alta densità di Audrey van der Meer mostra cosa cambia nel cervello: scrivere a mano produce un'attivazione più ampia e più connessa fra regioni visive, motorie e sensoriali di quanta ne produca digitare. È un correlato neurale, non una misura di quanto si impara o si ricorda. Il vantaggio vero si riscuote dopo, il giorno in cui torni sulla pagina — ed è per quel giorno che è stato costruito il motore di Fluera.

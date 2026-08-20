@@ -4,7 +4,7 @@ title: "Efekt generowania"
 shortDescription: "Informacja, którą sam generujesz — pisana własnymi słowami, rysowana, wyjaśniana — jest pamiętana znacznie lepiej niż konsumowana biernie, nawet jeśli treść jest identyczna."
 keyYear: "1978"
 fieldOfStudy: memory
-primaryAuthors: [joseph-novak, mueller-oppenheimer]
+primaryAuthors: [joseph-novak, flanigan]
 appliedInFeatures: [memory-palace, ghost-map, socratic-mode]
 evidenceStrength: strong
 order: 5

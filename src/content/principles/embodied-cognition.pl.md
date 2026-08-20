@@ -4,7 +4,7 @@ title: "Poznanie ucieleśnione"
 shortDescription: "Myślenie nie jest zjawiskiem czysto mózgowym. Ciało, gest, ruch motoryczny i interakcja ze środowiskiem są składnikami procesów poznawczych, nie ich akcesoriami."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

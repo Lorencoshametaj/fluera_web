@@ -4,7 +4,7 @@ title: "Generatie-effect"
 shortDescription: "Informatie die je zelf genereert — met je eigen woorden geschreven, getekend, uitgelegd — wordt veel beter onthouden dan informatie die je passief consumeert, zelfs als de inhoud identiek is."
 keyYear: "1978"
 fieldOfStudy: memory
-primaryAuthors: [joseph-novak, mueller-oppenheimer]
+primaryAuthors: [joseph-novak, flanigan]
 appliedInFeatures: [memory-palace, ghost-map, socratic-mode]
 evidenceStrength: strong
 order: 5

@@ -3,7 +3,7 @@ lang: "pl"
 name: Audrey van der Meer
 years: "2020 · trwa"
 fields: ["neuronauki", "poznanie ucieleśnione"]
-shortBio: "Profesorka neuropsychologii w NTNU (Norweski Uniwersytet Nauki i Technologii), której praca z EEG dostarczyła neuralnego wyjaśnienia, dlaczego pisanie ręczne wyprzedza pisanie na klawiaturze: pisanie ręczne angażuje szersze i bardziej rozproszone sieci mózgowe, zwłaszcza w regionach związanych z formowaniem pamięci i integracją sensomotoryczną."
+shortBio: "Profesorka neuropsychologii w NTNU (Norweski Uniwersytet Nauki i Technologii): jej zapisy EEG o wysokiej gęstości pokazują, że pisanie ręczne angażuje szersze i bardziej rozproszone sieci mózgowe niż pisanie na klawiaturze, zwłaszcza w regionach związanych z formowaniem pamięci i integracją sensomotoryczną. To neuralny korelat obu czynności — nie miara tego, ile student się uczy."
 notableWork: "The importance of cursive handwriting over typewriting for learning in the classroom (Frontiers in Psychology, 2020)"
 keyPrinciples: [handwriting-encoding, embodied-cognition]
 appliedInFeatures: [memory-palace, ghost-map]
@@ -11,8 +11,8 @@ externalProfile: https://www.ntnu.edu/employees/audrey.vandermeer
 order: 11
 ---
 
-Tam, gdzie Mueller i Oppenheimer udokumentowali behawioralny efekt pisania ręcznego, laboratorium van der Meer udokumentowało jego neuralny substrat. Zapisy EEG o wysokiej gęstości podczas pisania ręcznego pokazują aktywacje w regionach wzrokowych, ruchowych i integracji sensorycznej, które po prostu nie pojawiają się podczas pisania na klawiaturze.
+Laboratorium Audrey van der Meer w NTNU rejestruje mózg w trakcie pisania ręką. W badaniach EEG o wysokiej gęstości pisanie ręczne daje szerszą i bardziej rozproszoną aktywację oraz łączność niż pisanie na klawiaturze — także w regionach wiązanych z formowaniem pamięci i integracją sensomotoryczną.
 
-Praktyczna implikacja: pisanie ręczne angażuje więcej mózgu, a im więcej regionów angażuje się podczas kodowania, tym więcej ścieżek przypominania istnieje potem. Pamięć jest grafem, a pisanie ręczne buduje bogatszy.
+Trzeba to czytać dokładnie tak, czym jest: jako korelat neuralny. EEG pokazuje, co mózg robi w trakcie czynności; nie mierzy, ile student się nauczy. Odpowiedź na to pytanie przychodzi skądinąd i jest skromna: metaanaliza Flanigan z 2024 roku, obejmująca 24 badania, wycenia przewagę ręki na g = 0,248. Mała, ale wiarygodna — i większa u tych, którzy powtarzają swoje notatki.
 
-Dlatego silnik Fluery został napisany od zera. Canvas, który gubi pociągnięcia, zwalnia pod naciskiem albo spłaszcza dane nachylenia, to canvas, który wyrzuca dokładnie ten sygnał, który prace EEG van der Meer pokazują jako najważniejszy. Wysiłek inżynierski w latencji i wierności to nie polerowanie — to produkt.
+Dla tego rozróżnienia silnik Fluery napisano od zera. Pociągnięcie musi pojawić się wtedy, gdy rusza ręka, a notatki muszą dotrwać nienaruszone do powtórki — bo to tam zmierzona przewaga się ujawnia. Canvas, który gubi pociągnięcia, zwalnia pod naciskiem albo spłaszcza dane nachylenia, zawodzi na obu polach. Wysiłek inżynierski w latencji i wierności to nie polerowanie — to produkt.

@@ -16,7 +16,7 @@ const data: PricingData = {
         "Oändlig canvas, handskriftsinmatning, fullständig renderingsmotor",
         "3 baspenslar (penna, reservoarpenna, markör — fler i Plus)",
         "PNG-export",
-        "100 AI-krediter per månad — Atlas och Chat Fluera AI alltid gratis",
+        "100 AI-krediter per månad — Atlas alltid gratis (0 krediter), Chat 1 per meddelande",
         "Socratic 3 sessioner/v., Ghost Map 3 jämförelser/v., 1 Exam/v.",
         "Fog of War, FSRS (intervallrepetition)",
         "Cross-Zone Bridges — se kopplingarna mellan koncept som systemet upptäcker",
@@ -29,8 +29,8 @@ const data: PricingData = {
     },
     {
       name: "Plus",
-      price: "€5,99",
-      period: "per månad · €49 / år (spara €22 — 2 månader gratis)",
+      price: "€9,99",
+      period: "per månad · €99,99 / år (spara €19,89 — 2 månader gratis)",
       tagline:
         "Komplett individuella studier: cloud sync, AI utan veckogränser, obegränsad röstinspelning.",
       features: [
@@ -50,8 +50,8 @@ const data: PricingData = {
     },
     {
       name: "Pro",
-      price: "€11,99",
-      period: "per månad · €99 / år (spara €44 — 3,5 månader gratis)",
+      price: "€19,99",
+      period: "per månad · €199,99 / år (spara €39,89 — 2 månader gratis)",
       tagline:
         "Förstärkta studier: Time Travel, ljud↔streck-sync, realtidssamarbete, sökning i alla canvases.",
       features: [
@@ -70,7 +70,7 @@ const data: PricingData = {
   faq: [
     {
       q: "Hur fungerar AI-krediterna?",
-      a: "Varje AI-operation har en fast kreditkostnad: Ghost Map 8, Socratic 4 per stage, Exam 12 per fråga, Chat 1 per meddelande. Atlas (canvas-åtgärder) och bas-Background-OCR är gratis. Du ser alltid kvarvarande saldo i canvas-headern — inga dolda rate limits, inga överraskningar. Oanvända krediter rullar inte över: planen fylls på var 30:e dag från ditt registreringsdatum (inte den 1:a varje månad — du betalar för 30 dagar och får 30 dagar).",
+      a: "Varje AI-operation har en fast kreditkostnad: Ghost Map 8, Socratic 4 per stage, Exam 12 per fråga, Chat 1 per meddelande. Atlas (canvas-åtgärder) är gratis. Proaktiv Background-OCR kostar 1 kredit per sida och ingår i Pro. Du ser alltid kvarvarande saldo i canvas-headern — inga dolda rate limits, inga överraskningar. Oanvända krediter rullar inte över: planen fylls på var 30:e dag från ditt registreringsdatum (inte den 1:a varje månad — du betalar för 30 dagar och får 30 dagar).",
     },
     {
       q: "Vad händer om krediterna tar slut innan reset?",

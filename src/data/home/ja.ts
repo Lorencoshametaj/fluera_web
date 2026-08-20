@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "フロー――挑戦とスキルが即座のフィードバックとともに釣り合うときの認知パフォーマンスの最大値。", year: "1990" },
     { name: "Joseph Novak",            contribution: "コンセプトマッピング――地図を構築することは、既製のものを学ぶことを、どの分野でも上回ります。", year: "1984" },
     { name: "O'KeefeとMoser",          contribution: "Place cellsとgrid cells――脳の生物学的GPS。記憶の宮殿が機能する理由。", year: "ノーベル賞2014", nobel: true },
-    { name: "MuellerとOppenheimer",    contribution: "手書きのノートは概念的な質問でラップトップのノートを上回ります――ラップトップの方が網羅的でも。", year: "2014" },
+    { name: "Flanigan ら", contribution: "24件の研究を通じて、手書きのノートはタイプよりわずかに優れます――小さな差ですが、復習すると広がります。", year: "2024" },
     { name: "Audrey van der Meer",     contribution: "EEGの証拠:手書きはタイピングよりも広い脳ネットワークを活性化します。", year: "2020" },
     { name: "RoedigerとKarpicke",      contribution: "想起練習――テストは記憶を測るのではなく、記憶を作ります。", year: "2006" },
   ],

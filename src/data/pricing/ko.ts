@@ -16,7 +16,7 @@ const data: PricingData = {
         "무한 캔버스, 손글씨 입력, 완전한 렌더링 엔진",
         "기본 브러시 3종 (연필, 만년필, 마커 — Plus에서 더 많이)",
         "PNG 내보내기",
-        "월 100 AI 크레딧 — Atlas와 Chat Fluera AI는 항상 무료",
+        "월 100 AI 크레딧 — Atlas는 항상 무료(0 크레딧), Chat은 메시지당 1 크레딧",
         "Socratic 주 3회, Ghost Map 주 3회, Exam 주 1회",
         "Fog of War, FSRS (간격 반복)",
         "Cross-Zone Bridges — 시스템이 발견하는 개념 간 연결을 확인",
@@ -29,8 +29,8 @@ const data: PricingData = {
     },
     {
       name: "Plus",
-      price: "€5.99",
-      period: "월 · €49 / 년 (€22 절약 — 2개월 무료)",
+      price: "€9.99",
+      period: "월 · €99.99 / 년 (€19.89 절약 — 2개월 무료)",
       tagline:
         "완전한 개인 학습: 클라우드 동기화, 주간 제한 없는 AI, 무제한 음성 녹음.",
       features: [
@@ -50,8 +50,8 @@ const data: PricingData = {
     },
     {
       name: "Pro",
-      price: "€11.99",
-      period: "월 · €99 / 년 (€44 절약 — 3.5개월 무료)",
+      price: "€19.99",
+      period: "월 · €199.99 / 년 (€39.89 절약 — 2개월 무료)",
       tagline:
         "강화된 학습: Time Travel, 오디오↔획 동기화, 실시간 협업, 모든 캔버스 검색.",
       features: [
@@ -70,7 +70,7 @@ const data: PricingData = {
   faq: [
     {
       q: "AI 크레딧은 어떻게 작동하나요?",
-      a: "각 AI 작업에는 고정된 크레딧 비용이 있습니다: Ghost Map 8, Socratic 단계당 4, Exam 문제당 12, Chat 메시지당 1. Atlas (캔버스 액션)과 기본 Background OCR은 무료. 남은 크레딧은 캔버스 헤더에 항상 표시됩니다 — 숨겨진 속도 제한이나 예상치 못한 차단은 없습니다. 사용하지 않은 크레딧은 이월되지 않습니다: 플랜은 가입일로부터 30일마다 갱신됩니다 (매월 1일이 아닌 — 30일 결제, 30일 수령).",
+      a: "각 AI 작업에는 고정된 크레딧 비용이 있습니다: Ghost Map 8, Socratic 단계당 4, Exam 문제당 12, Chat 메시지당 1. Atlas(캔버스 액션)는 무료입니다. 선제적 Background OCR은 페이지당 1 크레딧이며 Pro 플랜에 포함됩니다. 남은 크레딧은 캔버스 헤더에 항상 표시됩니다 — 숨겨진 속도 제한이나 예상치 못한 차단은 없습니다. 사용하지 않은 크레딧은 이월되지 않습니다: 플랜은 가입일로부터 30일마다 갱신됩니다 (매월 1일이 아닌 — 30일 결제, 30일 수령).",
     },
     {
       q: "리셋 전에 크레딧이 다 떨어지면?",

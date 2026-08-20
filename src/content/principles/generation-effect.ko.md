@@ -4,7 +4,7 @@ title: "Generation Effect"
 shortDescription: "스스로 생성하는 정보 — 자신의 말로 쓰고, 그리고, 설명하는 — 는 동일한 콘텐츠라도 수동적으로 소비하는 정보보다 훨씬 더 잘 기억됩니다."
 keyYear: "1978"
 fieldOfStudy: memory
-primaryAuthors: [joseph-novak, mueller-oppenheimer]
+primaryAuthors: [joseph-novak, flanigan]
 appliedInFeatures: [memory-palace, ghost-map, socratic-mode]
 evidenceStrength: strong
 order: 5

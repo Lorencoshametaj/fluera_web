@@ -4,7 +4,7 @@ title: "生成効果"
 shortDescription: "自分で生成した情報 — 自分の言葉で書いたもの、描いたもの、説明したもの — は、内容が同一でも受動的に消費したものよりずっとよく記憶されます。"
 keyYear: "1978"
 fieldOfStudy: memory
-primaryAuthors: [joseph-novak, mueller-oppenheimer]
+primaryAuthors: [joseph-novak, flanigan]
 appliedInFeatures: [memory-palace, ghost-map, socratic-mode]
 evidenceStrength: strong
 order: 5

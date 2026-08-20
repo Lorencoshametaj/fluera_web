@@ -4,7 +4,7 @@ title: "Genereringseffekten"
 shortDescription: "Information som du själv genererar — skriven med dina ord, ritad, förklarad — minns mycket bättre än den som konsumeras passivt, även om innehållet är identiskt."
 keyYear: "1978"
 fieldOfStudy: memory
-primaryAuthors: [joseph-novak, mueller-oppenheimer]
+primaryAuthors: [joseph-novak, flanigan]
 appliedInFeatures: [memory-palace, ghost-map, socratic-mode]
 evidenceStrength: strong
 order: 5

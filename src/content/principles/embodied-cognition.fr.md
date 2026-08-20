@@ -4,7 +4,7 @@ title: "Cognition incarnée"
 shortDescription: "La pensée n'est pas un phénomène purement cérébral. Le corps, le geste, l'action motrice et l'interaction avec l'environnement sont constitutifs des processus cognitifs, non accessoires."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

@@ -4,7 +4,7 @@ title: "Effet de génération"
 shortDescription: "L'information que tu génères toi-même — écrite avec tes mots, dessinée, expliquée — est retenue bien mieux que celle consommée passivement, même si le contenu est identique."
 keyYear: "1978"
 fieldOfStudy: memory
-primaryAuthors: [joseph-novak, mueller-oppenheimer]
+primaryAuthors: [joseph-novak, flanigan]
 appliedInFeatures: [memory-palace, ghost-map, socratic-mode]
 evidenceStrength: strong
 order: 5

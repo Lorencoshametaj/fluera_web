@@ -4,7 +4,7 @@ title: "Cognizione incarnata"
 shortDescription: "Il pensiero non è fenomeno puramente cerebrale. Corpo, gesto, azione motoria e interazione con l'ambiente sono costituenti dei processi cognitivi, non accessori."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

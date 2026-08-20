@@ -3,7 +3,7 @@ lang: "de"
 name: Audrey van der Meer
 years: "2020 · laufend"
 fields: ["neurociências", "cognição incorporada"]
-shortBio: "Professorin für Neuropsychologie an der NTNU (Norwegische Universität für Wissenschaft und Technologie), deren EEG-Arbeit eine neuronale Erklärung dafür lieferte, warum Handschrift das Tippen übertrifft: Handschrift rekrutiert breitere und stärker verteilte Gehirnnetzwerke, insbesondere in Regionen, die mit Gedächtnisbildung und sensomotorischer Integration verknüpft sind."
+shortBio: "Professorin für Neuropsychologie an der NTNU (Norwegische Universität für Wissenschaft und Technologie): Ihre hochdichten EEG-Messungen zeigen, dass Handschrift breitere und stärker verteilte Gehirnnetzwerke beansprucht als Tippen, auch in Regionen, die mit Gedächtnisbildung und sensomotorischer Integration verknüpft sind. Das ist ein neuronales Korrelat der beiden Tätigkeiten — kein Maß dafür, wie viel jemand lernt."
 notableWork: "The importance of cursive handwriting over typewriting for learning in the classroom (Frontiers in Psychology, 2020)"
 keyPrinciples: [handwriting-encoding, embodied-cognition]
 appliedInFeatures: [memory-palace, ghost-map]
@@ -11,8 +11,8 @@ externalProfile: https://www.ntnu.edu/employees/audrey.vandermeer
 order: 11
 ---
 
-Wo Mueller und Oppenheimer den Verhaltenseffekt der Handschrift dokumentierten, dokumentierte das Labor von van der Meer das neuronale Substrat. Hochdichte EEG-Aufzeichnungen während des Handschreibens zeigen Aktivierungen in visuellen, motorischen und sensorischen Integrationsregionen, die beim Tippen schlicht nicht auftreten.
+Das Labor von Audrey van der Meer an der NTNU zeichnet das Gehirn auf, während die Hand schreibt. In hochdichten EEG-Studien erzeugt Handschrift eine breitere, stärker verteilte Aktivierung und Konnektivität als Tippen — auch in Regionen, die mit Gedächtnisbildung und sensomotorischer Integration assoziiert werden.
 
-Die praktische Implikation: Handschrift rekrutiert mehr Gehirn, und je mehr Regionen sich während der Enkodierung engagieren, desto mehr Abrufwege existieren danach. Das Gedächtnis ist ein Graph, und Handschrift baut einen reicheren.
+Man sollte das genau als das lesen, was es ist: als neuronales Korrelat. Das EEG zeigt, was das Gehirn während der Tätigkeit tut; es misst nicht, wie viel jemand lernt. Diese Frage wird anderswo beantwortet, und bescheiden: Flanigans Meta-Analyse von 2024 über 24 Studien beziffert den Vorsprung der Hand auf g = 0,248. Klein, aber verlässlich — und größer bei denen, die ihre Notizen wiederholen.
 
-Deshalb wurde die Engine von Fluera von Grund auf neu geschrieben. Ein Canvas, das Striche verliert, unter Druck verlangsamt oder Neigungsdaten plattmacht, ist ein Canvas, das genau das Signal wegwirft, das die EEG-Arbeit von van der Meer als das wichtigste ausweist. Der Engineering-Aufwand für Latenz und Treue ist kein Politur — er ist das Produkt.
+Wegen dieser Unterscheidung wurde die Engine von Fluera von Grund auf neu geschrieben. Der Strich muss ankommen, sobald die Hand sich bewegt, und die Notizen müssen bis zur Wiederholung unversehrt bleiben — dort zeigt sich der gemessene Vorteil. Ein Canvas, das Striche verliert, unter Druck verlangsamt oder Neigungsdaten plattmacht, versagt in beidem. Der Engineering-Aufwand für Latenz und Treue ist keine Politur — er ist das Produkt.

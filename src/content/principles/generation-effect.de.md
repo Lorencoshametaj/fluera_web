@@ -4,7 +4,7 @@ title: "Generierungseffekt"
 shortDescription: "Information, die du selbst generierst — in eigenen Worten geschrieben, gezeichnet, erklärt — wird viel besser erinnert als passiv konsumierte Information, selbst wenn der Inhalt identisch ist."
 keyYear: "1978"
 fieldOfStudy: memory
-primaryAuthors: [joseph-novak, mueller-oppenheimer]
+primaryAuthors: [joseph-novak, flanigan]
 appliedInFeatures: [memory-palace, ghost-map, socratic-mode]
 evidenceStrength: strong
 order: 5

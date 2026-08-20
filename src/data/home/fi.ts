@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "Flow — maksimaalinen kognitiivinen suorituskyky, kun haaste ja taito tasapainottuvat välittömällä palautteella.", year: "1990" },
     { name: "Joseph Novak",            contribution: "Käsitekartta — kartan rakentaminen voittaa valmiin opiskelun, jokaisessa oppiaineessa.", year: "1984" },
     { name: "O'Keefe ja Moser",        contribution: "Place cells ja grid cells — aivojen biologinen GPS. Miksi muistipalatsi toimii.", year: "Nobel 2014", nobel: true },
-    { name: "Mueller ja Oppenheimer",  contribution: "Käsin tehdyt muistiinpanot voittavat läppärillä tehdyt käsitteellisissä kysymyksissä — vaikka läppärimuistiinpanot olisivat täydellisemmät.", year: "2014" },
+    { name: "Flanigan ym.", contribution: "24 tutkimuksen yli käsin tehdyt muistiinpanot pärjäävät hieman näppäiltyjä paremmin — pieni etu, joka kasvaa kerratessa.", year: "2024" },
     { name: "Audrey van der Meer",     contribution: "EEG-todisteet: käsin kirjoittaminen aktivoi laajempia aivoverkkoja kuin näppäileminen.", year: "2020" },
     { name: "Roediger ja Karpicke",    contribution: "Palauttamisharjoittelu — testi ei mittaa muistia, se luo sen.", year: "2006" },
   ],

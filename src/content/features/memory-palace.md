@@ -12,7 +12,7 @@ relatedPrinciples:
 relatedAuthors:
   - okeefe-moser
   - joseph-novak
-  - mueller-oppenheimer
+  - flanigan
   - van-der-meer
 order: 9
 ---
@@ -39,7 +39,7 @@ Memory athletes who use the method of loci outperform controls with effect sizes
 
 Joseph Novak's concept mapping research (1984) adds the second leg: **constructing** a spatial map beats *studying* a pre-built one, across disciplines and grade levels. Fluera combines the two — your canvas is a memory palace you build, not one you inherit.
 
-Mueller and Oppenheimer (2014) and van der Meer (2020) round it out: the handwriting itself is not incidental. The hand movements encode a motor trace that strengthens the spatial one. Three encoding channels — semantic, spatial, motor — active simultaneously on every node you draw.
+Flanigan and colleagues (2024) add the third leg, honest about its size: across 24 studies, handwriting beats typing on achievement by a small but reliable margin — one that *grows* for students who review what they wrote. Van der Meer's high-density EEG shows handwriting engaging broader networks than typing: a neural correlate, not a measure of learning, and whether the movement itself encodes anything stays a hypothesis. The spatial channel is the settled one — and review is when you collect on both.
 
 ## What's coming
 

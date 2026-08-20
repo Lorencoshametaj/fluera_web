@@ -4,7 +4,7 @@ title: "الإدراك المُجسَّد"
 shortDescription: "التفكير ليس ظاهرة دماغية محضة. الجسد، والإيماءة، والفعل الحركي، والتفاعل مع البيئة عناصر مكوِّنة للعمليات الإدراكية، لا ملحقات بها."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

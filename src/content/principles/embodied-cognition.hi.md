@@ -4,7 +4,7 @@ title: "मूर्त संज्ञान"
 shortDescription: "सोच विशुद्ध रूप से मस्तिष्क की घटना नहीं है। शरीर, gesture, मोटर क्रिया और पर्यावरण के साथ interaction संज्ञानात्मक प्रक्रियाओं के घटक हैं, सहायक नहीं।"
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

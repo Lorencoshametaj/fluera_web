@@ -3,7 +3,7 @@ title: The Generation Effect
 shortDescription: "Information that you generate yourself — write in your own words, draw, explain — is remembered far better than information you passively consume, even of identical content."
 keyYear: "1978"
 fieldOfStudy: memory
-primaryAuthors: [joseph-novak, mueller-oppenheimer]
+primaryAuthors: [joseph-novak, flanigan]
 appliedInFeatures: [memory-palace, ghost-map, socratic-mode]
 evidenceStrength: strong
 order: 5

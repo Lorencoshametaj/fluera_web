@@ -3,7 +3,7 @@ lang: "fi"
 name: Audrey van der Meer
 years: "2020 · käynnissä"
 fields: ["neurotiede", "kehollinen kognitio"]
-shortBio: "Neuropsykologian professori NTNU:ssa (Norjan tiede- ja teknologiayliopisto), jonka EEG-työ tarjosi neuraalisen selityksen sille, miksi käsinkirjoitus päihittää näppäilyn: käsinkirjoitus rekrytoi laajempia ja jakautuneempia aivoverkkoja, erityisesti muistinmuodostukseen ja sensomotoriseen integraatioon liittyvillä alueilla."
+shortBio: "Neuropsykologian professori NTNU:ssa (Norjan tiede- ja teknologiayliopisto): hänen korkean tiheyden EEG-mittauksensa osoittavat, että käsin kirjoittaminen aktivoi laajempia ja hajautuneempia aivoverkkoja kuin näppäily, myös muistin muodostumiseen ja sensomotoriseen integraatioon liittyvillä alueilla. Se on näiden kahden toiminnan neuraalinen korrelaatti — ei mittari sille, kuinka paljon opiskelija oppii."
 notableWork: "The importance of cursive handwriting over typewriting for learning in the classroom (Frontiers in Psychology, 2020)"
 keyPrinciples: [handwriting-encoding, embodied-cognition]
 appliedInFeatures: [memory-palace, ghost-map]
@@ -11,8 +11,8 @@ externalProfile: https://www.ntnu.edu/employees/audrey.vandermeer
 order: 11
 ---
 
-Siellä missä Mueller ja Oppenheimer dokumentoivat käsinkirjoituksen käyttäytymisvaikutuksen, van der Meerin laboratorio dokumentoi neuraalisen substraatin. Korkearesoluutioiset EEG-tallenteet käsinkirjoituksen aikana näyttävät aktivaatioita visuaalisilla, motorisilla ja sensorisen integraation alueilla, joita näppäilyssä ei yksinkertaisesti tapahdu.
+Audrey van der Meerin laboratorio NTNU:ssa mittaa aivoja samalla kun käsi kirjoittaa. Korkean tiheyden EEG-tutkimuksissa käsinkirjoitus tuottaa laajempaa ja hajautuneempaa aktivaatiota ja kytkeytyneisyyttä kuin näppäily — myös alueilla, jotka yhdistetään muistin muodostumiseen ja sensomotoriseen integraatioon.
 
-Käytännön implikaatio: käsinkirjoitus rekrytoi enemmän aivoja, ja mitä enemmän alueita sitoutuu enkoodauksen aikana, sitä enemmän palautusreittejä on olemassa jälkeenpäin. Muisti on graafi, ja käsinkirjoitus rakentaa rikkaamman.
+Se kannattaa ottaa juuri siitä mitä se on: neuraalisena korrelaattina. EEG kertoo, mitä aivot tekevät toiminnan aikana; se ei mittaa, kuinka paljon opiskelija oppii. Siihen vastataan muualla, ja vaatimattomasti: Flaniganin vuoden 2024 meta-analyysi 24 tutkimuksesta arvioi käden edun suuruudeksi g = 0,248. Pieni, mutta luotettava — ja suurempi niillä, jotka kertaavat muistiinpanonsa.
 
-Tästä syystä Flueran moottori kirjoitettiin alusta uudelleen. Canvas, joka kadottaa vetoja, hidastuu paineen alla tai litistää kallistusdataa, on canvas, joka heittää pois juuri sen signaalin, jota van der Meerin EEG-työ osoittaa tärkeimmäksi. Latenssin ja uskollisuuden suunnittelutyö ei ole kiillotusta — se on tuote.
+Juuri tätä eroa varten Flueran moottori kirjoitettiin alusta uudelleen. Vedon on oltava paikallaan silloin kun käsi liikkuu, ja muistiinpanojen on säilyttävä ehjinä kertaukseen asti — siellä mitattu etu näkyy. Canvas, joka kadottaa vetoja, hidastuu paineen alla tai litistää kallistusdataa, epäonnistuu kummassakin. Latenssin ja uskollisuuden suunnittelutyö ei ole kiillotusta — se on tuote.

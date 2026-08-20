@@ -16,7 +16,7 @@ import type { PricingData } from "../types";
 //   • Pro pillars: Time Travel scrubber + audio↔ink sync + real-time
 //     collab CRDT. The three things that justify the Plus → Pro upgrade
 //     (never "Plus with a higher cap").
-//   • Atlas + Chat AI are always free (0 credits) even on Free — they are
+//   • Atlas is free (0 credits) even on Free; Chat costs 1 credit per
 //     the canvas' conversational UX core.
 // ─────────────────────────────────────────────────────────────────────────
 
@@ -32,7 +32,7 @@ const data: PricingData = {
         "Infinite canvas, handwriting input, full rendering engine",
         "3 base brushes (pencil, fountain pen, marker — more in Plus)",
         "PNG export",
-        "100 AI credits per month — Atlas and Chat Fluera AI always free",
+        "100 AI credits per month — Atlas always free (0 credits), Chat 1 per message",
         "Socratic 3 sessions/week, Ghost Map 3 comparisons/week, 1 Exam/week",
         "Fog of War, FSRS spaced repetition",
         "Cross-Zone Bridges — see the links between concepts the system discovers",
@@ -45,8 +45,8 @@ const data: PricingData = {
     },
     {
       name: "Plus",
-      price: "€5.99",
-      period: "per month · €49 / year (save €22 — 2 months free)",
+      price: "€9.99",
+      period: "per month · €99.99 / year (save €19.89 — 2 months free)",
       tagline:
         "Complete personal study: cloud sync, AI without weekly caps, unlimited voice.",
       features: [
@@ -66,8 +66,8 @@ const data: PricingData = {
     },
     {
       name: "Pro",
-      price: "€11.99",
-      period: "per month · €99 / year (save €44 — 3.5 months free)",
+      price: "€19.99",
+      period: "per month · €199.99 / year (save €39.89 — 2 months free)",
       tagline:
         "Amplified study: Time Travel, audio↔stroke sync, real-time collab, search across all canvases.",
       features: [
@@ -86,7 +86,7 @@ const data: PricingData = {
   faq: [
     {
       q: "How do AI credits work?",
-      a: "Every AI operation has a fixed credit cost: Ghost Map 8, Socratic 4 per stage, Exam 12 per question, Chat 1 per message. Atlas (canvas actions) and basic Background OCR are free. You always see your remaining balance in the canvas header — no hidden rate limits, no surprises. Unused credits don't roll over: the plan refills every 30 days from your signup date (not on the 1st of the month — you pay for 30 days and get 30 days).",
+      a: "Every AI operation has a fixed credit cost: Ghost Map 8, Socratic 4 per stage, Exam 12 per question, Chat 1 per message. Atlas (canvas actions) is free. Proactive Background OCR costs 1 credit per page and is part of Pro. You always see your remaining balance in the canvas header — no hidden rate limits, no surprises. Unused credits don't roll over: the plan refills every 30 days from your signup date (not on the 1st of the month — you pay for 30 days and get 30 days).",
     },
     {
       q: "What happens if I run out of credits before the reset?",

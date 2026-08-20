@@ -4,7 +4,7 @@ title: "Kropsliggjort kognition"
 shortDescription: "Tænkning er ikke et rent cerebralt fænomen. Krop, gestus, motorisk handling og interaktion med omgivelserne er bestanddele af kognitive processer, ikke blot tilbehør."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

@@ -4,7 +4,7 @@ title: "身体化認知"
 shortDescription: "思考は純粋に脳内の現象ではありません。身体、ジェスチャー、運動行為、環境との相互作用は、認知過程の付属物ではなく構成要素です。"
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

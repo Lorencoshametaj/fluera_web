@@ -16,7 +16,7 @@ const data: PricingData = {
         "Unendliches Canvas, Handschrift-Eingabe, vollständige Rendering-Engine",
         "3 Basis-Pinsel (Bleistift, Füllfederhalter, Marker — mehr ab Plus)",
         "PNG-Export",
-        "100 KI-Credits pro Monat — Atlas und Chat Fluera AI immer gratis",
+        "100 KI-Credits pro Monat — Atlas immer gratis (0 Credits), Chat 1 pro Nachricht",
         "Socratic 3 Sitzungen/Woche, Ghost Map 3 Vergleiche/Woche, 1 Exam/Woche",
         "Fog of War, FSRS-Wiederholungsplaner",
         "Cross-Zone Bridges — sieh die Verbindungen zwischen Konzepten, die das System entdeckt",
@@ -29,8 +29,8 @@ const data: PricingData = {
     },
     {
       name: "Plus",
-      price: "€5,99",
-      period: "pro Monat · €49 / Jahr (sparst €22 — 2 Monate gratis)",
+      price: "€9,99",
+      period: "pro Monat · €99,99 / Jahr (sparst €19,89 — 2 Monate gratis)",
       tagline:
         "Komplettes Einzelstudium: Cloud-Sync, KI ohne Wochenlimits, unbegrenzte Sprachaufnahme.",
       features: [
@@ -50,8 +50,8 @@ const data: PricingData = {
     },
     {
       name: "Pro",
-      price: "€11,99",
-      period: "pro Monat · €99 / Jahr (sparst €44 — 3,5 Monate gratis)",
+      price: "€19,99",
+      period: "pro Monat · €199,99 / Jahr (sparst €39,89 — 2 Monate gratis)",
       tagline:
         "Verstärktes Studium: Time Travel, Audio↔Strich-Sync, Echtzeit-Kollaboration, Suche über alle Canvases.",
       features: [
@@ -70,7 +70,7 @@ const data: PricingData = {
   faq: [
     {
       q: "Wie funktionieren die KI-Credits?",
-      a: "Jede KI-Operation kostet feste Credits: Ghost Map 8, Socratic 4 pro Stage, Exam 12 pro Frage, Chat 1 pro Nachricht. Atlas (Canvas-Aktionen) und Basis-Background-OCR sind kostenlos. Du siehst dein Restguthaben immer im Canvas-Header — keine versteckten Rate Limits, keine Überraschungen. Ungenutzte Credits werden nicht übertragen: Der Plan füllt sich alle 30 Tage ab deinem Anmeldedatum wieder auf (nicht am 1. des Monats — du zahlst für 30 Tage und bekommst 30 Tage).",
+      a: "Jede KI-Operation kostet feste Credits: Ghost Map 8, Socratic 4 pro Stage, Exam 12 pro Frage, Chat 1 pro Nachricht. Atlas (Canvas-Aktionen) ist kostenlos. Proaktives Background-OCR kostet 1 Credit pro Seite und gehört zu Pro. Du siehst dein Restguthaben immer im Canvas-Header — keine versteckten Rate Limits, keine Überraschungen. Ungenutzte Credits werden nicht übertragen: Der Plan füllt sich alle 30 Tage ab deinem Anmeldedatum wieder auf (nicht am 1. des Monats — du zahlst für 30 Tage und bekommst 30 Tage).",
     },
     {
       q: "Was passiert, wenn ich vor dem Reset alle Credits aufbrauche?",

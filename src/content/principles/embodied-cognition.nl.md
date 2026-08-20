@@ -4,7 +4,7 @@ title: "Belichaamde cognitie"
 shortDescription: "Denken is geen zuiver cerebraal fenomeen. Lichaam, gebaar, motorische actie en interactie met de omgeving zijn constituenten van cognitieve processen, geen accessoires."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

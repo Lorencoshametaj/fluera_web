@@ -60,7 +60,7 @@ Never translate these — they are product feature names:
 - Pricing tier names: `Free`, `Plus`, `Pro`, `Education` (don't translate "Plus" or "Pro")
 - Brand: `Fluera` is invariant
 - Academic citations: keep author names + year format (e.g. "Bjork, 1994" or "Butterfield & Metcalfe, 2001"). Year is a number; comma is locale-dependent
-- Currency: pricing uses EUR (`€5.99` or `€5,99` per locale convention)
+- Currency: pricing uses EUR (`€9.99` or `€9,99` per locale convention)
 
 ### What adapts per locale
 - **Decimal separator**: `.` for EN/JA/KO/HI/AR, `,` for IT/ES/FR/DE/PT-BR/NL/PL/Nordics

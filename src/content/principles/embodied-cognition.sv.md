@@ -4,7 +4,7 @@ title: "Förkroppsligad kognition"
 shortDescription: "Tänkande är inte ett rent cerebralt fenomen. Kropp, gest, motorisk handling och interaktion med miljön är konstituerande för kognitiva processer, inte tillbehör."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

@@ -96,8 +96,56 @@ console.log("\nV1 content");
 }
 {
   const pricing = read("pricing/index.html");
-  check("pricing page has Plus €5.99", pricing.includes("€5.99"));
-  check("pricing page has Pro €11.99", pricing.includes("€11.99"));
+
+  // ⚠️ Questi due check erano `pricing.includes("€5.99")` e `("€11.99")`, cioe'
+  // NUMERI SCRITTI A MANO. Il 2026-08-17 si e' scoperto che l'app era passata al
+  // listino V2 il 2026-07-23 (Plus €9,99 · Pro €19,99) mentre il sito era rimasto
+  // al V1 in tutte e 16 le lingue — e questa suite andava ROSSA su chiunque
+  // provasse a correggerlo. Il test difendeva la divergenza invece di trovarla.
+  //
+  // Ora legge la FONTE UNICA, la stessa che legge `public_truth_gate.dart`:
+  // se il listino cambia, il sito deve seguirlo, e nessuno deve toccare questo file.
+  const dart = resolve(
+    __dirname, "..", "..",
+    "fluera_engine/lib/src/paywall/fluera_pricing.dart",
+  );
+  const src = existsSync(dart) ? readFileSync(dart, "utf8") : null;
+  const constOf = (name) => {
+    const m = src && src.match(
+      new RegExp(`static const String ${name} = '([^']+)'`),
+    );
+    return m ? m[1] : null;
+  };
+  const plus = constOf("plusMonthly");
+  const pro = constOf("proMonthly");
+
+  // Fonte illeggibile ⇒ ROSSO, mai saltato in silenzio: un check che non puo'
+  // misurare non e' un check superato.
+  const truthOk = Boolean(plus && pro);
+  check(
+    "pricing source of truth is readable (fluera_engine/…/fluera_pricing.dart)",
+    truthOk,
+    truthOk
+      ? ""
+      : src
+        ? "costanti plusMonthly/proMonthly non trovate"
+        : `file assente: ${dart}`,
+  );
+
+  if (truthOk) {
+    // Il sito scrive il decimale con la virgola o col punto a seconda della
+    // lingua; la pagina EN usa il punto. Accettiamo entrambe le forme.
+    const anyForm = (v) => [v, v.replace(",", ".")].some((f) => pricing.includes(f));
+    for (const [tier, want] of [["Plus", plus], ["Pro", pro]]) {
+      const ok = anyForm(want);
+      check(
+        `pricing page shows ${tier} ${want} (from FlueraPricing)`,
+        ok,
+        ok ? "" : `atteso ${want}, non presente nella pagina renderizzata`,
+      );
+    }
+  }
+
   check("pricing page has 3 public tiers (Free/Plus/Pro)", hasPublicV1Tiers(pricing));
 }
 {

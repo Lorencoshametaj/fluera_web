@@ -4,53 +4,47 @@ import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
-  title="Études de cas institutionnelles"
-  description="Histoires réelles d'universités, de facultés et de classes utilisant Fluera. Pour l'instant vide : les programmes pilotes sont en train de boucler leurs premiers semestres."
+  title="Études de cas"
+  description="Nous n'avons pas encore mené de pilote. Cette page reste vide tant qu'un pilote n'a pas rempli trois conditions écrites à l'avance."
   locale="fr"
 >
 
   <PageHero
     kicker="Études de cas"
-    title="Les pilotes tournent.<br />Les histoires viennent ensuite."
-    description="Nous ne publions pas d'étude de cas tant qu'un pilote n'a pas bouclé au moins un semestre, que la faculté n'a pas validé et que les données anonymisées des étudiants n'ont pas été revues pour leur exactitude. Les cohortes du second semestre 2026 et du premier semestre 2027 sont en cours — cette page se remplira au fur et à mesure qu'elles se terminent."
+    title="Aucune étude de cas.<br />C'est la réponse honnête."
+    description="Nous n'avons pas encore mené de pilote. Plutôt que de remplir cette page avec quelque chose qui ressemble à une preuve sans en être une, voici les trois conditions qu'un pilote doit remplir avant que quoi que ce soit paraisse ici — écrites à l'avance, pour que vous puissiez nous les opposer."
     breadcrumb={{ label: "Éducation", href: "/fr/education" }}
   />
 
   <section class="py-20 md:py-24 border-b border-white/[0.04]">
     <div class="container-site max-w-4xl">
       <div class="grid md:grid-cols-3 gap-4">
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">2nd semestre 2026 · En cours</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">Une promotion préclinique de médecine</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            ~30 étudiants de première année de médecine utilisant Fluera pendant un semestre d'anatomie et de biochimie. Publication en fin de semestre.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Un semestre entier</h2>
+          <p class="text-sm text-paper-300">
+            Pas une démo, pas deux semaines d'essai. Une classe utilise Fluera un semestre complet, examens compris, avant que nous en écrivions une ligne.
           </p>
-          <p class="text-xs font-mono text-ink-500">Prévu Q1 2027</p>
         </article>
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">2nd semestre 2026 · En cours</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">Microéconomie en licence</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            Un cours de microéconomie dense en concepts. Focus : comment le cycle en 12 étapes tient quand le matériau est abstrait plutôt que factuel.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">L'accord de l'enseignant</h2>
+          <p class="text-sm text-paper-300">
+            L'enseignant lit ce que nous avons écrit et l'approuve avant publication. S'il conteste notre lecture de son cours, cela ne paraît pas.
           </p>
-          <p class="text-xs font-mono text-ink-500">Prévu Q2 2027</p>
         </article>
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">1er semestre 2027 · Démarre</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">Un séminaire de master en droit</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            Interprétation constitutionnelle. Cohorte plus restreinte, engagement plus profond. Focus sur Ghost Map pour la comparaison de jurisprudence.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Des chiffres anonymisés et vérifiés</h2>
+          <p class="text-sm text-paper-300">
+            Agrégés, anonymisés et vérifiés. Aucune anecdote choisie par nous, aucune citation sortie de son contexte.
           </p>
-          <p class="text-xs font-mono text-ink-500">Prévu Q3 2027</p>
         </article>
       </div>
 
       <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
-        <h2 class="font-serif text-xl text-paper-50 mb-2">Tu veux lancer un pilote ?</h2>
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Envie d'être le premier ?</h2>
         <p class="text-sm text-paper-200 mb-4 leading-relaxed">
-          Nous menons un pilote par semestre — une classe, trente étudiants, un semestre, sans frais. En échange, nous demandons un feedback structuré et l'option de publier une étude de cas anonymisée à la fin.
+          Nous menons un pilote par semestre — une classe, un semestre, sans frais. En échange nous demandons un retour structuré et la possibilité de publier une étude de cas anonymisée à la fin, selon les trois conditions ci-dessus.
         </p>
-        <a href="/fr/contact/sales" class="btn-primary">Démarrer une conversation pilote →</a>
+        <a href="/contact/sales" class="btn-primary">Parlons d'un pilote →</a>
       </div>
     </div>
   </section>
@@ -58,7 +52,7 @@ import PageHero from "@/components/PageHero.astro";
   <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-narrow text-center">
       <p class="text-sm text-ink-500 max-w-xl mx-auto">
-        Pourquoi attendre ? Parce qu'une étude de cas avec des chiffres réels prend du temps à collecter honnêtement — et publier des "études de cas" marketing fondées sur des anecdotes choisies par le vendor est précisément le genre de contenu que nous ne voulons pas produire.
+        Pourquoi cette page est-elle vide ? Parce qu'une étude de cas avec de vrais chiffres demande du temps pour être réunie honnêtement — et publier des « études de cas » fondées sur des anecdotes choisies par le fournisseur est exactement le genre de contenu que nous ne voulons pas produire. Une page vide est la version de cette page que nous pouvons défendre.
       </p>
     </div>
   </section>

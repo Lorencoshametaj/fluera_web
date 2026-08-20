@@ -4,7 +4,7 @@ title: "Cognición encarnada"
 shortDescription: "El pensamiento no es un fenómeno puramente cerebral. Cuerpo, gesto, acción motora e interacción con el entorno son constituyentes de los procesos cognitivos, no accesorios."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

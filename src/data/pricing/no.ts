@@ -16,7 +16,7 @@ const data: PricingData = {
         "Uendelig lerret, håndskriftsinntasting, fullstendig rendring-motor",
         "3 grunnpensler (blyant, fyllepenn, markør — flere i Plus)",
         "PNG-eksport",
-        "100 AI-kreditter per måned — Atlas og Chat Fluera AI alltid gratis",
+        "100 AI-kreditter per måned — Atlas alltid gratis (0 kreditter), Chat 1 per melding",
         "Socratic 3 økter/uke, Ghost Map 3 sammenligninger/uke, 1 Exam/uke",
         "Fog of War, FSRS (intervallrepetisjon)",
         "Cross-Zone Bridges — se forbindelsene mellom konsepter som systemet oppdager",
@@ -29,8 +29,8 @@ const data: PricingData = {
     },
     {
       name: "Plus",
-      price: "€5,99",
-      period: "per måned · €49 / år (spar €22 — 2 måneder gratis)",
+      price: "€9,99",
+      period: "per måned · €99,99 / år (spar €19,89 — 2 måneder gratis)",
       tagline:
         "Komplett individuell studie: cloud sync, AI uten ukentlige grenser, ubegrenset stemmeopptak.",
       features: [
@@ -50,8 +50,8 @@ const data: PricingData = {
     },
     {
       name: "Pro",
-      price: "€11,99",
-      period: "per måned · €99 / år (spar €44 — 3,5 måneder gratis)",
+      price: "€19,99",
+      period: "per måned · €199,99 / år (spar €39,89 — 2 måneder gratis)",
       tagline:
         "Forsterket studie: Time Travel, lyd↔strek-sync, samarbeid i sanntid, søk på alle lerret.",
       features: [
@@ -70,7 +70,7 @@ const data: PricingData = {
   faq: [
     {
       q: "Hvordan fungerer AI-kredittene?",
-      a: "Hver AI-operasjon har en fast kredittkostnad: Ghost Map 8, Socratic 4 per stage, Exam 12 per spørsmål, Chat 1 per melding. Atlas (lerret-handlinger) og basis-Background-OCR er gratis. Du ser alltid resterende saldo i lerret-headeren — ingen skjulte rate limits, ingen overraskelser. Ubrukte kreditter rulles ikke over: planen fylles på hver 30. dag fra registreringsdatoen din (ikke den 1. i måneden — du betaler for 30 dager og får 30 dager).",
+      a: "Hver AI-operasjon har en fast kredittkostnad: Ghost Map 8, Socratic 4 per stage, Exam 12 per spørsmål, Chat 1 per melding. Atlas (lerret-handlinger) er gratis. Proaktiv Background-OCR koster 1 kreditt per side og er en del av Pro. Du ser alltid resterende saldo i lerret-headeren — ingen skjulte rate limits, ingen overraskelser. Ubrukte kreditter rulles ikke over: planen fylles på hver 30. dag fra registreringsdatoen din (ikke den 1. i måneden — du betaler for 30 dager og får 30 dager).",
     },
     {
       q: "Hva skjer hvis jeg går tom for kreditter før reset?",

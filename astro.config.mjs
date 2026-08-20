@@ -155,6 +155,18 @@ export default defineConfig({
       LOCALES.filter((l) => l !== DEFAULT_LOCALE)
         .map((l) => [`/${l}/marketplace`, `/${l}/catalogue`]),
     ),
+    // The Mueller & Oppenheimer author page was replaced by Flanigan et al.
+    // (the 2014 study failed replication; the 2024 meta-analysis is the honest
+    // citation). The old URL is live and indexed — send it to the successor
+    // instead of letting Google and any inbound link hit a 404.
+    "/science/authors/mueller-oppenheimer": "/science/authors/flanigan",
+    ...Object.fromEntries(
+      LOCALES.filter((l) => l !== DEFAULT_LOCALE)
+        .map((l) => [
+          `/${l}/science/authors/mueller-oppenheimer`,
+          `/${l}/science/authors/flanigan`,
+        ]),
+    ),
     "/engine": "/",
     "/sdk": "/",
     "/engine/docs": "/",

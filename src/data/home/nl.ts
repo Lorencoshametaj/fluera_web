@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "Flow — maximale cognitieve prestatie wanneer uitdaging en vaardigheid in balans zijn met directe feedback.", year: "1990" },
     { name: "Joseph Novak",            contribution: "Concept mapping — een kaart bouwen verslaat een kant-en-klare bestuderen, in elk vakgebied.", year: "1984" },
     { name: "O'Keefe en Moser",        contribution: "Place cells en grid cells — het biologische GPS van het brein. Waarom het geheugenpaleis werkt.", year: "Nobel 2014", nobel: true },
-    { name: "Mueller en Oppenheimer",  contribution: "Handgeschreven aantekeningen verslaan laptopaantekeningen bij conceptuele vragen — zelfs als de laptopaantekeningen vollediger zijn.", year: "2014" },
+    { name: "Flanigan e.a.", contribution: "Over 24 studies presteren handgeschreven aantekeningen iets beter dan getypte — een klein voordeel, dat groeit als je ze terugleest.", year: "2024" },
     { name: "Audrey van der Meer",     contribution: "EEG-bewijs: handschrift activeert bredere hersennetwerken dan typen.", year: "2020" },
     { name: "Roediger en Karpicke",    contribution: "Ophaalpraktijk — de toets meet niet het geheugen, hij creëert het.", year: "2006" },
   ],

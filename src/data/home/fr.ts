@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "Flow — performance cognitive maximale quand le défi et la compétence s'équilibrent avec un retour immédiat.", year: "1990" },
     { name: "Joseph Novak",            contribution: "Cartographie conceptuelle — construire une carte dépasse en étudier une toute faite, dans toute discipline.", year: "1984" },
     { name: "O'Keefe et Moser",        contribution: "Place cells et grid cells — le GPS biologique du cerveau. Pourquoi le Palais de la Mémoire fonctionne.", year: "Nobel 2014", nobel: true },
-    { name: "Mueller et Oppenheimer",  contribution: "Les notes à la main dépassent celles au laptop sur les questions conceptuelles — même quand celles au laptop sont plus complètes.", year: "2014" },
+    { name: "Flanigan et ses collègues", contribution: "Sur 24 études, les notes manuscrites l’emportent légèrement sur les notes tapées — un avantage faible, qui grandit quand on les relit.", year: "2024" },
     { name: "Audrey van der Meer",     contribution: "Preuves EEG : l'écriture à la main active des réseaux cérébraux plus larges que la frappe au clavier.", year: "2020" },
     { name: "Roediger et Karpicke",    contribution: "Pratique de récupération — le test ne mesure pas la mémoire, il la crée.", year: "2006" },
   ],

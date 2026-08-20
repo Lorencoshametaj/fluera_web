@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "Flow — maximale kognitive Leistung, wenn Herausforderung und Können sich mit unmittelbarem Feedback ausbalancieren.", year: "1990" },
     { name: "Joseph Novak",            contribution: "Concept Mapping — eine Karte zu bauen schlägt das Studieren einer fertigen, in jeder Disziplin.", year: "1984" },
     { name: "O'Keefe und Moser",       contribution: "Place cells und grid cells — das biologische GPS des Gehirns. Warum der Gedächtnispalast funktioniert.", year: "Nobel 2014", nobel: true },
-    { name: "Mueller und Oppenheimer", contribution: "Handgeschriebene Notizen schlagen Laptop-Notizen bei konzeptuellen Fragen — auch wenn die Laptop-Notizen vollständiger sind.", year: "2014" },
+    { name: "Flanigan und Kolleg:innen", contribution: "Über 24 Studien hinweg schneiden handschriftliche Notizen etwas besser ab als getippte — ein kleiner Vorsprung, der beim Wiederholen wächst.", year: "2024" },
     { name: "Audrey van der Meer",     contribution: "EEG-Belege: Handschrift aktiviert breitere Hirnnetzwerke als Tippen.", year: "2020" },
     { name: "Roediger und Karpicke",   contribution: "Abrufpraxis — der Test misst nicht das Gedächtnis, er erzeugt es.", year: "2006" },
   ],

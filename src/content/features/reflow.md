@@ -9,7 +9,7 @@ relatedPrinciples:
   - generation-effect
 relatedAuthors:
   - okeefe-moser
-  - mueller-oppenheimer
+  - flanigan
   - van-der-meer
 order: 8
 ---
@@ -44,7 +44,7 @@ The hippocampus encodes more than what you wrote: it encodes **where** you wrote
 
 Reflow's design constraint is a direct consequence: spatial change must be **smooth and intentional**, never abrupt. A node teleporting to a new position resets the place-cell mapping; a node sliding through intermediate positions preserves it. The physics aren't decorative — they're how memory survives reorganisation.
 
-Mueller & Oppenheimer (2014) and van der Meer (2020) established that **handwriting itself** encodes memory through sensorimotor traces. Reflow protects these traces: the strokes never re-render, never get re-rasterised, never lose the pressure/tilt/velocity signature that the original act of writing produced. Move a concept; the motor trace moves with it.
+Flanigan and colleagues' 2024 meta-analysis puts the handwriting advantage at a small but reliable *g* = 0.248 — and found that it **grows** when students review their notes before the test. Handwriting isn't paid off while you write; it's collected later, on the page you come back to. Which means that page has to be the one you actually wrote. Reflow moves the layout, never the ink: strokes are never re-rendered, never re-rasterised, never stripped of the pressure, tilt and velocity your hand produced. (Van der Meer's high-density EEG shows handwriting recruiting wider brain networks than typing — a neural correlate, not a measure of how much is learned.)
 
 Finally, the **generation effect** (Slamecka & Graf, 1978) cuts both ways. The act of deciding *where* a concept belongs — and revising that decision as understanding deepens — is itself a generative move that strengthens encoding. Reflow makes that revision cheap enough to do every week.
 

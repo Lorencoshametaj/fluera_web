@@ -1,17 +1,17 @@
 ---
 lang: "es"
 title: "Codificación por escritura a mano"
-shortDescription: "Escribir a mano produce una codificación más profunda que teclear — incluso cuando los apuntes tecleados son más completos. La lentitud de la pluma fuerza compresión, paráfrasis y selección, y ahí es donde vive el aprendizaje."
-keyYear: "2014"
+shortDescription: "La mano gana en rendimiento por un margen pequeño pero fiable; el teclado gana en volumen. La ventaja no se gasta mientras escribes — crece cuando repasas los apuntes, y ese es el día en que se cobra."
+keyYear: "2024"
 fieldOfStudy: embodiment
-primaryAuthors: [mueller-oppenheimer, van-der-meer]
+primaryAuthors: [flanigan, van-der-meer]
 appliedInFeatures: [memory-palace, ghost-map]
-evidenceStrength: strong
+evidenceStrength: moderate
 order: 22
 ---
 
-Pam Mueller (Princeton) y Daniel Oppenheimer (UCLA) llevaron a cabo el estudio clave de 2014. Los estudiantes tomaban apuntes en clase a mano o con el portátil. Los apuntes con portátil eran más completos, frecuentemente literales. Una semana después, en preguntas conceptuales, los manuscritos superaban con creces a los laptop-takers.
+Abraham Flanigan y sus colegas zanjaron la discusión en 2024, reuniendo 24 estudios y unos 3.000 estudiantes universitarios. El teclado gana en volumen: los apuntes tecleados contienen muchas más palabras. La mano gana en rendimiento, por un margen pequeño pero fiable — Hedges' g = 0,248 (p < 0,001). Y repasar los apuntes antes de la prueba agranda esa ventaja, en vez de borrarla.
 
-La mano es más lenta. La lentitud fuerza selección. La selección es procesamiento. El procesamiento es codificación. No es que escribir a mano sea *un mejor input* que teclear — es que el cuello de botella de la mano protege a la mente de la transcripción superficial.
+La mano es más lenta, y la lectura más simple de esa diferencia sigue siendo la mejor: la lentitud fuerza selección, la selección es procesamiento, el procesamiento es codificación. No es que escribir a mano sea *un mejor input* que teclear — es que el cuello de botella de la mano protege a la mente de la transcripción superficial.
 
-El trabajo de EEG de 2020 de Audrey van der Meer hizo visible el mecanismo. La escritura a mano recluta redes amplias, sensoriomotoras, visuales y lingüísticas; el tecleo implica un subconjunto estrecho. Más redes activas en el momento de la codificación significa más caminos de recuperación después. El motor de Fluera está construido para preservar esto — no como homenaje estético, sino como pedagogía estructural.
+El trabajo de EEG de alta densidad de Audrey van der Meer muestra qué cambia en el cerebro: escribir a mano produce una activación más amplia y más conectada entre regiones visuales, motoras y sensoriales que teclear. Es un correlato neural, no una medida de cuánto se aprende o se recuerda. La ventaja se cobra después, el día en que vuelves a la página — y para ese día está construido el motor de Fluera.

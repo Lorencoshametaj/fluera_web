@@ -4,7 +4,7 @@ title: "सृजन प्रभाव"
 shortDescription: "वह जानकारी जो आप स्वयं उत्पन्न करते हैं — अपने शब्दों में लिखी, खींची, समझाई — निष्क्रिय रूप से उपभोग की गई जानकारी से कहीं बेहतर याद रहती है, भले ही सामग्री समान हो।"
 keyYear: "1978"
 fieldOfStudy: memory
-primaryAuthors: [joseph-novak, mueller-oppenheimer]
+primaryAuthors: [joseph-novak, flanigan]
 appliedInFeatures: [memory-palace, ghost-map, socratic-mode]
 evidenceStrength: strong
 order: 5

@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "Flow — maksimal kognitiv ydeevne, når udfordring og evne balancerer med umiddelbar feedback.", year: "1990" },
     { name: "Joseph Novak",            contribution: "Begrebskortlægning — at bygge et kort slår at studere et færdigt, i alle discipliner.", year: "1984" },
     { name: "O'Keefe og Moser",        contribution: "Place cells og grid cells — hjernens biologiske GPS. Hvorfor hukommelsespaladset virker.", year: "Nobel 2014", nobel: true },
-    { name: "Mueller og Oppenheimer",  contribution: "Håndskrevne noter slår laptop-noter på konceptuelle spørgsmål — selv når laptop-noterne er mere fuldstændige.", year: "2014" },
+    { name: "Flanigan m.fl.", contribution: "På tværs af 24 studier klarer håndskrevne noter sig lidt bedre end tastede — en lille fordel, der vokser, når du repeterer dem.", year: "2024" },
     { name: "Audrey van der Meer",     contribution: "EEG-evidens: håndskrift aktiverer bredere hjernenetværk end tastning.", year: "2020" },
     { name: "Roediger og Karpicke",    contribution: "Genfindelsespraksis — testen måler ikke hukommelse, den skaber den.", year: "2006" },
   ],

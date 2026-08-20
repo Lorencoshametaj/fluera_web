@@ -4,7 +4,7 @@ title: "Kehollinen kognitio"
 shortDescription: "Ajattelu ei ole puhtaasti aivollinen ilmiö. Keho, ele, motorinen toiminta ja vuorovaikutus ympäristön kanssa ovat kognitiivisten prosessien osia, ei pelkkiä lisäkkeitä."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21

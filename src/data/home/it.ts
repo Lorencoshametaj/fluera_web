@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "Flow — massima prestazione cognitiva quando sfida e abilità si bilanciano.", year: "1990" },
     { name: "Joseph Novak", contribution: "Concept mapping — costruire una mappa batte studiarne una precostruita, in ogni disciplina.", year: "1984" },
     { name: "O'Keefe e Moser", contribution: "Place cells e grid cells — il GPS biologico del cervello. Perché il Palazzo della Memoria funziona.", year: "Nobel 2014", nobel: true },
-    { name: "Mueller e Oppenheimer", contribution: "Gli appunti a mano battono quelli al laptop sulle domande concettuali — anche quando quelli al laptop sono più completi.", year: "2014" },
+    { name: "Flanigan e colleghi", contribution: "Su 24 studi, gli appunti a mano rendono un po’ di più di quelli digitati — un vantaggio piccolo, che cresce quando li ripassi.", year: "2024" },
     { name: "Audrey van der Meer", contribution: "Evidenza EEG: la scrittura a mano attiva reti cerebrali più ampie della digitazione.", year: "2020" },
     { name: "Roediger e Karpicke", contribution: "Retrieval practice — il test non misura la memoria, la crea.", year: "2006" },
   ],

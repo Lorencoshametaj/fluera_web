@@ -16,7 +16,7 @@ const data: PricingData = {
         "Canvas infinito, escrita à mão, motor de renderização completo",
         "3 pincéis base (lápis, caneta-tinteiro, marca-texto — mais no Plus)",
         "Exportação PNG",
-        "100 créditos de IA por mês — Atlas e Chat Fluera AI sempre grátis",
+        "100 créditos de IA por mês — Atlas sempre grátis (0 créditos), Chat 1 por mensagem",
         "Socratic 3 sessões/sem., Ghost Map 3 comparações/sem., 1 Exam/sem.",
         "Fog of War, FSRS (repetição espaçada)",
         "Cross-Zone Bridges — veja as conexões entre conceitos que o sistema descobre",
@@ -29,8 +29,8 @@ const data: PricingData = {
     },
     {
       name: "Plus",
-      price: "€5,99",
-      period: "por mês · €49 / ano (economiza €22 — 2 meses grátis)",
+      price: "€9,99",
+      period: "por mês · €99,99 / ano (economiza €19,89 — 2 meses grátis)",
       tagline:
         "Estudo individual completo: cloud sync, IA sem limites semanais, gravação de voz ilimitada.",
       features: [
@@ -50,8 +50,8 @@ const data: PricingData = {
     },
     {
       name: "Pro",
-      price: "€11,99",
-      period: "por mês · €99 / ano (economiza €44 — 3,5 meses grátis)",
+      price: "€19,99",
+      period: "por mês · €199,99 / ano (economiza €39,89 — 2 meses grátis)",
       tagline:
         "Estudo amplificado: Time Travel, sync áudio↔traço, colaboração em tempo real, busca em todos os canvas.",
       features: [
@@ -70,7 +70,7 @@ const data: PricingData = {
   faq: [
     {
       q: "Como funcionam os créditos de IA?",
-      a: "Cada operação de IA tem custo fixo em créditos: Ghost Map 8, Socratic 4 por estágio, Exam 12 por questão, Chat 1 por mensagem. Atlas (ações no canvas) e Background OCR básico são grátis. Você sempre vê quantos créditos restam no cabeçalho do canvas — sem rate limits ocultos, sem surpresas. Créditos não usados não acumulam: o plano recarrega a cada 30 dias a partir da sua data de inscrição (não no dia 1 do mês — você paga 30 dias e recebe 30 dias).",
+      a: "Cada operação de IA tem custo fixo em créditos: Ghost Map 8, Socratic 4 por estágio, Exam 12 por questão, Chat 1 por mensagem. Atlas (ações no canvas) é grátis. O Background OCR proativo custa 1 crédito por página e faz parte do plano Pro. Você sempre vê quantos créditos restam no cabeçalho do canvas — sem rate limits ocultos, sem surpresas. Créditos não usados não acumulam: o plano recarrega a cada 30 dias a partir da sua data de inscrição (não no dia 1 do mês — você paga 30 dias e recebe 30 dias).",
     },
     {
       q: "E se eu acabar os créditos antes do reset?",

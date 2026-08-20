@@ -4,53 +4,47 @@ import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
-  title="دراسات حالة المؤسّسات"
-  description="قصص حقيقية لجامعات وأقسام وفصول تستخدم Fluera. فارغة الآن: البرامج التجريبية تُنهي فصلها الدراسي الأوّل."
+  title="دراسات حالة تعليمية"
+  description="لم نُجرِ أي برنامج تجريبي بعد. تبقى هذه الصفحة فارغة حتى يستوفي أحدها ثلاثة شروط كتبناها مسبقاً."
   locale="ar"
 >
 
   <PageHero
     kicker="دراسات الحالة"
-    title="التجارب جارية.<br />القصص تأتي لاحقًا."
-    description="لا ننشر دراسة حالة قبل أن تُكمل التجربة فصلًا دراسيًّا واحدًا على الأقلّ، وتوقّع الهيئة، وتُتحقّق بيانات الطلّاب المُجهَّلة. مجموعات خريف 2026 وربيع 2027 جارية — ستمتلئ هذه الصفحة عند انتهائها."
+    title="لا توجد دراسات حالة بعد.<br />هذه هي الإجابة الصادقة."
+    description="لم نُجرِ أي برنامج تجريبي بعد. وبدل ملء هذه الصفحة بما يبدو دليلاً وليس كذلك، هذه هي الشروط الثلاثة التي يجب أن يستوفيها أي برنامج تجريبي قبل أن يظهر هنا أي شيء — مكتوبة مسبقاً كي تُحاسبونا عليها."
     breadcrumb={{ label: "التعليم", href: "/ar/education" }}
   />
 
   <section class="py-20 md:py-24 border-b border-white/[0.04]">
     <div class="container-site max-w-4xl">
       <div class="grid md:grid-cols-3 gap-4">
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">خريف 2026 · جارٍ</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">مجموعة طبّ ما قبل السريري</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            ~30 طالب طبّ في السنة الأولى يستخدمون Fluera لفصل دراسي في علم التشريح والكيمياء الحيوية. النشر في نهاية الفصل.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">فصل دراسي كامل</h2>
+          <p class="text-sm text-paper-300">
+            ليس عرضاً توضيحياً ولا تجربة من أسبوعين. تستخدم دفعة كاملة Fluera طوال فصل دراسي بامتحاناته، قبل أن نكتب عنه سطراً واحداً.
           </p>
-          <p class="text-xs font-mono text-ink-500">متوقّع في الربع الأوّل 2027</p>
         </article>
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">خريف 2026 · جارٍ</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">اقتصاد جزئي للطلّاب الجامعيين</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            مقرّر اقتصاد جزئي كثيف المفاهيم. التركيز: كيف تَصمد دورة الـ12 خطوة حين تكون المادّة مجرَّدة لا حقائق.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">موافقة عضو هيئة التدريس</h2>
+          <p class="text-sm text-paper-300">
+            يقرأ الأستاذ ما كتبناه ويوافق عليه قبل النشر. وإن اختلف مع قراءتنا لفصله، لا يُنشَر.
           </p>
-          <p class="text-xs font-mono text-ink-500">متوقّع في الربع الثاني 2027</p>
         </article>
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">ربيع 2027 · أوّلي</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">حلقة ماجستير قانون</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            تفسير دستوري. مجموعة صغيرة، انخراط عميق. التركيز على Ghost Map لمقارنات السوابق القضائية.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">أرقام مجهّلة ومُدقّقة</h2>
+          <p class="text-sm text-paper-300">
+            مجمّعة ومجهّلة الهوية ومراجَعة للتأكد من دقتها. لا حكايات ننتقيها نحن، ولا اقتباسات بلا سياقها الكامل.
           </p>
-          <p class="text-xs font-mono text-ink-500">متوقّع في الربع الثالث 2027</p>
         </article>
       </div>
 
       <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
-        <h2 class="font-serif text-xl text-paper-50 mb-2">هل تريد بدء تجربة؟</h2>
+        <h2 class="font-serif text-xl text-paper-50 mb-2">أتريد أن تكون الأول؟</h2>
         <p class="text-sm text-paper-200 mb-4 leading-relaxed">
-          نُشغِّل تجربة واحدة لكلّ فصل دراسي — فصل واحد، ثلاثون طالبًا، فصل دراسي واحد، دون تكلفة. في المقابل نطلب تغذية راجعة منظَّمة وخيار نشر دراسة حالة مُجهَّلة في نهاية المقرّر.
+          نُجري برنامجاً تجريبياً واحداً كل فصل — صف واحد، فصل واحد، بلا مقابل. وفي المقابل نطلب ملاحظات منظّمة وخيار نشر دراسة حالة مجهّلة في النهاية، وفق الشروط الثلاثة أعلاه.
         </p>
-        <a href="/ar/contact/sales" class="btn-primary">ابدأ التجربة ←</a>
+        <a href="/contact/sales" class="btn-primary">لنتحدّث عن برنامج تجريبي →</a>
       </div>
     </div>
   </section>
@@ -58,7 +52,7 @@ import PageHero from "@/components/PageHero.astro";
   <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-narrow text-center">
       <p class="text-sm text-ink-500 max-w-xl mx-auto">
-        لماذا الانتظار؟ لأنّ جمع دراسة حالة بأرقام حقيقية وبصدق يستغرق وقتًا — ونشر «دراسات حالة» مُختارة من البائع في كتيّبات هو بالضبط نوع المحتوى الذي لا نريد إنتاجه.
+        لماذا هذه الصفحة فارغة؟ لأن جمع دراسة حالة بأرقام حقيقية بنزاهة يستغرق وقتاً — ونشر «دراسات حالة» تسويقية مبنية على حكايات ينتقيها المزوّد هو بالضبط نوع المحتوى الذي لا نريد إنتاجه. الصفحة الفارغة هي النسخة الوحيدة من هذه الصفحة التي نستطيع الدفاع عنها.
       </p>
     </div>
   </section>

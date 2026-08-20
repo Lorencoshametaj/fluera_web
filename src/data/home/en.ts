@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "Flow — peak cognitive performance when challenge matches skill and feedback is immediate.", year: "1990" },
     { name: "Joseph Novak", contribution: "Concept mapping — building a map beats studying a pre-built one, across disciplines.", year: "1984" },
     { name: "O'Keefe & Moser", contribution: "Place and grid cells — the brain's built-in GPS. Why memory palaces work.", year: "Nobel 2014", nobel: true },
-    { name: "Mueller & Oppenheimer", contribution: "Handwritten notes beat laptop notes on conceptual recall — even when the laptop notes were more complete.", year: "2014" },
+    { name: "Flanigan et al.", contribution: "Across 24 studies, handwritten notes edge out typed ones on achievement — a small advantage that grows when you review them.", year: "2024" },
     { name: "Audrey van der Meer", contribution: "EEG evidence that handwriting recruits broader brain networks than typing.", year: "2020" },
     { name: "Roediger & Karpicke", contribution: "Retrieval practice — testing does not measure memory, it creates it.", year: "2006" },
   ],

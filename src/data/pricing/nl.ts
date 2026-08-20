@@ -16,7 +16,7 @@ const data: PricingData = {
         "Oneindig canvas, handschriftinvoer, volledige rendering-engine",
         "3 basispenselen (potlood, vulpen, marker — meer in Plus)",
         "PNG-export",
-        "100 AI-credits per maand — Atlas en Chat Fluera AI altijd gratis",
+        "100 AI-credits per maand — Atlas altijd gratis (0 credits), Chat 1 per bericht",
         "Socratic 3 sessies/wk, Ghost Map 3 vergelijkingen/wk, 1 Exam/wk",
         "Fog of War, FSRS (gespreide herhaling)",
         "Cross-Zone Bridges — zie de verbindingen tussen concepten die het systeem ontdekt",
@@ -29,8 +29,8 @@ const data: PricingData = {
     },
     {
       name: "Plus",
-      price: "€5,99",
-      period: "per maand · €49 / jaar (bespaar €22 — 2 maanden gratis)",
+      price: "€9,99",
+      period: "per maand · €99,99 / jaar (bespaar €19,89 — 2 maanden gratis)",
       tagline:
         "Volledige persoonlijke studie: cloud sync, AI zonder weekgrenzen, onbeperkte spraakopname.",
       features: [
@@ -50,8 +50,8 @@ const data: PricingData = {
     },
     {
       name: "Pro",
-      price: "€11,99",
-      period: "per maand · €99 / jaar (bespaar €44 — 3,5 maanden gratis)",
+      price: "€19,99",
+      period: "per maand · €199,99 / jaar (bespaar €39,89 — 2 maanden gratis)",
       tagline:
         "Versterkte studie: Time Travel, audio↔streep-sync, realtime samenwerking, zoeken in alle canvases.",
       features: [
@@ -70,7 +70,7 @@ const data: PricingData = {
   faq: [
     {
       q: "Hoe werken de AI-credits?",
-      a: "Elke AI-operatie heeft een vaste creditkost: Ghost Map 8, Socratic 4 per fase, Exam 12 per vraag, Chat 1 per bericht. Atlas (canvas-acties) en basis-Background-OCR zijn gratis. Je ziet altijd het resterende saldo in de canvas-header — geen verborgen rate limits, geen verrassingen. Ongebruikte credits worden niet overgedragen: het plan wordt elke 30 dagen vanaf je inschrijfdatum aangevuld (niet de 1e van de maand — je betaalt voor 30 dagen en krijgt 30 dagen).",
+      a: "Elke AI-operatie heeft een vaste creditkost: Ghost Map 8, Socratic 4 per fase, Exam 12 per vraag, Chat 1 per bericht. Atlas (canvas-acties) is gratis. Proactieve Background-OCR kost 1 credit per pagina en zit in Pro. Je ziet altijd het resterende saldo in de canvas-header — geen verborgen rate limits, geen verrassingen. Ongebruikte credits worden niet overgedragen: het plan wordt elke 30 dagen vanaf je inschrijfdatum aangevuld (niet de 1e van de maand — je betaalt voor 30 dagen en krijgt 30 dagen).",
     },
     {
       q: "En als ik credits opmaak voor de reset?",

@@ -25,7 +25,7 @@ const data: HomeData = {
     { name: "Mihaly Csikszentmihalyi", contribution: "플로우 — 도전과 능력이 즉각적인 피드백과 함께 균형을 이룰 때의 최대 인지 수행.", year: "1990" },
     { name: "Joseph Novak",            contribution: "개념도 — 지도를 구축하는 것이 미리 만들어진 것을 공부하는 것을 능가합니다, 모든 학문에서.", year: "1984" },
     { name: "O'Keefe와 Moser",         contribution: "장소 세포와 격자 세포 — 뇌의 생물학적 GPS. 기억의 궁전이 작동하는 이유.", year: "노벨상 2014", nobel: true },
-    { name: "Mueller와 Oppenheimer",   contribution: "손으로 쓴 노트는 개념적 회상에서 노트북을 이깁니다 — 노트북이 더 완전했더라도.", year: "2014" },
+    { name: "Flanigan 외", contribution: "24개 연구에서 손으로 쓴 노트가 타이핑보다 조금 나은 성취를 보였습니다 — 작은 차이지만 복습할수록 커집니다.", year: "2024" },
     { name: "Audrey van der Meer",     contribution: "EEG 증거: 손글씨가 타이핑보다 더 넓은 뇌 네트워크를 활성화합니다.", year: "2020" },
     { name: "Roediger와 Karpicke",     contribution: "회상 연습 — 시험은 기억을 측정하지 않고, 기억을 만듭니다.", year: "2006" },
   ],

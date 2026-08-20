@@ -16,7 +16,7 @@ const data: PricingData = {
         "Ääretön canvas, käsinkirjoituksen syöttö, täydellinen renderöintimoottori",
         "3 perussivellintä (lyijykynä, mustekynä, tussi — lisää Plus-tasolla)",
         "PNG-vienti",
-        "100 AI-krediittiä kuukaudessa — Atlas ja Chat Fluera AI aina ilmaisia",
+        "100 AI-krediittiä kuukaudessa — Atlas aina ilmainen (0 krediittiä), Chat 1 per viesti",
         "Socratic 3 istuntoa/vk, Ghost Map 3 vertailua/vk, 1 Exam/vk",
         "Fog of War, FSRS (välitön toisto)",
         "Cross-Zone Bridges — näe käsitteiden väliset yhteydet, jotka järjestelmä löytää",
@@ -29,8 +29,8 @@ const data: PricingData = {
     },
     {
       name: "Plus",
-      price: "€5,99",
-      period: "kuukaudessa · €49 / vuosi (säästä €22 — 2 kuukautta ilmaiseksi)",
+      price: "€9,99",
+      period: "kuukaudessa · €99,99 / vuosi (säästä €19,89 — 2 kuukautta ilmaiseksi)",
       tagline:
         "Täydellinen yksilöopiskelu: cloud sync, AI ilman viikoittaisia rajoja, rajaton äänitys.",
       features: [
@@ -50,8 +50,8 @@ const data: PricingData = {
     },
     {
       name: "Pro",
-      price: "€11,99",
-      period: "kuukaudessa · €99 / vuosi (säästä €44 — 3,5 kuukautta ilmaiseksi)",
+      price: "€19,99",
+      period: "kuukaudessa · €199,99 / vuosi (säästä €39,89 — 2 kuukautta ilmaiseksi)",
       tagline:
         "Tehostettu opiskelu: Time Travel, ääni↔veto-sync, reaaliaikainen yhteistyö, haku kaikista canvasista.",
       features: [
@@ -70,7 +70,7 @@ const data: PricingData = {
   faq: [
     {
       q: "Miten AI-krediitit toimivat?",
-      a: "Jokaisella AI-toiminnolla on kiinteä krediittikustannus: Ghost Map 8, Socratic 4 per vaihe, Exam 12 per kysymys, Chat 1 per viesti. Atlas (canvas-toiminnot) ja perus-Background-OCR ovat ilmaisia. Näet aina jäljellä olevan saldon canvas-headerissa — ei piilotettuja rate limittejä, ei yllätyksiä. Käyttämättömät krediitit eivät siirry seuraavaan jaksoon: suunnitelma täydentyy 30 päivän välein liittymispäivästäsi (ei kuukauden 1. päivänä — maksat 30 päivästä ja saat 30 päivää).",
+      a: "Jokaisella AI-toiminnolla on kiinteä krediittikustannus: Ghost Map 8, Socratic 4 per vaihe, Exam 12 per kysymys, Chat 1 per viesti. Atlas (canvas-toiminnot) on ilmainen. Proaktiivinen Background-OCR maksaa 1 krediitin sivulta ja kuuluu Pro-tasoon. Näet aina jäljellä olevan saldon canvas-headerissa — ei piilotettuja rate limittejä, ei yllätyksiä. Käyttämättömät krediitit eivät siirry seuraavaan jaksoon: suunnitelma täydentyy 30 päivän välein liittymispäivästäsi (ei kuukauden 1. päivänä — maksat 30 päivästä ja saat 30 päivää).",
     },
     {
       q: "Mitä jos krediitit loppuvat ennen resetointia?",

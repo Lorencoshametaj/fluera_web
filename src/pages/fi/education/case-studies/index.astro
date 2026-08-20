@@ -4,53 +4,47 @@ import PageHero from "@/components/PageHero.astro";
 ---
 
 <BaseLayout
-  title="Institutionaaliset tapaustutkimukset"
-  description="Aitoja tarinoita yliopistoista, korkeakouluista ja kursseista, jotka käyttävät Flueraa. Toistaiseksi tyhjä: pilotit ovat juuri saamassa ensimmäisiä lukukausiaan päätökseen."
+  title="Oppilaitosten tapaustutkimukset"
+  description="Emme ole vielä tehneet pilottia. Tämä sivu pysyy tyhjänä, kunnes jokin täyttää kolme etukäteen kirjattua ehtoa."
   locale="fi"
 >
 
   <PageHero
     kicker="Tapaustutkimukset"
-    title="Pilotit ovat käynnissä.<br />Tarinat tulevat myöhemmin."
-    description="Emme julkaise tapaustutkimusta ennen kuin pilotti on suorittanut vähintään yhden lukukauden, korkeakoulu on allekirjoittanut ja opiskelijoiden anonymisoitu data on tarkistettu tarkkuuden osalta. Syksyn 2026 ja kevään 2027 kohortit ovat käynnissä — tämä sivu täyttyy heti kun ne päättyvät."
+    title="Ei vielä tapaustutkimuksia.<br />Se on rehellinen vastaus."
+    description="Emme ole vielä tehneet pilottia. Sen sijaan että täyttäisimme tämän sivun jollakin, joka näyttää todisteelta mutta ei ole, tässä ovat kolme ehtoa, jotka pilotin on täytettävä ennen kuin tänne ilmestyy mitään — kirjattu etukäteen, jotta voit vaatia niitä meiltä."
     breadcrumb={{ label: "Koulutus", href: "/fi/education" }}
   />
 
   <section class="py-20 md:py-24 border-b border-white/[0.04]">
     <div class="container-site max-w-4xl">
       <div class="grid md:grid-cols-3 gap-4">
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">Syksy 2026 · Käynnissä</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">Esikliininen lääketieteen kohortti</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            Noin 30 lääketieteen ensimmäisen vuoden opiskelijaa, jotka käyttävät Flueraa anatomian ja biokemian lukukauden ajan. Julkaisu lukukauden lopussa.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Kokonainen lukukausi</h2>
+          <p class="text-sm text-paper-300">
+            Ei demo eikä kahden viikon kokeilu. Ryhmä käyttää Flueraa koko lukukauden, tentit mukaan lukien, ennen kuin kirjoitamme siitä riviäkään.
           </p>
-          <p class="text-xs font-mono text-ink-500">Suunniteltu Q1 2027</p>
         </article>
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">Syksy 2026 · Käynnissä</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">Mikrotaloustiede kandidaatti­tasolla</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            Käsitteellisesti tiivis mikrotaloustieteen kurssi. Fokus: miten 12-vaiheinen sykli kantaa, kun materiaali on abstraktia eikä faktapohjaista.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Opettajan hyväksyntä</h2>
+          <p class="text-sm text-paper-300">
+            Opettaja lukee kirjoittamamme ja hyväksyy sen ennen julkaisua. Jos hän on eri mieltä tulkinnastamme, sitä ei julkaista.
           </p>
-          <p class="text-xs font-mono text-ink-500">Suunniteltu Q2 2027</p>
         </article>
-        <article class="card p-7 opacity-60">
-          <p class="eyebrow text-ink-500 mb-3">Kevät 2027 · Alkamassa</p>
-          <h2 class="font-serif text-xl text-paper-100 mb-2">Oikeustieteen maisteriseminaari</h2>
-          <p class="text-sm text-paper-300 mb-4">
-            Perustuslain tulkinta. Pienempi kohortti, syvempi osallistuminen. Fokus Ghost Mapiin oikeuskäytännön vertailussa.
+        <article class="card p-7">
+          <h2 class="font-serif text-xl text-paper-100 mb-2">Luvut, anonymisoituna ja tarkistettuna</h2>
+          <p class="text-sm text-paper-300">
+            Koostettuna, anonymisoituna ja oikeellisuuden osalta tarkistettuna. Ei toimittajan valitsemia anekdootteja, ei lainauksia ilman koko asiayhteyttä.
           </p>
-          <p class="text-xs font-mono text-ink-500">Suunniteltu Q3 2027</p>
         </article>
       </div>
 
       <div class="mt-12 p-6 rounded-2xl border border-accent-ink/30 bg-accent-ink/[0.05] max-w-3xl">
-        <h2 class="font-serif text-xl text-paper-50 mb-2">Haluatko aloittaa pilotin?</h2>
+        <h2 class="font-serif text-xl text-paper-50 mb-2">Haluatko olla ensimmäinen?</h2>
         <p class="text-sm text-paper-200 mb-4 leading-relaxed">
-          Toteutamme yhden pilotin lukukaudessa — yksi luokka, kolmekymmentä opiskelijaa, yksi lukukausi, maksutta. Vastineeksi pyydämme jäsenneltyä palautetta ja mahdollisuuden julkaista anonymisoitu tapaustutkimus lopussa.
+          Teemme yhden pilotin lukukaudessa — yksi ryhmä, yksi lukukausi, veloituksetta. Vastineeksi pyydämme jäsenneltyä palautetta ja mahdollisuuden julkaista lopuksi anonymisoitu tapaustutkimus yllä olevin ehdoin.
         </p>
-        <a href="/fi/contact/sales" class="btn-primary">Aloita pilottikeskustelu →</a>
+        <a href="/contact/sales" class="btn-primary">Jutellaan pilotista →</a>
       </div>
     </div>
   </section>
@@ -58,7 +52,7 @@ import PageHero from "@/components/PageHero.astro";
   <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">
     <div class="container-narrow text-center">
       <p class="text-sm text-ink-500 max-w-xl mx-auto">
-        Miksi odottaa? Koska oikeisiin lukuihin perustuva tapaustutkimus vaatii aikaa rehellisesti kerättynä — ja "tapaustutkimusten" julkaiseminen toimittajan itse valitsemista anekdooteista on juuri sitä sisältöä, jota emme halua tuottaa.
+        Miksi tämä sivu on tyhjä? Koska oikeita lukuja sisältävän tapaustutkimuksen kokoaminen rehellisesti vie aikaa — ja markkinointilaatuisten, toimittajan valitsemiin anekdootteihin perustuvien «tapaustutkimusten» julkaiseminen on juuri sitä sisältölajia, jota emme halua tuottaa. Tyhjä sivu on tämän sivun versio, jota voimme puolustaa.
       </p>
     </div>
   </section>

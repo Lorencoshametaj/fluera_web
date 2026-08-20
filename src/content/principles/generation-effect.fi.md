@@ -4,7 +4,7 @@ title: "Tuottamisvaikutus"
 shortDescription: "Tieto, jonka tuotat itse — omin sanoin kirjoitettu, piirretty, selitetty — muistetaan paljon paremmin kuin passiivisesti kulutettu tieto, vaikka sisältö olisi sama."
 keyYear: "1978"
 fieldOfStudy: memory
-primaryAuthors: [joseph-novak, mueller-oppenheimer]
+primaryAuthors: [joseph-novak, flanigan]
 appliedInFeatures: [memory-palace, ghost-map, socratic-mode]
 evidenceStrength: strong
 order: 5

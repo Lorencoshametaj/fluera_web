@@ -15,8 +15,8 @@ import type { PricingData } from "../types";
 //   • Pro pillars: time travel scrubber + audio-ink sync + real-time collab
 //     CRDT. Le 3 cose che giustificano l'upgrade Plus→Pro (mai "Plus + cap
 //     alzato").
-//   • Atlas + Chat AI sempre gratis (0 crediti) anche su Free, perché sono
-//     l'UX core conversazionale del canvas.
+//   • Atlas gratis (0 crediti) anche su Free; Chat costa 1 credito a
+//     messaggio. Sono l'UX core conversazionale del canvas, ma solo Atlas
 // ─────────────────────────────────────────────────────────────────────────
 
 const data: PricingData = {
@@ -31,7 +31,7 @@ const data: PricingData = {
         "Canvas infinito, scrittura a mano, motore di rendering completo",
         "3 pennelli base (matita, penna stilografica, pennarello — altri in Plus)",
         "Export PNG",
-        "100 crediti AI al mese — Atlas e Chat Fluera AI sempre gratis",
+        "100 crediti AI al mese — Atlas sempre gratis (0 crediti), Chat 1 a messaggio",
         "Socratic 3 sessioni/sett., Ghost Map 3 confronti/sett., 1 Exam/sett.",
         "Fog of War, FSRS spaced repetition",
         "Cross-Zone Bridges — vedi i collegamenti tra concetti che il sistema scopre",
@@ -44,8 +44,8 @@ const data: PricingData = {
     },
     {
       name: "Plus",
-      price: "€5,99",
-      period: "al mese · €49 / anno (risparmi €22 — 2 mesi gratis)",
+      price: "€9,99",
+      period: "al mese · €99,99 / anno (risparmi €19,89 — 2 mesi gratis)",
       tagline:
         "Studio individuale completo: cloud sync, AI senza contatori a settimana, voce illimitata.",
       features: [
@@ -65,8 +65,8 @@ const data: PricingData = {
     },
     {
       name: "Pro",
-      price: "€11,99",
-      period: "al mese · €99 / anno (risparmi €44 — 3,5 mesi gratis)",
+      price: "€19,99",
+      period: "al mese · €199,99 / anno (risparmi €39,89 — 2 mesi gratis)",
       tagline:
         "Studio amplificato: Time Travel, audio↔stroke sync, collaborazione real-time, ricerca su tutti i canvas.",
       features: [
@@ -85,7 +85,7 @@ const data: PricingData = {
   faq: [
     {
       q: "Come funzionano i crediti AI?",
-      a: "Ogni operazione AI costa crediti fissi: Ghost Map 8, Socratic 4 per stage, Exam 12 per domanda, Chat 1 per messaggio. Atlas (azioni canvas) e Background OCR base sono gratis. Vedi sempre quanti crediti ti restano nell'header del canvas — niente rate limit nascosti, niente sorprese. Quelli che non usi non si accumulano: il piano si ricarica ogni 30 giorni, contati dalla tua data di iscrizione (non dal 1° del mese — paghi 30 giorni e ricevi 30 giorni).",
+      a: "Ogni operazione AI costa crediti fissi: Ghost Map 8, Socratic 4 per stage, Exam 12 per domanda, Chat 1 per messaggio. Atlas (azioni canvas) è gratis. Il Background OCR proattivo costa 1 credito a pagina ed è nel piano Pro. Vedi sempre quanti crediti ti restano nell'header del canvas — niente rate limit nascosti, niente sorprese. Quelli che non usi non si accumulano: il piano si ricarica ogni 30 giorni, contati dalla tua data di iscrizione (non dal 1° del mese — paghi 30 giorni e ricevi 30 giorni).",
     },
     {
       q: "E se finisco i crediti prima del reset?",

@@ -4,7 +4,7 @@ title: "Cognição incorporada"
 shortDescription: "O pensamento não é fenômeno puramente cerebral. Corpo, gesto, ação motora e interação com o ambiente são constituintes dos processos cognitivos, não acessórios."
 keyYear: "1999"
 fieldOfStudy: embodiment
-primaryAuthors: [van-der-meer, mueller-oppenheimer]
+primaryAuthors: [van-der-meer, flanigan]
 appliedInFeatures: [memory-palace, ghost-map]
 evidenceStrength: strong
 order: 21
