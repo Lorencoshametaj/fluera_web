@@ -99,5 +99,62 @@ if (slashless.size > 0) {
   }
 }
 
+// ── Indexing signals must agree ──────────────────────────────────────────
+// Three ways to tell a crawler about a page — sitemap, robots.txt, meta
+// robots — and they must not contradict. Two real defects lived here for
+// months, both invisible to build and smoke:
+//   · /legal/* was Disallow-ed AND carried noindex: the crawler could not
+//     fetch the page, so it never saw the noindex, and indexed the bare URL
+//     (GSC "Indexed, though blocked by robots.txt").
+//   · the same pages sat in the sitemap, which asks for the opposite.
+{
+  const robotsPath = join(DIST, "robots.txt");
+  const disallow = existsSync(robotsPath)
+    ? readFileSync(robotsPath, "utf8")
+        .split("\n")
+        .map((l) => l.trim())
+        .filter((l) => /^Disallow:/i.test(l))
+        .map((l) => l.replace(/^Disallow:\s*/i, ""))
+        .filter((p) => p && !p.includes("*"))
+    : [];
+
+  const sitemapUrls = [];
+  for (const f of readdirSync(DIST)) {
+    if (!/^sitemap.*\.xml$/.test(f)) continue;
+    const xml = readFileSync(join(DIST, f), "utf8");
+    for (const m of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) {
+      const u = m[1].replace(/^https?:\/\/[^/]+/, "");
+      if (u.endsWith(".xml")) continue; // the index pointing at its children
+      sitemapUrls.push(u);
+    }
+  }
+
+  const blocked = sitemapUrls.filter((u) => disallow.some((d) => u.startsWith(d)));
+  const noindexed = sitemapUrls.filter((u) => {
+    const f = join(DIST, u.replace(/^\//, ""), "index.html");
+    return existsSync(f) && /<meta[^>]+name="robots"[^>]+noindex/i.test(readFileSync(f, "utf8"));
+  });
+
+  if (blocked.length) {
+    failed = true;
+    console.error(`\n✗ ${blocked.length} sitemap URL(s) are Disallow-ed in robots.txt:`);
+    for (const u of blocked.slice(0, 10)) console.error(`   ${u}`);
+  }
+  if (noindexed.length) {
+    failed = true;
+    console.error(`\n✗ ${noindexed.length} sitemap URL(s) carry meta robots=noindex:`);
+    for (const u of noindexed.slice(0, 10)) console.error(`   ${u}`);
+  }
+
+  // Presence assertion: an empty sitemap would pass both checks above by
+  // being empty, which is exactly the silent failure this gate must catch.
+  if (sitemapUrls.length < 100) {
+    failed = true;
+    console.error(`\n✗ sitemap holds only ${sitemapUrls.length} URLs — expected the full site.`);
+  } else if (!blocked.length && !noindexed.length) {
+    console.log(`Sitemap: ${sitemapUrls.length} URLs, none blocked or noindexed.`);
+  }
+}
+
 if (failed) process.exit(1);
 console.log("✓ Every internal link and asset resolves; all page links carry the trailing slash.");

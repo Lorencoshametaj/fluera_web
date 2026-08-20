@@ -167,6 +167,11 @@ export default defineConfig({
   integrations: [
     tailwind({ applyBaseStyles: false }),
     sitemap({
+      // A sitemap is a request to index. Listing a page that carries
+      // <meta robots="noindex"> asks Google for two opposite things at once,
+      // and GSC reports the contradiction. /legal/* is noindex by design
+      // (LegalLayout), so it stays out of the sitemap.
+      filter: (page) => !/\/legal\//.test(page),
       i18n: {
         defaultLocale: DEFAULT_LOCALE,
         locales: Object.fromEntries(LOCALES.map((l) => [l, l])),

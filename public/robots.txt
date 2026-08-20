@@ -1,6 +1,12 @@
+# /legal/ is NOT disallowed on purpose. Those pages already carry
+# <meta name="robots" content="noindex, nofollow"> (LegalLayout), and a
+# crawler must be able to FETCH a page to see that tag. Disallowing them
+# had the opposite of the intended effect: the footer links from every
+# page told Google the URLs exist, Google could not read the noindex, and
+# indexed them blind — GSC "Indexed, though blocked by robots.txt".
+# Let the crawler in; the noindex does the work.
 User-agent: *
 Allow: /
-Disallow: /legal/
 Disallow: /api/
 Disallow: /_astro/
 Disallow: /*?*utm_
