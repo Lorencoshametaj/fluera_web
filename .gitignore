@@ -29,3 +29,6 @@ pnpm-debug.log*
 
 # lighthouse
 .lighthouseci/
+
+# generated per-deploy by tools/build-lastmod.mjs (dates come from git)
+.lastmod.json

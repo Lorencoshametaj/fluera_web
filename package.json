@@ -9,11 +9,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "npm run build && node tools/check-links.mjs && node tools/test-smoke.mjs",
+    "test": "npm run lastmod && npm run build && node tools/check-links.mjs && node tools/test-smoke.mjs",
     "test:smoke": "node tools/test-smoke.mjs",
     "test:links": "node tools/check-links.mjs",
     "lighthouse": "lhci autorun",
-    "lighthouse:build": "npm run build && npm run lighthouse"
+    "lighthouse:build": "npm run build && npm run lighthouse",
+    "lastmod": "node tools/build-lastmod.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",

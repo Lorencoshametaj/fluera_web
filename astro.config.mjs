@@ -80,7 +80,33 @@ function buildLastmodMap() {
   return map;
 }
 
-const LASTMOD_MAP = buildLastmodMap();
+// Static .astro pages have no frontmatter, so buildLastmodMap() above cannot
+// date them — 84% of the sitemap shipped with no <lastmod> at all, including
+// the home pages and /pricing/. tools/build-lastmod.mjs derives those dates
+// from the monorepo's real git history and writes .lastmod.json; the deploy
+// script carries it into the publish repo, where git history is only sync
+// commits and would date every file identically.
+function withStaticPageDates(map) {
+  let raw;
+  try {
+    raw = readFileSync("./.lastmod.json", "utf8");
+  } catch {
+    return map; // absent in a plain local build — pages simply keep no lastmod
+  }
+  for (const [route, iso] of Object.entries(JSON.parse(raw))) {
+    const date = new Date(iso);
+    if (isNaN(date.getTime())) continue;
+    const url = `https://fluera.dev${route}`;
+    // Content dates win: an article's honest date is its frontmatter, not the
+    // day someone restyled the template that renders it.
+    if (!map.has(url)) map.set(url, date);
+    const noSlash = url.replace(/\/$/, "");
+    if (noSlash && !map.has(noSlash)) map.set(noSlash, date);
+  }
+  return map;
+}
+
+const LASTMOD_MAP = withStaticPageDates(buildLastmodMap());
 
 // ── Trailing-slash normalizer ────────────────────────────────────────────
 // The built site is directory-style (`/pricing/index.html`), but most source

@@ -148,6 +148,34 @@ if (slashless.size > 0) {
 
   // Presence assertion: an empty sitemap would pass both checks above by
   // being empty, which is exactly the silent failure this gate must catch.
+  // Every URL must declare when it changed. The sitemap shipped for months
+  // with 84% of its URLs carrying no <lastmod> — including every home page and
+  // /pricing/ — so Google had no signal that anything had been touched. And the
+  // dates must actually differ: a sitemap that claims the whole site changed
+  // today is the pattern crawlers learn to discount.
+  {
+    const dated = [];
+    for (const f of readdirSync(DIST)) {
+      if (!/^sitemap.*\.xml$/.test(f)) continue;
+      const xml = readFileSync(join(DIST, f), "utf8");
+      for (const m of xml.matchAll(/<url>[\s\S]*?<\/url>/g)) {
+        const d = m[0].match(/<lastmod>([^<]+)</);
+        dated.push(d ? d[1].slice(0, 10) : null);
+      }
+    }
+    const missing = dated.filter((d) => d === null).length;
+    const days = new Set(dated.filter(Boolean));
+    if (dated.length && missing / dated.length > 0.05) {
+      failed = true;
+      console.error(`\n✗ ${missing} of ${dated.length} sitemap URLs declare no <lastmod> (over the 5% ceiling).`);
+    } else if (days.size === 1 && dated.length > 50) {
+      failed = true;
+      console.error(`\n✗ every sitemap URL claims the same date (${[...days][0]}) — a "whole site changed today" signal.`);
+    } else if (dated.length) {
+      console.log(`Sitemap dates: ${dated.length - missing}/${dated.length} URLs, ${days.size} distinct days.`);
+    }
+  }
+
   if (sitemapUrls.length < 100) {
     failed = true;
     console.error(`\n✗ sitemap holds only ${sitemapUrls.length} URLs — expected the full site.`);
