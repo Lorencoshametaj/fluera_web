@@ -1,0 +1,105 @@
+---
+lang: "fr"
+title: "Répétition espacée en médecine : la science face aux applications"
+description: "Cinquante ans de recherche sur la mémoire, quatre algorithmes majeurs (SM-2, FSRS, SuperMemo 18) et une poignée d'applications qui les implémentent avec une fidélité inégale. Ce que dit vraiment la science — et où les applis rognent."
+publishedAt: 2026-05-17
+updatedAt: 2026-05-17
+author: "Lorenzo"
+category: cognitive-science
+tags: ["répétition-espacée", "fsrs", "sm-2", "médecine", "sciences-de-l-apprentissage"]
+relatedPrinciples: [spacing-effect, successive-relearning, retrieval-practice, desirable-difficulties]
+---
+import Citation from "@/components/Citation.astro";
+
+La plupart des articles sur la répétition espacée vous disent « utilisez Anki » et s'arrêtent là. Celui-ci s'adresse à l'étudiant en médecine qui veut comprendre ce que dit réellement la science sous-jacente — et où chaque application qui prétend l'implémenter fait des choix simplificateurs qui comptent.
+
+En bref : la répétition espacée est l'un des résultats les plus répliqués de toute la psychologie cognitive. Le mécanisme est solide. Les *algorithmes* qui l'approchent, en revanche, varient en fidélité, et l'écart entre les meilleurs et ce que la plupart des applications livrent réellement est plus large que le marketing ne le laisse croire. Pour qui doit retenir quatre ans de cursus médical, ces écarts s'accumulent.
+
+## Le résultat de base
+
+L'effet d'espacement, en substance : à temps d'étude total égal, répartir les séances produit une meilleure rétention à long terme que les concentrer. Le résultat a plus d'un siècle — Ebbinghaus a tracé une version de la courbe de l'oubli en 1885 — mais la littérature empirique moderne commence vraiment dans les années 1970 avec Bjork, et elle a été répliquée au point de compter parmi les vérités les plus fiables des sciences cognitives.
+
+Le détail qui compte pour la conception des applications se trouve dans <Citation authors="Cepeda et al." year="2008" href="/fr/research">l'article de Cepeda de 2008</Citation>, qui a cartographié non seulement *si* l'espacement fonctionne, mais *quel* espacement fonctionne le mieux pour quel intervalle de rétention. Le résultat clé : l'écart optimal entre séances répétées vaut environ 10 à 20 % de l'intervalle de rétention visé. S'il faut se souvenir dans 100 jours, des séances espacées de 10 à 20 jours sont quasi optimales. S'il faut s'en souvenir dans 4 ans, l'écart optimal est de l'ordre de 5 à 10 mois.
+
+C'est le second chiffre qui compte en médecine. Presque toutes les applications de répétition espacée sont calibrées pour un horizon de 30 à 90 jours (typique d'un examen ponctuel). La médecine, c'est un horizon de *quatre ans*, avec le concours ou l'internat au bout. L'algorithme optimal pour « réviser le contrôle de la semaine prochaine » n'est *pas* celui qui est optimal pour « le savoir encore dans deux ans ».
+
+## De la science à l'algorithme : SM-2, FSRS, SuperMemo 18
+
+Trois algorithmes couvrent en 2026 l'essentiel des applications sérieuses. Ils diffèrent par la manière de choisir l'intervalle suivant.
+
+**SM-2 (1987).** L'algorithme utilisé par défaut par Anki pendant la plus grande partie de son histoire. Chaque carte a un « facteur de facilité » qui monte quand vous répondez juste sans effort et descend quand vous vous trompez ; l'intervalle suivant vaut l'intervalle courant multiplié par ce facteur, avec des bornes. C'est simple, facile à implémenter, et le défaut est bien documenté : les cartes difficiles tombent dans un « enfer de la facilité » où elles reviennent trop souvent, tandis que les cartes faciles ne sont jamais testées assez loin pour fournir un vrai signal de rétention. SM-2 a été conçu en 1987 pour un logiciel de quelques centaines de cartes ; il monte à plusieurs milliers, mais son calibrage en souffre.
+
+**FSRS (Free Spaced Repetition Scheduler, 2022–2024).** Développé par Jarrett Ye et d'autres comme remplaçant moderne et libre de SM-2. Il modélise chaque carte par trois paramètres — difficulté, stabilité, récupérabilité — et ajuste 19 poids sur l'historique de révisions de l'utilisateur pour prédire la probabilité de se souvenir d'une carte à un intervalle donné. La version actuelle, FSRS-5, date de 2024 et fait office de défaut dans Anki moderne, Mochi et quelques autres. Face à SM-2, elle produit 10 à 30 % de révisions en moins à rétention égale. Pour un étudiant avec 15 000 cartes actives, cela fait des heures par semaine.
+
+**SuperMemo 18 (2019, mis à jour depuis).** La lignée du SuperMemo d'origine, développé depuis 1985 par Piotr Wozniak. SuperMemo 18 implémente SM-18, dernier d'une série de modèles de mémoire à deux composantes qui a inspiré la conception de FSRS. C'est l'algorithme de SRS le plus rigoureux sur le plan théorique — et le moins accessible. Il tourne sous Windows, avec une interface notoirement datée, et presque aucun étudiant ne l'utilise.
+
+**La hiérarchie, simplifiée :** SM-18 (le plus précis, le plus difficile à utiliser) > FSRS-5 (moderne, libre, bien implémenté) > SM-2 (plus ancien, fonctionne encore, sous-optimal à grande échelle). Si votre application utilise encore SM-2 par défaut en 2026, ses auteurs n'ont pas touché à l'algorithme depuis dix ans, ou ils choisissent la simplicité au détriment de la fidélité.
+
+## Ce que « l'espacement optimal » signifie pour un cursus médical de 4 ans
+
+Appliquez le résultat de Cepeda à la médecine et vous obtenez quelque chose que peu d'étudiants intègrent avant l'externat :
+
+- La pharmacologie de première année — que vous devez restituer aux épreuves puis à nouveau des années plus tard — devrait idéalement être revue à des intervalles approchant les *mois* une fois un an écoulé, pas les jours.
+- Le matériel au niveau du concept (le mécanisme d'une classe de médicaments) se dégrade plus lentement que le détail (le bêtabloquant précis contre-indiqué en cas d'intoxication à la cocaïne). Ils appellent des calendriers différents.
+- Les cursus à fort volume et à fort enjeu sont exactement le cas où la faiblesse de calibrage de SM-2 se voit : révision trop fréquente des cartes bien maîtrisées, pas assez fréquente de celles qui glissent vers la zone d'échec à long intervalle.
+
+Le scénario d'échec bien connu : un étudiant de deuxième année ouvre Anki vers le quatorzième mois et voit 600 cartes matures échues. Le travail, il l'a fait ; c'est l'algorithme qui l'a rappelé trop souvent vers les cartes faciles, et les difficiles seront ratées le jour de l'examen parce qu'elles n'ont jamais été testées aux longs intervalles où la rétention se forme vraiment.
+
+Le remède n'est pas « réviser davantage ». Le remède, c'est l'algorithme.
+
+## Erreurs fréquentes
+
+Quatre erreurs sur lesquelles la littérature est sans ambiguïté, et que la pratique étudiante commet couramment.
+
+**1. Traiter le SRS comme « revoir toutes les cartes tous les jours ».** C'est l'échec de qui utilise un agenda à la place d'un SRS. Tout l'intérêt de l'algorithme est justement que vous *ne* voyiez *pas* chaque carte quotidiennement : une fois mûres, la plupart devraient se situer à des intervalles de semaines ou de mois. Traiter la file d'Anki comme une case à cocher chaque jour, c'est se nuire, car cela récompense la gestion de pile au lieu de laisser l'algorithme travailler.
+
+**2. Ignorer l'interaction avec les difficultés désirables.** <Citation authors="Bjork" year="1994" href="/fr/research">Le cadre des difficultés désirables de Bjork</Citation> établit que des conditions de pratique qui *semblent* plus dures — y compris de longs intervalles où la récupération échoue parfois — produisent une meilleure rétention durable. Les utilisateurs de SRS « sauvent » couramment des cartes en appuyant trop vite sur « à revoir », ce qui réinitialise l'intervalle, parce que l'échec est désagréable. L'échec est le signal. <Citation authors="Roediger &amp; Karpicke" year="2006" href="/fr/research">Une tentative de récupération qui réussit de justesse</Citation> crée davantage de mémoire qu'une réussite sans effort.
+
+**3. Trop se fier à l'algorithme.** Aucun algorithme de répétition espacée — SM-2, FSRS, SM-18 — ne produit de *compréhension*. Il produit la *rétention de ce qui figure sur la carte*. Si votre carte demande « qu'est-ce qui convertit l'angiotensine I en angiotensine II ? » et que la réponse est « l'ECA », l'algorithme veillera consciencieusement à ce que vous reteniez cette paire à jamais. Il ne veillera pas à ce que vous compreniez le système rénine-angiotensine. Le SRS vient après la compréhension, pas à sa place.
+
+**4. Prendre la répétition espacée pour tout le système d'étude.** Le SRS est un outil. C'est l'outil pour *retenir des faits déjà compris*. Ce n'est pas l'outil pour *construire la compréhension*, ni pour *tester l'intégration entre sujets*, ni pour *repérer l'écart métacognitif entre reconnaître et récupérer*. Ceux qui ne travaillent qu'avec Anki présentent des faiblesses prévisibles aux épreuves cliniques, car le raisonnement clinique n'a pas la forme d'une fiche.
+
+## Où cela s'insère dans un vrai système de travail
+
+Si l'on prend la littérature au sérieux, l'implication pour la médecine n'est pas « faites plus d'Anki ». C'est plutôt ceci :
+
+- Construisez d'abord la compréhension avec les outils faits pour ça : cours, apprentissage par problèmes, tracer les choses à la main, discuter des cas à voix haute.
+- Une fois un concept *compris*, encodez dans un système de répétition espacée les faits discrets à restituer à la demande. Laissez le calendrier à l'algorithme.
+- Associez ce calendrier à de la [pratique de récupération](/fr/science/principles/retrieval-practice) au niveau du concept — des tentatives sans documents de reconstruire un système de mémoire — que le format fiche ne peut pas tester.
+- Ajoutez-y de l'[entrelacement](/fr/science/principles/interleaving) entre systèmes, qui est ce qui fait fonctionner les questions intégrées le jour de l'épreuve.
+- Et ajoutez à *cela* des contrôles métacognitifs explicites (prédisez votre taux de réussite avant l'auto-évaluation ; comparez prédiction et résultat ; suivez l'écart dans le temps). C'est la partie que presque tout le monde saute, et celle qui sépare le plus régulièrement une bonne note d'une excellente.
+
+La répétition espacée est indispensable. Elle n'est pas suffisante. Le tableau « complet » ressemble à ceci : l'espacement gère le *quand*, la pratique de récupération le *type de tentative*, l'entrelacement *le mélange des sujets*, et la métacognition *si votre sentiment de maîtrise est calibré*. Les applications de SRS livrent surtout le premier. Les bonnes poussent vers le deuxième. Presque aucune ne traite le troisième ni le quatrième.
+
+## Les outils qui implémentent FSRS-5 correctement
+
+Si vous choisissez une application de répétition espacée pour la médecine en 2026, FSRS-5 devrait être le minimum. Les implémentations sérieuses :
+
+- **Anki** (avec FSRS-5 activé, pas le SM-2 par défaut). Gratuit sur ordinateur et Android, 25 $ une fois sur iOS. L'écosystème de paquets communautaires est sans égal. La documentation de FSRS fait désormais partie du manuel officiel.
+- **Mochi.** FSRS-4 nativement, FSRS-5 en bêta en 2026. Idéal si vous voulez une implémentation propre et ne dépendez pas des paquets communautaires.
+- **RemNote.** Utilise un algorithme maison inspiré de SuperMemo plutôt que FSRS. Bon si vous voulez notes et cartes dans un seul outil.
+- **Fluera.** Utilise FSRS-5 avec une différence : il porte sur des *concepts* que vous avez dessinés ou écrits, pas sur des fiches isolées. L'algorithme est le même ; la surface diffère. Le pari est que planifier la récupération sur votre travail manuscrit — contexte compris — encode plus fortement que planifier la même récupération sur des fiches dépouillées. Nous avons développé cela à propos du [principe sous-jacent](/fr/science/principles/spacing-effect) et de [l'importance du réapprentissage successif](/fr/science/principles/successive-relearning).
+
+La voie Anki est la voie établie et le bon choix pour la plupart. La voie Fluera vaut pour le cas où vous voulez en plus que votre répétition espacée repose sur une toile montrant comment les concepts se relient — précisément la part que les fiches, par construction, retirent.
+
+## Les limites honnêtes du SRS en médecine
+
+Cela mérite d'être dit clairement, car la communauté SRS verse parfois dans la survente : il y a des choses que la répétition espacée fait mal dans la formation médicale.
+
+Elle ne produit pas de **raisonnement clinique**. Passer de « connaît les faits sur l'insuffisance cardiaque » à « reconnaît une insuffisance cardiaque récente chez un homme de 68 ans présentant des œdèmes bilatéraux des membres inférieurs et une orthopnée » relève d'une autre compétence cognitive. C'est celle que les stages existent pour développer ; le SRS fournit le substrat, pas la synthèse.
+
+Elle ne produit pas de **geste technique**. La littérature sur l'acquisition motrice est un domaine à part, et les principes d'espacement ne se transposent pas proprement à « comment réaliser une ponction d'ascite ».
+
+Elle ne produit ni **communication ni empathie**. Ce n'est même pas sur la table.
+
+Ce que le SRS fait, il le fait très bien, et c'est une chose précise : rendre disponible un fait appris à un moment futur lointain où vous en avez besoin. Pour la médecine, c'est un ingrédient essentiel — mais un ingrédient, pas le repas.
+
+[Commencez gratuitement avec Fluera — concepts, récupération et espacement sur une seule toile →](/fr/beta)
+
+## Ce à quoi cela se ramène
+
+La science cinquantenaire sur l'espacement est vraie et vous concerne. L'algorithme SM-2, vieux de quarante ans, n'en est plus la meilleure implémentation ; FSRS-5 l'est. La plupart des applications, en 2026, livrent FSRS-5 ou migrent vers lui ; si la vôtre ne l'a pas fait, c'est un signal.
+
+Au-delà de la question de l'algorithme, la vraie question d'architecture porte sur *ce sur quoi* il opère. S'il opère sur des fiches dépouillées, vous obtenez le bénéfice de l'espacement mais perdez le contexte qui rend le fait restitué utile. S'il opère sur quelque chose de plus riche — un concept sur une toile, un lien dans une carte, un morceau de votre propre écriture —, vous obtenez les deux.
+
+Choisissez l'algorithme sérieusement. Puis choisissez, au moins aussi sérieusement, la surface sur laquelle il tourne.

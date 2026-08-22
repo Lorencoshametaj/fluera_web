@@ -184,5 +184,39 @@ if (slashless.size > 0) {
   }
 }
 
+// ── Localized content must link inside its own locale ───────────────────
+// A link that resolves is not necessarily a link that belongs: 62 translated
+// posts ended their argument with `](/beta)`, so a German reader finished a
+// German article and landed on the English signup page. check-links above sees
+// nothing wrong — the target exists. Only the language is wrong.
+{
+  const SRC = resolve(__dirname, "..", "src", "content");
+  const LOC = new Set(["it","es","pt-br","fr","de","ja","ko","hi","pl","ar","nl","sv","da","no","fi"]);
+  const offenders = [];
+  const walk = (d) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      const full = join(d, e.name);
+      if (e.isDirectory()) { walk(full); continue; }
+      if (!/\.mdx?$/.test(e.name)) continue;
+      const parts = e.name.split(".");
+      const loc = parts.length >= 3 ? parts[parts.length - 2] : null;
+      if (!loc || !LOC.has(loc)) continue; // default-locale file: root links are right
+      const text = readFileSync(full, "utf8");
+      for (const m of text.matchAll(/\]\((\/[a-z0-9/#-]*)\)/g)) {
+        const first = m[1].replace(/^\//, "").split("/")[0];
+        if (!LOC.has(first)) offenders.push(`${e.name} → ${m[1]}`);
+      }
+    }
+  };
+  if (existsSync(SRC)) walk(SRC);
+  if (offenders.length) {
+    failed = true;
+    console.error(`\n✗ ${offenders.length} link(s) in localized content point at the default locale:`);
+    for (const o of offenders.slice(0, 10)) console.error(`   ${o}`);
+  } else {
+    console.log("Localized content: every internal link stays in its own locale.");
+  }
+}
+
 if (failed) process.exit(1);
 console.log("✓ Every internal link and asset resolves; all page links carry the trailing slash.");

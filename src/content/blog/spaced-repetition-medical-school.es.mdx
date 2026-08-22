@@ -1,0 +1,105 @@
+---
+lang: "es"
+title: "Repaso espaciado en medicina: la ciencia frente a las apps"
+description: "Cincuenta años de investigación sobre la memoria, cuatro algoritmos principales (SM-2, FSRS, SuperMemo 18) y un puñado de apps que los implementan con fidelidad desigual. Lo que dice de verdad la ciencia — y dónde las apps recortan."
+publishedAt: 2026-05-17
+updatedAt: 2026-05-17
+author: "Lorenzo"
+category: cognitive-science
+tags: ["repaso-espaciado", "fsrs", "sm-2", "medicina", "ciencia-del-aprendizaje"]
+relatedPrinciples: [spacing-effect, successive-relearning, retrieval-practice, desirable-difficulties]
+---
+import Citation from "@/components/Citation.astro";
+
+Casi todos los artículos sobre repaso espaciado te dicen «usa Anki» y ahí se detienen. Este es para el estudiante de medicina que quiere entender qué dice realmente la ciencia subyacente — y dónde cada app que dice implementarla toma decisiones simplificadoras que importan.
+
+En corto: el repaso espaciado es uno de los hallazgos más replicados de toda la psicología cognitiva. El mecanismo es sólido. Los *algoritmos* que lo aproximan, en cambio, varían en fidelidad, y la distancia entre los mejores y los que la mayoría de las apps realmente entrega es mayor de lo que sugiere el marketing. Para quien intenta retener un plan de estudios médico de cuatro años, esas distancias se acumulan.
+
+## El hallazgo básico
+
+El efecto de espaciamiento es aproximadamente esto: con la misma cantidad total de tiempo de estudio, repartir las sesiones produce mejor retención a largo plazo que concentrarlas. El hallazgo tiene más de un siglo — Ebbinghaus trazó una versión de la curva del olvido en 1885 — pero la literatura empírica moderna empieza de verdad en los años setenta con Bjork, y se ha replicado hasta el punto de ser una de las cosas más fiablemente ciertas de la ciencia cognitiva.
+
+El detalle que importa para el diseño de apps está en <Citation authors="Cepeda et al." year="2008" href="/es/research">el artículo de Cepeda de 2008</Citation>, que mapeó no solo *si* funciona el espaciamiento sino *qué* espaciamiento funciona mejor para cada intervalo de retención. El resultado clave: el intervalo óptimo entre sesiones repetidas es cerca del 10–20 % del intervalo de retención que buscas. Si necesitas recordar algo dentro de 100 días, sesiones separadas por 10–20 días son casi óptimas. Si necesitas recordarlo dentro de 4 años, el intervalo óptimo es del orden de 5–10 meses.
+
+Es el segundo número el que importa en medicina. Casi todas las apps de repaso espaciado están calibradas para un horizonte de retención de 30–90 días (típico de un examen puntual). Medicina es un horizonte de *cuatro años*, con la prueba de habilitación al final. El algoritmo óptimo para «repasa el control de la semana que viene» *no* es el óptimo para «seguir sabiéndolo dentro de dos años».
+
+## De la ciencia al algoritmo: SM-2, FSRS, SuperMemo 18
+
+Tres algoritmos cubren esencialmente todas las apps serias de repaso espaciado en 2026. Difieren en cómo eligen el siguiente intervalo.
+
+**SM-2 (1987).** El algoritmo que Anki ha usado por defecto durante casi toda su historia. Cada tarjeta tiene un «factor de facilidad» que sube cuando aciertas sin esfuerzo y baja cuando fallas; el siguiente intervalo es el actual multiplicado por ese factor, con topes. Es simple, fácil de implementar, y tiene un fallo bien documentado: las tarjetas que te resultan difíciles caen en un «infierno de facilidad» donde se programan demasiado seguido, mientras que las fáciles nunca se ponen a prueba lo bastante lejos como para dar señal real de retención. SM-2 se diseñó en 1987 para un programa de unos cientos de tarjetas; escala a miles, pero su calibración sufre.
+
+**FSRS (Free Spaced Repetition Scheduler, 2022–2024).** Desarrollado por Jarrett Ye y otros como reemplazo moderno y de código abierto de SM-2. Modela cada tarjeta con tres parámetros — dificultad, estabilidad, recuperabilidad — y ajusta 19 pesos sobre el historial de repasos de cada usuario para predecir la probabilidad de recordar una tarjeta dada a un intervalo dado. La versión actual, FSRS-5, es de 2024 y es el valor por defecto en el Anki moderno, en Mochi y en algunos más. Frente a SM-2 produce entre un 10 y un 30 % menos de repasos con la misma retención. Para un estudiante de medicina con 15.000 tarjetas activas, son horas por semana.
+
+**SuperMemo 18 (2019, con actualizaciones posteriores).** El linaje del SuperMemo original, desarrollado desde 1985 por Piotr Wozniak. SuperMemo 18 implementa SM-18, el último de una línea de modelos de memoria de dos componentes que inspiró el diseño de FSRS. Es el algoritmo SRS teóricamente más riguroso disponible — y el menos accesible. Corre en Windows, tiene una interfaz notoriamente anticuada, y casi ningún estudiante lo usa.
+
+**La jerarquía, simplificada:** SM-18 (el más preciso, el más difícil de usar) > FSRS-5 (moderno, abierto, bien implementado) > SM-2 (más viejo, sigue funcionando, subóptimo a escala). Si en 2026 tu app usa SM-2 por defecto, sus creadores o no han tocado el algoritmo en una década o están eligiendo la simplicidad por encima de la fidelidad.
+
+## Qué significa «espaciamiento óptimo» para un plan médico de 4 años
+
+Aplica el resultado de Cepeda a medicina y obtienes algo que casi nadie interioriza antes de los años clínicos:
+
+- La farmacología de primero — que necesitas recuperar en la habilitación y otra vez años después — debería idealmente repasarse a intervalos que se acercan a los *meses* cuando ha pasado un año, no a los días.
+- El material a nivel de concepto (el mecanismo de una clase de fármacos) decae más despacio que el de detalle (el β-bloqueante concreto contraindicado en intoxicación por cocaína). Piden calendarios distintos.
+- Los planes de alto volumen y mucho en juego son exactamente el caso donde aflora la debilidad de calibración de SM-2: repaso demasiado frecuente de tarjetas que llevas bien, y no lo bastante frecuente de las que derivan hacia la zona de fallo de intervalo largo.
+
+El fallo clásico es este: un estudiante de segundo abre Anki hacia el mes catorce y ve 600 tarjetas maduras vencidas. El trabajo lo ha hecho; es el algoritmo el que lo ha llamado demasiado a menudo a las tarjetas fáciles, y las difíciles se fallarán igual el día del examen porque nunca se pusieron a prueba en los intervalos largos donde la retención realmente se forma.
+
+El arreglo no es «hacer más repasos». El arreglo es el algoritmo.
+
+## Errores comunes
+
+Cuatro errores sobre los que la literatura es inequívoca, y que la práctica estudiantil comete de forma rutinaria.
+
+**1. Tratar el SRS como «repasar todas las tarjetas todos los días».** Es el fallo de quien usa un calendario en vez de un SRS. El sentido del algoritmo es justamente que *no* ves cada tarjeta a diario: una vez maduras, la mayoría deberían estar a intervalos de semanas o meses. Quien trata la cola de Anki como una tarea diaria que completar se hace daño, porque premia gestionar el montón en lugar de dejar trabajar al algoritmo.
+
+**2. Ignorar la interacción con las dificultades deseables.** <Citation authors="Bjork" year="1994" href="/es/research">El marco de dificultades deseables de Bjork</Citation> dice que las condiciones de práctica que *se sienten* más duras — incluidos intervalos largos donde alguna recuperación falla — producen mejor retención a largo plazo. Los usuarios de SRS «rescatan» tarjetas pulsando «otra vez» demasiado rápido, reiniciando el intervalo, porque el fallo incomoda. El fallo es la señal. <Citation authors="Roediger &amp; Karpicke" year="2006" href="/es/research">Un intento de recuperación que casi acierta</Citation> crea más memoria que uno que acierta sin esfuerzo.
+
+**3. Confiar de más en el algoritmo.** Ningún algoritmo de repaso espaciado — SM-2, FSRS, SM-18 — produce *comprensión*. Produce *retención de lo que hay en la tarjeta*. Si tu tarjeta dice «¿qué convierte angiotensina I en angiotensina II?» y la respuesta es «ECA», el algoritmo se asegurará diligentemente de que recuerdes ese par para siempre. No se asegurará de que entiendas el sistema renina-angiotensina. El SRS va después de la comprensión, no en su lugar.
+
+**4. Tratar el repaso espaciado como el sistema de estudio entero.** El SRS es una herramienta. Es la herramienta para *retener hechos que ya has entendido*. No lo es para *construir comprensión*, ni para *comprobar la integración entre temas*, ni para *detectar la brecha metacognitiva entre reconocer y recuperar*. Quien estudia medicina solo con Anki tiene debilidades predecibles en las pruebas clínicas, porque el razonamiento clínico no es un problema con forma de tarjeta.
+
+## Dónde encaja en un sistema de estudio real
+
+Si te tomas en serio la literatura sobre espaciamiento, la implicación para medicina no es «haz más Anki». Es algo así:
+
+- Construye primero la comprensión con las herramientas pensadas para eso: clases, aprendizaje basado en problemas, dibujar las cosas a mano, razonar casos en voz alta.
+- Una vez entendido un concepto, codifica en un sistema de repaso espaciado los datos discretos que necesitas recuperar a demanda. Deja el calendario al algoritmo.
+- Acompaña el calendario del SRS con [práctica de recuperación](/es/science/principles/retrieval-practice) a nivel de concepto — intentos a libro cerrado de reconstruir un sistema de memoria — que el formato de tarjeta no puede examinar.
+- Añade [intercalado](/es/science/principles/interleaving) entre sistemas, que es lo que hace funcionar las preguntas integradas el día del examen.
+- Y añade a *eso* comprobaciones metacognitivas explícitas (predice tu acierto antes de autoevaluarte; compara predicción y resultado; sigue la brecha en el tiempo). Es la parte que casi todos se saltan, y la que con más constancia separa una buena nota de una excelente.
+
+El repaso espaciado es esencial. No es suficiente. El cuadro «completo» es más o menos: el espaciamiento gestiona el *cuándo*, la práctica de recuperación el *tipo de intento*, el intercalado *cómo se mezclan los temas*, y la metacognición *si tu sensación de dominio está calibrada*. Las apps de SRS entregan sobre todo lo primero. Las buenas empujan hacia lo segundo. Casi ninguna aborda lo tercero o lo cuarto.
+
+## Herramientas que implementan FSRS-5 como se debe
+
+Si vas a elegir una app de repaso espaciado para medicina en 2026, FSRS-5 debería ser lo mínimo. La lista de implementaciones serias:
+
+- **Anki** (con FSRS-5 activado, no con el SM-2 por defecto). Gratis en escritorio y Android, 25 $ una vez en iOS. El ecosistema de mazos de la comunidad no tiene rival. La documentación de FSRS ya forma parte del manual oficial.
+- **Mochi.** FSRS-4 nativo, con FSRS-5 en beta en 2026. Ideal para quien quiere una implementación limpia y no depende de mazos comunitarios.
+- **RemNote.** Usa un algoritmo propio inspirado en SuperMemo en lugar de FSRS. Bueno si quieres apuntes y tarjetas en una sola herramienta.
+- **Fluera.** Usa FSRS-5 con una diferencia: opera sobre *conceptos* que has dibujado o escrito, no sobre tarjetas aisladas. El algoritmo es el mismo; la superficie es distinta. La apuesta es que programar la recuperación sobre tu trabajo manuscrito — contexto incluido — produce una codificación más fuerte que programar la misma recuperación sobre tarjetas despojadas. Lo hemos desarrollado hablando del [principio subyacente](/es/science/principles/spacing-effect) y de [por qué importa el reaprendizaje sucesivo](/es/science/principles/successive-relearning).
+
+La vía Anki es la consolidada y la elección correcta para la mayoría. La vía Fluera es para el caso en que además quieres tu repaso espaciado sobre un lienzo que muestre cómo se conectan los conceptos — justo la parte que las tarjetas, por diseño, eliminan.
+
+## Los límites honestos del SRS en medicina
+
+Vale la pena decirlo claro, porque la comunidad del SRS a veces se pasa vendiendo: hay cosas que el repaso espaciado hace mal en la formación médica.
+
+No produce **razonamiento clínico**. Pasar de «sabe los datos sobre la insuficiencia cardíaca» a «reconoce una insuficiencia de nueva aparición en un hombre de 68 años con edema bilateral en piernas y ortopnea» es otra habilidad cognitiva. Es la habilidad para la que existen las rotaciones, y el SRS te da el sustrato pero no la síntesis.
+
+No produce **destreza procedimental**. La literatura sobre adquisición de habilidades motoras es un campo aparte, y los principios del repaso espaciado no se trasladan limpiamente a «cómo hago una paracentesis».
+
+No produce **comunicación ni empatía**. Ni siquiera están sobre la mesa.
+
+Lo que el SRS hace es una cosa concreta, y la hace muy bien: mantener disponible un dato que aprendiste para un momento futuro lejano en que lo necesitas. En medicina es un ingrediente crítico, pero es un ingrediente, no la comida.
+
+[Empieza gratis con Fluera — conceptos, recuperación y espaciamiento en un solo lienzo →](/es/beta)
+
+## A qué se reduce todo
+
+La ciencia de cincuenta años sobre el espaciamiento es cierta y te afecta. El algoritmo SM-2, que tiene cuarenta, ya no es su mejor implementación; FSRS-5 sí. Casi todas las apps en 2026 o entregan FSRS-5 o están migrando; si la tuya no lo ha hecho, es una señal.
+
+Más allá del algoritmo, la pregunta arquitectónica mayor es sobre *qué* opera ese algoritmo. Si opera sobre tarjetas despojadas, obtienes el beneficio del espaciamiento pero pierdes el contexto que hace útil el dato recuperado. Si opera sobre algo más rico — un concepto en un lienzo, una conexión en un mapa, un trozo de tu propia letra — obtienes ambos.
+
+Elige el algoritmo en serio. Después elige, con la misma seriedad, la superficie sobre la que corre.

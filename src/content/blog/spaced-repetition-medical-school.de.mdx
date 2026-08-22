@@ -1,0 +1,105 @@
+---
+lang: "de"
+title: "Verteiltes Lernen im Medizinstudium: die Wissenschaft gegen die Apps"
+description: "Fünfzig Jahre Gedächtnisforschung, vier zentrale Algorithmen (SM-2, FSRS, SuperMemo 18) und eine Handvoll Apps, die sie unterschiedlich getreu umsetzen. Was die Wissenschaft wirklich sagt — und wo die Apps abkürzen."
+publishedAt: 2026-05-17
+updatedAt: 2026-05-17
+author: "Lorenzo"
+category: cognitive-science
+tags: ["verteiltes-lernen", "fsrs", "sm-2", "medizinstudium", "lernwissenschaft"]
+relatedPrinciples: [spacing-effect, successive-relearning, retrieval-practice, desirable-difficulties]
+---
+import Citation from "@/components/Citation.astro";
+
+Die meisten Artikel über verteiltes Lernen sagen «nimm Anki» und hören da auf. Dieser hier ist für Medizinstudierende, die verstehen wollen, was die zugrunde liegende Wissenschaft tatsächlich aussagt — und wo jede App, die sie zu implementieren behauptet, vereinfachende Entscheidungen trifft, die zählen.
+
+Kurzfassung: Verteiltes Lernen ist einer der am häufigsten replizierten Befunde der gesamten kognitiven Psychologie. Der Mechanismus ist belastbar. Die *Algorithmen*, die ihn annähern, unterscheiden sich dagegen in ihrer Treue, und der Abstand zwischen den besten und dem, was die meisten Apps tatsächlich ausliefern, ist größer, als das Marketing nahelegt. Wer vier Jahre Medizincurriculum behalten will, bei dem summieren sich diese Abstände.
+
+## Der Grundbefund
+
+Der Spacing-Effekt lautet ungefähr so: Bei gleicher Gesamtlernzeit erzeugt das Verteilen der Sitzungen bessere langfristige Behaltensleistung als das Bündeln. Der Befund ist über hundert Jahre alt — Ebbinghaus zeichnete 1885 eine Version der Vergessenskurve — aber die moderne empirische Literatur beginnt eigentlich in den 1970ern mit Bjork, und sie wurde so oft repliziert, dass sie zu den verlässlichsten Wahrheiten der Kognitionswissenschaft zählt.
+
+Das für App-Design entscheidende Detail steht in <Citation authors="Cepeda et al." year="2008" href="/de/research">der Cepeda-Arbeit von 2008</Citation>, die nicht nur kartierte, *ob* Verteilung wirkt, sondern *welche* Verteilung bei welchem Behaltensintervall am besten wirkt. Das Kernergebnis: Der optimale Abstand zwischen wiederholten Lerneinheiten liegt bei etwa 10–20 % des angestrebten Behaltensintervalls. Musst du etwas in 100 Tagen können, sind Abstände von 10–20 Tagen nahezu optimal. Musst du es in 4 Jahren können, liegt der optimale Abstand eher bei 5–10 Monaten.
+
+Die zweite Zahl ist die, auf die es im Medizinstudium ankommt. Fast alle Apps für verteiltes Lernen sind auf einen Behaltenshorizont von 30–90 Tagen kalibriert (typisch für eine einzelne Klausur). Medizin ist ein *Vierjahreshorizont*, mit dem Staatsexamen als Prüfung. Der Algorithmus, der für «wiederhole den Test nächste Woche» optimal ist, ist *nicht* der, der für «das in zwei Jahren noch können» optimal ist.
+
+## Von der Wissenschaft zum Algorithmus: SM-2, FSRS, SuperMemo 18
+
+Drei Algorithmen decken 2026 im Grunde alle ernstzunehmenden Apps ab. Sie unterscheiden sich darin, wie sie das nächste Intervall wählen.
+
+**SM-2 (1987).** Der Algorithmus, den Anki über den Großteil seiner Geschichte standardmäßig nutzte. Jede Karte hat einen «Leichtigkeitsfaktor», der steigt, wenn du mühelos richtig liegst, und sinkt, wenn du falsch liegst; das nächste Intervall ist das aktuelle mal diesem Faktor, mit Grenzen. Simpel, leicht umzusetzen — und mit einer gut dokumentierten Schwäche: Karten, die dir schwerfallen, landen in einer «Ease-Hölle» und werden zu oft angesetzt, während leichte Karten nie weit genug hinaus geprüft werden, um echtes Behaltenssignal zu liefern. SM-2 wurde 1987 für ein Programm mit ein paar hundert Karten entworfen; es skaliert auf Tausende, aber die Kalibrierung leidet.
+
+**FSRS (Free Spaced Repetition Scheduler, 2022–2024).** Von Jarrett Ye und anderen als moderner Open-Source-Ersatz für SM-2 entwickelt. Es modelliert jede Karte mit drei Parametern — Schwierigkeit, Stabilität, Abrufbarkeit — und passt 19 Gewichte an die Wiederholungshistorie an, um die Wahrscheinlichkeit vorherzusagen, dass eine Karte nach einem bestimmten Intervall erinnert wird. Die aktuelle Version FSRS-5 erschien 2024 und ist Standard im modernen Anki, in Mochi und weiteren. Gegenüber SM-2 erzeugt sie 10–30 % weniger Wiederholungen bei gleicher Behaltensrate. Bei 15.000 aktiven Karten sind das Stunden pro Woche.
+
+**SuperMemo 18 (2019, laufend aktualisiert).** Die Linie des ursprünglichen SuperMemo, seit 1985 von Piotr Wozniak entwickelt. SuperMemo 18 setzt SM-18 um, das jüngste einer Reihe von Zwei-Komponenten-Gedächtnismodellen, die auch FSRS geprägt haben. Es ist der theoretisch strengste SRS-Algorithmus — und der unzugänglichste. Er läuft unter Windows, hat eine berüchtigt altmodische Oberfläche, und kaum ein Studierender nutzt ihn.
+
+**Die Hierarchie, vereinfacht:** SM-18 (am genauesten, am schwersten nutzbar) > FSRS-5 (modern, offen, gut umgesetzt) > SM-2 (älter, funktioniert noch, in großem Maßstab suboptimal). Nutzt deine App 2026 noch SM-2 als Standard, haben die Macher den Algorithmus entweder ein Jahrzehnt nicht angefasst oder sie wählen Einfachheit vor Treue.
+
+## Was «optimale Verteilung» für ein vierjähriges Medizincurriculum heißt
+
+Wendet man Cepeda auf das Medizinstudium an, bekommt man etwas, das die meisten erst im klinischen Abschnitt verinnerlichen:
+
+- Die Pharmakologie des ersten Jahres — die du im Examen und Jahre später erneut abrufen musst — sollte nach einem Jahr idealerweise in Abständen von *Monaten* wiederholt werden, nicht von Tagen.
+- Stoff auf Begriffsebene (der Wirkmechanismus einer Substanzklasse) zerfällt langsamer als Detailstoff (der konkrete Betablocker, der bei Kokainintoxikation kontraindiziert ist). Beide verlangen unterschiedliche Pläne.
+- Curricula mit hohem Volumen und hohem Einsatz sind genau der Fall, in dem SM-2s Kalibrierungsschwäche sichtbar wird: zu häufige Wiederholung gut sitzender Karten, zu seltene Wiederholung jener, die in den Langintervall-Ausfallbereich driften.
+
+Das bekannte Versagensmuster: Ein Studierender im zweiten Jahr öffnet Anki um Monat vierzehn und sieht 600 fällige reife Karten. Die Arbeit hat er gemacht; der Algorithmus hat ihn nur zu oft zu leichten Karten zurückgerufen, und die schweren wird er am Prüfungstag trotzdem verhauen, weil sie nie in den langen Intervallen geprüft wurden, in denen Behalten tatsächlich entsteht.
+
+Die Lösung ist nicht «mehr wiederholen». Die Lösung ist der Algorithmus.
+
+## Häufige Fehler
+
+Vier Fehler, zu denen die Literatur eindeutig ist und die im Studienalltag trotzdem routinemäßig passieren.
+
+**1. SRS als «jede Karte jeden Tag wiederholen» behandeln.** Das ist das Versagen dessen, der einen Kalender statt eines SRS benutzt. Der ganze Sinn des Algorithmus ist, dass du *nicht* jede Karte täglich siehst — reife Karten sollten in Wochen- oder Monatsabständen stehen. Wer die Anki-Warteschlange als tägliche Abhakaufgabe behandelt, schadet sich, weil er Stapelverwaltung belohnt, statt den Algorithmus arbeiten zu lassen.
+
+**2. Die Wechselwirkung mit wünschenswerten Erschwernissen ignorieren.** <Citation authors="Bjork" year="1994" href="/de/research">Bjorks Rahmen der wünschenswerten Erschwernisse</Citation> besagt: Übungsbedingungen, die sich *schwerer anfühlen* — auch lange Intervalle, in denen der Abruf manchmal misslingt — erzeugen stärkeres langfristiges Behalten. SRS-Nutzer «retten» Karten routinemäßig, indem sie zu schnell «nochmal» drücken und das Intervall zurücksetzen, weil sich das Scheitern unangenehm anfühlt. Das Scheitern ist das Signal. <Citation authors="Roediger &amp; Karpicke" year="2006" href="/de/research">Ein Abrufversuch, der beinahe gelingt</Citation>, erzeugt mehr Gedächtnis als einer, der mühelos gelingt.
+
+**3. Dem Algorithmus zu sehr vertrauen.** Kein Algorithmus für verteiltes Lernen — SM-2, FSRS, SM-18 — erzeugt *Verständnis*. Er erzeugt *Behalten dessen, was auf der Karte steht*. Steht auf der Karte «Was wandelt Angiotensin I in Angiotensin II um?» und die Antwort ist «ACE», wird der Algorithmus pflichtbewusst dafür sorgen, dass du dieses Paar für immer abrufen kannst. Er sorgt nicht dafür, dass du das Renin-Angiotensin-System verstehst. SRS kommt nach dem Verstehen, nicht an dessen Stelle.
+
+**4. Verteiltes Lernen für das ganze Lernsystem halten.** SRS ist ein Werkzeug. Es ist das Werkzeug, um *bereits verstandene Fakten zu behalten*. Es ist nicht das Werkzeug, um *Verständnis aufzubauen*, um *Integration über Themen hinweg zu prüfen* oder um *die metakognitive Lücke zwischen Wiedererkennen und Abrufen zu erwischen*. Wer nur mit Anki lernt, hat in den klinischen Prüfungen vorhersehbare Schwächen, denn klinisches Denken hat nicht die Form einer Karteikarte.
+
+## Wo es in ein echtes Lernsystem passt
+
+Nimmt man die Literatur zum Spacing ernst, lautet die Folgerung fürs Medizinstudium nicht «mehr Anki». Sie lautet ungefähr:
+
+- Baue zuerst Verständnis auf, mit den Werkzeugen dafür: Vorlesungen, problemorientiertes Lernen, Dinge von Hand aufzeichnen, Fälle laut durchsprechen.
+- Ist ein Begriff *verstanden*, codiere die Einzelfakten, die du auf Abruf brauchst, in ein SRS. Den Plan übernimmt der Algorithmus.
+- Ergänze den SRS-Plan um [Abrufpraxis](/de/science/principles/retrieval-practice) auf Begriffsebene — Versuche ohne Hilfsmittel, ein System aus dem Gedächtnis zu rekonstruieren —, was das Kartenformat nicht prüfen kann.
+- Ergänze das um [Verschränkung](/de/science/principles/interleaving) über Systeme hinweg; sie ist es, die integrierte Prüfungsfragen am Prüfungstag funktionieren lässt.
+- Und ergänze *das* um ausdrückliche metakognitive Kontrollen (sage deine Trefferquote vor dem Selbsttest voraus; vergleiche Vorhersage und Ergebnis; verfolge die Lücke über die Zeit). Das ist der Teil, den fast alle überspringen — und der am verlässlichsten gute von sehr guten Ergebnissen trennt.
+
+Verteiltes Lernen ist unverzichtbar. Es genügt nicht. Das «vollständige» Bild lautet ungefähr: Spacing regelt das *Wann*, Abrufpraxis die *Art des Versuchs*, Verschränkung *die Mischung der Themen*, Metakognition, *ob dein Gefühl von Beherrschung kalibriert ist*. SRS-Apps liefern vor allem das Erste. Die guten stupsen zum Zweiten. Kaum eine kümmert sich um das Dritte oder Vierte.
+
+## Werkzeuge, die FSRS-5 sauber umsetzen
+
+Wer 2026 eine App für verteiltes Lernen fürs Medizinstudium wählt, sollte FSRS-5 als Mindeststandard ansetzen. Die ernstzunehmenden Umsetzungen:
+
+- **Anki** (mit aktiviertem FSRS-5, nicht mit dem SM-2-Standard). Gratis auf Desktop und Android, einmalig 25 $ auf iOS. Das Community-Deck-Ökosystem ist unerreicht. Die FSRS-Dokumentation ist inzwischen Teil des offiziellen Handbuchs.
+- **Mochi.** FSRS-4 nativ, FSRS-5 2026 in der Beta. Am besten für alle, die eine saubere Umsetzung wollen und nicht auf Community-Decks angewiesen sind.
+- **RemNote.** Nutzt einen eigenen, von SuperMemo inspirierten Algorithmus statt FSRS. Gut, wenn Notizen und Karten in einem Werkzeug liegen sollen.
+- **Fluera.** Nutzt FSRS-5 mit einem Unterschied: Es arbeitet an *Begriffen*, die du gezeichnet oder geschrieben hast, nicht an isolierten Karteikarten. Der Algorithmus ist derselbe; die Oberfläche eine andere. Die Wette lautet, dass geplanter Abruf über deine handschriftliche Arbeit — samt Kontext — stärker codiert als derselbe Abruf über entkleidete Karten. Ausführlicher haben wir das beim [zugrunde liegenden Prinzip](/de/science/principles/spacing-effect) und bei [der Bedeutung des sukzessiven Wiederlernens](/de/science/principles/successive-relearning) beschrieben.
+
+Der Anki-Weg ist der etablierte und für die meisten die richtige Wahl. Der Fluera-Weg ist für den Fall, dass du dein verteiltes Wiederholen zusätzlich auf einer Leinwand haben willst, die zeigt, wie die Begriffe zusammenhängen — genau der Teil, den Karteikarten konstruktionsbedingt entfernen.
+
+## Die ehrlichen Grenzen von SRS in der Medizin
+
+Das gehört klar gesagt, weil die SRS-Community bisweilen zum Überverkaufen neigt: Es gibt Dinge, die verteiltes Lernen in der medizinischen Ausbildung schlecht kann.
+
+Es erzeugt kein **klinisches Denken**. Der Schritt von «kennt die Fakten zur Herzinsuffizienz» zu «erkennt eine neu aufgetretene Herzinsuffizienz bei einem 68-Jährigen mit beidseitigen Beinödemen und Orthopnoe» ist eine andere kognitive Fähigkeit. Dafür gibt es die klinischen Abschnitte; SRS liefert das Substrat, nicht die Synthese.
+
+Es erzeugt keine **prozedurale Fertigkeit**. Die Literatur zum motorischen Lernen ist ein eigenes Feld, und die Spacing-Prinzipien übertragen sich nicht sauber auf «wie punktiere ich Aszites».
+
+Es erzeugt weder **Kommunikation noch Empathie**. Die stehen gar nicht zur Debatte.
+
+Was SRS kann, kann es sehr gut, und es ist genau eine Sache: einen gelernten Fakt in einem fernen künftigen Moment verfügbar zu machen, wenn du ihn brauchst. Für die Medizin ist das eine entscheidende Zutat — aber eine Zutat, nicht die Mahlzeit.
+
+[Kostenlos mit Fluera starten — Begriffe, Abruf und Verteilung auf einer Leinwand →](/de/beta)
+
+## Worauf es hinausläuft
+
+Die fünfzig Jahre alte Wissenschaft zum Spacing stimmt und betrifft dich. Der vierzig Jahre alte SM-2-Algorithmus ist nicht mehr ihre beste Umsetzung; FSRS-5 ist es. Die meisten Apps liefern 2026 FSRS-5 aus oder migrieren dorthin; tut deine das nicht, ist das ein Signal.
+
+Jenseits der Algorithmusfrage lautet die größere architektonische Frage, *worauf* der Algorithmus arbeitet. Arbeitet er auf entkleideten Karteikarten, bekommst du den Spacing-Vorteil, verlierst aber den Kontext, der den abgerufenen Fakt brauchbar macht. Arbeitet er auf etwas Reicherem — einem Begriff auf einer Leinwand, einer Verbindung in einer Karte, einem Stück deiner eigenen Handschrift —, bekommst du beides.
+
+Wähle den Algorithmus ernsthaft. Und dann wähle mindestens ebenso ernsthaft die Oberfläche, auf der er läuft.
