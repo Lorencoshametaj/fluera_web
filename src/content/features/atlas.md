@@ -50,3 +50,5 @@ Vygotsky's **Zone of Proximal Development** (1978) frames Atlas's AI behaviour. 
 - **Cross-region Exam Sessions** — one session that interleaves clusters from multiple subject regions in the same canvas, training transfer directly.
 - **Atlas tags** — auto-detected thematic spines (e.g. "equilibrium", "feedback", "compositionality") that surface across distant regions.
 - **Atlas-driven Socratic** — questions that bridge two subjects you haven't yet connected.
+
+**Further reading:** [the best note-taking apps for medical students](/blog/best-note-taking-apps-medical-students) and [studying for USMLE Step 1 in 2026](/blog/usmle-step-1-study-guide-2026).

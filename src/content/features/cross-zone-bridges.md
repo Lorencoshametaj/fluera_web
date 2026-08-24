@@ -54,3 +54,5 @@ Vygotsky's **scaffolding** appears here as Atlas-mediated bridge suggestion: whe
 - **Bridge-driven Socratic** — questions that ask you to predict one side from the other, training transfer as a retrieval skill.
 - **Degree-wide Exam scope** — include every bridge in an Exam Session, putting interleaving to work across subject regions of the same canvas.
 - **Public bridge libraries** — for instructors who want to seed a course with a starter set of canonical cross-disciplinary connections.
+
+**Further reading:** [the best note-taking apps for medical students](/blog/best-note-taking-apps-medical-students) and [studying for USMLE Step 1 in 2026](/blog/usmle-step-1-study-guide-2026).

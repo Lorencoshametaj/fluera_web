@@ -41,3 +41,5 @@ This is the single strongest evidence base in learning science for any specific 
 - **Interleaved paths** — the AI picks review routes that cross subject zones, disabling autopilot.
 - **Per-subject calibration** — separate FSRS weights for languages vs math vs clinical medicine, where memory dynamics differ measurably.
 - **Import from Anki** — for students with existing decks who want to migrate gradually.
+
+**Further reading:** [the science of spaced repetition across four years](/blog/spaced-repetition-medical-school) and [alternatives to Anki for medical school](/blog/anki-alternatives-medical-students).

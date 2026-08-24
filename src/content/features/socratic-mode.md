@@ -53,3 +53,5 @@ Kahneman's System 1 / System 2 dichotomy frames the whole mode. An LLM that answ
 - **Voice mode** — spoken Socratic sessions for when the pen isn't practical (walking, commuting).
 - **Cross-region Socratic** — the AI pulls questions that bridge your current topic with earlier or distant regions of the same canvas, putting interleaving to work.
 - **Socratic quiver packs** from expert authors for specific fields (medicine, law, ML).
+
+**Further reading:** [studying for USMLE Step 1 in 2026](/blog/usmle-step-1-study-guide-2026) and [alternatives to Anki for medical school](/blog/anki-alternatives-medical-students).

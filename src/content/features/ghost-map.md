@@ -44,3 +44,5 @@ Ghost Map operationalises this. The confidence slider in Step 3 is not aesthetic
 - **Concept-aware diff** for mathematical equations (currently recognises shapes and text clusters).
 - **Per-domain Ghost Map voices** — one tuned for STEM, one for humanities, one for law.
 - **Replay mode** — step through how your canvas diverged from the ideal, move by move.
+
+**Further reading:** [how to memorize anatomy faster](/blog/how-to-memorize-anatomy) and [studying for USMLE Step 1 in 2026](/blog/usmle-step-1-study-guide-2026).

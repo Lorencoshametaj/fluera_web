@@ -54,3 +54,5 @@ Finally, the **generation effect** (Slamecka & Graf, 1978) cuts both ways. The a
 - **Reflow timeline** — scrub through the layout history of a canvas; see how your mental map evolved week by week.
 - **Auto-reflow suggestions** — Atlas proposes consolidations when it detects clusters drifting toward each other across multiple sessions.
 - **Reflow-aware export** — PDFs and SVGs that preserve the latest layout while keeping deep links to historical positions.
+
+**Further reading:** [the best note-taking apps for medical students](/blog/best-note-taking-apps-medical-students) and [how to memorize anatomy faster](/blog/how-to-memorize-anatomy).

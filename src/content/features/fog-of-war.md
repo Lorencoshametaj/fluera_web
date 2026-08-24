@@ -48,3 +48,5 @@ The spatial element matters too. Because your canvas is a memory palace (O'Keefe
 - **Automatic mask scheduling** — FSRS-driven fog that thickens on items due for review.
 - **Timed exam simulation** — realistic pressure with configurable constraints.
 - **Post-mortem map** — after the real exam, annotate which questions you aced and which you missed, and let Fluera update the scheduler with that ground truth.
+
+**Further reading:** [alternatives to Anki for medical school](/blog/anki-alternatives-medical-students) and [how to memorize anatomy faster](/blog/how-to-memorize-anatomy).

@@ -53,3 +53,5 @@ Manu Kapur's **productive failure** research (2008) supports the hardest design 
 - **Voice-mode Exam** — spoken questions with handwritten answers, for clinical or oral-exam preparation.
 - **Persistent surgical path overlay** — after Exam, Fog of War highlights only the missed concepts on the live canvas, scoped for next-day review.
 - **Multi-subject Exam Sessions** — one session that interleaves subject clusters from across the same canvas, putting transfer to work.
+
+**Further reading:** [studying for USMLE Step 1 in 2026](/blog/usmle-step-1-study-guide-2026) and [the science of spaced repetition across four years](/blog/spaced-repetition-medical-school).
