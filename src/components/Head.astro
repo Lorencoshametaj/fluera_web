@@ -110,6 +110,30 @@ const plausibleOrigin = plausibleDomain ? (() => {
     return null;
   }
 })() : null;
+
+// Google mostra ~155-160 caratteri e taglia il resto a metà parola. 714 pagine
+// su 1.371 superavano quel limite (mediana 206, massimo 423) — quasi tutte
+// principi e autori, dove la description nasce dal contenuto e non è scritta
+// a mano in 16 lingue. Meglio decidere noi dove finisce la frase che lasciarlo
+// decidere a Google: si taglia sull'ultimo confine di FRASE che ci sta, e solo
+// se non ce n'è uno si ripiega sull'ultima parola intera. Il ramo delle parole
+// non trova spazi in giapponese e coreano: lì il taglio secco a 160 è corretto,
+// perché la lingua non separa le parole.
+const metaDescription = (() => {
+  const d = (description ?? "").trim();
+  if (d.length <= 160) return d;
+  const cut = d.slice(0, 160);
+  const sentence = Math.max(
+    cut.lastIndexOf(". "), cut.lastIndexOf("! "), cut.lastIndexOf("? "),
+    cut.lastIndexOf("。"), cut.lastIndexOf("！"), cut.lastIndexOf("？"),
+    cut.lastIndexOf("۔ "),
+  );
+  if (sentence > 90) return d.slice(0, sentence + 1).trim();
+  const word = cut.lastIndexOf(" ");
+  const body = word > 90 ? cut.slice(0, word) : cut;
+  return body.replace(/[\s,;:·—–-]+$/, "") + "…";
+})();
+
 ---
 
 <meta charset="UTF-8" />
@@ -130,7 +154,7 @@ const plausibleOrigin = plausibleDomain ? (() => {
 </script>
 
 <title>{fullTitle}</title>
-<meta name="description" content={description} />
+<meta name="description" content={metaDescription} />
 <link rel="canonical" href={canonicalUrl} />
 
 {/* hreflang alternates — one per locale + x-default. Google uses these to

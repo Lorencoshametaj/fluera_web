@@ -275,5 +275,31 @@ if (process.env.CHECK_EXTERNAL !== "0") {
   }
 }
 
+// ── Meta descriptions must fit what Google shows ────────────────────────
+// 714 of 1.371 pages shipped a description over 160 characters (median 206,
+// max 423), so Google cut them mid-word. Head.astro now trims on a sentence
+// boundary; this chapter stops that helper from being quietly removed.
+// Entities count as ONE character: measuring the escaped attribute reports
+// 16 false positives, because &#39; is five bytes and one apostrophe.
+{
+  const MAX = Number(process.env.DESC_MAX ?? 160);
+  const unescape = (v) => v.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(n))
+    .replace(/&quot;/g, '"').replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  const over = [];
+  for (const file of htmlFiles) {
+    const m = readFileSync(file, "utf8").match(/<meta name="description" content="([^"]*)"/);
+    if (!m) continue;
+    const len = unescape(m[1]).length;
+    if (len > MAX) over.push([file.slice(DIST.length + 1), len]);
+  }
+  if (over.length) {
+    failed = true;
+    console.error(`\n\u2717 ${over.length} page(s) carry a meta description over ${MAX} characters:`);
+    for (const [f, n] of over.sort((a, b) => b[1] - a[1]).slice(0, 10)) console.error(`   ${String(n).padStart(4)}  ${f}`);
+  } else {
+    console.log(`Meta descriptions: all ${htmlFiles.length} pages within ${MAX} characters.`);
+  }
+}
+
 if (failed) process.exit(1);
 console.log("✓ Every internal link and asset resolves; all page links carry the trailing slash.");
