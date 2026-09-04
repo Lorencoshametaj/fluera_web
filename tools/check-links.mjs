@@ -218,5 +218,62 @@ if (slashless.size > 0) {
   }
 }
 
+// ── Outbound links must not be 404 ──────────────────────────────────────
+// The gate above only ever looked at href="/…". Two dead links therefore sat
+// in the footer of EVERY page for months — github.com/…/fluera_engine and
+// twitter.com/fluera_app, both 404 — while this file printed green. An audit
+// found them; the gate could not. Two rules keep this honest and quiet:
+//   · only <a href> is checked. rel="preconnect"/"dns-prefetch" hrefs are
+//     connection hints, not links: fonts.googleapis.com answers 404 on its
+//     bare origin and that is correct behaviour, not a defect.
+//   · only 404/410 fails. doi.org resolves to Wiley and Taylor & Francis,
+//     which answer 403 to any bot while working fine in a browser — flagging
+//     those would train everyone to ignore this chapter.
+// Set CHECK_EXTERNAL=0 to skip when offline.
+if (process.env.CHECK_EXTERNAL !== "0") {
+  const targets = new Map(); // url -> pages carrying it
+  const HINT = /rel="(?:preconnect|dns-prefetch|preload|modulepreload)"/;
+  for (const file of htmlFiles) {
+    const html = readFileSync(file, "utf8");
+    for (const m of html.matchAll(/<a\b[^>]*>/g)) {
+      if (HINT.test(m[0])) continue;
+      const href = m[0].match(/href="(https?:\/\/[^"]+)"/);
+      if (!href || href[1].includes("fluera.dev")) continue;
+      targets.set(href[1], (targets.get(href[1]) ?? 0) + 1);
+    }
+  }
+  const dead = [];
+  const UA = "Mozilla/5.0 (compatible; FlueraLinkCheck/1.0)";
+  await Promise.all([...targets.keys()].map(async (url) => {
+    // HEAD is the fast path, never the verdict: support.google.com answers 404
+    // to HEAD and 200 to GET, so a HEAD-only gate would have reported the Play
+    // refund page dead on 16 pages. Any failure is re-checked with GET, and
+    // only GET decides.
+    const hit = async (method) => {
+      const ac = new AbortController();
+      const t = setTimeout(() => ac.abort(), 20000);
+      try {
+        const r = await fetch(url, { method, redirect: "follow", signal: ac.signal, headers: { "user-agent": UA } });
+        return r.status;
+      } finally { clearTimeout(t); }
+    };
+    let status;
+    try { status = await hit("HEAD"); } catch { status = null; }
+    if (status === null || status >= 400) {
+      try { status = await hit("GET"); } catch { return; } // network trouble is not a defect
+    }
+    if (status === 404 || status === 410) dead.push([url, status]);
+  }));
+  if (dead.length) {
+    failed = true;
+    console.error(`\n\u2717 ${dead.length} outbound link(s) answer 404/410:`);
+    for (const [url, code] of dead.sort((a, b) => targets.get(b[0]) - targets.get(a[0]))) {
+      console.error(`   ${String(targets.get(url)).padStart(5)} pages  ${code}  ${url}`);
+    }
+  } else {
+    console.log(`Outbound links: ${targets.size} distinct destinations, none dead.`);
+  }
+}
+
 if (failed) process.exit(1);
 console.log("✓ Every internal link and asset resolves; all page links carry the trailing slash.");

@@ -12,12 +12,6 @@ export const SITE = {
     privacyEmail: "lorenco@fluera.dev",
     securityEmail: "lorenco@fluera.dev",
     supportEmail: "support@fluera.dev",
-    twitter: "fluera_app",
-    github: "Lorencoshametaj/fluera_engine",
-  },
-  social: {
-    twitter: "https://twitter.com/fluera_app",
-    github: "https://github.com/Lorencoshametaj/fluera_engine",
   },
 };
 

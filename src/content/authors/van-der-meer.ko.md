@@ -7,7 +7,6 @@ shortBio: "NTNU (노르웨이 과학기술대학교)의 신경심리학 교수. 
 notableWork: "The importance of cursive handwriting over typewriting for learning in the classroom (Frontiers in Psychology, 2020)"
 keyPrinciples: [handwriting-encoding, embodied-cognition]
 appliedInFeatures: [memory-palace, ghost-map]
-externalProfile: https://www.ntnu.edu/employees/audrey.vandermeer
 order: 11
 ---
 

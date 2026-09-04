@@ -7,7 +7,6 @@ shortBio: "Professor i nevropsykologi ved NTNU: EEG-målingene hennes med høy t
 notableWork: "The importance of cursive handwriting over typewriting for learning in the classroom (Frontiers in Psychology, 2020)"
 keyPrinciples: [handwriting-encoding, embodied-cognition]
 appliedInFeatures: [memory-palace, ghost-map]
-externalProfile: https://www.ntnu.edu/employees/audrey.vandermeer
 order: 11
 ---
 
