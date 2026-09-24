@@ -110,7 +110,7 @@ const data: PricingData = {
     },
     {
       q: "Mitä maksutapoja hyväksytte?",
-      a: "MobilePay, Klarna, verkkopankkimaksut, luotto-/maksukortit Stripen kautta, SEPA, Apple Pay ja Google Pay. Education-asiakkaat voivat maksaa pankkisiirrolla tai ostotilauksella.",
+      a: "Tilaat Fluera-sovelluksessa puhelimella tai tabletilla App Storen tai Google Playn kautta ja maksat kauppatiliisi tallennetuilla maksutavoilla. Tilauksesi toimii sen jälkeen kaikilla laitteilla, joilla kirjaudut samalla tilillä.",
     },
     {
       q: "Team- tai Education-suunnitelmat?",

@@ -110,7 +110,7 @@ const data: PricingData = {
     },
     {
       q: "Jakie metody płatności akceptujecie?",
-      a: "Przelewy24 (P24), BLIK, karty kredytowe/debetowe przez Stripe, SEPA, Apple Pay i Google Pay. Klienci Education mogą płacić przelewem bankowym lub zamówieniem zakupu.",
+      a: "Subskrypcję wykupujesz w aplikacji Fluera na telefonie lub tablecie, przez App Store lub Google Play: płacisz metodami zapisanymi na koncie w sklepie. Potem Twój plan działa na każdym urządzeniu, na którym zalogujesz się na to samo konto.",
     },
     {
       q: "Plany Team lub Education?",

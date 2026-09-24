@@ -110,7 +110,7 @@ const data: PricingData = {
     },
     {
       q: "Quais formas de pagamento aceitam?",
-      a: "PIX, Boleto bancário, cartões de crédito/débito via Stripe, Apple Pay e Google Pay. Clientes Education podem pagar por transferência bancária ou ordem de compra.",
+      a: "Você assina pelo app Fluera no celular ou tablet, via App Store ou Google Play: paga com as formas de pagamento salvas na sua conta da loja. Depois, seu plano funciona em todos os dispositivos em que você entrar com a mesma conta.",
     },
     {
       q: "Planos Team ou Education?",

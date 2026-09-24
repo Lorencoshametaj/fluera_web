@@ -113,7 +113,7 @@ const data: PricingData = {
     },
     {
       q: "आप कौन सी payment methods स्वीकार करते हैं?",
-      a: "UPI (Razorpay/Stripe), RuPay cards, Paytm, Stripe के माध्यम से credit/debit cards, Apple Pay और Google Pay। Education customers bank transfer या purchase order से भुगतान कर सकते हैं।",
+      a: "आप अपने फ़ोन या टैबलेट पर Fluera ऐप से App Store या Google Play के ज़रिए सब्सक्राइब करते हैं और अपने स्टोर अकाउंट में सेव किए गए भुगतान तरीकों से भुगतान करते हैं। इसके बाद आपका प्लान हर उस डिवाइस पर चलता है जहाँ आप उसी अकाउंट से साइन इन करते हैं।",
     },
     {
       q: "Team या Education plans?",

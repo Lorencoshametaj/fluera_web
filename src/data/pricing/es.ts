@@ -110,7 +110,7 @@ const data: PricingData = {
     },
     {
       q: "¿Qué métodos de pago aceptáis?",
-      a: "Tarjetas de crédito/débito vía Stripe, SEPA para clientes UE, Apple Pay y Google Pay. Bizum donde Stripe lo soporta. Clientes Education pueden pagar por transferencia bancaria o pedido de compra.",
+      a: "Te suscribes desde la app de Fluera en tu teléfono o tablet, a través de App Store o Google Play: pagas con los métodos guardados en tu cuenta de la tienda. Después, tu plan funciona en todos los dispositivos donde inicies sesión con la misma cuenta.",
     },
     {
       q: "¿Planes Team o Education?",

@@ -126,7 +126,7 @@ const data: PricingData = {
     },
     {
       q: "What payment methods do you accept?",
-      a: "Credit/debit cards via Stripe, SEPA direct debit for EU customers, Apple Pay and Google Pay. Education customers can pay by bank transfer or purchase order.",
+      a: "You subscribe inside the Fluera app on your phone or tablet, through the App Store or Google Play: you pay with the methods saved in your store account. Your plan then works on every device where you sign in with the same account.",
     },
     {
       q: "Team or Education plans?",

@@ -110,7 +110,7 @@ const data: PricingData = {
     },
     {
       q: "Welche Zahlungsmethoden akzeptiert ihr?",
-      a: "Klarna, SOFORT, giropay, Kredit-/Debitkarten via Stripe, SEPA-Lastschrift, Apple Pay und Google Pay. Education-Kunden zahlen per Banküberweisung oder Bestellung.",
+      a: "Du schließt dein Abo in der Fluera-App auf deinem Smartphone oder Tablet ab, über den App Store oder Google Play: Du zahlst mit den Zahlungsmethoden, die in deinem Store-Konto hinterlegt sind. Dein Tarif gilt dann auf jedem Gerät, auf dem du dich mit demselben Konto anmeldest.",
     },
     {
       q: "Team- oder Education-Pläne?",

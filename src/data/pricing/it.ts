@@ -125,7 +125,7 @@ const data: PricingData = {
     },
     {
       q: "Quali metodi di pagamento accettate?",
-      a: "Carte di credito/debito via Stripe, SEPA per clienti EU, Apple Pay e Google Pay. Per istituzioni Education paghiamo via bonifico o ordine d'acquisto.",
+      a: "Ti abboni dall'app Fluera sul telefono o sul tablet, tramite App Store o Google Play: paghi con i metodi salvati nel tuo account dello store. Il piano vale poi su ogni dispositivo in cui accedi con lo stesso account.",
     },
     {
       q: "Piani Team o Education?",

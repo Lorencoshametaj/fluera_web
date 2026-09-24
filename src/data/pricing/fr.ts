@@ -110,7 +110,7 @@ const data: PricingData = {
     },
     {
       q: "Quels moyens de paiement acceptez-vous ?",
-      a: "Cartes via Stripe, SEPA pour les clients UE, Apple Pay, Google Pay. Les clients Education peuvent payer par virement ou bon de commande.",
+      a: "Tu t'abonnes depuis l'app Fluera sur ton téléphone ou ta tablette, via l'App Store ou Google Play : tu paies avec les moyens de paiement enregistrés dans ton compte du store. Ton forfait fonctionne ensuite sur chaque appareil où tu te connectes avec le même compte.",
     },
     {
       q: "Plans Team ou Education ?",

@@ -110,7 +110,7 @@ const data: PricingData = {
     },
     {
       q: "Welke betaalmethoden accepteren jullie?",
-      a: "iDEAL, creditcards/debetkaarten via Stripe, SEPA-incasso, Apple Pay en Google Pay. Education-klanten kunnen betalen via bankoverschrijving of inkooporder.",
+      a: "Je neemt een abonnement in de Fluera-app op je telefoon of tablet, via de App Store of Google Play: je betaalt met de betaalmethoden die in je store-account staan. Je abonnement werkt daarna op elk apparaat waarop je inlogt met hetzelfde account.",
     },
     {
       q: "Team- of Education-plannen?",

@@ -110,7 +110,7 @@ const data: PricingData = {
     },
     {
       q: "Hvilke betalingsmetoder accepterer I?",
-      a: "MobilePay, Klarna, kredit-/debetkort via Stripe, SEPA, Apple Pay og Google Pay. Education-kunder kan betale via bankoverførsel eller indkøbsordre.",
+      a: "Du abonnerer i Fluera-appen på din telefon eller tablet via App Store eller Google Play og betaler med de betalingsmetoder, der er gemt på din butikskonto. Din plan gælder derefter på alle enheder, hvor du logger ind med den samme konto.",
     },
     {
       q: "Team- eller Education-planer?",

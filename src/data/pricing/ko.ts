@@ -110,7 +110,7 @@ const data: PricingData = {
     },
     {
       q: "결제 방법은?",
-      a: "KakaoPay, Naver Pay, KCP 로컬 카드, Stripe 경유 신용/체크카드, Apple Pay, Google Pay. Education 고객은 은행 이체나 구매 주문서로 결제 가능.",
+      a: "휴대폰이나 태블릿의 Fluera 앱에서 App Store 또는 Google Play를 통해 구독하며, 스토어 계정에 저장된 결제 수단으로 결제합니다. 이후 같은 계정으로 로그인한 모든 기기에서 요금제를 사용할 수 있습니다.",
     },
     {
       q: "Team 또는 Education 플랜은?",
