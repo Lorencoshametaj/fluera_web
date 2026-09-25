@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">E una riga che nessun altro potrebbe costruire.</strong> Fluera sa già su quali concetti stai lavorando, perché li hai scritti tu. Così può ordinare i template per quanto si sovrappongono a ciò che hai adesso sul canvas — e quel conto lo fa sul tuo dispositivo. Dal telefono escono la materia che studi di più e gli identificativi dei template che l'app aveva già recuperato dal catalogo. Il tuo insieme di concetti resta dov'è."
   },
+  "web": {
+    "kicker": "Sul web",
+    "title": "Esplora gli appunti",
+    "sub": "Il catalogo ha anche una pagina sul web, da sfogliare nel browser.",
+    "label": "Apri share.fluera.dev →"
+  },
   "privacy": {
     "kicker": "Cosa viaggia e cosa no",
     "title": "Pubblichi la pagina,<br />non come stavi andando.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "Il componente che costruisce l'impalcatura pubblica di un template, per come è scritto, non legge mai lo storico dei tuoi ripassi, la tua confidenza, quante volte hai studiato una cosa, quanto bene la stavi tenendo, né gli embedding che ci stanno sotto. Un autore che padroneggia la materia e uno che arranca, sulla stessa pagina, producono un'impalcatura identica byte per byte."
       },
       {
-        "title": "A tenere il confine è un test, in CI",
-        "body": "La garanzia la tiene un test che percorre l'output serializzato e fallisce se in un punto qualsiasi compare uno dei ventisei nomi di campo del modello dello studente o del comportamento. Gira in CI come gate dichiarato, non opzionale, e fallisce anche se qualcuno cancella il file di test."
+        "title": "Il confine lo verifica un test",
+        "body": "La garanzia la verifica un test che percorre l'output serializzato e fallisce se in un punto qualsiasi compare uno dei ventisei nomi di campo del modello dello studente o del comportamento."
       },
       {
         "title": "L'inchiostro è il limite onesto",

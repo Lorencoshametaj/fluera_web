@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">Et une rangée que personne d'autre ne pourrait construire.</strong> Fluera sait déjà sur quels concepts tu travailles : c'est toi qui les as écrits. Il peut donc classer les templates selon ce qu'ils recoupent de ce que tu as en ce moment sur ton canvas — et ce calcul se fait sur ton appareil. Ce qui quitte l'appareil, c'est la matière que tu étudies le plus et les identifiants des templates déjà récupérés. Ton ensemble de concepts, lui, ne bouge pas."
   },
+  "web": {
+    "kicker": "Sur le web",
+    "title": "Explorer les notes",
+    "sub": "Le catalogue a aussi une page sur le web, à parcourir dans le navigateur.",
+    "label": "Ouvrir share.fluera.dev →"
+  },
   "privacy": {
     "kicker": "Ce qui part, ce qui reste",
     "title": "Publier une page, ce n'est pas publier où tu en es.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "Par nature, le composant qui fabrique l'ossature publique d'un template ne lit ni ton historique de révision, ni ta confiance, ni le nombre de fois où tu as travaillé une notion, ni la façon dont tu la retenais, ni les embeddings qui vont avec. Un auteur qui maîtrise et un auteur qui peine publient la même page : l'ossature sort identique, octet pour octet."
       },
       {
-        "title": "Un test monte la garde, dans la CI",
-        "body": "Cette garantie est verrouillée par un test qui parcourt la sortie sérialisée et échoue dès qu'il y croise l'un des vingt-six noms de champs du modèle d'apprenant ou du comportement, où qu'il se trouve. Il s'exécute dans une étape de CI nommée et obligatoire, qui échoue aussi si le fichier de test disparaît."
+        "title": "Un test vérifie cette frontière",
+        "body": "Cette garantie est vérifiée par un test qui parcourt la sortie sérialisée et échoue dès qu'il y croise l'un des vingt-six noms de champs du modèle d'apprenant ou du comportement, où qu'il se trouve."
       },
       {
         "title": "L'encre, c'est la limite honnête",

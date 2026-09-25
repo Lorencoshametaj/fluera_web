@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">Und eine Reihe, die sonst niemand bauen könnte.</strong> Fluera weiß längst, an welchen Konzepten du arbeitest — du hast sie schließlich selbst geschrieben. Deshalb kann Fluera Vorlagen danach sortieren, wie stark sie sich mit dem überschneiden, was gerade auf deinem Canvas liegt. Diese Rechnung läuft auf deinem Gerät. Dein Telefon verlassen nur das Fach, das du am meisten lernst, und die Kennungen der Vorlagen, die es ohnehin schon geladen hatte. Deine Konzepte bleiben da, wo du sie geschrieben hast."
   },
+  "web": {
+    "kicker": "Im Web",
+    "title": "Entdecke die Notizen",
+    "sub": "Der Katalog hat auch eine Seite im Web, zum Durchblättern im Browser.",
+    "label": "share.fluera.dev öffnen →"
+  },
   "privacy": {
     "kicker": "Was mitreist, was nicht",
     "title": "Wer eine Seite veröffentlicht,<br />veröffentlicht nicht den eigenen Lernstand.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "Die Komponente, die das öffentliche Gerüst einer Vorlage baut, kommt schon vom Aufbau her nicht an deine Wiederholungshistorie heran, nicht daran, wie sicher du dir warst, wie oft du etwas durchgegangen bist oder wie gut es gerade sitzt, und auch nicht an die Embeddings dahinter. Ob jemand den Stoff souverän beherrscht oder sich damit quält: Aus derselben Seite entsteht ein byteidentisches Gerüst."
       },
       {
-        "title": "In der CI hält ein Test diese Grenze",
-        "body": "Diese Zusage nagelt ein Test fest: Er geht die serialisierte Ausgabe durch und schlägt fehl, sobald irgendwo darin einer von sechsundzwanzig Feldnamen aus dem Lernermodell oder aus deinem Verhalten auftaucht. Er läuft als benanntes, nicht abschaltbares CI-Gate — das auch dann rot wird, wenn jemand die Testdatei löscht."
+        "title": "Ein Test prüft diese Grenze",
+        "body": "Diese Zusage prüft ein Test: Er geht die serialisierte Ausgabe durch und schlägt fehl, sobald irgendwo darin einer von sechsundzwanzig Feldnamen aus dem Lernermodell oder aus deinem Verhalten auftaucht."
       },
       {
         "title": "Bei der Tinte hört das Saubermachen auf",

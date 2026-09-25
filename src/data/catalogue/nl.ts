@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">En één rij die niemand anders kan bouwen.</strong> Fluera weet al aan welke concepten je werkt, want jij hebt ze geschreven. Dus kan het sjablonen ordenen naar hoeveel ze overlappen met wat er nu op je canvas staat — en dat rekenwerk gebeurt op je apparaat. Wat je telefoon verlaat, is het vakgebied dat je het meest studeert plus de identificatiecodes van sjablonen die het al heeft opgehaald. Jouw verzameling concepten hoort daar niet bij."
   },
+  "web": {
+    "kicker": "Op het web",
+    "title": "Verken de aantekeningen",
+    "sub": "De catalogus heeft ook een pagina op het web, om in je browser door te bladeren.",
+    "label": "Open share.fluera.dev →"
+  },
   "privacy": {
     "kicker": "Wat meereist, wat niet",
     "title": "Je deelt de pagina, niet hoe je ervoor stond.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "De component die het openbare raamwerk van een sjabloon opbouwt, leest structureel nooit je herhalingsgeschiedenis, je zekerheid, hoe vaak je iets studeert, hoe goed je het vasthoudt of de embeddings daarachter. Een expert en iemand die er nog mee worstelt leveren met dezelfde pagina een byte-identiek raamwerk op."
       },
       {
-        "title": "Een test bewaakt die grens, in CI",
-        "body": "De garantie ligt vast in een test die de geserialiseerde uitvoer doorloopt en faalt zodra een van de zesentwintig veldnamen uit het leerdersmodel of uit je gedrag er ergens in opduikt. Hij draait als benoemde, verplichte CI-gate, die ook faalt als iemand het testbestand weghaalt."
+        "title": "Een test controleert die grens",
+        "body": "De garantie wordt gecontroleerd door een test die de geserialiseerde uitvoer doorloopt en faalt zodra een van de zesentwintig veldnamen uit het leerdersmodel of uit je gedrag er ergens in opduikt."
       },
       {
         "title": "De inkt is de eerlijke grens",

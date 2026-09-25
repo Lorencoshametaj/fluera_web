@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">And one row nobody else could build.</strong> Fluera already knows which concepts you are working on, because you wrote them. So it can rank templates by how much they overlap with what is currently on your canvas — and it does that arithmetic on your device. What leaves your phone is the subject you study most and the identifiers of templates it had already fetched. Your concept set is not one of them."
   },
+  "web": {
+    "kicker": "On the web",
+    "title": "Explore the notes",
+    "sub": "The catalogue also has a page on the web, to browse in your browser.",
+    "label": "Open share.fluera.dev →"
+  },
   "privacy": {
     "kicker": "What travels, what doesn't",
     "title": "Publishing a page should not publish how you were doing.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "The component that builds a template's public scaffold structurally never reads your review history, your confidence, how many times you studied something, how well you were holding it, or the embeddings behind it. An expert and a struggling author publishing the same page emit a byte-identical scaffold."
       },
       {
-        "title": "A test holds the line, in CI",
-        "body": "The guarantee is pinned by a test that walks the serialised output and fails if any of twenty-six learner-model or behavioural field names appears anywhere in it. It runs as a named, non-optional CI gate that also fails if the test file is deleted."
+        "title": "A test checks the line",
+        "body": "The guarantee is checked by a test that walks the serialised output and fails if any of twenty-six learner-model or behavioural field names appears anywhere in it."
       },
       {
         "title": "The ink is the honest limit",

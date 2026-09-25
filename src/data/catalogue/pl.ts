@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">I jeszcze jeden rząd, którego nikt inny by nie zbudował.</strong> Fluera wie, nad jakimi pojęciami teraz pracujesz, bo to Ty je zapisujesz. Może więc ustawiać szablony według tego, jak bardzo pokrywają się z tym, co masz w tej chwili na kanwie — a liczy to wszystko na Twoim urządzeniu. Z telefonu wychodzi przedmiot, którego uczysz się najwięcej, i identyfikatory szablonów, które i tak już pobrał. Zbiór Twoich pojęć nie wychodzi."
   },
+  "web": {
+    "kicker": "W sieci",
+    "title": "Przeglądaj notatki",
+    "sub": "Katalog ma też stronę w sieci, którą można przeglądać w przeglądarce.",
+    "label": "Otwórz share.fluera.dev →"
+  },
   "privacy": {
     "kicker": "Co jedzie dalej, a co zostaje",
     "title": "Publikujesz stronę. Nie to, jak Ci z nią szło.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "Komponent, który buduje publiczny szkielet szablonu, już z samej konstrukcji nie sięga po Twoją historię powtórek, po Twoją pewność, po to, ile razy do czegoś wracasz i jak mocno to trzymasz, ani po embeddingi, które za tym stoją. Jeśli tę samą stronę opublikuje ekspert i ktoś, kto ledwo nadąża, oba szkielety wyjdą identyczne co do bajta."
       },
       {
-        "title": "Granicy pilnuje test — w CI",
-        "body": "Tę gwarancję trzyma test, który przechodzi przez cały zserializowany wynik i pada, jeśli znajdzie w nim gdziekolwiek choć jedną z dwudziestu sześciu nazw pól modelu uczenia się albo zachowania. Działa jako wymieniona z nazwy, obowiązkowa bramka CI — i pada również wtedy, gdy ktoś usunie sam plik testu."
+        "title": "Granicę sprawdza test",
+        "body": "Tę gwarancję sprawdza test, który przechodzi przez cały zserializowany wynik i pada, jeśli znajdzie w nim gdziekolwiek choć jedną z dwudziestu sześciu nazw pól modelu uczenia się albo zachowania."
       },
       {
         "title": "Atrament to uczciwa granica",

@@ -19,11 +19,17 @@ const {
   install,
   ranking,
   discovery,
+  web,
   privacy,
   creators,
   safety,
   status,
 } = catalogue;
+
+// One URL for all 16 locales, kept here rather than in each data file so the
+// copies cannot drift. It stays the same whether the list is empty (beta) or
+// full, so no build has to change when the first packs arrive.
+const SHARE_NOTES_URL = "https://share.fluera.dev/it/appunti/";
 
 const routeHref = (href: string) => localizedHref(href, locale);
 const filterLabels = [...discovery.paragraphs[0].matchAll(/<strong[^>]*>(.*?)<\/strong>/g)]
@@ -182,6 +188,19 @@ const filterLabels = [...discovery.paragraphs[0].matchAll(/<strong[^>]*>(.*?)<\/
         </div>
       </div>
       <p class="canvas-note rich-copy" set:html={discovery.note} />
+    </div>
+  </section>
+
+  <section class="catalogue-web">
+    <div class="container-site web-band">
+      <div class="web-copy">
+        <p class="eyebrow">{web.kicker}</p>
+        <h2>{web.title}</h2>
+        <p>{web.sub}</p>
+      </div>
+      <div class="catalogue-actions web-actions">
+        <a href={SHARE_NOTES_URL} class="btn-secondary">{web.label}</a>
+      </div>
     </div>
   </section>
 
@@ -347,6 +366,17 @@ const filterLabels = [...discovery.paragraphs[0].matchAll(/<strong[^>]*>(.*?)<\/
     .marks-index dd { margin:7px 0 0 31px;color:var(--muted-fg);font-size:.75rem;line-height:1.65; }
     .canvas-note { max-width:920px;margin-top:42px; }
 
+    .catalogue-web { padding-block:clamp(56px,7vw,88px);border-bottom:1px solid var(--hairline); }
+    .web-band { display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px clamp(40px,8vw,110px);align-items:end; }
+    .web-copy>.eyebrow { margin-bottom:18px;color:#2563eb; }
+    .web-copy h2 { margin:0;color:var(--body-fg);font-family:"Sora Fluera","Sora Fallback",system-ui,sans-serif;font-size:clamp(1.9rem,3.4vw,3.1rem);font-weight:700;letter-spacing:-.045em;line-height:1.02; }
+    .web-copy>p:last-child { max-width:580px;margin-top:16px;color:var(--muted-fg);font-size:.94rem;line-height:1.75; }
+    .web-actions { margin-top:0; }
+    :global(:lang(ar)) .web-copy h2,
+    :global(:lang(hi)) .web-copy h2,
+    :global(:lang(ja)) .web-copy h2,
+    :global(:lang(ko)) .web-copy h2 { font-family:system-ui,sans-serif;letter-spacing:normal;line-height:1.12; }
+
     .privacy-index { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-block:1px solid var(--hairline); }
     .privacy-index article { display:grid;grid-template-columns:46px 1fr;gap:16px;padding:30px 24px;border-bottom:1px solid var(--hairline); }
     .privacy-index article:nth-child(odd) { border-inline-end:1px solid var(--hairline); }
@@ -380,7 +410,7 @@ const filterLabels = [...discovery.paragraphs[0].matchAll(/<strong[^>]*>(.*?)<\/
       .catalogue-hero-grid { grid-template-columns:minmax(0,.94fr) minmax(500px,1.06fr); }
     }
     @media(max-width:939px) {
-      .editorial-heading,.split-section,.discovery-grid,.close-grid { grid-template-columns:1fr; }
+      .editorial-heading,.split-section,.discovery-grid,.close-grid,.web-band { grid-template-columns:1fr; }
       .section-narrative { position:static; }
       .template-anatomy { max-width:760px;width:100%; }
       .editorial-heading h2 { max-width:16ch; }

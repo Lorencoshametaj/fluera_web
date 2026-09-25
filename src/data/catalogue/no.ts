@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">Og én rad ingen andre kunne bygd.</strong> Fluera vet allerede hvilke konsepter du står i, for du skrev dem selv. Derfor kan appen rangere maler etter hvor mye de overlapper med det som ligger på canvaset ditt nå – og det regnestykket gjøres på enheten din. Det som forlater telefonen, er faget du studerer mest og identifikatorene til malene appen allerede har hentet. Konseptene dine blir liggende."
   },
+  "web": {
+    "kicker": "På nettet",
+    "title": "Utforsk notatene",
+    "sub": "Katalogen har også en side på nettet, som du kan bla i fra nettleseren.",
+    "label": "Åpne share.fluera.dev →"
+  },
   "privacy": {
     "kicker": "Hva som drar, og hva som blir igjen",
     "title": "Du publiserer siden. Ikke hvordan du lå an med den.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "Komponenten som bygger det offentlige stillaset, rører aldri ved repetisjonshistorikken din, hvor sikker du var, hvor mange ganger du har vært gjennom noe, hvor godt det satt eller embeddingene under. Det er ikke en innstilling, men slik komponenten er bygd: publiserer en ekspert og en som strever den samme siden, kommer det ut det samme stillaset, byte for byte."
       },
       {
-        "title": "En test holder grensen, i CI",
-        "body": "Det er en test som holder garantien: den går gjennom det serialiserte resultatet felt for felt og feiler hvis ett eneste av tjueseks navn fra læringsmodellen eller atferdsdataene dukker opp i det. Testen kjører som en navngitt sperre i CI, og ingen kan hoppe over den. Sletter noen testfila, feiler den også."
+        "title": "En test kontrollerer grensen",
+        "body": "Det er en test som kontrollerer garantien: den går gjennom det serialiserte resultatet felt for felt og feiler hvis ett eneste av tjueseks navn fra læringsmodellen eller atferdsdataene dukker opp i det."
       },
       {
         "title": "Blekket er den ærlige grensen",

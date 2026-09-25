@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">Ja yksi rivi, jota kukaan muu ei pystyisi rakentamaan.</strong> Fluera tietää jo, mitä käsitteitä työstät, koska kirjoitit ne itse. Siksi se osaa järjestää opiskelupohjat sen mukaan, kuinka paljon ne menevät päällekkäin canvaksesi kanssa – ja laskee sen sinun laitteellasi. Puhelimesta lähtee eniten opiskelemasi oppiaine ja niiden opiskelupohjien tunnisteet, jotka se on jo hakenut. Käsitteesi eivät lähde."
   },
+  "web": {
+    "kicker": "Verkossa",
+    "title": "Tutustu muistiinpanoihin",
+    "sub": "Luettelolla on myös verkkosivu, jota voit selata selaimessa.",
+    "label": "Avaa share.fluera.dev →"
+  },
   "privacy": {
     "kicker": "Mikä lähtee mukaan, mikä ei",
     "title": "Kun julkaiset sivun, et julkaise sitä, miten sinulla meni.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "Komponentti, joka rakentaa julkisen tukirakenteen, ei rakenteensa puolesta yllä kertaushistoriaasi, varmuuteesi, opiskelukertoihisi, siihen, kuinka hyvin pidit asian muistissa, eikä näiden takana oleviin upotuksiin. Osaaja ja vasta-alkaja tuottavat samasta sivusta tavulleen saman tukirakenteen."
       },
       {
-        "title": "Rajan pitää testi, ei lupaus",
-        "body": "Rajan naulaa paikalleen testi, joka käy sarjallistetun tulosteen läpi ja kaatuu, jos yksikin kahdestakymmenestäkuudesta oppijamallin tai käyttäytymisen kenttänimestä esiintyy siinä missään kohtaa. Se ajetaan nimettynä CI-porttina, josta ei voi luistaa: portti kaatuu myös silloin, kun testitiedosto poistetaan."
+        "title": "Rajan tarkistaa testi",
+        "body": "Rajan tarkistaa testi, joka käy sarjallistetun tulosteen läpi ja kaatuu, jos yksikin kahdestakymmenestäkuudesta oppijamallin tai käyttäytymisen kenttänimestä esiintyy siinä missään kohtaa."
       },
       {
         "title": "Muste on rehellinen raja",

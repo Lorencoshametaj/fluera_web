@@ -52,6 +52,10 @@ export type CatalogueData = {
     marks: Array<{ mark: string; body: string }>;
     note: string;
   };
+  // Text only: the link lives once in CataloguePage.astro.
+  web: CatalogueSection & {
+    label: string;
+  };
   privacy: CatalogueSection & {
     items: CatalogueTextItem[];
     action: { href: string; label: string };

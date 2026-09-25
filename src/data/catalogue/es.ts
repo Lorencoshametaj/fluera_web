@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">Y una fila que nadie más podría construir.</strong> Fluera ya sabe en qué conceptos andas, porque los escribiste tú. Así que puede ordenar las plantillas por cuánto se solapan con lo que hay ahora mismo en tu canvas, y esa cuenta la echa tu dispositivo. De tu teléfono sale la materia que más estudias y los identificadores de las plantillas que ya se ha traído. Tu conjunto de conceptos no sale."
   },
+  "web": {
+    "kicker": "En la web",
+    "title": "Explora los apuntes",
+    "sub": "El catálogo también tiene una página en la web, para hojearla en el navegador.",
+    "label": "Abrir share.fluera.dev →"
+  },
   "privacy": {
     "kicker": "Qué viaja y qué no",
     "title": "Publicar una página no debería publicar cómo la llevabas.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "Por cómo está construido, el componente que arma el andamiaje público de una plantilla no llega a leer tu historial de repasos, ni tu confianza, ni cuántas veces estudiaste algo, ni cuánto lo retenías, ni los embeddings que hay detrás. Un experto y alguien que va a trompicones publican la misma página y sale un andamiaje idéntico byte a byte."
       },
       {
-        "title": "Esa línea la vigila un test, y está en la CI",
-        "body": "La garantía la fija un test que recorre la salida serializada y falla si en algún punto asoma alguno de los veintiséis nombres de campo del modelo de estudiante o de comportamiento. Corre en la CI como un control con nombre propio y obligatorio, que además falla si alguien borra el archivo del test."
+        "title": "Esa línea la comprueba un test",
+        "body": "La garantía la comprueba un test que recorre la salida serializada y falla si en algún punto asoma alguno de los veintiséis nombres de campo del modelo de estudiante o de comportamiento."
       },
       {
         "title": "La tinta es el límite honesto",

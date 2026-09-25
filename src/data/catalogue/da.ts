@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">Og én række, ingen andre kunne bygge.</strong> Fluera ved allerede, hvilke begreber du arbejder med, for du har selv skrevet dem. Derfor kan den sortere skabeloner efter, hvor meget de overlapper med det, der ligger på dit canvas lige nu — og det regnestykke bliver løst på din enhed. Det, der forlader telefonen, er det fag, du studerer mest, og id'erne på de skabeloner, den allerede havde hentet. Selve sættet af begreber bliver, hvor det er."
   },
+  "web": {
+    "kicker": "På nettet",
+    "title": "Udforsk noterne",
+    "sub": "Kataloget har også en side på nettet, som du kan bladre i i din browser.",
+    "label": "Åbn share.fluera.dev →"
+  },
   "privacy": {
     "kicker": "Hvad der følger med, og hvad der ikke gør",
     "title": "Du udgiver siden, ikke hvordan det gik dig med den.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "Den del af appen, der bygger det offentlige stillads, læser aldrig — rent strukturelt — din historik, din sikkerhed, hvor mange gange du har været stoffet igennem, hvor godt du holdt fast i det, eller de vektorer, der ligger bag. En ekspert og en, der stadig kæmper med stoffet, sender byte for byte det samme stillads, når de udgiver den samme side."
       },
       {
-        "title": "En test holder grænsen, i CI",
-        "body": "Garantien er spændt fast af en test, der går det serialiserede output igennem og fejler, hvis bare ét af seksogtyve feltnavne fra læringsmodellen eller adfærdsdataene dukker op i det. Den kører som en navngiven kontrol i CI, der ikke kan slås fra, og som også fejler, hvis testfilen forsvinder."
+        "title": "En test kontrollerer grænsen",
+        "body": "Garantien kontrolleres af en test, der går det serialiserede output igennem og fejler, hvis bare ét af seksogtyve feltnavne fra læringsmodellen eller adfærdsdataene dukker op i det."
       },
       {
         "title": "Blækket er den ærlige grænse",

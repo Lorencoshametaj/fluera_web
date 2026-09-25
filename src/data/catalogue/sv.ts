@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">Och en rad ingen annan kunde bygga.</strong> Fluera vet redan vilka koncept du arbetar med, eftersom du skrev dem. Alltså kan appen ranka mallar efter hur mycket de överlappar med det som ligger på din canvas just nu — och den uträkningen sker på din enhet. Det som lämnar enheten är ämnet du studerar mest och id:n för de mallar appen redan hämtat. Koncepten själva stannar kvar."
   },
+  "web": {
+    "kicker": "På webben",
+    "title": "Utforska anteckningarna",
+    "sub": "Katalogen har också en sida på webben, att bläddra i i webbläsaren.",
+    "label": "Öppna share.fluera.dev →"
+  },
   "privacy": {
     "kicker": "Vad som följer med och vad som stannar",
     "title": "Att publicera en sida ska inte publicera hur du låg till.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "Rent strukturellt läser komponenten som bygger en malls offentliga stomme aldrig din repetitionshistorik, din säkerhet, hur många gånger du övat på något, hur väl du hållit kvar det eller inbäddningarna bakom. Om en expert och en författare som kämpar publicerar samma sida skickar de ut en byte-identisk stomme."
       },
       {
-        "title": "Ett test håller linjen — i CI",
-        "body": "Testet går igenom hela den serialiserade utdatan och faller om något av tjugosex fältnamn ur inlärningsmodellen eller beteendedatan dyker upp någonstans i den. Det körs som en namngiven, obligatorisk grind i CI — och faller även om testfilen raderas."
+        "title": "Ett test kontrollerar linjen",
+        "body": "Testet går igenom hela den serialiserade utdatan och faller om något av tjugosex fältnamn ur inlärningsmodellen eller beteendedatan dyker upp någonstans i den."
       },
       {
         "title": "Bläcket är den ärliga gränsen",

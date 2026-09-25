@@ -133,6 +133,12 @@ const data: CatalogueData = {
     ],
     "note": "<strong class=\"text-paper-50\">E uma linha que ninguém mais teria como montar.</strong> O Fluera já sabe em que conceitos você está trabalhando, porque foi você que os escreveu. Então ele ordena os modelos pelo quanto eles encostam no que está no seu canvas agora — e faz essa conta no seu aparelho. O que sai daí é a matéria que você mais estuda e os identificadores dos modelos que o app já tinha buscado no catálogo. O seu conjunto de conceitos não sai."
   },
+  "web": {
+    "kicker": "Na web",
+    "title": "Explore as anotações",
+    "sub": "O catálogo também tem uma página na web, para folhear no navegador.",
+    "label": "Abrir share.fluera.dev →"
+  },
   "privacy": {
     "kicker": "O que vai, o que fica",
     "title": "A página vai. O quanto ela te custou, não.",
@@ -143,8 +149,8 @@ const data: CatalogueData = {
         "body": "O componente que monta a estrutura pública de um modelo, por construção, nunca lê o seu histórico de revisões, a sua confiança declarada, quantas vezes você estudou aquilo, o quanto disso você ainda estava segurando, nem os embeddings por trás de tudo isso. Um especialista e alguém que está penando publicam a mesma página e saem com uma estrutura idêntica byte a byte."
       },
       {
-        "title": "Quem sustenta essa linha é um teste, na CI",
-        "body": "Essa garantia fica amarrada a um teste que varre a saída serializada e falha se qualquer um de vinte e seis nomes de campo do seu perfil de aprendizagem ou do seu comportamento aparecer em algum canto dela. Ele roda como um gate de CI com nome próprio e obrigatório, que também falha se o arquivo de teste for apagado."
+        "title": "Quem verifica essa linha é um teste",
+        "body": "Essa garantia é verificada por um teste que varre a saída serializada e falha se qualquer um de vinte e seis nomes de campo do seu perfil de aprendizagem ou do seu comportamento aparecer em algum canto dela."
       },
       {
         "title": "A tinta é o limite honesto",
