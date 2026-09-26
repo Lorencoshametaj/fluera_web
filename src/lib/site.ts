@@ -89,6 +89,13 @@ export const LOCALE_AVAILABLE_PATHS = new Set<string>([
 export const LOCALE_NATIVE_PATHS = new Set<string>([
   "/legal/privacy",
   "/legal/terms",
+  "/legal/creator-terms",
+  "/legal/content-policy",
+  // The English copies of the same texts (tools/testi_legali_sul_sito.py).
+  "/legal/privacy/en",
+  "/legal/terms/en",
+  "/legal/creator-terms/en",
+  "/legal/content-policy/en",
 ]);
 
 /** Dynamic routes that exist below every registered locale prefix. */

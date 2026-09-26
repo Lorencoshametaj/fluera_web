@@ -1,0 +1,11 @@
+---
+// /legal/<doc>/en/ — the English text the app shows in English.
+import LegalPage from "@/components/LegalPage.astro";
+
+export function getStaticPaths() {
+  return ["privacy", "terms", "creator-terms", "content-policy"].map((doc) => ({ params: { doc } }));
+}
+const { doc } = Astro.params as { doc: "privacy" | "terms" | "creator-terms" | "content-policy" };
+---
+
+<LegalPage slug={doc} lang="en" />

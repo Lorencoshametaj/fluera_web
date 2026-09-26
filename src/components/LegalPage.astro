@@ -1,0 +1,39 @@
+---
+// One legal document, as the app shows it. The text comes from the `legal`
+// collection, GENERATED from Fluera/assets/legal/ by
+// tools/testi_legali_sul_sito.py — never edit the copies by hand.
+import { getEntry, render } from "astro:content";
+import LegalLayout from "@/layouts/LegalLayout.astro";
+
+export interface Props {
+  slug: "privacy" | "terms" | "creator-terms" | "content-policy";
+  lang: "it" | "en";
+}
+const { slug, lang } = Astro.props;
+const entry = await getEntry("legal", `${slug}.${lang}`);
+if (!entry) throw new Error(`legal: manca ${slug}.${lang} — rigenerare con tools/testi_legali_sul_sito.py`);
+const { Content } = await render(entry);
+const d = entry.data;
+
+// The summary is plain Markdown text: escape it, then only **bold** becomes HTML.
+const summary = d.sommario
+  ? d.sommario
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+  : undefined;
+const alternate = lang === "it"
+  ? { href: `/legal/${slug}/en/`, label: "Read in English", hreflang: "en" as const }
+  : { href: `/legal/${slug}/`, label: "Leggi in italiano", hreflang: "it" as const };
+---
+
+<LegalLayout
+  title={d.title}
+  kicker={lang === "en" ? "Legal" : "Legale"}
+  summary={summary}
+  version={d.versione}
+  updatedAt={d.aggiornato}
+  locale={lang}
+  alternate={alternate}
+>
+  <Content />
+</LegalLayout>

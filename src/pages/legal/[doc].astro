@@ -1,0 +1,12 @@
+---
+// /legal/<doc>/ — the Italian text (the company is Italian; the app and
+// share.fluera.dev link here).
+import LegalPage from "@/components/LegalPage.astro";
+
+export function getStaticPaths() {
+  return ["privacy", "terms", "creator-terms", "content-policy"].map((doc) => ({ params: { doc } }));
+}
+const { doc } = Astro.params as { doc: "privacy" | "terms" | "creator-terms" | "content-policy" };
+---
+
+<LegalPage slug={doc} lang="it" />

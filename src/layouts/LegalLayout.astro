@@ -4,41 +4,37 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 export interface Props {
   title: string;
   kicker: string;
-  summary: string;
+  /** HTML already escaped by the caller. */
+  summary?: string;
   version?: string;
   updatedAt?: string;
   locale?: "en" | "it";
-  placeholders?: Array<{ key: string; note: string }>;
+  /** The same document in the other language. */
+  alternate?: { href: string; label: string; hreflang: "en" | "it" };
 }
 
-const {
-  title,
-  kicker,
-  summary,
-  version = "1.0",
-  updatedAt = "[DATA ULTIMO AGGIORNAMENTO]",
-  locale = "it",
-  placeholders = [],
-} = Astro.props;
+const { title, kicker, summary, version, updatedAt, locale = "it", alternate } = Astro.props;
+const etichette = locale === "en"
+  ? { aggiornato: "Last updated", versione: "Version" }
+  : { aggiornato: "Ultimo aggiornamento", versione: "Versione" };
+const meta = [
+  updatedAt ? `${etichette.aggiornato}: ${updatedAt}` : null,
+  version ? `${etichette.versione} ${version}` : null,
+].filter(Boolean).join(" · ");
 ---
 
-<BaseLayout title={title} description={summary} noIndex locale={locale}>
+<BaseLayout title={title} description={summary ? summary.replace(/<[^>]+>/g, "") : title} noIndex locale={locale}>
   <section class="py-20 md:py-24 border-b border-white/[0.04]">
     <div class="container-prose">
       <p class="eyebrow mb-6 text-accent-glow">{kicker}</p>
       <h1 class="entry-title mb-5">{title}</h1>
-      <p class="prose-ink text-lg max-w-prose" set:html={summary} />
-      <p class="mt-6 text-xs font-mono text-ink-500">
-        Ultimo aggiornamento: <span class="legal-placeholder">{updatedAt}</span> · Versione {version}
-      </p>
-
-      {placeholders.length > 0 && (
-        <div class="mt-10 card p-5 border-signal-warn/30 bg-signal-warn/[0.05]">
-          <p class="text-sm font-medium text-amber-300 mb-2">⚠️ Documento in configurazione</p>
-          <p class="text-xs text-paper-300">
-            I campi evidenziati in <span class="legal-placeholder">[placeholder]</span> devono essere sostituiti con dati legali reali prima della pubblicazione.
-          </p>
-        </div>
+      {summary && <p class="prose-ink text-lg max-w-prose" set:html={summary} />}
+      {(meta || alternate) && (
+        <p class="mt-6 text-xs font-mono text-ink-500">
+          {meta}
+          {meta && alternate && " · "}
+          {alternate && <a href={alternate.href} hreflang={alternate.hreflang} lang={alternate.hreflang} class="underline underline-offset-2">{alternate.label}</a>}
+        </p>
       )}
     </div>
   </section>
@@ -48,17 +44,6 @@ const {
       <article class="prose-v2 prose-v2-legal">
         <slot />
       </article>
-
-      {placeholders.length > 0 && (
-        <div class="mt-16 card p-6 border-signal-bad/30 bg-signal-bad/[0.05]">
-          <p class="text-sm font-semibold text-red-300 mb-3">⚠️ Dati da sostituire prima della pubblicazione</p>
-          <ul class="text-xs text-paper-300 space-y-1.5 list-disc ps-5">
-            {placeholders.map((p) => (
-              <li><code class="font-mono text-accent-glow">[{p.key}]</code> — {p.note}</li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   </section>
 
