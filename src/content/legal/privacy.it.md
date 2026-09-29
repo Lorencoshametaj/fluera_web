@@ -2,8 +2,8 @@
 lang: "it"
 slug: "privacy"
 title: "Informativa Privacy"
-versione: "1.8.2"
-aggiornato: "22 agosto 2026"
+versione: "1.8.4"
+aggiornato: "29 settembre 2026"
 sommario: "Informativa sul trattamento dei dati personali degli utenti dell'applicazione Fluera, redatta ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (**GDPR**) e del D.Lgs. 196/2003 come novellato dal D.Lgs. 101/2018."
 fonte: "Fluera/assets/legal/privacy_it.md"
 ---
@@ -214,6 +214,43 @@ ciò che legge secondo i propri termini (vedi §4, «Assistenti che colleghi
 tu»). Fluera non invia il tuo estratto ad alcun fornitore AI di propria
 iniziativa.
 
+### 2.13 Visitatori del sito e del catalogo web
+
+Questa sezione riguarda chi visita **fluera.dev** o **share.fluera.dev** con un
+browser, anche senza un account Fluera.
+
+- **Log tecnici dei fornitori di hosting.** fluera.dev è servito da GitHub
+  (GitHub Pages), share.fluera.dev da Deno (Deno Deploy). Come ogni server web,
+  registrano per ogni richiesta l'indirizzo IP, l'ora, la pagina chiesta e
+  l'identificativo del browser, per far funzionare e proteggere il servizio. Li
+  conservano i fornitori secondo le proprie regole (§4); Fluera non li usa per
+  identificarti né per profilarti.
+- **Nessun cookie nostro, nessuno strumento di analisi.** Le pagine non
+  impostano cookie propri e non caricano strumenti di analisi o di
+  tracciamento. fluera.dev ricorda nel tuo browser soltanto la scelta del tema
+  chiaro o scuro e la chiusura dell'avviso sulla lingua: restano sul tuo
+  dispositivo e non ci vengono inviate.
+- **Immagini del catalogo.** Le anteprime delle schede sono servite da
+  Supabase attraverso la rete di Cloudflare, che può impostare il cookie
+  tecnico `__cf_bm` (protezione dai bot, durata 30 minuti). È un cookie tecnico
+  del fornitore, necessario al servizio e non usato per profilarti.
+- **Link di invito.** Quando qualcuno apre un link di invito di un autore
+  (share.fluera.dev/i/…), contiamo il clic per quel codice, con la piattaforma
+  (per esempio «Android») e l'ora: nessun dato di chi ha cliccato.
+- **Modulo di segnalazione** (share.fluera.dev/report). Se segnali un
+  contenuto trattiamo ciò che scrivi nel modulo — il contenuto segnalato, il
+  motivo, la descrizione, la dichiarazione di buona fede e, se li dai, nome ed
+  email (necessari per le segnalazioni sul diritto d'autore, facoltativi per le
+  altre) — per gestire la segnalazione e risponderti, come chiede l'art. 16 del
+  Regolamento UE 2022/2065 («DSA»). Per fermare gli invii automatici, il
+  numero di invii recenti per indirizzo IP resta solo nella memoria del server,
+  per 10 minuti.
+- **Basi giuridiche:** legittimo interesse al funzionamento e alla sicurezza
+  del servizio per i log, i clic e la protezione dagli abusi (art. 6.1.f
+  GDPR); obbligo legale per le segnalazioni (art. 6.1.c GDPR, DSA).
+- **Conservazione:** i log restano presso i fornitori per il tempo indicato
+  dalle loro regole; le segnalazioni come le decisioni di moderazione (§6).
+
 ## 3. Finalità e basi giuridiche
 
 - **Erogazione del servizio** (account, canvas locali): esecuzione del contratto (art. 6.1.b GDPR)
@@ -238,6 +275,11 @@ Tutti i destinatari sono responsabili del trattamento vincolati da contratto ex 
 - **Apple Inc.** — Sign in with Apple, App Store — https://www.apple.com/legal/privacy/
 - **RevenueCat Inc.** — abbonamenti — https://www.revenuecat.com/privacy
 - **Functional Software Inc. (Sentry)** — crash reporting — https://sentry.io/privacy/
+- **Deno Land Inc.** — hosting di share.fluera.dev (catalogo web, pagine delle schede, modulo di segnalazione, connettore dell'assistente): indirizzo IP e dati delle richieste di chi visita (§2.13) — https://docs.deno.com/deploy/privacy_policy/
+
+**Fornitori che trattano come titolari autonomi.** fluera.dev è ospitato su GitHub Pages: GitHub Inc. registra i dati tecnici delle visite (indirizzo IP, ora, pagina richiesta) per la sicurezza del proprio servizio, come titolare autonomo e secondo la propria informativa — https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement. Lo stesso vale per i caratteri tipografici che share.fluera.dev carica da fluera.dev (§2.13).
+
+**Allarmi interni.** Per gli avvisi di servizio — i costi e le segnalazioni sulla sicurezza dei minori — usiamo Discord. I messaggi non contengono dati personali: né identificativi di account, né contenuti, né chi ha segnalato o chi è stato segnalato; solo il tipo di avviso, la fascia di abbonamento, gli importi e il numero interno dell'avviso o della segnalazione.
 
 **Altri utenti.** Quando pubblichi una scheda nel catalogo, o ne condividi una privata con un link (§2.11), i dati contenuti in quella scheda raggiungono le persone a cui hai scelto di darla — chiunque, nel caso del catalogo pubblico; solo chi apre il tuo link, nel caso privato. Non sono responsabili del trattamento per nostro conto: sono destinatari che decidi tu, e la comunicazione avviene solo per tua azione.
 
@@ -249,7 +291,7 @@ Le condizioni di trattamento ex art. 28 di ciascun responsabile si applicano a n
 
 ## 5. Trasferimenti extra-UE
 
-Alcuni responsabili — Sign in with Google (Google LLC), Apple, Sentry, RevenueCat — hanno sede negli Stati Uniti. Il trasferimento verso di essi avviene sulla base delle Clausole Contrattuali Standard approvate dalla Commissione Europea (art. 46 GDPR) e, ove applicabile, dell'adesione del fornitore al EU-US Data Privacy Framework.
+Alcuni responsabili — Sign in with Google (Google LLC), Apple, Sentry, RevenueCat, Deno — hanno sede negli Stati Uniti. Il trasferimento verso di essi avviene sulla base delle Clausole Contrattuali Standard approvate dalla Commissione Europea (art. 46 GDPR) e, ove applicabile, dell'adesione del fornitore al EU-US Data Privacy Framework.
 
 **L'inferenza AI non lascia l'UE.** I contenuti del canvas inviati alle funzioni AI sono elaborati da Google Vertex AI esclusivamente nell'Unione Europea (europe-west4 Paesi Bassi, con failover europe-west1 Belgio) e non vengono trasferiti negli Stati Uniti.
 

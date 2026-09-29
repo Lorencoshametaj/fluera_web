@@ -47,15 +47,18 @@ const processors = [
     privacy: "https://sentry.io/privacy/",
   },
   {
-    name: "Vercel Inc.",
-    purpose: "Hosting del sito marketing fluera.dev e /docs.",
-    dataTypes: "Log d'accesso web standard (IP, user-agent). Nessun contenuto account.",
-    region: "Edge globale; regione di origine configurabile.",
-    privacy: "https://vercel.com/legal/privacy-policy",
+    name: "Deno Land Inc.",
+    purpose: "Hosting di share.fluera.dev: catalogo web, pagine delle schede, modulo di segnalazione e connettore dell'assistente AI.",
+    dataTypes: "Indirizzo IP e dati delle richieste di chi visita (log tecnici). Le segnalazioni inviate dal modulo passano di qui per arrivare a Supabase. Nessun cookie.",
+    region: "Edge globale; società con sede negli Stati Uniti. DPA richiamato nei termini di Deno Deploy; SCC.",
+    privacy: "https://docs.deno.com/deploy/privacy_policy/",
   },
 ];
 
-const lastUpdated = "2026-08-01";
+const lastUpdated = "2026-09-29";
+// fluera.dev e' su GitHub Pages: GitHub non e' un sub-processor (titolare
+// autonomo dei log delle visite, nessun DPA con un account gratuito).
+const notaGithub = "fluera.dev è ospitato su GitHub Pages. GitHub Inc. non è un sub-processor: registra i dati tecnici delle visite (indirizzo IP, ora, pagina) per la sicurezza del proprio servizio, come titolare autonomo e secondo la propria informativa. Lo stesso vale per i caratteri tipografici che share.fluera.dev carica da fluera.dev.";
 ---
 
 <BaseLayout
@@ -102,6 +105,7 @@ const lastUpdated = "2026-08-01";
           </li>
         ))}
       </ul>
+      <p class="prose-ink text-sm mt-8 max-w-5xl">{notaGithub} <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Informativa di GitHub ↗</a></p>
     </div>
   </section>
 

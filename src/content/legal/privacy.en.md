@@ -2,8 +2,8 @@
 lang: "en"
 slug: "privacy"
 title: "Privacy Policy"
-versione: "1.8.2"
-aggiornato: "August 22, 2026"
+versione: "1.8.4"
+aggiornato: "September 29, 2026"
 sommario: "This policy explains how Fluera processes personal data of its users under Articles 13 and 14 of Regulation (EU) 2016/679 (**GDPR**) and the Italian Legislative Decree 196/2003 as amended by Legislative Decree 101/2018."
 fonte: "Fluera/assets/legal/privacy_en.md"
 ---
@@ -205,6 +205,41 @@ processes what it reads under its own terms (see §4, "Assistants you
 connect"). Fluera does not send your digest to any AI provider on its own
 initiative.
 
+### 2.13 Visitors to the website and the web catalogue
+
+This section is about anyone who visits **fluera.dev** or **share.fluera.dev**
+in a browser, even without a Fluera account.
+
+- **Technical logs of the hosting providers.** fluera.dev is served by GitHub
+  (GitHub Pages), share.fluera.dev by Deno (Deno Deploy). Like any web server,
+  they record for each request the IP address, the time, the page requested
+  and the browser's identifier, to run and protect the service. The providers
+  keep them under their own rules (§4); Fluera does not use them to identify
+  or profile you.
+- **No cookies of our own, no analytics.** The pages set no cookies of our own
+  and load no analytics or tracking tools. fluera.dev remembers in your
+  browser only your light or dark theme and whether you closed the language
+  notice: this stays on your device and is not sent to us.
+- **Catalogue images.** Card previews are served by Supabase through
+  Cloudflare's network, which may set the technical cookie `__cf_bm` (bot
+  protection, 30 minutes). It is a technical cookie of the provider, needed by
+  the service and not used to profile you.
+- **Invite links.** When someone opens an author's invite link
+  (share.fluera.dev/i/…), we count the click for that code, with the platform
+  (for example "Android") and the time: no data about who clicked.
+- **Report form** (share.fluera.dev/report). If you report content we process
+  what you write in the form — the content reported, the reason, the
+  description, the good-faith statement and, if you give them, name and email
+  (required for copyright reports, optional for the others) — to handle the
+  report and reply to you, as Article 16 of Regulation (EU) 2022/2065 ("DSA")
+  requires. To stop automated submissions, the number of recent submissions
+  per IP address is kept only in the server's memory, for 10 minutes.
+- **Legal bases:** legitimate interest in running and securing the service for
+  logs, clicks and abuse protection (Art. 6(1)(f) GDPR); legal obligation for
+  reports (Art. 6(1)(c) GDPR, DSA).
+- **Retention:** logs stay with the providers for the period set by their
+  rules; reports as moderation decisions (§6).
+
 ## 3. Purposes and legal bases
 
 - **Service provision** (account, local canvases): contract performance (Art. 6.1.b GDPR)
@@ -229,6 +264,11 @@ All recipients are processors bound by contract under Art. 28 GDPR:
 - **Apple Inc.** — Sign in with Apple, App Store — https://www.apple.com/legal/privacy/
 - **RevenueCat Inc.** — subscriptions — https://www.revenuecat.com/privacy
 - **Functional Software Inc. (Sentry)** — crash reporting — https://sentry.io/privacy/
+- **Deno Land Inc.** — hosting of share.fluera.dev (web catalogue, card pages, report form, assistant connector): IP address and request data of visitors (§2.13) — https://docs.deno.com/deploy/privacy_policy/
+
+**Providers acting as independent controllers.** fluera.dev is hosted on GitHub Pages: GitHub Inc. records the technical data of visits (IP address, time, page requested) to secure its own service, as an independent controller and under its own privacy statement — https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement. The same applies to the typefaces that share.fluera.dev loads from fluera.dev (§2.13).
+
+**Internal alerts.** For service alerts — costs and reports concerning child safety — we use Discord. The messages contain no personal data: no account identifiers, no content, not who reported or who was reported; only the type of alert, the subscription tier, the amounts and the internal number of the alert or report.
 
 **Other users.** When you publish a card to the catalogue, or share a private one by link (§2.11), the data that card contains reaches the people you chose to give it to — anyone, in the public catalogue's case; only those who open your link, in the private one. They are not processors acting on our behalf: they are recipients you decide on, and the disclosure happens only through your action.
 
@@ -240,7 +280,7 @@ Each processor's Art. 28 data processing terms apply to us, either through a sep
 
 ## 5. Transfers outside the EU
 
-Some processors — Sign in with Google (Google LLC), Apple, Sentry, RevenueCat — are based in the United States. Transfers to them are based on the Standard Contractual Clauses approved by the European Commission (Art. 46 GDPR) and, where applicable, the processor's adherence to the EU-US Data Privacy Framework.
+Some processors — Sign in with Google (Google LLC), Apple, Sentry, RevenueCat, Deno — are based in the United States. Transfers to them are based on the Standard Contractual Clauses approved by the European Commission (Art. 46 GDPR) and, where applicable, the processor's adherence to the EU-US Data Privacy Framework.
 
 **AI inference does not leave the EU.** Canvas content submitted to AI features is processed by Google Vertex AI in the European Union only (europe-west4 Netherlands, with europe-west1 Belgium failover) and is not transferred to the United States.
 

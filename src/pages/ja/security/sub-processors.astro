@@ -47,15 +47,18 @@ const processors = [
     privacy: "https://sentry.io/privacy/",
   },
   {
-    name: "Vercel Inc.",
-    purpose: "マーケティングサイト fluera.dev および /docs のホスティング。",
-    dataTypes: "標準的な Web アクセスログ (IP、user-agent)。アカウントコンテンツは含まれません。",
-    region: "グローバルエッジ。オリジンリージョンは設定可能。",
-    privacy: "https://vercel.com/legal/privacy-policy",
+    name: "Deno Land Inc.",
+    purpose: "share.fluera.dev のホスティング：Web カタログ、カードのページ、通報フォーム、AI アシスタントのコネクター。",
+    dataTypes: "訪問者の IP アドレスとリクエストデータ（技術ログ）。フォームから送られた通報はここを経由して Supabase に届きます。Cookie は使いません。",
+    region: "グローバルエッジ。米国に本社を置く企業。Deno Deploy の規約に組み込まれた DPA、SCC。",
+    privacy: "https://docs.deno.com/deploy/privacy_policy/",
   },
 ];
 
-const lastUpdated = "2026-08-01";
+const lastUpdated = "2026-09-29";
+// fluera.dev e' su GitHub Pages: GitHub non e' un sub-processor (titolare
+// autonomo dei log delle visite, nessun DPA con un account gratuito).
+const notaGithub = "fluera.dev 自体は GitHub Pages でホストされています。GitHub Inc. はサブプロセッサーではありません。自社サービスを守るために訪問の技術データ（IP アドレス、時刻、ページ）を記録し、独立した管理者として自社のプライバシーステートメントに従って扱います。share.fluera.dev が fluera.dev から読み込むフォントについても同様です。";
 ---
 
 <BaseLayout
@@ -102,6 +105,7 @@ const lastUpdated = "2026-08-01";
           </li>
         ))}
       </ul>
+      <p class="prose-ink text-sm mt-8 max-w-5xl">{notaGithub} <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub のプライバシーステートメント ↗</a></p>
     </div>
   </section>
 
