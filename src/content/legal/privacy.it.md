@@ -2,8 +2,8 @@
 lang: "it"
 slug: "privacy"
 title: "Informativa Privacy"
-versione: "1.8.4"
-aggiornato: "29 settembre 2026"
+versione: "1.8.6"
+aggiornato: "11 ottobre 2026"
 sommario: "Informativa sul trattamento dei dati personali degli utenti dell'applicazione Fluera, redatta ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (**GDPR**) e del D.Lgs. 196/2003 come novellato dal D.Lgs. 101/2018."
 fonte: "Fluera/assets/legal/privacy_it.md"
 ---
@@ -56,6 +56,7 @@ Solo se l'utente ha prestato consenso alla categoria **Funzioni AI**:
 ### 2.5 Dati per Cloud Sync
 Solo se l'utente ha prestato consenso alla categoria **Cloud Sync**:
 - Copie dei canvas archiviate su Supabase (regione UE `eu-north-1`), cifrate in transito (TLS) e a riposo a livello infrastrutturale. Il Cloud Sync **non** è cifrato end-to-end: in qualità di titolare del trattamento, Fluera può tecnicamente accedere ai contenuti sincronizzati per erogare, proteggere e supportare il servizio (non li vende né li usa per pubblicità)
+- **Le pieghe del browser fanno eccezione.** Se accendi «Le pieghe del browser» in Impostazioni → Dati, le pagine piegate in un canvas (indirizzi, frasi, copie delle pagine, il retro, i fili, l'inchiostro al minuto) passano ai tuoi altri dispositivi **cifrate end-to-end**: chiuse sul dispositivo con AES-256-GCM e una chiave nata sul dispositivo, che il server non riceve mai. La chiave passa a un tuo nuovo dispositivo con un abbinamento che mostra lo stesso codice di 6 cifre sui due, o con il codice di recupero che vedi una sola volta all'accensione; sul server ne resta solo una copia chiusa con quel codice. Il server vede a quale canvas appartiene ogni piega, di che tipo è e quando cambia, mai il contenuto. Se perdi tutti i tuoi dispositivi e il codice di recupero, quelle pieghe non si possono recuperare (i canvas sì). «Spegni su tutti i dispositivi» le cancella dal server
 - Metadati di sincronizzazione (hash, timestamp, dimensione)
 
 ### 2.6 Dati di diagnostica e crash
@@ -251,6 +252,58 @@ browser, anche senza un account Fluera.
 - **Conservazione:** i log restano presso i fornitori per il tempo indicato
   dalle loro regole; le segnalazioni come le decisioni di moderazione (§6).
 
+### 2.14 Fludomi, il browser integrato
+
+Fludomi apre le pagine web **direttamente dal tuo dispositivo**: i nostri server non vedono le
+pagine che visiti, né le ricerche che fai.
+
+- **I siti che visiti** ricevono ciò che riceve qualunque sito da un browser: indirizzo IP, il
+  tipo di browser (in forma ridotta: niente modello del dispositivo), la lingua, i cookie che quel
+  sito ha impostato. Sono titolari autonomi dei dati che raccolgono, secondo le loro informative.
+- **Il motore di ricerca** che scegli nelle impostazioni (predefinito: DuckDuckGo) riceve ciò che
+  cerchi e il tuo indirizzo IP. Anche «Cerca in Fludomi» manda al motore il testo che hai
+  selezionato nella nota o nel PDF.
+- **Google Lens**, solo quando lo usi tu, riceve l'immagine che scegli (un ritaglio del PDF,
+  un'immagine della nota o della pagina) e il tuo indirizzo IP. Lens gira in uno spazio separato:
+  lì resta solo il consenso di Google, mai l'accesso al tuo account Google della navigazione.
+- **La protezione dai siti pericolosi** controlla gli indirizzi prima di aprirli. Su Android è il
+  servizio Safe Browsing di Google: al servizio arrivano solo frammenti cifrati degli indirizzi.
+  Su iOS è l'avviso di sito fraudolento di Apple.
+- **La scrittura a mano** nella barra si riconosce sul dispositivo. Il modello della lingua si
+  scarica una volta dai server di Google.
+
+**Cosa resta sul dispositivo.** Restano nel database cifrato del tuo account (§2.2):
+- la cronologia, cancellata in automatico dopo il periodo che scegli (1 giorno, 1 settimana, 1 mese
+  o 3 mesi, di fabbrica) senza visite; si può anche spegnere;
+- i preferiti, le schede aperte;
+- le evidenziature, le pieghe, le fonti e la copia di testo delle pagine che pieghi;
+- le preferenze per sito.
+
+I cookie e i dati che i siti salvano (accessi, preferenze) stanno nello spazio del browser
+dedicato al tuo account:
+- non entrano nei backup di Google o di iCloud;
+- si cancellano con «Cancella dati di navigazione»;
+- si cancellano quando esci dall'account o lo elimini;
+- si cancellano per un sito solo con «Dimentica questo sito».
+
+Se elimini l'account, anche il suo database locale viene cancellato dal dispositivo.
+
+**Schede private.** Non salvano cronologia, schede o pieghe, e su Android la tastiera non impara
+ciò che vi scrivi. I loro cookie si cancellano alla chiusura, o al primo avvio successivo se l'app è stata
+chiusa di colpo. Il sistema non conserva immagini della scheda nell'elenco delle app recenti.
+
+**Protezioni attive per impostazione predefinita:**
+- blocchiamo i servizi di tracciamento più diffusi, con una lista scritta da noi;
+- niente cookie di terze parti;
+- i banner dei cookie vengono rifiutati, non accettati, quando non hai ancora risposto;
+- ogni sito riceve il segnale Global Privacy Control (non vendere né condividere i miei dati);
+- dagli indirizzi togliamo i parametri che servono a seguirti (per esempio `utm_`, `fbclid`,
+  `gclid`);
+- apriamo i link in https quando il sito lo offre.
+
+Solo le pieghe viaggiano fra i tuoi dispositivi, e solo se attivi la sincronizzazione, cifrate da
+un capo all'altro (§2.5).
+
 ## 3. Finalità e basi giuridiche
 
 - **Erogazione del servizio** (account, canvas locali): esecuzione del contratto (art. 6.1.b GDPR)
@@ -285,6 +338,15 @@ Tutti i destinatari sono responsabili del trattamento vincolati da contratto ex 
 
 **Assistenti che colleghi tu.** Se attivi l'estratto di studio (§2.12), l'assistente AI che colleghi lo legge tramite il tuo token personale del connettore. Il suo fornitore (per esempio Anthropic o OpenAI) è un destinatario che scegli e autorizzi tu, non un responsabile per nostro conto; ciò che fa dei dati letti è regolato dai suoi termini, e la comunicazione avviene solo per tua azione di collegamento.
 
+**Destinatari che scegli tu nel browser.** Quando usi Fludomi, alcuni dati arrivano a destinatari
+che non trattano dati per nostro conto: ricevono i dati per tua azione e ne sono titolari
+autonomi, secondo le loro informative (§2.14). Sono:
+- i siti che visiti;
+- il motore di ricerca che scegli;
+- Google per Lens, quando lo usi;
+- il servizio di protezione dai siti pericolosi del sistema: Google Safe Browsing su Android,
+  Apple su iOS.
+
 A parte questo, non vendiamo, non cediamo e non comunichiamo i dati personali a parti diverse da quelle indicate. Nessuna profilazione pubblicitaria viene effettuata.
 
 Le condizioni di trattamento ex art. 28 di ciascun responsabile si applicano a noi, o tramite un DPA sottoscritto separatamente o tramite il DPA richiamato per riferimento nei loro termini di servizio. Le copie controfirmate sono conservate internamente quando il responsabile ne emette una; lo stato aggiornato per ciascun responsabile è disponibile su richiesta scritta a `lorenco@fluera.dev`. L'elenco aggiornato dei sub-processor di ciascun responsabile è consultabile ai link delle rispettive privacy policy.
@@ -308,6 +370,7 @@ Supabase consente di scegliere la regione del database: utilizziamo la regione `
 - **Decisioni di moderazione e segnalazioni:** conservate per la durata necessaria a gestire un eventuale reclamo o ricorso, e comunque per rispondere agli obblighi del DSA
 - **Audit trail del consenso:** fino alla revoca + 3 anni (art. 7.1 GDPR)
 - **Dataset di riconoscimento della scrittura (§2.10):** fino a 5 anni dopo la cancellazione dell'account, o finché non lo revochi da *Impostazioni → Privacy → AI Training Data* — quello che viene prima, sempre in forma pseudonimizzata. La revoca raggiunge solo i contributi fatti da un dispositivo i cui dati dell'app sono ancora presenti; dopo una disinstallazione ciò che li limita è la finestra di 5 anni (vedi §2.10, art. 11 GDPR)
+- **Cronologia di Fludomi (sul dispositivo, §2.14):** per il periodo che scegli senza nuove visite — 1 giorno, 1 settimana, 1 mese o 3 mesi (di fabbrica); cookie e dati dei siti finché non li cancelli, esci dall'account o lo elimini
 - **Indice di memoria cognitiva (on-device):** conservato localmente finché la funzione resta attiva; cancellato immediatamente alla disattivazione (opt-out) o su richiesta di cancellazione dei dati
 - **Sessioni anonime:** quando usi Fluera senza account permanente, i dati sono associati a un identificatore device temporaneo. Se non converti la sessione in un account permanente entro **24 ore di inattività** dall'apertura di una nuova sessione su un altro device, l'account anonimo e tutti i dati associati vengono cancellati automaticamente tramite un job pianificato sui nostri server.
 

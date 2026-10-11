@@ -2,8 +2,8 @@
 lang: "en"
 slug: "privacy"
 title: "Privacy Policy"
-versione: "1.8.4"
-aggiornato: "September 29, 2026"
+versione: "1.8.6"
+aggiornato: "October 11, 2026"
 sommario: "This policy explains how Fluera processes personal data of its users under Articles 13 and 14 of Regulation (EU) 2016/679 (**GDPR**) and the Italian Legislative Decree 196/2003 as amended by Legislative Decree 101/2018."
 fonte: "Fluera/assets/legal/privacy_en.md"
 ---
@@ -56,6 +56,7 @@ Only if you have consented to the **AI features** category:
 ### 2.5 Cloud Sync data
 Only if you have consented to the **Cloud Sync** category:
 - Canvas copies stored on Supabase (EU region `eu-north-1`), encrypted in transit (TLS) and at rest at the infrastructure level. Cloud Sync is **not** end-to-end encrypted: as the data controller, Fluera can technically access synced content to provide, secure and support the service (we never sell it or use it for advertising)
+- **Browser folds are the exception.** If you turn on "Browser folds" in Settings → Data, the pages folded into a canvas (addresses, quotes, page copies, the back of the page, threads, ink tied to the minute) reach your other devices **end-to-end encrypted**: sealed on the device with AES-256-GCM and a key born on the device that the server never receives. The key reaches a new device of yours through a pairing that shows the same 6-digit code on both, or through the recovery code you see once when you turn it on; the server keeps only a copy sealed with that code. The server sees which canvas each fold belongs to, its type and when it changes, never its content. If you lose all your devices and the recovery code, those folds cannot be recovered (your canvases can). "Turn off on all devices" deletes them from the server
 - Sync metadata (hash, timestamp, size)
 
 ### 2.6 Diagnostic and crash data
@@ -240,6 +241,55 @@ in a browser, even without a Fluera account.
 - **Retention:** logs stay with the providers for the period set by their
   rules; reports as moderation decisions (§6).
 
+### 2.14 Fludomi, the built-in browser
+
+Fludomi opens web pages **directly from your device**: our servers do not see the pages you visit
+or what you search for.
+
+- **The sites you visit** receive what any site receives from a browser: your IP address, the
+  browser type (in a reduced form, with no device model), your language, and the cookies that site
+  has set. They are independent controllers of the data they collect, under their own policies.
+- **The search engine** you choose in Settings (default: DuckDuckGo) receives what you search for
+  and your IP address. «Search in Fludomi» also sends it the text you selected in a note or PDF.
+- **Google Lens**, only when you use it, receives the image you choose (a PDF crop, an image from
+  a note or a page) and your IP address. Lens runs in a separate space: only Google's consent is
+  kept there, never the sign-in to your Google account used for browsing.
+- **Protection from dangerous sites** checks addresses before opening them. On Android this is
+  Google Safe Browsing: the service receives only hashed fragments of addresses. On iOS it is
+  Apple's fraudulent-website warning.
+- **Handwriting** in the address bar is recognised on the device. The language model is
+  downloaded once from Google's servers.
+
+**What stays on the device.** These stay in your account's encrypted database (§2.2):
+- your history, deleted automatically after the period you choose (1 day, 1 week, 1 month or
+  3 months, the default) without a visit; it can also be turned off;
+- favourites and open tabs;
+- highlights, folds, sources and the text copy of the pages you fold;
+- per-site preferences.
+
+Cookies and the data sites store (sign-ins, preferences) live in the browser space of your
+account:
+- they are excluded from Google and iCloud backups;
+- they are deleted by «Clear browsing data»;
+- they are deleted when you sign out or delete your account;
+- they are deleted for a single site with «Forget this site».
+
+If you delete your account, its local database is deleted from the device too.
+
+**Private tabs.** They save no history, tabs or folds, and on Android the keyboard does not
+learn what you type in them. Their cookies are deleted when they close, or at the next launch if the app was
+killed. The system keeps no picture of the tab in the recent-apps list.
+
+**Protections on by default:**
+- we block the most common tracking services, with a list we write ourselves;
+- no third-party cookies;
+- cookie banners are refused, never accepted, when you have not answered yet;
+- every site receives the Global Privacy Control signal (do not sell or share my data);
+- we remove tracking parameters from addresses (for example `utm_`, `fbclid`, `gclid`);
+- we open links over https whenever the site offers it.
+
+Only folds travel between your devices, and only if you turn sync on, end-to-end encrypted (§2.5).
+
 ## 3. Purposes and legal bases
 
 - **Service provision** (account, local canvases): contract performance (Art. 6.1.b GDPR)
@@ -274,6 +324,14 @@ All recipients are processors bound by contract under Art. 28 GDPR:
 
 **Assistants you connect.** If you enable the study digest (§2.12), the AI assistant you connect reads it through your personal connector token. Its provider (for example Anthropic or OpenAI) is a recipient you choose and authorise, not a processor acting on our behalf; what it does with the data it reads is governed by its own terms, and the disclosure happens only through your action of connecting it.
 
+**Recipients you choose in the browser.** When you use Fludomi, some data reaches recipients that
+do not process data on our behalf: they receive it because of your action and are independent
+controllers, under their own policies (§2.14). They are:
+- the sites you visit;
+- the search engine you choose;
+- Google for Lens, when you use it;
+- the system's protection from dangerous sites: Google Safe Browsing on Android, Apple on iOS.
+
 Apart from this, we do not sell, transfer, or communicate personal data to parties other than those listed. No advertising profiling is performed.
 
 Each processor's Art. 28 data processing terms apply to us, either through a separately executed DPA or through the DPA incorporated by reference into their terms of service. Counter-signed copies are kept on file where the processor issues one; the current status for each processor is available on written request to `lorenco@fluera.dev`. The up-to-date sub-processor list for each processor is published at the privacy policy links above.
@@ -297,6 +355,7 @@ Supabase allows region selection: we use the region `eu-north-1` (Stockholm) wit
 - **Moderation decisions and reports:** kept for as long as needed to handle a complaint or appeal, and in any case to meet DSA obligations
 - **Consent audit trail:** until revocation + 3 years (Art. 7.1 GDPR)
 - **Handwriting recognition dataset (§2.10):** up to 5 years after account deletion, or until you withdraw it in *Settings → Privacy → AI Training Data* — whichever comes first, always pseudonymised. Withdrawal only reaches contributions made from a device whose app data is still present; after an uninstall the 5-year window is what bounds them (see §2.10, Art. 11 GDPR)
+- **Fludomi history (on the device, §2.14):** for the period you choose without a new visit — 1 day, 1 week, 1 month or 3 months (the default); sites' cookies and data until you clear them, sign out or delete your account
 - **Cognitive memory index (on-device):** kept locally while the feature is enabled; erased immediately on disable (opt-out) or on a data-deletion request
 - **Anonymous sessions:** when you use Fluera without a permanent account, data is associated with a temporary device identifier. If you do not convert the session into a permanent account within **24 hours of inactivity** after opening a new session on another device, the anonymous account and all associated data are automatically deleted by a scheduled job on our servers.
 
