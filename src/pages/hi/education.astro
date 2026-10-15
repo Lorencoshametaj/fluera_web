@@ -9,7 +9,7 @@ const useCases = [
   },
   {
     title: "पैमाने पर परीक्षा तैयारी",
-    body: "Fog of War + अंतराल पुनरावृत्ति छात्र के व्यक्तिगत कैनवास को पुनर्प्राप्ति अभ्यास इंजन में बदल देती है। शिक्षक सामग्री निर्धारित किए बिना विषय द्वारा अध्ययन पथों की सिफारिश कर सकते हैं।",
+    body: "Fog of War + अंतराल पुनरावृत्ति छात्र के व्यक्तिगत कैनवास को पुनर्प्राप्ति अभ्यास इंजन में बदल देती है।",
   },
   {
     title: "STEM प्रयोगशाला नोटबुक्स",
@@ -18,9 +18,7 @@ const useCases = [
 ];
 
 const deployment = [
-  { label: "SSO",              body: "SAML 2.0 और OIDC। Shibboleth, Azure AD, Okta, Google Workspace for Education के साथ एकीकृत होता है।" },
   { label: "MDM-friendly",     body: "App Store / Play के माध्यम से मानक एंटरप्राइज़ वितरण। Windows और macOS हस्ताक्षरित इंस्टॉलर के रूप में। कोई साइडलोडिंग नहीं।" },
-  { label: "ऑडिट लॉग",         body: "खाता प्रति अपरिवर्तनीय एक्सेस ट्रेल। अनुपालन ऑडिट के लिए निर्यात योग्य।" },
   { label: "डेटा निवास",       body: "डिफ़ॉल्ट रूप से EU सर्वर। अनुरोध पर डेटा प्रोसेसिंग समझौता उपलब्ध।" },
   { label: "पहुंच",            body: "हम सभी प्लेटफ़ॉर्म पर WCAG 2.1 AA की दिशा में काम कर रहे हैं। स्क्रीन रीडर समर्थन और उच्च कंट्रास्ट मोड रोडमैप पर हैं; मोटर अंतर के लिए समायोज्य ब्रश निष्ठा आज उपलब्ध है।" },
   { label: "ऑन-प्रिमाइसेस",     body: "एंटरप्राइज़ रोडमैप पर आ रहा है। आज: मजबूत एन्क्रिप्शन और क्षेत्रीय नियंत्रण के साथ केवल क्लाउड।" },
@@ -29,7 +27,7 @@ const deployment = [
 
 <BaseLayout
   title="विश्वविद्यालयों के लिए Fluera"
-  description="अपनी फैकल्टी में साक्ष्य-आधारित अध्ययन उपकरण लाएं। बहु-सीट लाइसेंस, SSO, ऑडिट लॉग, 12-चरण चक्र पर फैकल्टी प्रशिक्षण। पायलट प्रोग्राम उपलब्ध।"
+  description="अपनी फैकल्टी में साक्ष्य-आधारित अध्ययन उपकरण लाएं। बहु-सीट लाइसेंस, 12-चरण चक्र पर फैकल्टी प्रशिक्षण। पायलट प्रोग्राम उपलब्ध।"
   locale="hi"
 >
 
@@ -37,7 +35,7 @@ const deployment = [
     kicker={"विश्वविद्यालय और स्कूल"}
     title={"आधुनिक विश्वविद्यालय के लिए<br />संज्ञानात्मक बुनियादी ढांचा।"}
     titleSize="2xl"
-    description={"आपके छात्रों के लिए साक्ष्य-आधारित अध्ययन उपकरण। आपकी IT के लिए SSO। अधिगम के संज्ञानात्मक विज्ञान पर फैकल्टी प्रशिक्षण। पायलट एक कक्षा, एक सेमेस्टर, मुफ़्त शुरू होते हैं।"}
+    description={"आपके छात्रों के लिए साक्ष्य-आधारित अध्ययन उपकरण। अधिगम के संज्ञानात्मक विज्ञान पर फैकल्टी प्रशिक्षण। पायलट एक कक्षा, एक सेमेस्टर, मुफ़्त शुरू होते हैं।"}
   >
     <div slot="copy" class="mt-9 flex flex-wrap gap-4">
       <a href="/hi/contact" class="btn-primary">शैक्षणिक कॉल बुक करें →</a>
@@ -78,14 +76,14 @@ const deployment = [
         <article class="card p-7">
           <h3 class="font-serif text-xl text-paper-50 mb-3">कक्षा</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            एक पाठ्यक्रम, एक सेमेस्टर, 200 छात्रों तक। हर छात्र के लिए Pro एक्सेस, शिक्षक डैशबोर्ड, और एक प्रशिक्षण सत्र।
+            एक पाठ्यक्रम, एक सेमेस्टर, 200 छात्रों तक। हर छात्र के लिए Pro एक्सेस और एक प्रशिक्षण सत्र।
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-ink-500">सामान्य अपनाव: पायलट</p>
         </article>
         <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
           <h3 class="font-serif text-xl text-paper-50 mb-3">फैकल्टी</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            पूरा विभाग। बहु-वर्षीय अनुबंध। SSO, ऑडिट लॉग, समर्पित समर्थन SLA। प्रत्येक पाठ्यक्रम के लिए फैकल्टी प्रशिक्षण।
+            पूरा विभाग। बहु-वर्षीय अनुबंध। समर्पित समर्थन SLA। प्रत्येक पाठ्यक्रम के लिए फैकल्टी प्रशिक्षण।
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">सामान्य अपनाव: दूसरा वर्ष</p>
         </article>
@@ -139,7 +137,7 @@ const deployment = [
         <h2 class="font-serif text-display-xl text-paper-50">आपकी IT भी हमें पसंद करेगी।</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
         {deployment.map((d) => (
           <article class="card p-6">
             <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
@@ -181,7 +179,7 @@ const deployment = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">GDPR मूल। FERPA-aware। WCAG 2.1 AA लक्ष्य।</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        विवरण सुरक्षा पृष्ठ पर रहते हैं — उप-प्रोसेसर सूची, डेटा प्रोसेसिंग समझौता, एन्क्रिप्शन वास्तुकला, ऑडिट लॉग मॉडल।
+        विवरण सुरक्षा पृष्ठ पर रहते हैं — उप-प्रोसेसर सूची, डेटा प्रोसेसिंग समझौता और एन्क्रिप्शन वास्तुकला।
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a href="/hi/security" class="btn-secondary">सुरक्षा वास्तुकला पढ़ें →</a>

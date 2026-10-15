@@ -101,10 +101,6 @@ const data: PricingData = {
       a: "Las condiciones de reembolso y desistimiento dependen de la tienda y del canal de compra. La política aplicable se muestra antes de confirmar; si necesitas ayuda, escribe a support@fluera.dev desde tu dirección de registro.",
     },
     {
-      q: "¿Cómo funciona la verificación de estudiante?",
-      a: "Email .edu o académico verificado. Para universidades europeas sin .edu aceptamos carné de estudiante escaneado, ISIC o un email único de la secretaría de la facultad.",
-    },
-    {
       q: "¿Descuentos para investigadores o no-profit?",
       a: "Sí. Laboratorios de investigación, programas de doctorado y no-profit registrados pueden solicitarlo en /contact — normalmente concedemos Pro al precio Plus o gratis a cambio de feedback estructurado.",
     },

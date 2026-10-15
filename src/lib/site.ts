@@ -13,6 +13,10 @@ export const SITE = {
     securityEmail: "lorenco@fluera.dev",
     supportEmail: "support@fluera.dev",
   },
+  community: {
+    // Permanent invite to the official Fluera Discord server (opened for v1).
+    discord: "https://discord.gg/FGKRbCU37",
+  },
 };
 
 export const PRIMARY_NAV = [

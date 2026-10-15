@@ -21,10 +21,6 @@ const pillars = [
     body: "Puedes usar Fluera totalmente offline. La sincronización es opt-in por cuaderno, no a nivel de cuenta. Si apagas el sync, tus datos no salen del dispositivo — incluida la telemetría, que es basada en consentimiento y anónima.",
   },
   {
-    title: "Registro de auditoría (Instituciones)",
-    body: "Para cuentas Education, cada acceso a los cuadernos compartidos queda registrado en un audit trail inmutable, exportable para auditorías de cumplimiento. Los administradores pueden imponer SSO (SAML, OIDC) y despliegue MDM.",
-  },
-  {
     title: "Lo que no hacemos",
     body: "Sin publicidad. Sin venta de datos. No entrenamos nuestros modelos con tu contenido. No te rastreamos por la web. No pasamos datos a terceros más allá de los subencargados declarados (listados en la página Subencargados) — todos bajo DPA.",
   },
@@ -49,7 +45,7 @@ const pillars = [
     <div class="container-site">
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
         {pillars.map((p, i) => (
-          <article class="card p-8">
+          <article class:list={["card p-8", { "md:col-span-2": pillars.length % 2 === 1 && i === pillars.length - 1 }]}>
             <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
             <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
             <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
@@ -78,7 +74,7 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Compliance y despliegue</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">¿Vas a adoptar Fluera en una institución?</h2>
           <p class="prose-ink mb-6">
-            Universidades, escuelas, laboratorios de investigación: podemos guiarte en el DPA, lista de subencargados, setup de SSO y modelo de registro de auditoría. Los pilotos suelen empezar con una clase, un semestre, sin coste.
+            Universidades, escuelas, laboratorios de investigación: podemos guiarte en el DPA y la lista de subencargados. Los pilotos suelen empezar con una clase, un semestre, sin coste.
           </p>
           <a href="/es/contact" class="btn-primary">Hablemos del despliegue →</a>
         </div>

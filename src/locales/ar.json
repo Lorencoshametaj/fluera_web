@@ -60,6 +60,10 @@
   "footer.trust.subprocessors": "المعالجون الفرعيون",
   "footer.trust.privacy": "الخصوصية",
   "footer.trust.terms": "الشروط",
+
+  "community.discord.join": "انضمّ إلينا على Discord",
+  "community.discord.lead": "أسئلة، أخطاء، أفكار؟",
+  "link.opensInNewTab": "(يُفتح في علامة تبويب جديدة)",
   "cta.joinBeta": "انضمّ إلى البيتا",
   "cta.requestAccess": "اطلب وصولًا ←",
   "cta.tryInBeta": "جرّبه في البيتا ←",

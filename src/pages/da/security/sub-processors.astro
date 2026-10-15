@@ -14,36 +14,22 @@ const processors = [
   {
     name: "Google Cloud (Google Ireland Ltd.)",
     purpose: "Vertex AI (Gemini-modeller) til Socratic Mode, Ghost Map, LaTeX-OCR og generering af Exam Sessions.",
-    dataTypes: "Udvalgt canvas-indhold, som kun indsendes, når AI-funktionerne er samtykket til og anvendes — tekstuddrag og gengivne PNG-billeder af enkelte håndskriftsklynge-områder. Aldrig hele notesbogen.",
-    region: "Kun Den Europæiske Union — europe-west4 (Nederlandene) primært, europe-west1 (Belgien) failover. Ingen overførsel af canvas-indhold uden for EU til AI-inferens.",
+    dataTypes: "Udvalgt canvas-indhold, som kun indsendes, når AI-funktionerne er samtykket til og anvendes — tekstuddrag og gengivne PNG-billeder af enkelte håndskriftsklynge-områder. Aldrig hele notesbogen. Separat, til den automatiske kontrol for ulovligt indhold og uden samtykke til AI-funktioner: miniaturen, billederne, titlen og beskrivelsen af et kort, du uploader til kataloget eller deler privat, samt en skabers profilbillede.",
+    region: "Kun Den Europæiske Union — EU-endpoints i Vertex AI: regionerne europe-west4 (Nederlandene) og europe-west1 (Belgien) eller EU's multiregion-endpoint, som Google begrænser til EU's medlemsstater. Ingen overførsel af canvas-indhold uden for EU til AI-inferens.",
     privacy: "https://cloud.google.com/terms/data-processing-addendum",
   },
   {
-    name: "Google LLC",
-    purpose: "Autentificering med Sign in with Google (identitetsudbyder).",
-    dataTypes: "Google-kontoens e-mail og konto-identifikator. Ingen canvas-data.",
-    region: "USA; SCC + EU-US DPF.",
-    privacy: "https://policies.google.com/privacy",
-  },
-  {
-    name: "Apple Inc.",
-    purpose: "Autentificering Sign in with Apple; in-app-køb på iOS og macOS via App Store.",
-    dataTypes: "Apple-ID-relæ-e-mail, kvitteringsidentifikatorer. Ingen canvas-data.",
-    region: "USA; SCC + EU-US DPF.",
-    privacy: "https://www.apple.com/legal/privacy/",
-  },
-  {
     name: "RevenueCat Inc.",
-    purpose: "Administration af abonnementer og validering af kvitteringer på iOS, Android og web.",
-    dataTypes: "Anonymiseret bruger-ID i RevenueCat, abonnementsstatus, kvitterings-metadata. Ingen kortdata.",
-    region: "USA; SCC + EU-US DPF.",
+    purpose: "Administration af abonnementer og validering af kvitteringer for køb via App Store og Google Play (iOS, macOS, Android).",
+    dataTypes: "Pseudonymt konto-ID (bruger-ID'et for Fluera-kontoen, eller et anonymt RevenueCat-ID før login), abonnementsstatus, kvitterings-metadata. Sendes fra appens start på iOS, macOS og Android for at administrere abonnementet. Ingen kortdata.",
+    region: "USA; SCC.",
     privacy: "https://www.revenuecat.com/privacy",
   },
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "Crash-rapportering og fejl-monitoring.",
     dataTypes: "Stack-traces, OS-version, enhedsmodel, app-version. sendDefaultPii er eksplicit deaktiveret, og IP-adresser gemmes ikke — intet brugerindhold.",
-    region: "Den Europæiske Union (Frankfurt) — produktions-DSN'en ingesterer i Sentrys europæiske dataregion. Databehandlerens juridiske enhed er registreret i USA; SCC + EU-US DPF.",
+    region: "Den Europæiske Union (Frankfurt) — produktions-DSN'en ingesterer i Sentrys europæiske dataregion. Databehandlerens juridiske enhed er registreret i USA; SCC.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -55,10 +41,13 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-09-29";
+const lastUpdated = "2026-10-15";
 // fluera.dev e' su GitHub Pages: GitHub non e' un sub-processor (titolare
 // autonomo dei log delle visite, nessun DPA con un account gratuito).
 const notaGithub = "Selve fluera.dev hostes på GitHub Pages. GitHub Inc. er ikke en underdatabehandler: GitHub registrerer de tekniske data om besøg (IP-adresse, tidspunkt, side) for at beskytte sin egen tjeneste, som selvstændig dataansvarlig efter sin egen privatlivserklæring. Det samme gælder de skrifttyper, som share.fluera.dev henter fra fluera.dev.";
+// Apple e Google non sono sub-processor (informativa 1.8.6 §4,
+// docs/processor_agreements.md): titolari autonomi per accesso e acquisti.
+const notaAppleGoogle = "Apple og Google er heller ikke underdatabehandlere. Ved Sign in with Apple, Sign in with Google og køb via App Store og Google Play er de selvstændige dataansvarlige for data på deres egne platforme, efter deres egne vilkår og privatlivspolitikker.";
 ---
 
 <BaseLayout
@@ -106,6 +95,7 @@ const notaGithub = "Selve fluera.dev hostes på GitHub Pages. GitHub Inc. er ikk
         ))}
       </ul>
       <p class="prose-ink text-sm mt-8 max-w-5xl">{notaGithub} <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHubs privatlivserklæring ↗</a></p>
+      <p class="prose-ink text-sm mt-4 max-w-5xl">{notaAppleGoogle} <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apples privatlivspolitik ↗</a> · <a href="https://policies.google.com/privacy" rel="noopener">Googles privatlivspolitik ↗</a></p>
     </div>
   </section>
 

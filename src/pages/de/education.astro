@@ -9,7 +9,7 @@ const useCases = [
   },
   {
     title: "Prüfungsvorbereitung im großen Stil",
-    body: "Fog of War + Spaced Repetition verwandeln das persönliche Canvas der Studierenden in eine Retrieval-Practice-Engine. Dozierende können Lernpfade nach Thema vorschlagen, ohne den Inhalt zu diktieren.",
+    body: "Fog of War + Spaced Repetition verwandeln das persönliche Canvas der Studierenden in eine Retrieval-Practice-Engine.",
   },
   {
     title: "MINT-Laborhefte",
@@ -18,9 +18,7 @@ const useCases = [
 ];
 
 const deployment = [
-  { label: "SSO",              body: "SAML 2.0 und OIDC. Integriert mit Shibboleth, Azure AD, Okta, Google Workspace for Education." },
   { label: "MDM-freundlich",     body: "Standardisierte Enterprise-Verteilung über App Store / Play. Windows und macOS als signierte Installer. Kein Sideloading." },
-  { label: "Audit-Trail", body: "Unveränderliches Zugriffslog pro Konto. Exportierbar für Compliance-Audits." },
   { label: "Datenresidenz", body: "Server in Europa ab Werk. Data Processing Agreement auf Anfrage verfügbar." },
   { label: "Barrierefreiheit",   body: "Wir arbeiten plattformübergreifend auf WCAG 2.1 AA hin. Screenreader-Unterstützung und ein Modus mit hohem Kontrast stehen auf der Roadmap; die einstellbare Pinsel-Treue für motorische Unterschiede ist bereits verfügbar." },
   { label: "On-Prem",          body: "Auf der Enterprise-Roadmap. Heute: ausschließlich Cloud mit starker Verschlüsselung und regionalen Kontrollen." },
@@ -29,7 +27,7 @@ const deployment = [
 
 <BaseLayout
   title="Fluera für Universitäten"
-  description="Bring evidenzbasierte Lernwerkzeuge an deine Hochschule. Multi-Seat-Lizenzen, SSO, Audit-Trail, Dozentenschulung zum 12-Schritt-Zyklus. Pilotprogramme verfügbar."
+  description="Bring evidenzbasierte Lernwerkzeuge an deine Hochschule. Multi-Seat-Lizenzen, Dozentenschulung zum 12-Schritt-Zyklus. Pilotprogramme verfügbar."
   locale="de"
 >
 
@@ -37,7 +35,7 @@ const deployment = [
     kicker={"Universitäten und Schulen"}
     title={"Kognitive Infrastruktur<br />für die moderne Universität."}
     titleSize="2xl"
-    description={"Evidenzbasierte Lernwerkzeuge für deine Studierenden. SSO für deine IT. Dozentenschulung zur kognitiven Wissenschaft des Lernens. Pilotprogramme starten mit einem Kurs, einem Semester, kostenlos."}
+    description={"Evidenzbasierte Lernwerkzeuge für deine Studierenden. Dozentenschulung zur kognitiven Wissenschaft des Lernens. Pilotprogramme starten mit einem Kurs, einem Semester, kostenlos."}
   >
     <div slot="copy" class="mt-9 flex flex-wrap gap-4">
       <a href="/de/contact" class="btn-primary">Akademisches Gespräch vereinbaren →</a>
@@ -78,14 +76,14 @@ const deployment = [
         <article class="card p-7">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Kurs</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            Ein Kurs, ein Semester, bis zu 200 Studierende. Pro-Zugang für jede/n Studierende/n, Dozenten-Dashboard und eine Schulungssitzung.
+            Ein Kurs, ein Semester, bis zu 200 Studierende. Pro-Zugang für jede/n Studierende/n und eine Schulungssitzung.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Typische Adoption: Pilot</p>
         </article>
         <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Fachbereich</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            Gesamter Fachbereich. Mehrjähriger Vertrag. SSO, Audit-Trail, dediziertes Support-SLA. Dozentenschulung für jede Lehrveranstaltung, die einsteigt.
+            Gesamter Fachbereich. Mehrjähriger Vertrag. Dediziertes Support-SLA. Dozentenschulung für jede Lehrveranstaltung, die einsteigt.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">Typische Adoption: zweites Jahr</p>
         </article>
@@ -139,7 +137,7 @@ const deployment = [
         <h2 class="font-serif text-display-xl text-paper-50">Auch deine IT wird es mögen.</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
         {deployment.map((d) => (
           <article class="card p-6">
             <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
@@ -181,7 +179,7 @@ const deployment = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">DSGVO ab Werk. FERPA-aware. WCAG-2.1-AA-Ziel.</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        Die Details leben auf der Security-Seite — Liste der Subauftragsverarbeiter, Data Processing Agreement, Verschlüsselungsarchitektur, Audit-Trail-Modell.
+        Die Details leben auf der Security-Seite — Liste der Subauftragsverarbeiter, Data Processing Agreement und Verschlüsselungsarchitektur.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a href="/de/security" class="btn-secondary">Security-Architektur lesen →</a>

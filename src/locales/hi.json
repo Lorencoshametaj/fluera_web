@@ -71,6 +71,10 @@
   "footer.trust.privacy": "गोपनीयता",
   "footer.trust.terms": "नियम",
 
+  "community.discord.join": "Discord पर हमसे जुड़ें",
+  "community.discord.lead": "सवाल, बग, आइडिया?",
+  "link.opensInNewTab": "(नए टैब में खुलता है)",
+
   "cta.joinBeta": "बीटा में शामिल हों",
   "cta.requestAccess": "एक्सेस का अनुरोध करें →",
   "cta.tryInBeta": "बीटा में आज़माएं →",

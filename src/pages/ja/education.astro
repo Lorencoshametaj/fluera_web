@@ -9,7 +9,7 @@ const useCases = [
   },
   {
     title: "大規模な試験準備",
-    body: "Fog of War と間隔反復が、学生個人のキャンバスを想起練習のエンジンに変えます。教員は内容を指示することなく、トピック別の学習パスを提案できます。",
+    body: "Fog of War と間隔反復が、学生個人のキャンバスを想起練習のエンジンに変えます。",
   },
   {
     title: "STEM ラボノート",
@@ -18,9 +18,7 @@ const useCases = [
 ];
 
 const deployment = [
-  { label: "SSO",              body: "SAML 2.0 と OIDC。Shibboleth、Azure AD、Okta、Google Workspace for Education と統合。" },
   { label: "MDM フレンドリー", body: "App Store / Play 経由の標準的な企業配布。Windows と macOS は署名済みインストーラ。サイドローディング不要。" },
-  { label: "監査ログ",         body: "アカウント単位の改ざん不可なアクセスログ。コンプライアンス監査用にエクスポート可能。" },
   { label: "データレジデンシー", body: "デフォルトでヨーロッパのサーバー。Data Processing Agreement はご請求に応じて提供。" },
   { label: "アクセシビリティ", body: "全プラットフォームで WCAG 2.1 AA への準拠を目指して取り組み中。スクリーンリーダー対応とハイコントラストモードはロードマップに掲載。運動機能の差異に対応するブラシ感度の調整は現在利用可能。" },
   { label: "オンプレミス",     body: "Enterprise ロードマップに掲載。現時点ではクラウドのみ ― 強力な暗号化と地域別コントロール付き。" },
@@ -29,7 +27,7 @@ const deployment = [
 
 <BaseLayout
   title="大学のための Fluera ― 高等教育のための認知インフラ"
-  description="エビデンスに基づく学習ツールを大学へ。マルチシートライセンス、SSO、監査ログ、12ステップ・サイクルに関する教員トレーニング。パイロットプログラム実施中。"
+  description="エビデンスに基づく学習ツールを大学へ。マルチシートライセンス、12ステップ・サイクルに関する教員トレーニング。パイロットプログラム実施中。"
   locale="ja"
 >
 
@@ -37,7 +35,7 @@ const deployment = [
     kicker={"大学・学校向け"}
     title={"現代の大学のための<br />認知インフラ。"}
     titleSize="2xl"
-    description={"学生のためのエビデンスに基づく学習ツール。情報システム部門のための SSO。学習の認知科学に関する教員トレーニング。パイロットは1クラス、1学期、無料から始まります。"}
+    description={"学生のためのエビデンスに基づく学習ツール。学習の認知科学に関する教員トレーニング。パイロットは1クラス、1学期、無料から始まります。"}
   >
     <div slot="copy" class="mt-9 flex flex-wrap gap-4">
       <a href="/ja/contact" class="btn-primary">アカデミック相談を予約 →</a>
@@ -78,14 +76,14 @@ const deployment = [
         <article class="card p-7">
           <h3 class="font-serif text-xl text-paper-50 mb-3">クラス</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            1コース、1学期、最大200名の学生。各学生に Pro アクセス、教員ダッシュボード、トレーニング1セッション付き。
+            1コース、1学期、最大200名の学生。各学生に Pro アクセスとトレーニング1セッション付き。
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-ink-500">典型的な導入: パイロット</p>
         </article>
         <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
           <h3 class="font-serif text-xl text-paper-50 mb-3">学部</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            学部全体。複数年契約。SSO、監査ログ、専任サポート SLA。導入する各授業の教員トレーニング込み。
+            学部全体。複数年契約。専任サポート SLA。導入する各授業の教員トレーニング込み。
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">典型的な導入: 2年目</p>
         </article>
@@ -139,7 +137,7 @@ const deployment = [
         <h2 class="font-serif text-display-xl text-paper-50">情報システム部門にも喜んでもらえます。</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
         {deployment.map((d) => (
           <article class="card p-6">
             <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
@@ -181,7 +179,7 @@ const deployment = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">GDPR準拠デフォルト。FERPA 配慮。WCAG 2.1 AA を目標。</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        詳細はセキュリティページに ― サブプロセッサ一覧、Data Processing Agreement、暗号化アーキテクチャ、監査ログのモデル。
+        詳細はセキュリティページに ― サブプロセッサ一覧、Data Processing Agreement、暗号化アーキテクチャ。
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a href="/ja/security" class="btn-secondary">セキュリティアーキテクチャを読む →</a>

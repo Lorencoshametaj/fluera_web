@@ -101,10 +101,6 @@ const data: PricingData = {
       a: "Warunki zwrotu i odstąpienia zależą od sklepu oraz kanału zakupu. Obowiązująca polityka jest wyświetlana przed potwierdzeniem; po pomoc napisz na support@fluera.dev z adresu użytego przy rejestracji.",
     },
     {
-      q: "Jak działa weryfikacja studencka?",
-      a: "Zweryfikowany e-mail .edu lub akademicki. Dla uczelni europejskich bez .edu akceptujemy zeskanowaną legitymację studencką, ISIC lub jednorazowy e-mail z dziekanatu.",
-    },
-    {
       q: "Zniżki dla badaczy lub organizacji non-profit?",
       a: "Tak. Laboratoria badawcze, programy doktorskie i zarejestrowane non-profit mogą aplikować na /contact — zwykle przyznajemy Pro w cenie Plus lub gratis w zamian za uporządkowany feedback.",
     },

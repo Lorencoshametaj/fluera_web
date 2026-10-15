@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Architettura di sicurezza"
-  description="Come Fluera cifra il tuo quaderno a riposo, in transito e tra dispositivi. SQLCipher, TLS 1.3, sync cifrato in transito e a riposo su infrastruttura UE, telemetria opt-in, audit log per le istituzioni."
+  description="Come Fluera cifra il tuo quaderno a riposo, in transito e tra dispositivi. SQLCipher, TLS 1.3, sync cifrato in transito e a riposo su infrastruttura UE, telemetria opt-in."
   locale="it"
 >
   <PageHero
@@ -67,11 +67,6 @@ import { SITE } from "@/lib/site";
       <h2>Telemetria: opt-in, hashata, allowlisted</h2>
       <p>
         Gli analytics di prodotto sono disattivati di default. Quando attivati, gli eventi sono limitati a una whitelist lato server (inizio/fine sessione, invocazione feature, durata chiamata AI — mai contenuto). L'ID utente è hashato SHA-256 sul dispositivo; l'ID in chiaro non lascia mai il client. Gli eventi sono conservati 180 giorni, poi aggregati o eliminati.
-      </p>
-
-      <h2>Audit log (account Istituzionali)</h2>
-      <p>
-        Ogni accesso ai quaderni condivisi — chi, da quale dispositivo, quando — viene scritto in un audit log append-only. Gli amministratori possono esportare il log in CSV o JSON per i controlli di compliance. Il log è write-once: la cancellazione richiede una motivazione documentata ed è a sua volta loggata.
       </p>
 
       <h2>Recupero dei dati</h2>

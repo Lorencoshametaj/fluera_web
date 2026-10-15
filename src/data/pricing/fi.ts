@@ -101,10 +101,6 @@ const data: PricingData = {
       a: "Hyvitys- ja peruutusehdot riippuvat kaupasta ja ostokanavasta. Sovellettava käytäntö näytetään ennen vahvistusta; saat apua lähettämällä viestin rekisteröidystä osoitteestasi osoitteeseen support@fluera.dev.",
     },
     {
-      q: "Miten opiskelijavarmennus toimii?",
-      a: "Vahvistettu .edu- tai akateeminen sähköposti. Euroopan yliopistoille ilman .edu-osoitetta hyväksymme skannatun opiskelijakortin, ISIC:n tai kertaluonteisen sähköpostin tiedekunnan toimistosta.",
-    },
-    {
       q: "Alennuksia tutkijoille tai voittoa tavoittelemattomille?",
       a: "Kyllä. Tutkimuslaboratoriot, tohtorikoulutusohjelmat ja rekisteröidyt voittoa tavoittelemattomat voivat hakea osoitteessa /contact — yleensä myönnämme Pron Plus-hintaan tai ilmaiseksi vastineeksi jäsennellystä palautteesta.",
     },

@@ -62,6 +62,10 @@
   "footer.trust.privacy": "Privatliv",
   "footer.trust.terms": "Vilkår",
 
+  "community.discord.join": "Kom med på Discord",
+  "community.discord.lead": "Spørgsmål, fejl, idéer?",
+  "link.opensInNewTab": "(åbner i en ny fane)",
+
   "cta.joinBeta": "Tilmeld dig betaen",
   "cta.requestAccess": "Anmod om adgang →",
   "cta.tryInBeta": "Prøv i betaen →",

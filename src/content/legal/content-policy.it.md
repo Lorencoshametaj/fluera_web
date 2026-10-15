@@ -20,7 +20,7 @@ fonte: "Fluera/assets/legal/content_policy_it.md"
 **Versione:** `content-policy-v1-2026-07`
 **Si applica a:** il marketplace di modelli di studio Fluera ("Seed"), sia per i
 creatori sia per i lettori.
-**Pubblico:** utilizzato da persone di età pari o superiore a **14 anni**.
+**Pubblico:** utilizzato da persone di età pari o superiore a **16 anni**.
 **Contatto:** lorenco@fluera.dev
 
 ---

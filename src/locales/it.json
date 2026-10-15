@@ -62,6 +62,10 @@
   "footer.trust.privacy": "Privacy",
   "footer.trust.terms": "Termini",
 
+  "community.discord.join": "Entra nel nostro Discord",
+  "community.discord.lead": "Domande, bug, idee?",
+  "link.opensInNewTab": "(si apre in una nuova scheda)",
+
   "cta.joinBeta": "Richiedi accesso anticipato",
   "cta.requestAccess": "Richiedi l'accesso →",
   "cta.tryInBeta": "Provalo nella beta →",

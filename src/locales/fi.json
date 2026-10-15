@@ -62,6 +62,10 @@
   "footer.trust.privacy": "Yksityisyys",
   "footer.trust.terms": "Ehdot",
 
+  "community.discord.join": "Liity Discordiimme",
+  "community.discord.lead": "Kysyttävää, bugeja, ideoita?",
+  "link.opensInNewTab": "(avautuu uudessa välilehdessä)",
+
   "cta.joinBeta": "Liity betaan",
   "cta.requestAccess": "Pyydä pääsyä →",
   "cta.tryInBeta": "Kokeile betassa →",

@@ -71,6 +71,10 @@
   "footer.trust.privacy": "개인정보처리방침",
   "footer.trust.terms": "이용 약관",
 
+  "community.discord.join": "Discord에서 만나요",
+  "community.discord.lead": "질문, 버그, 아이디어가 있나요?",
+  "link.opensInNewTab": "(새 탭에서 열림)",
+
   "cta.joinBeta": "베타 참여",
   "cta.requestAccess": "액세스 요청 →",
   "cta.tryInBeta": "베타에서 시도 →",

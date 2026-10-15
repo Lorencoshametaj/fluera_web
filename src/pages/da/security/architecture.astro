@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Sikkerhedsarkitektur"
-  description="Hvordan Fluera beskytter din notesbog i hvile, under transport og mellem enheder. SQLCipher, TLS 1.3, cloud-sync på EU-infrastruktur, opt-in-telemetri, audit-trail for institutioner."
+  description="Hvordan Fluera beskytter din notesbog i hvile, under transport og mellem enheder. SQLCipher, TLS 1.3, cloud-sync på EU-infrastruktur, opt-in-telemetri."
   locale="da"
 >
   <PageHero
@@ -70,11 +70,6 @@ import { SITE } from "@/lib/site";
       <h2>Telemetri: opt-in, hashet, allowlistet</h2>
       <p>
         Produkt-analytics er deaktiveret som standard. Når den er aktiveret, er hændelserne begrænset til en server-side whitelist (start/slut på session, kald af en funktion, varighed af et AI-kald — aldrig indhold). Bruger-ID'et hashes på enheden med SHA-256; klartekst-ID'et forlader aldrig klienten. Hændelserne opbevares i 180 dage og aggregeres eller slettes derefter.
-      </p>
-
-      <h2>Audit-trail (institutionelle konti)</h2>
-      <p>
-        Enhver adgang til delte notesbøger — hvem, fra hvilken enhed, hvornår — skrives til en append-only audit-trail. Administratorer kan eksportere trailet som CSV eller JSON til compliance-kontroller. Trailet er write-once: fjernelse kræver en dokumenteret begrundelse og logges selv.
       </p>
 
       <h2>Datagendannelse</h2>

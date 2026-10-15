@@ -15,7 +15,7 @@ Fluera er et local-first-verktøy. Som standard forlater ingenting enheten din m
 Åpne **Innstillinger → Personvern**. Du ser fire brytere, alle av som standard:
 
 - **Produkt-analytics.** Anonyme øktdata — antall funksjons-aktiveringer, øktvarighet, varighet på AI-kall. Aldri innhold. Bruker-ID hashet i SHA-256, 180 dagers oppbevaring.
-- **AI-funksjoner.** Påkrevd for å bruke Socratic, Ghost Map, LaTeX OCR og Fog of War. Den valgte teksten fra canvaset sendes til Google Gemini-modeller via Google Vertex AI, behandlet i EU (europe-west4 NL / europe-west1 BE). Aldri hele notatboken.
+- **AI-funksjoner.** Påkrevd for å bruke Socratic, Ghost Map, LaTeX OCR og Fog of War. Den valgte teksten fra canvaset sendes til Google Gemini-modeller via Google Vertex AI, behandlet i EU (2.5-modeller i regionene europe-west4 NL / europe-west1 BE, 3.x-modeller via Vertex AIs EU-multiregionsendepunkt): dataene blir i EUs medlemsstater. Aldri hele notatboken.
 - **Sky-synkronisering.** Påkrevd for å synkronisere canvas mellom enheter. Synkroniserte data krypteres under overføring (TLS) og i hvile på EU-infrastruktur (Supabase, eu-north-1). De er ikke ende-til-ende-kryptert: Fluera kan som behandlingsansvarlig få tilgang til dem, men selger dem aldri og bruker dem aldri til annonsering.
 - **Crash reporting.** Stack traces og enhets-metadata når appen krasjer. Ingen brukerinnhold. Behandlet av Sentry med `sendDefaultPii: false`.
 

@@ -101,10 +101,6 @@ const data: PricingData = {
       a: "Voorwaarden voor terugbetaling en herroeping hangen af van de winkel en het aankoopkanaal. Het geldende beleid wordt vóór bevestiging getoond; mail voor hulp vanaf je geregistreerde adres naar support@fluera.dev.",
     },
     {
-      q: "Hoe werkt studentenverificatie?",
-      a: "Geverifieerd .edu of academisch e-mailadres. Voor Europese universiteiten zonder .edu accepteren we een gescande studentenkaart, ISIC of een eenmalige e-mail van het faculteitssecretariaat.",
-    },
-    {
       q: "Kortingen voor onderzoekers of non-profits?",
       a: "Ja. Onderzoekslaboratoria, PhD-programma's en geregistreerde non-profits kunnen aanvragen op /contact — meestal verlenen we Pro tegen Plus-tarief of gratis in ruil voor gestructureerde feedback.",
     },

@@ -2,7 +2,7 @@
 lang: "it"
 slug: "creator-terms"
 title: "Fluera Marketplace — Condizioni di Servizio per i Creator"
-versione: "mkt-2026-08"
+versione: "mkt-2026-10"
 fonte: "Fluera/assets/legal/creator_terms_it.md"
 ---
 <!-- GENERATO da tools/testi_legali_sul_sito.py: NON modificare qui. La sorgente è Fluera/assets/legal/creator_terms_it.md, il testo che l'app mostra. -->
@@ -22,16 +22,18 @@ fonte: "Fluera/assets/legal/creator_terms_it.md"
 > Le condizioni sono vincolanti fra le parti da quando vengono accettate; questa
 > nota riguarda la loro robustezza, non la loro efficacia.
 
-**Versione:** `mkt-2026-08`
+**Versione:** `mkt-2026-10`
 *(È la stringa esatta registrata come `accepted_tos_version` a ogni condivisione,
 e coincide con `kMarketplaceTosVersion` in
 `fluera_engine/lib/src/marketplace/study_seed_publish.dart`. Modificare le
 condizioni comporta modificare quella costante e riottenere l'accettazione.*
+*La versione precedente, `mkt-2026-08`, valeva dal 14 agosto 2026; questa porta
+a 16 anni l'età minima per usare Fluera.*
 *⚠️ Fino al 2026-08-14 questo documento dichiarava `marketplace-terms-v1-2026-07`
 e il codice registrava tutt'altro: la stringa qui dev'essere la stessa del
 codice, o «a cosa ha acconsentito questa persona» non ha risposta.)*
 
-**Data di efficacia:** 14 agosto 2026
+**Data di efficacia:** 15 ottobre 2026
 **Editore / titolare del trattamento:** Lorenco Shametaj (persona fisica; «Fluera» è il marchio/prodotto —
 società in corso di costituzione, a cui il ruolo sarà trasferito),
 Via Boccaccio 44, 35128 Padova (PD), Italia. P. IVA: non ancora attribuita.
@@ -298,10 +300,10 @@ consumo/servizi digitali.
 ## 8. Requisito di età
 
 8.1 Per pubblicare un Seed devi soddisfare **entrambi** i seguenti requisiti: (a)
-l'età minima dell'app di **14** anni e (b) il requisito di **consenso digitale /
+l'età minima dell'app di **16** anni e (b) il requisito di **consenso digitale /
 capacità di agire** della tua giurisdizione per stipulare le presenti Condizioni
 per i Creator e concedere la licenza di cui alla Sezione 2 (in alcuni Paesi tale
-requisito è superiore a 14 anni, oppure richiede il consenso/l'autorizzazione di un
+requisito è superiore a 16 anni, oppure richiede il consenso/l'autorizzazione di un
 titolare della responsabilità genitoriale).
 
 8.2 Pubblicando, confermi di soddisfare tali requisiti di età. Possiamo sospendere

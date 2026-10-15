@@ -20,7 +20,7 @@ fonte: "Fluera/assets/legal/content_policy_en.md"
 **Version:** `content-policy-v1-2026-07`
 **Applies to:** the Fluera study-template marketplace ("Seeds"), for creators and
 readers alike.
-**Audience:** used by people aged **14 and over**.
+**Audience:** used by people aged **16 and over**.
 **Contact:** lorenco@fluera.dev
 
 ---

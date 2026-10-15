@@ -3,7 +3,7 @@ lang: "en"
 slug: "terms"
 title: "Terms of Service"
 versione: "1.5"
-aggiornato: "August 14, 2026"
+aggiornato: "October 15, 2026"
 sommario: "These Terms of Service (the \"**Terms**\") govern access to and use of the Fluera application and related services. Using the service implies full acceptance of these Terms."
 fonte: "Fluera/assets/legal/terms_en.md"
 ---
@@ -40,9 +40,9 @@ You can use Fluera without an account ("anonymous session") with data stored onl
 You are responsible for keeping your credentials confidential and for all activity via your account. You must promptly report any unauthorized use.
 
 ### 4.3 Minimum age
-**By using Fluera you represent that you are at least 14 years old.** If you are under 14, you may not create an account or use the Service. For users between 14 and 18, use may require consent from a parent or guardian where required by applicable law (e.g. Italian Legislative Decree 196/2003 Art. 2-quinquies; minimum digital consent ages in other EU jurisdictions).
+**By using Fluera you represent that you are at least 16 years old.** If you are under 16, you may not create an account or use the Service. For users between 16 and 18, use may require consent from a parent or guardian where required by applicable law (e.g. Italian Legislative Decree 196/2003 Art. 2-quinquies; minimum digital consent ages in other EU jurisdictions).
 
-If we become aware of an account created by a user under 14, we will suspend and delete the account within 30 days. To report non-compliant use, contact `support@fluera.dev`.
+If we become aware of an account created by a user under 16, we will suspend and delete the account within 30 days. To report non-compliant use, contact `support@fluera.dev`.
 
 ## 5. License
 
@@ -78,7 +78,7 @@ violent content, or content that endangers minors; other people's personal data
 (classmates, teachers, patients) contained in the notes; unlawful content or
 content infringing others' rights.
 
-**By uploading you declare** that you are at least 14 (§4.3) and that you hold
+**By uploading you declare** that you are at least 16 (§4.3) and that you hold
 the rights in the material, or otherwise have the right to share it. We record
 the version of these Terms you accept at that moment.
 

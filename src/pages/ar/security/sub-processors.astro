@@ -14,36 +14,22 @@ const processors = [
   {
     name: "Google Cloud (Google Ireland Ltd.)",
     purpose: "Vertex AI (نماذج Gemini) لـSocratic Mode وGhost Map وLaTeX OCR وتوليد جلسات الامتحان.",
-    dataTypes: "محتوى مختار من اللوحة يُرسَل فقط عند الموافقة على ميزات AI واستخدامها — أجزاء نصّية وصور PNG مُصيَّرة لمناطق تجمّعات الكتابة اليدوية المفردة. لا دفاتر كاملة أبدًا.",
-    region: "الاتّحاد الأوروبي حصرًا — europe-west4 (هولندا) أساسية، وeurope-west1 (بلجيكا) للتحويل عند العطل. لا نقل لمحتوى اللوحة خارج الاتّحاد الأوروبي لأغراض استدلال AI.",
+    dataTypes: "محتوى مختار من اللوحة يُرسَل فقط عند الموافقة على ميزات AI واستخدامها — أجزاء نصّية وصور PNG مُصيَّرة لمناطق تجمّعات الكتابة اليدوية المفردة. لا دفاتر كاملة أبدًا. بشكل منفصل، للفحص الآلي للمحتوى غير القانوني ومن دون موافقة ميزات AI: الصورة المصغّرة والصور والعنوان والوصف لبطاقة تحمّلها إلى الكتالوج أو تشاركها بشكل خاص، وصورة الملف الشخصي لصانع المحتوى.",
+    region: "الاتّحاد الأوروبي حصرًا — نقاط نهاية Vertex AI داخل الاتّحاد الأوروبي: المنطقتان europe-west4 (هولندا) وeurope-west1 (بلجيكا)، أو نقطة النهاية متعدّدة المناطق في الاتّحاد الأوروبي التي تحصرها Google في الدول الأعضاء. لا نقل لمحتوى اللوحة خارج الاتّحاد الأوروبي لأغراض استدلال AI.",
     privacy: "https://cloud.google.com/terms/data-processing-addendum",
   },
   {
-    name: "Google LLC",
-    purpose: "مصادقة Sign in with Google (مزوّد الهوية).",
-    dataTypes: "بريد حساب Google ومعرّف الحساب. لا بيانات لوحة.",
-    region: "الولايات المتّحدة؛ SCC + EU-US DPF.",
-    privacy: "https://policies.google.com/privacy",
-  },
-  {
-    name: "Apple Inc.",
-    purpose: "مصادقة Sign in with Apple؛ شراء داخل التطبيق عبر App Store على iOS وmacOS.",
-    dataTypes: "بريد ترحيل Apple ID، معرّفات الإيصال. لا بيانات لوحة.",
-    region: "الولايات المتّحدة؛ SCC + EU-US DPF.",
-    privacy: "https://www.apple.com/legal/privacy/",
-  },
-  {
     name: "RevenueCat Inc.",
-    purpose: "إدارة الاشتراكات والتحقّق من الإيصالات على iOS وAndroid والويب.",
-    dataTypes: "معرّف مستخدم RevenueCat مجهول الهوية، حالة الاشتراك، بيانات وصفية للإيصال. لا بيانات بطاقات دفع.",
-    region: "الولايات المتّحدة؛ SCC + EU-US DPF.",
+    purpose: "إدارة الاشتراكات والتحقّق من إيصالات المشتريات عبر App Store وGoogle Play (iOS وmacOS وAndroid).",
+    dataTypes: "معرّف مستعار للحساب (معرّف المستخدم في حساب Fluera، أو معرّف RevenueCat مجهول قبل تسجيل الدخول)، حالة الاشتراك، بيانات وصفية للإيصال. يُرسَل منذ تشغيل التطبيق على iOS وmacOS وAndroid لإدارة الاشتراك. لا بيانات بطاقات دفع.",
+    region: "الولايات المتّحدة؛ SCC.",
     privacy: "https://www.revenuecat.com/privacy",
   },
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "تقارير الأعطال ومراقبة الأخطاء.",
     dataTypes: "تتبّع المكدّس، إصدار النظام، طراز الجهاز، إصدار التطبيق. sendDefaultPii معطَّل صراحةً ولا تُخزَّن عناوين IP — لا محتوى مستخدم.",
-    region: "الاتّحاد الأوروبي (فرانكفورت) — يُدخِل DSN الإنتاج البيانات إلى منطقة بيانات Sentry الأوروبية. كيان المعالج مؤسَّس في الولايات المتّحدة؛ SCC + EU-US DPF.",
+    region: "الاتّحاد الأوروبي (فرانكفورت) — يُدخِل DSN الإنتاج البيانات إلى منطقة بيانات Sentry الأوروبية. كيان المعالج مؤسَّس في الولايات المتّحدة؛ SCC.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -55,10 +41,13 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-09-29";
+const lastUpdated = "2026-10-15";
 // fluera.dev e' su GitHub Pages: GitHub non e' un sub-processor (titolare
 // autonomo dei log delle visite, nessun DPA con un account gratuito).
 const notaGithub = "يُستضاف fluera.dev نفسه على GitHub Pages. شركة GitHub Inc. ليست معالجًا فرعيًا: فهي تسجّل البيانات التقنية للزيارات (عنوان IP، والوقت، والصفحة) لحماية خدمتها، بصفتها مسؤول معالجة مستقلًا ووفق بيان الخصوصية الخاص بها. وينطبق الأمر نفسه على الخطوط التي يحمّلها share.fluera.dev من fluera.dev.";
+// Apple e Google non sono sub-processor (informativa 1.8.6 §4,
+// docs/processor_agreements.md): titolari autonomi per accesso e acquisti.
+const notaAppleGoogle = "ولا تُعدّ Apple وGoogle معالجَين فرعيَّين أيضًا. ففي Sign in with Apple وSign in with Google والمشتريات عبر App Store وGoogle Play تعملان بصفتهما مسؤولَي معالجة مستقلَّين لبيانات منصّتيهما، وفق شروطهما وسياسات الخصوصية الخاصة بهما.";
 ---
 
 <BaseLayout
@@ -106,6 +95,7 @@ const notaGithub = "يُستضاف fluera.dev نفسه على GitHub Pages. شر
         ))}
       </ul>
       <p class="prose-ink text-sm mt-8 max-w-5xl">{notaGithub} <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">بيان الخصوصية لدى GitHub ↗</a></p>
+      <p class="prose-ink text-sm mt-4 max-w-5xl">{notaAppleGoogle} <a href="https://www.apple.com/legal/privacy/" rel="noopener">سياسة الخصوصية لدى Apple ↗</a> · <a href="https://policies.google.com/privacy" rel="noopener">سياسة الخصوصية لدى Google ↗</a></p>
     </div>
   </section>
 

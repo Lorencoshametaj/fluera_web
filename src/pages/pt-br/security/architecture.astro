@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Arquitetura de segurança"
-  description="Como o Fluera protege o seu caderno em repouso, em trânsito e entre dispositivos. SQLCipher, TLS 1.3, sincronização na nuvem na UE, telemetria opt-in, trilha de auditoria para instituições."
+  description="Como o Fluera protege o seu caderno em repouso, em trânsito e entre dispositivos. SQLCipher, TLS 1.3, sincronização na nuvem na UE, telemetria opt-in."
   locale="pt-br"
 >
   <PageHero
@@ -70,11 +70,6 @@ import { SITE } from "@/lib/site";
       <h2>Telemetria: opt-in, hasheada, allowlisted</h2>
       <p>
         Os analytics de produto vêm desligados por padrão. Quando ativados, os eventos são limitados a uma whitelist no servidor (início/fim de sessão, invocação de recurso, duração de chamada de IA — nunca conteúdo). O ID do usuário é hasheado em SHA-256 no dispositivo; o ID em texto claro nunca sai do cliente. Os eventos ficam retidos por 180 dias, depois agregados ou apagados.
-      </p>
-
-      <h2>Trilha de auditoria (contas Institucionais)</h2>
-      <p>
-        Cada acesso aos cadernos compartilhados — quem, de qual dispositivo, quando — é escrito em uma trilha de auditoria append-only. Os administradores podem exportar a trilha em CSV ou JSON para controles de compliance. A trilha é write-once: a remoção exige uma motivação documentada e é, ela mesma, logada.
       </p>
 
       <h2>Recuperação de dados</h2>

@@ -14,36 +14,22 @@ const processors = [
   {
     name: "Google Cloud (Google Ireland Ltd.)",
     purpose: "Vertex AI (modelos Gemini) para Socratic Mode, Ghost Map, OCR de LaTeX y generación de exam sessions.",
-    dataTypes: "Contenido seleccionado del canvas, enviado únicamente cuando las funciones de IA están consentidas y en uso — fragmentos de texto e imágenes PNG renderizadas de las regiones de cada clúster de escritura a mano. Nunca el cuaderno completo.",
-    region: "Solo Unión Europea — europe-west4 (Países Bajos) primaria, europe-west1 (Bélgica) de conmutación por error. Ninguna transferencia de contenido del canvas fuera de la UE para la inferencia de IA.",
+    dataTypes: "Contenido seleccionado del canvas, enviado únicamente cuando las funciones de IA están consentidas y en uso — fragmentos de texto e imágenes PNG renderizadas de las regiones de cada clúster de escritura a mano. Nunca el cuaderno completo. Aparte, para el control automático de contenidos ilícitos y sin el consentimiento a las funciones de IA: la miniatura, las imágenes, el título y la descripción de una ficha que subes al catálogo o compartes en privado, y la foto de perfil de un creador.",
+    region: "Solo Unión Europea — endpoints de Vertex AI en la UE: las regiones europe-west4 (Países Bajos) y europe-west1 (Bélgica), o el endpoint multirregión de la UE, que Google limita a los Estados miembros de la UE. Ninguna transferencia de contenido del canvas fuera de la UE para la inferencia de IA.",
     privacy: "https://cloud.google.com/terms/data-processing-addendum",
   },
   {
-    name: "Google LLC",
-    purpose: "Autenticación Sign in with Google (proveedor de identidad).",
-    dataTypes: "Email de la cuenta de Google e identificador de la cuenta. Ningún dato del canvas.",
-    region: "EE. UU.; SCCs + EU-US DPF.",
-    privacy: "https://policies.google.com/privacy",
-  },
-  {
-    name: "Apple Inc.",
-    purpose: "Autenticación Sign in with Apple; compras in-app en iOS y macOS vía App Store.",
-    dataTypes: "Email relay del Apple ID, identificadores de recibo. Ningún dato del canvas.",
-    region: "EE. UU.; SCCs + EU-US DPF.",
-    privacy: "https://www.apple.com/legal/privacy/",
-  },
-  {
     name: "RevenueCat Inc.",
-    purpose: "Gestión de suscripciones y validación de recibos en iOS, Android y web.",
-    dataTypes: "ID de usuario en RevenueCat anonimizado, estado de suscripción, metadatos de recibo. Ningún dato de tarjeta.",
-    region: "EE. UU.; SCCs + EU-US DPF.",
+    purpose: "Gestión de suscripciones y validación de recibos de las compras hechas en App Store y Google Play (iOS, macOS, Android).",
+    dataTypes: "ID seudónimo de la cuenta (el ID de usuario de la cuenta de Fluera, o un ID anónimo de RevenueCat antes de iniciar sesión), estado de suscripción, metadatos de recibo. Se envían desde el inicio de la app en iOS, macOS y Android, para gestionar la suscripción. Ningún dato de tarjeta.",
+    region: "EE. UU.; SCCs.",
     privacy: "https://www.revenuecat.com/privacy",
   },
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "Crash reporting y monitoreo de errores.",
     dataTypes: "Stack traces, versión del SO, modelo del dispositivo, versión de la app. sendDefaultPii está explícitamente deshabilitado y las direcciones IP no se almacenan — ningún contenido del usuario.",
-    region: "Unión Europea (Fráncfort) — el DSN de producción ingesta en la región de datos UE de Sentry. La entidad encargada del tratamiento está constituida en EE. UU.; SCCs + EU-US DPF.",
+    region: "Unión Europea (Fráncfort) — el DSN de producción ingesta en la región de datos UE de Sentry. La entidad encargada del tratamiento está constituida en EE. UU.; SCCs.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -55,10 +41,13 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-09-29";
+const lastUpdated = "2026-10-15";
 // fluera.dev e' su GitHub Pages: GitHub non e' un sub-processor (titolare
 // autonomo dei log delle visite, nessun DPA con un account gratuito).
 const notaGithub = "El propio fluera.dev está alojado en GitHub Pages. GitHub Inc. no es un subencargado: registra los datos técnicos de las visitas (dirección IP, hora, página) para proteger su propio servicio, como responsable independiente y según su propia política de privacidad. Lo mismo vale para las tipografías que share.fluera.dev carga desde fluera.dev.";
+// Apple e Google non sono sub-processor (informativa 1.8.6 §4,
+// docs/processor_agreements.md): titolari autonomi per accesso e acquisti.
+const notaAppleGoogle = "Apple y Google tampoco son subencargados. En Sign in with Apple, Sign in with Google y las compras en App Store y Google Play actúan como responsables independientes de los datos de sus propias plataformas, según sus propios términos y políticas de privacidad.";
 ---
 
 <BaseLayout
@@ -106,6 +95,7 @@ const notaGithub = "El propio fluera.dev está alojado en GitHub Pages. GitHub I
         ))}
       </ul>
       <p class="prose-ink text-sm mt-8 max-w-5xl">{notaGithub} <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Política de privacidad de GitHub ↗</a></p>
+      <p class="prose-ink text-sm mt-4 max-w-5xl">{notaAppleGoogle} <a href="https://www.apple.com/legal/privacy/" rel="noopener">Política de privacidad de Apple ↗</a> · <a href="https://policies.google.com/privacy" rel="noopener">Política de privacidad de Google ↗</a></p>
     </div>
   </section>
 

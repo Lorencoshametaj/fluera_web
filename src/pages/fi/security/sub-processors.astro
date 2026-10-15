@@ -14,36 +14,22 @@ const processors = [
   {
     name: "Google Cloud (Google Ireland Ltd.)",
     purpose: "Vertex AI (Gemini-mallit) Socratic Modea, Ghost Mapia, LaTeX-OCR:ää ja Exam Sessionien generointia varten.",
-    dataTypes: "Valittu canvas-sisältö, joka lähetetään vain silloin, kun tekoälyominaisuuksiin on annettu suostumus ja niitä käytetään — tekstiosuudet sekä yksittäisistä käsinkirjoitusklustereiden alueista renderöidyt PNG-kuvat. Ei koskaan koko muistikirjaa.",
-    region: "Vain Euroopan unioni — europe-west4 (Alankomaat) ensisijaisena, europe-west1 (Belgia) varalla. Canvas-sisältöä ei siirretä EU:n ulkopuolelle tekoälypäättelyä varten.",
+    dataTypes: "Valittu canvas-sisältö, joka lähetetään vain silloin, kun tekoälyominaisuuksiin on annettu suostumus ja niitä käytetään — tekstiosuudet sekä yksittäisistä käsinkirjoitusklustereiden alueista renderöidyt PNG-kuvat. Ei koskaan koko muistikirjaa. Erikseen, laittoman sisällön automaattista tarkistusta varten ja ilman tekoälytoimintojen suostumusta: luetteloon lataamasi tai yksityisesti jakamasi kortin pikkukuva, kuvat, otsikko ja kuvaus sekä sisällöntuottajan profiilikuva.",
+    region: "Vain Euroopan unioni — Vertex AI:n EU-päätepisteet: alueet europe-west4 (Alankomaat) ja europe-west1 (Belgia) tai EU:n monialueinen päätepiste, jonka Google rajaa EU:n jäsenvaltioihin. Canvas-sisältöä ei siirretä EU:n ulkopuolelle tekoälypäättelyä varten.",
     privacy: "https://cloud.google.com/terms/data-processing-addendum",
   },
   {
-    name: "Google LLC",
-    purpose: "Sign in with Google -autentikointi (identiteetintarjoaja).",
-    dataTypes: "Google-tilin sähköposti ja tilin tunniste. Ei canvas-dataa.",
-    region: "USA; SCC:t + EU-US DPF.",
-    privacy: "https://policies.google.com/privacy",
-  },
-  {
-    name: "Apple Inc.",
-    purpose: "Sign in with Apple -autentikointi; sovelluksen sisäiset ostot iOS:ssä ja macOS:ssä App Storen kautta.",
-    dataTypes: "Apple ID -välityssähköposti, kuittitunnisteet. Ei canvas-dataa.",
-    region: "USA; SCC:t + EU-US DPF.",
-    privacy: "https://www.apple.com/legal/privacy/",
-  },
-  {
     name: "RevenueCat Inc.",
-    purpose: "Tilausten hallinta ja kuittien validointi iOS:ssä, Androidissa ja webissä.",
-    dataTypes: "Anonymisoitu käyttäjä-ID RevenueCatissa, tilauksen tila, kuitin metatiedot. Ei korttidataa.",
-    region: "USA; SCC:t + EU-US DPF.",
+    purpose: "Tilausten hallinta ja App Storen ja Google Playn kautta tehtyjen ostojen kuittien validointi (iOS, macOS, Android).",
+    dataTypes: "Tilin pseudonyymi tunniste (Fluera-tilin käyttäjä-ID tai ennen kirjautumista RevenueCatin anonyymi ID), tilauksen tila, kuitin metatiedot. Lähetetään sovelluksen käynnistyksestä alkaen iOS:ssä, macOS:ssä ja Androidissa tilauksen hallintaa varten. Ei korttidataa.",
+    region: "USA; SCC:t.",
     privacy: "https://www.revenuecat.com/privacy",
   },
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "Kaatumisraportointi ja virheiden valvonta.",
     dataTypes: "Stack-jäljet, käyttöjärjestelmäversio, laitemalli, sovellusversio. sendDefaultPii on nimenomaisesti pois päältä eikä IP-osoitteita tallenneta — ei käyttäjäsisältöä.",
-    region: "Euroopan unioni (Frankfurt) — tuotannon DSN ohjaa datan Sentryn EU-data-alueelle. Käsittelijäyhtiö on rekisteröity Yhdysvalloissa; SCC:t + EU-US DPF.",
+    region: "Euroopan unioni (Frankfurt) — tuotannon DSN ohjaa datan Sentryn EU-data-alueelle. Käsittelijäyhtiö on rekisteröity Yhdysvalloissa; SCC:t.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -55,10 +41,13 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-09-29";
+const lastUpdated = "2026-10-15";
 // fluera.dev e' su GitHub Pages: GitHub non e' un sub-processor (titolare
 // autonomo dei log delle visite, nessun DPA con un account gratuito).
 const notaGithub = "Itse fluera.dev on GitHub Pagesin ylläpitämä. GitHub Inc. ei ole alikäsittelijä: se tallentaa käyntien tekniset tiedot (IP-osoite, aika, sivu) oman palvelunsa suojaamiseksi, itsenäisenä rekisterinpitäjänä oman tietosuojaselosteensa mukaisesti. Sama koskee kirjasimia, jotka share.fluera.dev lataa fluera.dev-sivustolta.";
+// Apple e Google non sono sub-processor (informativa 1.8.6 §4,
+// docs/processor_agreements.md): titolari autonomi per accesso e acquisti.
+const notaAppleGoogle = "Myöskään Apple ja Google eivät ole alikäsittelijöitä. Sign in with Applessa, Sign in with Googlessa sekä App Storen ja Google Playn ostoissa ne toimivat omien alustojensa tietojen itsenäisinä rekisterinpitäjinä omien ehtojensa ja tietosuojakäytäntöjensä mukaisesti.";
 ---
 
 <BaseLayout
@@ -106,6 +95,7 @@ const notaGithub = "Itse fluera.dev on GitHub Pagesin ylläpitämä. GitHub Inc.
         ))}
       </ul>
       <p class="prose-ink text-sm mt-8 max-w-5xl">{notaGithub} <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHubin tietosuojaseloste ↗</a></p>
+      <p class="prose-ink text-sm mt-4 max-w-5xl">{notaAppleGoogle} <a href="https://www.apple.com/legal/privacy/" rel="noopener">Applen tietosuojakäytäntö ↗</a> · <a href="https://policies.google.com/privacy" rel="noopener">Googlen tietosuojakäytäntö ↗</a></p>
     </div>
   </section>
 

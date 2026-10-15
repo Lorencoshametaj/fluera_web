@@ -9,7 +9,7 @@ const useCases = [
   },
   {
     title: "Preparación de examen a escala",
-    body: "Fog of War + repetición espaciada transforman el canvas personal del estudiante en un motor de práctica de recuperación. Los docentes pueden recomendar rutas de estudio por tema sin dictar el contenido.",
+    body: "Fog of War + repetición espaciada transforman el canvas personal del estudiante en un motor de práctica de recuperación.",
   },
   {
     title: "Cuadernos de laboratorio STEM",
@@ -18,9 +18,7 @@ const useCases = [
 ];
 
 const deployment = [
-  { label: "SSO",                body: "SAML 2.0 y OIDC. Integración con Shibboleth, Azure AD, Okta, Google Workspace for Education." },
   { label: "MDM-friendly",       body: "Distribución enterprise estándar vía App Store / Play. Windows y macOS como instaladores firmados. Sin sideloading." },
-  { label: "Registro de auditoría", body: "Trail de accesos inmutable por cuenta. Exportable para auditorías de cumplimiento." },
   { label: "Residencia de datos", body: "Servidores en Europa por defecto. Data Processing Agreement disponible bajo solicitud." },
   { label: "Accesibilidad",      body: "Trabajamos hacia WCAG 2.1 AA en todas las plataformas. Soporte para lector de pantalla y modo alto contraste están en la roadmap; la fidelidad de pinceles ajustable para diferencias motoras ya está disponible." },
   { label: "On-prem",            body: "En la roadmap Enterprise. Hoy: solo nube con cifrado fuerte y controles regionales." },
@@ -29,7 +27,7 @@ const deployment = [
 
 <BaseLayout
   title="Fluera para universidades"
-  description="Lleva herramientas de estudio basadas en evidencia a tu facultad. Licencias multi-seat, SSO, registro de auditoría, formación docente sobre el ciclo de 12 pasos. Programas piloto disponibles."
+  description="Lleva herramientas de estudio basadas en evidencia a tu facultad. Licencias multi-seat, formación docente sobre el ciclo de 12 pasos. Programas piloto disponibles."
   locale="es"
 >
 
@@ -37,7 +35,7 @@ const deployment = [
     kicker={"Universidades y escuelas"}
     title={"Infraestructura cognitiva<br />para la universidad moderna."}
     titleSize="2xl"
-    description={"Herramientas de estudio basadas en evidencia para tus estudiantes. SSO para tu IT. Formación docente sobre la ciencia cognitiva del aprendizaje. Los pilotos arrancan con una clase, un semestre, gratis."}
+    description={"Herramientas de estudio basadas en evidencia para tus estudiantes. Formación docente sobre la ciencia cognitiva del aprendizaje. Los pilotos arrancan con una clase, un semestre, gratis."}
   >
     <div slot="copy" class="mt-9 flex flex-wrap gap-4">
       <a href="/es/contact" class="btn-primary">Agendar una conversación académica →</a>
@@ -78,14 +76,14 @@ const deployment = [
         <article class="card p-7">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Clase</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            Un curso, un semestre, hasta 200 estudiantes. Acceso Pro para cada estudante, dashboard docente y una sesión de formación.
+            Un curso, un semestre, hasta 200 estudiantes. Acceso Pro para cada estudiante y una sesión de formación.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Adopción típica: piloto</p>
         </article>
         <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Departamento</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            Departamento entero. Contrato plurianual. SSO, registro de auditoría, SLA de soporte dedicado. Formación docente para cada asignatura que se adhiere.
+            Departamento entero. Contrato plurianual. SLA de soporte dedicado. Formación docente para cada asignatura que se adhiere.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">Adopción típica: segundo año</p>
         </article>
@@ -139,7 +137,7 @@ const deployment = [
         <h2 class="font-serif text-display-xl text-paper-50">Tu IT también lo va a aprobar.</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
         {deployment.map((d) => (
           <article class="card p-6">
             <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
@@ -181,7 +179,7 @@ const deployment = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">GDPR por defecto. FERPA-aware. WCAG 2.1 AA target.</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        Los detalles viven en la página de seguridad — lista de subencargados, Data Processing Agreement, arquitectura de cifrado, modelo de registro de auditoría.
+        Los detalles viven en la página de seguridad — lista de subencargados, Data Processing Agreement y arquitectura de cifrado.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a href="/es/security" class="btn-secondary">Lee la arquitectura de seguridad →</a>

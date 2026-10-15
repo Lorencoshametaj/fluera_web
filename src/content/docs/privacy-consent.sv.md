@@ -15,7 +15,7 @@ Fluera är ett local-first-verktyg. Som standard lämnar inget din enhet om du i
 Öppna **Inställningar → Integritet**. Du ser fyra växlar, alla avstängda som standard:
 
 - **Produktanalys.** Anonym sessionsdata — antal funktionsanrop, sessionslängd, AI-anropslängder. Aldrig innehåll. Användar-ID hashat i SHA-256, 180 dagars retention.
-- **AI-funktioner.** Krävs för att använda Socratic, Ghost Map, LaTeX-OCR och Fog of War. Den valda texten från canvasen skickas till Google Gemini-modeller via Google Vertex AI och behandlas i EU (europe-west4 NL / europe-west1 BE). Aldrig hela anteckningsboken.
+- **AI-funktioner.** Krävs för att använda Socratic, Ghost Map, LaTeX-OCR och Fog of War. Den valda texten från canvasen skickas till Google Gemini-modeller via Google Vertex AI och behandlas i EU (2.5-modeller i regionerna europe-west4 NL / europe-west1 BE, 3.x-modeller via Vertex AI:s EU-multiregionsslutpunkt): uppgifterna stannar i EU:s medlemsstater. Aldrig hela anteckningsboken.
 - **Cloud sync.** Krävs för att synkronisera canvasar mellan enheter. Synkroniserade data krypteras under överföring (TLS) och i vila på EU-infrastruktur (Supabase, eu-north-1). Det är inte end-to-end-krypterat: Fluera kan som personuppgiftsansvarig komma åt innehållet, men säljer det aldrig och använder det aldrig för annonsering.
 - **Crash reporting.** Stack traces och enhetsmetadata när appen kraschar. Inget användarinnehåll. Behandlas av Sentry med `sendDefaultPii: false`.
 

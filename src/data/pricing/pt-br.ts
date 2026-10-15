@@ -101,10 +101,6 @@ const data: PricingData = {
       a: "As condições de reembolso e cancelamento dependem da loja e do canal de compra. A política aplicável aparece antes da confirmação; para ajuda, escreva para support@fluera.dev usando o endereço cadastrado.",
     },
     {
-      q: "Como funciona a verificação de estudante?",
-      a: "Email .edu ou acadêmico verificado. Para universidades brasileiras (.edu.br) ou europeias sem .edu, aceitamos carteirinha de estudante digitalizada, ISIC ou email único da secretaria da faculdade.",
-    },
-    {
       q: "Descontos para pesquisadores ou ONGs?",
       a: "Sim. Laboratórios de pesquisa, programas de doutorado e ONGs registradas podem pedir em /contact — geralmente concedemos Pro no preço Plus ou grátis em troca de feedback estruturado.",
     },

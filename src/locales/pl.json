@@ -60,6 +60,10 @@
   "footer.trust.subprocessors": "Podwykonawcy",
   "footer.trust.privacy": "Prywatność",
   "footer.trust.terms": "Regulamin",
+
+  "community.discord.join": "Dołącz do nas na Discordzie",
+  "community.discord.lead": "Pytania, bugi, pomysły?",
+  "link.opensInNewTab": "(otwiera się w nowej karcie)",
   "cta.joinBeta": "Dołącz do bety",
   "cta.requestAccess": "Poproś o dostęp →",
   "cta.tryInBeta": "Wypróbuj w becie →",

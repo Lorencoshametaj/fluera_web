@@ -101,10 +101,6 @@ const data: PricingData = {
       a: "Erstattungs- und Widerrufsbedingungen hängen vom Store und Kaufkanal ab. Die geltende Regelung wird vor der Bestätigung angezeigt; bei Fragen schreib von deiner registrierten Adresse an support@fluera.dev.",
     },
     {
-      q: "Wie funktioniert die Studentenverifikation?",
-      a: "Verifizierte .edu- oder akademische E-Mail. Für europäische Universitäten ohne .edu akzeptieren wir gescannten Studentenausweis, ISIC oder eine einmalige E-Mail vom Sekretariat.",
-    },
-    {
       q: "Rabatte für Forscher oder Non-Profits?",
       a: "Ja. Forschungslabore, Doktorandenprogramme und registrierte Non-Profits können sich unter /contact bewerben — wir gewähren typischerweise Pro zum Plus-Preis oder kostenlos im Austausch für strukturiertes Feedback.",
     },

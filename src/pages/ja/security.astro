@@ -21,10 +21,6 @@ const pillars = [
     body: "Fluera は完全にオフラインで使用できます。同期はアカウント単位ではなく、ノート単位でオプトインです。同期をオフにすれば、データはデバイスから出ません ― 同意ベースで匿名のテレメトリも含めて。",
   },
   {
-    title: "監査ログ (教育機関向け)",
-    body: "Education アカウントでは、共有ノートへの各アクセスが改ざん不可な監査ログに記録され、コンプライアンス監査用にエクスポート可能です。管理者は SSO (SAML、OIDC) と MDM 展開を強制できます。",
-  },
-  {
     title: "私たちがしないこと",
     body: "広告なし。データ販売なし。あなたのコンテンツで私たちのモデルを訓練しません。ウェブ上であなたを追跡しません。宣言済みのサブプロセッサ (サブプロセッサーのページに記載) 以外の第三者にデータを渡しません ― すべて DPA の下で。",
   },
@@ -49,7 +45,7 @@ const pillars = [
     <div class="container-site">
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
         {pillars.map((p, i) => (
-          <article class="card p-8">
+          <article class:list={["card p-8", { "md:col-span-2": pillars.length % 2 === 1 && i === pillars.length - 1 }]}>
             <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
             <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
             <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
@@ -78,7 +74,7 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">コンプライアンスと展開</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">教育機関で Fluera を導入予定ですか?</h2>
           <p class="prose-ink mb-6">
-            大学、学校、研究機関: DPA、サブプロセッサ一覧、SSO のセットアップ、監査ログのモデルについてご案内します。パイロットは通常、1クラス・1学期・無料で始まります。
+            大学、学校、研究機関: DPA とサブプロセッサ一覧についてご案内します。パイロットは通常、1クラス・1学期・無料で始まります。
           </p>
           <a href="/ja/contact" class="btn-primary">導入について相談する →</a>
         </div>

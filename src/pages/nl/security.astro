@@ -21,10 +21,6 @@ const pillars = [
     body: "Je kunt Fluera volledig offline gebruiken. Synchronisatie is opt-in per notitieboek, niet op accountniveau. Zet je sync uit, dan verlaten je gegevens het apparaat niet — inclusief de telemetrie, die op toestemming gebaseerd en anoniem is.",
   },
   {
-    title: "Audit-trail (instellingen)",
-    body: "Voor Education-accounts wordt elke toegang tot gedeelde notitieboeken vastgelegd in een onveranderlijke trail, exporteerbaar voor compliance-audits. Beheerders kunnen SSO (SAML, OIDC) en MDM-uitrol afdwingen.",
-  },
-  {
     title: "Wat we niet doen",
     body: "Geen advertenties. Geen verkoop van data. We trainen onze modellen niet op jouw inhoud. We volgen je niet over het web. We delen geen data met derden buiten de gedeclareerde subverwerkers (vermeld op de pagina Subverwerkers) — allen onder verwerkersovereenkomst.",
   },
@@ -49,7 +45,7 @@ const pillars = [
     <div class="container-site">
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
         {pillars.map((p, i) => (
-          <article class="card p-8">
+          <article class:list={["card p-8", { "md:col-span-2": pillars.length % 2 === 1 && i === pillars.length - 1 }]}>
             <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
             <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
             <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
@@ -78,7 +74,7 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Compliance en uitrol</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Fluera in een instelling uitrollen?</h2>
           <p class="prose-ink mb-6">
-            Universiteiten, scholen, onderzoekslabs: we kunnen je begeleiden bij de verwerkersovereenkomst, lijst van subverwerkers, SSO-setup en het audit-trail-model. Pilots beginnen meestal met één klas, één semester, kosteloos.
+            Universiteiten, scholen, onderzoekslabs: we kunnen je begeleiden bij de verwerkersovereenkomst en de lijst van subverwerkers. Pilots beginnen meestal met één klas, één semester, kosteloos.
           </p>
           <a href="/nl/contact" class="btn-primary">Praat over uitrol →</a>
         </div>

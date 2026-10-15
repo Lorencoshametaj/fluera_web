@@ -9,7 +9,7 @@ const useCases = [
   },
   {
     title: "Exam preparation at scale",
-    body: "Fog of War turns the student's own notes into a retrieval-practice engine — FSRS spaced reviews, Socratic questions and Exam Sessions generated from what they actually wrote. Faculty can recommend study routes per topic without prescribing content.",
+    body: "Fog of War turns the student's own notes into a retrieval-practice engine — FSRS spaced reviews, Socratic questions and Exam Sessions generated from what they actually wrote.",
   },
   {
     title: "STEM lab notebooks",
@@ -18,9 +18,7 @@ const useCases = [
 ];
 
 const deployment = [
-  { label: "SSO",            body: "SAML 2.0 and OIDC. Integrates with Shibboleth, Azure AD, Okta, Google Workspace for Education." },
   { label: "MDM-friendly",   body: "Standard App Store / Play enterprise distribution. Windows and macOS as signed installers. No sideloading required." },
-  { label: "Audit log",      body: "Immutable per-account access trail. Exportable for compliance reviews." },
   { label: "Data residency", body: "EU-hosted by default. Data processing agreement available on request." },
   { label: "Accessibility",  body: "Working toward WCAG 2.1 AA across all platforms. Screen reader support and high-contrast modes are on the roadmap; adjustable brush fidelity for motor differences is available today." },
   { label: "On-prem",        body: "Coming on the Enterprise roadmap. Currently: cloud-only with strong encryption and regional controls." },
@@ -29,14 +27,14 @@ const deployment = [
 
 <BaseLayout
   title="Fluera for Universities"
-  description="Bring evidence-based study tools to your faculty. Multi-seat licensing, SSO, audit log, faculty training on the 12-step learning cycle. Pilot programs available."
+  description="Bring evidence-based study tools to your faculty. Multi-seat licensing, faculty training on the 12-step learning cycle. Pilot programs available."
 >
 
   <PageHero
     kicker={"For universities & high schools"}
     title={"Cognitive infrastructure<br />for the modern university."}
     titleSize="2xl"
-    description={"Evidence-based study tools for your students. SSO for your IT. Faculty training on the cognitive science of learning. Pilots start with one class, one semester, no charge."}
+    description={"Evidence-based study tools for your students. Faculty training on the cognitive science of learning. Pilots start with one class, one semester, no charge."}
   >
     <div slot="copy" class="mt-9 flex flex-wrap gap-4">
       <a href="/contact" class="btn-primary">Book a faculty conversation →</a>
@@ -79,14 +77,14 @@ const deployment = [
         <article class="card p-7">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Class</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            One course, one semester, up to 200 students. Pro-level access for every student, a faculty dashboard, and one training session.
+            One course, one semester, up to 200 students. Pro-level access for every student and one training session.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Typical adoption: pilot</p>
         </article>
         <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Faculty</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            Whole department. Multi-year contract. SSO, audit log, custom support SLA. Faculty training for every course that opts in.
+            Whole department. Multi-year contract. Custom support SLA. Faculty training for every course that opts in.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">Typical adoption: year 2</p>
         </article>
@@ -142,7 +140,7 @@ const deployment = [
         <h2 class="font-serif text-display-xl text-paper-50">Your IT should love us too.</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
         {deployment.map((d) => (
           <article class="card p-6">
             <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
@@ -186,7 +184,7 @@ const deployment = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">GDPR-native. FERPA-aware. WCAG 2.1 AA target.</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        The details live on the security page — sub-processor list, data processing agreement, encryption architecture, audit log model.
+        The details live on the security page — sub-processor list, data processing agreement and encryption architecture.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a href="/security" class="btn-secondary">Read security architecture →</a>

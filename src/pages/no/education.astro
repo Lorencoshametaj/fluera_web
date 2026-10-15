@@ -9,7 +9,7 @@ const useCases = [
   },
   {
     title: "Eksamensforberedelse i stor skala",
-    body: "Fog of War + distribuert repetisjon gjør studentens personlige canvas til en motor for retrieval-praksis. Forelesere kan foreslå læringsstier per tema uten å diktere innholdet.",
+    body: "Fog of War + distribuert repetisjon gjør studentens personlige canvas til en motor for retrieval-praksis.",
   },
   {
     title: "STEM-laboratorienotatbøker",
@@ -18,9 +18,7 @@ const useCases = [
 ];
 
 const deployment = [
-  { label: "SSO",              body: "SAML 2.0 og OIDC. Integrert med Feide, Azure AD, Okta, Google Workspace for Education." },
   { label: "MDM-vennlig",      body: "Standardisert enterprise-distribusjon via App Store / Play. Windows og macOS som signerte installatører. Ingen sideloading." },
-  { label: "Audit-spor",       body: "Uforanderlig tilgangslogg per konto. Eksporterbar for compliance-revisjoner." },
   { label: "Dataresidens",     body: "Servere i Europa fra start. Data Processing Agreement tilgjengelig på forespørsel." },
   { label: "Universell utforming", body: "Vi jobber mot WCAG 2.1 AA på alle plattformer. Skjermleserstøtte og høykontrastmodus er på veikartet; justerbar pensel-troskap for motoriske forskjeller er allerede tilgjengelig." },
   { label: "On-prem",          body: "På enterprise-veikartet. I dag: utelukkende cloud med sterk kryptering og regionale kontroller." },
@@ -29,7 +27,7 @@ const deployment = [
 
 <BaseLayout
   title="Fluera for universiteter"
-  description="Få evidensbaserte læringsverktøy inn på lærestedet ditt. Multi-sete-lisenser, SSO, audit-spor, foreleseropplæring i 12-trinnssyklusen. Pilotprogrammer tilgjengelig."
+  description="Få evidensbaserte læringsverktøy inn på lærestedet ditt. Multi-sete-lisenser, foreleseropplæring i 12-trinnssyklusen. Pilotprogrammer tilgjengelig."
   locale="no"
 >
 
@@ -37,7 +35,7 @@ const deployment = [
     kicker={"Universiteter og skoler"}
     title={"Kognitiv infrastruktur<br />for det moderne universitetet."}
     titleSize="2xl"
-    description={"Evidensbaserte læringsverktøy for studentene dine. SSO for IT-en din. Foreleseropplæring i den kognitive vitenskapen om læring. Pilotprogrammene starter med ett emne, ett semester, kostnadsfritt."}
+    description={"Evidensbaserte læringsverktøy for studentene dine. Foreleseropplæring i den kognitive vitenskapen om læring. Pilotprogrammene starter med ett emne, ett semester, kostnadsfritt."}
   >
     <div slot="copy" class="mt-9 flex flex-wrap gap-4">
       <a href="/no/contact" class="btn-primary">Avtal en akademisk samtale →</a>
@@ -78,14 +76,14 @@ const deployment = [
         <article class="card p-7">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Emne</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            Ett emne, ett semester, opptil 200 studenter. Pro-tilgang for hver student, foreleser-dashboard og én opplæringsøkt.
+            Ett emne, ett semester, opptil 200 studenter. Pro-tilgang for hver student og én opplæringsøkt.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Typisk adopsjon: pilot</p>
         </article>
         <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Fakultet</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            Hele fakultetet. Flerårig kontrakt. SSO, audit-spor, dedikert support-SLA. Foreleseropplæring for hvert emne som kommer med.
+            Hele fakultetet. Flerårig kontrakt. Dedikert support-SLA. Foreleseropplæring for hvert emne som kommer med.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">Typisk adopsjon: andre år</p>
         </article>
@@ -139,7 +137,7 @@ const deployment = [
         <h2 class="font-serif text-display-xl text-paper-50">IT-en din kommer også til å like det.</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
         {deployment.map((d) => (
           <article class="card p-6">
             <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
@@ -181,7 +179,7 @@ const deployment = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">GDPR fra start. FERPA-aware. WCAG 2.1 AA som mål.</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        Detaljene ligger på security-siden — liste over underleverandører, Data Processing Agreement, krypteringsarkitektur, audit-spor-modell.
+        Detaljene ligger på security-siden — liste over underleverandører, Data Processing Agreement og krypteringsarkitektur.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a href="/no/security" class="btn-secondary">Les sikkerhetsarkitekturen →</a>

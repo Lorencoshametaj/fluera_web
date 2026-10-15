@@ -101,10 +101,6 @@ const data: PricingData = {
       a: "Villkor för återbetalning och ångerrätt beror på butik och köpkanal. Gällande policy visas före bekräftelse; mejla support@fluera.dev från din registrerade adress om du behöver hjälp.",
     },
     {
-      q: "Hur fungerar studentverifiering?",
-      a: "Verifierad .edu eller akademisk e-post. För europeiska universitet utan .edu accepterar vi inskannat studentkort, ISIC, eller en engångsmejl från fakultetens kansli.",
-    },
-    {
       q: "Rabatter för forskare eller icke-vinstdrivande?",
       a: "Ja. Forskningslabb, doktorandprogram och registrerade icke-vinstdrivande kan ansöka på /contact — vanligtvis ger vi Pro till Plus-pris eller gratis i utbyte mot strukturerad feedback.",
     },

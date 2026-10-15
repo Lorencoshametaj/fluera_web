@@ -104,10 +104,6 @@ const data: PricingData = {
       a: "रिफ़ंड और वापसी की शर्तें स्टोर और खरीद चैनल पर निर्भर करती हैं। लागू नीति पुष्टि से पहले दिखाई जाती है; सहायता के लिए अपने पंजीकृत पते से support@fluera.dev पर लिखें।",
     },
     {
-      q: "Student verification कैसे काम करता है?",
-      a: "Verified .edu या academic email। .edu के बिना भारतीय या यूरोपीय विश्वविद्यालयों के लिए हम scanned student card, ISIC, या faculty office से एक बार का email स्वीकार करते हैं।",
-    },
-    {
       q: "Researchers या non-profits के लिए डिस्काउंट?",
       a: "हाँ। Research labs, PhD programs और registered non-profits /contact पर apply कर सकते हैं — हम आम तौर पर structured feedback के बदले Pro को Plus rate पर या मुफ़्त देते हैं।",
     },

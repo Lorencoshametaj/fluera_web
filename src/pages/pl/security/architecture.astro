@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Architektura bezpieczeństwa"
-  description="Jak Fluera szyfruje Twoje notatniki w spoczynku i w tranzycie. SQLCipher, TLS 1.3, sync w chmurze UE, telemetria opt-in, dziennik audytu dla instytucji."
+  description="Jak Fluera szyfruje Twoje notatniki w spoczynku i w tranzycie. SQLCipher, TLS 1.3, sync w chmurze UE, telemetria opt-in."
   locale="pl"
 >
   <PageHero
@@ -61,11 +61,6 @@ import { SITE } from "@/lib/site";
       <h2>Telemetria: opt-in, hashowana, na liście dozwolonych</h2>
       <p>
         Analityka produktu jest domyślnie wyłączona. Gdy aktywna, zdarzenia są ograniczone do białej listy po stronie serwera (start/koniec sesji, wywołanie funkcji, czas trwania wywołania AI — nigdy treść). ID użytkownika jest hashem SHA-256 na urządzeniu; ID w postaci zwykłego tekstu nigdy nie opuszcza klienta. Zdarzenia są przechowywane przez 180 dni, potem agregowane lub usuwane.
-      </p>
-
-      <h2>Dziennik audytu (konta instytucjonalne)</h2>
-      <p>
-        Każdy dostęp do współdzielonych notatników — kto, z którego urządzenia, kiedy — jest zapisywany w dzienniku audytu append-only. Administratorzy mogą eksportować logi do CSV lub JSON do audytów zgodności. Logi są zapisywane raz: usunięcie wymaga udokumentowanego powodu i samo zostaje zarejestrowane.
       </p>
 
       <h2>Odzyskiwanie danych</h2>

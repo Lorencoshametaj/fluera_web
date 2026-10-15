@@ -101,10 +101,6 @@ const data: PricingData = {
       a: "Vilkår for refusjon og angrerett avhenger av butikk og kjøpskanal. Gjeldende policy vises før bekreftelse; send e-post til support@fluera.dev fra den registrerte adressen din hvis du trenger hjelp.",
     },
     {
-      q: "Hvordan fungerer studentverifisering?",
-      a: "Verifisert .edu eller akademisk e-post. For europeiske universiteter uten .edu aksepterer vi skannet studentkort, ISIC eller en engangs-e-post fra fakultetskontoret.",
-    },
-    {
       q: "Rabatter for forskere eller non-profit?",
       a: "Ja. Forskningslaboratorier, doktorgradsprogrammer og registrerte non-profits kan søke på /contact — vanligvis gir vi Pro til Plus-pris eller gratis mot strukturert tilbakemelding.",
     },

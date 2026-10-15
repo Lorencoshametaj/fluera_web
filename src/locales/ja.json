@@ -62,6 +62,10 @@
   "footer.trust.privacy": "プライバシー",
   "footer.trust.terms": "利用規約",
 
+  "community.discord.join": "Discordに参加しよう",
+  "community.discord.lead": "質問、バグ、アイデアは？",
+  "link.opensInNewTab": "(新しいタブで開きます)",
+
   "cta.joinBeta": "ベータに参加",
   "cta.requestAccess": "アクセスをリクエスト →",
   "cta.tryInBeta": "ベータで試す →",

@@ -21,10 +21,6 @@ const pillars = [
     body: "Du kannst Fluera komplett offline nutzen. Die Synchronisierung ist opt-in pro Notizbuch, nicht auf Kontoebene. Wenn du Sync abschaltest, verlassen deine Daten das Gerät nicht — inklusive der Telemetrie, die einwilligungsbasiert und anonym ist.",
   },
   {
-    title: "Audit-Trail (Institutionen)",
-    body: "Für Education-Konten wird jeder Zugriff auf geteilte Notizbücher in einem unveränderlichen Trail aufgezeichnet, exportierbar für Compliance-Audits. Administrator/innen können SSO (SAML, OIDC) und MDM-Deployment durchsetzen.",
-  },
-  {
     title: "Was wir nicht tun",
     body: "Keine Werbung. Kein Datenverkauf. Wir trainieren unsere Modelle nicht mit deinen Inhalten. Wir tracken dich nicht im Web. Wir geben Daten an niemanden außerhalb der erklärten Subauftragsverarbeiter (auf der Seite Auftragsverarbeiter aufgeführt) weiter — alle unter DPA.",
   },
@@ -49,7 +45,7 @@ const pillars = [
     <div class="container-site">
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
         {pillars.map((p, i) => (
-          <article class="card p-8">
+          <article class:list={["card p-8", { "md:col-span-2": pillars.length % 2 === 1 && i === pillars.length - 1 }]}>
             <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
             <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
             <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
@@ -78,7 +74,7 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Compliance und Deployment</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Adoption an einer Institution geplant?</h2>
           <p class="prose-ink mb-6">
-            Universitäten, Schulen, Forschungslabore: wir können dich durch DPA, Liste der Subauftragsverarbeiter, SSO-Setup und Audit-Trail-Modell führen. Pilotprogramme starten meist mit einem Kurs, einem Semester, ohne Kosten.
+            Universitäten, Schulen, Forschungslabore: wir können dich durch DPA und Liste der Subauftragsverarbeiter führen. Pilotprogramme starten meist mit einem Kurs, einem Semester, ohne Kosten.
           </p>
           <a href="/de/contact" class="btn-primary">Über Deployment sprechen →</a>
         </div>

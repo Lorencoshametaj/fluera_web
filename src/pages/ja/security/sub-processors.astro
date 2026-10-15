@@ -14,36 +14,22 @@ const processors = [
   {
     name: "Google Cloud (Google Ireland Ltd.)",
     purpose: "Socratic Mode、Ghost Map、LaTeX OCR、試験セッション生成のための Vertex AI (Gemini モデル)。",
-    dataTypes: "AI 機能に同意し、実際に利用した場合にのみ送信される、選択されたキャンバスコンテンツ — 個々の手書きクラスター領域のテキスト部分およびレンダリングされた PNG 画像。ノート全体が送られることは決してありません。",
-    region: "欧州連合内のみ — europe-west4 (オランダ) を主リージョン、europe-west1 (ベルギー) をフェイルオーバーとして使用。AI 推論のためにキャンバスコンテンツが EU 外へ移転されることはありません。",
+    dataTypes: "AI 機能に同意し、実際に利用した場合にのみ送信される、選択されたキャンバスコンテンツ — 個々の手書きクラスター領域のテキスト部分およびレンダリングされた PNG 画像。ノート全体が送られることは決してありません。 これとは別に、違法コンテンツの自動チェックのため、AI 機能への同意なしに：カタログにアップロードした、または非公開で共有したカードのサムネイル、画像、タイトル、説明、およびクリエイターのプロフィール写真。",
+    region: "欧州連合内のみ — Vertex AI の EU エンドポイント：europe-west4 (オランダ) と europe-west1 (ベルギー) のリージョン、または Google が EU 加盟国内に限定している EU マルチリージョン エンドポイント。AI 推論のためにキャンバスコンテンツが EU 外へ移転されることはありません。",
     privacy: "https://cloud.google.com/terms/data-processing-addendum",
   },
   {
-    name: "Google LLC",
-    purpose: "Sign in with Google 認証 (ID プロバイダー)。",
-    dataTypes: "Google アカウントのメールアドレスおよびアカウント識別子。キャンバスデータは含まれません。",
-    region: "米国。SCC + EU-US DPF。",
-    privacy: "https://policies.google.com/privacy",
-  },
-  {
-    name: "Apple Inc.",
-    purpose: "Sign in with Apple 認証。iOS および macOS の App Store 経由のアプリ内課金。",
-    dataTypes: "Apple ID リレーメール、レシート識別子。キャンバスデータは含まれません。",
-    region: "米国。SCC + EU-US DPF。",
-    privacy: "https://www.apple.com/legal/privacy/",
-  },
-  {
     name: "RevenueCat Inc.",
-    purpose: "iOS、Android、Web でのサブスクリプション管理とレシート検証。",
-    dataTypes: "匿名化された RevenueCat ユーザー ID、サブスクリプションステータス、レシートメタデータ。カード情報は含まれません。",
-    region: "米国。SCC + EU-US DPF。",
+    purpose: "App Store と Google Play (iOS、macOS、Android) での購入に関するサブスクリプション管理とレシート検証。",
+    dataTypes: "アカウントの仮名 ID (Fluera アカウントのユーザー ID、またはサインイン前は RevenueCat の匿名 ID)、サブスクリプションステータス、レシートメタデータ。サブスクリプション管理のため、iOS、macOS、Android でアプリの起動時から送信されます。カード情報は含まれません。",
+    region: "米国。SCC。",
     privacy: "https://www.revenuecat.com/privacy",
   },
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "クラッシュレポートとエラー監視。",
     dataTypes: "スタックトレース、OS バージョン、デバイスモデル、アプリバージョン。sendDefaultPii は明示的に無効化されており、IP アドレスは保存されません。ユーザーコンテンツは含まれません。",
-    region: "欧州連合 (フランクフルト) — 本番環境の DSN は Sentry の EU データリージョンに取り込まれます。処理者となる法人は米国法人です。SCC + EU-US DPF。",
+    region: "欧州連合 (フランクフルト) — 本番環境の DSN は Sentry の EU データリージョンに取り込まれます。処理者となる法人は米国法人です。SCC。",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -55,10 +41,13 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-09-29";
+const lastUpdated = "2026-10-15";
 // fluera.dev e' su GitHub Pages: GitHub non e' un sub-processor (titolare
 // autonomo dei log delle visite, nessun DPA con un account gratuito).
 const notaGithub = "fluera.dev 自体は GitHub Pages でホストされています。GitHub Inc. はサブプロセッサーではありません。自社サービスを守るために訪問の技術データ（IP アドレス、時刻、ページ）を記録し、独立した管理者として自社のプライバシーステートメントに従って扱います。share.fluera.dev が fluera.dev から読み込むフォントについても同様です。";
+// Apple e Google non sono sub-processor (informativa 1.8.6 §4,
+// docs/processor_agreements.md): titolari autonomi per accesso e acquisti.
+const notaAppleGoogle = "Apple と Google もサブプロセッサーではありません。Sign in with Apple、Sign in with Google、および App Store と Google Play での購入については、自社プラットフォームのデータの独立した管理者として、自社の規約とプライバシーポリシーに従って扱います。";
 ---
 
 <BaseLayout
@@ -106,6 +95,7 @@ const notaGithub = "fluera.dev 自体は GitHub Pages でホストされてい�
         ))}
       </ul>
       <p class="prose-ink text-sm mt-8 max-w-5xl">{notaGithub} <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub のプライバシーステートメント ↗</a></p>
+      <p class="prose-ink text-sm mt-4 max-w-5xl">{notaAppleGoogle} <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple のプライバシーポリシー ↗</a> · <a href="https://policies.google.com/privacy" rel="noopener">Google のプライバシーポリシー ↗</a></p>
     </div>
   </section>
 

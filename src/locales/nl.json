@@ -62,6 +62,10 @@
   "footer.trust.privacy": "Privacy",
   "footer.trust.terms": "Voorwaarden",
 
+  "community.discord.join": "Kom erbij op Discord",
+  "community.discord.lead": "Vragen, bugs, ideeën?",
+  "link.opensInNewTab": "(opent in een nieuw tabblad)",
+
   "cta.joinBeta": "Doe mee aan de bèta",
   "cta.requestAccess": "Toegang aanvragen →",
   "cta.tryInBeta": "Probeer in de bèta →",

@@ -62,6 +62,10 @@
   "footer.trust.privacy": "Datenschutz",
   "footer.trust.terms": "AGB",
 
+  "community.discord.join": "Komm zu uns auf Discord",
+  "community.discord.lead": "Fragen, Bugs, Ideen?",
+  "link.opensInNewTab": "(öffnet sich in einem neuen Tab)",
+
   "cta.joinBeta": "Beta beitreten",
   "cta.requestAccess": "Zugang anfragen →",
   "cta.tryInBeta": "In der Beta testen →",

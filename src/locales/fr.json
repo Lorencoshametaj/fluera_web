@@ -62,6 +62,10 @@
   "footer.trust.privacy": "Confidentialité",
   "footer.trust.terms": "Conditions",
 
+  "community.discord.join": "Rejoins-nous sur Discord",
+  "community.discord.lead": "Des questions, des bugs, des idées ?",
+  "link.opensInNewTab": "(s'ouvre dans un nouvel onglet)",
+
   "cta.joinBeta": "Rejoindre la bêta",
   "cta.requestAccess": "Demander un accès →",
   "cta.tryInBeta": "Essayer dans la bêta →",

@@ -101,10 +101,6 @@ const data: PricingData = {
       a: "Les conditions de remboursement et de rétractation dépendent de la boutique et du canal d'achat. La politique applicable est affichée avant confirmation ; pour obtenir de l'aide, écris à support@fluera.dev depuis ton adresse d'inscription.",
     },
     {
-      q: "Comment fonctionne la vérification étudiante ?",
-      a: "Email .edu ou académique vérifié. Pour les universités européennes sans .edu, on accepte une carte étudiante scannée, ISIC ou un email ponctuel du secrétariat.",
-    },
-    {
       q: "Réductions pour chercheurs ou non-profits ?",
       a: "Oui. Laboratoires de recherche, programmes de doctorat et non-profits enregistrés peuvent en faire la demande sur /contact — typiquement on accorde Pro au tarif Plus ou gratuit en échange de feedback structuré.",
     },

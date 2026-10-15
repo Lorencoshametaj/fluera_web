@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Sicherheitsarchitektur"
-  description="Wie Fluera dein Heft im Ruhezustand und im Transit verschlüsselt. SQLCipher, TLS 1.3, Cloud-Sync auf EU-Infrastruktur, Opt-in-Telemetrie, Audit-Trail für Institutionen."
+  description="Wie Fluera dein Heft im Ruhezustand und im Transit verschlüsselt. SQLCipher, TLS 1.3, Cloud-Sync auf EU-Infrastruktur, Opt-in-Telemetrie."
   locale="de"
 >
   <PageHero
@@ -70,11 +70,6 @@ import { SITE } from "@/lib/site";
       <h2>Telemetrie: Opt-in, gehasht, allowlisted</h2>
       <p>
         Die Produkt-Analytik ist standardmäßig deaktiviert. Wenn aktiviert, sind die Ereignisse auf eine serverseitige Whitelist beschränkt (Sitzungsbeginn/-ende, Aufruf einer Funktion, Dauer eines KI-Aufrufs — niemals Inhalt). Die Nutzer-ID wird auf dem Gerät mit SHA-256 gehasht; die Klartext-ID verlässt den Client nie. Die Ereignisse werden 180 Tage aufbewahrt und danach aggregiert oder gelöscht.
-      </p>
-
-      <h2>Audit-Trail (Institutionelle Konten)</h2>
-      <p>
-        Jeder Zugriff auf geteilte Hefte — wer, von welchem Gerät, wann — wird in einen append-only Audit-Trail geschrieben. Die Administratoren können den Trail als CSV oder JSON für Compliance-Kontrollen exportieren. Der Trail ist write-once: Eine Entfernung erfordert eine dokumentierte Begründung und wird selbst geloggt.
       </p>
 
       <h2>Datenwiederherstellung</h2>

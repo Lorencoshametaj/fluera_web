@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import logo from "@/assets/fluera_logo.png";
 import BrandWordmark from "@/components/BrandWordmark.astro";
+import DiscordIcon from "@/components/DiscordIcon.astro";
 import { SITE, localizedHref } from "@/lib/site";
 import { localeFromPathname, t } from "@/lib/i18n";
 
@@ -76,6 +77,16 @@ const columns = [
         <p class="text-sm text-ink-500 leading-relaxed max-w-xs">
           {t("footer.tagline", locale)}
         </p>
+        <a
+          href={SITE.community.discord}
+          target="_blank"
+          rel="noopener"
+          class="mt-5 inline-flex items-center gap-2 text-sm text-paper-300 hover:text-paper-50 transition-colors"
+        >
+          <DiscordIcon class="h-4 w-4 shrink-0" />
+          <span>{t("community.discord.join", locale)}</span>
+          <span class="sr-only">{t("link.opensInNewTab", locale)}</span>
+        </a>
       </div>
 
       {columns.map((col) => (

@@ -62,6 +62,10 @@
   "footer.trust.privacy": "Integritet",
   "footer.trust.terms": "Villkor",
 
+  "community.discord.join": "Häng med på Discord",
+  "community.discord.lead": "Frågor, buggar, idéer?",
+  "link.opensInNewTab": "(öppnas i en ny flik)",
+
   "cta.joinBeta": "Gå med i betan",
   "cta.requestAccess": "Begär åtkomst →",
   "cta.tryInBeta": "Testa i betan →",

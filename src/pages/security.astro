@@ -21,10 +21,6 @@ const pillars = [
     body: "You can run Fluera fully offline. Sync is opt-in per notebook, not account-wide. If you turn sync off, your data never leaves the device — including telemetry, which is consent-based and anonymous.",
   },
   {
-    title: "Audit log (Education)",
-    body: "For Education accounts, every access to shared notebooks is logged in an immutable audit trail, exportable for compliance reviews. Administrators can enforce SSO (SAML, OIDC) and MDM-managed deployments.",
-  },
-  {
     title: "What we don't do",
     body: "We will not run ads. We will not sell your data. We will not train our models on your notebooks. We will not track you across the web. We will not hand data to third parties beyond named sub-processors (listed on the Sub-processors page) — all under DPA.",
   },
@@ -48,7 +44,7 @@ const pillars = [
     <div class="container-site">
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
         {pillars.map((p, i) => (
-          <article class="card p-8">
+          <article class:list={["card p-8", { "md:col-span-2": pillars.length % 2 === 1 && i === pillars.length - 1 }]}>
             <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
             <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
             <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
@@ -77,7 +73,7 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Compliance &amp; deployment</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Deploying Fluera at your institution?</h2>
           <p class="prose-ink mb-6">
-            Universities, schools and research labs: we can walk you through our DPA, sub-processor list, SSO setup and the audit log model. Pilots typically start with one class, one semester, no charge.
+            Universities, schools and research labs: we can walk you through our DPA and sub-processor list. Pilots typically start with one class, one semester, no charge.
           </p>
           <a href="/contact" class="btn-primary">Talk to us about deployment →</a>
         </div>

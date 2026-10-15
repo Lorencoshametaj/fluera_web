@@ -21,10 +21,6 @@ const pillars = [
     body: "Tu peux utiliser Fluera entièrement hors ligne. La sync est opt-in par cahier, pas au niveau du compte. Si tu coupes la sync, tes données ne quittent pas l'appareil — y compris la télémétrie, qui est basée sur le consentement et anonyme.",
   },
   {
-    title: "Piste d'audit (Institutions)",
-    body: "Pour les comptes Education, chaque accès aux cahiers partagés est enregistré dans une piste immuable, exportable pour les audits de conformité. Les administrateurs peuvent imposer le SSO (SAML, OIDC) et un déploiement MDM.",
-  },
-  {
     title: "Ce qu'on ne fait pas",
     body: "Pas de pub. Pas de vente de données. Nous n'entraînons pas nos modèles sur ton contenu. On ne te tracke pas sur le web. On ne transmet pas de données à des tiers au-delà des sous-traitants déclarés (listés sur la page Sous-traitants) — tous sous DPA.",
   },
@@ -49,7 +45,7 @@ const pillars = [
     <div class="container-site">
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
         {pillars.map((p, i) => (
-          <article class="card p-8">
+          <article class:list={["card p-8", { "md:col-span-2": pillars.length % 2 === 1 && i === pillars.length - 1 }]}>
             <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
             <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
             <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
@@ -78,7 +74,7 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Conformité et déploiement</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Tu vas adopter Fluera dans une institution ?</h2>
           <p class="prose-ink mb-6">
-            Universités, écoles, laboratoires de recherche : on peut te guider sur le DPA, la liste des sous-traitants, le setup SSO et le modèle de piste d'audit. Les pilotes commencent généralement par une classe, un semestre, sans frais.
+            Universités, écoles, laboratoires de recherche : on peut te guider sur le DPA et la liste des sous-traitants. Les pilotes commencent généralement par une classe, un semestre, sans frais.
           </p>
           <a href="/fr/contact" class="btn-primary">Parler du déploiement →</a>
         </div>

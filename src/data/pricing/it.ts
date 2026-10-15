@@ -116,10 +116,6 @@ const data: PricingData = {
       a: "I termini di rimborso e recesso dipendono dallo store e dal canale di acquisto. La policy applicabile viene mostrata prima della conferma; per assistenza scrivi a support@fluera.dev dall'indirizzo con cui ti sei iscritto.",
     },
     {
-      q: "Come funziona la verifica studente?",
-      a: "Email .edu o accademica verificata. Per università europee senza .edu accettiamo tessera studente scansionata, ISIC o email una-tantum dalla segreteria.",
-    },
-    {
       q: "Sconti per ricercatori o no-profit?",
       a: "Sì. Laboratori, programmi di dottorato e no-profit registrati possono richiederlo da /contact — di solito concediamo Pro al prezzo Plus o gratis in cambio di feedback.",
     },

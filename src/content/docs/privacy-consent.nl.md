@@ -15,7 +15,7 @@ Fluera is een local-first tool. Standaard verlaat niets je apparaat tenzij je ex
 Open **Instellingen → Privacy**. Je ziet vier toggles, alle standaard uit:
 
 - **Productanalytics.** Anonieme sessiedata — aanroep-aantallen van functies, sessieduur, AI-call-duur. Nooit inhoud. Gebruikers-ID gehasht met SHA-256, 180 dagen retentie.
-- **AI-functies.** Vereist om Socratic, Ghost Map, LaTeX OCR en Fog of War te gebruiken. Geselecteerde tekst van het canvas wordt naar Google Gemini-modellen gestuurd, geserveerd via Google Vertex AI en verwerkt in de EU (europe-west4 NL / europe-west1 BE). Nooit het hele notitieboek.
+- **AI-functies.** Vereist om Socratic, Ghost Map, LaTeX OCR en Fog of War te gebruiken. Geselecteerde tekst van het canvas wordt naar Google Gemini-modellen gestuurd, geserveerd via Google Vertex AI en verwerkt in de EU (2.5-modellen in de regio's europe-west4 NL / europe-west1 BE, 3.x-modellen op het EU-multiregio-endpoint van Vertex AI): de gegevens blijven in de EU-lidstaten. Nooit het hele notitieboek.
 - **Cloud sync.** Vereist om canvasses tussen apparaten te synchroniseren. Gesynchroniseerde data is versleuteld tijdens transport (TLS) en in rust op EU-infrastructuur (Supabase, eu-north-1). De sync is niet end-to-end versleuteld: Fluera kan de inhoud als verwerkingsverantwoordelijke benaderen, maar verkoopt deze nooit en gebruikt deze nooit voor advertenties.
 - **Crashrapportage.** Stack traces en apparaatmetadata wanneer de app crasht. Geen gebruikersinhoud. Verwerkt door Sentry met `sendDefaultPii: false`.
 

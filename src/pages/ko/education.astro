@@ -9,7 +9,7 @@ const useCases = [
   },
   {
     title: "규모에 맞는 시험 준비",
-    body: "Fog of War + 간격 반복은 학생의 개인 캔버스를 회상 연습 엔진으로 변환합니다. 교수는 콘텐츠를 지정하지 않고 주제별 학습 경로를 권장할 수 있습니다.",
+    body: "Fog of War + 간격 반복은 학생의 개인 캔버스를 회상 연습 엔진으로 변환합니다.",
   },
   {
     title: "STEM 실험실 노트북",
@@ -18,9 +18,7 @@ const useCases = [
 ];
 
 const deployment = [
-  { label: "SSO",              body: "SAML 2.0과 OIDC. Shibboleth, Azure AD, Okta, Google Workspace for Education와 통합." },
   { label: "MDM 친화적",        body: "App Store / Play를 통한 표준 엔터프라이즈 배포. Windows와 macOS에 서명된 설치 프로그램. 사이드로딩 없음." },
-  { label: "감사 로그",          body: "계정당 변경 불가능한 액세스 추적. 컴플라이언스 감사를 위해 내보낼 수 있음." },
   { label: "데이터 거주",        body: "기본적으로 EU의 서버. 요청 시 Data Processing Agreement 사용 가능." },
   { label: "접근성",             body: "모든 플랫폼에서 WCAG 2.1 AA를 목표로 작업 중. 스크린 리더 지원과 고대비 모드는 로드맵에 있으며, 운동 능력 차이를 위한 조정 가능한 브러시 충실도를 제공합니다." },
   { label: "온프레미스",         body: "엔터프라이즈 로드맵에 곧. 오늘: 강력한 암호화 및 지역 제어가 있는 클라우드 전용." },
@@ -29,7 +27,7 @@ const deployment = [
 
 <BaseLayout
   title="대학을 위한 Fluera — 고등 교육을 위한 인지 인프라"
-  description="당신의 학부에 증거 기반 학습 도구를 가져오세요. 멀티 시트 라이선스, SSO, 감사 로그, 12단계 사이클에 대한 교수 교육. 파일럿 프로그램 사용 가능."
+  description="당신의 학부에 증거 기반 학습 도구를 가져오세요. 멀티 시트 라이선스, 12단계 사이클에 대한 교수 교육. 파일럿 프로그램 사용 가능."
   locale="ko"
 >
 
@@ -37,7 +35,7 @@ const deployment = [
     kicker={"대학 및 학교"}
     title={"현대 대학을 위한<br />인지 인프라."}
     titleSize="2xl"
-    description={"학생들을 위한 증거 기반 학습 도구. IT를 위한 SSO. 학습의 인지 과학에 대한 교수 교육. 파일럿은 한 클래스, 한 학기, 무료로 시작합니다."}
+    description={"학생들을 위한 증거 기반 학습 도구. 학습의 인지 과학에 대한 교수 교육. 파일럿은 한 클래스, 한 학기, 무료로 시작합니다."}
   >
     <div slot="copy" class="mt-9 flex flex-wrap gap-4">
       <a href="/ko/contact" class="btn-primary">학술 통화 예약 →</a>
@@ -78,14 +76,14 @@ const deployment = [
         <article class="card p-7">
           <h3 class="font-serif text-xl text-paper-50 mb-3">클래스</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            한 강좌, 한 학기, 최대 200명 학생. 각 학생을 위한 Pro 액세스, 교수 대시보드, 한 번의 교육 세션.
+            한 강좌, 한 학기, 최대 200명 학생. 각 학생을 위한 Pro 액세스와 한 번의 교육 세션.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-ink-500">일반적 채택: 파일럿</p>
         </article>
         <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
           <h3 class="font-serif text-xl text-paper-50 mb-3">학부</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            전체 학부. 다년 계약. SSO, 감사 로그, 전담 지원 SLA. 가입한 모든 강좌에 대한 교수 교육.
+            전체 학부. 다년 계약. 전담 지원 SLA. 가입한 모든 강좌에 대한 교수 교육.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">일반적 채택: 두 번째 해</p>
         </article>
@@ -139,7 +137,7 @@ const deployment = [
         <h2 class="font-serif text-display-xl text-paper-50">IT도 우리를 사랑할 것입니다.</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
         {deployment.map((d) => (
           <article class="card p-6">
             <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
@@ -181,7 +179,7 @@ const deployment = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">GDPR 기본. FERPA 인식. WCAG 2.1 AA 목표.</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        세부 사항은 보안 페이지에 있습니다 — 하위 처리자 목록, Data Processing Agreement, 암호화 아키텍처, 감사 로그 모델.
+        세부 사항은 보안 페이지에 있습니다 — 하위 처리자 목록, Data Processing Agreement 및 암호화 아키텍처.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a href="/ko/security" class="btn-secondary">보안 아키텍처 읽기 →</a>

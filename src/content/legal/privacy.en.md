@@ -3,7 +3,7 @@ lang: "en"
 slug: "privacy"
 title: "Privacy Policy"
 versione: "1.8.6"
-aggiornato: "October 11, 2026"
+aggiornato: "October 15, 2026"
 sommario: "This policy explains how Fluera processes personal data of its users under Articles 13 and 14 of Regulation (EU) 2016/679 (**GDPR**) and the Italian Legislative Decree 196/2003 as amended by Legislative Decree 101/2018."
 fonte: "Fluera/assets/legal/privacy_en.md"
 ---
@@ -49,7 +49,7 @@ Only if you have consented to the **Product analytics** category:
 ### 2.4 AI feature data
 Only if you have consented to the **AI features** category:
 - Selected canvas content sent for Socratic Mode, Ghost Map, LaTeX OCR, Exam Session — text portions and rendered PNG images of individual handwriting-cluster regions (never the full notebook)
-- AI inference runs on Google Vertex AI in the **European Union** (europe-west4 Netherlands, with europe-west1 Belgium failover); canvas content is not transferred outside the EU for AI inference
+- AI inference runs on Google Vertex AI in the **European Union**, on EU endpoints only: the europe-west4 (Netherlands) and europe-west1 (Belgium) regions, or the Vertex AI EU multi-region endpoint, which Google limits to EU member states; canvas content is not transferred outside the EU for AI inference
 - Usage tokens for plan limit enforcement
 - In production, calls go through a Supabase Edge Function proxy (API key server-side)
 
@@ -188,6 +188,27 @@ are untouched, because they belong to whoever wrote them.
 person's access, leave a card you received, remove a card of your own, and report
 a card you received. Cards you authored are included in your data export (§7).
 
+**Your creator profile photo.** If you add a photo to your creator profile in the
+catalogue, we upload it to Supabase, in the EU (§4), and it goes through an
+**automated check** like the one for cards, which runs at Google Cloud
+(Vertex AI) inside the European Union — see §4 and §5. The check receives only
+the image, without your name or any other profile data. The purpose is the same: keeping unlawful content
+out of the catalogue (§3). That is why it happens even if you have not given
+consent to `AI features`: that consent covers the study features (§2.4), not
+this check.
+
+- **Until the check has approved it**, we show the photo to no one but you. Once
+  approved, it is visible to anyone who opens your creator profile.
+- **If the check does not approve it**, we remove it from your profile and delete
+  the file. Only if it detects child sexual abuse material do we keep a
+  restricted copy, as evidence for the authorities.
+- **You can remove or change it whenever you like**: the old photo stops being
+  shown at once. If you change it, the old photo's file is deleted once the new
+  one is approved. If you remove it, or the new one is not approved, the old
+  file stays on our servers until we approve a new photo of yours or you delete
+  your account: we no longer show it, but anyone who already has its address can
+  still open it.
+
 ### 2.12 Study digest for your connected AI assistant (opt-in, off by default)
 
 If you enable "Connected AI assistant", Fluera publishes a compact **study
@@ -256,7 +277,8 @@ or what you search for.
   kept there, never the sign-in to your Google account used for browsing.
 - **Protection from dangerous sites** checks addresses before opening them. On Android this is
   Google Safe Browsing: the service receives only hashed fragments of addresses. On iOS it is
-  Apple's fraudulent-website warning.
+  Apple's fraudulent-website warning. It is on by default and can be turned off in Fludomi's
+  settings («Safe Browsing»).
 - **Handwriting** in the address bar is recognised on the device. The language model is
   downloaded once from Google's servers.
 
@@ -272,13 +294,15 @@ account:
 - they are excluded from Google and iCloud backups;
 - they are deleted by «Clear browsing data»;
 - they are deleted when you sign out or delete your account;
-- they are deleted for a single site with «Forget this site».
+- they are deleted for a single site with «Forget this site»;
+- if you turn on «Clear everything on close», they are deleted every time you close Fludomi or
+  Fluera, together with the history and the open tabs.
 
 If you delete your account, its local database is deleted from the device too.
 
 **Private tabs.** They save no history, tabs or folds, and on Android the keyboard does not
 learn what you type in them. Their cookies are deleted when they close, or at the next launch if the app was
-killed. The system keeps no picture of the tab in the recent-apps list.
+killed. They close by themselves after 15 minutes with Fluera in the background. The system keeps no picture of the tab in the recent-apps list.
 
 **Protections on by default:**
 - we block the most common tracking services, with a list we write ourselves;
@@ -286,7 +310,8 @@ killed. The system keeps no picture of the tab in the recent-apps list.
 - cookie banners are refused, never accepted, when you have not answered yet;
 - every site receives the Global Privacy Control signal (do not sell or share my data);
 - we remove tracking parameters from addresses (for example `utm_`, `fbclid`, `gclid`);
-- we open links over https whenever the site offers it.
+- we open links over https whenever the site offers it; a site without https opens only after
+  a warning, and on Android in the phone's browser.
 
 Only folds travel between your devices, and only if you turn sync on, end-to-end encrypted (§2.5).
 
@@ -306,17 +331,17 @@ Only folds travel between your devices, and only if you turn sync on, end-to-end
 
 ## 4. Recipients of data
 
-All recipients are processors bound by contract under Art. 28 GDPR:
+Our processors, bound by contract under Art. 28 GDPR, are:
 
 - **Supabase Inc.** — database, auth, storage, telemetry, Edge Functions (EU region `eu-north-1`, Stockholm) — https://supabase.com/privacy
-- **Google Cloud (Google Ireland Ltd.)** — Vertex AI (Gemini), processed in the EU (Netherlands / Belgium) — https://cloud.google.com/terms/data-processing-addendum
-- **Google LLC** — Sign in with Google (authentication only) — https://policies.google.com/privacy
-- **Apple Inc.** — Sign in with Apple, App Store — https://www.apple.com/legal/privacy/
+- **Google Cloud (Google Ireland Ltd.)** — Vertex AI (Gemini), processed in the EU (europe-west4 Netherlands and europe-west1 Belgium regions, or the EU multi-region endpoint) — https://cloud.google.com/terms/data-processing-addendum
 - **RevenueCat Inc.** — subscriptions — https://www.revenuecat.com/privacy
 - **Functional Software Inc. (Sentry)** — crash reporting — https://sentry.io/privacy/
-- **Deno Land Inc.** — hosting of share.fluera.dev (web catalogue, card pages, report form, assistant connector): IP address and request data of visitors (§2.13) — https://docs.deno.com/deploy/privacy_policy/
+- **Deno Land Inc.** — hosting of share.fluera.dev (web catalogue, card pages, report form, assistant connector): IP address and request data of visitors, and the text of reports, which the form forwards to Supabase (§2.13) — https://docs.deno.com/deploy/privacy_policy/
 
 **Providers acting as independent controllers.** fluera.dev is hosted on GitHub Pages: GitHub Inc. records the technical data of visits (IP address, time, page requested) to secure its own service, as an independent controller and under its own privacy statement — https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement. The same applies to the typefaces that share.fluera.dev loads from fluera.dev (§2.13).
+
+**Apple and Google, for sign-in and in-app purchases.** If you use Sign in with Apple or Sign in with Google, or subscribe through the App Store or Google Play, Apple and Google are not processors of Fluera's data: they act as independent controllers for their own platform-level data, and their platform terms and privacy policies govern that relationship — https://www.apple.com/legal/privacy/ and https://policies.google.com/privacy. From them we receive only what is described in §2.1 and §2.7.
 
 **Internal alerts.** For service alerts — costs and reports concerning child safety — we use Discord. The messages contain no personal data: no account identifiers, no content, not who reported or who was reported; only the type of alert, the subscription tier, the amounts and the internal number of the alert or report.
 
@@ -338,9 +363,11 @@ Each processor's Art. 28 data processing terms apply to us, either through a sep
 
 ## 5. Transfers outside the EU
 
-Some processors — Sign in with Google (Google LLC), Apple, Sentry, RevenueCat, Deno — are based in the United States. Transfers to them are based on the Standard Contractual Clauses approved by the European Commission (Art. 46 GDPR) and, where applicable, the processor's adherence to the EU-US Data Privacy Framework.
+Some processors — Sentry, RevenueCat, Deno — are based in the United States. Transfers to them are based on the Standard Contractual Clauses approved by the European Commission (Art. 46 GDPR) and, where applicable, the processor's adherence to the EU-US Data Privacy Framework.
 
-**AI inference does not leave the EU.** Canvas content submitted to AI features is processed by Google Vertex AI in the European Union only (europe-west4 Netherlands, with europe-west1 Belgium failover) and is not transferred to the United States.
+Apple and Google, for sign-in and in-app purchases, are independent controllers (§4): what they receive, including any transfer outside the EU, is governed by their own terms and privacy policies.
+
+**AI inference does not leave the EU.** Canvas content submitted to AI features is processed by Google Vertex AI in the European Union only (europe-west4 Netherlands and europe-west1 Belgium regions, or the Vertex AI EU multi-region endpoint, which stays within EU member states) and is not transferred to the United States.
 
 Supabase allows region selection: we use the region `eu-north-1` (Stockholm) within the EEA.
 
@@ -394,11 +421,11 @@ In the event of a personal-data breach, Fluera will notify the competent supervi
 
 ## 10. Minors
 
-**Fluera is not intended for users under 14 years old. By using the Service you represent that you are at least 14 years old.**
+**Fluera is not intended for users under 16 years old. By using the Service you represent that you are at least 16 years old.**
 
-For ages 14-18, processing is permitted under Italian Legislative Decree 196/2003 Art. 2-quinquies, potentially subject to parental consent where required by the applicable national law. For users under 14, account creation is not permitted.
+For ages 16-18, processing is permitted under Italian Legislative Decree 196/2003 Art. 2-quinquies, potentially subject to parental consent where required by the applicable national law. For users under 16, account creation is not permitted.
 
-If we become aware of data collected from a user under 14, we will suspend the account and delete associated data within 30 days. Report non-compliant use to `support@fluera.dev` or `lorenco@fluera.dev`.
+If we become aware of data collected from a user under 16, we will suspend the account and delete associated data within 30 days. Report non-compliant use to `support@fluera.dev` or `lorenco@fluera.dev`.
 
 ## 11. Changes to this policy
 
@@ -445,7 +472,7 @@ Supervisory authority: **ANPD — Autoridade Nacional de Proteção de Dados** (
 
 Japanese residents are protected by the *Act on the Protection of Personal Information* (APPI, as amended 2022).
 
-**Cross-border transfer consent**: when you enable `AI features` or `Crash reports`, your data is transferred respectively to Google LLC (United States) and Functional Software Inc./Sentry (United States). By confirming consents in the consent screen you explicitly authorize such transfers under Art. 28 APPI. You can revoke consent at any time from Settings → Privacy.
+**Cross-border transfer consent**: when you enable `AI features`, your data is processed by Google Ireland Ltd. (Vertex AI) in the European Union and is not transferred to the United States (§5); when you enable `Crash reports`, your data is transferred to Functional Software Inc./Sentry (United States). By confirming consents in the consent screen you explicitly authorize such transfers under Art. 28 APPI. You can revoke consent at any time from Settings → Privacy.
 
 **Rights**: disclosure of retained data, correction, addition, deletion, cessation of use, cessation of third-party transfer. Contact: `lorenco@fluera.dev`.
 
@@ -453,7 +480,7 @@ Japanese residents are protected by the *Act on the Protection of Personal Infor
 
 South Korean residents are protected by the *Personal Information Protection Act* (PIPA).
 
-**Personal Information Processing Notice**: Fluera processes your personal data for the purposes described in section 3, retaining it for the periods indicated in section 6. US sub-processors (Sign in with Google, Sentry, RevenueCat) receive data only after your explicit consent via the consent screen. AI features are processed by Vertex AI in the EU and are not transferred to the US.
+**Personal Information Processing Notice**: Fluera processes your personal data for the purposes described in section 3, retaining it for the periods indicated in section 6. Three processors based in the United States receive data (§5): Sentry, only after your explicit consent to `Crash reports` in the consent screen; RevenueCat, from app launch on iOS, macOS and Android, without a separate consent, because it manages your subscription (§2.7; performance of the contract, §3): it receives your account's pseudonymous identifier, or an anonymous identifier if you have not signed in, your subscription data and the technical data of the connection (such as the IP address), never your content; Deno, when you use share.fluera.dev (§2.13). AI features are processed by Vertex AI in the EU and are not transferred to the US.
 
 **Rights**: access, correction, deletion, suspension of processing. To exercise them: `lorenco@fluera.dev`. For complaints, the competent authority is the **Personal Information Protection Commission (PIPC)** — <https://www.pipc.go.kr>.
 
@@ -469,7 +496,7 @@ Indian residents are protected by the *Digital Personal Data Protection Act 2023
 - Grievance redressal within 30 days (Sec. 14)
 - Nomination of a Consent Manager (Sec. 6)
 
-**Minors**: the DPDP Act requires **parental consent for users under 18**, a stricter threshold than GDPR (14 in Italy). Fluera applies the minimum age declared in ToS §4.3 (≥14) and, for Indian residents, requires users aged 14-18 to obtain parental consent before use. Non-compliance reports are handled via `support@fluera.dev` with deletion within 30 days per global policy.
+**Minors**: the DPDP Act requires **parental consent for users under 18**, a stricter threshold than GDPR (14 in Italy). Fluera applies the minimum age declared in ToS §4.3 (≥16) and, for Indian residents, requires users aged 16-18 to obtain parental consent before use. Non-compliance reports are handled via `support@fluera.dev` with deletion within 30 days per global policy.
 
 Data Protection Officer / Grievance Officer contact: `lorenco@fluera.dev`.
 
@@ -477,7 +504,7 @@ Data Protection Officer / Grievance Officer contact: `lorenco@fluera.dev`.
 
 Saudi Arabian residents are protected by the *Personal Data Protection Law* (in force since September 14, 2024), regulated by the **Saudi Data and AI Authority (SDAIA)**.
 
-**Cross-border transfer**: data collected from KSA users is transferred to EEA servers (Supabase Stockholm; AI inference on Vertex AI in the EU) and to US sub-processors (Sign in with Google, Sentry, RevenueCat). Such transfer occurs only after your explicit consent via the consent screen, under Art. 29 PDPL.
+**Cross-border transfer**: data collected from KSA users is transferred to EEA servers (Supabase Stockholm; Vertex AI in the EU, for AI features only if you enable `AI features`, and for the automated check of the cards and profile photos you upload, §2.11) and to processors based in the United States (Sentry, RevenueCat, Deno). The transfer to Sentry occurs only after your explicit consent to `Crash reports` in the consent screen, under Art. 29 PDPL. The transfer to RevenueCat occurs from app launch on iOS, macOS and Android, without a separate consent, because it manages your subscription (§2.7; performance of the contract, §3): it receives your account's pseudonymous identifier, or an anonymous identifier if you have not signed in, your subscription data and the technical data of the connection (such as the IP address), never your content. The transfer to Deno occurs when you use share.fluera.dev (§2.13). Transfers to the United States rely on the Standard Contractual Clauses in the processors' DPAs (§5).
 
 **Rights**: to be informed about processing, access, correction, deletion, objection to processing. To exercise them: `lorenco@fluera.dev`. Formal complaints can be addressed to SDAIA — <https://sdaia.gov.sa>.
 
@@ -492,7 +519,7 @@ Canadian residents are protected by the *Personal Information Protection and Ele
 - Portability (Quebec Law 25, Art. 27)
 - Deletion / "right to be forgotten" (Quebec Law 25, Art. 28.1)
 
-**Cross-border transfer**: Quebec Law 25 Art. 17 requires a privacy impact assessment before transferring personal information outside Quebec. Fluera data transits to EEA servers (Supabase Stockholm; AI inference on Vertex AI in the EU) and US sub-processors (Sign in with Google, Sentry, RevenueCat) — coverage provided by the SCCs in the processors' DPAs and by explicit consent through the consent screen.
+**Cross-border transfer**: Quebec Law 25 Art. 17 requires a privacy impact assessment before transferring personal information outside Quebec. Fluera data transits to EEA servers (Supabase Stockholm; AI inference on Vertex AI in the EU) and processors based in the United States (Sentry, RevenueCat, Deno) — coverage provided by the SCCs in the processors' DPAs and, for Sentry, by your explicit consent to `Crash reports` in the consent screen.
 
 **Designated Privacy Officer**: Lorenco Shametaj (founder, Fluera). Operational contact: `lorenco@fluera.dev`. Designated pursuant to Art. 8 Quebec Law 25.
 
@@ -508,7 +535,7 @@ Australian residents are protected by the *Privacy Act 1988* (including the 2024
 - Notification at the time of collection (APP 5) — provided via the consent screen + Privacy Policy
 - Access to stored data (APP 12) and correction (APP 13)
 - Opt-out from use/disclosure for purposes other than the primary one (APP 6)
-- Cross-border disclosure accountability (APP 8): Fluera remains responsible for processing by US sub-processors, to which the user explicitly consents through the consent screen
+- Cross-border disclosure accountability (APP 8): Fluera remains responsible for processing by processors based in the United States (Sentry, RevenueCat, Deno — §5), including where the transfer does not depend on a consent in the consent screen (RevenueCat: §2.7; Deno: §2.13)
 
 **Sensitive Personal Information**: Fluera does not collect sensitive information as defined under APP (no health, no biometric, no political/religious data).
 

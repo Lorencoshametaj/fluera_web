@@ -9,7 +9,7 @@ const useCases = [
   },
   {
     title: "Tenttivalmistautuminen mittakaavassa",
-    body: "Fog of War + jaksottainen kertaus muuntavat opiskelijan henkilökohtaisen canvaksen palauttamisharjoittelun moottoriksi. Opettajat voivat ehdottaa opiskelupolkuja aiheittain määräämättä sisältöä.",
+    body: "Fog of War + jaksottainen kertaus muuntavat opiskelijan henkilökohtaisen canvaksen palauttamisharjoittelun moottoriksi.",
   },
   {
     title: "STEM-laboratoriomuistikirjat",
@@ -18,9 +18,7 @@ const useCases = [
 ];
 
 const deployment = [
-  { label: "SSO",              body: "SAML 2.0 ja OIDC. Integroituu Shibbolethin, Azure AD:n, Oktan ja Google Workspace for Educationin kanssa." },
   { label: "MDM-yhteensopiva", body: "Vakiomuotoinen yritysjakelu App Storen / Playn kautta. Windows ja macOS allekirjoitettuina asentajina. Ei sideloadausta." },
-  { label: "Auditointiloki",   body: "Muuttumaton käyttölokit tileittäin. Vietävissä vaatimustenmukaisuusauditointeja varten." },
   { label: "Tietojen sijainti", body: "Palvelimet Euroopassa oletuksena. Data Processing Agreement saatavilla pyynnöstä." },
   { label: "Saavutettavuus",   body: "Työskentelemme kohti WCAG 2.1 AA -tasoa kaikilla alustoilla. Tiekartalla: ruudunlukijatuki, korkean kontrastin tila ja säädettävä siveltimien tarkkuus motorisia eroja varten." },
   { label: "On-prem",          body: "Enterprise-tiekartalla. Tänään: vain pilvi vahvalla salauksella ja alueellisilla kontrolleilla." },
@@ -29,7 +27,7 @@ const deployment = [
 
 <BaseLayout
   title="Fluera yliopistoille"
-  description="Tuo näyttöön perustuvat opiskelutyökalut tiedekuntaasi. Multi-seat-lisenssit, SSO, auditointiloki, opettajien koulutus 12 askeleen syklistä. Pilottiohjelmia saatavilla."
+  description="Tuo näyttöön perustuvat opiskelutyökalut tiedekuntaasi. Multi-seat-lisenssit, opettajien koulutus 12 askeleen syklistä. Pilottiohjelmia saatavilla."
   locale="fi"
 >
 
@@ -37,7 +35,7 @@ const deployment = [
     kicker={"Yliopistot ja koulut"}
     title={"Kognitiivinen infrastruktuuri<br />modernille yliopistolle."}
     titleSize="2xl"
-    description={"Näyttöön perustuvat opiskelutyökalut opiskelijoillesi. SSO IT-osastollesi. Opettajien koulutus oppimisen kognitiotieteestä. Pilotit alkavat yhdellä kurssilla, yhdellä lukukaudella, ilmaiseksi."}
+    description={"Näyttöön perustuvat opiskelutyökalut opiskelijoillesi. Opettajien koulutus oppimisen kognitiotieteestä. Pilotit alkavat yhdellä kurssilla, yhdellä lukukaudella, ilmaiseksi."}
   >
     <div slot="copy" class="mt-9 flex flex-wrap gap-4">
       <a href="/fi/contact" class="btn-primary">Varaa akateeminen keskustelu →</a>
@@ -78,14 +76,14 @@ const deployment = [
         <article class="card p-7">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Kurssi</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            Yksi kurssi, yksi lukukausi, korkeintaan 200 opiskelijaa. Pro-pääsy jokaiselle opiskelijalle, opettajan koontinäyttö ja yksi koulutussessio.
+            Yksi kurssi, yksi lukukausi, korkeintaan 200 opiskelijaa. Pro-pääsy jokaiselle opiskelijalle ja yksi koulutussessio.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Tyypillinen käyttöönotto: pilotti</p>
         </article>
         <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Laitos</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            Koko laitos. Monivuotinen sopimus. SSO, auditointiloki, omistettu tuen SLA. Opettajakoulutus jokaiselle mukaan tulevalle oppiaineelle.
+            Koko laitos. Monivuotinen sopimus. Omistettu tuen SLA. Opettajakoulutus jokaiselle mukaan tulevalle oppiaineelle.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">Tyypillinen käyttöönotto: toinen vuosi</p>
         </article>
@@ -139,7 +137,7 @@ const deployment = [
         <h2 class="font-serif text-display-xl text-paper-50">IT-osastosi pitää myös tästä.</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
         {deployment.map((d) => (
           <article class="card p-6">
             <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
@@ -181,7 +179,7 @@ const deployment = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">GDPR oletuksena. FERPA-tietoinen. WCAG 2.1 AA -tavoite.</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        Yksityiskohdat löytyvät tietoturvasivulta — alikäsittelijöiden lista, Data Processing Agreement, salausarkkitehtuuri, auditointilokin malli.
+        Yksityiskohdat löytyvät tietoturvasivulta — alikäsittelijöiden lista, Data Processing Agreement ja salausarkkitehtuuri.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a href="/fi/security" class="btn-secondary">Lue tietoturva-arkkitehtuuri →</a>

@@ -21,10 +21,6 @@ const pillars = [
     body: "Du kan använda Fluera helt offline. Sync är opt-in per anteckningsbok, inte på kontonivå. Stänger du av sync lämnar din data inte enheten — inklusive telemetri, som baseras på samtycke och är anonym.",
   },
   {
-    title: "Revisionsspår (institutioner)",
-    body: "För Education-konton loggas varje åtkomst till delade anteckningsböcker i ett oföränderligt spår, exporterbart för compliance-revisioner. Administratörer kan tvinga fram SSO (SAML, OIDC) och MDM-utrullning.",
-  },
-  {
     title: "Vad vi inte gör",
     body: "Ingen reklam. Ingen försäljning av data. Vi tränar inte våra modeller på ditt innehåll. Vi spårar dig inte över webben. Vi delar inte data med tredje part utöver de deklarerade underbiträdena (listade på sidan Underbiträden) — alla under DPA.",
   },
@@ -49,7 +45,7 @@ const pillars = [
     <div class="container-site">
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
         {pillars.map((p, i) => (
-          <article class="card p-8">
+          <article class:list={["card p-8", { "md:col-span-2": pillars.length % 2 === 1 && i === pillars.length - 1 }]}>
             <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
             <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
             <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
@@ -78,7 +74,7 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Compliance och utrullning</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Ska du införa Fluera på en institution?</h2>
           <p class="prose-ink mb-6">
-            Universitet, skolor, forskningslabb: vi kan guida dig genom DPA, lista över underbiträden, SSO-setup och revisionsspårsmodellen. Piloter brukar börja med en klass, en termin, utan kostnad.
+            Universitet, skolor, forskningslabb: vi kan guida dig genom DPA och listan över underbiträden. Piloter brukar börja med en klass, en termin, utan kostnad.
           </p>
           <a href="/sv/contact" class="btn-primary">Prata om utrullning →</a>
         </div>

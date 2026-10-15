@@ -1,0 +1,25 @@
+---
+/**
+ * "Questions, bugs, ideas? Join us on Discord" — the community line on the
+ * contact page (all 16 locales). Strings come from src/locales/*.json.
+ */
+import DiscordIcon from "@/components/DiscordIcon.astro";
+import { SITE } from "@/lib/site";
+import { localeFromPathname, t } from "@/lib/i18n";
+
+const locale = localeFromPathname(Astro.url.pathname);
+---
+
+<p class="mt-10 max-w-5xl flex flex-wrap items-center gap-x-3 gap-y-2 text-paper-300">
+  <span>{t("community.discord.lead", locale)}</span>
+  <a
+    href={SITE.community.discord}
+    target="_blank"
+    rel="noopener"
+    class="inline-flex items-center gap-2 font-medium text-paper-50 hover:text-accent-glow transition-colors"
+  >
+    <DiscordIcon class="h-5 w-5 shrink-0" />
+    <span>{t("community.discord.join", locale)}</span>
+    <span class="sr-only">{t("link.opensInNewTab", locale)}</span>
+  </a>
+</p>

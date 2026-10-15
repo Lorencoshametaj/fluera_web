@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Säkerhetsarkitektur"
-  description="Hur Fluera krypterar din anteckningsbok i vila, i transit och mellan enheter. SQLCipher, TLS 1.3, molnsynk på EU-infrastruktur, opt-in-telemetri, revisionsspår för institutioner."
+  description="Hur Fluera krypterar din anteckningsbok i vila, i transit och mellan enheter. SQLCipher, TLS 1.3, molnsynk på EU-infrastruktur, opt-in-telemetri."
   locale="sv"
 >
   <PageHero
@@ -67,11 +67,6 @@ import { SITE } from "@/lib/site";
       <h2>Telemetri: opt-in, hashad, allowlistad</h2>
       <p>
         Produktanalys är avstängd som standard. När den är på är händelserna begränsade till en whitelist på servern (sessionsstart/-slut, funktionsanrop, AI-anropsduration — aldrig innehåll). Användar-ID:t hashas med SHA-256 på enheten; ID:t i klartext lämnar aldrig klienten. Händelser sparas i 180 dagar och aggregeras eller raderas sedan.
-      </p>
-
-      <h2>Revisionsspår (Institutional-konton)</h2>
-      <p>
-        Varje åtkomst till delade anteckningsböcker — vem, från vilken enhet, när — skrivs till ett append-only-revisionsspår. Administratörer kan exportera spåret som CSV eller JSON för compliance-kontroller. Spåret är write-once: borttagning kräver en dokumenterad motivering och loggas i sin tur.
       </p>
 
       <h2>Dataåterställning</h2>

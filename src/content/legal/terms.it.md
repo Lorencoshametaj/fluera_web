@@ -3,7 +3,7 @@ lang: "it"
 slug: "terms"
 title: "Termini e Condizioni d'uso"
 versione: "1.5"
-aggiornato: "14 agosto 2026"
+aggiornato: "15 ottobre 2026"
 sommario: "I presenti Termini e Condizioni d'uso (i \"**Termini**\") disciplinano l'accesso e l'utilizzo dell'applicazione Fluera e dei servizi correlati. L'utilizzo del servizio implica l'accettazione integrale dei presenti Termini."
 fonte: "Fluera/assets/legal/terms_it.md"
 ---
@@ -40,9 +40,9 @@ Disponibile per Android, iOS, macOS, Windows, Linux e Web. Alcune funzioni richi
 L'utente è responsabile della riservatezza delle credenziali e di tutte le attività via account. Deve comunicare tempestivamente qualsiasi uso non autorizzato.
 
 ### 4.3 Età minima
-**Utilizzando Fluera dichiari di avere almeno 14 anni.** Se hai meno di 14 anni, non puoi creare un account né utilizzare il Servizio. Per gli utenti tra 14 e 18 anni, l'uso può richiedere il consenso del genitore o tutore secondo la legge applicabile (DLgs 196/2003 art. 2-quinquies in Italia; età minima di consenso digitale in altri ordinamenti UE).
+**Utilizzando Fluera dichiari di avere almeno 16 anni.** Se hai meno di 16 anni, non puoi creare un account né utilizzare il Servizio. Per gli utenti tra 16 e 18 anni, l'uso può richiedere il consenso del genitore o tutore secondo la legge applicabile (DLgs 196/2003 art. 2-quinquies in Italia; età minima di consenso digitale in altri ordinamenti UE).
 
-Se veniamo a conoscenza di un account creato da un minore di 14 anni, l'account viene sospeso e cancellato entro 30 giorni. Per segnalare un uso non conforme, scrivici a `support@fluera.dev`.
+Se veniamo a conoscenza di un account creato da un minore di 16 anni, l'account viene sospeso e cancellato entro 30 giorni. Per segnalare un uso non conforme, scrivici a `support@fluera.dev`.
 
 ## 5. Licenza d'uso
 
@@ -78,7 +78,7 @@ sessuali, violenti o che mettono a rischio i minori; dati personali di altre
 persone (compagni, docenti, pazienti) contenuti negli appunti; contenuti
 illegali o che violano diritti altrui.
 
-**Dichiari, caricando,** di avere almeno 14 anni (§4.3) e di avere i diritti sul
+**Dichiari, caricando,** di avere almeno 16 anni (§4.3) e di avere i diritti sul
 materiale o comunque il diritto di condividerlo. Registriamo la versione di
 questi Termini che accetti in quel momento.
 

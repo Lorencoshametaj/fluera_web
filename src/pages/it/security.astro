@@ -21,10 +21,6 @@ const pillars = [
     body: "Puoi usare Fluera completamente offline. Il sync è opt-in per quaderno, non a livello account. Se spegni il sync, i tuoi dati non lasciano il dispositivo — inclusa la telemetria, che è basata sul consenso e anonima.",
   },
   {
-    title: "Audit log (Istituzioni)",
-    body: "Per gli account Education, ogni accesso ai quaderni condivisi è registrato in un audit trail immutabile, esportabile per audit di compliance. Gli amministratori possono imporre SSO (SAML, OIDC) e deploy MDM.",
-  },
-  {
     title: "Cosa non facciamo",
     body: "Niente pubblicità. Niente vendita dei dati. Non addestriamo i nostri modelli sui tuoi contenuti. Non ti tracciamo sul web. Non passiamo dati a terzi oltre ai sub-processor dichiarati (elencati nella pagina Sub-processor) — tutti sotto DPA.",
   },
@@ -49,7 +45,7 @@ const pillars = [
     <div class="container-site">
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
         {pillars.map((p, i) => (
-          <article class="card p-8">
+          <article class:list={["card p-8", { "md:col-span-2": pillars.length % 2 === 1 && i === pillars.length - 1 }]}>
             <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
             <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
             <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
@@ -78,7 +74,7 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Compliance e deploy</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Stai per adottare Fluera in un'istituzione?</h2>
           <p class="prose-ink mb-6">
-            Università, scuole, laboratori di ricerca: possiamo guidarti su DPA, lista sub-processor, setup SSO e modello di audit log. I piloti partono di solito con una classe, un semestre, senza costi.
+            Università, scuole, laboratori di ricerca: possiamo guidarti su DPA e lista sub-processor. I piloti partono di solito con una classe, un semestre, senza costi.
           </p>
           <a href="/it/contact" class="btn-primary">Parliamone per il deploy →</a>
         </div>

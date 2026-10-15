@@ -9,7 +9,7 @@ const useCases = [
   },
   {
     title: "Tentamenvoorbereiding op schaal",
-    body: "Fog of War + gespreide herhaling veranderen het persoonlijke canvas van de student in een motor voor ophaalpraktijk. Docenten kunnen studieroutes per onderwerp voorstellen zonder de inhoud te dicteren.",
+    body: "Fog of War + gespreide herhaling veranderen het persoonlijke canvas van de student in een motor voor ophaalpraktijk.",
   },
   {
     title: "STEM-labjournaals",
@@ -18,9 +18,7 @@ const useCases = [
 ];
 
 const deployment = [
-  { label: "SSO",                 body: "SAML 2.0 en OIDC. Integreert met SURFconext, Azure AD, Okta, Google Workspace for Education." },
   { label: "MDM-friendly",        body: "Standaard enterprise-distributie via App Store / Play. Windows en macOS als ondertekende installers. Geen sideloading." },
-  { label: "Audit-trail",         body: "Onveranderlijk toegangslogboek per account. Exporteerbaar voor compliance-audits." },
   { label: "Dataresidentie",      body: "Standaard servers in Europa. Verwerkersovereenkomst beschikbaar op verzoek." },
   { label: "Toegankelijkheid",    body: "We werken toe naar WCAG 2.1 AA op alle platforms. Schermlezerondersteuning en hoog-contrastmodus staan op de roadmap; kwastgevoeligheid is vandaag al aanpasbaar voor motorische verschillen." },
   { label: "On-prem",             body: "Op de Enterprise-roadmap. Vandaag: alleen cloud met sterke versleuteling en regionale controles." },
@@ -29,7 +27,7 @@ const deployment = [
 
 <BaseLayout
   title="Fluera voor universiteiten"
-  description="Breng evidence-based studietools naar je faculteit. Multi-seat-licenties, SSO, audit-trail, docententraining over de cyclus van 12 stappen. Pilotprogramma's beschikbaar."
+  description="Breng evidence-based studietools naar je faculteit. Multi-seat-licenties, docententraining over de cyclus van 12 stappen. Pilotprogramma's beschikbaar."
   locale="nl"
 >
 
@@ -37,7 +35,7 @@ const deployment = [
     kicker={"Universiteiten en scholen"}
     title={"Cognitieve infrastructuur<br />voor de moderne universiteit."}
     titleSize="2xl"
-    description={"Evidence-based studietools voor je studenten. SSO voor je IT. Docententraining over de cognitieve wetenschap van leren. Pilots beginnen met één klas, één semester, gratis."}
+    description={"Evidence-based studietools voor je studenten. Docententraining over de cognitieve wetenschap van leren. Pilots beginnen met één klas, één semester, gratis."}
   >
     <div slot="copy" class="mt-9 flex flex-wrap gap-4">
       <a href="/nl/contact" class="btn-primary">Plan een academisch gesprek →</a>
@@ -78,14 +76,14 @@ const deployment = [
         <article class="card p-7">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Klas</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            Eén vak, één semester, tot 200 studenten. Pro-toegang voor elke student, docentdashboard en één trainingssessie.
+            Eén vak, één semester, tot 200 studenten. Pro-toegang voor elke student en één trainingssessie.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-ink-500">Typische adoptie: pilot</p>
         </article>
         <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
           <h3 class="font-serif text-xl text-paper-50 mb-3">Faculteit</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            Hele faculteit. Meerjarig contract. SSO, audit-trail, dedicated support-SLA. Docententraining voor elk vak dat instapt.
+            Hele faculteit. Meerjarig contract. Dedicated support-SLA. Docententraining voor elk vak dat instapt.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">Typische adoptie: tweede jaar</p>
         </article>
@@ -139,7 +137,7 @@ const deployment = [
         <h2 class="font-serif text-display-xl text-paper-50">Je IT-afdeling zal het ook waarderen.</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
         {deployment.map((d) => (
           <article class="card p-6">
             <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
@@ -181,7 +179,7 @@ const deployment = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">AVG vanaf de basis. FERPA-aware. WCAG 2.1 AA als doel.</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        De details staan op de beveiligingspagina — lijst van subverwerkers, verwerkersovereenkomst, versleutelingsarchitectuur, audit-trail-model.
+        De details staan op de beveiligingspagina — lijst van subverwerkers, verwerkersovereenkomst en versleutelingsarchitectuur.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a href="/nl/security" class="btn-secondary">Lees de beveiligingsarchitectuur →</a>

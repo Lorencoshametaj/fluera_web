@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Security architecture"
-  description="How Fluera encrypts your notebook at rest and in transit, and how cloud sync works. SQLCipher, TLS 1.3, EU-hosted sync, opt-in telemetry, audit log for Education."
+  description="How Fluera encrypts your notebook at rest and in transit, and how cloud sync works. SQLCipher, TLS 1.3, EU-hosted sync, opt-in telemetry."
 >
 
   <PageHero
@@ -72,11 +72,6 @@ import { SITE } from "@/lib/site";
       <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">Telemetry: opt-in, hashed, allowlisted</h2>
       <p>
         Product analytics are disabled by default. When enabled, events are restricted to a server-side allowlist (session start/end, feature invocation, AI call duration — never content). The user ID is hashed SHA-256 on the device; the raw ID never leaves. Events are retained for 180 days then aggregated or deleted.
-      </p>
-
-      <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">Audit log (Education accounts)</h2>
-      <p>
-        Every access to shared notebooks — who opened it, from which device, when — is written to an append-only audit log. Administrators can export the log as CSV or JSON for compliance reviews. The log is write-once: deletion requires a documented business reason and is itself logged.
       </p>
 
       <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">Data recovery</h2>

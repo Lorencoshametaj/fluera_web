@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Beveiligingsarchitectuur"
-  description="Hoe Fluera je notitieboek beschermt in rust, in transit en tussen apparaten. SQLCipher, TLS 1.3, cloud sync op EU-infrastructuur, opt-in telemetrie, audittrail voor instellingen."
+  description="Hoe Fluera je notitieboek beschermt in rust, in transit en tussen apparaten. SQLCipher, TLS 1.3, cloud sync op EU-infrastructuur, opt-in telemetrie."
   locale="nl"
 >
   <PageHero
@@ -70,11 +70,6 @@ import { SITE } from "@/lib/site";
       <h2>Telemetrie: opt-in, gehasht, allowlisted</h2>
       <p>
         Productanalytics staan standaard uit. Wanneer ze ingeschakeld zijn, zijn de events beperkt tot een server-side whitelist (sessie start/einde, aanroep van een functie, duur van AI-call — nooit inhoud). De gebruikers-ID wordt op het apparaat met SHA-256 gehasht; de plaintext-ID verlaat de client nooit. Events worden 180 dagen bewaard, daarna geaggregeerd of verwijderd.
-      </p>
-
-      <h2>Audittrail (institutionele accounts)</h2>
-      <p>
-        Elke toegang tot gedeelde notitieboeken — wie, vanaf welk apparaat, wanneer — wordt geschreven naar een append-only audittrail. Beheerders kunnen de trail exporteren als CSV of JSON voor compliance-controles. De trail is write-once: verwijderen vereist een gedocumenteerde motivatie en wordt zelf ook gelogd.
       </p>
 
       <h2>Gegevensherstel</h2>

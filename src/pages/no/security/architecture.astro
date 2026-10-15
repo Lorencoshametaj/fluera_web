@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Sikkerhetsarkitektur"
-  description="Hvordan Fluera beskytter notatboken din i ro, i transitt og mellom enheter. SQLCipher, TLS 1.3, EU-hostet skysynkronisering, opt-in-telemetri, audit-spor for institusjoner."
+  description="Hvordan Fluera beskytter notatboken din i ro, i transitt og mellom enheter. SQLCipher, TLS 1.3, EU-hostet skysynkronisering, opt-in-telemetri."
   locale="no"
 >
   <PageHero
@@ -67,11 +67,6 @@ import { SITE } from "@/lib/site";
       <h2>Telemetri: opt-in, hashet, allowlistet</h2>
       <p>
         Produktanalytikken er deaktivert som standard. Når aktivert, er hendelsene begrenset til en serverside-whitelist (øktstart/-slutt, kall av en funksjon, varighet på et KI-kall — aldri innhold). Bruker-ID-en hashes på enheten med SHA-256; klartekst-ID-en forlater aldri klienten. Hendelsene oppbevares i 180 dager og aggregeres eller slettes etterpå.
-      </p>
-
-      <h2>Audit-spor (institusjonelle kontoer)</h2>
-      <p>
-        All tilgang til delte notatbøker — hvem, fra hvilken enhet, når — skrives til et append-only audit-spor. Administratorer kan eksportere sporet som CSV eller JSON for compliance-kontroller. Sporet er write-once: fjerning krever en dokumentert begrunnelse og logges selv.
       </p>
 
       <h2>Gjenoppretting av data</h2>

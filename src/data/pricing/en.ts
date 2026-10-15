@@ -117,10 +117,6 @@ const data: PricingData = {
       a: "Refund and withdrawal terms depend on the store and purchase channel. The applicable policy is shown before you confirm; for help, email support@fluera.dev from the address you signed up with.",
     },
     {
-      q: "How does student verification work?",
-      a: "Verified .edu or academic email. For European universities without .edu we accept a scanned student card, ISIC card, or a one-time email from your faculty office.",
-    },
-    {
       q: "Discounts for researchers or non-profits?",
       a: "Yes. Research labs, PhD programs, and registered non-profits can apply at /contact — we typically grant Pro at the Plus rate or free in exchange for structured feedback.",
     },

@@ -14,7 +14,7 @@ Fluera is a local-first tool. By default, nothing leaves your device unless you 
 Open **Settings → Privacy**. You will see four toggles, all off by default:
 
 - **Product analytics.** Anonymous session data — feature invocation counts, session length, AI call durations. Never content. SHA-256-hashed user ID, 180-day retention.
-- **AI features.** Required to use Socratic, Ghost Map, LaTeX OCR, and Fog of War. Selected canvas text is sent to Google Gemini models served via Google Vertex AI, processed in the EU (`europe-west4` NL / `europe-west1` BE). Never the full notebook.
+- **AI features.** Required to use Socratic, Ghost Map, LaTeX OCR, and Fog of War. Selected canvas text is sent to Google Gemini models served via Google Vertex AI, processed in the EU (2.5 models in the `europe-west4` NL / `europe-west1` BE regions, 3.x models on the Vertex AI EU multi-region endpoint): the data stays within EU member states. Never the full notebook.
 - **Cloud sync.** Required to sync canvases between devices. Synced data is encrypted in transit (TLS) and at rest on EU infrastructure (Supabase, `eu-north-1`). It is **not** end-to-end encrypted: as data controller Fluera can technically access synced content. We never sell it and never use it for advertising.
 - **Crash reporting.** Stack traces and device metadata when the app crashes. No user content. Processed by Sentry with `sendDefaultPii: false`.
 

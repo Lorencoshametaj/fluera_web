@@ -21,10 +21,6 @@ const pillars = [
     body: "Du kan bruke Fluera helt offline. Sync er opt-in per notatbok, ikke på kontonivå. Slår du av sync, forlater dataene aldri enheten — inkludert telemetri, som er samtykkebasert og anonym.",
   },
   {
-    title: "Audit-spor (institusjoner)",
-    body: "For Education-kontoer registreres hver tilgang til delte notatbøker i et uforanderlig spor, eksporterbart for compliance-revisjoner. Administratorer kan håndheve SSO (SAML, OIDC) og MDM-deployment.",
-  },
-  {
     title: "Det vi ikke gjør",
     body: "Ingen annonser. Ingen datasalg. Vi trener ikke modellene våre på innholdet ditt. Vi sporer deg ikke på nettet. Vi deler ikke data med noen utenfor de erklærte underleverandørene (oppført på siden Underleverandører) — alle under DPA.",
   },
@@ -49,7 +45,7 @@ const pillars = [
     <div class="container-site">
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
         {pillars.map((p, i) => (
-          <article class="card p-8">
+          <article class:list={["card p-8", { "md:col-span-2": pillars.length % 2 === 1 && i === pillars.length - 1 }]}>
             <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
             <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
             <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
@@ -78,7 +74,7 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Compliance og deployment</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Planlegger adopsjon på en institusjon?</h2>
           <p class="prose-ink mb-6">
-            Universiteter, skoler, forskningslabber: vi kan ta deg gjennom DPA, listen over underleverandører, SSO-oppsett og audit-spor-modell. Pilotprogrammer starter som regel med ett emne, ett semester, kostnadsfritt.
+            Universiteter, skoler, forskningslabber: vi kan ta deg gjennom DPA og listen over underleverandører. Pilotprogrammer starter som regel med ett emne, ett semester, kostnadsfritt.
           </p>
           <a href="/no/contact" class="btn-primary">Snakk om deployment →</a>
         </div>

@@ -14,29 +14,15 @@ const processors = [
   {
     name: "Google Cloud (Google Ireland Ltd.)",
     purpose: "Vertex AI (Gemini models) for Socratic mode, Ghost Map, LaTeX OCR, and exam-session generation.",
-    dataTypes: "Selected canvas content submitted only when AI features are consented and used — text portions and rendered PNG images of individual handwriting-cluster regions. Never the full notebook.",
-    region: "European Union only — europe-west4 (Netherlands) primary, europe-west1 (Belgium) failover. No transfer of canvas content outside the EU for AI inference.",
+    dataTypes: "Selected canvas content submitted only when AI features are consented and used — text portions and rendered PNG images of individual handwriting-cluster regions. Never the full notebook. Separately, for the automated check for illegal content, without the AI-features consent: the thumbnail, images, title and description of a card you upload to the catalogue or share privately, and a creator's profile photo.",
+    region: "European Union only — EU endpoints of Vertex AI: the europe-west4 (Netherlands) and europe-west1 (Belgium) regions, or the EU multi-region endpoint, which Google limits to EU member states. No transfer of canvas content outside the EU for AI inference.",
     privacy: "https://cloud.google.com/terms/data-processing-addendum",
   },
   {
-    name: "Google LLC",
-    purpose: "Sign in with Google authentication (identity provider).",
-    dataTypes: "Google account email and account identifier. No canvas data.",
-    region: "US; SCC + EU-US DPF.",
-    privacy: "https://policies.google.com/privacy",
-  },
-  {
-    name: "Apple Inc.",
-    purpose: "Sign in with Apple authentication; App Store in-app purchases on iOS and macOS.",
-    dataTypes: "Apple ID email relay, receipt identifiers. No canvas data.",
-    region: "US; SCC + EU-US DPF.",
-    privacy: "https://www.apple.com/legal/privacy/",
-  },
-  {
     name: "RevenueCat Inc.",
-    purpose: "Subscription management and receipt validation across iOS, Android, and web.",
-    dataTypes: "Anonymised RevenueCat user ID, subscription status, receipt metadata. No payment card data.",
-    region: "US; SCC + EU-US DPF.",
+    purpose: "Subscription management and receipt validation for purchases made through the App Store and Google Play (iOS, macOS, Android).",
+    dataTypes: "Pseudonymous account ID (the user ID of the Fluera account, or an anonymous RevenueCat ID before sign-in), subscription status, receipt metadata. Sent from app launch on iOS, macOS and Android, to manage the subscription. No payment card data.",
+    region: "US; SCC.",
     privacy: "https://www.revenuecat.com/privacy",
   },
   {
@@ -48,7 +34,7 @@ const processors = [
     // this page had named the United States instead — understating our own
     // posture, but wrong either way in an Art. 28 disclosure, and wrong in all
     // sixteen languages at once.
-    region: "European Union (Frankfurt) — the production DSN ingests into Sentry's EU data region. Processor entity is US-incorporated; SCC + EU-US DPF.",
+    region: "European Union (Frankfurt) — the production DSN ingests into Sentry's EU data region. Processor entity is US-incorporated; SCC.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -60,10 +46,13 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-09-29";
+const lastUpdated = "2026-10-15";
 // fluera.dev e' su GitHub Pages: GitHub non e' un sub-processor (titolare
 // autonomo dei log delle visite, nessun DPA con un account gratuito).
 const notaGithub = "fluera.dev itself is hosted on GitHub Pages. GitHub Inc. is not a sub-processor: it records the technical data of visits (IP address, time, page) to secure its own service, as an independent controller under its own privacy statement. The same applies to the typefaces that share.fluera.dev loads from fluera.dev.";
+// Apple e Google non sono sub-processor (informativa 1.8.6 §4,
+// docs/processor_agreements.md): titolari autonomi per accesso e acquisti.
+const notaAppleGoogle = "Apple and Google are not sub-processors either. For Sign in with Apple, Sign in with Google and purchases through the App Store and Google Play, they act as independent controllers for the data of their own platforms, under their own terms and privacy policies.";
 ---
 
 <BaseLayout
@@ -111,6 +100,7 @@ const notaGithub = "fluera.dev itself is hosted on GitHub Pages. GitHub Inc. is 
         ))}
       </ul>
       <p class="prose-ink text-sm mt-8 max-w-5xl">{notaGithub} <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub privacy statement ↗</a></p>
+      <p class="prose-ink text-sm mt-4 max-w-5xl">{notaAppleGoogle} <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple privacy policy ↗</a> · <a href="https://policies.google.com/privacy" rel="noopener">Google privacy policy ↗</a></p>
     </div>
   </section>
 

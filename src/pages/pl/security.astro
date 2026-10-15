@@ -21,10 +21,6 @@ const pillars = [
     body: "Możesz uruchomić Fluerę całkowicie offline. Synchronizacja jest opt-in dla notatnika, nie dla całego konta. Jeśli wyłączysz synchronizację, Twoje dane nie opuszczają urządzenia — łącznie z opartą na zgodzie i anonimową telemetrią.",
   },
   {
-    title: "Dziennik audytu (Edukacja)",
-    body: "Dla kont edukacyjnych każdy dostęp do współdzielonych notatników jest rejestrowany w niezmiennym śladzie audytowym, eksportowalnym do przeglądów zgodności. Administratorzy mogą wymuszać SSO (SAML, OIDC) i wdrożenia zarządzane przez MDM.",
-  },
-  {
     title: "Czego nie robimy",
     body: "Nie wyświetlamy reklam. Nie sprzedajemy danych. Nie trenujemy naszych modeli na Twoich treściach. Nie śledzimy Cię w sieci. Nie przekazujemy danych stronom trzecim poza wymienionymi podwykonawcami (lista na stronie Podwykonawcy) — wszyscy w ramach DPA.",
   },
@@ -49,7 +45,7 @@ const pillars = [
     <div class="container-site">
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
         {pillars.map((p, i) => (
-          <article class="card p-8">
+          <article class:list={["card p-8", { "md:col-span-2": pillars.length % 2 === 1 && i === pillars.length - 1 }]}>
             <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
             <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
             <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
@@ -78,7 +74,7 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Zgodność i wdrożenie</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Wdrażasz Fluerę w swojej instytucji?</h2>
           <p class="prose-ink mb-6">
-            Uniwersytety, szkoły i laboratoria badawcze: opowiadamy o naszym DPA, liście podwykonawców, konfiguracji SSO i modelu dziennika audytu. Pilotaże zwykle zaczynają się od jednej klasy, jednego semestru, bez opłat.
+            Uniwersytety, szkoły i laboratoria badawcze: opowiadamy o naszym DPA i liście podwykonawców. Pilotaże zwykle zaczynają się od jednej klasy, jednego semestru, bez opłat.
           </p>
           <a href="/pl/contact" class="btn-primary">Porozmawiaj o wdrożeniu →</a>
         </div>

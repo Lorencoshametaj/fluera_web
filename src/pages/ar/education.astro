@@ -9,7 +9,7 @@ const useCases = [
   },
   {
     title: "التحضير للامتحان على نطاق واسع",
-    body: "Fog of War + التكرار المتباعد يُحوِّلان لوحة الطالب الشخصية إلى محرّك ممارسة استرجاع. يمكن للأساتذة التوصية بمسارات دراسة بحسب الموضوع دون إعداد المواد.",
+    body: "Fog of War + التكرار المتباعد يُحوِّلان لوحة الطالب الشخصية إلى محرّك ممارسة استرجاع.",
   },
   {
     title: "دفاتر مختبرات STEM",
@@ -18,9 +18,7 @@ const useCases = [
 ];
 
 const deployment = [
-  { label: "SSO",              body: "SAML 2.0 وOIDC. يتكامل مع Shibboleth وAzure AD وOkta وGoogle Workspace for Education." },
   { label: "متوافق مع MDM",     body: "توزيع مؤسّسي معياري عبر App Store / Play. على Windows وmacOS كمثبّتات موقّعة. لا تحميل جانبي." },
-  { label: "سجلّ تدقيق",        body: "أثر وصول غير قابل للتعديل لكلّ حساب. قابل للتصدير لتدقيقات الالتزام." },
   { label: "إقامة البيانات",    body: "خوادم في الاتّحاد الأوروبي بشكل افتراضي. اتفاقية معالجة بيانات متاحة عند الطلب." },
   { label: "إمكانية الوصول",    body: "نعمل على بلوغ WCAG 2.1 AA على كلّ المنصّات. دعم قارئات الشاشة ووضع التباين العالي على خارطة الطريق. إخلاص فرشاة قابل للتعديل لاختلافات حركية." },
   { label: "داخل الشركة",        body: "في خارطة طريق Enterprise. اليوم: السحاب فقط بتشفير قويّ وتحكّم إقليمي." },
@@ -29,7 +27,7 @@ const deployment = [
 
 <BaseLayout
   title="Fluera للجامعات — بنية معرفية للتعليم العالي"
-  description="أحضِر إلى أعضاء هيئتك التدريسية أداة دراسة قائمة على الأدلّة. تراخيص متعدّدة المقاعد، SSO، سجلّ تدقيق، تدريب أعضاء الهيئة على دورة الـ12 خطوة. برنامج تجريبي متاح."
+  description="أحضِر إلى أعضاء هيئتك التدريسية أداة دراسة قائمة على الأدلّة. تراخيص متعدّدة المقاعد، تدريب أعضاء الهيئة على دورة الـ12 خطوة. برنامج تجريبي متاح."
   locale="ar"
 >
 
@@ -37,7 +35,7 @@ const deployment = [
     kicker={"الجامعات والمدارس"}
     title={"بنية معرفية<br />للجامعة الحديثة."}
     titleSize="2xl"
-    description={"أداة دراسة قائمة على الأدلّة لطلّابك. SSO لِفِرَق الـIT لديك. تدريب أعضاء الهيئة على علم الإدراك للتعلّم. تبدأ التجارب التجريبية بفصل واحد لقسم واحد ولفصل دراسي واحد، مجّانًا."}
+    description={"أداة دراسة قائمة على الأدلّة لطلّابك. تدريب أعضاء الهيئة على علم الإدراك للتعلّم. تبدأ التجارب التجريبية بفصل واحد لقسم واحد ولفصل دراسي واحد، مجّانًا."}
   >
     <div slot="copy" class="mt-9 flex flex-wrap gap-4">
       <a href="/ar/contact" class="btn-primary">احجز مكالمة تعليمية ←</a>
@@ -78,14 +76,14 @@ const deployment = [
         <article class="card p-7">
           <h3 class="font-serif text-xl text-paper-50 mb-3">الفصل</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            مقرّر واحد، فصل دراسي واحد، حتى 200 طالب. وصول Pro لكلّ طالب، لوحة معلّم، وجلسة تدريب واحدة.
+            مقرّر واحد، فصل دراسي واحد، حتى 200 طالب. وصول Pro لكلّ طالب وجلسة تدريب واحدة.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-ink-500">التبنّي المعتاد: تجريبي</p>
         </article>
         <article class="card p-7 border-accent-ink/40 bg-accent-ink/[0.05]">
           <h3 class="font-serif text-xl text-paper-50 mb-3">القسم</h3>
           <p class="text-sm text-paper-300 mb-4 leading-relaxed">
-            قسم كامل. عقود متعدّدة السنوات. SSO، سجلّ تدقيق، اتفاقية مستوى خدمة دعم مخصّصة. تدريب أعضاء هيئة لكلّ مقرّر.
+            قسم كامل. عقود متعدّدة السنوات. اتفاقية مستوى خدمة دعم مخصّصة. تدريب أعضاء هيئة لكلّ مقرّر.
           </p>
           <p class="text-xs font-mono uppercase tracking-widest text-accent-glow">التبنّي المعتاد: السنة الثانية</p>
         </article>
@@ -139,7 +137,7 @@ const deployment = [
         <h2 class="font-serif text-display-xl text-paper-50">فِرَق الـIT لديك ستحبّنا أيضًا.</h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+      <div class="grid sm:grid-cols-2 gap-4 max-w-5xl">
         {deployment.map((d) => (
           <article class="card p-6">
             <h3 class="font-serif text-base font-medium text-paper-50 mb-2">{d.label}</h3>
@@ -181,7 +179,7 @@ const deployment = [
     <div class="container-narrow text-center">
       <h2 class="font-serif text-display-lg text-paper-50 mb-4">متوافق مع GDPR. على دراية بـFERPA. هدف WCAG 2.1 AA.</h2>
       <p class="prose-ink mb-8 max-w-2xl mx-auto">
-        التفاصيل تعيش في صفحة الأمان — قائمة المعالجين الفرعيين، اتفاقية معالجة البيانات، بنية التشفير، نموذج سجلّ التدقيق.
+        التفاصيل تعيش في صفحة الأمان — قائمة المعالجين الفرعيين، اتفاقية معالجة البيانات وبنية التشفير.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a href="/ar/security" class="btn-secondary">اقرأ بنية الأمان ←</a>

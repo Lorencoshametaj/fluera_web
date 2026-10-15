@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageHero from "@/components/PageHero.astro";
+import DiscordInvite from "@/components/DiscordInvite.astro";
 import { SITE } from "@/lib/site";
 
 const channels = [
@@ -58,6 +59,7 @@ const channels = [
         </article>
       ))}
     </div>
+    <DiscordInvite />
   </PageHero>
 
   <section class="py-16 border-t border-white/[0.04] bg-ink-900/40">

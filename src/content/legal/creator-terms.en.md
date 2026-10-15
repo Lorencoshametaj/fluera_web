@@ -2,7 +2,7 @@
 lang: "en"
 slug: "creator-terms"
 title: "Fluera Marketplace — Creator Terms of Service"
-versione: "mkt-2026-08"
+versione: "mkt-2026-10"
 fonte: "Fluera/assets/legal/creator_terms_en.md"
 ---
 <!-- GENERATO da tools/testi_legali_sul_sito.py: NON modificare qui. La sorgente è Fluera/assets/legal/creator_terms_en.md, il testo che l'app mostra. -->
@@ -22,16 +22,18 @@ fonte: "Fluera/assets/legal/creator_terms_en.md"
 > The terms bind the parties from acceptance; this note concerns their robustness,
 > not their effectiveness.
 
-**Version:** `mkt-2026-08`
+**Version:** `mkt-2026-10`
 *(This is the exact string recorded as `accepted_tos_version` on every share, and
 it matches `kMarketplaceTosVersion` in
 `fluera_engine/lib/src/marketplace/study_seed_publish.dart`. Changing these terms
 means changing that constant and obtaining acceptance again.*
+*The previous version, `mkt-2026-08`, applied from 14 August 2026; this one raises
+the minimum age to use Fluera to 16.*
 *⚠️ Until 2026-08-14 this document declared `marketplace-terms-v1-2026-07` while
 the code recorded something else entirely: the string here must be the same as in
 the code, or "what did this person agree to" has no answer.)*
 
-**Effective date:** 14 August 2026
+**Effective date:** 15 October 2026
 **Publisher / data controller:** Lorenco Shametaj (natural person; "Fluera" is the brand/product —
 a company is being incorporated, to which the role will transfer),
 Via Boccaccio 44, 35128 Padova (PD), Italy. VAT: not yet assigned.
@@ -276,10 +278,10 @@ other mandatory EU or national consumer/digital-services law.
 
 ## 8. Age requirement
 
-8.1 To publish a Seed you must meet **both** (a) the app's minimum age of **14**
+8.1 To publish a Seed you must meet **both** (a) the app's minimum age of **16**
 and (b) the **digital-consent / age-of-competence** requirement of your
 jurisdiction to enter into these Creator Terms and grant the licence in Section
-2 (in some countries this is higher than 14, or requires the consent/authority
+2 (in some countries this is higher than 16, or requires the consent/authority
 of a holder of parental responsibility).
 
 8.2 By publishing, you confirm you meet these age requirements. We may suspend

@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Arquitectura de seguridad"
-  description="Cómo Fluera protege tu cuaderno en reposo, en tránsito y entre dispositivos. SQLCipher, TLS 1.3, sincronización cifrada en tránsito y en reposo en infraestructura UE, telemetría opt-in, registro de auditoría para instituciones."
+  description="Cómo Fluera protege tu cuaderno en reposo, en tránsito y entre dispositivos. SQLCipher, TLS 1.3, sincronización cifrada en tránsito y en reposo en infraestructura UE, telemetría opt-in."
   locale="es"
 >
   <PageHero
@@ -70,11 +70,6 @@ import { SITE } from "@/lib/site";
       <h2>Telemetría: opt-in, hasheada, allowlisted</h2>
       <p>
         Los analytics de producto vienen apagados por defecto. Cuando se activan, los eventos están limitados a una whitelist en el servidor (inicio/fin de sesión, invocación de función, duración de llamada de IA — nunca contenido). El ID del usuario se hashea con SHA-256 en el dispositivo; el ID en texto claro nunca sale del cliente. Los eventos se retienen 180 días, después se agregan o se borran.
-      </p>
-
-      <h2>Registro de auditoría (cuentas Institucionales)</h2>
-      <p>
-        Cada acceso a los cuadernos compartidos — quién, desde qué dispositivo, cuándo — se escribe en un registro de auditoría append-only. Los administradores pueden exportar el registro en CSV o JSON para controles de compliance. El registro es write-once: la eliminación exige una motivación documentada y queda, ella misma, registrada.
       </p>
 
       <h2>Recuperación de datos</h2>

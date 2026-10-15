@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Architecture de sécurité"
-  description="Comment Fluera protège ton cahier au repos, en transit et entre appareils. SQLCipher, TLS 1.3, synchronisation chiffrée en transit et au repos (UE), télémétrie opt-in, journal d'audit pour les institutions."
+  description="Comment Fluera protège ton cahier au repos, en transit et entre appareils. SQLCipher, TLS 1.3, synchronisation chiffrée en transit et au repos (UE), télémétrie opt-in."
   locale="fr"
 >
   <PageHero
@@ -70,11 +70,6 @@ import { SITE } from "@/lib/site";
       <h2>Télémétrie : opt-in, hashée, allowlistée</h2>
       <p>
         Les analytics produit sont désactivés par défaut. Lorsqu'ils sont activés, les événements sont limités à une whitelist côté serveur (début/fin de session, invocation de fonctionnalité, durée d'appel d'IA — jamais le contenu). L'ID utilisateur est hashé en SHA-256 sur l'appareil ; l'ID en clair ne sort jamais du client. Les événements sont conservés 180 jours, puis agrégés ou supprimés.
-      </p>
-
-      <h2>Journal d'audit (comptes Institutionnels)</h2>
-      <p>
-        Chaque accès aux cahiers partagés — qui, depuis quel appareil, quand — est écrit dans un journal d'audit append-only. Les administrateurs peuvent exporter le journal en CSV ou JSON pour des contrôles de conformité. Le journal est write-once : la suppression exige une justification documentée et est, elle-même, journalisée.
       </p>
 
       <h2>Récupération des données</h2>

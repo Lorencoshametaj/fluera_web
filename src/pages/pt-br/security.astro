@@ -21,10 +21,6 @@ const pillars = [
     body: "Você pode usar o Fluera totalmente offline. A sincronização é opt-in por caderno, não em nível de conta. Se desligar a sincronização, seus dados não saem do dispositivo — incluindo a telemetria, que é baseada em consentimento e anônima.",
   },
   {
-    title: "Trilha de auditoria (Instituições)",
-    body: "Para contas Education, cada acesso aos cadernos compartilhados é registrado em uma trilha imutável, exportável para auditorias de conformidade. Os administradores podem impor SSO (SAML, OIDC) e implantação MDM.",
-  },
-  {
     title: "O que não fazemos",
     body: "Sem publicidade. Sem venda de dados. Não treinamos nossos modelos no seu conteúdo. Não te rastreamos pela web. Não passamos dados a terceiros além dos suboperadores declarados (listados na página Suboperadores) — todos sob DPA.",
   },
@@ -49,7 +45,7 @@ const pillars = [
     <div class="container-site">
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
         {pillars.map((p, i) => (
-          <article class="card p-8">
+          <article class:list={["card p-8", { "md:col-span-2": pillars.length % 2 === 1 && i === pillars.length - 1 }]}>
             <div class="eyebrow text-accent-glow mb-4">{String(i + 1).padStart(2, "0")}</div>
             <h2 class="font-serif text-xl text-paper-50 mb-3">{p.title}</h2>
             <p class="text-sm text-paper-200 leading-relaxed">{p.body}</p>
@@ -78,7 +74,7 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Compliance e implantação</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Vai adotar o Fluera em uma instituição?</h2>
           <p class="prose-ink mb-6">
-            Universidades, escolas, laboratórios de pesquisa: podemos te guiar no DPA, lista de suboperadores, setup de SSO e modelo de trilha de auditoria. Os pilotos costumam começar com uma turma, um semestre, sem custo.
+            Universidades, escolas, laboratórios de pesquisa: podemos te guiar no DPA e na lista de suboperadores. Os pilotos costumam começar com uma turma, um semestre, sem custo.
           </p>
           <a href="/pt-br/contact" class="btn-primary">Conversar sobre implantação →</a>
         </div>

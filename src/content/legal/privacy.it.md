@@ -3,7 +3,7 @@ lang: "it"
 slug: "privacy"
 title: "Informativa Privacy"
 versione: "1.8.6"
-aggiornato: "11 ottobre 2026"
+aggiornato: "15 ottobre 2026"
 sommario: "Informativa sul trattamento dei dati personali degli utenti dell'applicazione Fluera, redatta ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (**GDPR**) e del D.Lgs. 196/2003 come novellato dal D.Lgs. 101/2018."
 fonte: "Fluera/assets/legal/privacy_it.md"
 ---
@@ -49,7 +49,7 @@ Solo se l'utente ha prestato consenso alla categoria **Analytics di prodotto**:
 ### 2.4 Dati per funzioni AI
 Solo se l'utente ha prestato consenso alla categoria **Funzioni AI**:
 - Contenuti selezionati del canvas inviati per Socratic Mode, Ghost Map, LaTeX OCR, Exam Session — porzioni di testo e immagini PNG renderizzate delle singole regioni-cluster di scrittura a mano (mai l'intero blocco note)
-- L'inferenza AI gira su Google Vertex AI nell'**Unione Europea** (europe-west4 Paesi Bassi, con failover europe-west1 Belgio); i contenuti del canvas non vengono trasferiti fuori dall'UE per l'inferenza AI
+- L'inferenza AI gira su Google Vertex AI nell'**Unione Europea**, solo su endpoint dell'UE: le regioni europe-west4 (Paesi Bassi) ed europe-west1 (Belgio), oppure l'endpoint multi-regione UE di Vertex AI, che Google vincola agli Stati membri dell'UE; i contenuti del canvas non vengono trasferiti fuori dall'UE per l'inferenza AI
 - Token di utilizzo per enforcement dei limiti di piano
 - In produzione le chiamate transitano via proxy Supabase Edge Function (chiave API server-side)
 
@@ -197,6 +197,28 @@ togliere l'accesso a una persona, uscire da una scheda che hai ricevuto,
 rimuovere una tua scheda, e segnalare una scheda che hai ricevuto. Le schede di
 cui sei autore rientrano nell'export dei tuoi dati (§7).
 
+**La foto del tuo profilo da autore.** Se aggiungi una foto al tuo profilo da
+autore nel catalogo, la carichiamo su Supabase, nell'UE (§4), e passa da un
+**controllo automatico** come quello delle schede, che gira presso Google Cloud
+(Vertex AI) nell'Unione Europea — vedi §4 e §5. Il controllo riceve soltanto
+l'immagine, senza il tuo nome né altri dati del profilo. Lo scopo è lo stesso:
+impedire che il catalogo mostri contenuti illeciti (§3). Per questo avviene
+anche se non hai dato il consenso alle `Funzioni AI`: il consenso riguarda le
+funzioni di studio (§2.4), non questo controllo.
+
+- **Finché il controllo non l'ha approvata**, la foto non la mostriamo a
+  nessuno tranne te. Dopo l'approvazione è visibile a chiunque apra il tuo
+  profilo da autore.
+- **Se il controllo non la approva**, la togliamo dal profilo e cancelliamo il
+  file. Solo se vi riconosce abusi sessuali su minori ne conserviamo una copia
+  riservata, come prova per le autorità.
+- **Puoi toglierla o cambiarla quando vuoi**: la foto vecchia smette subito di
+  essere mostrata. Se la cambi, il file della foto vecchia viene cancellato
+  quando la nuova è approvata. Se la togli, o se la nuova non viene approvata,
+  il file della vecchia resta sui nostri server finché non approviamo una tua
+  nuova foto o non elimini l'account: non lo mostriamo più, ma chi ne conosce
+  già l'indirizzo può ancora aprirlo.
+
 ### 2.12 Estratto di studio per il tuo assistente AI collegato (opt-in, disattivo per impostazione predefinita)
 
 Se attivi «Assistente AI collegato», Fluera pubblica sul nostro server un
@@ -268,7 +290,8 @@ pagine che visiti, né le ricerche che fai.
   lì resta solo il consenso di Google, mai l'accesso al tuo account Google della navigazione.
 - **La protezione dai siti pericolosi** controlla gli indirizzi prima di aprirli. Su Android è il
   servizio Safe Browsing di Google: al servizio arrivano solo frammenti cifrati degli indirizzi.
-  Su iOS è l'avviso di sito fraudolento di Apple.
+  Su iOS è l'avviso di sito fraudolento di Apple. È attiva di fabbrica e si spegne nelle
+  impostazioni di Fludomi («Navigazione sicura»).
 - **La scrittura a mano** nella barra si riconosce sul dispositivo. Il modello della lingua si
   scarica una volta dai server di Google.
 
@@ -284,13 +307,15 @@ dedicato al tuo account:
 - non entrano nei backup di Google o di iCloud;
 - si cancellano con «Cancella dati di navigazione»;
 - si cancellano quando esci dall'account o lo elimini;
-- si cancellano per un sito solo con «Dimentica questo sito».
+- si cancellano per un sito solo con «Dimentica questo sito»;
+- se attivi «Cancella tutto alla chiusura», si cancellano ogni volta che chiudi Fludomi o Fluera,
+  insieme alla cronologia e alle schede aperte.
 
 Se elimini l'account, anche il suo database locale viene cancellato dal dispositivo.
 
 **Schede private.** Non salvano cronologia, schede o pieghe, e su Android la tastiera non impara
 ciò che vi scrivi. I loro cookie si cancellano alla chiusura, o al primo avvio successivo se l'app è stata
-chiusa di colpo. Il sistema non conserva immagini della scheda nell'elenco delle app recenti.
+chiusa di colpo. Si chiudono da sole dopo 15 minuti con Fluera in secondo piano. Il sistema non conserva immagini della scheda nell'elenco delle app recenti.
 
 **Protezioni attive per impostazione predefinita:**
 - blocchiamo i servizi di tracciamento più diffusi, con una lista scritta da noi;
@@ -299,7 +324,8 @@ chiusa di colpo. Il sistema non conserva immagini della scheda nell'elenco delle
 - ogni sito riceve il segnale Global Privacy Control (non vendere né condividere i miei dati);
 - dagli indirizzi togliamo i parametri che servono a seguirti (per esempio `utm_`, `fbclid`,
   `gclid`);
-- apriamo i link in https quando il sito lo offre.
+- apriamo i link in https quando il sito lo offre; un sito senza https si apre solo dopo un
+  avviso, e su Android nel browser del telefono.
 
 Solo le pieghe viaggiano fra i tuoi dispositivi, e solo se attivi la sincronizzazione, cifrate da
 un capo all'altro (§2.5).
@@ -320,17 +346,17 @@ un capo all'altro (§2.5).
 
 ## 4. Destinatari dei dati
 
-Tutti i destinatari sono responsabili del trattamento vincolati da contratto ex art. 28 GDPR:
+I responsabili del trattamento, vincolati da contratto ex art. 28 GDPR, sono:
 
 - **Supabase Inc.** — database, autenticazione, storage, telemetria, Edge Functions (regione UE `eu-north-1`, Stoccolma) — https://supabase.com/privacy
-- **Google Cloud (Google Ireland Ltd.)** — Vertex AI (Gemini), elaborazione nell'UE (Paesi Bassi / Belgio) — https://cloud.google.com/terms/data-processing-addendum
-- **Google LLC** — Sign in with Google (solo autenticazione) — https://policies.google.com/privacy
-- **Apple Inc.** — Sign in with Apple, App Store — https://www.apple.com/legal/privacy/
+- **Google Cloud (Google Ireland Ltd.)** — Vertex AI (Gemini), elaborazione nell'UE (regioni europe-west4 Paesi Bassi ed europe-west1 Belgio, o endpoint multi-regione UE) — https://cloud.google.com/terms/data-processing-addendum
 - **RevenueCat Inc.** — abbonamenti — https://www.revenuecat.com/privacy
 - **Functional Software Inc. (Sentry)** — crash reporting — https://sentry.io/privacy/
-- **Deno Land Inc.** — hosting di share.fluera.dev (catalogo web, pagine delle schede, modulo di segnalazione, connettore dell'assistente): indirizzo IP e dati delle richieste di chi visita (§2.13) — https://docs.deno.com/deploy/privacy_policy/
+- **Deno Land Inc.** — hosting di share.fluera.dev (catalogo web, pagine delle schede, modulo di segnalazione, connettore dell'assistente): indirizzo IP e dati delle richieste di chi visita, e il testo delle segnalazioni, che il modulo inoltra a Supabase (§2.13) — https://docs.deno.com/deploy/privacy_policy/
 
 **Fornitori che trattano come titolari autonomi.** fluera.dev è ospitato su GitHub Pages: GitHub Inc. registra i dati tecnici delle visite (indirizzo IP, ora, pagina richiesta) per la sicurezza del proprio servizio, come titolare autonomo e secondo la propria informativa — https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement. Lo stesso vale per i caratteri tipografici che share.fluera.dev carica da fluera.dev (§2.13).
+
+**Apple e Google, per l'accesso e gli acquisti in-app.** Se usi Sign in with Apple o Sign in with Google, o ti abboni tramite App Store o Google Play, Apple e Google non sono responsabili del trattamento dei dati di Fluera: agiscono come titolari autonomi per i dati delle loro piattaforme, e quel rapporto è regolato dai termini e dalle informative delle loro piattaforme — https://www.apple.com/legal/privacy/ e https://policies.google.com/privacy. Da loro riceviamo solo quanto descritto ai §2.1 e §2.7.
 
 **Allarmi interni.** Per gli avvisi di servizio — i costi e le segnalazioni sulla sicurezza dei minori — usiamo Discord. I messaggi non contengono dati personali: né identificativi di account, né contenuti, né chi ha segnalato o chi è stato segnalato; solo il tipo di avviso, la fascia di abbonamento, gli importi e il numero interno dell'avviso o della segnalazione.
 
@@ -353,9 +379,11 @@ Le condizioni di trattamento ex art. 28 di ciascun responsabile si applicano a n
 
 ## 5. Trasferimenti extra-UE
 
-Alcuni responsabili — Sign in with Google (Google LLC), Apple, Sentry, RevenueCat, Deno — hanno sede negli Stati Uniti. Il trasferimento verso di essi avviene sulla base delle Clausole Contrattuali Standard approvate dalla Commissione Europea (art. 46 GDPR) e, ove applicabile, dell'adesione del fornitore al EU-US Data Privacy Framework.
+Alcuni responsabili — Sentry, RevenueCat, Deno — hanno sede negli Stati Uniti. Il trasferimento verso di essi avviene sulla base delle Clausole Contrattuali Standard approvate dalla Commissione Europea (art. 46 GDPR) e, ove applicabile, dell'adesione del fornitore al EU-US Data Privacy Framework.
 
-**L'inferenza AI non lascia l'UE.** I contenuti del canvas inviati alle funzioni AI sono elaborati da Google Vertex AI esclusivamente nell'Unione Europea (europe-west4 Paesi Bassi, con failover europe-west1 Belgio) e non vengono trasferiti negli Stati Uniti.
+Apple e Google, per l'accesso e gli acquisti in-app, sono titolari autonomi (§4): ciò che ricevono, compreso un eventuale trasferimento fuori dall'UE, è regolato dai loro termini e dalle loro informative.
+
+**L'inferenza AI non lascia l'UE.** I contenuti del canvas inviati alle funzioni AI sono elaborati da Google Vertex AI esclusivamente nell'Unione Europea (regioni europe-west4 Paesi Bassi ed europe-west1 Belgio, o endpoint multi-regione UE di Vertex AI, che resta negli Stati membri dell'UE) e non vengono trasferiti negli Stati Uniti.
 
 Supabase consente di scegliere la regione del database: utilizziamo la regione `eu-north-1` (Stoccolma) all'interno dell'area SEE.
 
@@ -409,11 +437,11 @@ In caso di violazione dei dati personali, Fluera notificherà l'autorità di con
 
 ## 10. Utenti minorenni
 
-**Fluera non è destinata a utenti di età inferiore ai 14 anni. Utilizzando il Servizio dichiari di avere almeno 14 anni.**
+**Fluera non è destinata a utenti di età inferiore ai 16 anni. Utilizzando il Servizio dichiari di avere almeno 16 anni.**
 
-Per età 14-18 il trattamento è consentito ai sensi dell'art. 2-quinquies D.Lgs. 196/2003, eventualmente subordinato al consenso di chi esercita la responsabilità genitoriale ove richiesto dalla legge nazionale applicabile. Per età inferiori a 14 anni la creazione di account non è consentita.
+Per età 16-18 il trattamento è consentito ai sensi dell'art. 2-quinquies D.Lgs. 196/2003, eventualmente subordinato al consenso di chi esercita la responsabilità genitoriale ove richiesto dalla legge nazionale applicabile. Per età inferiori a 16 anni la creazione di account non è consentita.
 
-Se veniamo a conoscenza di dati raccolti da un minore di 14 anni, sospendiamo l'account e cancelliamo i dati associati entro 30 giorni. Segnalazioni a `support@fluera.dev` o `lorenco@fluera.dev`.
+Se veniamo a conoscenza di dati raccolti da un minore di 16 anni, sospendiamo l'account e cancelliamo i dati associati entro 30 giorni. Segnalazioni a `support@fluera.dev` o `lorenco@fluera.dev`.
 
 ## 11. Modifiche alla presente informativa
 
@@ -460,7 +488,7 @@ Autorità di controllo: **ANPD — Autoridade Nacional de Proteção de Dados** 
 
 Residenti in Giappone sono protetti dall'*Act on the Protection of Personal Information* (APPI, modificato 2022).
 
-**Cross-border transfer consent**: quando attivi `Funzioni AI` o `Report dei crash`, i dati sono trasferiti rispettivamente a Google LLC (Stati Uniti) e Functional Software Inc./Sentry (Stati Uniti). Confermando i consensi nella consent screen autorizzi esplicitamente tali trasferimenti ai sensi dell'Art. 28 APPI. Puoi revocare il consenso in qualsiasi momento da Impostazioni → Privacy.
+**Cross-border transfer consent**: quando attivi `Funzioni AI`, i dati sono elaborati da Google Ireland Ltd. (Vertex AI) nell'Unione Europea e non vengono trasferiti negli Stati Uniti (§5); quando attivi `Report dei crash`, i dati sono trasferiti a Functional Software Inc./Sentry (Stati Uniti). Confermando i consensi nella consent screen autorizzi esplicitamente tali trasferimenti ai sensi dell'Art. 28 APPI. Puoi revocare il consenso in qualsiasi momento da Impostazioni → Privacy.
 
 **Diritti**: disclosure dei dati conservati, correzione, addizione, cancellazione, cessazione dell'uso, cessazione del trasferimento a terzi. Contatto: `lorenco@fluera.dev`.
 
@@ -468,7 +496,7 @@ Residenti in Giappone sono protetti dall'*Act on the Protection of Personal Info
 
 Residenti in Corea del Sud sono protetti dal *Personal Information Protection Act* (PIPA).
 
-**Personal Information Processing Notice**: Fluera tratta i tuoi dati personali per le finalità descritte nella sezione 3, conservandoli per i periodi indicati nella sezione 6. I sub-processori USA (Sign in with Google, Sentry, RevenueCat) ricevono i dati solo dopo il tuo consenso esplicito tramite la consent screen. Le funzioni AI sono elaborate da Vertex AI nell'UE e non vengono trasferite negli USA.
+**Personal Information Processing Notice**: Fluera tratta i tuoi dati personali per le finalità descritte nella sezione 3, conservandoli per i periodi indicati nella sezione 6. Ricevono dati tre responsabili con sede negli Stati Uniti (§5): Sentry, solo dopo il tuo consenso esplicito ai `Report dei crash` nella consent screen; RevenueCat, dall'avvio dell'app su iOS, macOS e Android, senza un consenso separato, perché gestisce l'abbonamento (§2.7; esecuzione del contratto, §3): riceve l'identificativo pseudonimo del tuo account, o un identificativo anonimo se non hai fatto l'accesso, i dati dell'abbonamento e i dati tecnici della connessione (come l'indirizzo IP), mai i contenuti; Deno, quando usi share.fluera.dev (§2.13). Le funzioni AI sono elaborate da Vertex AI nell'UE e non vengono trasferite negli USA.
 
 **Diritti**: accesso, correzione, cancellazione, sospensione del trattamento. Per esercitarli: `lorenco@fluera.dev`. In caso di reclamo, l'autorità competente è la **Personal Information Protection Commission (PIPC)** — <https://www.pipc.go.kr>.
 
@@ -484,7 +512,7 @@ Residenti in India sono protetti dal *Digital Personal Data Protection Act 2023*
 - Grievance redressal entro 30 giorni (Sec. 14)
 - Nomina di un Consent Manager (Sec. 6)
 
-**Minori**: il DPDP Act richiede **consenso genitoriale per utenti sotto i 18 anni**, soglia più stretta del GDPR (14 in Italia). Fluera applica l'età minima dichiarata in ToS §4.3 (≥14) e, per residenti indiani, richiede che gli utenti tra 14-18 anni acquisiscano il consenso del genitore prima dell'uso. Le segnalazioni di non conformità sono gestite via `support@fluera.dev` con cancellazione entro 30 giorni come da policy globale.
+**Minori**: il DPDP Act richiede **consenso genitoriale per utenti sotto i 18 anni**, soglia più stretta del GDPR (14 in Italia). Fluera applica l'età minima dichiarata in ToS §4.3 (≥16) e, per residenti indiani, richiede che gli utenti tra 16-18 anni acquisiscano il consenso del genitore prima dell'uso. Le segnalazioni di non conformità sono gestite via `support@fluera.dev` con cancellazione entro 30 giorni come da policy globale.
 
 Contatto Data Protection Officer / Grievance Officer: `lorenco@fluera.dev`.
 
@@ -492,7 +520,7 @@ Contatto Data Protection Officer / Grievance Officer: `lorenco@fluera.dev`.
 
 Residenti in Arabia Saudita sono protetti dal *Personal Data Protection Law* (in vigore dal 14 settembre 2024), regolato dalla **Saudi Data and AI Authority (SDAIA)**.
 
-**Cross-border transfer**: i dati raccolti da utenti KSA sono trasferiti a server EEA (Supabase Stockholm; inferenza AI su Vertex AI nell'UE) e a sub-processori USA (Sign in with Google, Sentry, RevenueCat). Tale trasferimento avviene solo dopo il tuo consenso esplicito tramite la consent screen, ai sensi dell'Art. 29 PDPL.
+**Cross-border transfer**: i dati raccolti da utenti KSA sono trasferiti a server EEA (Supabase Stockholm; Vertex AI nell'UE, per le funzioni AI solo se attivi `Funzioni AI`, e per il controllo automatico delle schede e delle foto profilo che carichi, §2.11) e a responsabili con sede negli Stati Uniti (Sentry, RevenueCat, Deno). Verso Sentry il trasferimento avviene solo dopo il tuo consenso esplicito ai `Report dei crash` nella consent screen, ai sensi dell'Art. 29 PDPL. Verso RevenueCat avviene dall'avvio dell'app su iOS, macOS e Android, senza un consenso separato, perché gestisce l'abbonamento (§2.7; esecuzione del contratto, §3): riceve l'identificativo pseudonimo del tuo account, o un identificativo anonimo se non hai fatto l'accesso, i dati dell'abbonamento e i dati tecnici della connessione (come l'indirizzo IP), mai i contenuti. Verso Deno avviene quando usi share.fluera.dev (§2.13). Verso gli Stati Uniti il trasferimento si basa sulle Clausole Contrattuali Standard dei DPA dei responsabili (§5).
 
 **Diritti**: essere informato sul trattamento, accesso, correzione, cancellazione, opposizione al trattamento. Per esercitarli: `lorenco@fluera.dev`. Reclami formali possono essere indirizzati a SDAIA — <https://sdaia.gov.sa>.
 
@@ -507,7 +535,7 @@ Residenti canadesi sono protetti dal *Personal Information Protection and Electr
 - Portabilità (Quebec Law 25, Art. 27)
 - Cancellazione / "right to be forgotten" (Quebec Law 25, Art. 28.1)
 
-**Cross-border transfer**: Quebec Law 25 Art. 17 richiede valutazione di privacy impact prima del trasferimento di dati personali fuori dal Quebec. I dati Fluera transitano verso server EEA (Supabase Stockholm; inferenza AI su Vertex AI nell'UE) e sub-processori USA (Sign in with Google, Sentry, RevenueCat) — copertura fornita dalle SCC di cui ai DPA dei processori e dal consenso esplicito tramite consent screen.
+**Cross-border transfer**: Quebec Law 25 Art. 17 richiede valutazione di privacy impact prima del trasferimento di dati personali fuori dal Quebec. I dati Fluera transitano verso server EEA (Supabase Stockholm; inferenza AI su Vertex AI nell'UE) e responsabili con sede negli Stati Uniti (Sentry, RevenueCat, Deno) — copertura fornita dalle SCC di cui ai DPA dei responsabili e, per Sentry, dal consenso esplicito ai `Report dei crash` nella consent screen.
 
 **Privacy Officer designato**: Lorenco Shametaj (founder, Fluera). Contatto operativo: `lorenco@fluera.dev`. Designato ai sensi dell'Art. 8 Quebec Law 25.
 
@@ -523,7 +551,7 @@ Residenti australiani sono protetti dal *Privacy Act 1988* (incluse le riforme 2
 - Notifica al momento della raccolta (APP 5) — fornita tramite il consent screen + Privacy Policy
 - Accesso ai dati conservati (APP 12) e correzione (APP 13)
 - Opt-out da uso/disclosure per scopi diversi dal primario (APP 6)
-- Disclosure cross-border accountability (APP 8): Fluera resta responsabile per il trattamento da parte dei sub-processori USA, ai quali l'utente acconsente esplicitamente tramite la consent screen
+- Disclosure cross-border accountability (APP 8): Fluera resta responsabile per il trattamento da parte dei responsabili con sede negli Stati Uniti (Sentry, RevenueCat, Deno — §5), anche quando il trasferimento non dipende da un consenso nella consent screen (RevenueCat: §2.7; Deno: §2.13)
 
 **Sensitive Personal Information**: Fluera non raccoglie informazioni sensibili ai sensi APP (no health, no biometric, no political/religious).
 

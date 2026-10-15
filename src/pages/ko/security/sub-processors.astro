@@ -14,36 +14,22 @@ const processors = [
   {
     name: "Google Cloud (Google Ireland Ltd.)",
     purpose: "Socratic Mode, Ghost Map, LaTeX OCR 및 Exam Session 생성을 위한 Vertex AI (Gemini 모델).",
-    dataTypes: "AI 기능에 동의하고 이를 사용하는 경우에만 전송되는 선택된 캔버스 콘텐츠 — 텍스트 부분 및 개별 손글씨 클러스터 영역을 렌더링한 PNG 이미지. 전체 노트북은 절대 아님.",
-    region: "유럽 연합 내에서만 처리 — europe-west4 (네덜란드) 기본, europe-west1 (벨기에) 장애 조치. AI 추론을 위해 캔버스 콘텐츠를 EU 외부로 전송하지 않음.",
+    dataTypes: "AI 기능에 동의하고 이를 사용하는 경우에만 전송되는 선택된 캔버스 콘텐츠 — 텍스트 부분 및 개별 손글씨 클러스터 영역을 렌더링한 PNG 이미지. 전체 노트북은 절대 아님. 이와 별도로, 불법 콘텐츠 자동 검사를 위해 AI 기능 동의 없이: 카탈로그에 업로드하거나 비공개로 공유한 카드의 썸네일, 이미지, 제목, 설명, 그리고 크리에이터의 프로필 사진.",
+    region: "유럽 연합 내에서만 처리 — Vertex AI의 EU 엔드포인트: europe-west4 (네덜란드) 및 europe-west1 (벨기에) 리전, 또는 Google이 EU 회원국으로 한정하는 EU 멀티 리전 엔드포인트. AI 추론을 위해 캔버스 콘텐츠를 EU 외부로 전송하지 않음.",
     privacy: "https://cloud.google.com/terms/data-processing-addendum",
   },
   {
-    name: "Google LLC",
-    purpose: "Sign in with Google 인증 (ID 공급자).",
-    dataTypes: "Google 계정 이메일 및 계정 식별자. 캔버스 데이터 없음.",
-    region: "미국; SCC + EU-US DPF.",
-    privacy: "https://policies.google.com/privacy",
-  },
-  {
-    name: "Apple Inc.",
-    purpose: "Sign in with Apple 인증; iOS와 macOS의 App Store를 통한 인앱 구매.",
-    dataTypes: "Apple ID 릴레이 이메일, 영수증 식별자. 캔버스 데이터 없음.",
-    region: "미국; SCC + EU-US DPF.",
-    privacy: "https://www.apple.com/legal/privacy/",
-  },
-  {
     name: "RevenueCat Inc.",
-    purpose: "iOS, Android 및 웹의 구독 관리 및 영수증 검증.",
-    dataTypes: "익명화된 RevenueCat 사용자 ID, 구독 상태, 영수증 메타데이터. 결제 카드 데이터 없음.",
-    region: "미국; SCC + EU-US DPF.",
+    purpose: "App Store 및 Google Play(iOS, macOS, Android)에서 이루어진 구매의 구독 관리 및 영수증 검증.",
+    dataTypes: "계정의 가명 ID(Fluera 계정의 사용자 ID, 또는 로그인 전에는 RevenueCat 익명 ID), 구독 상태, 영수증 메타데이터. 구독 관리를 위해 iOS, macOS, Android에서 앱 실행 시점부터 전송됨. 결제 카드 데이터 없음.",
+    region: "미국; SCC.",
     privacy: "https://www.revenuecat.com/privacy",
   },
   {
     name: "Functional Software Inc. (Sentry)",
     purpose: "충돌 보고 및 오류 모니터링.",
     dataTypes: "스택 트레이스, OS 버전, 기기 모델, 앱 버전. sendDefaultPii는 명시적으로 비활성화되어 있으며 IP 주소는 저장하지 않음 — 사용자 콘텐츠 없음.",
-    region: "유럽 연합 (프랑크푸르트) — 프로덕션 DSN은 Sentry의 EU 데이터 지역으로 수집됨. 처리자 법인은 미국에 설립됨; SCC + EU-US DPF.",
+    region: "유럽 연합 (프랑크푸르트) — 프로덕션 DSN은 Sentry의 EU 데이터 지역으로 수집됨. 처리자 법인은 미국에 설립됨; SCC.",
     privacy: "https://sentry.io/privacy/",
   },
   {
@@ -55,10 +41,13 @@ const processors = [
   },
 ];
 
-const lastUpdated = "2026-09-29";
+const lastUpdated = "2026-10-15";
 // fluera.dev e' su GitHub Pages: GitHub non e' un sub-processor (titolare
 // autonomo dei log delle visite, nessun DPA con un account gratuito).
 const notaGithub = "fluera.dev 자체는 GitHub Pages에서 호스팅됩니다. GitHub Inc.는 하위 처리자가 아닙니다. 자사 서비스를 보호하기 위해 방문 기술 데이터(IP 주소, 시간, 페이지)를 기록하며, 독립적인 개인정보처리자로서 자체 개인정보 처리방침에 따라 처리합니다. share.fluera.dev가 fluera.dev에서 불러오는 글꼴도 마찬가지입니다.";
+// Apple e Google non sono sub-processor (informativa 1.8.6 §4,
+// docs/processor_agreements.md): titolari autonomi per accesso e acquisti.
+const notaAppleGoogle = "Apple과 Google도 하위 처리자가 아닙니다. Sign in with Apple, Sign in with Google, App Store 및 Google Play 구매에서는 자사 플랫폼 데이터의 독립적인 개인정보처리자로서 자체 약관과 개인정보 처리방침에 따라 처리합니다.";
 ---
 
 <BaseLayout
@@ -106,6 +95,7 @@ const notaGithub = "fluera.dev 자체는 GitHub Pages에서 호스팅됩니다. 
         ))}
       </ul>
       <p class="prose-ink text-sm mt-8 max-w-5xl">{notaGithub} <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub 개인정보 처리방침 ↗</a></p>
+      <p class="prose-ink text-sm mt-4 max-w-5xl">{notaAppleGoogle} <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple 개인정보 처리방침 ↗</a> · <a href="https://policies.google.com/privacy" rel="noopener">Google 개인정보 처리방침 ↗</a></p>
     </div>
   </section>
 

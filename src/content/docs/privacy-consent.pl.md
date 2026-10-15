@@ -15,7 +15,7 @@ Fluera jest narzędziem local-first. Domyślnie nic nie wychodzi z twojego urzą
 Otwórz **Ustawienia → Prywatność**. Zobaczysz cztery przełączniki, wszystkie domyślnie wyłączone:
 
 - **Analityka produktu.** Anonimowe dane sesji — liczby wywołań funkcji, długość sesji, czasy wywołań AI. Nigdy treść. ID użytkownika hashowane SHA-256, retencja 180 dni.
-- **Funkcje AI.** Konieczne, by używać Socratic, Ghost Map, OCR LaTeX i Fog of War. Wybrany tekst z canvasu jest wysyłany do modeli Google Gemini obsługiwanych przez Google Vertex AI, przetwarzanych w UE (europe-west4 NL / europe-west1 BE). Nigdy cały notatnik.
+- **Funkcje AI.** Konieczne, by używać Socratic, Ghost Map, OCR LaTeX i Fog of War. Wybrany tekst z canvasu jest wysyłany do modeli Google Gemini obsługiwanych przez Google Vertex AI, przetwarzanych w UE (modele 2.5 w regionach europe-west4 NL / europe-west1 BE, modele 3.x przez wieloregionowy punkt końcowy UE w Vertex AI): dane pozostają w państwach członkowskich UE. Nigdy cały notatnik.
 - **Cloud sync.** Konieczne, by synchronizować canvasy między urządzeniami. Zsynchronizowane dane są szyfrowane w tranzycie (TLS) i w spoczynku na infrastrukturze w UE (Supabase, eu-north-1). Nie jest to szyfrowanie end-to-end: Fluera jako administrator danych ma do nich techniczny dostęp, ale nigdy ich nie sprzedaje ani nie wykorzystuje do reklam.
 - **Crash reporting.** Stack trace'y i metadane urządzenia, gdy aplikacja się crashuje. Żadnej treści użytkownika. Przetwarzane przez Sentry z `sendDefaultPii: false`.
 

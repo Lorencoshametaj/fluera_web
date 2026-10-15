@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Turvallisuusarkkitehtuuri"
-  description="Miten Fluera suojaa muistikirjasi lepotilassa, siirrossa ja laitteiden välillä. SQLCipher, TLS 1.3, EU-pohjainen pilvisynkronointi, opt-in-telemetria, instituutioille tarkoitettu auditointiloki."
+  description="Miten Fluera suojaa muistikirjasi lepotilassa, siirrossa ja laitteiden välillä. SQLCipher, TLS 1.3, EU-pohjainen pilvisynkronointi, opt-in-telemetria."
   locale="fi"
 >
   <PageHero
@@ -70,11 +70,6 @@ import { SITE } from "@/lib/site";
       <h2>Telemetria: opt-in, hashattu, sallittu lista</h2>
       <p>
         Tuoteanalytiikka on oletuksena pois päältä. Kun se on käytössä, tapahtumat rajoittuvat palvelinpuolen sallittuun listaan (istunnon alku/loppu, ominaisuuden kutsu, tekoälykutsun kesto — ei koskaan sisältöä). Käyttäjä-ID hashataan laitteella SHA-256:lla; selkokielinen ID ei koskaan poistu asiakkaalta. Tapahtumat säilytetään 180 päivää, minkä jälkeen ne aggregoidaan tai poistetaan.
-      </p>
-
-      <h2>Auditointiloki (institutionaaliset tilit)</h2>
-      <p>
-        Jokainen pääsy jaettuihin muistikirjoihin — kuka, miltä laitteelta, milloin — kirjoitetaan append-only-auditointilokiin. Pääkäyttäjät voivat viedä lokin CSV- tai JSON-muodossa compliance-tarkastuksia varten. Loki on write-once: poisto vaatii dokumentoidun perustelun ja kirjataan itse.
       </p>
 
       <h2>Tietojen palautus</h2>

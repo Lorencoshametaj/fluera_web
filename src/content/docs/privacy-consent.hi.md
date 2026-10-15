@@ -15,7 +15,7 @@ Fluera एक local-first उपकरण है। Default रूप से, �
 **सेटिंग्स → गोपनीयता** खोलें। आप चार toggles देखेंगे, सभी default से बंद:
 
 - **Product analytics.** Anonymous session डेटा — feature invocation counts, session duration, AI call durations। कभी content नहीं। SHA-256 hashed user ID, 180-दिन retention।
-- **AI features.** Socratic, Ghost Map, LaTeX OCR और Fog of War का उपयोग करने के लिए आवश्यक। कैनवास से चयनित text, Google Vertex AI के माध्यम से served Google Gemini models को भेजा जाता है, जो EU में process होता है (europe-west4 NL / europe-west1 BE)। कभी पूरा notebook नहीं।
+- **AI features.** Socratic, Ghost Map, LaTeX OCR और Fog of War का उपयोग करने के लिए आवश्यक। कैनवास से चयनित text, Google Vertex AI के माध्यम से served Google Gemini models को भेजा जाता है, जो EU में process होता है (2.5 models europe-west4 NL / europe-west1 BE regions में, 3.x models Vertex AI के EU multi-region endpoint पर): data EU के member states के भीतर ही रहता है। कभी पूरा notebook नहीं।
 - **Cloud sync.** Devices के बीच canvas sync करने के लिए आवश्यक। Synced डेटा transit में (TLS) और EU infrastructure (Supabase, eu-north-1) पर at-rest encrypted होता है। यह end-to-end encrypted नहीं है: data controller के रूप में Fluera इस तक पहुँच सकता है, लेकिन इसे कभी बेचता नहीं और न ही advertising के लिए उपयोग करता है।
 - **Crash reporting.** App crash होने पर stack traces और device metadata। कोई user content नहीं। Sentry द्वारा `sendDefaultPii: false` के साथ processed।
 
