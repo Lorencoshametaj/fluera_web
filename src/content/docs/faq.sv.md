@@ -46,7 +46,7 @@ Om laggen kvarstår med Predicted på, stäng och starta om. Om den ändå kvars
 
 [support@fluera.dev](mailto:support@fluera.dev). Beskriv vad du gjorde, vad du förväntade dig, vad som hände, och inkludera appversionen (Inställningar → Om). Skärmdumpar hjälper.
 
-För säkerhetssårbarheter, använd [lorenco@fluera.dev](mailto:lorenco@fluera.dev) och kryptera med vår PGP-nyckel (på vår GitHub-profil).
+För säkerhetssårbarheter, skriv till [support@fluera.dev](mailto:support@fluera.dev). Vi svarar inom 5 arbetsdagar. Det finns inget bug bounty-program.
 
 ## Hur ger jag feedback på pedagogiken?
 

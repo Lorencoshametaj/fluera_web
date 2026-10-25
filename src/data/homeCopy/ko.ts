@@ -13,7 +13,7 @@ const copy: HomeCopy = {
   proof: [
     ["12", "필압 감지 브러시"],
     ["FSRS", "기억에 맞춘 복습 일정"],
-    ["AES-256", "암호화된 로컬 데이터베이스"],
+    ["ChaCha20", "암호화된 로컬 데이터베이스"],
     ["전체", "모든 플랫폼 베타 공개"],
   ],
   flowKicker: "FLUERA의 서명",
@@ -62,7 +62,7 @@ const copy: HomeCopy = {
   trustBody: "모든 인지 메커니즘은 발표된 연구로 이어집니다. Fluera 자체가 성적 향상을 이미 입증했다고 말하지 않습니다. 베타는 우리 구현을 측정하는 자리입니다.",
   scienceLink: "과학 살펴보기",
   securityTitle: "당신의 생각은 당신의 것입니다.",
-  securityBody: "기기의 SQLCipher AES-256, EU 인프라의 TLS 동기화, 행동 기반 광고 없음, 당신의 콘텐츠로 학습하지 않음.",
+  securityBody: "기기에서 암호화된 캔버스 데이터베이스(sqlite3mc, ChaCha20-Poly1305), EU 인프라의 TLS 동기화, 행동 기반 광고 없음, 직접 켜지 않는 한 당신의 콘텐츠로 학습하지 않음.",
   securityLink: "보안 아키텍처 읽기",
   platformKicker: "하나의 잉크, 어디에서나",
   platformTitle: "모든 플랫폼에 열려 있습니다.",

@@ -45,7 +45,7 @@ If the lag persists with Predicted turned on, quit and relaunch. If it still per
 
 [support@fluera.dev](mailto:support@fluera.dev). Describe what you were doing, what you expected, what happened, and include your app version (Settings → About). Screenshots help.
 
-For security vulnerabilities, use [lorenco@fluera.dev](mailto:lorenco@fluera.dev) and encrypt with our PGP key (on our GitHub profile).
+For security vulnerabilities, write to [support@fluera.dev](mailto:support@fluera.dev). We reply within 5 working days. There is no bug bounty programme.
 
 ## How do I give feedback on the pedagogy?
 

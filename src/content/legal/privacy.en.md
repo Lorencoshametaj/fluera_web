@@ -2,8 +2,8 @@
 lang: "en"
 slug: "privacy"
 title: "Privacy Policy"
-versione: "1.8.6"
-aggiornato: "October 15, 2026"
+versione: "1.9.0"
+aggiornato: "October 25, 2026"
 sommario: "This policy explains how Fluera processes personal data of its users under Articles 13 and 14 of Regulation (EU) 2016/679 (**GDPR**) and the Italian Legislative Decree 196/2003 as amended by Legislative Decree 101/2018."
 fonte: "Fluera/assets/legal/privacy_en.md"
 ---
@@ -34,9 +34,10 @@ Fluera processes the following categories of personal data, strictly as needed f
 ### 2.2 User-generated content
 - Canvases, strokes, notes, PDF annotations, inserted images
 - Audio recordings of study sessions (only if Time Travel is enabled)
-- Content is stored in a local database scoped to your account. From version 1.5 that database is **encrypted at rest with AES-256** (Art. 32 GDPR) using a 256-bit key generated on your device and held in your operating system's keystore — iOS/macOS Keychain, Android Keystore, libsecret on Linux, DPAPI on Windows. The key never leaves the device and we never see it. Content leaves your device in three cases, each on your own action: when you enable **Cloud Sync**; when you **publish** a study card to the catalogue; when you keep a card in your **private catalogue** to share it by link. The last two work even with Cloud Sync off, and cover only the portion of notes you select — never the whole canvas. See §2.11
-- **What that means if you lose the device or reinstall:** because the key lives only in your device's keystore, uninstalling the app, clearing its data, or moving to a new device makes the local database unreadable — to you and to us alike. **Cloud Sync is the recovery path**, and it is opt-in: if you have not enabled it, your canvases exist only on that device.
-- **Beta note:** databases created before version 1.5 are unencrypted and cannot be opened with a key. On the first launch of version 1.5 such a database is **deleted** and a new encrypted one is created. Canvases already synced to the cloud come back; canvases that only ever existed locally do not.
+- Content is stored in a local database scoped to your account. The on-device database is **encrypted at rest with ChaCha20-Poly1305** (Art. 32 GDPR) using a 256-bit key generated on your device and held in your operating system's keystore — iOS/macOS Keychain, Android Keystore, libsecret on Linux, DPAPI on Windows. We never see the key. So that a new phone does not cost you your canvases, the key has a copy in the **encrypted system backup**, next to the copy of the database the system already makes: on Android in Google Play services Block Store, saved to your Google account only when that backup is end-to-end encrypted with your phone's screen lock (Android 9 or later with a PIN, pattern or password), otherwise on the phone only; on iOS in the encrypted iCloud or Finder backup, with the rest of the Keychain (not in iCloud Keychain). Content leaves your device in three cases, each on your own action: when you enable **Cloud Sync**; when you **publish** a study card to the catalogue; when you keep a card in your **private catalogue** to share it by link. The last two work even with Cloud Sync off, and cover only the portion of notes you select — never the whole canvas. See §2.11
+- **Photos, PDFs, audio and history:** inserted photos and images, imported PDFs, audio recordings and the canvas history (Time Travel) are not in that database: they are separate files in the app's folders. Fluera does not encrypt them with the database key; the operating system protects them, by keeping the app's folder closed to other apps and, when it is on, with the device's own encryption.
+- **What that means if you change device or reinstall:** if you restore a system backup (a new phone, a phone restore or, on Android with Google backup on, reinstalling the app), the database and its key come back together and your canvases reopen on their own, as they were at the system's last backup. They do not come back if the system backup is off; on Android without Google Play services, or in the Google backup without a screen lock; if you clear the app's data, or uninstall and reinstall without a restore (on iOS the database does not survive uninstalling); on Android if the app's data exceeds the 25 MB Google backup limit, because the system then backs up none of it. In those cases the local database stays unreadable — to you and to us alike — and **Cloud Sync is the recovery path**, which is opt-in: if you have not enabled it, your canvases exist only on that device.
+- **Beta note:** databases created before encryption reached the app (August 2026) are unencrypted and cannot be opened with a key. The first time a version with encryption starts, such a database is **deleted** and a new encrypted one is created. Canvases already synced to the cloud come back; canvases that only ever existed locally do not.
 
 ### 2.3 Usage data (telemetry)
 Only if you have consented to the **Product analytics** category:
@@ -44,6 +45,7 @@ Only if you have consented to the **Product analytics** category:
 - Your account identifier, so that you can access and delete your own telemetry (§6). The crash-reporting processor (§5) receives only a SHA-256 hash of it, never the plaintext identifier
 - Platform, app version, subscription tier, device language
 - Product events from a server-side whitelist (session start/end, Ghost Map, Socratic, SRS reviews, AI calls with duration and tokens)
+- **How much you remember of a catalogue card:** if you install a card from the catalogue and reopen its canvas after 1, 7 and 30 days, each time the app sends a single number: how far your memory of its concepts, computed on the device, sits above what would remain without studying it. With the number travel the card's identifier, the day (1, 7 or 30) and the formula version. It is linked to your account, including the anonymous session. In the catalogue nobody sees it on its own: it only counts in the average of at least 5 real accounts, to show which cards people really learn from. It is not sent if telemetry is off or cognitive memory is off (§2.9), and the server discards it if the Marketplace signal is off (§2.11). It stays until you withdraw the Analytics consent, turn the Marketplace signal off, use "Delete all my data from the cloud" or delete the account
 - **Not collected:** note content, question text, identifying information.
 
 ### 2.4 AI feature data
@@ -56,8 +58,19 @@ Only if you have consented to the **AI features** category:
 ### 2.5 Cloud Sync data
 Only if you have consented to the **Cloud Sync** category:
 - Canvas copies stored on Supabase (EU region `eu-north-1`), encrypted in transit (TLS) and at rest at the infrastructure level. Cloud Sync is **not** end-to-end encrypted: as the data controller, Fluera can technically access synced content to provide, secure and support the service (we never sell it or use it for advertising)
-- **Browser folds are the exception.** If you turn on "Browser folds" in Settings → Data, the pages folded into a canvas (addresses, quotes, page copies, the back of the page, threads, ink tied to the minute) reach your other devices **end-to-end encrypted**: sealed on the device with AES-256-GCM and a key born on the device that the server never receives. The key reaches a new device of yours through a pairing that shows the same 6-digit code on both, or through the recovery code you see once when you turn it on; the server keeps only a copy sealed with that code. The server sees which canvas each fold belongs to, its type and when it changes, never its content. If you lose all your devices and the recovery code, those folds cannot be recovered (your canvases can). "Turn off on all devices" deletes them from the server
+- **Browser folds are the exception.** If you turn on "Browser folds" in Settings → Data, the pages folded into a canvas (addresses, quotes, page copies, the back of the page, threads, ink tied to the minute) reach your other devices **end-to-end encrypted**: sealed on the device with AES-256-GCM and a key born on the device that the server never receives. The key reaches a new device of yours through a pairing that shows the same 6-digit code on both, or through the recovery code you see once when you turn it on; the server keeps only a copy sealed with that code. The server sees which canvas each fold belongs to, its type and when it changes, never its content. Fludomi's history, favorites, site preferences and open tabs travel with the same key (§2.14). If you lose all your devices and the recovery code, those folds cannot be recovered (your canvases can). "Turn off on all devices" deletes them from the server
 - Sync metadata (hash, timestamp, size)
+
+**Sync across your devices** *(Cloud plan; on the Free plan up to 500 MB, without recorded lessons)*. In *Settings → Data and sync* there is the switch "Sync across your devices". It is off until you turn it on. It applies to your whole account: on for one device means on for every device you sign in on. To turn it on you need an account (not a guest session) and the Cloud plan. When you turn it on, the server records the date and the version of this policy you had in front of you.
+
+- **What goes to the cloud, only while the switch is on:** whole canvases (strokes, sections, formulas, tables, charts, links, PDFs with the marks you made in the reader, photos); recorded lessons (the audio, in pieces, with the strokes tied to the audio); the study of each canvas (review cards with the history of your answers, concepts, exams with their ink, the Socratic tutor, the chat, recall, the concept map, courses); the gallery's folders (name, colour, parent folder, pinned), each canvas's folder, the pinned canvases, the labels and the Trash (which canvases are in it, and since when); the text Fluera recognised in your handwriting, with your corrections; your choices in the settings (appearance, language, paper and export format, gallery order, review, exams and reminders, colours, eraser, recently used formulas, browser settings, tool groups of the pencil case). Settings tied to a single device (hand, palm, pen, window) stay on the device.
+- **What stays on the device even with the switch on:** the canvas history (Time Travel) and the undo and redo stack.
+- **Note-group titles across your devices.** When you name a group of notes, that name is text you wrote. With the switch on it goes to the cloud together with a reference to the strokes it belongs to and the time you changed it, so the most recent name wins even if you edit it on two devices.
+- **Who sees this data:** you. On a canvas you share with other people, its members see the canvas and the note-group titles; your study (cards, answers, exams, chat) is visible to you alone.
+- **The device name.** To tell you where a canvas is open ("Open on Redmi 15 5G") and to bring the folds key to another device, the app sends the server the name the device has in its system settings (on a computer, its name), together with a random code created at installation. If that name contains your name ("Mario's phone"), that is sent too. Only you see it, on the devices of your account. It stays on the server only as long as it is needed: a canvas's turn lasts a few minutes and is renewed while the canvas is open; a pairing request expires after 15 minutes. An expired row may remain until that canvas is next opened or until the next pairing, and it goes with the account. We do not send the serial number or any other device code.
+- **Where and how:** on Supabase, in the EU region `eu-north-1` (Stockholm), like the rest of Cloud Sync: encrypted in transit (TLS) and at rest at the infrastructure level, **not** end-to-end encrypted. As the data controller, Fluera can technically access it to provide, secure and support the service; we never sell it or use it for advertising.
+- **Turning it off:** you can turn the switch off from any device, and it stops on all of them. It also turns off if you withdraw the **Cloud Sync** consent in *Settings → Privacy and telemetry*. If the Cloud plan ends, syncing pauses. In all three cases **nothing is deleted**: what is already in the cloud stays there until you delete it, except for the §6 rule for a Cloud plan closed for more than 6 months, and everything stays on your devices.
+- **Without the switch** this data stays on the device, as before: canvases, lessons, study, cognitive memory (§2.9), recognised text and settings. Of this data, only what you send leaves: a canvas you share with other people, catalogue cards (§2.11), requests to the AI features (§2.4).
 
 ### 2.6 Diagnostic and crash data
 Only if you have consented to the **Crash reporting** category:
@@ -69,6 +82,7 @@ Only if you have consented to the **Crash reporting** category:
 ### 2.7 Subscription data
 - Subscription status (free / essential / plus / pro), activation, renewal, expiration dates
 - RevenueCat / Apple / Google identifiers for receipt matching
+- If the Cloud plan closes: when, the reason (expiry, refund, plan change, revocation) and until when we keep your files (§6)
 - No payment data (card numbers, IBAN) is ever stored by our systems: transactions are handled by Apple, Google, and RevenueCat
 
 ### 2.8 Third-party software components (on-device)
@@ -76,18 +90,18 @@ Only if you have consented to the **Crash reporting** category:
 Fluera includes some embedded third-party SDKs that process data **exclusively on your device**, without sending anything back to their producers. For transparency:
 
 - **Google ML Kit** (on-device Digital Ink & Text Recognition) — on-device handwriting and text/image recognition. Recognition runs locally on your device; ink and images are not sent to Google for these on-device APIs (recognition models are downloaded from Google). Google receives no canvas content from Fluera via ML Kit.
-- **sqlite3mc** — the local database engine, which provides the AES-256 encryption described in §2.2. The key is supplied by the app from your device's keystore; sqlite3mc itself sends nothing anywhere. All processing is on-device.
+- **sqlite3mc** — the local database engine, which provides the ChaCha20-Poly1305 encryption described in §2.2. The key is supplied by the app from your device's keystore; sqlite3mc itself sends nothing anywhere. All processing is on-device.
 - **Sentry SDK** (Functional Software Inc.) — only the embedded library; see §4 for the data controller and §3 for the legal basis of crash report transfer (consent, opt-in).
 
 These components are **not data processors** under Art. 28 GDPR because they do not receive personal data. They are third-party **software components** like any other library used to build the app.
 
 ### 2.9 Cognitive memory (on-device indexing)
 
-On by default (opt-out) and processed **exclusively on your device**: Fluera builds a cognitive index of your notes that powers the study features — automatic cluster titles, the concept map ("Ghost Map"), spaced repetition (FSRS), and the learning-state checkpoints ("Sé").
+On by default (opt-out). Fluera builds **on your device** a cognitive index of your notes that powers the study features — automatic cluster titles, the concept map ("Ghost Map"), spaced repetition (FSRS), and the learning-state checkpoints ("Sé"). The index is always built and computed on the device.
 
-- **No transfer:** this index **never leaves your device**. It is distinct from *AI features* (§2.4, which send content to the cloud) and *Cloud Sync* (§2.5), which remain separate opt-in consents.
-- **Locally derived and processed data:** cluster and concept identifiers, on-device-generated titles, the concept-graph structure, the concept event log, repetition scheduling. Stored locally under the same protection described in §2.2.
-- **Control (opt-out):** you can disable it at any time from *Settings → Privacy → Cognitive memory*. On disable, indexing stops and **the cognitive data already created on the device is erased immediately**; your notes stay intact. Re-enabling rebuilds the index.
+- **Where it stays:** on your device. It leaves only if you turn on "Sync across your devices" (§2.5, Cloud plan): then your review cards with the history of your answers, your concepts, the concept map and the note-group titles go through Fluera's cloud to reach your other devices. Without the switch the index stays on the device, as before. It is distinct from *AI features* (§2.4), which remain a separate consent.
+- **Derived data:** cluster and concept identifiers, on-device-generated titles, the concept-graph structure, the concept event log, repetition scheduling. On the device they are stored under the same protection described in §2.2; the copy in the cloud, if you turn sync on, as described in §2.5.
+- **Control (opt-out):** you can disable it at any time from *Settings → Privacy → Cognitive memory*. On disable, indexing stops and **the cognitive data already created on this device is erased immediately**; your notes stay intact. If you use Sync across your devices, the copies in the cloud are deleted too (review cards with their answers, concepts, the concept map and note-group titles), and none goes up again from any of your devices until you re-enable it; on your other devices the copies stay until you disable it there too. Re-enabling rebuilds the index.
 
 ### 2.10 Handwriting recognition dataset (opt-in, off by default)
 
@@ -209,6 +223,60 @@ this check.
   your account: we no longer show it, but anyone who already has its address can
   still open it.
 
+**The marketplace signal.** When you install a card from the catalogue, the app
+tells our server, and also tells it if you come back to study it. This is used
+to count which cards people install and which ones they come back to, and so to
+recognise the creators whose cards are genuinely useful. It is on by default and
+you turn it off in *Settings → Privacy and telemetry → Marketplace signal*.
+
+- **What travels:** the identifier of the installed card and, if you come back
+  to study it (a completed review, or reopening it at least 20 hours after
+  installing it), the fact that you came back. It travels tied to your account,
+  including the anonymous session the app opens if you have not signed in. The
+  server adds the time of the install and of the return.
+- **What does not travel:** your name, your email, the content of the card or
+  of your notes, how much you remember (that travels only with Analytics, §2.3).
+- **What it is used for:** only installs by real accounts count, not those of
+  anonymous sessions. They count in the number of installs shown on the card,
+  in the catalogue order (popular, trending and most effective cards) and in
+  the creator's figures (the installs on their profile and their badges). The
+  same row is used for rating: the server accepts a rating of a card only from
+  someone who installed it.
+- **On the device** the app keeps the list of installed cards, with the time,
+  to notice the return. A card leaves the list when you come back to study it
+  or after 30 days.
+- **Who sees it:** us, at Supabase in the EU (§4), and you: your rows and the
+  switch are in your data export. Creators and other people see only totals, never who
+  installed.
+- **Turning it off:** the switch applies to your account, on all your
+  devices. The server records when you turned it off, with the version of this
+  policy, and from then on refuses your account's installs and returns,
+  including those of an earlier version of the app that does not know the
+  switch. Turning it off deletes from the server all the installs of your
+  account, from any device, and the measures of how much you remember of those
+  cards (§2.3); the cards' install numbers and the creators' figures are
+  recalculated without them. If the device is offline, it stops sending at
+  once, and the switch-off reaches the server by itself the next time you open
+  a canvas. If you had turned it off with an earlier version of the app, which
+  kept it only on the device, and the server has no choice of yours yet, the
+  first time the app reads your account from that device it turns it off on
+  the server too. If you turn it back on, it
+  starts again from zero. "Delete all my data from the cloud" performs the same
+  deletions without turning it off, and "Delete account" performs them before
+  deleting the account.
+- **If you rate with the signal off:** the server accepts a rating only from
+  someone who installed the card, so the app records that you installed it, in
+  a separate row that does not count: nothing in the install number, the
+  creators' figures or the catalogue order. If you later turn the signal back
+  on, that row still does not count. From an earlier version of the app, with
+  the signal off, the rating goes through only if that row already exists.
+- **The device code:** earlier versions of the app also sent a random 128-bit
+  code created on the device, without an account. The server no longer
+  accepts it and the app no longer sends it. The remaining rows delete
+  themselves 30 days after the install, or earlier if from that device you
+  turn the signal off or use one of the two deletions above; the device then
+  forgets the code.
+
 ### 2.12 Study digest for your connected AI assistant (opt-in, off by default)
 
 If you enable "Connected AI assistant", Fluera publishes a compact **study
@@ -270,6 +338,12 @@ or what you search for.
 - **The sites you visit** receive what any site receives from a browser: your IP address, the
   browser type (in a reduced form, with no device model), your language, and the cookies that site
   has set. They are independent controllers of the data they collect, under their own policies.
+- **When you write on the page with the pen**, the site does not receive your strokes: it receives
+  only the touches Fludomi passes on to it (a click, a control you drag, a frame of another site
+  embedded in the page). Nor does it receive where the hovering pen moves. On iPad two limits
+  remain: the site can still know which element of the page the hovering Pencil is over (the
+  «:hover» style), and a frame the page fills by itself, without loading it from an address, can
+  still receive the Pencil, the start of strokes included.
 - **The search engine** you choose in Settings (default: DuckDuckGo) receives what you search for
   and your IP address. «Search in Fludomi» also sends it the text you selected in a note or PDF.
 - **Google Lens**, only when you use it, receives the image you choose (a PDF crop, an image from
@@ -313,7 +387,14 @@ killed. They close by themselves after 15 minutes with Fluera in the background.
 - we open links over https whenever the site offers it; a site without https opens only after
   a warning, and on Android in the phone's browser.
 
-Only folds travel between your devices, and only if you turn sync on, end-to-end encrypted (§2.5).
+If you turn sync on, your folds, history, favorites, the text size and the camera and microphone
+blocks chosen for each site, and the tabs open on each device (with its name) travel between your
+devices. They are end-to-end encrypted with the folds key (§2.5): the server sees how many entries
+there are, of which type and when they change, never the addresses or the titles. Private tabs,
+cookies, sign-ins to sites and the permissions granted to a site do not travel. "Clear browsing
+data" also deletes them from the server and, at their next sync, from your other devices; "Clear
+everything on close" deletes only on the device where it is on. If you turn sync off, their copies
+leave the server; on your devices they stay.
 
 ## 3. Purposes and legal bases
 
@@ -326,8 +407,10 @@ Only folds travel between your devices, and only if you turn sync on, end-to-end
 - **Catalogue and card sharing** (§2.11): contract performance (Art. 6.1.b GDPR), on your explicit request — no card is uploaded unless you ask for it
 - **Moderation of shared content, handling of reports and abuse prevention** (§2.11): legal obligation (Art. 6.1.c GDPR, EU Regulation 2022/2065 "DSA") and legitimate interest (Art. 6.1.f GDPR) in preventing the service from carrying unlawful content. This also covers recording the version of the Terms you accept and your declaration about the rights in the content, which is what makes the conditions of your sharing demonstrable
 - **Subscription management**: contract performance (Art. 6.1.b GDPR)
+- **Marketplace signal** (§2.11): legitimate interest (Art. 6.1.f GDPR) in measuring fairly which catalogue cards are actually installed and studied, to recognise creators, with your account identifier and no content. You can object (Art. 21 GDPR) at any time by turning the signal off in *Settings → Privacy and telemetry*: the objection applies to your account on all your devices, the server records it with the time and the version of this policy, and it also deletes your account's installs
 - **Security and abuse prevention** (AI quota enforcement): legitimate interest (Art. 6.1.f GDPR)
-- **On-device cognitive memory** (local indexing for titles, Ghost Map, repetition): legitimate interest (Art. 6.1.f GDPR) in providing the study features, processed exclusively locally (no transfer), with a right to object (Art. 21 GDPR) exercisable at any time via the opt-out in *Settings → Privacy*
+- **On-device cognitive memory** (local indexing for titles, Ghost Map, repetition): legitimate interest (Art. 6.1.f GDPR) in providing the study features, processed on the device, with a right to object (Art. 21 GDPR) exercisable at any time via the opt-out in *Settings → Privacy*. The copy that travels between your devices follows the basis of the next item
+- **Sync across your devices** (§2.5): contract performance (Art. 6.1.b GDPR). It is the Cloud plan service you buy, and it starts only when you turn the switch on. The server records when you turned it on and which version of the policy you had in front of you; you can turn it off whenever you like
 
 ## 4. Recipients of data
 
@@ -374,16 +457,19 @@ Supabase allows region selection: we use the region `eu-north-1` (Stockholm) wit
 ## 6. Retention periods
 
 - **Account and user content:** for the duration of the contractual relationship and until deletion request
+- **Sync across your devices data (§2.5):** stays in the cloud until you delete it. Turning the switch off or withdrawing the Cloud Sync consent deletes nothing, except the copies of Fludomi's data (history, favorites, site preferences, tabs), which leave the server when the switch goes off. If the Cloud plan closes (expiry, refund, plan change or revocation), the server records when and why, and for 6 months from then everything stays and you can download it on any of your devices. After the 6 months we may remove from the cloud the lesson audio, PDFs and photos beyond the 500 MB of the Free plan, oldest first; the ink of your canvases stays, and we remove nothing from a canvas shared with another account or from the cards of your private catalogue. If the Cloud plan comes back before then, the closure is cancelled. A canvas put in the **Trash** is in the Trash on every one of your devices and stays in the cloud as it was; the 30 days of the Trash count from the time it went in, the same on all of them; if you write in it again from another device, it comes out. A discarded exam answer and a photo removed from a canvas leave the cloud as soon as the device is online. Of a deleted folder only its identifier and the time stay in the cloud, so that it does not come back; the canvases it held stay. "Delete forever" on a canvas (in the Trash) removes it from the cloud together with what belongs to it: strokes, photos, PDFs, lessons, review cards with their answers, concepts, titles, study, recognised text and the ink of its exams. "Delete all my data from the cloud" (*Settings → Privacy and telemetry*) removes every canvas with the same things, the lessons, the exam ink, the settings that travel and the folders, and turns the switch off on all your devices; only the record of the switch stays (when you turned it on, with the version of this policy, and when you turned it off), as proof of consent. "Delete account" (*Settings → Profile and account*) deletes that too. The copies on your devices stay until you delete them there
 - **Telemetry events:** 180 days
 - **Crash-report events:** 30 days in Sentry. Encrypted backup copies are deleted within 90 days of their creation
 - **AI usage logs (`ai_usage_events`):** 24 months
+- **Measures of how much you remember of catalogue cards (§2.3):** until you withdraw the Analytics consent, turn the Marketplace signal off, use "Delete all my data from the cloud" or delete the account
+- **Marketplace signal (§2.11):** on the server, your account's installs until you turn the signal off, use "Delete all my data from the cloud" or delete the account (the row written for a rating with the signal off, which does not count, stays until you use one of the two deletions); the record of the switch (when you turned it off or back on, with the version of this policy) until you delete the account, because it is the proof of your choice; the rows of the old device code, 30 days from the install. On the device, each card leaves the list when you come back to study it or after 30 days, and the server's last answer about the switch is kept for when you are offline
 - **Subscription data:** 10 years for tax purposes (Italian Civil Code Art. 2220). At RevenueCat (§4) subscriber and purchase data are not deleted when a subscription expires — they are removed when we delete the customer, and from their downstream systems within 30 days. Note that deleting the customer does not cancel the subscription with Apple or Google: only you can do that, from your store account, and until you do, restoring your purchases can recreate the record
 - **Catalogue cards (§2.11):** until you remove them or moderation removes them. Expired or revoked **links** and revoked **authorisations** stay recorded (without the link's text, of which we keep only a fingerprint) so it remains possible to show who had access and when. On account deletion, cards you **authored** are deleted together with their files; copies already installed by other people stay on their devices and are reachable neither by you nor by us
 - **Moderation decisions and reports:** kept for as long as needed to handle a complaint or appeal, and in any case to meet DSA obligations
 - **Consent audit trail:** until revocation + 3 years (Art. 7.1 GDPR)
 - **Handwriting recognition dataset (§2.10):** up to 5 years after account deletion, or until you withdraw it in *Settings → Privacy → AI Training Data* — whichever comes first, always pseudonymised. Withdrawal only reaches contributions made from a device whose app data is still present; after an uninstall the 5-year window is what bounds them (see §2.10, Art. 11 GDPR)
-- **Fludomi history (on the device, §2.14):** for the period you choose without a new visit — 1 day, 1 week, 1 month or 3 months (the default); sites' cookies and data until you clear them, sign out or delete your account
-- **Cognitive memory index (on-device):** kept locally while the feature is enabled; erased immediately on disable (opt-out) or on a data-deletion request
+- **Fludomi history (on the device and, with sync, encrypted in the cloud, §2.14):** for the period you choose without a new visit — 1 day, 1 week, 1 month or 3 months (the default); a page you remove leaves an encrypted marker in the cloud for 30 days; sites' cookies and data until you clear them, sign out or delete your account
+- **Cognitive memory index (on-device):** kept locally while the feature is enabled; erased immediately on disable (opt-out) or on a data-deletion request. Its copy in the cloud, if you turned on sync across your devices, is erased on disable too (§2.9)
 - **Anonymous sessions:** when you use Fluera without a permanent account, data is associated with a temporary device identifier. If you do not convert the session into a permanent account within **24 hours of inactivity** after opening a new session on another device, the anonymous account and all associated data are automatically deleted by a scheduled job on our servers.
 
 ## 7. User rights
@@ -403,7 +489,8 @@ You may exercise the following rights under Art. 15-22 GDPR:
 - Toggles in *Settings → Privacy*
 - *Export my data* in-app (Art. 20 GDPR)
 - For a copy that includes your canvas contents (Art. 15): use *Export* on each canvas — the `.fluera` format preserves everything. The in-app data export covers server-side data and canvas metadata; stroke bodies are a proprietary binary format and are listed under `excluded` in its `manifest.json`, with this same instruction.
-- Email lorenco@fluera.dev for account deletion or manual rectification
+- *Delete account* in *Settings → Profile and account*: deletes the account and its data in the cloud (§6)
+- Email lorenco@fluera.dev for manual rectification, or if deleting the account from the app fails
 
 The controller responds within 30 days of receipt (Art. 12.3 GDPR), barring justified extension.
 
@@ -448,7 +535,7 @@ California residents benefit from rights under the *California Consumer Privacy 
 
 **Do Not Sell or Share Notice**: Fluera **does not sell, share, or trade** your personal information for cross-context behavioral advertising or any other commercial purpose. We honor *Global Privacy Control* (GPC) signals where technically applicable.
 
-**Categories of information collected** (Cal. Civ. Code §1798.130): identifiers (pseudonymous user_id), commercial information (subscription tier), internet activity (product telemetry if consented), inferred information (usage preferences). No sensitive data under CCPA.
+**Categories of information collected** (Cal. Civ. Code §1798.130): identifiers (pseudonymous user_id; the random device code the marketplace signal used before, §2.11), commercial information (subscription tier), internet activity (product telemetry if consented), inferred information (usage preferences). No sensitive data under CCPA.
 
 Equivalent rights apply in **Virginia (CDPA)**, **Colorado (CPA)**, **Connecticut (CTDPA)**, **Utah (UCPA)** and the new 2024-2025 laws (Texas, Oregon, Delaware, Iowa, New Hampshire, Montana). Use the same channel `lorenco@fluera.dev` to exercise them.
 

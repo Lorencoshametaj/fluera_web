@@ -6,11 +6,11 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Criptografia",
-    body: "Cada caderno do Fluera é criptografado em repouso no seu dispositivo com AES-256 via SQLCipher, e os arquivos .fluera exportados são criptografados com AES-256-GCM. O tráfego é criptografado em trânsito com TLS 1.3. O cloud sync não é criptografado ponta a ponta: os cadernos sincronizados ficam na infraestrutura da UE (Supabase, eu-north-1), criptografados em trânsito e em repouso no nível da infraestrutura. Como controlador de dados, o Fluera pode acessar tecnicamente o conteúdo sincronizado, mas nunca o vende, usa para publicidade ou para treinar modelos.",
+    body: "No seu dispositivo, o banco de dados que guarda seus canvas é criptografado em repouso com sqlite3mc (ChaCha20-Poly1305, chave de 256 bits); fotos, PDFs e áudio das aulas são arquivos na pasta privada do app, protegidos pelo sistema operacional. Um arquivo .fluera exportado não é criptografado; o Backup criptografado é selado com AES-256-GCM. O tráfego viaja em TLS. O cloud sync não tem criptografia de ponta a ponta: os canvas sincronizados ficam em infraestrutura da UE (Supabase, eu-north-1), criptografados em trânsito e em repouso no nível da infraestrutura. Como controladores dos dados, podemos tecnicamente acessar o conteúdo sincronizado — mas nunca o vendemos nem o usamos para publicidade.",
   },
   {
     title: "Propriedade dos dados",
-    body: "Cada byte que você escreve é exportável com um clique: PNG, JPEG, WebP, SVG, PDF e o nosso formato aberto .fluera. Seus cadernos vivem antes nos seus dispositivos. A nuvem é uma conveniência, não uma prisão — o lock-in é um modelo de negócio que escolhemos rejeitar.",
+    body: "Cada byte que você escreve pode ser exportado com um clique: PNG, JPEG, WebP, SVG, PDF e o nosso formato .fluera. Seus canvas vivem primeiro nos seus dispositivos. A nuvem é uma conveniência, não uma prisão — o lock-in é um modelo de negócio que escolhemos recusar.",
   },
   {
     title: "GDPR por padrão",
@@ -18,18 +18,18 @@ const pillars = [
   },
   {
     title: "Local-first, sempre",
-    body: "Você pode usar o Fluera totalmente offline. A sincronização é opt-in por caderno, não em nível de conta. Se desligar a sincronização, seus dados não saem do dispositivo — incluindo a telemetria, que é baseada em consentimento e anônima.",
+    body: "Você pode usar o Fluera totalmente offline. A sincronização entre seus dispositivos fica desligada até você ligá-la, e vale para a sua conta inteira. Com o sync desligado, seus canvas ficam no dispositivo. O resto só sai como está descrito, chave por chave, no guia Privacidade e consentimento de IA: a telemetria, por exemplo, só com o seu consentimento, ligada à sua conta e nunca com conteúdo.",
   },
   {
     title: "O que não fazemos",
-    body: "Sem publicidade. Sem venda de dados. Não treinamos nossos modelos no seu conteúdo. Não te rastreamos pela web. Não passamos dados a terceiros além dos suboperadores declarados (listados na página Suboperadores) — todos sob DPA.",
+    body: "Não vamos exibir anúncios. Não vamos vender seus dados. Não treinamos modelos com seus canvas a menos que você escolha: os Dados de treino da IA ficam desligados até você ligá-los. Não vamos rastrear você pela web. Não vamos repassar dados a terceiros além dos suboperadores nomeados (listados na página Suboperadores) — todos sob DPA.",
   },
 ];
 ---
 
 <BaseLayout
   title="Segurança e privacidade"
-  description="Criptografia AES-256 em repouso, GDPR por padrão, servidores na Europa, zero ad-tech. A arquitetura de segurança e o compromisso do Fluera com a propriedade dos seus dados."
+  description="Banco de dados local criptografado, LGPD e GDPR por padrão, servidores na Europa, zero ad-tech. A arquitetura de segurança do Fluera e o compromisso com a propriedade dos seus dados."
   locale="pt-br"
 >
   <PageHero
@@ -62,12 +62,10 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Responsible disclosure</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Encontrou alguma coisa?</h2>
           <p class="prose-ink mb-6">
-            Pesquisadores de segurança são bem-vindos. Reporte vulnerabilidades para
-            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
-            Damos retorno em 24 horas, fazemos patch dos problemas críticos em 72, e creditamos quem reporta no nosso hall of fame — salvo preferência por anonimato.
+            Pesquisadores de segurança são bem-vindos. Reporte vulnerabilidades para <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. Respondemos em até 5 dias úteis. Não há programa de recompensas.
           </p>
           <p class="text-sm text-ink-500 italic">
-            A chave PGP para reports criptografados está publicada no nosso perfil do GitHub.
+            As regras para os reports também estão publicadas em /.well-known/security.txt (RFC 9116).
           </p>
         </div>
         <div>
@@ -85,7 +83,7 @@ const pillars = [
   <section class="py-16 border-t border-white/[0.04]">
     <div class="container-narrow text-center">
       <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
-        Esta página cobre o essencial. A arquitetura completa, o registro de suboperadores e o template de DPA vivem em
+        Esta página cobre o essencial. A arquitetura completa e o registro de suboperadores vivem em
         <a href="/pt-br/security/architecture" class="text-paper-300 underline">/pt-br/security/architecture</a> e
         <a href="/pt-br/security/sub-processors" class="text-paper-300 underline">/pt-br/security/sub-processors</a>. Dúvidas específicas de compliance? Escreva para
         <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.

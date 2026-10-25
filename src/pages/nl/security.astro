@@ -6,11 +6,11 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Versleuteling",
-    body: "Elk Fluera-notitieboek wordt in rust versleuteld met AES-256 via SQLCipher. Het verkeer is onderweg versleuteld met TLS 1.3 en moderne cipher suites. Cloud-synchronisatie wordt onderweg (TLS) en in rust op Europese infrastructuur (Supabase, eu-north-1) versleuteld; ze is niet end-to-end versleuteld — als verwerkingsverantwoordelijke kan Fluera er technisch bij, maar we verkopen je inhoud nooit en gebruiken die nooit voor advertenties.",
+    body: "Op je apparaat is de database met je canvassen in rust versleuteld met sqlite3mc (ChaCha20-Poly1305, sleutel van 256 bits); foto's, pdf's en audio van colleges zijn bestanden in de privémap van de app, beschermd door het besturingssysteem. Een geëxporteerd .fluera-bestand is niet versleuteld; de Versleutelde back-up is verzegeld met AES-256-GCM. Verkeer gaat via TLS. Cloud sync is niet end-to-end versleuteld: gesynchroniseerde canvassen staan op EU-infrastructuur (Supabase, eu-north-1), versleuteld tijdens transport en in rust op infrastructuurniveau. Als verwerkingsverantwoordelijke kunnen we technisch bij gesynchroniseerde inhoud — maar we verkopen die nooit en gebruiken die nooit voor advertenties.",
   },
   {
     title: "Eigenaarschap van data",
-    body: "Elke byte die je schrijft is met één klik te exporteren: PNG, JPEG, WebP, SVG, PDF en ons open .fluera-formaat. Je notitieboeken leven primair op je apparaten. De cloud is een gemak, geen gevangenis — lock-in is een verdienmodel dat we ervoor kiezen af te wijzen.",
+    body: "Elke byte die je schrijft is met één klik te exporteren: PNG, JPEG, WebP, SVG, PDF en ons .fluera-formaat. Je canvassen leven eerst op je apparaten. De cloud is een gemak, geen gevangenis — lock-in is een businessmodel waar we bewust tegen gekozen hebben.",
   },
   {
     title: "AVG vanaf de basis",
@@ -18,18 +18,18 @@ const pillars = [
   },
   {
     title: "Local-first, altijd",
-    body: "Je kunt Fluera volledig offline gebruiken. Synchronisatie is opt-in per notitieboek, niet op accountniveau. Zet je sync uit, dan verlaten je gegevens het apparaat niet — inclusief de telemetrie, die op toestemming gebaseerd en anoniem is.",
+    body: "Je kunt Fluera volledig offline gebruiken. Synchroniseren tussen je apparaten staat uit tot je het aanzet, en geldt voor je hele account. Met sync uit blijven je canvassen op het apparaat. De rest verlaat het alleen zoals de gids Privacy en AI-toestemming het schakelaar voor schakelaar beschrijft: telemetrie bijvoorbeeld alleen met je toestemming, gekoppeld aan je account en nooit met inhoud.",
   },
   {
     title: "Wat we niet doen",
-    body: "Geen advertenties. Geen verkoop van data. We trainen onze modellen niet op jouw inhoud. We volgen je niet over het web. We delen geen data met derden buiten de gedeclareerde subverwerkers (vermeld op de pagina Subverwerkers) — allen onder verwerkersovereenkomst.",
+    body: "We tonen geen advertenties. We verkopen je data niet. We trainen geen modellen op je canvassen, tenzij je daarvoor kiest: AI-trainingsdata staat uit tot je het aanzet. We volgen je niet over het web. We geven geen data aan derden buiten de genoemde subverwerkers (op de pagina Subverwerkers) — allemaal onder verwerkersovereenkomst.",
   },
 ];
 ---
 
 <BaseLayout
   title="Beveiliging en privacy"
-  description="AES-256-versleuteling in rust, AVG vanaf de basis, servers in Europa, geen ad-tech. De beveiligingsarchitectuur en de Fluera-belofte rond eigenaarschap van jouw data."
+  description="Versleutelde lokale database, AVG vanaf de basis, servers in Europa, nul ad-tech. De beveiligingsarchitectuur van Fluera en de belofte over het eigendom van je data."
   locale="nl"
 >
   <PageHero
@@ -62,12 +62,10 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Responsible disclosure</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Iets gevonden?</h2>
           <p class="prose-ink mb-6">
-            Beveiligingsonderzoekers zijn welkom. Meld kwetsbaarheden bij
-            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
-            We reageren binnen 24 uur, patchen kritieke problemen binnen 72, en vermelden de melder in onze hall of fame — tenzij anonimiteit de voorkeur heeft.
+            Beveiligingsonderzoekers zijn hier welkom. Meld kwetsbaarheden bij <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. We antwoorden binnen 5 werkdagen. Er is geen bug-bountyprogramma.
           </p>
           <p class="text-sm text-ink-500 italic">
-            De PGP-sleutel voor versleutelde rapporten staat op ons GitHub-profiel.
+            De regels voor meldingen staan ook in /.well-known/security.txt (RFC 9116).
           </p>
         </div>
         <div>
@@ -85,7 +83,7 @@ const pillars = [
   <section class="py-16 border-t border-white/[0.04]">
     <div class="container-narrow text-center">
       <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
-        Deze pagina dekt het essentiële. De volledige architectuur, het register van subverwerkers en het verwerkersovereenkomst-template staan op
+        Deze pagina dekt het essentiële. De volledige architectuur en het register van subverwerkers staan op
         <a href="/nl/security/architecture" class="text-paper-300 underline">/nl/security/architecture</a> en
         <a href="/nl/security/sub-processors" class="text-paper-300 underline">/nl/security/sub-processors</a>. Specifieke compliance-vragen? Schrijf naar
         <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.

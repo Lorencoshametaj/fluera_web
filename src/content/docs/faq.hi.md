@@ -46,7 +46,7 @@ updatedAt: 2026-04-20
 
 [support@fluera.dev](mailto:support@fluera.dev)। वर्णन करें कि आप क्या कर रहे थे, क्या expected था, क्या हुआ, और app version include करें (सेटिंग्स → About)। Screenshots मदद करते हैं।
 
-Security vulnerabilities के लिए, [lorenco@fluera.dev](mailto:lorenco@fluera.dev) उपयोग करें और हमारी PGP key (हमारे GitHub profile पर) के साथ encrypt करें।
+Security vulnerabilities के लिए [support@fluera.dev](mailto:support@fluera.dev) पर लिखें। हम 5 कार्यदिवसों के भीतर जवाब देते हैं। कोई bug bounty कार्यक्रम नहीं है।
 
 ## मैं शिक्षाशास्त्र पर feedback कैसे दूँ?
 

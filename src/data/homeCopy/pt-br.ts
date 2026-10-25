@@ -13,7 +13,7 @@ const copy: HomeCopy = {
   proof: [
     ["12", "pincéis sensíveis à pressão"],
     ["FSRS", "revisões agendadas pela memória"],
-    ["AES-256", "banco de dados local criptografado"],
+    ["ChaCha20", "banco de dados local criptografado"],
     ["TODAS", "as plataformas abertas no beta"],
   ],
   flowKicker: "A ASSINATURA FLUERA",
@@ -62,7 +62,7 @@ const copy: HomeCopy = {
   trustBody: "Cada mecanismo cognitivo remete a pesquisa publicada. Não dizemos que a Fluera já provou um ganho de resultado: o beta é onde medimos a nossa própria implementação.",
   scienceLink: "Explorar a ciência",
   securityTitle: "Sua mente continua sua.",
-  securityBody: "SQLCipher AES-256 no dispositivo, sincronização TLS em infraestrutura da UE, sem publicidade comportamental e sem treinar com o seu conteúdo.",
+  securityBody: "Banco de dados dos canvas criptografado no dispositivo (sqlite3mc, ChaCha20-Poly1305), sincronização TLS em infraestrutura da UE, sem publicidade comportamental e sem treinar com o seu conteúdo a menos que você ative.",
   securityLink: "Ler a arquitetura de segurança",
   platformKicker: "UMA TINTA, EM TODA PARTE",
   platformTitle: "Aberto em todas as plataformas.",

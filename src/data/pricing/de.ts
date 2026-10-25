@@ -1,112 +1,105 @@
-// 🇩🇪 V1.5 — Native pass complete (2026-05-15).
-// CTA labels + badge preserved from the previous locale file.
-// Coordinated with it.ts canonical.
-
 import type { PricingData } from "../types";
+
+// Listino del 22/10/2026 (Free, Cloud, IA, Cloud + IA). Allineato a it.ts.
+// Gli importi di `price` e `period` li controlla
+// fluera_engine/tool/public_truth_gate.dart contro FlueraPricing, per `id`.
 
 const data: PricingData = {
   tiers: [
     {
+      id: "free",
       name: "Free",
       price: "€0",
       period: "für immer",
       tagline:
-        "Das volle Canvas, um die Methode auszuprobieren. 100 KI-Credits pro Monat, immer sichtbar.",
+        "Der ganze Canvas, Wiederholung und Kurse. Ohne Abo und ohne Ablaufdatum.",
       features: [
-        "Unendliches Canvas, Handschrift-Eingabe, vollständige Rendering-Engine",
-        "3 Basis-Pinsel (Bleistift, Füllfederhalter, Marker — mehr ab Plus)",
-        "PNG-Export",
-        "100 KI-Credits pro Monat — Atlas immer gratis (0 Credits), Chat 1 pro Nachricht",
-        "Socratic 3 Sitzungen/Woche, Ghost Map 3 Vergleiche/Woche, 1 Exam/Woche",
-        "Fog of War, FSRS-Wiederholungsplaner",
-        "Cross-Zone Bridges — sieh die Verbindungen zwischen Konzepten, die das System entdeckt",
-        "📍 3 Checkpoints pro Canvas — speichere einen Lernmoment und springe jederzeit zurück",
-        "Time-Travel- + Audio↔Strich-Sync-Vorschau auf einem Demo-Canvas (nur Lesemodus)",
-        "Local-first, vollständig offline (1 Gerät)",
+        "Unendlicher Canvas und Handschrift",
+        "Wiederholung, Kurse, alle Pinsel, Export und Time Travel",
+        "Eine Kostprobe KI im ersten Monat nach der Anmeldung",
+        "500 MB Cloud auf allen deinen Geräten, ohne Audio, sobald die Cloud startet",
+        "Funktioniert auch offline: deine Canvas bleiben auf dem Gerät",
       ],
       cta: { label: "Kostenlos starten", href: "/beta" },
       highlighted: false,
     },
     {
-      name: "Plus",
-      price: "€9,99",
-      period: "pro Monat · €99,99 / Jahr (sparst €19,89 — 2 Monate gratis)",
+      id: "cloud",
+      name: "Cloud",
+      price: "€19,99",
+      period: "pro Jahr · nur jährlich · Cloud 60 für €44,99 / Jahr",
       tagline:
-        "Komplettes Einzelstudium: Cloud-Sync, KI ohne Wochenlimits, unbegrenzte Sprachaufnahme.",
+        "Platz für deine Canvas und aufgenommenen Vorlesungen. Sie startet mit einem App-Update.",
       features: [
-        "Cloud-Sync 5 GB auf 2 Geräten — deine Canvases auch auf iPad und Desktop",
-        "Socratic, Ghost Map, Exam ohne Frequenzlimits (kein 3/Woche mehr)",
-        "5× mehr KI-Credits als Free (500 pro Monat — etwa 60 Ghost Maps oder 18 vollständige Socratic-Sitzungen)",
-        "Unbegrenzte Sprachaufnahme",
-        "Alle V1-Pinsel (6 insgesamt, weitere folgen)",
-        "Vollständiger Export (PNG, JPEG, WebP, SVG, PDF, .fluera)",
-        "Cross-Zone Bridges — erstelle und bearbeite deine eigenen Konzeptverbindungen",
-        "📍 Unbegrenzte Checkpoints pro Canvas",
-        "7 Tage kostenlos testen, jederzeit kündbar",
+        "20 GB auf deinen Geräten: Handy, Tablet und Computer",
+        "Aufgenommene Vorlesungen hörst du überall",
+        "Deine Canvas sind sicher, auch wenn du das Handy wechselst",
+        "Cloud 60: 60 GB für alle, die viele Vorlesungen aufnehmen",
       ],
-      cta: { label: "Plus testen", href: "/beta" },
-      highlighted: true,
-      badge: "Empfohlen",
+      cta: { label: "Cloud wählen", href: "/beta" },
+      highlighted: false,
     },
     {
-      name: "Pro",
-      price: "€19,99",
-      period: "pro Monat · €199,99 / Jahr (sparst €39,89 — 2 Monate gratis)",
-      tagline:
-        "Verstärktes Studium: Time Travel, Audio↔Strich-Sync, Echtzeit-Kollaboration, Suche über alle Canvases.",
+      id: "ia",
+      name: "KI",
+      price: "€9,99",
+      period: "pro Monat · €84,99 / Jahr (sparst €34,89)",
+      tagline: "Eine KI, die liest, was du schreibst, mit einem Zähler, der immer sichtbar ist.",
       features: [
-        "⏱️ Time-Travel-Scrubber — sieh dir dein Studium im Playback an",
-        "🎤 Audio ↔ Strich-Sync — tippe auf einen Strich und höre, was du in diesem Moment gesagt hast",
-        "🤝 Echtzeit-Canvas-Kollaboration (CRDT) — lade Kommilitonen mit einem Link ein",
-        "🔍 Proaktives Background-OCR — finde eine Formel, die du vor Monaten geschrieben hast, in allen Canvases",
-        "Cloud-Sync 50 GB, unbegrenzte Geräte",
-        "Prioritärer E-Mail-Support",
-        "2000 KI-Credits pro Monat",
+        "Die KI liest deine Notizen und benennt jedes Konzept",
+        "Tutor, Prüfungen, Chat, Formeln und Transkription",
+        "Du siehst immer, wie viel KI dir diesen Monat bleibt, in Prozent",
+        "Prüfungsreserve für die vollsten Monate",
+        "14 Tage kostenlos zum Ausprobieren",
       ],
-      cta: { label: "Pro werden", href: "/beta" },
+      cta: { label: "KI testen", href: "/beta" },
       highlighted: false,
+    },
+    {
+      id: "cloud_ia",
+      name: "Cloud + KI",
+      price: "€99,99",
+      period: "pro Jahr · du sparst €4,99 gegenüber beiden einzeln · mit Cloud 60 €119,99 / Jahr",
+      tagline: "Die ganze Cloud und die ganze KI, in einem Abo.",
+      features: [
+        "Die ganze Cloud und die ganze KI",
+        "20 GB, oder 60 GB mit Cloud 60 + KI",
+        "Du siehst immer, wie viel KI dir diesen Monat bleibt, in Prozent",
+        "Nur jährlich",
+      ],
+      cta: { label: "Cloud + KI wählen", href: "/beta" },
+      highlighted: true,
+      badge: "Empfohlen",
     },
   ],
   faq: [
     {
-      q: "Wie funktionieren die KI-Credits?",
-      a: "Jede KI-Operation kostet feste Credits: Ghost Map 8, Socratic 4 pro Stage, Exam 12 pro Frage, Chat 1 pro Nachricht. Atlas (Canvas-Aktionen) ist kostenlos. Proaktives Background-OCR kostet 1 Credit pro Seite und gehört zu Pro. Du siehst dein Restguthaben immer im Canvas-Header — keine versteckten Rate Limits, keine Überraschungen. Ungenutzte Credits werden nicht übertragen: Der Plan füllt sich alle 30 Tage ab deinem Anmeldedatum wieder auf (nicht am 1. des Monats — du zahlst für 30 Tage und bekommst 30 Tage).",
+      q: "Wie sehe ich, wie viel KI mir bleibt?",
+      a: "In der App, immer. Ein Zähler zeigt dir in Prozent, wie viel KI dir diesen Monat bleibt, wann sie sich wieder auffüllt (am 1. des Monats) und wie lange sie in deinem Tempo reicht. Keine versteckten Limits und keine Credits, die du im Kopf umrechnen musst: Was du siehst, ist das, was du hast.",
     },
     {
-      q: "Was passiert, wenn ich vor dem Reset alle Credits aufbrauche?",
-      a: "Wir sagen es dir vorher — eine sanfte Warnung, wenn du 80% des Zyklus verbraucht hast. Bei Null stoppen KI-Funktionen mit einer klaren Nachricht (nie stille Blockaden). Warte auf den nächsten 30-Tage-Zyklus oder upgrade.",
+      q: "Und wenn die KI des Monats aufgebraucht ist?",
+      a: "Wiederholung, Kurse und deine Notizen funktionieren immer, auch ohne KI. Die KI kommt am 1. des Monats zurück; wenn du sie früher brauchst, kannst du in der App die Prüfungsreserve einschalten oder etwas dazukaufen.",
     },
     {
-      q: "Warum kostet Pro doppelt so viel für nur drei Pillars?",
-      a: "Pro ist nicht 'Plus mit mehr Credits' — es ist verstärktes Studium. Time Travel spielt deine Lerneinheit mit pro Strich synchronisiertem Audio ab: tippe auf eine Formel und höre die Erklärung, die du dir selbst gegeben hast. Echtzeit-CRDT-Kollaboration lässt dich gleichzeitig mit Kommilitonen oder Kollegen am selben Canvas arbeiten. Notability, GoodNotes und Notion AI bieten diesen Stack nicht — nicht auf diesem Integrationslevel.",
+      q: "Einmal kaufen: gilt das auf allen meinen Geräten?",
+      a: "Ja. Du schließt dein Abo in der Fluera-App auf dem Smartphone oder Tablet ab, über den App Store oder Google Play, und zahlst mit den Zahlungsmethoden aus deinem Store-Konto. Dein Tarif gilt dann auf allen Geräten, auf denen du dich mit demselben Konto anmeldest, Computer eingeschlossen.",
     },
     {
-      q: "Was passiert mit meinen Canvases, wenn ich Plus oder Pro kündige?",
-      a: "Alles bleibt auf deinem Gerät (local-first), und die 3 Basis-Pinsel sowie der PNG-Export funktionieren mit Free weiter. Funktionen des kostenpflichtigen Tarifs pausieren bis zur Reaktivierung. Nichts wird ohne deine ausdrückliche Aktion gelöscht.",
+      q: "Funktioniert die Cloud schon zwischen den Geräten?",
+      a: "Noch nicht. Die Cloud zwischen Handy, Tablet und Computer ist im Bau und startet mit einem App-Update. Bis dahin bleiben deine Canvas auf dem Gerät, wo sie auch offline funktionieren.",
     },
     {
-      q: "Warum keine kostenlose Pro-Probephase?",
-      a: "Plus hat 7 Tage gratis. Pro nicht: Echtzeit-Kollaboration + Time-Travel-Scrubber sind wiederkehrende Features mit Cloud-Kosten, die wir nicht verschenken können. Zum Testen der Methode ist Free das volle Canvas — nutze es so lange du willst.",
+      q: "Gibt es eine kostenlose Testphase?",
+      a: "Ja: 14 Tage kostenlos, nur für die KI. Du kannst jederzeit vor dem Ende der Testphase im Store kündigen. Free läuft nicht ab und verlangt keine Zahlung.",
     },
     {
-      q: "Was ist ein Checkpoint?",
-      a: "Ein Checkpoint ist ein Lesezeichen deines Canvas zu einem bestimmten Zeitpunkt — wie „Speichern unter“. Du erstellst ihn, wann du willst (z. B. „vor dem Test“, „nach Kapitel 3 fertig“) und springst jederzeit zurück: stellt den Canvas-Zustand auf diesen Punkt wieder her. Anders als Time Travel: der Checkpoint ist ein fester, von dir gewählter Punkt, Time Travel ist der durchgehende Scrubber über die gesamte Historie. Free enthält 3 Checkpoints pro Canvas, Plus unbegrenzt.",
-    },
-    {
-      q: "Kann ich Time Travel + Audio↔Strich-Sync vor dem Pro-Upgrade testen?",
-      a: "Ja. Jeder Free-User findet ein vorinstalliertes Demo-Canvas, bei dem du den Time-Travel-Scrubber öffnen und Striche antippen kannst, um das synchronisierte Audio abzuspielen — nur Lesemodus, auf dem Demo. Für eigene Aufnahmen brauchst du Pro.",
+      q: "Was passiert mit meinen Canvas, wenn ich kündige?",
+      a: "Sie bleiben deine, auf dem Gerät: Canvas, Wiederholung, Kurse, Pinsel und Export funktionieren mit Free weiter. Die Funktionen des Tarifs pausieren, bis du ihn wieder aktivierst. Nichts wird ohne deine ausdrückliche Aktion gelöscht.",
     },
     {
       q: "Gibt es eine Rückerstattungsregelung?",
       a: "Erstattungs- und Widerrufsbedingungen hängen vom Store und Kaufkanal ab. Die geltende Regelung wird vor der Bestätigung angezeigt; bei Fragen schreib von deiner registrierten Adresse an support@fluera.dev.",
-    },
-    {
-      q: "Rabatte für Forscher oder Non-Profits?",
-      a: "Ja. Forschungslabore, Doktorandenprogramme und registrierte Non-Profits können sich unter /contact bewerben — wir gewähren typischerweise Pro zum Plus-Preis oder kostenlos im Austausch für strukturiertes Feedback.",
-    },
-    {
-      q: "Welche Zahlungsmethoden akzeptiert ihr?",
-      a: "Du schließt dein Abo in der Fluera-App auf deinem Smartphone oder Tablet ab, über den App Store oder Google Play: Du zahlst mit den Zahlungsmethoden, die in deinem Store-Konto hinterlegt sind. Dein Tarif gilt dann auf jedem Gerät, auf dem du dich mit demselben Konto anmeldest.",
     },
     {
       q: "Team- oder Education-Pläne?",

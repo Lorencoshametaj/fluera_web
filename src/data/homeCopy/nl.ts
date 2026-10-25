@@ -13,7 +13,7 @@ const copy: HomeCopy = {
   proof: [
     ["12", "drukgevoelige penselen"],
     ["FSRS", "herhalingen gepland op het geheugen"],
-    ["AES-256", "versleutelde lokale database"],
+    ["ChaCha20", "versleutelde lokale database"],
     ["ALLE", "platforms open in de bèta"],
   ],
   flowKicker: "DE FLUERA-SIGNATUUR",
@@ -62,7 +62,7 @@ const copy: HomeCopy = {
   trustBody: "Elk cognitief mechanisme verwijst naar gepubliceerd onderzoek. We beweren niet dat Fluera zelf al betere resultaten heeft aangetoond: in de bèta meten we onze eigen uitvoering.",
   scienceLink: "Verken de wetenschap",
   securityTitle: "Je geest blijft van jou.",
-  securityBody: "SQLCipher AES-256 op het apparaat, TLS-synchronisatie op EU-infrastructuur, geen gedragsadvertenties en geen training op jouw inhoud.",
+  securityBody: "Versleutelde database van je canvassen op het apparaat (sqlite3mc, ChaCha20-Poly1305), TLS-synchronisatie op EU-infrastructuur, geen gedragsadvertenties en geen training op jouw inhoud, tenzij je het aanzet.",
   securityLink: "Lees de beveiligingsarchitectuur",
   platformKicker: "ÉÉN INKT, OVERAL",
   platformTitle: "Open op elk platform.",

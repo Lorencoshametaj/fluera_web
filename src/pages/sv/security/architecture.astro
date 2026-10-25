@@ -6,12 +6,12 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Säkerhetsarkitektur"
-  description="Hur Fluera krypterar din anteckningsbok i vila, i transit och mellan enheter. SQLCipher, TLS 1.3, molnsynk på EU-infrastruktur, opt-in-telemetri."
+  description="Hur Fluera krypterar dina canvasar i vila och under överföring, och hur cloud sync fungerar. sqlite3mc, TLS, synk på EU-infrastruktur, opt-in-telemetri."
   locale="sv"
 >
   <PageHero
     kicker="Arkitektur"
-    title="Så skyddar Fluera din anteckningsbok."
+    title="Så skyddar Fluera dina canvasar."
     description={`Den här sidan beskriver säkerhetsmodellen på den nivå som en teknisk läsare — säkerhetsansvarig, universitets-CISO, nyfiken utvecklare — förväntar sig. För den icke-tekniska sammanfattningen, börja på <a href="/sv/security">/sv/security</a>.`}
     breadcrumb={{ label: "Säkerhet", href: "/sv/security" }}
   />
@@ -25,35 +25,41 @@ import { SITE } from "@/lib/site";
       </p>
       <p>Inom den modellen, tre garantier:</p>
       <ul>
-        <li><strong>Lokal data är oläsbar utan nyckeln.</strong> En stulen enhet producerar en krypterad blob.</li>
+        <li><strong>Den lokala databasen är oläslig utan nyckeln.</strong> En stulen enhet ger en krypterad databas. Foton, PDF:er och föreläsningsljud skyddas av operativsystemet, inte av den nyckeln.</li>
         <li><strong>Synkroniserad data lagras på EU-infrastruktur.</strong> Den är krypterad i transit (TLS) och i vila på infrastrukturnivå (Supabase, eu-north-1), men inte ände-till-ände-krypterad — Fluera kan som personuppgiftsansvarig komma åt den. Vi säljer den aldrig och använder den aldrig för annonsering.</li>
-        <li><strong>Telemetri är samtyckesbaserad och avidentifierad.</strong> Analyserna kan inte koppla en användare till hennes innehåll ens vid ett fullständigt intrång.</li>
+        <li><strong>Telemetri bara med samtycke och aldrig med innehåll.</strong> Den är kopplad till ditt kontos identifierare så att du kan se och radera den: den är inte anonym.</li>
       </ul>
 
-      <h2>I vila: SQLCipher, AES-256</h2>
+      <h2>I vila: sqlite3mc, 256-bitars nyckel</h2>
       <p>
-        Varje anteckningsbok i Fluera lever i en lokal SQLite-databas krypterad med SQLCipher — en brett auditerad utökning som transparent krypterar varje sida i databasen med AES-256-CBC och integritetskontroll via HMAC-SHA512 per sida.
+        Den lokala SQLite-databasen med dina canvasar — streck, text, formler, ditt studerande — är krypterad med SQLite3 Multiple Ciphers (sqlite3mc) i schemat ChaCha20-Poly1305: varje sida i databasen är krypterad och autentiserad. Foton, PDF:er och föreläsningsljud ligger som filer i appens privata mapp: operativsystemet skyddar dem, inte den här nyckeln.
       </p>
       <p>
-        Nyckeln till den lokala databasen är en slumpmässig 256-bitarsnyckel som Fluera genererar och lagrar i plattformens säkra nyckellager — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows och libsecret på Linux. Den är varken ditt kontolösenord eller en lösenfras för molnsynkronisering, och den lokala databasnyckeln skickas aldrig till Flueras servrar.
-      </p>
-
-      <h2>I transit: TLS 1.3</h2>
-      <p>
-        All nätverkstrafik är TLS 1.3 med moderna chiffersviter.
+        Nyckeln är 256 slumpmässiga bitar, skapade på din enhet och förvarade i plattformens säkra nyckellager — Keychain på iOS/macOS, Keystore på Android, DPAPI på Windows, libsecret på Linux. Den är en rå nyckel, inte härledd från ditt kontolösenord, och skickas aldrig till Flueras servrar. För att en ny telefon inte ska kosta dig dina canvasar finns en kopia i systemets krypterade säkerhetskopia: på Android i Block Store, sparad i ditt Google-konto bara när den säkerhetskopian är end-to-end-krypterad med ditt skärmlås; på iOS i den krypterade säkerhetskopian i iCloud eller Finder.
       </p>
 
-      <h2>Synk mellan enheter: på EU-infrastruktur</h2>
+      <h2>Under överföring: TLS</h2>
       <p>
-        Molnsynk, när den är aktiverad, lagrar canvas-data på Supabase (EU-region, eu-north-1). Datan är krypterad i transit (TLS) och i vila på infrastrukturnivå, men inte ände-till-ände-krypterad: synkservern lagrar inte ciphertext som bara du kan låsa upp, och Fluera kan som personuppgiftsansvarig komma åt det synkade innehållet. Vi säljer det aldrig och använder det aldrig för annonsering. Synk är opt-in per anteckningsbok — du kan hålla vissa enbart lokalt medan andra synkas.
+        Trafiken mellan appen och våra tjänster — inloggning, synk, AI-proxyn — går över HTTPS (TLS).
+      </p>
+
+      <h2>Synk mellan enheter: ett reglage för kontot</h2>
+      <p>
+        <em>Synka mellan dina enheter</em> är ett enda reglage för hela kontot (Inställningar → Data och synkronisering), av tills du slår på det, och kräver Cloud-abonnemanget. Dina canvasar lagras på Supabase (EU-region, eu-north-1), krypterade under överföring med TLS och i vila på infrastrukturnivå. Synken är <em>inte</em> end-to-end-krypterad: Fluera kan som personuppgiftsansvarig tekniskt komma åt synkat innehåll. Vi säljer det aldrig och använder det aldrig för reklam. Undantaget är webbläsarens veck: de färdas end-to-end-krypterade.
+      </p>
+      <p>
+        En canvas skrivs på en enhet i taget: på de andra öppnas den skrivskyddad tills du trycker på <em>Skriv här</em>. Om samma canvas ändrats på två enheter utan nät skrivs ingenting över: arbetet som saknas blir kvar som en egen canvas i galleriet, att slå ihop för hand. Hela guiden: <a href="/sv/docs/cloud-sync">Synka mellan dina enheter</a>.
+      </p>
+      <p>
+        En exporterad <code>.fluera</code>-fil är inte krypterad: behandla den som vilken fil som helst. Kommandot <em>Krypterad säkerhetskopia</em> skriver en <code>.fluerabackup</code>-fil förseglad med AES-256-GCM med en nyckel i den här enhetens nyckellager; den öppnas bara på en enhet som har den nyckeln.
       </p>
 
       <h2>P2P-samarbete: direkt, krypterat</h2>
       <p>
-        Realtidssamarbete använder WebRTC DataChannel med DTLS-SRTP-kryptering. Supabase Realtime fungerar enbart som signaleringsmäklare — uppsättning av anslutningen — inte som relay för den faktiska canvas-trafiken. Efter handskakningen flödar canvas-redigeringar peer-to-peer. Servern ser dem inte.
+        Samarbete i realtid använder WebRTC DataChannels, krypterade med DTLS. Supabase Realtime fungerar bara som signaleringsmäklare — uppkopplingen — inte som relä för den faktiska canvastrafiken. Efter handskakningen går ändringarna i canvasen peer-to-peer. Servern ser dem inte.
       </p>
       <p>
-        Vid restriktiva NAT:er går trafiken via TURN, i vilket fall reläet bara ser krypterade DTLS-paket som det inte kan dekryptera.
+        Det finns ingen reläserver: publika STUN-servrar (Google) hjälper bara de två enheterna att hitta varandra. Om ett nätverk blockerar den direkta anslutningen kommer sessionen inte igång.
       </p>
 
       <h2>AI-anrop: via proxy, aldrig direkt</h2>
@@ -64,19 +70,19 @@ import { SITE } from "@/lib/site";
         Om du stänger av AI-funktionerna i <em>Inställningar → Integritet</em> skickas inget canvas-innehåll till Gemini, inte ens som fallback för OCR på enheten.
       </p>
 
-      <h2>Telemetri: opt-in, hashad, allowlistad</h2>
+      <h2>Telemetri: med samtycke, allowlist, utan innehåll</h2>
       <p>
-        Produktanalys är avstängd som standard. När den är på är händelserna begränsade till en whitelist på servern (sessionsstart/-slut, funktionsanrop, AI-anropsduration — aldrig innehåll). Användar-ID:t hashas med SHA-256 på enheten; ID:t i klartext lämnar aldrig klienten. Händelser sparas i 180 dagar och aggregeras eller raderas sedan.
+        Produktanalys är av tills du samtycker. När den är på begränsas händelserna till en allowlist på servern (start och slut på sessionen, användning av funktioner, AI-anrop med längd och tokens — aldrig innehåll). De bär ett slumpmässigt sessions-ID och ditt kontos identifierare, så att du kan se och radera din telemetri. Kraschrapporter (Sentry, ett eget samtycke) får bara en SHA-256-hash av den identifieraren. Att återkalla samtycket raderar telemetrin som samlats med ditt konto; händelser sparas i alla fall högst 180 dagar.
       </p>
 
       <h2>Dataåterställning</h2>
       <p>
-        Synkroniserade anteckningsböcker är kopplade till ditt konto: efter den vanliga kontoåterställningen kan du logga in igen och hämta dem på en ny enhet. Det finns ingen separat lösenfras för molnsynkronisering att komma ihåg. Kontoåterställning kan inte återskapa en anteckningsbok som bara lagrades lokalt om enhetsdata har raderats; aktivera synkronisering för anteckningsböcker du vill kunna återställa på flera enheter.
+        Byter du telefon eller installerar om och återställer en systemsäkerhetskopia, kommer databasen och nyckeln tillbaka tillsammans och dina canvasar öppnas som de var vid den senaste systemsäkerhetskopian. De kommer inte tillbaka om systemets säkerhetskopiering är av, på Android utan Google Play-tjänster eller med appdata över säkerhetskopians gräns på 25 MB, om du rensar appens data eller avinstallerar utan att återställa. Då förblir den lokala databasen oläslig — för dig och för oss — och vägen tillbaka är Synka mellan dina enheter: logga in på den nya enheten så kommer dina synkade canvasar tillbaka. Det finns ingen separat synklösenfras att komma ihåg eller tappa bort.
       </p>
 
       <h2>Responsible disclosure</h2>
       <p>
-        Säkerhetsforskare är välkomna. Rapportera sårbarheter till <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> med PGP-kryptering (nyckel publicerad i GitHub-profilen). Vi svarar inom 24 timmar, patchar kritiska problem inom 72 och krediterar rapportören i hall of fame om inte anonymitet begärs.
+        Säkerhetsforskare är välkomna. Rapportera sårbarheter till <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. Vi svarar inom 5 arbetsdagar. Det finns inget bug bounty-program.
       </p>
       <p>
         Omfattning: Fluera-appen (alla plattformar), synktjänsten, AI-proxyn och den här marknadssajten. Utanför omfattning: tredjepartstjänster (Supabase, Google, Apple, Sentry, RevenueCat) — rapportera till respektive leverantör.

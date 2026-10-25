@@ -1,3 +1,5 @@
+> **2026-10-22 — listino definitivo.** Free, Cloud, IA, Cloud + IA (più Cloud 60), in tutte e 16 le lingue. Le schede hanno un `id` che non si traduce (`free`, `cloud`, `ia`, `cloud_ia`): con quello `fluera_engine/tool/public_truth_gate.dart` lega `price` e `period` alle costanti di `FlueraPricing`. Niente crediti né Ghost Map; prova di 14 giorni solo sull'IA. Quello che segue è la storia del listino V1.5 (Free/Plus/Pro), non più in vigore.
+
 # Pricing copy — V1.5 schema rollout status
 
 **Last canonical refresh:** 2026-05-15 (V1.5 user pass — bullet reorder, Background OCR promoted to Pro pillar #4, voice unlimited on Plus, 30-day rolling reset, annual saving badges, student strip above fold).

@@ -1,51 +1,92 @@
 ---
 lang: "it"
-title: "Cloud sync"
-description: "Come sincronizzare i canvas tra dispositivi e come vengono protetti i dati sincronizzati."
+title: "Sincronizza fra i tuoi dispositivi"
+description: "Un interruttore per tutto l'account, con il piano Cloud: cosa viaggia, una scrivania alla volta, le copie in conflitto, il Cestino e come si cancella."
 section: settings
 sectionLabel: "Impostazioni"
 order: 2
-updatedAt: 2026-04-20
+updatedAt: 2026-10-23
 ---
+Con **Sincronizza fra i tuoi dispositivi** ritrovi i tuoi canvas, il tuo studio e le tue impostazioni su ogni dispositivo con cui entri. È un solo interruttore per tutto l'account, non uno per canvas, ed è spento finché non lo accendi tu.
 
-Il cloud sync è opt-in per quaderno. Puoi sincronizzare un canvas tenendone un altro strettamente locale. Niente si muove finché non glielo dici tu.
+## Accendere la sincronizzazione
 
-## Attivare il sync sul primo dispositivo
+1. Entra con un account (una sessione ospite non basta). Serve il piano Cloud.
+2. Apri **Impostazioni → Dati e sincronizzazione** e accendi **Sincronizza fra i tuoi dispositivi**.
 
-1. Apri **Impostazioni → Privacy** e attiva **Cloud sync**.
-2. Scegli quali quaderni sincronizzare. Click destro (o long-press) su un quaderno → **Attiva sync**.
+Vale subito per tutto l'account: ogni dispositivo con cui entri si sincronizza da solo. Quando lo accendi, il server registra la data e la versione dell'informativa privacy che avevi davanti. Senza il piano Cloud l'interruttore ti dice che serve; se il piano finisce, resta acceso ma in pausa.
 
-Una piccola icona cloud appare su ogni quaderno sincronizzato. Una variante rossa indica un errore; una grigia indica pausato.
+## Su un dispositivo nuovo
 
-## Aggiungere un secondo dispositivo
+1. Installa Fluera ed entra con lo stesso account.
+2. La galleria mostra subito l'elenco dei tuoi canvas. Un canvas che è ancora solo nel cloud porta il segno della nuvola: si scarica quando lo apri, e per farlo serve la rete.
+3. Il resto scende da solo in sottofondo, quando sei su Wi-Fi o su una rete via cavo e la batteria non è scarica.
 
-1. Installa Fluera sul secondo dispositivo.
-2. Accedi con lo stesso account.
-3. Il cloud sync inizia. Aspettati che il primo sync completo richieda qualche minuto per un quaderno di dimensioni medie.
+## Cosa viaggia e cosa resta sul dispositivo
 
-## Come vengono protetti i dati sincronizzati
+Con l'interruttore acceso salgono nel cloud:
 
-- Sul tuo dispositivo, il database locale è cifrato a riposo con SQLCipher.
-- I quaderni sincronizzati viaggiano cifrati in transito (TLS) e sono conservati su infrastruttura europea (Supabase, regione `eu-north-1`), cifrata a riposo a livello infrastrutturale.
-- Il cloud sync **non** è end-to-end: come titolare del trattamento, Fluera può tecnicamente accedere ai contenuti sincronizzati. Non li vendiamo e non li usiamo per pubblicità o profilazione.
+- i canvas interi: tratti, sezioni, formule, tabelle, grafici, collegamenti, i PDF con i segni fatti nel lettore, le foto;
+- le lezioni registrate: l'audio, a pezzi, con i tratti legati all'audio;
+- lo studio di ogni canvas: le carte del ripasso con la storia delle risposte, i concetti, gli esami con il loro inchiostro, il tutor socratico, la chat, il richiamo, la mappa concettuale, i corsi;
+- le cartelle della galleria, la cartella di ogni canvas, i canvas fissati, le etichette e il Cestino;
+- il testo che Fluera ha riconosciuto nella tua scrittura a mano, con le tue correzioni;
+- le tue scelte nelle impostazioni: aspetto, lingua, carta, ripasso, esami e promemoria, colori, gomma e simili.
 
-Se esporti un quaderno come file `.fluera`, quel file è cifrato separatamente con AES-256-GCM.
+Restano sul dispositivo la cronologia del canvas (Time Travel), l'annulla e le impostazioni legate a quel dispositivo (mano, palmo, penna, finestra). Le pieghe del browser hanno un interruttore loro, **Le pieghe del browser**, e viaggiano cifrate end-to-end.
 
-## Recupero dei dati
+## Una scrivania alla volta
 
-Poiché i quaderni sincronizzati sono conservati sull'infrastruttura cloud, accedendo con lo stesso account puoi recuperarli su un nuovo dispositivo. La copia locale resta inoltre disponibile su qualsiasi dispositivo dove l'hai già scaricata.
+Fra i tuoi dispositivi, un canvas si scrive su un dispositivo alla volta.
 
-Per gli **account Education** la conservazione e l'accesso sono regolati dal DPA istituzionale.
+- Il dispositivo su cui apri un canvas prende il turno e lo rinnova ogni minuto.
+- Se lo stesso canvas è aperto altrove, qui lo vedi in sola lettura con **Aperto su …**. Tocca **Scrivi qui**: l'altro dispositivo salva, manda il suo lavoro nel cloud e ti passa il turno. Se non risponde, il turno passa a te dopo circa un minuto e mezzo.
+- Quando metti Fluera in secondo piano, il dispositivo manda il suo lavoro e libera il turno. Un turno che nessuno rinnova si libera da solo dopo due minuti e mezzo (app chiusa, niente rete).
+- Se il canvas è cambiato su un altro dispositivo mentre lo avevi aperto, vedi **Questo canvas è cambiato su un altro dispositivo**: tocca **Chiudi e aggiorna** per scaricare il lavoro dell'altro.
 
-## Risoluzione dei conflitti
+Senza rete scrivi lo stesso: è la tua copia sul dispositivo.
 
-Se modifichi lo stesso canvas su due dispositivi contemporaneamente mentre uno è offline, Fluera usa un CRDT con vector clock per fare merge senza conflitti. Non perdi lavoro. In rari casi dove il merge automatico è ambiguo, vedrai un marker "merge needed" sul nodo interessato e una vista side-by-side per confermare.
+## Le copie in conflitto
 
-## Disattivare il sync per un quaderno specifico
+Se lo stesso canvas è cambiato su due dispositivi senza rete, Fluera non scrive una versione sopra l'altra: quando tornano in rete, il lavoro che manca in una delle due resta come canvas a parte nella galleria.
 
-Click destro (o long-press) su un quaderno → **Disattiva sync**. La copia cloud viene revocata immediatamente. La copia locale resta intatta.
+- **«Titolo» · da questo dispositivo**: il lavoro fatto qui.
+- **«Titolo» · dall'altro dispositivo**: la versione arrivata dal cloud.
+
+Aprili tutti e due e riunisci a mano quello che ti serve. Un dispositivo con una Fluera più vecchia non scrive sopra un canvas salvato con una Fluera più nuova: ti chiede di aggiornare (**Aggiorna Fluera per salvare nel cloud**) e il suo lavoro sale come copia accanto, **«Titolo» — dal …, da riunire**.
+
+## Cestino e cartelle
+
+- Le cartelle viaggiano con nome, colore, cartella madre e fissate; ogni canvas resta nella sua cartella su tutti i dispositivi.
+- Un canvas nel **Cestino** è nel Cestino su ogni dispositivo. I 30 giorni del Cestino contano dall'ora in cui ci è entrato, la stessa ovunque. Se ci scrivi ancora da un altro dispositivo, esce dal Cestino.
+- Se elimini una cartella, i canvas che conteneva restano.
+
+## Spegnere non cancella niente
+
+Puoi spegnere l'interruttore da qualunque dispositivo: si ferma su tutti. Si spegne anche se togli il consenso **Cloud sync** in **Impostazioni → Privacy e telemetria**. Spegnerlo **non cancella niente**: quello che è nel cloud resta finché non lo cancelli tu, e sui dispositivi resta tutto.
+
+## Se il piano Cloud si chiude
+
+Se il piano Cloud si chiude (scadenza, rimborso, cambio di piano o revoca), la sincronizzazione va in pausa e per **6 mesi** resta tutto nel cloud: lo puoi scaricare su ogni tuo dispositivo, e l'app ti dice fino a quando. Dopo i 6 mesi possiamo togliere dal cloud l'audio delle lezioni, i PDF e le foto che superano i 500 MB del piano Free, cominciando dai più vecchi. L'inchiostro dei canvas resta sempre, e non togliamo niente da un canvas condiviso con un altro account né dalle schede del catalogo privato. Se riattivi il Cloud prima, la chiusura si annulla.
+
+## Cancellare dal cloud
+
+- **Elimina definitivamente** su un canvas nel Cestino lo toglie dal cloud insieme a ciò che gli appartiene: tratti, foto, PDF, lezioni, carte del ripasso con le risposte, concetti, titoli, studio, testo riconosciuto e l'inchiostro dei suoi esami.
+- Una risposta d'esame scartata e una foto tolta da un canvas lasciano il cloud appena il dispositivo è in rete.
+- **Cancella tutti i miei dati dal cloud** (**Impostazioni → Privacy e telemetria**) toglie tutti i canvas, le lezioni, l'inchiostro degli esami, le impostazioni che viaggiano e le cartelle, e spegne l'interruttore su tutti i tuoi dispositivi. Resta solo la registrazione dell'interruttore (quando l'hai acceso e spento, con la versione dell'informativa), che è la prova del tuo consenso.
+- **Cancella l'account** (**Impostazioni → Profilo e account**) cancella anche quella.
+- Se spegni la **Memoria cognitiva**, si cancellano anche le sue copie nel cloud: carte del ripasso con le risposte, concetti, mappa concettuale e titoli dei gruppi di appunti.
+
+Le copie sui tuoi dispositivi restano finché non le elimini lì.
+
+## Come sono protetti i dati
+
+- Sul dispositivo il database locale è cifrato a riposo con ChaCha20-Poly1305 (sqlite3mc); la chiave sta nel portachiavi del sistema.
+- Nel cloud i dati stanno su Supabase, regione UE `eu-north-1` (Stoccolma), cifrati in transito (TLS) e a riposo a livello di infrastruttura.
+- La sincronizzazione **non** è cifrata end-to-end: Fluera, come titolare del trattamento, può tecnicamente accedere ai dati per far funzionare, proteggere e assistere il servizio. Non li vendiamo e non li usiamo per la pubblicità. Fanno eccezione le pieghe del browser, cifrate end-to-end.
 
 ## Successivo
 
+- [Privacy e consenso](/it/docs/privacy-consent)
 - [FAQ e troubleshooting](/it/docs/faq)
 - [Architettura di sicurezza](/it/security/architecture)

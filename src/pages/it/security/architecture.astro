@@ -6,12 +6,12 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Architettura di sicurezza"
-  description="Come Fluera cifra il tuo quaderno a riposo, in transito e tra dispositivi. SQLCipher, TLS 1.3, sync cifrato in transito e a riposo su infrastruttura UE, telemetria opt-in."
+  description="Come Fluera cifra i tuoi canvas a riposo e in transito, e come funziona il sync. sqlite3mc, TLS, sync su infrastruttura UE, telemetria opt-in."
   locale="it"
 >
   <PageHero
     kicker="Architettura"
-    title="Come Fluera protegge il tuo quaderno."
+    title="Come Fluera protegge i tuoi canvas."
     description={`Questa pagina descrive il modello di sicurezza al livello che un lettore tecnico — security officer, CISO di ateneo, sviluppatore curioso — si aspetta. Per la sintesi non-tecnica, parti da <a href="/it/security">/it/security</a>.`}
     breadcrumb={{ label: "Sicurezza", href: "/it/security" }}
   />
@@ -25,35 +25,41 @@ import { SITE } from "@/lib/site";
       </p>
       <p>Dentro quel modello, tre garanzie:</p>
       <ul>
-        <li><strong>I dati locali sono illeggibili senza la chiave.</strong> Un dispositivo rubato produce un blob cifrato.</li>
+        <li><strong>Il database locale è illeggibile senza la chiave.</strong> Un dispositivo rubato dà un database cifrato. Foto, PDF e audio delle lezioni sono protetti dal sistema operativo, non da quella chiave.</li>
         <li><strong>I dati sincronizzati sono cifrati in transito (TLS) e a riposo sull'infrastruttura UE.</strong> Il sync non è end-to-end: come titolari del trattamento possiamo tecnicamente accedere ai contenuti sincronizzati, ma non li vendiamo né li usiamo per pubblicità.</li>
-        <li><strong>La telemetria è consensuale e de-identificata.</strong> Gli analytics non possono collegare un utente ai suoi contenuti nemmeno in caso di breach completo.</li>
+        <li><strong>La telemetria è basata sul consenso e non porta mai contenuti.</strong> È legata all'identificativo del tuo account, perché tu possa vederla e cancellarla: non è anonima.</li>
       </ul>
 
-      <h2>At-rest: SQLCipher, AES-256</h2>
+      <h2>A riposo: sqlite3mc, chiave da 256 bit</h2>
       <p>
-        Ogni quaderno Fluera vive in un database SQLite locale cifrato con SQLCipher — un'estensione ampiamente verificata che cifra trasparentemente ogni pagina del database con AES-256-CBC e integrity check HMAC-SHA512 per pagina.
+        Il database SQLite locale che contiene i tuoi canvas — tratti, testo, formule, il tuo studio — è cifrato con SQLite3 Multiple Ciphers (sqlite3mc) nel suo schema ChaCha20-Poly1305: ogni pagina del database è cifrata e autenticata. Foto, PDF e audio delle lezioni sono file nella cartella privata dell'app: li protegge il sistema operativo, non questa chiave.
       </p>
       <p>
-        La chiave del database locale è una chiave casuale a 256 bit generata da Fluera e custodita nell'archivio sicuro della piattaforma — Keychain su iOS/macOS, Keystore su Android, DPAPI su Windows e libsecret su Linux. Non è la password dell'account né una passphrase del cloud sync, e la chiave del database locale non viene inviata ai server Fluera.
-      </p>
-
-      <h2>In transito: TLS 1.3</h2>
-      <p>
-        Tutto il traffico di rete è TLS 1.3 con cifrari moderni.
+        La chiave è di 256 bit casuali, generata sul tuo dispositivo e custodita nell'archivio sicuro della piattaforma — Keychain su iOS/macOS, Keystore su Android, DPAPI su Windows, libsecret su Linux. È una chiave grezza, non derivata dalla password dell'account, e non viene mai inviata ai server Fluera. Perché un telefono nuovo non ti costi i canvas, ne esiste una copia nel backup cifrato del sistema: su Android in Block Store, salvata nel tuo account Google solo quando quel backup è cifrato end-to-end con il blocco schermo; su iOS nel backup cifrato di iCloud o del Finder.
       </p>
 
-      <h2>Sync tra dispositivi: cifrato in transito e a riposo</h2>
+      <h2>In transito: TLS</h2>
       <p>
-        Il cloud sync, quando attivato, trasmette i quaderni al server di sync (Supabase, regione UE, eu-north-1) cifrati in transito tramite TLS e cifrati a riposo a livello di infrastruttura. Il sync <em>non</em> è end-to-end: il contenuto è leggibile lato server e, come titolari del trattamento, possiamo tecnicamente accedervi. Non vendiamo mai i tuoi contenuti né li usiamo per pubblicità. Il sync è opt-in per quaderno — puoi tenerne alcuni solo locali mentre ne sincronizzi altri.
+        Il traffico fra l'app e i nostri servizi — accesso, sync, proxy AI — viaggia in HTTPS (TLS).
+      </p>
+
+      <h2>Sync tra dispositivi: un interruttore per l'account</h2>
+      <p>
+        <em>Sincronizza fra i tuoi dispositivi</em> è un solo interruttore per tutto l'account (Impostazioni → Dati e sincronizzazione), spento finché non lo accendi, e richiede il piano Cloud. I tuoi canvas stanno su Supabase (regione UE, eu-north-1), cifrati in transito con TLS e a riposo a livello di infrastruttura. Il sync <em>non</em> è end-to-end: come titolare del trattamento Fluera può tecnicamente accedere ai contenuti sincronizzati. Non li vendiamo né li usiamo per pubblicità. Fanno eccezione le pieghe del browser, cifrate end-to-end.
+      </p>
+      <p>
+        Un canvas si scrive su un dispositivo alla volta: sugli altri si apre in sola lettura finché non tocchi <em>Scrivi qui</em>. Se lo stesso canvas è cambiato su due dispositivi senza rete, niente viene sovrascritto: il lavoro che manca resta come canvas a parte nella galleria, da riunire a mano. La guida completa: <a href="/it/docs/cloud-sync">Sincronizza fra i tuoi dispositivi</a>.
+      </p>
+      <p>
+        Un file <code>.fluera</code> esportato non è cifrato: trattalo come qualunque altro file. Il comando <em>Backup cifrato</em> scrive un file <code>.fluerabackup</code> sigillato con AES-256-GCM con una chiave custodita nell'archivio sicuro di questo dispositivo; si apre solo su un dispositivo che ha quella chiave.
       </p>
 
       <h2>Collaborazione P2P: diretta, cifrata</h2>
       <p>
-        La collaborazione real-time usa WebRTC DataChannel con cifratura DTLS-SRTP. Supabase Realtime fa solo da broker di signaling — setup della connessione — non da relay per il traffico vero del canvas. Dopo l'handshake, gli edit del canvas fluiscono peer-to-peer. Il server non li vede.
+        La collaborazione in tempo reale usa WebRTC DataChannel, cifrati con DTLS. Supabase Realtime fa solo da broker di signaling — l'avvio della connessione — non da relay per il traffico vero del canvas. Dopo l'handshake, le modifiche al canvas viaggiano peer-to-peer. Il server non le vede.
       </p>
       <p>
-        Su NAT restrittivi passiamo via TURN, nel qual caso il relay vede solo pacchetti DTLS cifrati che non può decrittare.
+        Non c'è un server di relay: server STUN pubblici (Google) aiutano solo i due dispositivi a trovarsi. Se una rete blocca la connessione diretta, la sessione non parte.
       </p>
 
       <h2>Chiamate AI: via proxy, mai dirette</h2>
@@ -64,19 +70,19 @@ import { SITE } from "@/lib/site";
         Se disattivi le funzioni AI in <em>Impostazioni → Privacy</em>, nessun contenuto del canvas viene inviato a Gemini, nemmeno per fallback OCR on-device.
       </p>
 
-      <h2>Telemetria: opt-in, hashata, allowlisted</h2>
+      <h2>Telemetria: con consenso, allowlist, niente contenuti</h2>
       <p>
-        Gli analytics di prodotto sono disattivati di default. Quando attivati, gli eventi sono limitati a una whitelist lato server (inizio/fine sessione, invocazione feature, durata chiamata AI — mai contenuto). L'ID utente è hashato SHA-256 sul dispositivo; l'ID in chiaro non lascia mai il client. Gli eventi sono conservati 180 giorni, poi aggregati o eliminati.
+        Gli analytics di prodotto sono spenti finché non dai il consenso. Quando sono accesi, gli eventi sono limitati a una allowlist lato server (inizio e fine sessione, uso delle funzioni, chiamate AI con durata e token — mai contenuti). Portano un ID di sessione casuale e l'identificativo del tuo account, perché tu possa vedere e cancellare la tua telemetria. I report dei crash (Sentry, un consenso a parte) ricevono solo un hash SHA-256 di quell'identificativo. Revocare il consenso cancella la telemetria raccolta con il tuo account; in ogni caso gli eventi restano al massimo 180 giorni.
       </p>
 
       <h2>Recupero dei dati</h2>
       <p>
-        I quaderni sincronizzati sono associati al tuo account: dopo il normale flusso di recupero dell'account, accedi di nuovo per scaricarli su un nuovo dispositivo. Non esiste una passphrase separata del cloud sync da ricordare o perdere. Il recupero dell'account non può ricostruire un quaderno rimasto solo locale se i dati del dispositivo sono stati cancellati; attiva il sync per i quaderni che vuoi poter recuperare su altri dispositivi.
+        Se cambi telefono o reinstalli e ripristini un backup del sistema, il database e la sua chiave tornano insieme e i tuoi canvas si riaprono come erano all'ultimo backup del sistema. Non tornano se il backup del sistema è spento, su Android senza Google Play services o con i dati dell'app oltre il limite di 25 MB del backup, se cancelli i dati dell'app, o se disinstalli senza ripristinare. Allora il database locale resta illeggibile — per te e per noi — e la strada per recuperare è Sincronizza fra i tuoi dispositivi: entri sul dispositivo nuovo e i canvas sincronizzati tornano. Non c'è una passphrase del sync da ricordare o perdere.
       </p>
 
       <h2>Responsible disclosure</h2>
       <p>
-        I security researcher sono benvenuti. Segnala le vulnerabilità a <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> con cifratura PGP (chiave pubblicata sul profilo GitHub). Riceviamo riscontro entro 24 ore, patch dei problemi critici entro 72, e citiamo chi segnala nella hall of fame salvo richiesta di anonimato.
+        I ricercatori di sicurezza sono benvenuti. Segnala le vulnerabilità a <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. Rispondiamo entro 5 giorni lavorativi. Non c'è un programma di ricompense.
       </p>
       <p>
         Scope: l'app Fluera (tutte le piattaforme), il servizio di sync, il proxy AI e questo sito marketing. Fuori scope: servizi terzi (Supabase, Google, Apple, Sentry, RevenueCat) — segnala ai vendor corrispondenti.

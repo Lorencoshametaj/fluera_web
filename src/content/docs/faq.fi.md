@@ -46,7 +46,7 @@ Jos viive jatkuu Predicted päällä, sulje ja käynnistä uudelleen. Jos se sil
 
 [support@fluera.dev](mailto:support@fluera.dev). Kuvaile, mitä olit tekemässä, mitä odotit, mitä tapahtui, ja sisällytä sovelluksen versio (Asetukset → Tietoja). Kuvakaappaukset auttavat.
 
-Tietoturvahaavoittuvuuksia varten käytä [lorenco@fluera.dev](mailto:lorenco@fluera.dev) ja salaa PGP-avaimellamme (GitHub-profiilissamme).
+Tietoturvahaavoittuvuuksia varten kirjoita osoitteeseen [support@fluera.dev](mailto:support@fluera.dev). Vastaamme 5 arkipäivän kuluessa. Bug bounty -ohjelmaa ei ole.
 
 ## Miten annan palautetta pedagogiikasta?
 

@@ -6,12 +6,12 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Sicherheitsarchitektur"
-  description="Wie Fluera dein Heft im Ruhezustand und im Transit verschlüsselt. SQLCipher, TLS 1.3, Cloud-Sync auf EU-Infrastruktur, Opt-in-Telemetrie."
+  description="Wie Fluera deine Canvas im Ruhezustand und beim Transport verschlüsselt und wie Cloud-Sync funktioniert. sqlite3mc, TLS, Sync auf EU-Infrastruktur, Opt-in-Telemetrie."
   locale="de"
 >
   <PageHero
     kicker="Architektur"
-    title="Wie Fluera dein Heft schützt."
+    title="Wie Fluera deine Canvas schützt."
     description={`Diese Seite beschreibt das Sicherheitsmodell auf jenem Niveau, das ein technischer Leser — Security Officer, CISO einer Universität, neugieriger Entwickler — erwartet. Für die nicht-technische Zusammenfassung beginne unter <a href="/de/security">/de/security</a>.`}
     breadcrumb={{ label: "Sicherheit", href: "/de/security" }}
   />
@@ -25,38 +25,41 @@ import { SITE } from "@/lib/site";
       </p>
       <p>Innerhalb dieses Modells drei Garantien:</p>
       <ul>
-        <li><strong>Lokale Daten sind ohne den Schlüssel unlesbar.</strong> Ein gestohlenes Gerät produziert ein verschlüsseltes Blob.</li>
+        <li><strong>Die lokale Datenbank ist ohne den Schlüssel unlesbar.</strong> Ein gestohlenes Gerät liefert eine verschlüsselte Datenbank. Fotos, PDFs und Vorlesungsaudio schützt das Betriebssystem, nicht dieser Schlüssel.</li>
         <li><strong>Synchronisierte Daten sind im Transit (TLS) und im Ruhezustand auf EU-Infrastruktur verschlüsselt.</strong> Cloud-Sync ist nicht Ende-zu-Ende-verschlüsselt; als Verantwortlicher kann Fluera technisch auf synchronisierte Inhalte zugreifen — wir verkaufen sie nie und nutzen sie nicht für Werbung.</li>
-        <li><strong>Telemetrie ist einvernehmlich und de-identifiziert.</strong> Die Analytik kann eine/n Nutzer/in nicht mit ihrem Inhalt verbinden, nicht einmal im Fall eines vollständigen Breach.</li>
+        <li><strong>Telemetrie gibt es nur mit Einwilligung und nie mit Inhalten.</strong> Sie ist an die Kennung deines Kontos gebunden, damit du sie sehen und löschen kannst: Sie ist nicht anonym.</li>
       </ul>
 
-      <h2>Im Ruhezustand: SQLCipher, AES-256</h2>
+      <h2>Im Ruhezustand: sqlite3mc, 256-Bit-Schlüssel</h2>
       <p>
-        Jedes Heft in Fluera lebt in einer lokalen, mit SQLCipher verschlüsselten SQLite-Datenbank — einer breit auditierten Erweiterung, die jede Seite der Datenbank transparent mit AES-256-CBC verschlüsselt und pro Seite mit HMAC-SHA512 auf Integrität prüft.
+        Die lokale SQLite-Datenbank mit deinen Canvas — Striche, Text, Formeln, dein Lernen — ist mit SQLite3 Multiple Ciphers (sqlite3mc) in dessen Schema ChaCha20-Poly1305 verschlüsselt: Jede Seite der Datenbank ist verschlüsselt und authentifiziert. Fotos, PDFs und Vorlesungsaudio liegen als Dateien im privaten Ordner der App: Sie schützt das Betriebssystem, nicht dieser Schlüssel.
       </p>
       <p>
-        Der Schlüssel der lokalen Datenbank ist ein zufällig erzeugter 256-Bit-Schlüssel, den Fluera im sicheren Schlüsselspeicher der Plattform ablegt — Keychain unter iOS/macOS, Keystore unter Android, DPAPI unter Windows und libsecret unter Linux. Er ist weder dein Kontopasswort noch eine Cloud-Sync-Passphrase und wird als lokaler Datenbankschlüssel nie an Flueras Server gesendet.
-      </p>
-
-      <h2>Im Transit: TLS 1.3</h2>
-      <p>
-        Der gesamte Netzwerkverkehr läuft über TLS 1.3 mit modernen Cipher Suites.
+        Der Schlüssel besteht aus 256 zufälligen Bits, wird auf deinem Gerät erzeugt und im sicheren Schlüsselspeicher der Plattform aufbewahrt — Keychain auf iOS/macOS, Keystore auf Android, DPAPI auf Windows, libsecret auf Linux. Er ist ein roher Schlüssel, nicht aus deinem Kontopasswort abgeleitet, und wird nie an die Server von Fluera gesendet. Damit ein neues Handy dich nicht deine Canvas kostet, hat er eine Kopie im verschlüsselten System-Backup: auf Android im Block Store, in deinem Google-Konto nur gespeichert, wenn dieses Backup mit deiner Displaysperre Ende-zu-Ende-verschlüsselt ist; auf iOS im verschlüsselten iCloud- oder Finder-Backup.
       </p>
 
-      <h2>Synchronisierung zwischen Geräten</h2>
+      <h2>Beim Transport: TLS</h2>
       <p>
-        Cloud-Sync, wenn aktiviert, überträgt deine Hefte verschlüsselt im Transit (TLS) zum Sync-Server (Supabase Storage, Region EU, eu-north-1), wo sie verschlüsselt im Ruhezustand auf EU-Infrastruktur gespeichert werden. Cloud-Sync ist <em>nicht</em> Ende-zu-Ende-verschlüsselt: Als Verantwortlicher kann Fluera technisch auf synchronisierte Inhalte zugreifen. Wir verkaufen diese Inhalte nie und nutzen sie nicht für Werbung. Die Synchronisierung ist pro Heft Opt-in — du kannst manche Hefte nur lokal halten, während du andere synchronisierst.
-      </p>
-      <p>
-        Wenn du ein Heft nur lokal hältst, bleibt es ausschließlich in der mit SQLCipher verschlüsselten On-Device-Datenbank und wird nie an unsere Server übertragen. Ein passwortgeschützter <code>.fluera</code>-Export wird separat mit AES-256-GCM verschlüsselt; das Exportpasswort schützt nur diese Datei und hat nichts mit Cloud-Sync zu tun.
+        Der Verkehr zwischen der App und unseren Diensten — Anmeldung, Sync, KI-Proxy — läuft über HTTPS (TLS).
       </p>
 
-      <h2>P2P-Kollaboration: direkt, verschlüsselt</h2>
+      <h2>Sync zwischen Geräten: ein Schalter für das Konto</h2>
       <p>
-        Die Echtzeit-Kollaboration nutzt WebRTC DataChannel mit DTLS-SRTP-Verschlüsselung. Supabase Realtime fungiert nur als Signaling-Broker — Verbindungsaufbau — nicht als Relay des eigentlichen Canvas-Verkehrs. Nach dem Handshake fließen die Canvas-Bearbeitungen Peer-to-Peer. Der Server sieht sie nicht.
+        <em>Zwischen deinen Geräten synchronisieren</em> ist ein einziger Schalter für das ganze Konto (Einstellungen → Daten und Synchronisierung), aus, bis du ihn einschaltest, und braucht den Cloud-Tarif. Deine Canvas liegen auf Supabase (EU-Region, eu-north-1), beim Transport mit TLS und im Ruhezustand auf Infrastrukturebene verschlüsselt. Der Sync ist <em>nicht</em> Ende-zu-Ende-verschlüsselt: Fluera kann als Verantwortlicher technisch auf synchronisierte Inhalte zugreifen. Wir verkaufen sie nie und nutzen sie nie für Werbung. Ausnahme sind die Browser-Falten: Sie reisen Ende-zu-Ende-verschlüsselt.
       </p>
       <p>
-        Bei restriktiven NATs läuft der Verkehr über TURN; in diesem Fall sieht das Relay nur verschlüsselte DTLS-Pakete, die es nicht entschlüsseln kann.
+        Ein Canvas wird auf einem Gerät nach dem anderen beschrieben: Auf den anderen öffnet er sich schreibgeschützt, bis du auf <em>Hier schreiben</em> tippst. Wurde derselbe Canvas offline auf zwei Geräten geändert, wird nichts überschrieben: Die fehlende Arbeit bleibt als eigener Canvas in der Galerie, zum Zusammenführen von Hand. Der vollständige Leitfaden: <a href="/de/docs/cloud-sync">Zwischen deinen Geräten synchronisieren</a>.
+      </p>
+      <p>
+        Eine exportierte <code>.fluera</code>-Datei ist nicht verschlüsselt: Behandle sie wie jede andere Datei. Der Befehl <em>Verschlüsseltes Backup</em> schreibt eine <code>.fluerabackup</code>-Datei, mit AES-256-GCM versiegelt, mit einem Schlüssel im Schlüsselspeicher dieses Geräts; sie öffnet sich nur auf einem Gerät, das diesen Schlüssel hat.
+      </p>
+
+      <h2>P2P-Zusammenarbeit: direkt, verschlüsselt</h2>
+      <p>
+        Die Echtzeit-Zusammenarbeit nutzt WebRTC-DataChannels, mit DTLS verschlüsselt. Supabase Realtime dient nur als Signalisierungs-Broker — zum Aufbau der Verbindung — nicht als Relay für den eigentlichen Canvas-Verkehr. Nach dem Handshake fließen die Änderungen am Canvas Peer-to-Peer. Der Server sieht sie nicht.
+      </p>
+      <p>
+        Es gibt keinen Relay-Server: Öffentliche STUN-Server (Google) helfen den beiden Geräten nur, einander zu finden. Blockiert ein Netz die direkte Verbindung, kommt die Sitzung nicht zustande.
       </p>
 
       <h2>KI-Aufrufe: über Proxy, niemals direkt</h2>
@@ -67,19 +70,19 @@ import { SITE } from "@/lib/site";
         Wenn du die KI-Funktionen unter <em>Einstellungen → Datenschutz</em> deaktivierst, wird kein Canvas-Inhalt an die KI gesendet, auch nicht als Fallback für On-Device-OCR.
       </p>
 
-      <h2>Telemetrie: Opt-in, gehasht, allowlisted</h2>
+      <h2>Telemetrie: mit Einwilligung, Allowlist, ohne Inhalte</h2>
       <p>
-        Die Produkt-Analytik ist standardmäßig deaktiviert. Wenn aktiviert, sind die Ereignisse auf eine serverseitige Whitelist beschränkt (Sitzungsbeginn/-ende, Aufruf einer Funktion, Dauer eines KI-Aufrufs — niemals Inhalt). Die Nutzer-ID wird auf dem Gerät mit SHA-256 gehasht; die Klartext-ID verlässt den Client nie. Die Ereignisse werden 180 Tage aufbewahrt und danach aggregiert oder gelöscht.
+        Produkt-Analytics sind aus, bis du einwilligst. Wenn sie an sind, beschränken sich die Ereignisse auf eine serverseitige Allowlist (Beginn und Ende der Sitzung, Nutzung von Funktionen, KI-Aufrufe mit Dauer und Tokens — nie Inhalte). Sie tragen eine zufällige Sitzungs-ID und die Kennung deines Kontos, damit du deine Telemetrie sehen und löschen kannst. Absturzberichte (Sentry, eine eigene Einwilligung) erhalten nur einen SHA-256-Hash dieser Kennung. Ein Widerruf löscht die mit deinem Konto erhobene Telemetrie; in jedem Fall bleiben Ereignisse höchstens 180 Tage.
       </p>
 
       <h2>Datenwiederherstellung</h2>
       <p>
-        Synchronisierte Hefte sind mit deinem Konto verknüpft: Nach der normalen Kontowiederherstellung kannst du dich erneut anmelden und sie auf einem neuen Gerät herunterladen. Es gibt keine separate Cloud-Sync-Passphrase, die du dir merken oder verlieren könntest. Die Kontowiederherstellung kann ein ausschließlich lokal gespeichertes Heft nicht rekonstruieren, wenn die Gerätedaten gelöscht wurden; aktiviere Sync für Hefte, die du geräteübergreifend wiederherstellen möchtest.
+        Wechselst du das Handy oder installierst neu und stellst ein System-Backup wieder her, kommen die Datenbank und ihr Schlüssel zusammen zurück, und deine Canvas öffnen sich so, wie sie beim letzten System-Backup waren. Sie kommen nicht zurück, wenn das System-Backup aus ist, auf Android ohne Google Play-Dienste oder mit App-Daten über der 25-MB-Grenze des Backups, wenn du die App-Daten löschst oder ohne Wiederherstellung deinstallierst. Dann bleibt die lokale Datenbank unlesbar — für dich wie für uns — und der Weg zur Wiederherstellung ist Zwischen deinen Geräten synchronisieren: Melde dich auf dem neuen Gerät an, und deine synchronisierten Canvas kommen zurück. Es gibt keine eigene Sync-Passphrase, die du dir merken oder verlieren könntest.
       </p>
 
       <h2>Responsible Disclosure</h2>
       <p>
-        Sicherheitsforscher/innen sind willkommen. Melde Schwachstellen an <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> mit PGP-Verschlüsselung (Schlüssel veröffentlicht im GitHub-Profil). Wir antworten innerhalb von 24 Stunden, patchen kritische Probleme innerhalb von 72 und nennen die Meldenden in der Hall of Fame, sofern keine Anonymität gewünscht wird.
+        Sicherheitsforscher sind willkommen. Melde Schwachstellen an <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. Wir antworten innerhalb von 5 Werktagen. Es gibt kein Bug-Bounty-Programm.
       </p>
       <p>
         Scope: die Fluera-App (alle Plattformen), der Sync-Dienst, der KI-Proxy und diese Marketing-Website. Außerhalb des Scopes: Drittanbieter (Supabase, Google, Apple, Sentry, RevenueCat) — melde dort den jeweiligen Anbietern.

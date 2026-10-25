@@ -6,12 +6,12 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Turvallisuusarkkitehtuuri"
-  description="Miten Fluera suojaa muistikirjasi lepotilassa, siirrossa ja laitteiden välillä. SQLCipher, TLS 1.3, EU-pohjainen pilvisynkronointi, opt-in-telemetria."
+  description="Miten Fluera salaa canvas-näkymäsi levossa ja siirrossa, ja miten cloud sync toimii. sqlite3mc, TLS, synkronointi EU-infrastruktuurissa, opt-in-telemetria."
   locale="fi"
 >
   <PageHero
     kicker="Arkkitehtuuri"
-    title="Miten Fluera suojaa muistikirjasi."
+    title="Miten Fluera suojaa canvas-näkymäsi."
     description={`Tämä sivu kuvaa turvallisuusmallin sillä tasolla, jota tekninen lukija — turvallisuuspäällikkö, yliopiston CISO, utelias kehittäjä — odottaa. Ei-tekninen yhteenveto alkaa osoitteesta <a href="/fi/security">/fi/security</a>.`}
     breadcrumb={{ label: "Turvallisuus", href: "/fi/security" }}
   />
@@ -25,38 +25,41 @@ import { SITE } from "@/lib/site";
       </p>
       <p>Tämän mallin sisällä kolme takuuta:</p>
       <ul>
-        <li><strong>Paikallinen data on lukukelvotonta ilman avainta.</strong> Varastettu laite tuottaa salatun blobin.</li>
+        <li><strong>Paikallista tietokantaa ei voi lukea ilman avainta.</strong> Varastettu laite antaa salatun tietokannan. Kuvia, PDF:iä ja luentojen ääntä suojaa käyttöjärjestelmä, ei tuo avain.</li>
         <li><strong>Synkronoitu data on suojattu siirrossa ja lepotilassa EU-infrastruktuurissa.</strong> Pilvisynkronointi ei ole päästä päähän -salattua: rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä, mutta emme koskaan myy sitä emmekä käytä sitä mainontaan.</li>
-        <li><strong>Telemetria on suostumukseen perustuvaa ja anonymisoitua.</strong> Analytiikka ei voi yhdistää käyttäjää sisältöön, ei edes täydellisen tietomurron tapauksessa.</li>
+        <li><strong>Telemetria vain suostumuksella eikä koskaan sisällön kanssa.</strong> Se on sidottu tilisi tunnisteeseen, jotta voit nähdä ja poistaa sen: se ei ole anonyymi.</li>
       </ul>
 
-      <h2>Lepotilassa: SQLCipher, AES-256</h2>
+      <h2>Levossa: sqlite3mc, 256-bittinen avain</h2>
       <p>
-        Jokainen Flueran muistikirja elää paikallisessa, SQLCipher-salatussa SQLite-tietokannassa — laajasti auditoidussa laajennoksessa, joka salaa läpinäkyvästi jokaisen tietokannan sivun AES-256-CBC:llä ja varmistaa eheyden sivukohtaisesti HMAC-SHA512:lla.
+        Paikallinen SQLite-tietokanta, jossa canvas-näkymäsi ovat — vedot, teksti, kaavat, opiskelusi — on salattu SQLite3 Multiple Ciphersillä (sqlite3mc) sen ChaCha20-Poly1305-mallilla: jokainen tietokannan sivu on salattu ja todennettu. Kuvat, PDF:t ja luentojen ääni ovat tiedostoja sovelluksen yksityisessä kansiossa: niitä suojaa käyttöjärjestelmä, ei tämä avain.
       </p>
       <p>
-        Paikallisen tietokannan avain on Flueran luoma satunnainen 256-bittinen avain, joka säilytetään alustan suojatussa avainsäilössä — Keychain iOS/macOS:ssa, Keystore Androidissa, DPAPI Windowsissa ja libsecret Linuxissa. Se ei ole tilisi salasana eikä pilvisynkronoinnin salalause, eikä paikallisen tietokannan avainta koskaan lähetetä Flueran palvelimille.
-      </p>
-
-      <h2>Siirrossa: TLS 1.3, moderni cipher suite</h2>
-      <p>
-        Kaikki verkkoliikenne kulkee TLS 1.3:n yli moderneilla cipher suiteilla, mikä suojaa salakuuntelulta ja man-in-the-middle-hyökkäyksiltä siirron aikana.
+        Avain on 256 satunnaista bittiä, jotka luodaan laitteellasi ja säilytetään alustan suojatussa avainvarastossa — Keychain iOS:ssä/macOS:ssä, Keystore Androidissa, DPAPI Windowsissa, libsecret Linuxissa. Se on raaka avain, jota ei johdeta tilisi salasanasta, eikä sitä koskaan lähetetä Flueran palvelimille. Jotta uusi puhelin ei maksaisi sinulle canvas-näkymiäsi, avaimesta on kopio järjestelmän salatussa varmuuskopiossa: Androidissa Block Storessa, joka tallentuu Google-tilillesi vain, kun varmuuskopio on päästä päähän salattu näytön lukituksella; iOS:ssä iCloudin tai Finderin salatussa varmuuskopiossa.
       </p>
 
-      <h2>Synkronointi laitteiden välillä: EU-infrastruktuuri</h2>
+      <h2>Siirrossa: TLS</h2>
       <p>
-        Pilvisynkronointi, kun se on käytössä, tallentaa muistikirjasi Supabasen palvelimelle (EU-alue, eu-north-1). Data on suojattu siirrossa (TLS) ja lepotilassa infrastruktuuritasolla. Synkronointi ei ole päästä päähän -salattua: rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä, mutta emme koskaan myy sitä emmekä käytä sitä mainontaan. Synkronointi on muistikirjakohtainen opt-in — voit pitää jotkin muistikirjat vain paikallisina samalla kun synkronoit toisia.
+        Liikenne sovelluksen ja palveluidemme välillä — kirjautuminen, synkronointi, tekoälyn välityspalvelin — kulkee HTTPS:llä (TLS).
+      </p>
+
+      <h2>Synkronointi laitteiden välillä: yksi kytkin tilille</h2>
+      <p>
+        <em>Synkronoi laitteidesi välillä</em> on yksi kytkin koko tilille (Asetukset → Tiedot ja synkronointi), pois päältä kunnes kytket sen päälle, ja se vaatii Cloud-tilauksen. Canvas-näkymäsi tallennetaan Supabaseen (EU-alue, eu-north-1), salattuina siirrossa TLS:llä ja levossa infrastruktuurin tasolla. Synkronointi <em>ei</em> ole päästä päähän salattu: Fluera voi rekisterinpitäjänä teknisesti päästä synkronoituun sisältöön. Emme koskaan myy sitä emmekä käytä sitä mainontaan. Poikkeus ovat selaimen taitteet: ne kulkevat päästä päähän salattuina.
       </p>
       <p>
-        Vain paikallisina pidettävät muistikirjat eivät koskaan poistu laitteeltasi, vaan säilyvät SQLCipher-salatussa paikallisessa tietokannassa. Salasanalla suojattu <code>.fluera</code>-vientitiedosto salataan erikseen AES-256-GCM:llä; vientisalasana suojaa vain kyseistä tiedostoa eikä liity pilvisynkronointiin.
+        Canvasiin kirjoitetaan yhdellä laitteella kerrallaan: muilla se avautuu vain luku -tilassa, kunnes napautat <em>Kirjoita tässä</em>. Jos sama canvas on muuttunut kahdella laitteella ilman verkkoa, mitään ei kirjoiteta yli: puuttuva työ jää galleriaan omaksi canvasikseen, jonka yhdistät käsin. Koko opas: <a href="/fi/docs/cloud-sync">Synkronoi laitteidesi välillä</a>.
+      </p>
+      <p>
+        Viety <code>.fluera</code>-tiedosto ei ole salattu: käsittele sitä kuin mitä tahansa tiedostoa. Komento <em>Salattu varmuuskopio</em> kirjoittaa <code>.fluerabackup</code>-tiedoston, joka on sinetöity AES-256-GCM:llä tämän laitteen avainvarastossa olevalla avaimella; se aukeaa vain laitteella, jolla tuo avain on.
       </p>
 
       <h2>P2P-yhteistyö: suora, salattu</h2>
       <p>
-        Reaaliaikainen yhteistyö käyttää WebRTC DataChannelia DTLS-SRTP-salauksella. Supabase Realtime toimii vain signalointivälittäjänä — yhteyden muodostamisessa — ei varsinaisen canvas-liikenteen välityspalvelimena. Kättelyn jälkeen canvas-muokkaukset virtaavat peer-to-peer. Palvelin ei näe niitä.
+        Reaaliaikainen yhteistyö käyttää WebRTC DataChanneleja, jotka on salattu DTLS:llä. Supabase Realtime toimii vain signalointivälittäjänä — yhteyden muodostamisessa — eikä välitä varsinaista canvas-liikennettä. Kättelyn jälkeen canvasin muutokset kulkevat peer-to-peer. Palvelin ei näe niitä.
       </p>
       <p>
-        Rajoittavien NAT:ien tapauksessa liikenne kulkee TURN:n kautta; tässä tapauksessa välityspalvelin näkee vain salattuja DTLS-paketteja, joita se ei pysty purkamaan.
+        Välityspalvelinta ei ole: julkiset STUN-palvelimet (Google) vain auttavat kahta laitetta löytämään toisensa. Jos verkko estää suoran yhteyden, istunto ei muodostu.
       </p>
 
       <h2>Tekoälykutsut: välityspalvelimen kautta, ei koskaan suoraan</h2>
@@ -67,19 +70,19 @@ import { SITE } from "@/lib/site";
         Jos poistat tekoälyominaisuudet käytöstä kohdassa <em>Asetukset → Yksityisyys</em>, mitään canvas-sisältöä ei lähetetä tekoälylle, ei myöskään laitepohjaisen OCR:n varatoimena.
       </p>
 
-      <h2>Telemetria: opt-in, hashattu, sallittu lista</h2>
+      <h2>Telemetria: suostumuksella, sallittu lista, ei sisältöä</h2>
       <p>
-        Tuoteanalytiikka on oletuksena pois päältä. Kun se on käytössä, tapahtumat rajoittuvat palvelinpuolen sallittuun listaan (istunnon alku/loppu, ominaisuuden kutsu, tekoälykutsun kesto — ei koskaan sisältöä). Käyttäjä-ID hashataan laitteella SHA-256:lla; selkokielinen ID ei koskaan poistu asiakkaalta. Tapahtumat säilytetään 180 päivää, minkä jälkeen ne aggregoidaan tai poistetaan.
+        Tuoteanalytiikka on pois päältä, kunnes annat suostumuksen. Kun se on päällä, tapahtumat rajataan palvelimen sallittuun listaan (istunnon alku ja loppu, ominaisuuksien käyttö, tekoälykutsut kestoineen ja tokeneineen — ei koskaan sisältöä). Niissä on satunnainen istuntotunniste ja tilisi tunniste, jotta voit nähdä ja poistaa oman telemetriasi. Kaatumisraportit (Sentry, erillinen suostumus) saavat vain tunnisteen SHA-256-tiivisteen. Suostumuksen peruminen poistaa tililläsi kerätyn telemetrian; tapahtumia säilytetään joka tapauksessa enintään 180 päivää.
       </p>
 
       <h2>Tietojen palautus</h2>
       <p>
-        Synkronoidut muistikirjat on liitetty tiliisi: tavallisen tilin palautuksen jälkeen voit kirjautua uudelleen ja ladata ne uudelle laitteelle. Pilvisynkronoinnissa ei ole erillistä salalausetta, joka pitäisi muistaa. Tilin palautus ei voi rakentaa uudelleen vain paikallisesti säilytettyä muistikirjaa, jos laitteen tiedot on poistettu; ota synkronointi käyttöön muistikirjoille, jotka haluat palauttaa eri laitteilla.
+        Jos vaihdat puhelinta tai asennat uudelleen ja palautat järjestelmän varmuuskopion, tietokanta ja sen avain palaavat yhdessä ja canvas-näkymäsi aukeavat sellaisina kuin ne olivat viimeisimmässä järjestelmän varmuuskopiossa. Ne eivät palaa, jos järjestelmän varmuuskopiointi on pois päältä, Androidissa ilman Google Play -palveluita tai jos sovelluksen data ylittää varmuuskopion 25 Mt:n rajan, jos tyhjennät sovelluksen tiedot tai poistat sovelluksen palauttamatta. Silloin paikallinen tietokanta jää lukukelvottomaksi — sinulle ja meille — ja palautuksen tie on Synkronoi laitteidesi välillä: kirjaudu uudella laitteella, niin synkronoidut canvas-näkymäsi palaavat. Erillistä synkronoinnin salalausetta ei ole muistettavana tai hukattavana.
       </p>
 
       <h2>Vastuullinen paljastus</h2>
       <p>
-        Turvallisuustutkijat ovat tervetulleita. Ilmoita haavoittuvuuksista osoitteeseen <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> PGP-salauksella (avain julkaistu GitHub-profiilissa). Vastaamme 24 tunnin sisällä, paikkaamme kriittiset ongelmat 72 tunnin sisällä ja mainitsemme ilmoittajat Hall of Fameissa, ellei anonymiteettiä toivota.
+        Tietoturvatutkijat ovat tervetulleita. Ilmoita haavoittuvuuksista osoitteeseen <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. Vastaamme 5 arkipäivän kuluessa. Bug bounty -ohjelmaa ei ole.
       </p>
       <p>
         Soveltamisala: Fluera-sovellus (kaikki alustat), synkronointipalvelu, tekoälyvälityspalvelin ja tämä markkinointisivusto. Soveltamisalan ulkopuolella: kolmannet osapuolet (Supabase, Google, Apple, Sentry, RevenueCat) — ilmoita kullekin toimittajalle erikseen.

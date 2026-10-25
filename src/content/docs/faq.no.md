@@ -46,7 +46,7 @@ Hvis lagget vedvarer med Predicted på, lukk og start på nytt. Hvis det fortsat
 
 [support@fluera.dev](mailto:support@fluera.dev). Beskriv hva du holdt på med, hva du forventet, hva som skjedde, og inkluder app-versjonen (Innstillinger → Om). Skjermbilder hjelper.
 
-For sikkerhetssårbarheter, bruk [lorenco@fluera.dev](mailto:lorenco@fluera.dev) og krypter med PGP-nøkkelen vår (på GitHub-profilen vår).
+For sikkerhetssårbarheter, skriv til [support@fluera.dev](mailto:support@fluera.dev). Vi svarer innen 5 virkedager. Det finnes ikke noe bug bounty-program.
 
 ## Hvordan gir jeg tilbakemelding på pedagogikken?
 

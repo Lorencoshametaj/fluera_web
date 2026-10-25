@@ -13,7 +13,7 @@ const copy: HomeCopy = {
   proof: [
     ["12", "trykkfølsomme pensler"],
     ["FSRS", "repetisjoner planlagt etter hukommelsen"],
-    ["AES-256", "kryptert lokal database"],
+    ["ChaCha20", "kryptert lokal database"],
     ["ALLE", "plattformer åpne i betaen"],
   ],
   flowKicker: "FLUERAS SIGNATUR",
@@ -62,7 +62,7 @@ const copy: HomeCopy = {
   trustBody: "Hver kognitive mekanisme peker tilbake på publisert forskning. Vi påstår ikke at Fluera selv allerede har bevist bedre resultater: i betaen måler vi vår egen gjennomføring.",
   scienceLink: "Utforsk vitenskapen",
   securityTitle: "Tankene dine forblir dine.",
-  securityBody: "SQLCipher AES-256 på enheten, TLS-synk på EU-infrastruktur, ingen atferdsbasert reklame og ingen trening på innholdet ditt.",
+  securityBody: "Kryptert database med canvasene dine på enheten (sqlite3mc, ChaCha20-Poly1305), TLS-synk på EU-infrastruktur, ingen atferdsbasert reklame og ingen trening på innholdet ditt med mindre du slår det på.",
   securityLink: "Les sikkerhetsarkitekturen",
   platformKicker: "ETT BLEKK, OVERALT",
   platformTitle: "Åpent på alle plattformer.",

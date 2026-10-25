@@ -1,51 +1,92 @@
 ---
 lang: "nl"
-title: "Cloud sync"
-description: "Hoe je canvasses synchroniseert tussen apparaten en hoe gesynchroniseerde data wordt beschermd."
+title: "Synchroniseren tussen je apparaten"
+description: "Eén schakelaar voor je hele account, met het Cloud-abonnement: wat er meereist, één bureau tegelijk, conflictkopieën, de prullenbak en hoe je verwijdert."
 section: settings
 sectionLabel: "Instellingen"
 order: 2
-updatedAt: 2026-04-20
+updatedAt: 2026-10-23
 ---
+Met **Synchroniseren tussen je apparaten** vind je je canvassen, je studie en je instellingen terug op elk apparaat waarop je inlogt. Het is één schakelaar voor je hele account, niet één per canvas, en hij blijft uit tot je hem aanzet.
 
-Cloud sync is opt-in per notitieboek. Je kunt het ene canvas synchroniseren terwijl je een ander strikt lokaal houdt. Niets beweegt totdat jij het zegt.
+## De synchronisatie aanzetten
 
-## Sync inschakelen op het eerste apparaat
+1. Log in met een account (een gastsessie is niet genoeg). Je hebt het Cloud-abonnement nodig.
+2. Open **Instellingen → Gegevens en synchronisatie** en zet **Synchroniseren tussen je apparaten** aan.
 
-1. Open **Instellingen → Privacy** en zet **Cloud sync** aan.
-2. Kies welke notitieboeken je synchroniseert. Rechtsklik (of houd ingedrukt) op een notitieboek → **Sync inschakelen**.
+Het geldt meteen voor je hele account: elk apparaat waarop je inlogt, synchroniseert vanzelf. Als je hem aanzet, legt de server de datum vast en de versie van het privacybeleid (in het Engels) dat je voor je had. Zonder Cloud-abonnement zegt de schakelaar dat het nodig is; als het abonnement afloopt, blijft hij aan maar gepauzeerd.
 
-Een klein wolkje verschijnt bij elk gesynchroniseerd notitieboek. Een rode variant duidt op een fout; een grijze op een pauze.
+## Op een nieuw apparaat
 
-## Een tweede apparaat toevoegen
+1. Installeer Fluera en log in met hetzelfde account.
+2. De galerij toont meteen de lijst van je canvassen. Een canvas dat nog alleen in de cloud staat, heeft het wolkteken: het wordt gedownload als je het opent, en daarvoor heb je een verbinding nodig.
+3. De rest komt vanzelf binnen op de achtergrond, als je op wifi of een bekabeld netwerk zit en de batterij niet bijna leeg is.
 
-1. Installeer Fluera op het tweede apparaat.
-2. Meld je aan met hetzelfde account.
-3. Cloud sync start. Verwacht dat de eerste volledige sync een paar minuten duurt voor een notitieboek van gemiddelde grootte.
+## Wat er meereist en wat op het apparaat blijft
 
-## Hoe gesynchroniseerde data wordt beschermd
+Zolang de schakelaar aan staat, gaat dit naar de cloud:
 
-- Lokaal op je apparaat wordt elk notitieboek at-rest versleuteld met SQLCipher.
-- Gesynchroniseerde data wordt verzonden over een versleutelde verbinding (TLS 1.3 met moderne cipher suites) en at-rest opgeslagen op EU-infrastructuur (Supabase, regio eu-north-1).
-- Cloud sync is **niet** end-to-end versleuteld. Als verwerkingsverantwoordelijke kan Fluera technisch toegang krijgen tot gesynchroniseerde inhoud. We verkopen je data nooit en gebruiken die nooit voor advertenties.
+- hele canvassen: streken, secties, formules, tabellen, grafieken, koppelingen, pdf's met de markeringen uit de lezer, foto's;
+- opgenomen lessen: de audio, in stukken, met de streken die bij de audio horen;
+- de studie van elk canvas: herhalingskaarten met de geschiedenis van je antwoorden, concepten, examens met hun inkt, de socratische tutor, de chat, het ophalen, de conceptkaart, de cursussen;
+- de mappen van de galerij, de map van elk canvas, vastgezette canvassen, labels en de prullenbak;
+- de tekst die Fluera in je handschrift heeft herkend, met je correcties;
+- je keuzes in de instellingen: uiterlijk, taal, papier, herhaling, examens en herinneringen, kleuren, gum en dergelijke.
 
-De metadata (notitieboektitels, timestamps, grootte) worden samen met de inhoud op dezelfde EU-infrastructuur opgeslagen.
+Op het apparaat blijven de geschiedenis van het canvas (Time Travel), het ongedaan maken en de instellingen die bij dat apparaat horen (hand, handpalm, pen, venster). De vouwen van de browser hebben een eigen schakelaar, **De vouwen van de browser**, en reizen end-to-end versleuteld.
 
-## Toegang en herstel
+## Eén bureau tegelijk
 
-Omdat gesynchroniseerde data op EU-infrastructuur wordt opgeslagen en niet aan een lokale passphrase is gekoppeld, kun je je gesynchroniseerde notitieboeken terugkrijgen door je opnieuw aan te melden met hetzelfde account op een nieuw apparaat. Er is geen aparte sync-passphrase die verloren kan gaan.
+Tussen je apparaten wordt een canvas op één apparaat tegelijk beschreven.
 
-Wil je dat een notitieboek nooit de cloud raakt, laat **Cloud sync** dan uit voor dat notitieboek; het blijft dan strikt lokaal, at-rest versleuteld met SQLCipher.
+- Het apparaat waarop je een canvas opent, neemt de beurt en vernieuwt die elke minuut.
+- Staat hetzelfde canvas ergens anders open, dan zie je het hier alleen-lezen met **Geopend op …**. Tik op **Hier schrijven**: het andere apparaat slaat op, stuurt zijn werk naar de cloud en geeft jou de beurt. Antwoordt het niet, dan gaat de beurt na ongeveer anderhalve minuut naar jou.
+- Als je Fluera naar de achtergrond stuurt, stuurt het apparaat zijn werk en geeft het de beurt vrij. Een beurt die niemand vernieuwt, komt na tweeënhalve minuut vanzelf vrij (app gesloten, geen verbinding).
+- Is het canvas op een ander apparaat gewijzigd terwijl jij het open had, dan zie je **Dit canvas is op een ander apparaat gewijzigd**: tik op **Sluiten en bijwerken** om het werk van het andere apparaat binnen te halen.
 
-## Conflict-resolutie
+Zonder verbinding kun je gewoon schrijven: het is je kopie op het apparaat.
 
-Bewerk je hetzelfde canvas op twee apparaten tegelijk terwijl een offline is, dan gebruikt Fluera een CRDT met vector clocks om zonder conflicten te mergen. Je verliest geen werk. In zeldzame gevallen waarin de automatische merge ambigu is, zie je een "merge needed"-markering op het betreffende knooppunt en een zij-aan-zij weergave om te bevestigen.
+## Conflictkopieën
 
-## Sync uitschakelen voor een specifiek notitieboek
+Is hetzelfde canvas op twee apparaten zonder verbinding gewijzigd, dan schrijft Fluera niet de ene versie over de andere: zodra ze weer online zijn, blijft het werk dat in een van de twee ontbreekt als apart canvas in de galerij staan.
 
-Rechtsklik (of houd ingedrukt) op een notitieboek → **Sync uitschakelen**. De cloudkopie wordt onmiddellijk ingetrokken. De lokale kopie blijft intact.
+- **‘Titel’ · van dit apparaat**: het werk dat hier is gedaan.
+- **‘Titel’ · van het andere apparaat**: de versie die uit de cloud kwam.
+
+Open ze allebei en voeg met de hand samen wat je nodig hebt. Een apparaat met een oudere Fluera schrijft niet over een canvas dat met een nieuwere Fluera is opgeslagen: het vraagt je bij te werken (**Werk Fluera bij om in de cloud op te slaan**) en zijn werk gaat als kopie ernaast omhoog, **‘Titel’ — van …, samen te voegen**.
+
+## Prullenbak en mappen
+
+- Mappen reizen mee met naam, kleur, bovenliggende map en vastzetten; elk canvas blijft op alle apparaten in zijn map.
+- Een canvas in de **Prullenbak** staat op elk apparaat in de prullenbak. De 30 dagen van de prullenbak tellen vanaf het moment dat het erin kwam, overal hetzelfde. Schrijf je er vanaf een ander apparaat weer in, dan gaat het uit de prullenbak.
+- Verwijder je een map, dan blijven de canvassen die erin zaten bestaan.
+
+## Uitzetten wist niets
+
+Je kunt de schakelaar op elk apparaat uitzetten: hij stopt op alle. Hij gaat ook uit als je de toestemming **Cloud sync** intrekt in **Instellingen → Privacy en telemetrie**. Uitzetten **wist niets**: wat in de cloud staat, blijft tot jij het verwijdert, en op de apparaten blijft alles staan.
+
+## Als het Cloud-abonnement stopt
+
+Stopt het Cloud-abonnement (verlopen, terugbetaling, ander abonnement of intrekking), dan pauzeert de synchronisatie en blijft alles **6 maanden** in de cloud: je kunt het op elk van je apparaten downloaden, en de app zegt tot wanneer. Na de 6 maanden mogen we de audio van de lessen, pdf's en foto's boven de 500 MB van het Free-abonnement uit de cloud halen, de oudste eerst. De inkt van je canvassen blijft altijd, en we halen niets weg uit een canvas dat met een ander account is gedeeld, en niets uit de kaarten van de privécatalogus. Activeer je Cloud eerder opnieuw, dan wordt de sluiting geannuleerd.
+
+## Verwijderen uit de cloud
+
+- **Definitief verwijderen** bij een canvas in de prullenbak haalt het uit de cloud met alles wat erbij hoort: streken, foto's, pdf's, lessen, herhalingskaarten met antwoorden, concepten, titels, studie, herkende tekst en de inkt van zijn examens.
+- Een weggegooid examenantwoord en een foto die uit een canvas is gehaald, verlaten de cloud zodra het apparaat online is.
+- **Al mijn gegevens uit de cloud verwijderen** (**Instellingen → Privacy en telemetrie**) haalt alle canvassen, de lessen, de exameninkt, de instellingen die meereizen en de mappen weg, en zet de schakelaar op al je apparaten uit. Alleen de registratie van de schakelaar blijft (wanneer je hem aan- en uitzette, met de versie van het beleid): dat is het bewijs van je toestemming.
+- **Account verwijderen** (**Instellingen → Profiel en account**) wist ook die.
+- Zet je het **Cognitief geheugen** uit, dan worden ook de kopieën ervan in de cloud gewist: herhalingskaarten met antwoorden, concepten, conceptkaart en de titels van notitiegroepen.
+
+De kopieën op je apparaten blijven tot je ze daar verwijdert.
+
+## Hoe de gegevens beschermd zijn
+
+- Op het apparaat is de lokale database in rust versleuteld met ChaCha20-Poly1305 (sqlite3mc); de sleutel staat in de sleutelhanger van het systeem.
+- In de cloud staan de gegevens bij Supabase, EU-regio `eu-north-1` (Stockholm), versleuteld tijdens verzending (TLS) en in rust op infrastructuurniveau.
+- De synchronisatie is **niet** end-to-end versleuteld: Fluera kan als verwerkingsverantwoordelijke technisch bij de gegevens om de dienst te laten werken, te beschermen en te ondersteunen. We verkopen ze niet en gebruiken ze niet voor reclame. Uitzondering zijn de vouwen van de browser: end-to-end versleuteld.
 
 ## Verder
 
+- [Privacy en toestemming](/nl/docs/privacy-consent)
 - [FAQ en probleemoplossing](/nl/docs/faq)
 - [Beveiligingsarchitectuur](/nl/security/architecture)

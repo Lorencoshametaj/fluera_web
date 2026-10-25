@@ -6,12 +6,12 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Beveiligingsarchitectuur"
-  description="Hoe Fluera je notitieboek beschermt in rust, in transit en tussen apparaten. SQLCipher, TLS 1.3, cloud sync op EU-infrastructuur, opt-in telemetrie."
+  description="Hoe Fluera je canvassen in rust en tijdens transport versleutelt, en hoe cloud sync werkt. sqlite3mc, TLS, sync op EU-infrastructuur, opt-in telemetrie."
   locale="nl"
 >
   <PageHero
     kicker="Architectuur"
-    title="Hoe Fluera je notitieboek beschermt."
+    title="Hoe Fluera je canvassen beschermt."
     description={`Deze pagina beschrijft het beveiligingsmodel op het niveau dat een technisch lezer — security officer, CISO van een universiteit, nieuwsgierige dev — verwacht. Voor de niet-technische samenvatting: begin op <a href="/nl/security">/nl/security</a>.`}
     breadcrumb={{ label: "Beveiliging", href: "/nl/security" }}
   />
@@ -25,38 +25,41 @@ import { SITE } from "@/lib/site";
       </p>
       <p>Binnen dat model gelden drie garanties:</p>
       <ul>
-        <li><strong>Lokale data zijn onleesbaar zonder de sleutel.</strong> Een gestolen apparaat levert een versleutelde blob op.</li>
+        <li><strong>De lokale database is onleesbaar zonder de sleutel.</strong> Een gestolen apparaat levert een versleutelde database op. Foto's, pdf's en audio van colleges beschermt het besturingssysteem, niet die sleutel.</li>
         <li><strong>Gesynchroniseerde data zijn versleuteld in transit en in rust op EU-infrastructuur.</strong> Cloud sync is niet end-to-end versleuteld: als verwerkingsverantwoordelijke kan Fluera de gesynchroniseerde inhoud benaderen. We verkopen je inhoud nooit en gebruiken die nooit voor advertenties.</li>
-        <li><strong>Telemetrie is consensueel en gedeïdentificeerd.</strong> De analytics kunnen een gebruiker zelfs bij een volledige breach niet aan zijn content koppelen.</li>
+        <li><strong>Telemetrie alleen met toestemming en nooit met inhoud.</strong> Ze is gekoppeld aan de ID van je account, zodat je haar kunt zien en wissen: ze is niet anoniem.</li>
       </ul>
 
-      <h2>In rust: SQLCipher, AES-256</h2>
+      <h2>In rust: sqlite3mc, sleutel van 256 bits</h2>
       <p>
-        Elk Fluera-notitieboek leeft in een lokale SQLite-database, versleuteld met SQLCipher — een breed geaudit ed extensie die elke pagina van de database transparant versleutelt met AES-256-CBC en HMAC-SHA512-integriteitscontroles per pagina.
+        De lokale SQLite-database met je canvassen — streken, tekst, formules, je studie — is versleuteld met SQLite3 Multiple Ciphers (sqlite3mc) in het schema ChaCha20-Poly1305: elke pagina van de database is versleuteld en geauthenticeerd. Foto's, pdf's en audio van colleges staan als bestanden in de privémap van de app: het besturingssysteem beschermt ze, niet deze sleutel.
       </p>
       <p>
-        De sleutel van de lokale database is een willekeurige 256-bits sleutel die Fluera genereert en bewaart in de beveiligde sleutelopslag van het platform — Keychain op iOS/macOS, Keystore op Android, DPAPI op Windows en libsecret op Linux. Het is niet je accountwachtwoord of een cloud-syncpassphrase, en de lokale databasesleutel wordt nooit naar Flueras servers gestuurd.
-      </p>
-
-      <h2>In transit: TLS 1.3</h2>
-      <p>
-        Al het netwerkverkeer is TLS 1.3 met moderne cipher suites, voor vertrouwelijkheid en integriteit tussen de client en onze infrastructuur.
+        De sleutel bestaat uit 256 willekeurige bits, gemaakt op je apparaat en bewaard in de beveiligde sleutelopslag van het platform — Keychain op iOS/macOS, Keystore op Android, DPAPI op Windows, libsecret op Linux. Het is een ruwe sleutel, niet afgeleid van het wachtwoord van je account, en hij wordt nooit naar de servers van Fluera gestuurd. Zodat een nieuwe telefoon je je canvassen niet kost, staat er een kopie in de versleutelde systeemback-up: op Android in Block Store, in je Google-account bewaard alleen als die back-up end-to-end versleuteld is met je schermvergrendeling; op iOS in de versleutelde back-up van iCloud of de Finder.
       </p>
 
-      <h2>Synchronisatie tussen apparaten</h2>
+      <h2>Tijdens transport: TLS</h2>
       <p>
-        Cloud sync, indien ingeschakeld, slaat je notitieboeken op bij Supabase (EU-regio, eu-north-1). De gegevens zijn versleuteld in transit (TLS) en in rust op infrastructuurniveau. Cloud sync is niet end-to-end versleuteld: als verwerkingsverantwoordelijke kan Fluera de gesynchroniseerde inhoud benaderen. We verkopen die nooit en gebruiken die nooit voor advertenties. De synchronisatie is opt-in per notitieboek — je kunt sommige alleen lokaal houden terwijl je andere synchroniseert.
+        Het verkeer tussen de app en onze diensten — inloggen, sync, de AI-proxy — gaat via HTTPS (TLS).
+      </p>
+
+      <h2>Sync tussen apparaten: één schakelaar voor het account</h2>
+      <p>
+        <em>Synchroniseren tussen je apparaten</em> is één schakelaar voor het hele account (Instellingen → Gegevens en synchronisatie), uit tot je hem aanzet, en vraagt het Cloud-abonnement. Je canvassen staan op Supabase (EU-regio, eu-north-1), versleuteld tijdens transport met TLS en in rust op infrastructuurniveau. De sync is <em>niet</em> end-to-end versleuteld: Fluera kan als verwerkingsverantwoordelijke technisch bij gesynchroniseerde inhoud. We verkopen die nooit en gebruiken die nooit voor advertenties. De uitzondering zijn de browservouwen: die reizen end-to-end versleuteld.
       </p>
       <p>
-        Je lokale database op het apparaat is in rust versleuteld met SQLCipher. Een met een wachtwoord beveiligde <code>.fluera</code>-export wordt afzonderlijk versleuteld met AES-256-GCM; het exportwachtwoord beschermt alleen dat bestand en staat los van cloud sync.
+        Een canvas wordt op één apparaat tegelijk beschreven: op de andere opent hij alleen-lezen tot je op <em>Hier schrijven</em> tikt. Is hetzelfde canvas offline op twee apparaten veranderd, dan wordt niets overschreven: het ontbrekende werk blijft als apart canvas in de galerij staan, om met de hand samen te voegen. De volledige gids: <a href="/nl/docs/cloud-sync">Synchroniseren tussen je apparaten</a>.
+      </p>
+      <p>
+        Een geëxporteerd <code>.fluera</code>-bestand is niet versleuteld: behandel het als elk ander bestand. De opdracht <em>Versleutelde back-up</em> schrijft een <code>.fluerabackup</code>-bestand, verzegeld met AES-256-GCM met een sleutel in de sleutelopslag van dit apparaat; het opent alleen op een apparaat dat die sleutel heeft.
       </p>
 
       <h2>P2P-samenwerking: direct, versleuteld</h2>
       <p>
-        Realtime samenwerking gebruikt WebRTC DataChannel met DTLS-SRTP-versleuteling. Supabase Realtime fungeert alleen als signaling-broker — voor het opzetten van de verbinding — niet als relay van het werkelijke canvasverkeer. Na de handshake stromen canvasbewerkingen peer-to-peer. De server ziet ze niet.
+        Realtime samenwerking gebruikt WebRTC-DataChannels, versleuteld met DTLS. Supabase Realtime dient alleen als signaling-broker — het opzetten van de verbinding — en niet als relay voor het echte canvasverkeer. Na de handshake gaan de wijzigingen aan het canvas peer-to-peer. De server ziet ze niet.
       </p>
       <p>
-        Bij restrictieve NAT's gaan we via TURN; in dat geval ziet de relay alleen versleutelde DTLS-pakketten die hij niet kan ontsleutelen.
+        Er is geen relayserver: publieke STUN-servers (Google) helpen de twee apparaten alleen elkaar te vinden. Blokkeert een netwerk de directe verbinding, dan komt de sessie niet tot stand.
       </p>
 
       <h2>AI-aanroepen: via proxy, nooit direct</h2>
@@ -67,19 +70,19 @@ import { SITE } from "@/lib/site";
         Als je de AI-functies uitschakelt in <em>Instellingen → Privacy</em>, wordt geen canvasinhoud naar de AI gestuurd, ook niet als fallback voor on-device OCR.
       </p>
 
-      <h2>Telemetrie: opt-in, gehasht, allowlisted</h2>
+      <h2>Telemetrie: met toestemming, allowlist, zonder inhoud</h2>
       <p>
-        Productanalytics staan standaard uit. Wanneer ze ingeschakeld zijn, zijn de events beperkt tot een server-side whitelist (sessie start/einde, aanroep van een functie, duur van AI-call — nooit inhoud). De gebruikers-ID wordt op het apparaat met SHA-256 gehasht; de plaintext-ID verlaat de client nooit. Events worden 180 dagen bewaard, daarna geaggregeerd of verwijderd.
+        Productanalytics staan uit tot je toestemming geeft. Staan ze aan, dan blijven de events beperkt tot een allowlist op de server (begin en einde van de sessie, gebruik van functies, AI-aanroepen met duur en tokens — nooit inhoud). Ze dragen een willekeurige sessie-ID en de ID van je account, zodat je je eigen telemetrie kunt zien en wissen. Crashrapporten (Sentry, een aparte toestemming) krijgen alleen een SHA-256-hash van die ID. Intrekken van de toestemming wist de telemetrie die met je account is verzameld; events blijven hoe dan ook maximaal 180 dagen.
       </p>
 
       <h2>Gegevensherstel</h2>
       <p>
-        Gesynchroniseerde notitieboeken zijn gekoppeld aan je account: na het normale accountherstel kun je opnieuw inloggen en ze op een nieuw apparaat downloaden. Er is geen aparte cloud-syncpassphrase om te onthouden. Accountherstel kan een notitieboek dat alleen lokaal stond niet reconstrueren als de apparaatgegevens zijn gewist; schakel sync in voor notitieboeken die je op meerdere apparaten wilt kunnen herstellen.
+        Als je van telefoon wisselt of opnieuw installeert en een systeemback-up terugzet, komen de database en de sleutel samen terug en openen je canvassen zoals ze bij de laatste systeemback-up waren. Ze komen niet terug als de systeemback-up uit staat, op Android zonder Google Play-services of met appdata boven de grens van 25 MB van de back-up, als je de appgegevens wist of zonder terugzetten verwijdert. Dan blijft de lokale database onleesbaar — voor jou en voor ons — en is Synchroniseren tussen je apparaten de weg terug: log in op het nieuwe apparaat en je gesynchroniseerde canvassen komen terug. Er is geen aparte sync-wachtwoordzin om te onthouden of te verliezen.
       </p>
 
       <h2>Responsible disclosure</h2>
       <p>
-        Beveiligingsonderzoekers zijn welkom. Meld kwetsbaarheden aan <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> met PGP-versleuteling (sleutel gepubliceerd op het GitHub-profiel). We reageren binnen 24 uur, patchen kritieke issues binnen 72 uur, en crediteren melders in de hall of fame, tenzij om anonimiteit wordt gevraagd.
+        Beveiligingsonderzoekers zijn welkom. Meld kwetsbaarheden bij <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. We antwoorden binnen 5 werkdagen. Er is geen bug-bountyprogramma.
       </p>
       <p>
         Scope: de Fluera-app (alle platformen), de sync-service, de AI-proxy en deze marketingsite. Buiten scope: third-party services (Supabase, Google, Apple, Sentry, RevenueCat) — meld die bij de betreffende vendors.

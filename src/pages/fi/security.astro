@@ -6,11 +6,11 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Salaus",
-    body: "Jokainen Flueran muistikirja salataan laitteellasi levossa AES-256:lla SQLCipherin kautta, ja viedyt .fluera-tiedostot salataan AES-256-GCM:llä. Liikenne salataan siirron aikana TLS 1.3:lla. Pilvisynkronointi ei ole päästä päähän -salattua: synkronoidut muistikirjat tallennetaan EU-infrastruktuuriin (Supabase, eu-north-1) ja suojataan siirrossa sekä levossa infrastruktuuritasolla. Rekisterinpitäjänä Fluera voi teknisesti käyttää synkronoitua sisältöä, mutta emme koskaan myy sitä, käytä sitä mainontaan tai mallien kouluttamiseen.",
+    body: "Laitteellasi canvas-näkymäsi sisältävä tietokanta on salattu levossa sqlite3mc:llä (ChaCha20-Poly1305, 256-bittinen avain); kuvat, PDF:t ja luentojen ääni ovat tiedostoja sovelluksen yksityisessä kansiossa, käyttöjärjestelmän suojaamina. Viety .fluera-tiedosto ei ole salattu; Salattu varmuuskopio on sinetöity AES-256-GCM:llä. Liikenne kulkee TLS:llä. Cloud sync ei ole päästä päähän salattu: synkronoidut canvas-näkymät tallennetaan EU-infrastruktuuriin (Supabase, eu-north-1), salattuina siirrossa ja levossa infrastruktuurin tasolla. Rekisterinpitäjänä pystymme teknisesti pääsemään synkronoituun sisältöön — mutta emme koskaan myy sitä emmekä käytä sitä mainontaan.",
   },
   {
     title: "Datan omistajuus",
-    body: "Jokainen kirjoittamasi tavu on vietävissä yhdellä klikkauksella: PNG, JPEG, WebP, SVG, PDF ja oma avoin .fluera-formaattimme. Muistikirjasi elävät ensisijaisesti laitteillasi. Pilvi on mukavuus, ei vankila — lock-in on liiketoimintamalli, jonka olemme valinneet hylätä.",
+    body: "Jokaisen kirjoittamasi tavun voi viedä yhdellä napautuksella: PNG, JPEG, WebP, SVG, PDF ja .fluera-muotomme. Canvas-näkymäsi elävät ensin laitteillasi. Pilvi on mukavuus, ei vankila — lukitseminen on liiketoimintamalli, jonka päätimme hylätä.",
   },
   {
     title: "GDPR oletuksena",
@@ -18,18 +18,18 @@ const pillars = [
   },
   {
     title: "Local-first, aina",
-    body: "Voit käyttää Flueraa täysin offline. Synkronointi on opt-in muistikirjakohtaisesti, ei tilitasolla. Jos kytket synkronoinnin pois, datasi ei poistu laitteelta — mukaan lukien telemetria, joka perustuu suostumukseen ja on anonyymiä.",
+    body: "Voit käyttää Flueraa täysin ilman verkkoa. Synkronointi laitteidesi välillä on pois päältä, kunnes kytket sen päälle, ja se koskee koko tiliäsi. Kun synkronointi on pois, canvas-näkymäsi pysyvät laitteella. Muu lähtee laitteelta vain niin kuin opas Yksityisyys ja AI-suostumus kertoo, kytkin kytkimeltä: telemetria esimerkiksi vain suostumuksellasi, tiliisi sidottuna eikä koskaan sisällön kanssa.",
   },
   {
     title: "Mitä emme tee",
-    body: "Ei mainontaa. Ei datan myyntiä. Emme kouluta mallejamme sisällölläsi. Emme seuraa sinua verkossa. Emme luovuta dataa kolmansille muille kuin julistetuille alikäsittelijöille (lueteltu Alikäsittelijät-sivulla) — kaikki DPA:n alaisia.",
+    body: "Emme näytä mainoksia. Emme myy dataasi. Emme kouluta malleja canvas-näkymilläsi, ellet itse valitse niin: AI-harjoitusaineisto on pois päältä, kunnes kytket sen päälle. Emme seuraa sinua verkossa. Emme luovuta dataa kolmansille osapuolille nimettyjen alikäsittelijöiden lisäksi (lueteltu Alikäsittelijät-sivulla) — kaikki käsittelysopimuksen alaisina.",
   },
 ];
 ---
 
 <BaseLayout
   title="Tietoturva ja yksityisyys"
-  description="AES-256-salaus levossa, GDPR oletuksena, palvelimet Euroopassa, nolla ad-techia. Flueran tietoturva-arkkitehtuuri ja sitoutuminen datasi omistajuuteen."
+  description="Salattu paikallinen tietokanta, GDPR oletuksena, palvelimet Euroopassa, nolla ad-techiä. Flueran turvallisuusarkkitehtuuri ja lupaus siitä, että data on sinun."
   locale="fi"
 >
   <PageHero
@@ -62,12 +62,10 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Vastuullinen ilmoittaminen</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Löysitkö jotain?</h2>
           <p class="prose-ink mb-6">
-            Tietoturvatutkijat ovat tervetulleita. Ilmoita haavoittuvuuksista osoitteeseen
-            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
-            Vastaamme 24 tunnin sisällä, paikkaamme kriittiset ongelmat 72:ssa ja annamme tunnustusta ilmoittajalle hall of fame -luettelossamme — ellei toivota anonymiteettiä.
+            Tietoturvatutkijat ovat tervetulleita. Ilmoita haavoittuvuuksista osoitteeseen <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. Vastaamme 5 arkipäivän kuluessa. Bug bounty -ohjelmaa ei ole.
           </p>
           <p class="text-sm text-ink-500 italic">
-            PGP-avain salatuille raporteille on julkaistu GitHub-profiilissamme.
+            Ilmoitusten säännöt on julkaistu myös tiedostossa /.well-known/security.txt (RFC 9116).
           </p>
         </div>
         <div>
@@ -85,7 +83,7 @@ const pillars = [
   <section class="py-16 border-t border-white/[0.04]">
     <div class="container-narrow text-center">
       <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
-        Tämä sivu kattaa olennaisen. Täydellinen arkkitehtuuri, alikäsittelijöiden rekisteri ja DPA-pohja löytyvät osoitteista
+        Tämä sivu kattaa olennaisen. Täydellinen arkkitehtuuri ja alikäsittelijöiden rekisteri löytyvät osoitteista
         <a href="/fi/security/architecture" class="text-paper-300 underline">/fi/security/architecture</a> ja
         <a href="/fi/security/sub-processors" class="text-paper-300 underline">/fi/security/sub-processors</a>. Erityisiä compliance-kysymyksiä? Kirjoita osoitteeseen
         <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.

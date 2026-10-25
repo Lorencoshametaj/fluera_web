@@ -2,8 +2,8 @@
 lang: "en"
 slug: "terms"
 title: "Terms of Service"
-versione: "1.5"
-aggiornato: "October 15, 2026"
+versione: "1.6"
+aggiornato: "October 25, 2026"
 sommario: "These Terms of Service (the \"**Terms**\") govern access to and use of the Fluera application and related services. Using the service implies full acceptance of these Terms."
 fonte: "Fluera/assets/legal/terms_en.md"
 ---
@@ -53,6 +53,8 @@ The license **does not include**:
 - Decompiling, reverse-engineering, or deriving source code (except as permitted by mandatory law)
 - Removing or altering copyright notices or trademarks
 - Using the app for unlawful activities
+
+This does not limit the channels chosen by the Provider: Fluera is distributed through app stores and through Flathub (flathub.org), which the Provider authorizes to host and redistribute the application packages unmodified.
 
 ## 6. User content
 

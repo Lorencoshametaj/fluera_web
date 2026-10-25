@@ -10,7 +10,7 @@ export const SITE = {
     city: "Padova, Italy",
     contactEmail: "support@fluera.dev",
     privacyEmail: "lorenco@fluera.dev",
-    securityEmail: "lorenco@fluera.dev",
+    securityEmail: "support@fluera.dev",
     supportEmail: "support@fluera.dev",
   },
   community: {

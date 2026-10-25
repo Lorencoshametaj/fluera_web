@@ -46,7 +46,7 @@ Predicted가 켜진 상태에서 지연이 지속되면, 종료하고 다시 시
 
 [support@fluera.dev](mailto:support@fluera.dev). 무엇을 하고 있었는지, 무엇을 기대했는지, 무엇이 일어났는지 설명하고, 앱 버전 (설정 → 정보)을 포함합니다. 스크린샷이 도움이 됩니다.
 
-보안 취약점의 경우, [lorenco@fluera.dev](mailto:lorenco@fluera.dev)를 사용하고 우리의 PGP 키 (GitHub 프로필에 있음)로 암호화합니다.
+보안 취약점은 [support@fluera.dev](mailto:support@fluera.dev)(으)로 신고해 주세요. 영업일 기준 5일 이내에 답변합니다. 버그 바운티 프로그램은 없습니다.
 
 ## 교육학에 대한 피드백을 어떻게 주나요?
 

@@ -2,8 +2,8 @@
 lang: "it"
 slug: "privacy"
 title: "Informativa Privacy"
-versione: "1.8.6"
-aggiornato: "15 ottobre 2026"
+versione: "1.9.0"
+aggiornato: "25 ottobre 2026"
 sommario: "Informativa sul trattamento dei dati personali degli utenti dell'applicazione Fluera, redatta ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (**GDPR**) e del D.Lgs. 196/2003 come novellato dal D.Lgs. 101/2018."
 fonte: "Fluera/assets/legal/privacy_it.md"
 ---
@@ -34,9 +34,10 @@ Fluera tratta le seguenti categorie di dati personali, esclusivamente nella misu
 ### 2.2 Contenuti prodotti dall'utente
 - Canvas, tratti, note, annotazioni PDF, immagini inserite
 - Registrazioni audio delle sessioni di studio (solo se Time Travel attivo)
-- I contenuti sono conservati in un database locale dedicato al tuo account. Dalla versione 1.5 quel database è **cifrato a riposo con AES-256** (art. 32 GDPR) con una chiave a 256 bit generata sul tuo dispositivo e custodita nel portachiavi del sistema operativo — Keychain su iOS/macOS, Keystore su Android, libsecret su Linux, DPAPI su Windows. La chiave non lascia mai il dispositivo e noi non la vediamo mai. I contenuti lasciano il tuo dispositivo in tre casi, tutti su tua azione: quando attivi il **Cloud Sync**; quando **pubblichi** una scheda di studio nel catalogo; quando tieni una scheda nel tuo **catalogo privato** per condividerla con un link. Gli ultimi due funzionano anche con il Cloud Sync spento e riguardano solo la porzione di appunti che scegli tu, mai l'intero canvas — vedi §2.11
-- **Cosa comporta se perdi il dispositivo o reinstalli:** poiché la chiave vive solo nel portachiavi del tuo dispositivo, disinstallare l'app, cancellarne i dati o passare a un dispositivo nuovo rende il database locale illeggibile — a te come a noi. **La via di recupero è il Cloud Sync**, ed è opt-in: se non l'hai attivato, i tuoi canvas esistono solo su quel dispositivo.
-- **Nota beta:** i database creati prima della versione 1.5 non sono cifrati e non possono essere aperti con una chiave. Al primo avvio della 1.5 un database del genere viene **cancellato** e ne nasce uno cifrato. I canvas già sincronizzati sul cloud tornano; quelli esistiti solo in locale no.
+- I contenuti sono conservati in un database locale dedicato al tuo account. Il database sul dispositivo è **cifrato a riposo con ChaCha20-Poly1305** (art. 32 GDPR) con una chiave a 256 bit generata sul tuo dispositivo e custodita nel portachiavi del sistema operativo — Keychain su iOS/macOS, Keystore su Android, libsecret su Linux, DPAPI su Windows. Noi la chiave non la vediamo mai. Perché un cambio di telefono non ti faccia perdere i canvas, la chiave ha una copia nel **backup cifrato del sistema**, accanto alla copia del database che il sistema fa già: su Android in Block Store di Google Play services, salvata nel tuo account Google solo se quel backup è cifrato end-to-end con il blocco schermo del telefono (Android 9 o successivi con PIN, sequenza o password), altrimenti solo sul telefono; su iOS nel backup cifrato di iCloud o del Finder, insieme al resto del Keychain (non in iCloud Keychain). I contenuti lasciano il tuo dispositivo in tre casi, tutti su tua azione: quando attivi il **Cloud Sync**; quando **pubblichi** una scheda di studio nel catalogo; quando tieni una scheda nel tuo **catalogo privato** per condividerla con un link. Gli ultimi due funzionano anche con il Cloud Sync spento e riguardano solo la porzione di appunti che scegli tu, mai l'intero canvas — vedi §2.11
+- **Foto, PDF, audio e cronologia:** le foto e le immagini inserite, i PDF importati, le registrazioni audio e la cronologia del canvas (Time Travel) non stanno in quel database: sono file a parte nelle cartelle dell'app. Fluera non li cifra con la chiave del database; li protegge il sistema operativo, che tiene la cartella dell'app chiusa alle altre app e, quando è attiva, la cifratura del dispositivo.
+- **Cosa comporta se cambi dispositivo o reinstalli:** se ripristini un backup del sistema (telefono nuovo, ripristino del telefono o, su Android con il backup Google attivo, reinstallazione dell'app), database e chiave tornano insieme e i canvas si riaprono da soli, così com'erano all'ultimo backup fatto dal sistema. Non tornano se il backup del sistema è spento; su Android senza Google Play services, o nel backup Google senza blocco schermo; se cancelli i dati dell'app, o la disinstalli e la reinstalli senza ripristino (su iOS il database non sopravvive alla disinstallazione); su Android se i dati dell'app superano i 25 MB del backup Google, perché allora il sistema non ne fa il backup. In questi casi il database locale resta illeggibile — a te come a noi — e **la via di recupero è il Cloud Sync**, che è opt-in: se non l'hai attivato, i tuoi canvas esistono solo su quel dispositivo.
+- **Nota beta:** i database creati prima che la cifratura arrivasse nell'app (agosto 2026) non sono cifrati e non possono essere aperti con una chiave. Al primo avvio di una versione con la cifratura un database del genere viene **cancellato** e ne nasce uno cifrato. I canvas già sincronizzati sul cloud tornano; quelli esistiti solo in locale no.
 
 ### 2.3 Dati di utilizzo (telemetria)
 Solo se l'utente ha prestato consenso alla categoria **Analytics di prodotto**:
@@ -44,6 +45,7 @@ Solo se l'utente ha prestato consenso alla categoria **Analytics di prodotto**:
 - L'identificativo del tuo account, così che tu possa accedere alla tua telemetria e cancellarla (§6). Al processor di crash reporting (§5) viene inviato solo un hash SHA-256, mai l'identificativo in chiaro
 - Piattaforma, versione app, tier di abbonamento, lingua del dispositivo
 - Eventi di prodotto da whitelist server-side (inizio/fine sessione, Ghost Map, Socratic, review SRS, chiamate AI con durata e token)
+- **Quanto ricordi di una scheda del catalogo:** se installi una scheda dal catalogo e riapri il suo canvas dopo 1, 7 e 30 giorni, l'app manda ogni volta un solo numero: quanto il tuo ricordo dei suoi concetti, calcolato sul dispositivo, sta sopra quello che resterebbe senza studiarla. Con il numero viaggiano l'identificativo della scheda, il giorno (1, 7 o 30) e la versione della formula. È legato al tuo account, anche alla sessione anonima. Nel catalogo nessuno lo vede da solo: conta solo nella media di almeno 5 account veri, per mostrare con quali schede si impara davvero. Non parte se la telemetria è spenta o se è spenta la memoria cognitiva (§2.9), e il server lo scarta se il Segnale del marketplace è spento (§2.11). Resta finché non togli il consenso Analytics, non spegni il Segnale del marketplace, non usi «Cancella tutti i miei dati dal cloud» o non cancelli l'account
 - **Non sono raccolti:** contenuto degli appunti, testo delle domande, informazioni identificative.
 
 ### 2.4 Dati per funzioni AI
@@ -56,8 +58,19 @@ Solo se l'utente ha prestato consenso alla categoria **Funzioni AI**:
 ### 2.5 Dati per Cloud Sync
 Solo se l'utente ha prestato consenso alla categoria **Cloud Sync**:
 - Copie dei canvas archiviate su Supabase (regione UE `eu-north-1`), cifrate in transito (TLS) e a riposo a livello infrastrutturale. Il Cloud Sync **non** è cifrato end-to-end: in qualità di titolare del trattamento, Fluera può tecnicamente accedere ai contenuti sincronizzati per erogare, proteggere e supportare il servizio (non li vende né li usa per pubblicità)
-- **Le pieghe del browser fanno eccezione.** Se accendi «Le pieghe del browser» in Impostazioni → Dati, le pagine piegate in un canvas (indirizzi, frasi, copie delle pagine, il retro, i fili, l'inchiostro al minuto) passano ai tuoi altri dispositivi **cifrate end-to-end**: chiuse sul dispositivo con AES-256-GCM e una chiave nata sul dispositivo, che il server non riceve mai. La chiave passa a un tuo nuovo dispositivo con un abbinamento che mostra lo stesso codice di 6 cifre sui due, o con il codice di recupero che vedi una sola volta all'accensione; sul server ne resta solo una copia chiusa con quel codice. Il server vede a quale canvas appartiene ogni piega, di che tipo è e quando cambia, mai il contenuto. Se perdi tutti i tuoi dispositivi e il codice di recupero, quelle pieghe non si possono recuperare (i canvas sì). «Spegni su tutti i dispositivi» le cancella dal server
+- **Le pieghe del browser fanno eccezione.** Se accendi «Le pieghe del browser» in Impostazioni → Dati, le pagine piegate in un canvas (indirizzi, frasi, copie delle pagine, il retro, i fili, l'inchiostro al minuto) passano ai tuoi altri dispositivi **cifrate end-to-end**: chiuse sul dispositivo con AES-256-GCM e una chiave nata sul dispositivo, che il server non riceve mai. La chiave passa a un tuo nuovo dispositivo con un abbinamento che mostra lo stesso codice di 6 cifre sui due, o con il codice di recupero che vedi una sola volta all'accensione; sul server ne resta solo una copia chiusa con quel codice. Il server vede a quale canvas appartiene ogni piega, di che tipo è e quando cambia, mai il contenuto. Con la stessa chiave viaggiano anche la cronologia, i preferiti, le preferenze dei siti e le schede aperte di Fludomi (§2.14). Se perdi tutti i tuoi dispositivi e il codice di recupero, quelle pieghe non si possono recuperare (i canvas sì). «Spegni su tutti i dispositivi» le cancella dal server
 - Metadati di sincronizzazione (hash, timestamp, dimensione)
+
+**Sincronizzazione fra i tuoi dispositivi** *(piano Cloud; con il piano Free fino a 500 MB, senza le lezioni registrate)*. In *Impostazioni → Dati e sincronizzazione* c'è l'interruttore «Sincronizza fra i tuoi dispositivi». È spento finché non lo accendi tu. Vale per tutto il tuo account: acceso su un dispositivo, vale su ogni dispositivo con cui entri. Per accenderlo servono un account (non una sessione ospite) e il piano Cloud. Quando lo accendi, il server registra la data e la versione di questa informativa che avevi davanti.
+
+- **Cosa sale nel cloud, solo con l'interruttore acceso:** i canvas interi (tratti, sezioni, formule, tabelle, grafici, collegamenti, i PDF con i segni fatti nel lettore, le foto); le lezioni registrate (l'audio, a pezzi, con i tratti legati all'audio); lo studio di ogni canvas (le carte del ripasso con la storia delle tue risposte, i concetti, gli esami con il loro inchiostro, il tutor socratico, la chat, il richiamo, la mappa concettuale, i corsi); le cartelle della galleria (nome, colore, cartella madre, fissata), la cartella di ogni canvas, i canvas fissati, le etichette e il Cestino (quali canvas ci sono e da quando); il testo che Fluera ha riconosciuto nella tua scrittura a mano, con le tue correzioni; le tue scelte nelle impostazioni (aspetto, lingua, carta e formato di esportazione, ordine della galleria, ripasso, esami e promemoria, colori, gomma, formule usate di recente, impostazioni del browser, gruppi di strumenti dell'astuccio). Le impostazioni legate al singolo dispositivo (mano, palmo, penna, finestra) restano sul dispositivo.
+- **Cosa resta sul dispositivo anche con l'interruttore acceso:** la cronologia del canvas (Time Travel) e la pila di annulla e ripeti.
+- **Titoli dei gruppi di appunti, tra i tuoi dispositivi.** Quando dai un nome a un gruppo di appunti, quel nome è testo scritto da te. Con l'interruttore acceso sale nel cloud insieme a un riferimento ai tratti a cui appartiene e all'ora in cui l'hai cambiato, così vince il nome più recente anche se lo modifichi su due dispositivi.
+- **Chi vede questi dati:** tu. Su un canvas che condividi con altre persone, i membri vedono il canvas e i titoli dei gruppi di appunti; il tuo studio (carte, risposte, esami, chat) lo vedi solo tu.
+- **Il nome del dispositivo.** Per dirti dove è aperto un canvas («Aperto su Redmi 15 5G») e per portare la chiave delle pieghe su un altro dispositivo, l'app manda al server il nome che il dispositivo ha nelle impostazioni del sistema (su un computer, il suo nome), insieme a un codice casuale nato con l'installazione. Se in quel nome c'è il tuo nome («Telefono di Mario»), arriva anche quello. Lo vedi solo tu, sui dispositivi del tuo account. Resta sul server solo finché serve: il turno di un canvas dura pochi minuti e si rinnova mentre il canvas è aperto; una richiesta di abbinamento scade dopo 15 minuti. Una riga scaduta può restare fino alla prossima apertura di quel canvas o al prossimo abbinamento, e se ne va con l'account. Non mandiamo il numero di serie né altri codici del dispositivo.
+- **Dove e come:** su Supabase, nella regione UE `eu-north-1` (Stoccolma), come il resto del Cloud Sync: cifrati in transito (TLS) e a riposo a livello infrastrutturale, **non** cifrati end-to-end. Fluera, come titolare, può tecnicamente accedervi per erogare, proteggere e supportare il servizio; non li vende e non li usa per pubblicità.
+- **Spegnere:** puoi spegnere l'interruttore da qualunque dispositivo, e si ferma su tutti. Si spegne anche se togli il consenso **Cloud Sync** in *Impostazioni → Privacy e telemetria*. Se il piano Cloud finisce, la sincronizzazione va in pausa. In tutti e tre i casi **non si cancella niente**: quello che è già nel cloud resta finché non lo cancelli tu, salvo la regola del §6 per un piano Cloud chiuso da più di 6 mesi, e sui dispositivi resta tutto.
+- **Senza l'interruttore** questi dati restano sul dispositivo, come prima: canvas, lezioni, studio, memoria cognitiva (§2.9), testo riconosciuto e impostazioni. Di questi dati esce solo quello che mandi tu: un canvas che condividi con altre persone, le schede del catalogo (§2.11), le richieste alle funzioni AI (§2.4).
 
 ### 2.6 Dati di diagnostica e crash
 Solo se l'utente ha prestato consenso alla categoria **Report dei crash**:
@@ -69,6 +82,7 @@ Solo se l'utente ha prestato consenso alla categoria **Report dei crash**:
 ### 2.7 Dati di abbonamento
 - Stato dell'abbonamento (free / essential / plus / pro), date di attivazione, rinnovo, scadenza
 - Identificativi RevenueCat / Apple / Google per matching ricevute
+- Se il piano Cloud si chiude: quando, il motivo (scadenza, rimborso, cambio di piano, revoca) e fino a quando conserviamo i tuoi file (§6)
 - Nessun dato di pagamento (numeri di carta, IBAN) viene memorizzato dai nostri sistemi: le transazioni sono gestite da Apple, Google e RevenueCat
 
 ### 2.8 Componenti software third-party (on-device)
@@ -76,18 +90,18 @@ Solo se l'utente ha prestato consenso alla categoria **Report dei crash**:
 Fluera include alcuni SDK third-party embedded che processano dati **esclusivamente sul tuo dispositivo**, senza inviare nulla ai loro produttori. Per trasparenza:
 
 - **Google ML Kit** (riconoscimento on-device di scrittura a mano e testo — Digital Ink & Text Recognition) — il riconoscimento avviene localmente sul dispositivo; inchiostri e immagini non vengono inviati a Google per queste API on-device (i modelli di riconoscimento vengono scaricati da Google). Google non riceve alcun contenuto del canvas da Fluera tramite ML Kit.
-- **sqlite3mc** — il motore del database locale, che realizza la cifratura AES-256 descritta al §2.2. La chiave gliela fornisce l'app prendendola dal portachiavi del tuo dispositivo; sqlite3mc di suo non invia nulla da nessuna parte. Tutta l'elaborazione è on-device.
+- **sqlite3mc** — il motore del database locale, che realizza la cifratura ChaCha20-Poly1305 descritta al §2.2. La chiave gliela fornisce l'app prendendola dal portachiavi del tuo dispositivo; sqlite3mc di suo non invia nulla da nessuna parte. Tutta l'elaborazione è on-device.
 - **Sentry SDK** (Functional Software Inc.) — solo la libreria embedded; vedi §4 per il responsabile del trattamento e §3 per la base giuridica del trasferimento di crash report (consenso, opt-in).
 
 Questi componenti non sono **responsabili del trattamento** ai sensi dell'art. 28 GDPR perché non ricevono dati personali. Sono **componenti software** di terze parti come qualsiasi altra libreria utilizzata per costruire l'app.
 
-### 2.9 Memoria cognitiva (indicizzazione on-device)
+### 2.9 Memoria cognitiva (indicizzazione sul dispositivo)
 
-Attiva per impostazione predefinita (opt-out) ed elaborata **esclusivamente sul tuo dispositivo**: Fluera costruisce un indice cognitivo dei tuoi appunti che alimenta le funzioni di studio — titoli automatici dei cluster, mappa concettuale ("Ghost Map"), ripetizione dilazionata (FSRS) e i checkpoint dello stato di apprendimento ("Sé").
+Attiva per impostazione predefinita (opt-out). Fluera costruisce **sul tuo dispositivo** un indice cognitivo dei tuoi appunti che alimenta le funzioni di studio — titoli automatici dei cluster, mappa concettuale ("Ghost Map"), ripetizione dilazionata (FSRS) e i checkpoint dello stato di apprendimento ("Sé"). L'indice si costruisce e si calcola sempre sul dispositivo.
 
-- **Nessun trasferimento:** questo indice **non lascia mai il dispositivo**. È distinto dalle *Funzioni AI* (§2.4, che inviano contenuti al cloud) e dal *Cloud Sync* (§2.5), che restano consensi separati e opt-in.
-- **Dati derivati e trattati localmente:** identificatori di cluster e concetti, titoli generati on-device, struttura del grafo concettuale, log degli eventi concettuali, programmazione delle ripetizioni. Conservati localmente con la stessa protezione descritta al §2.2.
-- **Controllo (opt-out):** puoi disattivarla in qualsiasi momento da *Impostazioni → Privacy → Memoria cognitiva*. Alla disattivazione l'indicizzazione si interrompe e **i dati cognitivi già creati sul dispositivo vengono cancellati immediatamente**; i tuoi appunti restano intatti. Riattivandola, l'indice viene ricostruito.
+- **Dove resta:** sul tuo dispositivo. Esce solo se accendi «Sincronizza fra i tuoi dispositivi» (§2.5, piano Cloud): allora le carte del ripasso con la storia delle tue risposte, i concetti, la mappa concettuale e i titoli dei gruppi di appunti passano dal cloud di Fluera per arrivare ai tuoi altri dispositivi. Senza l'interruttore l'indice resta sul dispositivo, come prima. È distinto dalle *Funzioni AI* (§2.4), che restano un consenso separato.
+- **Dati derivati:** identificatori di cluster e concetti, titoli generati sul dispositivo, struttura del grafo concettuale, log degli eventi concettuali, programmazione delle ripetizioni. Sul dispositivo sono conservati con la stessa protezione descritta al §2.2; la copia nel cloud, se accendi la sincronizzazione, come descritto al §2.5.
+- **Controllo (opt-out):** puoi disattivarla in qualsiasi momento da *Impostazioni → Privacy → Memoria cognitiva*. Alla disattivazione l'indicizzazione si interrompe e **i dati cognitivi già creati su questo dispositivo vengono cancellati immediatamente**; i tuoi appunti restano intatti. Se usi «Sincronizza fra i tuoi dispositivi», si cancellano anche le copie nel cloud (le carte del ripasso con le risposte, i concetti, la mappa concettuale e i titoli dei gruppi di appunti), e da nessun tuo dispositivo ne sale più una finché non la riattivi; sugli altri tuoi dispositivi le copie restano finché non la disattivi anche lì. Riattivandola, l'indice viene ricostruito.
 
 ### 2.10 Dataset di riconoscimento della scrittura (opt-in, disattivo per impostazione predefinita)
 
@@ -219,6 +233,60 @@ funzioni di studio (§2.4), non questo controllo.
   nuova foto o non elimini l'account: non lo mostriamo più, ma chi ne conosce
   già l'indirizzo può ancora aprirlo.
 
+**Il segnale del marketplace.** Quando installi una scheda dal catalogo, l'app
+lo dice al nostro server, e gli dice anche se torni a studiarla. Serve a contare
+quali schede le persone installano e a quali tornano, e a riconoscere così i
+creator le cui schede servono davvero. È acceso per impostazione predefinita e
+lo spegni da *Impostazioni → Privacy e telemetria → Segnale del marketplace*.
+
+- **Cosa viaggia:** l'identificativo della scheda installata e, se torni a
+  studiarla (un ripasso completato, o una riapertura almeno 20 ore dopo
+  l'installazione), il fatto che sei tornato. Viaggia legato al tuo account,
+  anche alla sessione anonima che l'app apre se non hai fatto l'accesso. Il
+  server aggiunge l'ora dell'installazione e del ritorno.
+- **Cosa non viaggia:** il tuo nome, la tua email, il contenuto della scheda e
+  dei tuoi appunti, quanto ricordi (quello viaggia solo con le Analytics, §2.3).
+- **A cosa serve:** contano solo le installazioni degli account veri, non
+  quelle delle sessioni anonime. Contano nel numero di installazioni mostrato
+  sulla scheda, nell'ordine del catalogo (le schede popolari, di tendenza, più
+  efficaci) e nei conti del creator (le installazioni sul suo profilo e i suoi
+  badge). La stessa riga serve per votare: il server accetta il voto su una
+  scheda solo da chi l'ha installata.
+- **Sul dispositivo** l'app tiene l'elenco delle schede installate, con l'ora,
+  per accorgersi del ritorno. Una scheda esce dall'elenco quando torni a
+  studiarla o dopo 30 giorni.
+- **Chi lo vede:** noi, su Supabase nell'UE (§4), e tu: le tue righe e
+  l'interruttore sono nell'esportazione dei tuoi dati. I creator e le altre persone vedono solo i
+  totali, mai chi ha installato.
+- **Spegnerlo:** l'interruttore vale per il tuo account, su tutti i tuoi
+  dispositivi. Il server registra quando l'hai spento, con la versione di
+  questa informativa, e da quel momento rifiuta le installazioni e i ritorni
+  del tuo account, anche quelli di una versione precedente dell'app che non
+  conosce l'interruttore. Spegnerlo cancella dal server tutte le installazioni
+  del tuo account, arrivate da qualunque dispositivo, e le misure di quanto
+  ricordi di quelle schede (§2.3); il numero di installazioni delle schede e
+  i conti dei creator si rifanno senza di loro. Se il dispositivo è offline,
+  smette subito di mandare, e lo spegnimento arriva al server da solo alla
+  prossima apertura di un canvas. Se l'avevi spento con una versione
+  precedente dell'app, che lo teneva solo sul dispositivo, e sul server non
+  c'è ancora una tua scelta, la prima volta che l'app legge il tuo account da
+  quel dispositivo lo spegne anche sul server.
+  Se lo riaccendi, si riparte da zero. «Cancella tutti i miei dati dal cloud»
+  fa le stesse cancellazioni senza spegnerlo, e «Cancella l'account» le fa
+  prima di cancellare l'account.
+- **Se voti con il segnale spento:** il server accetta un voto solo da chi ha
+  installato la scheda, quindi l'app registra che l'hai installata, in una
+  riga a parte che non conta: niente nel numero di installazioni, nei conti
+  dei creator o nell'ordine del catalogo. Se poi riaccendi il segnale, quella
+  riga continua a non contare. Da una versione precedente dell'app, con il
+  segnale spento, il voto passa solo se quella riga c'è già.
+- **Il codice del dispositivo:** le versioni precedenti dell'app mandavano
+  anche un codice casuale di 128 bit nato sul dispositivo, senza account. Il
+  server non lo accetta più e l'app non lo manda più. Le righe rimaste si
+  cancellano da sole 30 giorni dopo l'installazione, o prima se da quel
+  dispositivo spegni il segnale o usi una delle due cancellazioni qui sopra;
+  poi il dispositivo dimentica il codice.
+
 ### 2.12 Estratto di studio per il tuo assistente AI collegato (opt-in, disattivo per impostazione predefinita)
 
 Se attivi «Assistente AI collegato», Fluera pubblica sul nostro server un
@@ -282,6 +350,12 @@ pagine che visiti, né le ricerche che fai.
 - **I siti che visiti** ricevono ciò che riceve qualunque sito da un browser: indirizzo IP, il
   tipo di browser (in forma ridotta: niente modello del dispositivo), la lingua, i cookie che quel
   sito ha impostato. Sono titolari autonomi dei dati che raccolgono, secondo le loro informative.
+- **Quando scrivi sulla pagina con la penna**, il sito non riceve i tuoi tratti: riceve solo i
+  tocchi che Fludomi gli passa (un clic, un controllo da trascinare, un riquadro di un altro sito
+  incorporato nella pagina). Non riceve nemmeno dove passa la penna sospesa. Su iPad restano due
+  limiti: il sito può ancora sapere sopra quale elemento della pagina si trova la Pencil sospesa
+  (lo stile «:hover»), e un riquadro che la pagina riempie da sé, senza caricarlo da un indirizzo,
+  può ancora ricevere la Pencil, compreso l'inizio dei tratti.
 - **Il motore di ricerca** che scegli nelle impostazioni (predefinito: DuckDuckGo) riceve ciò che
   cerchi e il tuo indirizzo IP. Anche «Cerca in Fludomi» manda al motore il testo che hai
   selezionato nella nota o nel PDF.
@@ -327,8 +401,15 @@ chiusa di colpo. Si chiudono da sole dopo 15 minuti con Fluera in secondo piano.
 - apriamo i link in https quando il sito lo offre; un sito senza https si apre solo dopo un
   avviso, e su Android nel browser del telefono.
 
-Solo le pieghe viaggiano fra i tuoi dispositivi, e solo se attivi la sincronizzazione, cifrate da
-un capo all'altro (§2.5).
+Se attivi la sincronizzazione, fra i tuoi dispositivi viaggiano le pieghe, la cronologia, i
+preferiti, la grandezza del testo e i blocchi di fotocamera e microfono scelti per ogni sito, e le
+schede aperte su ciascun dispositivo (con il suo nome). Sono cifrati da un capo all'altro con la
+chiave delle pieghe (§2.5): il server vede quante voci ci sono, di che tipo e quando cambiano, mai
+gli indirizzi o i titoli. Le schede private, i cookie, gli accessi ai siti e i permessi concessi a
+un sito non viaggiano. «Cancella dati di navigazione» li cancella anche dal server e, alla loro
+prossima sincronizzazione, dagli altri tuoi dispositivi; «Cancella tutto alla chiusura» cancella
+solo sul dispositivo dove è attivo. Se spegni la sincronizzazione, le loro copie lasciano il
+server; sui tuoi dispositivi restano.
 
 ## 3. Finalità e basi giuridiche
 
@@ -341,8 +422,10 @@ un capo all'altro (§2.5).
 - **Catalogo e condivisione delle schede** (§2.11): esecuzione del contratto (art. 6.1.b GDPR), su tua richiesta esplicita — nessuna scheda viene caricata senza che tu lo chieda
 - **Moderazione dei contenuti condivisi, gestione delle segnalazioni e prevenzione degli abusi** (§2.11): obbligo legale (art. 6.1.c GDPR, Regolamento UE 2022/2065 «DSA») e legittimo interesse (art. 6.1.f GDPR) a impedire che il servizio veicoli contenuti illeciti. Rientra qui anche la registrazione della versione dei Termini che accetti e della tua dichiarazione sui diritti relativi al contenuto, che è ciò che rende dimostrabile a quali condizioni hai condiviso
 - **Gestione abbonamenti**: esecuzione del contratto (art. 6.1.b GDPR)
+- **Segnale del marketplace** (§2.11): legittimo interesse (art. 6.1.f GDPR) a misurare in modo equo quali schede del catalogo vengono installate e studiate davvero, per riconoscere i creator, con l'identificativo del tuo account e senza contenuti. Puoi opporti (art. 21 GDPR) in ogni momento spegnendo il segnale in *Impostazioni → Privacy e telemetria*: l'opposizione vale per il tuo account su tutti i tuoi dispositivi, il server la registra con l'ora e la versione di questa informativa, e cancella anche le installazioni del tuo account
 - **Sicurezza e prevenzione abusi** (enforcement quote AI): legittimo interesse (art. 6.1.f GDPR)
-- **Memoria cognitiva on-device** (indicizzazione locale per titoli, Ghost Map, ripetizione): legittimo interesse (art. 6.1.f GDPR) all'erogazione delle funzioni di studio, con elaborazione esclusivamente locale (nessun trasferimento) e diritto di opposizione (art. 21 GDPR) esercitabile in ogni momento tramite l'opt-out in *Impostazioni → Privacy*
+- **Memoria cognitiva sul dispositivo** (indicizzazione locale per titoli, Ghost Map, ripetizione): legittimo interesse (art. 6.1.f GDPR) all'erogazione delle funzioni di studio, con elaborazione sul dispositivo e diritto di opposizione (art. 21 GDPR) esercitabile in ogni momento tramite l'opt-out in *Impostazioni → Privacy*. La copia che viaggia fra i tuoi dispositivi segue la base della voce qui sotto
+- **Sincronizzazione fra i tuoi dispositivi** (§2.5): esecuzione del contratto (art. 6.1.b GDPR). È il servizio del piano Cloud che acquisti, e parte solo quando accendi tu l'interruttore. Il server registra quando l'hai acceso e quale versione dell'informativa avevi davanti; puoi spegnerlo quando vuoi
 
 ## 4. Destinatari dei dati
 
@@ -390,16 +473,19 @@ Supabase consente di scegliere la regione del database: utilizziamo la regione `
 ## 6. Periodi di conservazione
 
 - **Account e contenuti utente:** per tutta la durata del rapporto contrattuale e fino alla richiesta di cancellazione
+- **Dati della sincronizzazione fra i tuoi dispositivi (§2.5):** restano nel cloud finché non li cancelli tu. Spegnere l'interruttore o togliere il consenso Cloud Sync non cancellano niente, tranne le copie dei dati di Fludomi (cronologia, preferiti, preferenze dei siti, schede), che lasciano il server allo spegnimento. Se il piano Cloud si chiude (scadenza, rimborso, cambio di piano o revoca), il server registra quando e perché, e per 6 mesi da quel momento resta tutto e lo puoi scaricare su ogni tuo dispositivo. Dopo i 6 mesi possiamo togliere dal cloud l'audio delle lezioni, i PDF e le foto che superano i 500 MB del piano Free, cominciando dai più vecchi; l'inchiostro dei canvas resta, e non togliamo niente da un canvas condiviso con un altro account né dalle schede del catalogo privato. Se il Cloud torna attivo prima, la chiusura si annulla. Un canvas messo nel **Cestino** è nel Cestino su ogni tuo dispositivo e resta nel cloud com'era; i 30 giorni del Cestino contano dall'ora in cui ci è entrato, la stessa su tutti; se ci scrivi ancora da un altro dispositivo, ne esce. Una risposta d'esame scartata e una foto tolta da un canvas lasciano il cloud appena il dispositivo è in rete. Di una cartella eliminata resta nel cloud solo il suo identificativo con l'ora, perché non torni; i canvas che conteneva restano. «Elimina definitivamente» su un canvas (nel Cestino) lo toglie dal cloud insieme a ciò che gli appartiene: tratti, foto, PDF, lezioni, carte del ripasso con le risposte, concetti, titoli, studio, testo riconosciuto e l'inchiostro dei suoi esami. «Cancella tutti i miei dati dal cloud» (*Impostazioni → Privacy e telemetria*) toglie tutti i canvas con le stesse cose, le lezioni, l'inchiostro degli esami, le impostazioni che viaggiano e le cartelle, e spegne l'interruttore su tutti i tuoi dispositivi; resta solo la registrazione dell'interruttore (quando l'hai acceso, con la versione di questa informativa, e quando l'hai spento), che è la prova del consenso. «Cancella l'account» (*Impostazioni → Profilo e account*) cancella anche quella. Le copie sui tuoi dispositivi restano finché non le elimini lì
 - **Eventi di telemetria:** 180 giorni
 - **Eventi dei report di crash:** 30 giorni in Sentry. Le copie di backup cifrate vengono eliminate entro 90 giorni dalla loro creazione
 - **Log di utilizzo AI (`ai_usage_events`):** 24 mesi
+- **Misure di quanto ricordi delle schede del catalogo (§2.3):** finché non togli il consenso Analytics, non spegni il Segnale del marketplace, non usi «Cancella tutti i miei dati dal cloud» o non cancelli l'account
+- **Segnale del marketplace (§2.11):** sul server, le installazioni del tuo account finché non spegni il segnale, non usi «Cancella tutti i miei dati dal cloud» o non cancelli l'account (la riga scritta per un voto con il segnale spento, che non conta, resta finché non usi una delle due cancellazioni); la registrazione dell'interruttore (quando l'hai spento o riacceso, con la versione di questa informativa) finché non cancelli l'account, perché è la prova della tua scelta; le righe del vecchio codice del dispositivo, 30 giorni dall'installazione. Sul dispositivo, ogni scheda esce dall'elenco quando torni a studiarla o dopo 30 giorni, e resta l'ultima risposta del server sull'interruttore, per quando sei offline
 - **Dati di abbonamento:** 10 anni a fini fiscali (art. 2220 c.c.). Presso RevenueCat (§4) i dati del subscriber e degli acquisti non vengono cancellati alla scadenza dell'abbonamento: vengono rimossi quando cancelliamo il customer, e dai loro sistemi a valle entro 30 giorni. Attenzione: cancellare il customer **non disdice** l'abbonamento con Apple o Google — quello puoi farlo solo tu dal tuo account dello store, e finché non lo fai un ripristino degli acquisti può ricreare il record
 - **Schede del catalogo (§2.11):** finché non le rimuovi o non vengono rimosse dalla moderazione. I **link** scaduti o revocati e le **autorizzazioni** revocate restano registrati (senza il testo del link, di cui conserviamo solo l'impronta) per poter dimostrare chi ha avuto accesso e quando. Alla cancellazione dell'account, le schede di cui sei **autore** vengono cancellate insieme ai loro file; le copie già installate da altre persone restano sui loro dispositivi e non sono raggiungibili né da te né da noi
 - **Decisioni di moderazione e segnalazioni:** conservate per la durata necessaria a gestire un eventuale reclamo o ricorso, e comunque per rispondere agli obblighi del DSA
 - **Audit trail del consenso:** fino alla revoca + 3 anni (art. 7.1 GDPR)
 - **Dataset di riconoscimento della scrittura (§2.10):** fino a 5 anni dopo la cancellazione dell'account, o finché non lo revochi da *Impostazioni → Privacy → AI Training Data* — quello che viene prima, sempre in forma pseudonimizzata. La revoca raggiunge solo i contributi fatti da un dispositivo i cui dati dell'app sono ancora presenti; dopo una disinstallazione ciò che li limita è la finestra di 5 anni (vedi §2.10, art. 11 GDPR)
-- **Cronologia di Fludomi (sul dispositivo, §2.14):** per il periodo che scegli senza nuove visite — 1 giorno, 1 settimana, 1 mese o 3 mesi (di fabbrica); cookie e dati dei siti finché non li cancelli, esci dall'account o lo elimini
-- **Indice di memoria cognitiva (on-device):** conservato localmente finché la funzione resta attiva; cancellato immediatamente alla disattivazione (opt-out) o su richiesta di cancellazione dei dati
+- **Cronologia di Fludomi (sul dispositivo e, con la sincronizzazione, cifrata nel cloud, §2.14):** per il periodo che scegli senza nuove visite — 1 giorno, 1 settimana, 1 mese o 3 mesi (di fabbrica); una pagina tolta lascia nel cloud un segno cifrato per 30 giorni; cookie e dati dei siti finché non li cancelli, esci dall'account o lo elimini
+- **Indice di memoria cognitiva (sul dispositivo):** conservato localmente finché la funzione resta attiva; cancellato immediatamente alla disattivazione (opt-out) o su richiesta di cancellazione dei dati. La sua copia nel cloud, se hai acceso la sincronizzazione fra i tuoi dispositivi, si cancella anch'essa alla disattivazione (§2.9)
 - **Sessioni anonime:** quando usi Fluera senza account permanente, i dati sono associati a un identificatore device temporaneo. Se non converti la sessione in un account permanente entro **24 ore di inattività** dall'apertura di una nuova sessione su un altro device, l'account anonimo e tutti i dati associati vengono cancellati automaticamente tramite un job pianificato sui nostri server.
 
 ## 7. Diritti dell'utente
@@ -419,7 +505,8 @@ L'utente può esercitare i seguenti diritti ai sensi degli artt. 15-22 GDPR:
 - Toggle in *Impostazioni → Privacy* dell'app
 - Funzione *Esporta i miei dati* (art. 20 GDPR)
 - Per una copia che includa i contenuti dei canvas (art. 15): usare *Esporta* su ciascun canvas — il formato `.fluera` conserva tutto. L'esportazione dati dell'app copre i dati lato server e i metadati dei canvas; i corpi dei tratti sono un formato binario proprietario e sono elencati sotto `excluded` nel suo `manifest.json`, con questa stessa indicazione.
-- Scrivere a lorenco@fluera.dev per cancellazione account o rettifiche manuali
+- *Cancella l'account* in *Impostazioni → Profilo e account*: cancella l'account e i suoi dati nel cloud (§6)
+- Scrivere a lorenco@fluera.dev per rettifiche manuali, o se la cancellazione dell'account dall'app non riesce
 
 Il Titolare risponde entro 30 giorni dalla ricezione (art. 12.3 GDPR), salvo proroga motivata.
 
@@ -464,7 +551,7 @@ Residenti della **California** beneficiano dei diritti del *California Consumer 
 
 **Do Not Sell or Share Notice**: Fluera **non vende, condivide o cede** i tuoi dati personali per advertising cross-context behavioral o qualsiasi altro scopo commerciale. Onoriamo i segnali *Global Privacy Control* (GPC) ove tecnicamente rilevanti.
 
-**Categorie di informazioni raccolte** (Cal. Civ. Code §1798.130): identificatori (user_id pseudonimo), informazioni commerciali (subscription tier), attività internet (telemetria di prodotto se consentita), informazioni inferite (preferenze d'uso). Nessun dato sensibile ai sensi CCPA.
+**Categorie di informazioni raccolte** (Cal. Civ. Code §1798.130): identificatori (user_id pseudonimo; il codice casuale del dispositivo che il segnale del marketplace usava prima, §2.11), informazioni commerciali (subscription tier), attività internet (telemetria di prodotto se consentita), informazioni inferite (preferenze d'uso). Nessun dato sensibile ai sensi CCPA.
 
 Diritti analoghi si applicano in **Virginia (CDPA)**, **Colorado (CPA)**, **Connecticut (CTDPA)**, **Utah (UCPA)** e nelle nuove leggi 2024-2025 (Texas, Oregon, Delaware, Iowa, New Hampshire, Montana). Per esercitarli usa lo stesso canale `lorenco@fluera.dev`.
 

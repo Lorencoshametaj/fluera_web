@@ -1,112 +1,105 @@
-// 🇫🇷 V1.5 — Native pass complete (2026-05-15).
-// CTA labels + badge preserved from the previous locale file.
-// Coordinated with it.ts canonical.
-
 import type { PricingData } from "../types";
+
+// Listino del 22/10/2026 (Free, Cloud, IA, Cloud + IA). Allineato a it.ts.
+// Gli importi di `price` e `period` li controlla
+// fluera_engine/tool/public_truth_gate.dart contro FlueraPricing, per `id`.
 
 const data: PricingData = {
   tiers: [
     {
+      id: "free",
       name: "Free",
       price: "€0",
       period: "pour toujours",
       tagline:
-        "Le canvas complet pour tester la méthode. 100 crédits IA par mois, toujours visibles.",
+        "Le canvas complet, la révision et les cours. Sans abonnement et sans échéance.",
       features: [
-        "Canvas infini, saisie manuscrite, moteur de rendu complet",
-        "3 pinceaux de base (crayon, plume, marqueur — plus dans Plus)",
-        "Export PNG",
-        "100 crédits IA par mois — Atlas toujours gratuit (0 crédit), Chat 1 par message",
-        "Socratic 3 sessions/sem., Ghost Map 3 comparaisons/sem., 1 Exam/sem.",
-        "Fog of War, FSRS (répétition espacée)",
-        "Cross-Zone Bridges — voir les liens entre concepts que le système découvre",
-        "📍 3 Checkpoints par canvas — enregistre un moment d'étude et reviens-y quand tu veux",
-        "Aperçu Time Travel + sync audio↔trait sur un canvas démo (lecture seule)",
-        "Local-first, totalement hors-ligne (1 appareil)",
+        "Canvas infini et écriture à la main",
+        "Révision, cours, tous les pinceaux, export et time travel",
+        "Un avant-goût de l’IA le premier mois après ton inscription",
+        "500 Mo de cloud sur tous tes appareils, sans audio, quand le Cloud sera activé",
+        "Fonctionne aussi hors ligne : tes canvas restent sur l’appareil",
       ],
       cta: { label: "Commencer gratuitement", href: "/beta" },
       highlighted: false,
     },
     {
-      name: "Plus",
-      price: "€9,99",
-      period: "par mois · €99,99 / an (économise €19,89 — 2 mois offerts)",
+      id: "cloud",
+      name: "Cloud",
+      price: "€19,99",
+      period: "par an · annuel uniquement · Cloud 60 à €44,99 / an",
       tagline:
-        "Étude personnelle complète : cloud sync, IA sans limites hebdo, voix illimitée.",
+        "De la place pour tes canvas et tes cours enregistrés. Il s’active avec une mise à jour de l’app.",
       features: [
-        "Cloud sync 5 Go sur 2 appareils — tes canvas aussi sur iPad et bureau",
-        "Socratic, Ghost Map, Exam sans limites de fréquence (plus de 3/semaine)",
-        "5× plus de crédits IA que Free (500 par mois — env. 60 Ghost Map ou 18 sessions Socratic complètes)",
-        "Enregistrement vocal illimité",
-        "Tous les pinceaux V1 (6 au total, d'autres à venir)",
-        "Export complet (PNG, JPEG, WebP, SVG, PDF, .fluera)",
-        "Cross-Zone Bridges — crée et édite tes propres liens entre concepts",
-        "📍 Checkpoints illimités par canvas",
-        "Essai gratuit 7 jours, annulable à tout moment",
+        "20 Go sur tes appareils : téléphone, tablette et ordinateur",
+        "Les cours enregistrés s’écoutent partout",
+        "Tes canvas à l’abri, même si tu changes de téléphone",
+        "Cloud 60 : 60 Go pour qui enregistre beaucoup de cours",
       ],
-      cta: { label: "Essayer Plus", href: "/beta" },
-      highlighted: true,
-      badge: "Recommandé",
+      cta: { label: "Choisir Cloud", href: "/beta" },
+      highlighted: false,
     },
     {
-      name: "Pro",
-      price: "€19,99",
-      period: "par mois · €199,99 / an (économise €39,89 — 2 mois offerts)",
-      tagline:
-        "Étude amplifiée : Time Travel, sync audio↔trait, collab temps réel, recherche dans tous les canvas.",
+      id: "ia",
+      name: "IA",
+      price: "€9,99",
+      period: "par mois · €84,99 / an (économise €34,89)",
+      tagline: "Une IA qui lit ce que tu écris, avec un compteur toujours visible.",
       features: [
-        "⏱️ Scrubber Time Travel — revois ton étude en replay",
-        "🎤 Sync audio ↔ trait — touche un trait et réécoute ce que tu disais à ce moment",
-        "🤝 Collaboration canvas en temps réel (CRDT) — invite des camarades par lien",
-        "🔍 Background OCR proactif — retrouve une formule écrite il y a des mois, dans tous tes canvas",
-        "Cloud sync 50 Go, appareils illimités",
-        "Support email prioritaire",
-        "2000 crédits IA par mois",
+        "L’IA lit tes notes et donne un nom à chaque concept",
+        "Tuteur, examens, chat, formules et transcription",
+        "Tu vois toujours combien d’IA il te reste ce mois-ci, en pourcentage",
+        "Réserve d’examen pour les mois les plus chargés",
+        "14 jours gratuits pour l’essayer",
       ],
-      cta: { label: "Devenir Pro", href: "/beta" },
+      cta: { label: "Essayer l’IA", href: "/beta" },
       highlighted: false,
+    },
+    {
+      id: "cloud_ia",
+      name: "Cloud + IA",
+      price: "€99,99",
+      period: "par an · tu économises €4,99 par rapport aux deux séparés · avec Cloud 60 €119,99 / an",
+      tagline: "Tout le Cloud et toute l’IA, en un seul abonnement.",
+      features: [
+        "Tout le Cloud et toute l’IA",
+        "20 Go, ou 60 Go avec Cloud 60 + IA",
+        "Tu vois toujours combien d’IA il te reste ce mois-ci, en pourcentage",
+        "Annuel uniquement",
+      ],
+      cta: { label: "Choisir Cloud + IA", href: "/beta" },
+      highlighted: true,
+      badge: "Recommandé",
     },
   ],
   faq: [
     {
-      q: "Comment fonctionnent les crédits IA ?",
-      a: "Chaque opération IA a un coût fixe en crédits : Ghost Map 8, Socratic 4 par étape, Exam 12 par question, Chat 1 par message. Atlas (actions canvas) est gratuit. Le Background OCR proactif coûte 1 crédit par page et fait partie de Pro. Tu vois ton solde restant dans l'en-tête du canvas — aucun rate limit caché, aucune surprise. Les crédits non utilisés ne se reportent pas : le plan se recharge tous les 30 jours à partir de ta date d'inscription (pas le 1er du mois — tu paies 30 jours et reçois 30 jours).",
+      q: "Comment je vois combien d’IA il me reste ?",
+      a: "Dans l’app, toujours. Un compteur te dit en pourcentage combien d’IA du mois il te reste, quand elle se recharge (le 1er du mois) et, à ton rythme, jusqu’à quand elle te suffit. Aucune limite cachée et aucun crédit à convertir de tête : ce que tu vois, c’est ce que tu as.",
     },
     {
-      q: "Et si je finis les crédits avant le reset ?",
-      a: "On te prévient — une alerte douce à 80% du cycle. À zéro, les fonctions IA s'arrêtent avec un message clair (jamais de blocages silencieux). Attends le prochain cycle de 30 jours ou upgrade.",
+      q: "Et si l’IA du mois est épuisée ?",
+      a: "La révision, les cours et tes notes fonctionnent toujours, même sans IA. L’IA revient le 1er du mois ; si tu en as besoin avant, tu peux activer la réserve d’examen ou en ajouter un peu depuis l’app.",
     },
     {
-      q: "Pourquoi Pro coûte le double pour seulement trois piliers ?",
-      a: "Pro n'est pas 'Plus avec plus de crédits' — c'est l'étude amplifiée. Time Travel rejoue ta séance avec l'audio synchronisé par trait : touche une formule et réécoute l'explication que tu te donnais. La collaboration CRDT temps réel te laisse travailler simultanément avec des camarades sur le même canvas. Notability, GoodNotes et Notion AI ne proposent pas cette stack — pas à ce niveau d'intégration.",
+      q: "J’achète une fois : ça vaut sur tous mes appareils ?",
+      a: "Oui. Tu t’abonnes depuis l’app Fluera sur ton téléphone ou ta tablette, via l’App Store ou Google Play, et tu paies avec les moyens enregistrés dans ton compte du store. Ton forfait vaut ensuite sur tous les appareils où tu te connectes avec le même compte, ordinateurs compris.",
     },
     {
-      q: "Que deviennent mes canvas si j'annule Plus ou Pro ?",
-      a: "Tout reste sur ton appareil (local-first), et les 3 pinceaux de base ainsi que l'export PNG continuent de fonctionner avec Free. Les fonctions liées à l'offre payante sont suspendues jusqu'à sa réactivation. Rien n'est supprimé sans action explicite de ta part.",
+      q: "Le Cloud fonctionne-t-il déjà entre les appareils ?",
+      a: "Pas encore. Le Cloud entre téléphone, tablette et ordinateur est en construction et s’active avec une mise à jour de l’app. D’ici là, tes canvas restent sur l’appareil, où ils fonctionnent aussi hors ligne.",
     },
     {
-      q: "Pourquoi pas d'essai gratuit Pro ?",
-      a: "Plus a 7 jours d'essai gratuit. Pas Pro : la collab temps réel + scrubber Time Travel sont des fonctions récurrentes avec des coûts cloud qu'on ne peut pas offrir. Pour tester la méthode, Free est le canvas complet — utilise-le aussi longtemps qu'il te convient.",
+      q: "Y a-t-il un essai gratuit ?",
+      a: "Oui : 14 jours gratuits, uniquement sur l’IA. Tu peux résilier depuis la boutique quand tu veux, avant la fin de l’essai. Free n’expire pas et ne demande aucun paiement.",
     },
     {
-      q: "C'est quoi un Checkpoint ?",
-      a: "Un Checkpoint est un marque-page de ton canvas à un instant précis — genre « enregistrer sous ». Tu en crées un quand tu veux (ex. « avant le contrôle », « après avoir fini le chapitre 3 ») et tu y reviens quand tu veux : restaure l'état du canvas à ce point. C'est différent de Time Travel : le Checkpoint est un point fixe que tu as choisi, Time Travel est le scrubber continu sur tout l'historique. Free inclut 3 Checkpoints par canvas, Plus illimités.",
-    },
-    {
-      q: "Puis-je essayer Time Travel + sync audio↔trait avant de passer à Pro ?",
-      a: "Oui. Chaque utilisateur Free trouve un canvas démo pré-chargé où tu peux ouvrir le scrubber Time Travel et toucher les traits pour réécouter l'audio synchronisé — en lecture seule, sur la démo. Pour enregistrer tes propres études, il faut Pro.",
+      q: "Que deviennent mes canvas si je résilie ?",
+      a: "Ils restent à toi, sur l’appareil : canvas, révision, cours, pinceaux et export continuent de fonctionner avec Free. Les fonctions du forfait s’arrêtent jusqu’à ce que tu le réactives. Rien n’est supprimé sans une action de ta part.",
     },
     {
       q: "Politique de remboursement ?",
       a: "Les conditions de remboursement et de rétractation dépendent de la boutique et du canal d'achat. La politique applicable est affichée avant confirmation ; pour obtenir de l'aide, écris à support@fluera.dev depuis ton adresse d'inscription.",
-    },
-    {
-      q: "Réductions pour chercheurs ou non-profits ?",
-      a: "Oui. Laboratoires de recherche, programmes de doctorat et non-profits enregistrés peuvent en faire la demande sur /contact — typiquement on accorde Pro au tarif Plus ou gratuit en échange de feedback structuré.",
-    },
-    {
-      q: "Quels moyens de paiement acceptez-vous ?",
-      a: "Tu t'abonnes depuis l'app Fluera sur ton téléphone ou ta tablette, via l'App Store ou Google Play : tu paies avec les moyens de paiement enregistrés dans ton compte du store. Ton forfait fonctionne ensuite sur chaque appareil où tu te connectes avec le même compte.",
     },
     {
       q: "Plans Team ou Education ?",

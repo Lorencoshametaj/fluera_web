@@ -6,12 +6,12 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Architektura bezpieczeństwa"
-  description="Jak Fluera szyfruje Twoje notatniki w spoczynku i w tranzycie. SQLCipher, TLS 1.3, sync w chmurze UE, telemetria opt-in."
+  description="Jak Fluera szyfruje twoje canvasy w spoczynku i w tranzycie oraz jak działa cloud sync. sqlite3mc, TLS, synchronizacja na infrastrukturze UE, telemetria opt-in."
   locale="pl"
 >
   <PageHero
     kicker="Architektura"
-    title="Jak Fluera dba o bezpieczeństwo Twoich notatników."
+    title="Jak Fluera chroni twoje canvasy."
     description={`Ta strona opisuje model bezpieczeństwa na poziomie, jakiego oczekuje czytelnik techniczny — oficer bezpieczeństwa, CISO uniwersytetu, ciekawy deweloper. Streszczenie nietechniczne zacznij od <a href="/pl/security">/pl/security</a>.`}
     breadcrumb={{ label: "Bezpieczeństwo", href: "/pl/security" }}
   />
@@ -25,32 +25,41 @@ import { SITE } from "@/lib/site";
       </p>
       <p>W ramach tego modelu trzy gwarancje:</p>
       <ul>
-        <li><strong>Lokalne dane są nieczytelne bez klucza.</strong> Skradzione urządzenie produkuje zaszyfrowany blob.</li>
+        <li><strong>Lokalna baza danych jest nieczytelna bez klucza.</strong> Skradzione urządzenie daje zaszyfrowaną bazę. Zdjęcia, pliki PDF i nagrania z wykładów chroni system operacyjny, nie ten klucz.</li>
         <li><strong>Synchronizowane dane są szyfrowane w tranzycie i w spoczynku.</strong> Sync w chmurze nie jest end-to-end: dane przechowujemy na infrastrukturze UE (Supabase, eu-north-1). Jako administrator danych mamy do nich techniczny dostęp — nigdy ich nie sprzedajemy ani nie używamy do reklam.</li>
-        <li><strong>Telemetria jest opt-in i zdeidentyfikowana.</strong> Nawet w przypadku pełnego naruszenia analityka nie może powiązać użytkownika z jego treścią.</li>
+        <li><strong>Telemetria tylko za zgodą i nigdy z treścią.</strong> Jest powiązana z identyfikatorem twojego konta, żebyś mógł ją zobaczyć i usunąć: nie jest anonimowa.</li>
       </ul>
 
-      <h2>W spoczynku: SQLCipher, AES-256</h2>
+      <h2>W spoczynku: sqlite3mc, klucz 256-bitowy</h2>
       <p>
-        Każdy notatnik Fluery żyje w lokalnej bazie SQLite zaszyfrowanej za pomocą SQLCipher — szeroko zwalidowanego rozszerzenia, które przezroczyście szyfruje każdą stronę bazy danych za pomocą AES-256-CBC i przeprowadza kontrolę integralności HMAC-SHA512 na każdej stronie.
+        Lokalna baza SQLite z twoimi canvasami — pociągnięcia, tekst, wzory, twoja nauka — jest szyfrowana przez SQLite3 Multiple Ciphers (sqlite3mc) w schemacie ChaCha20-Poly1305: każda strona bazy jest zaszyfrowana i uwierzytelniona. Zdjęcia, pliki PDF i nagrania z wykładów to pliki w prywatnym folderze aplikacji: chroni je system operacyjny, nie ten klucz.
       </p>
       <p>
-        Klucz lokalnej bazy danych to losowy klucz 256-bitowy generowany przez Fluerę i przechowywany w bezpiecznym magazynie kluczy platformy — Keychain na iOS/macOS, Keystore na Androidzie, DPAPI na Windows i libsecret na Linuksie. Nie jest to hasło do konta ani hasło synchronizacji w chmurze, a klucz lokalnej bazy nigdy nie jest wysyłany na serwery Fluery.
-      </p>
-
-      <h2>W tranzycie: TLS 1.3</h2>
-      <p>
-        Cały ruch sieciowy to TLS 1.3 z nowoczesnymi zestawami szyfrów.
+        Klucz to 256 losowych bitów, wygenerowanych na twoim urządzeniu i przechowywanych w bezpiecznym magazynie kluczy platformy — Keychain na iOS/macOS, Keystore na Androidzie, DPAPI na Windowsie, libsecret na Linuksie. To surowy klucz, nie wyprowadzany z hasła do konta, i nigdy nie trafia na serwery Fluera. Żeby nowy telefon nie kosztował cię canvasów, klucz ma kopię w zaszyfrowanej kopii zapasowej systemu: na Androidzie w Block Store, zapisaną na koncie Google tylko wtedy, gdy ta kopia jest szyfrowana end-to-end blokadą ekranu; na iOS w zaszyfrowanej kopii iCloud lub Findera.
       </p>
 
-      <h2>Między urządzeniami: synchronizacja w chmurze UE</h2>
+      <h2>W tranzycie: TLS</h2>
       <p>
-        Gdy aktywna, synchronizacja w chmurze przesyła dane szyfrowane w tranzycie (TLS) i przechowuje je zaszyfrowane w spoczynku na infrastrukturze UE (Supabase, region eu-north-1). Synchronizacja <strong>nie</strong> jest end-to-end: jako administrator danych mamy do treści techniczny dostęp. Nigdy jej nie sprzedajemy ani nie używamy do reklam. Synchronizacja jest opt-in dla notatnika — możesz zachować niektóre tylko lokalnie, a inne synchronizować.
+        Ruch między aplikacją a naszymi usługami — logowanie, synchronizacja, proxy AI — idzie przez HTTPS (TLS).
+      </p>
+
+      <h2>Synchronizacja między urządzeniami: jeden przełącznik dla konta</h2>
+      <p>
+        <em>Synchronizuj między urządzeniami</em> to jeden przełącznik dla całego konta (Ustawienia → Dane i synchronizacja), wyłączony, dopóki go nie włączysz, i wymaga planu Cloud. Twoje canvasy są przechowywane w Supabase (region UE, eu-north-1), szyfrowane w tranzycie przez TLS i w spoczynku na poziomie infrastruktury. Synchronizacja <em>nie</em> jest szyfrowana end-to-end: Fluera jako administrator danych może technicznie uzyskać dostęp do zsynchronizowanych treści. Nigdy ich nie sprzedajemy i nie używamy do reklam. Wyjątkiem są zagięcia przeglądarki: podróżują szyfrowane end-to-end.
+      </p>
+      <p>
+        Na canvasie pisze się na jednym urządzeniu naraz: na pozostałych otwiera się tylko do odczytu, dopóki nie dotkniesz <em>Pisz tutaj</em>. Jeśli ten sam canvas zmienił się na dwóch urządzeniach bez sieci, nic nie zostaje nadpisane: brakująca praca zostaje jako osobny canvas w galerii, do połączenia ręcznie. Pełny przewodnik: <a href="/pl/docs/cloud-sync">Synchronizuj między urządzeniami</a>.
+      </p>
+      <p>
+        Wyeksportowany plik <code>.fluera</code> nie jest szyfrowany: traktuj go jak każdy inny plik. Polecenie <em>Zaszyfrowana kopia zapasowa</em> zapisuje plik <code>.fluerabackup</code> zapieczętowany AES-256-GCM kluczem z magazynu kluczy tego urządzenia; otwiera się tylko na urządzeniu, które ma ten klucz.
       </p>
 
       <h2>Współpraca P2P: bezpośrednia, szyfrowana</h2>
       <p>
-        Współpraca w czasie rzeczywistym używa WebRTC DataChannel z szyfrowaniem DTLS-SRTP. Supabase Realtime działa tylko jako broker sygnalizacji — konfiguracja połączenia — a nie jako przekaźnik dla rzeczywistego ruchu kanwy. Po uzgodnieniu edycje kanwy płyną P2P. Serwer ich nie widzi.
+        Współpraca w czasie rzeczywistym używa WebRTC DataChannels, szyfrowanych przez DTLS. Supabase Realtime służy tylko jako broker sygnalizacji — do zestawienia połączenia — a nie jako przekaźnik właściwego ruchu canvasu. Po handshake'u zmiany w canvasie płyną peer-to-peer. Serwer ich nie widzi.
+      </p>
+      <p>
+        Nie ma serwera przekaźnikowego: publiczne serwery STUN (Google) pomagają tylko dwóm urządzeniom się odnaleźć. Jeśli sieć blokuje bezpośrednie połączenie, sesja się nie nawiązuje.
       </p>
 
       <h2>Wywołania AI: w UE, przez proxy</h2>
@@ -58,19 +67,19 @@ import { SITE } from "@/lib/site";
         Wywołania do modeli Google Gemini (Socratic Mode, Ghost Map, LaTeX OCR, Exam Session) są obsługiwane przez Google Vertex AI i przetwarzane w UE (europe-west4 NL / europe-west1 BE), przez nasze proxy, które trzyma poświadczenia po stronie serwera. Urządzenia klienckie nigdy nie widzą klucza. Proxy egzekwuje limity per-plan i loguje czas trwania wywołań do rachunkowości — nigdy treści kanwy.
       </p>
 
-      <h2>Telemetria: opt-in, hashowana, na liście dozwolonych</h2>
+      <h2>Telemetria: za zgodą, lista dozwolonych, bez treści</h2>
       <p>
-        Analityka produktu jest domyślnie wyłączona. Gdy aktywna, zdarzenia są ograniczone do białej listy po stronie serwera (start/koniec sesji, wywołanie funkcji, czas trwania wywołania AI — nigdy treść). ID użytkownika jest hashem SHA-256 na urządzeniu; ID w postaci zwykłego tekstu nigdy nie opuszcza klienta. Zdarzenia są przechowywane przez 180 dni, potem agregowane lub usuwane.
+        Analityka produktu jest wyłączona, dopóki nie wyrazisz zgody. Gdy jest włączona, zdarzenia ogranicza lista dozwolonych po stronie serwera (początek i koniec sesji, użycie funkcji, wywołania AI z czasem trwania i tokenami — nigdy treść). Mają losowy identyfikator sesji i identyfikator twojego konta, żebyś mógł zobaczyć i usunąć swoją telemetrię. Raporty awarii (Sentry, osobna zgoda) dostają tylko skrót SHA-256 tego identyfikatora. Wycofanie zgody usuwa telemetrię zebraną z twoim kontem; zdarzenia i tak są przechowywane najwyżej 180 dni.
       </p>
 
       <h2>Odzyskiwanie danych</h2>
       <p>
-        Zsynchronizowane notatniki są powiązane z kontem: po standardowym odzyskaniu konta zaloguj się ponownie, aby pobrać je na nowym urządzeniu. Synchronizacja w chmurze nie ma osobnego hasła, które trzeba zapamiętać. Odzyskanie konta nie odtworzy notatnika przechowywanego wyłącznie lokalnie, jeśli dane urządzenia zostały usunięte; włącz synchronizację dla notatników, które chcesz odzyskiwać na różnych urządzeniach.
+        Jeśli zmieniasz telefon albo instalujesz aplikację od nowa i przywracasz kopię zapasową systemu, baza danych i klucz wracają razem, a twoje canvasy otwierają się takie, jakie były w ostatniej kopii systemu. Nie wracają, jeśli kopia zapasowa systemu jest wyłączona, na Androidzie bez usług Google Play albo gdy dane aplikacji przekraczają limit 25 MB kopii, jeśli wyczyścisz dane aplikacji albo odinstalujesz ją bez przywracania. Wtedy lokalna baza zostaje nieczytelna — dla ciebie i dla nas — a drogą odzyskania jest Synchronizuj między urządzeniami: zaloguj się na nowym urządzeniu, a zsynchronizowane canvasy wrócą. Nie ma osobnego hasła synchronizacji do zapamiętania lub zgubienia.
       </p>
 
       <h2>Odpowiedzialne ujawnianie</h2>
       <p>
-        Badacze bezpieczeństwa są mile widziani. Zgłaszaj podatności na <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> z szyfrowaniem PGP (klucz opublikowany na profilu GitHub). Potwierdzamy w ciągu 24 godzin, łatamy krytyczne problemy w ciągu 72 i wymieniamy zgłaszających w hall of fame, chyba że wolą pozostać anonimowi.
+        Badacze bezpieczeństwa są mile widziani. Zgłaszaj podatności na <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. Odpowiadamy w ciągu 5 dni roboczych. Nie mamy programu bug bounty.
       </p>
       <p>
         Zakres: aplikacja Fluera (wszystkie platformy), usługa synchronizacji, proxy AI i ta strona marketingowa. Poza zakresem: usługi stron trzecich (Supabase, Google, Apple, Sentry, RevenueCat) — zgłaszaj odpowiednim dostawcom.

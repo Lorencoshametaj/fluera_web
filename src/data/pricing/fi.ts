@@ -1,112 +1,105 @@
-// 🇫🇮 V1.5 — Native pass complete (2026-05-15).
-// CTA labels + badge preserved from the previous locale file.
-// Coordinated with it.ts canonical.
-
 import type { PricingData } from "../types";
+
+// Listino del 22/10/2026 (Free, Cloud, IA, Cloud + IA). Allineato a it.ts.
+// Gli importi di `price` e `period` li controlla
+// fluera_engine/tool/public_truth_gate.dart contro FlueraPricing, per `id`.
 
 const data: PricingData = {
   tiers: [
     {
+      id: "free",
       name: "Free",
       price: "€0",
       period: "ikuisesti",
       tagline:
-        "Koko canvas menetelmän kokeiluun. 100 AI-krediittiä kuukaudessa, aina näkyvillä.",
+        "Koko canvas, kertaus ja kurssit. Ilman tilausta ja ilman päättymispäivää.",
       features: [
-        "Ääretön canvas, käsinkirjoituksen syöttö, täydellinen renderöintimoottori",
-        "3 perussivellintä (lyijykynä, mustekynä, tussi — lisää Plus-tasolla)",
-        "PNG-vienti",
-        "100 AI-krediittiä kuukaudessa — Atlas aina ilmainen (0 krediittiä), Chat 1 per viesti",
-        "Socratic 3 istuntoa/vk, Ghost Map 3 vertailua/vk, 1 Exam/vk",
-        "Fog of War, FSRS (välitön toisto)",
-        "Cross-Zone Bridges — näe käsitteiden väliset yhteydet, jotka järjestelmä löytää",
-        "📍 3 Checkpointia per canvas — tallenna opiskeluhetki ja palaa siihen milloin haluat",
-        "Time Travel + ääni↔veto-sync esikatselu demo-canvasilla (vain luku)",
-        "Local-first, täysin offline (1 laite)",
+        "Loputon canvas ja käsin kirjoittaminen",
+        "Kertaus, kurssit, kaikki siveltimet, vienti ja time travel",
+        "Maistiainen tekoälyä ensimmäisenä kuukautena rekisteröitymisestä",
+        "500 Mt pilvitilaa kaikilla laitteillasi, ilman ääntä, kun Cloud käynnistyy",
+        "Toimii myös offline: canvasisi pysyvät laitteella",
       ],
       cta: { label: "Aloita ilmaiseksi", href: "/beta" },
       highlighted: false,
     },
     {
-      name: "Plus",
-      price: "€9,99",
-      period: "kuukaudessa · €99,99 / vuosi (säästä €19,89 — 2 kuukautta ilmaiseksi)",
+      id: "cloud",
+      name: "Cloud",
+      price: "€19,99",
+      period: "vuodessa · vain vuosittain · Cloud 60 hintaan €44,99 / vuosi",
       tagline:
-        "Täydellinen yksilöopiskelu: cloud sync, AI ilman viikoittaisia rajoja, rajaton äänitys.",
+        "Tilaa canvasillesi ja nauhoitetuille luennoille. Käynnistyy sovelluksen päivityksen myötä.",
       features: [
-        "Cloud sync 5 GB kahdessa laitteessa — canvasisi myös iPadissa ja työpöydällä",
-        "Socratic, Ghost Map, Exam ilman frekvenssirajoja (ei enää 3/viikko)",
-        "5× enemmän AI-krediittejä kuin Free (500/kk — noin 60 Ghost Mapia tai 18 täyttä Socratic-istuntoa)",
-        "Rajaton äänitys",
-        "Kaikki V1-siveltimet (6 yhteensä, lisää tulossa)",
-        "Täydellinen vienti (PNG, JPEG, WebP, SVG, PDF, .fluera)",
-        "Cross-Zone Bridges — luo ja muokkaa omat käsiteyhteytesi",
-        "📍 Rajattomat checkpointit per canvas",
-        "7 päivän ilmainen kokeilu, peruuta milloin tahansa",
+        "20 Gt laitteillasi: puhelin, tabletti ja tietokone",
+        "Nauhoitetut luennot kuuluvat missä vain",
+        "Canvasisi turvassa, vaikka vaihtaisit puhelinta",
+        "Cloud 60: 60 Gt niille, jotka nauhoittavat paljon luentoja",
       ],
-      cta: { label: "Kokeile Plusia", href: "/beta" },
-      highlighted: true,
-      badge: "Suositeltu",
+      cta: { label: "Valitse Cloud", href: "/beta" },
+      highlighted: false,
     },
     {
-      name: "Pro",
-      price: "€19,99",
-      period: "kuukaudessa · €199,99 / vuosi (säästä €39,89 — 2 kuukautta ilmaiseksi)",
-      tagline:
-        "Tehostettu opiskelu: Time Travel, ääni↔veto-sync, reaaliaikainen yhteistyö, haku kaikista canvasista.",
+      id: "ia",
+      name: "AI",
+      price: "€9,99",
+      period: "kuukaudessa · €84,99 / vuosi (säästä €34,89)",
+      tagline: "Tekoäly, joka lukee mitä kirjoitat, ja mittari, joka näkyy aina.",
       features: [
-        "⏱️ Time Travel -scrubber — katso opiskeluasi toistossa",
-        "🎤 Ääni ↔ veto-sync — kosketa vetoa ja kuule, mitä sanoit sillä hetkellä",
-        "🤝 Reaaliaikainen canvas-yhteistyö (CRDT) — kutsu kavereita linkillä",
-        "🔍 Proaktiivinen Background OCR — etsi kuukausia sitten kirjoittama kaava kaikista canvasista",
-        "Cloud sync 50 GB, rajattomat laitteet",
-        "Prioriteetti-sähköpostituki",
-        "2000 AI-krediittiä kuukaudessa",
+        "Tekoäly lukee muistiinpanosi ja nimeää jokaisen käsitteen",
+        "Tutori, tentit, chat, kaavat ja litterointi",
+        "Näet aina prosentteina, paljonko tekoälyä on kuukaudessa jäljellä",
+        "Tenttivaranto raskaimpiin kuukausiin",
+        "14 päivää ilmaiseksi kokeiltavaksi",
       ],
-      cta: { label: "Hanki Pro", href: "/beta" },
+      cta: { label: "Kokeile tekoälyä", href: "/beta" },
       highlighted: false,
+    },
+    {
+      id: "cloud_ia",
+      name: "Cloud + AI",
+      price: "€99,99",
+      period: "vuodessa · säästät €4,99 verrattuna kahteen erikseen · Cloud 60:n kanssa €119,99 / vuosi",
+      tagline: "Koko Cloud ja koko tekoäly yhdellä tilauksella.",
+      features: [
+        "Koko Cloud ja koko tekoäly",
+        "20 Gt, tai 60 Gt tilauksella Cloud 60 + AI",
+        "Näet aina prosentteina, paljonko tekoälyä on kuukaudessa jäljellä",
+        "Vain vuosittain",
+      ],
+      cta: { label: "Valitse Cloud + AI", href: "/beta" },
+      highlighted: true,
+      badge: "Suositeltu",
     },
   ],
   faq: [
     {
-      q: "Miten AI-krediitit toimivat?",
-      a: "Jokaisella AI-toiminnolla on kiinteä krediittikustannus: Ghost Map 8, Socratic 4 per vaihe, Exam 12 per kysymys, Chat 1 per viesti. Atlas (canvas-toiminnot) on ilmainen. Proaktiivinen Background-OCR maksaa 1 krediitin sivulta ja kuuluu Pro-tasoon. Näet aina jäljellä olevan saldon canvas-headerissa — ei piilotettuja rate limittejä, ei yllätyksiä. Käyttämättömät krediitit eivät siirry seuraavaan jaksoon: suunnitelma täydentyy 30 päivän välein liittymispäivästäsi (ei kuukauden 1. päivänä — maksat 30 päivästä ja saat 30 päivää).",
+      q: "Miten näen, paljonko tekoälyä on jäljellä?",
+      a: "Sovelluksessa, aina. Mittari näyttää prosentteina, paljonko kuukauden tekoälystä on jäljellä, milloin se täyttyy (kuukauden 1. päivänä) ja kuinka pitkään se tahdillasi riittää. Ei piilotettuja rajoja eikä krediittejä, joita pitäisi muuntaa päässä: mitä näet, sitä sinulla on.",
     },
     {
-      q: "Mitä jos krediitit loppuvat ennen resetointia?",
-      a: "Kerromme etukäteen — pehmeä varoitus, kun olet käyttänyt 80% syklistä. Nollaan tultaessa AI-toiminnot pysähtyvät selkeällä viestillä (ei koskaan hiljaisia esto). Odota seuraavaa 30 päivän sykliä tai päivitä.",
+      q: "Entä jos kuukauden tekoäly loppuu?",
+      a: "Kertaus, kurssit ja muistiinpanosi toimivat aina, myös ilman tekoälyä. Tekoäly palaa kuukauden 1. päivänä; jos tarvitset sitä aiemmin, voit sovelluksessa ottaa tenttivarannon käyttöön tai lisätä vähän.",
     },
     {
-      q: "Miksi Pro maksaa kaksinkertaisesti vain kolmesta pilarista?",
-      a: "Pro ei ole 'Plus enemmillä krediiteillä' — se on tehostettu opiskelu. Time Travel toistaa opiskeluistuntosi äänen kanssa vetokohtaisesti synkronoituna: kosketa kaavaa ja kuule selitys, jonka annoit itsellesi. Reaaliaikainen CRDT-yhteistyö antaa työskennellä samanaikaisesti opiskelukavereiden tai kollegoiden kanssa samalla canvasilla. Notability, GoodNotes ja Notion AI eivät tarjoa tätä pakettia — ei tällä integraatiotasolla.",
+      q: "Ostan kerran: toimiiko se kaikilla laitteillani?",
+      a: "Kyllä. Tilaat Fluera-sovelluksessa puhelimella tai tabletilla App Storen tai Google Playn kautta ja maksat kauppatiliisi tallennetuilla maksutavoilla. Tilauksesi toimii sen jälkeen kaikilla laitteilla, joilla kirjaudut samalla tilillä, myös tietokoneilla.",
     },
     {
-      q: "Mitä canvaseilleni tapahtuu, jos peruutan Plusin tai Pron?",
-      a: "Kaikki pysyy laitteessasi (local-first), ja 3 perussivellintä sekä PNG-vienti toimivat edelleen Free-tasolla. Maksullisen paketin ominaisuudet keskeytyvät, kunnes aktivoit sen uudelleen. Mitään ei poisteta ilman nimenomaista toimintaasi.",
+      q: "Toimiiko Cloud jo laitteiden välillä?",
+      a: "Ei vielä. Cloud puhelimen, tabletin ja tietokoneen välillä on rakenteilla ja käynnistyy sovelluksen päivityksen myötä. Siihen asti canvasisi pysyvät laitteella, jossa ne toimivat myös offline.",
     },
     {
-      q: "Miksi ei ole ilmaista Pro-kokeilua?",
-      a: "Plusilla on 7 päivän ilmainen kokeilu. Prolla ei: reaaliaikainen yhteistyö + Time Travel -scrubber ovat toistuvia ominaisuuksia, joiden pilvikustannuksia emme voi antaa ilmaiseksi. Jos haluat arvioida menetelmää, Free on koko canvas — käytä sitä niin kauan kuin tarvitset.",
+      q: "Onko ilmaista kokeilujaksoa?",
+      a: "Kyllä: 14 päivää ilmaiseksi, vain tekoälylle. Voit perua kaupassa milloin tahansa ennen kokeilujakson loppua. Free ei vanhene eikä vaadi maksua.",
     },
     {
-      q: "Mikä on Checkpoint?",
-      a: "Checkpoint on canvasisi kirjanmerkki tiettyyn hetkeen — vähän kuin \"tallenna nimellä\". Luot sen milloin haluat (esim. \"ennen koetta\", \"luvun 3 jälkeen\") ja palaat siihen milloin tahansa: palauttaa canvasin tilan siihen kohtaan. Se eroaa Time Travelista: Checkpoint on kiinteä piste, jonka olet itse valinnut, Time Travel on jatkuva scrubber koko historian yli. Free sisältää 3 Checkpointia per canvas, Plus rajattomasti.",
-    },
-    {
-      q: "Voinko kokeilla Time Travelia + ääni↔veto-syncia ennen Pro-päivitystä?",
-      a: "Kyllä. Jokainen Free-käyttäjä saa esiladatun demo-canvasin, jossa voit avata Time Travel -scrubberin ja koskettaa vetoja kuullaksesi synkronoidun äänen — vain luku, demolla. Omien opiskelujesi tallentamiseen tarvitset Pron.",
+      q: "Mitä canvasilleni tapahtuu, jos perun?",
+      a: "Ne pysyvät sinun, laitteella: canvas, kertaus, kurssit, siveltimet ja vienti toimivat edelleen Freellä. Tilauksen toiminnot ovat tauolla, kunnes otat sen uudelleen käyttöön. Mitään ei poisteta ilman omaa toimenpidettäsi.",
     },
     {
       q: "Hyvitysehdot?",
       a: "Hyvitys- ja peruutusehdot riippuvat kaupasta ja ostokanavasta. Sovellettava käytäntö näytetään ennen vahvistusta; saat apua lähettämällä viestin rekisteröidystä osoitteestasi osoitteeseen support@fluera.dev.",
-    },
-    {
-      q: "Alennuksia tutkijoille tai voittoa tavoittelemattomille?",
-      a: "Kyllä. Tutkimuslaboratoriot, tohtorikoulutusohjelmat ja rekisteröidyt voittoa tavoittelemattomat voivat hakea osoitteessa /contact — yleensä myönnämme Pron Plus-hintaan tai ilmaiseksi vastineeksi jäsennellystä palautteesta.",
-    },
-    {
-      q: "Mitä maksutapoja hyväksytte?",
-      a: "Tilaat Fluera-sovelluksessa puhelimella tai tabletilla App Storen tai Google Playn kautta ja maksat kauppatiliisi tallennetuilla maksutavoilla. Tilauksesi toimii sen jälkeen kaikilla laitteilla, joilla kirjaudut samalla tilillä.",
     },
     {
       q: "Team- tai Education-suunnitelmat?",

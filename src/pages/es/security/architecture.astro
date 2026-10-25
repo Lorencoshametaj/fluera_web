@@ -6,12 +6,12 @@ import { SITE } from "@/lib/site";
 
 <BaseLayout
   title="Arquitectura de seguridad"
-  description="Cómo Fluera protege tu cuaderno en reposo, en tránsito y entre dispositivos. SQLCipher, TLS 1.3, sincronización cifrada en tránsito y en reposo en infraestructura UE, telemetría opt-in."
+  description="Cómo Fluera cifra tus canvas en reposo y en tránsito, y cómo funciona el cloud sync. sqlite3mc, TLS, sync en infraestructura de la UE, telemetría opt-in."
   locale="es"
 >
   <PageHero
     kicker="Arquitectura"
-    title="Cómo Fluera protege tu cuaderno."
+    title="Cómo Fluera protege tus canvas."
     description={`Esta página describe el modelo de seguridad al nivel que un lector técnico — security officer, CISO de universidad, dev curioso — espera. Para el resumen no técnico, empieza en <a href="/es/security">/es/security</a>.`}
     breadcrumb={{ label: "Seguridad", href: "/es/security" }}
   />
@@ -25,38 +25,41 @@ import { SITE } from "@/lib/site";
       </p>
       <p>Dentro de ese modelo, tres garantías:</p>
       <ul>
-        <li><strong>Los datos locales son ilegibles sin la clave.</strong> Un dispositivo robado produce un blob cifrado.</li>
+        <li><strong>La base de datos local es ilegible sin la clave.</strong> Un dispositivo robado entrega una base de datos cifrada. Las fotos, los PDF y el audio de las clases los protege el sistema operativo, no esa clave.</li>
         <li><strong>Los datos sincronizados van cifrados en tránsito (TLS) y en reposo a nivel de infraestructura UE.</strong> No son de extremo a extremo: como responsable del tratamiento, Fluera puede acceder técnicamente al contenido sincronizado, pero nunca lo vende ni lo usa para publicidad.</li>
-        <li><strong>La telemetría es consensuada y desidentificada.</strong> Los analytics no pueden ligar a un usuario con su contenido ni siquiera en caso de breach completo.</li>
+        <li><strong>La telemetría va con consentimiento y nunca lleva contenido.</strong> Está ligada al identificador de tu cuenta para que puedas verla y borrarla: no es anónima.</li>
       </ul>
 
-      <h2>En reposo: SQLCipher, AES-256</h2>
+      <h2>En reposo: sqlite3mc, clave de 256 bits</h2>
       <p>
-        Cada cuaderno de Fluera vive en una base SQLite local cifrada con SQLCipher — una extensión ampliamente auditada que cifra de forma transparente cada página de la base con AES-256-CBC y verificación de integridad HMAC-SHA512 por página.
+        La base de datos SQLite local que contiene tus canvas — trazos, texto, fórmulas, tu estudio — está cifrada con SQLite3 Multiple Ciphers (sqlite3mc) en su esquema ChaCha20-Poly1305: cada página de la base está cifrada y autenticada. Las fotos, los PDF y el audio de las clases son archivos en la carpeta privada de la app: los protege el sistema operativo, no esta clave.
       </p>
       <p>
-        La clave de la base de datos local es una clave aleatoria de 256 bits que Fluera genera y guarda en el almacén seguro de la plataforma — Keychain en iOS/macOS, Keystore en Android, DPAPI en Windows y libsecret en Linux. No es la contraseña de tu cuenta ni una passphrase de cloud sync, y la clave local nunca se envía a los servidores de Fluera.
-      </p>
-
-      <h2>En tránsito: TLS 1.3</h2>
-      <p>
-        Todo el tráfico de red es TLS 1.3 con cifras modernas.
+        La clave son 256 bits aleatorios, generados en tu dispositivo y guardados en el almacén seguro de claves de la plataforma — Keychain en iOS/macOS, Keystore en Android, DPAPI en Windows, libsecret en Linux. Es una clave en bruto, no derivada de la contraseña de tu cuenta, y nunca se envía a los servidores de Fluera. Para que un teléfono nuevo no te cueste tus canvas, tiene una copia en la copia de seguridad cifrada del sistema: en Android en Block Store, guardada en tu cuenta de Google solo cuando esa copia está cifrada de extremo a extremo con tu bloqueo de pantalla; en iOS en la copia cifrada de iCloud o del Finder.
       </p>
 
-      <h2>Sincronización entre dispositivos</h2>
+      <h2>En tránsito: TLS</h2>
       <p>
-        El cloud sync, cuando está activado, transmite los cuadernos por TLS y los almacena en el servidor de sincronización (Supabase, región UE, eu-north-1) cifrados en reposo a nivel de infraestructura. No es cifrado de extremo a extremo: como responsable del tratamiento, Fluera puede acceder técnicamente al contenido sincronizado. La sincronización es opt-in por cuaderno — puedes mantener algunos solo en local mientras sincronizas otros.
+        El tráfico entre la app y nuestros servicios — inicio de sesión, sync, proxy de IA — viaja por HTTPS (TLS).
+      </p>
+
+      <h2>Sync entre dispositivos: un interruptor para la cuenta</h2>
+      <p>
+        <em>Sincroniza entre tus dispositivos</em> es un solo interruptor para toda la cuenta (Configuración → Datos y sincronización), apagado hasta que lo enciendas, y necesita el plan Cloud. Tus canvas se guardan en Supabase (región UE, eu-north-1), cifrados en tránsito con TLS y en reposo a nivel de infraestructura. El sync <em>no</em> está cifrado de extremo a extremo: Fluera, como responsable del tratamiento, puede acceder técnicamente al contenido sincronizado. Nunca lo vendemos ni lo usamos para publicidad. La excepción son los pliegues del navegador: viajan cifrados de extremo a extremo.
       </p>
       <p>
-        El contenido sincronizado nunca se vende ni se usa para publicidad. Si necesitas que un cuaderno permanezca únicamente bajo tu control, mantenlo en local: la base de datos on-device va cifrada con SQLCipher. Una exportación <code>.fluera</code> protegida con contraseña se cifra por separado con AES-256-GCM; esa contraseña solo protege el archivo y no forma parte del cloud sync.
+        Un canvas se escribe en un dispositivo a la vez: en los demás se abre en solo lectura hasta que tocas <em>Escribir aquí</em>. Si el mismo canvas cambió en dos dispositivos sin conexión, nada se sobrescribe: el trabajo que falta queda como canvas aparte en la galería, para unirlo a mano. La guía completa: <a href="/es/docs/cloud-sync">Sincroniza entre tus dispositivos</a>.
+      </p>
+      <p>
+        Un archivo <code>.fluera</code> exportado no está cifrado: trátalo como cualquier otro archivo. El comando <em>Copia cifrada</em> escribe un archivo <code>.fluerabackup</code> sellado con AES-256-GCM con una clave guardada en el almacén de claves de este dispositivo; solo se abre en un dispositivo que tenga esa clave.
       </p>
 
       <h2>Colaboración P2P: directa, cifrada</h2>
       <p>
-        La colaboración en tiempo real usa WebRTC DataChannel con cifrado DTLS-SRTP. Supabase Realtime actúa solo como broker de signaling — setup de la conexión — no como relay del tráfico real del canvas. Tras el handshake, las ediciones del canvas fluyen peer-to-peer. El servidor no las ve.
+        La colaboración en tiempo real usa DataChannels de WebRTC, cifrados con DTLS. Supabase Realtime solo hace de broker de señalización — el establecimiento de la conexión — no de relay para el tráfico real del canvas. Tras el handshake, las ediciones del canvas viajan peer-to-peer. El servidor no las ve.
       </p>
       <p>
-        En NATs restrictivos pasamos vía TURN, en cuyo caso el relay solo ve paquetes DTLS cifrados que no puede descifrar.
+        No hay servidor de relay: servidores STUN públicos (Google) solo ayudan a los dos dispositivos a encontrarse. Si una red bloquea la conexión directa, la sesión no se establece.
       </p>
 
       <h2>Llamadas de IA: vía proxy, nunca directas</h2>
@@ -67,19 +70,19 @@ import { SITE } from "@/lib/site";
         Si desactivas las funciones de IA en <em>Configuración → Privacidad</em>, ningún contenido del canvas se envía a Gemini, ni siquiera para fallback de OCR on-device.
       </p>
 
-      <h2>Telemetría: opt-in, hasheada, allowlisted</h2>
+      <h2>Telemetría: con consentimiento, allowlist, sin contenido</h2>
       <p>
-        Los analytics de producto vienen apagados por defecto. Cuando se activan, los eventos están limitados a una whitelist en el servidor (inicio/fin de sesión, invocación de función, duración de llamada de IA — nunca contenido). El ID del usuario se hashea con SHA-256 en el dispositivo; el ID en texto claro nunca sale del cliente. Los eventos se retienen 180 días, después se agregan o se borran.
+        Los analytics de producto están apagados hasta que des tu consentimiento. Con ellos encendidos, los eventos se limitan a una allowlist en el servidor (inicio y fin de sesión, uso de funciones, llamadas de IA con duración y tokens — nunca contenido). Llevan un ID de sesión aleatorio y el identificador de tu cuenta, para que puedas ver y borrar tu telemetría. Los informes de fallos (Sentry, un consentimiento aparte) reciben solo un hash SHA-256 de ese identificador. Retirar el consentimiento borra la telemetría recogida con tu cuenta; en cualquier caso, los eventos se guardan 180 días como máximo.
       </p>
 
       <h2>Recuperación de datos</h2>
       <p>
-        Los cuadernos sincronizados están vinculados a tu cuenta: después del proceso habitual de recuperación de la cuenta, inicia sesión de nuevo para descargarlos en otro dispositivo. No existe una passphrase separada para cloud sync que tengas que recordar. La recuperación de la cuenta no puede reconstruir un cuaderno que se mantuvo solo en local si se borraron los datos del dispositivo; activa el sync en los cuadernos que quieras recuperar entre dispositivos.
+        Si cambias de teléfono o reinstalas y restauras una copia de seguridad del sistema, la base de datos y su clave vuelven juntas y tus canvas se reabren como estaban en la última copia del sistema. No vuelven si la copia del sistema está apagada, en Android sin los servicios de Google Play o con datos de la app por encima del límite de 25 MB de la copia, si borras los datos de la app o si desinstalas sin restaurar. Entonces la base local queda ilegible — para ti y para nosotros — y el camino para recuperar es Sincroniza entre tus dispositivos: inicia sesión en el dispositivo nuevo y tus canvas sincronizados vuelven. No hay una frase de paso del sync que recordar o perder.
       </p>
 
       <h2>Responsible disclosure</h2>
       <p>
-        Los investigadores de seguridad son bienvenidos. Reporta vulnerabilidades a <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> con cifrado PGP (clave publicada en nuestro perfil de GitHub). Damos respuesta en 24 horas, hacemos patch de los problemas críticos en 72, y acreditamos a quien reporta en el hall of fame, salvo solicitud de anonimato.
+        Los investigadores de seguridad son bienvenidos. Informa de vulnerabilidades a <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. Respondemos en un plazo de 5 días laborables. No hay programa de recompensas.
       </p>
       <p>
         Alcance: la app Fluera (todas las plataformas), el servicio de sincronización, el proxy de IA y este sitio de marketing. Fuera de alcance: servicios de terceros (Supabase, Google, Apple, Sentry, RevenueCat) — repórtalo a los vendors correspondientes.

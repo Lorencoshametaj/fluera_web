@@ -6,11 +6,11 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "暗号化",
-    body: "Fluera のすべてのノートは、端末上で SQLCipher により AES-256 で保存時に暗号化されます。通信は TLS 1.3 で保護されます。クラウド同期は転送時と EU インフラ上の保存時に暗号化されますが、エンドツーエンド暗号化ではありません。データ管理者として Fluera は同期内容に技術的にアクセスできますが、販売や広告利用は一切行いません。",
+    body: "デバイス上では、キャンバスを収めたデータベースが sqlite3mc（ChaCha20-Poly1305、256ビット鍵）で保存時暗号化されます。写真、PDF、講義の音声はアプリ専用フォルダ内のファイルで、OS によって保護されます。書き出した .fluera ファイルは暗号化されません。暗号化バックアップは AES-256-GCM で封印されます。通信は TLS で行われます。クラウド同期はエンドツーエンド暗号化ではありません。同期されたキャンバスは EU のインフラ（Supabase、eu-north-1）に保存され、転送時とインフラレベルの保存時に暗号化されます。データ管理者として、私たちは技術的には同期されたコンテンツにアクセスできますが、販売することも広告に使うことも決してありません。",
   },
   {
     title: "データの所有権",
-    body: "あなたが書いたすべてのバイトは、ワンクリックでエクスポート可能です: PNG、JPEG、WebP、SVG、PDF、そして私たちのオープンフォーマット .fluera。ノートはまずあなたのデバイスに存在します。クラウドは便利な手段であり、檻ではありません ― ロックインは私たちが拒絶することを選んだビジネスモデルです。",
+    body: "あなたが書いたすべてのバイトはワンクリックで書き出せます: PNG、JPEG、WebP、SVG、PDF、そして .fluera 形式。キャンバスはまずあなたのデバイスにあります。クラウドは便利さであって牢獄ではありません — ロックインは私たちが選ばなかったビジネスモデルです。",
   },
   {
     title: "GDPR準拠デフォルト",
@@ -18,18 +18,18 @@ const pillars = [
   },
   {
     title: "ローカルファースト、常に",
-    body: "Fluera は完全にオフラインで使用できます。同期はアカウント単位ではなく、ノート単位でオプトインです。同期をオフにすれば、データはデバイスから出ません ― 同意ベースで匿名のテレメトリも含めて。",
+    body: "Fluera は完全にオフラインで使えます。デバイス間の同期はあなたがオンにするまでオフで、アカウント全体に適用されます。同期がオフなら、キャンバスはデバイスに残ります。それ以外のものは、ガイド「プライバシーとAI同意」にスイッチごとに書かれているとおりにだけデバイスを出ます。たとえばテレメトリは、あなたの同意がある場合だけで、アカウントに結びつき、コンテンツは含みません。",
   },
   {
     title: "私たちがしないこと",
-    body: "広告なし。データ販売なし。あなたのコンテンツで私たちのモデルを訓練しません。ウェブ上であなたを追跡しません。宣言済みのサブプロセッサ (サブプロセッサーのページに記載) 以外の第三者にデータを渡しません ― すべて DPA の下で。",
+    body: "広告は出しません。データを販売しません。あなたが選ばない限り、キャンバスでモデルを学習させません: AIの学習データはあなたがオンにするまでオフです。ウェブ上であなたを追跡しません。名前を挙げたサブプロセッサ（サブプロセッサのページに掲載）以外の第三者にデータを渡しません — すべて DPA のもとで。",
   },
 ];
 ---
 
 <BaseLayout
   title="セキュリティとプライバシー"
-  description="保存時 AES-256 暗号化、GDPR準拠デフォルト、ヨーロッパのサーバー、アドテックゼロ。Fluera のセキュリティアーキテクチャと、あなたのデータの所有権へのコミットメント。"
+  description="暗号化されたローカルデータベース、GDPR準拠、EU のサーバー、アドテクなし。Fluera のセキュリティアーキテクチャとデータ所有に関する約束。"
   locale="ja"
 >
   <PageHero
@@ -62,12 +62,10 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Responsible disclosure</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">何か見つけましたか?</h2>
           <p class="prose-ink mb-6">
-            セキュリティ研究者の方を歓迎します。脆弱性は
-            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>
-            までご報告ください。24時間以内に返信し、重大な問題は72時間以内にパッチを当て、報告者の方を hall of fame でクレジットします ― 匿名希望の場合を除いて。
+            セキュリティ研究者の方を歓迎します。脆弱性は <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a> までご報告ください。5営業日以内に返信します。バグ報奨金プログラムはありません。
           </p>
           <p class="text-sm text-ink-500 italic">
-            暗号化されたレポート用の PGP 鍵は、私たちの GitHub プロフィールで公開しています。
+            報告のルールは /.well-known/security.txt（RFC 9116）にも掲載しています。
           </p>
         </div>
         <div>
@@ -85,7 +83,7 @@ const pillars = [
   <section class="py-16 border-t border-white/[0.04]">
     <div class="container-narrow text-center">
       <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
-        このページは要点のみをカバーしています。完全なアーキテクチャ、サブプロセッサのレジストリ、DPA テンプレートは
+        このページは要点のみをカバーしています。完全なアーキテクチャとサブプロセッサのレジストリは
         <a href="/ja/security/architecture" class="text-paper-300 underline">/ja/security/architecture</a> および
         <a href="/ja/security/sub-processors" class="text-paper-300 underline">/ja/security/sub-processors</a> にあります。コンプライアンスに関する具体的な質問は
         <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a> までどうぞ。

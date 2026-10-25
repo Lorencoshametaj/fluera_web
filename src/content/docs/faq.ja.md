@@ -46,7 +46,7 @@ Predicted を有効にしてもラグが続く場合は、アプリを終了し�
 
 [support@fluera.dev](mailto:support@fluera.dev)までお願いします。何をしていたか、何を期待していたか、何が起こったかを記述し、アプリのバージョン (設定 → このアプリについて)を含めてください。スクリーンショットは助けになります。
 
-セキュリティ脆弱性については、[lorenco@fluera.dev](mailto:lorenco@fluera.dev)を使用し、PGPキー (GitHubプロフィールにあります)で暗号化してください。
+セキュリティ脆弱性については、[support@fluera.dev](mailto:support@fluera.dev)までご報告ください。5営業日以内に返信します。バグ報奨金プログラムはありません。
 
 ## 教育的な部分についてのフィードバックはどう送ればよいですか?
 

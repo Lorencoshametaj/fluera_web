@@ -1,128 +1,107 @@
 import type { PricingData } from "../types";
 
 // ─────────────────────────────────────────────────────────────────────────
-// 🇬🇧 PRICING — V1 split (decision 2026-05-14)
-//
-// Mirror of pricing/it.ts. See it.ts for the full rationale; this is the
-// English copy for the Tier 1 #1 audience.
-//
-// 3 public tiers (Free / Plus / Pro). Team + Edu are phase 2 and NOT
-// listed publicly during V1. Unified AI credits, server-authoritative
-// via Supabase.
-//
-// Positioning pillars:
-//   • Transparency-first: credit numbers always visible, no hidden rate
-//     limits like Notion AI / ChatGPT Plus.
-//   • Pro pillars: Time Travel scrubber + audio↔ink sync + real-time
-//     collab CRDT. The three things that justify the Plus → Pro upgrade
-//     (never "Plus with a higher cap").
-//   • Atlas is free (0 credits) even on Free; Chat costs 1 credit per
-//     the canvas' conversational UX core.
+// Price list of 2026-10-22: Free, Cloud, AI, Cloud + AI. Mirror of it.ts.
+// Every amount in `price` and `period` is checked by
+// `fluera_engine/tool/public_truth_gate.dart` against `FlueraPricing`, by `id`.
 // ─────────────────────────────────────────────────────────────────────────
 
 const data: PricingData = {
   tiers: [
     {
+      id: "free",
       name: "Free",
       price: "€0",
       period: "forever",
       tagline:
-        "The full canvas to try the method. 100 AI credits per month, always visible.",
+        "The full canvas, review and courses. No subscription and no expiry.",
       features: [
-        "Infinite canvas, handwriting input, full rendering engine",
-        "3 base brushes (pencil, fountain pen, marker — more in Plus)",
-        "PNG export",
-        "100 AI credits per month — Atlas always free (0 credits), Chat 1 per message",
-        "Socratic 3 sessions/week, Ghost Map 3 comparisons/week, 1 Exam/week",
-        "Fog of War, FSRS spaced repetition",
-        "Cross-Zone Bridges — see the links between concepts the system discovers",
-        "📍 3 Checkpoints per canvas — save a study moment and jump back anytime",
-        "Time Travel + audio↔stroke sync preview on a demo canvas (read-only)",
-        "Local-first, fully offline (1 device)",
+        "Infinite canvas and handwriting",
+        "Review, courses, every brush, export and time travel",
+        "A taste of AI in the first month after you sign up",
+        "500 MB of cloud on all your devices, without audio, once Cloud goes live",
+        "Works offline too: your canvases stay on your device",
       ],
       cta: { label: "Start free", href: "/beta" },
       highlighted: false,
     },
     {
-      name: "Plus",
-      price: "€9.99",
-      period: "per month · €99.99 / year (save €19.89 — 2 months free)",
+      id: "cloud",
+      name: "Cloud",
+      price: "€19.99",
+      period: "per year · annual only · Cloud 60 at €44.99 / year",
       tagline:
-        "Complete personal study: cloud sync, AI without weekly caps, unlimited voice.",
+        "Room for your canvases and recorded lectures. It goes live with an app update.",
       features: [
-        "Cloud sync 5 GB across 2 devices — your canvases on iPad and desktop",
-        "Socratic, Ghost Map, Exam with no frequency limits (no more 3/week)",
-        "5× more AI credits than Free (500 per month — roughly 60 Ghost Maps or 18 full Socratic sessions)",
-        "Unlimited voice recording",
-        "All V1 brushes (6 total, more coming)",
-        "Full export (PNG, JPEG, WebP, SVG, PDF, .fluera)",
-        "Cross-Zone Bridges — create and edit your own concept links",
-        "📍 Unlimited checkpoints per canvas",
-        "7-day free trial, cancel anytime",
+        "20 GB on your devices: phone, tablet and computer",
+        "Recorded lectures play anywhere",
+        "Your canvases safe, even if you change phones",
+        "Cloud 60: 60 GB for people who record a lot of lectures",
       ],
-      cta: { label: "Try Plus", href: "/beta" },
-      highlighted: true,
-      badge: "Recommended",
+      cta: { label: "Choose Cloud", href: "/beta" },
+      highlighted: false,
     },
     {
-      name: "Pro",
-      price: "€19.99",
-      period: "per month · €199.99 / year (save €39.89 — 2 months free)",
-      tagline:
-        "Amplified study: Time Travel, audio↔stroke sync, real-time collab, search across all canvases.",
+      id: "ia",
+      name: "AI",
+      price: "€9.99",
+      period: "per month · €84.99 / year (save €34.89)",
+      tagline: "An AI that reads what you write, with a meter that is always visible.",
       features: [
-        "⏱️ Time Travel scrubber — watch yourself studying in playback",
-        "🎤 Audio ↔ stroke sync — tap a stroke and hear what you were saying then",
-        "🤝 Real-time canvas collaboration (CRDT) — invite peers with a link",
-        "🔍 Proactive Background OCR — find a formula you wrote months ago across all your canvases",
-        "Cloud sync 50 GB, unlimited devices",
-        "Priority email support",
-        "2000 AI credits per month",
+        "The AI reads your notes and names every concept",
+        "Tutor, exams, chat, formulas and transcription",
+        "Always see how much AI you have left this month, as a percentage",
+        "Exam reserve for the heaviest months",
+        "14 days free to try it",
       ],
-      cta: { label: "Get Pro", href: "/beta" },
+      cta: { label: "Try the AI", href: "/beta" },
       highlighted: false,
+    },
+    {
+      id: "cloud_ia",
+      name: "Cloud + AI",
+      price: "€99.99",
+      period: "per year · save €4.99 compared with the two separately · with Cloud 60 €119.99 / year",
+      tagline: "All of Cloud and all of the AI, in one subscription.",
+      features: [
+        "All of Cloud and all of the AI",
+        "20 GB, or 60 GB with Cloud 60 + AI",
+        "Always see how much AI you have left this month, as a percentage",
+        "Annual only",
+      ],
+      cta: { label: "Choose Cloud + AI", href: "/beta" },
+      highlighted: true,
+      badge: "Recommended",
     },
   ],
   faq: [
     {
-      q: "How do AI credits work?",
-      a: "Every AI operation has a fixed credit cost: Ghost Map 8, Socratic 4 per stage, Exam 12 per question, Chat 1 per message. Atlas (canvas actions) is free. Proactive Background OCR costs 1 credit per page and is part of Pro. You always see your remaining balance in the canvas header — no hidden rate limits, no surprises. Unused credits don't roll over: the plan refills every 30 days from your signup date (not on the 1st of the month — you pay for 30 days and get 30 days).",
+      q: "How do I see how much AI I have left?",
+      a: "In the app, always. A meter shows, as a percentage, how much of this month’s AI you have left, when it refills (on the 1st of the month) and how long it lasts at your pace. No hidden limits and no credits to convert in your head: what you see is what you have.",
     },
     {
-      q: "What happens if I run out of credits before the reset?",
-      a: "We tell you in advance — a soft warning when you've used 80% of the cycle. When you hit zero, AI features stop with a clear message (never silent blocks). Wait for the next 30-day cycle or upgrade.",
+      q: "What if this month’s AI runs out?",
+      a: "Review, courses and your notes always work, even without AI. The AI comes back on the 1st of the month; if you need it sooner, you can turn on the exam reserve or add a little more from the app.",
     },
     {
-      q: "Why does Pro cost twice as much for just three pillars?",
-      a: "Pro isn't 'Plus with more credits' — it's amplified study. Time Travel replays your study session with audio synced per stroke: tap a formula and rehear the explanation you gave yourself. Real-time CRDT collaboration lets you work simultaneously with classmates or colleagues on the same canvas. Notability, GoodNotes and Notion AI don't ship this stack — not at this level of integration.",
+      q: "If I buy once, does it work on all my devices?",
+      a: "Yes. You subscribe inside the Fluera app on your phone or tablet, through the App Store or Google Play, and pay with the methods saved in your store account. Your plan then works on every device where you sign in with the same account, computers included.",
     },
     {
-      q: "What happens to my canvases if I cancel Plus or Pro?",
-      a: "Everything stays on your device (local-first), and the 3 base brushes plus PNG export keep working on Free. Features tied to a paid plan pause until you reactivate. Nothing is deleted without an explicit action from you.",
+      q: "Does Cloud already work across devices?",
+      a: "Not yet. Cloud across phone, tablet and computer is being built and goes live with an app update. Until then your canvases stay on your device, where they also work offline.",
     },
     {
-      q: "Why no free trial of Pro?",
-      a: "Plus has a 7-day free trial. Pro doesn't: real-time collab + Time Travel scrubber are recurring features with cloud costs we can't give away. If you want to evaluate the method, Free is the full canvas — use it as long as it works for you.",
+      q: "Is there a free trial?",
+      a: "Yes: 14 days, on the AI only. You can cancel from the store at any time before the trial ends. Free never expires and asks for no payment.",
     },
     {
-      q: "What's a Checkpoint?",
-      a: "A Checkpoint is a bookmark of your canvas at a precise moment — like \"save as\". Create one whenever you want (e.g. \"before the quiz\", \"after finishing chapter 3\") and jump back anytime to restore that state. It's different from Time Travel: a Checkpoint is a fixed point you chose, Time Travel is the continuous scrubber over the whole history. Free includes 3 Checkpoints per canvas, Plus unlimited.",
-    },
-    {
-      q: "Can I try Time Travel + audio↔stroke sync before upgrading to Pro?",
-      a: "Yes. Every Free user finds a pre-loaded demo canvas where you can open the Time Travel scrubber and tap strokes to replay the synchronised audio — read-only, on the demo. To record your own studies you'll need Pro.",
+      q: "What happens to my canvases if I cancel?",
+      a: "They stay yours, on your device: canvas, review, courses, brushes and export keep working on Free. The plan’s features pause until you reactivate it. Nothing is deleted without an explicit action from you.",
     },
     {
       q: "Refund policy?",
       a: "Refund and withdrawal terms depend on the store and purchase channel. The applicable policy is shown before you confirm; for help, email support@fluera.dev from the address you signed up with.",
-    },
-    {
-      q: "Discounts for researchers or non-profits?",
-      a: "Yes. Research labs, PhD programs, and registered non-profits can apply at /contact — we typically grant Pro at the Plus rate or free in exchange for structured feedback.",
-    },
-    {
-      q: "What payment methods do you accept?",
-      a: "You subscribe inside the Fluera app on your phone or tablet, through the App Store or Google Play: you pay with the methods saved in your store account. Your plan then works on every device where you sign in with the same account.",
     },
     {
       q: "Team or Education plans?",

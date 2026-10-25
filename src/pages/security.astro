@@ -6,11 +6,11 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Encryption",
-    body: "Every Fluera notebook is encrypted at rest on your device with AES-256 via SQLCipher, and exported .fluera files are encrypted with AES-256-GCM. Traffic is TLS 1.3 in transit. Cloud sync is not end-to-end encrypted: synced notebooks are stored on EU infrastructure (Supabase, eu-north-1), encrypted in transit and at rest at the infrastructure level. As data controller we can technically access synced content — but we never sell it and never use it for advertising.",
+    body: "On your device, the database that holds your canvases is encrypted at rest with sqlite3mc (ChaCha20-Poly1305, 256-bit key); photos, PDFs and lesson audio are files in the app's private folder, protected by the operating system. A plain .fluera export is not encrypted; the Encrypted backup is sealed with AES-256-GCM. Traffic travels over TLS. Cloud sync is not end-to-end encrypted: synced canvases are stored on EU infrastructure (Supabase, eu-north-1), encrypted in transit and at rest at the infrastructure level. As data controller we can technically access synced content — but we never sell it and never use it for advertising.",
   },
   {
     title: "Data ownership",
-    body: "Every byte you write is exportable in a single click: PNG, JPEG, WebP, SVG, PDF, and our open .fluera format. Your notebooks live on your devices first. The cloud is a convenience, not a prison — lock-in is a business model we chose against.",
+    body: "Every byte you write is exportable in a single click: PNG, JPEG, WebP, SVG, PDF, and our .fluera format. Your canvases live on your devices first. The cloud is a convenience, not a prison — lock-in is a business model we chose against.",
   },
   {
     title: "GDPR, natively",
@@ -18,18 +18,18 @@ const pillars = [
   },
   {
     title: "Local-first, always",
-    body: "You can run Fluera fully offline. Sync is opt-in per notebook, not account-wide. If you turn sync off, your data never leaves the device — including telemetry, which is consent-based and anonymous.",
+    body: "You can run Fluera fully offline. Syncing across your devices is off until you turn it on, and it applies to your whole account. With sync off, your canvases stay on your device. Anything else leaves it only as described, switch by switch, in the Privacy and AI consent guide: telemetry, for instance, only with your consent, tied to your account and never with content.",
   },
   {
     title: "What we don't do",
-    body: "We will not run ads. We will not sell your data. We will not train our models on your notebooks. We will not track you across the web. We will not hand data to third parties beyond named sub-processors (listed on the Sub-processors page) — all under DPA.",
+    body: "We will not run ads. We will not sell your data. We will not train models on your canvases unless you choose to: AI Training Data is off until you turn it on. We will not track you across the web. We will not hand data to third parties beyond named sub-processors (listed on the Sub-processors page) — all under DPA.",
   },
 ];
 ---
 
 <BaseLayout
   title="Security & Privacy"
-  description="AES-256 encryption at rest, GDPR-native, EU-hosted, zero ad-tech. Read Fluera's full security architecture and data ownership commitment."
+  description="Encrypted local database, GDPR-native, EU-hosted, zero ad-tech. Read Fluera's security architecture and data ownership commitment."
 >
   <PageHero
     kicker="Security &amp; privacy"
@@ -61,12 +61,10 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Responsible disclosure</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Found something?</h2>
           <p class="prose-ink mb-6">
-            Security researchers are welcome here. Report vulnerabilities to
-            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
-            We acknowledge within 24 hours, patch critical issues within 72, and credit reporters in our hall of fame unless you'd rather stay anonymous.
+            Security researchers are welcome here. Report vulnerabilities to <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. We reply within 5 working days. There is no bug bounty programme.
           </p>
           <p class="text-sm text-ink-500 italic">
-            A PGP key for encrypted submissions is published on our GitHub.
+            The reporting policy is also published in /.well-known/security.txt (RFC 9116).
           </p>
         </div>
         <div>
@@ -84,7 +82,7 @@ const pillars = [
   <section class="py-16 border-t border-white/[0.04]">
     <div class="container-narrow text-center">
       <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
-        This page covers the essentials. The full architecture, sub-processor register and DPA template live at
+        This page covers the essentials. The full architecture and the sub-processor register live at
         <a href="/security/architecture" class="text-paper-300 underline">/security/architecture</a> and
         <a href="/security/sub-processors" class="text-paper-300 underline">/security/sub-processors</a>. Specific compliance questions? Write to
         <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.

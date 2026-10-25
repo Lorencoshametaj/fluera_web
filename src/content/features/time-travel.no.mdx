@@ -30,7 +30,7 @@ Senere — dager, uker eller måneder etterpå — trykker du på en hvilken som
 
 Du flytter på lyden og ser canvaset spille seg om strek for strek, i originalt tempo eller akselerert. Du ser sinnet ditt arbeide.
 
-All lagring er lokal som standard og kryptert med SQLCipher. Lydsynkronisering er opt-in: Når den er aktivert, krypteres data under overføring (TLS) og i hvile på EU-infrastruktur (Supabase, eu-north-1). Synkroniseringen er ikke ende-til-ende-kryptert: Som behandlingsansvarlig kan Fluera teknisk få tilgang til synkronisert innhold, men vi selger det aldri, bruker det aldri til annonsering og trener aldri modeller på det.
+Som standard blir alt på enheten din. Strekene og tidsstemplene deres ligger i canvasdatabasen, kryptert med sqlite3mc; lyden fra forelesningen er en egen fil i appens private mappe, beskyttet av operativsystemet og ikke av den krypteringen. Lydsynkronisering er opt-in: Når den er aktivert, krypteres data under overføring (TLS) og i hvile på EU-infrastruktur (Supabase, eu-north-1). Synkroniseringen er ikke ende-til-ende-kryptert: Som behandlingsansvarlig kan Fluera teknisk få tilgang til synkronisert innhold, men vi selger det aldri og bruker det aldri til annonsering.
 
 ## Vitenskapen bak
 

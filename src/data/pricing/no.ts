@@ -1,112 +1,105 @@
-// 🇳🇴 V1.5 — Native pass complete (2026-05-15).
-// CTA labels + badge preserved from the previous locale file.
-// Coordinated with it.ts canonical.
-
 import type { PricingData } from "../types";
+
+// Listino del 22/10/2026 (Free, Cloud, IA, Cloud + IA). Allineato a it.ts.
+// Gli importi di `price` e `period` li controlla
+// fluera_engine/tool/public_truth_gate.dart contro FlueraPricing, per `id`.
 
 const data: PricingData = {
   tiers: [
     {
+      id: "free",
       name: "Free",
       price: "€0",
       period: "for alltid",
       tagline:
-        "Hele lerretet for å prøve metoden. 100 AI-kreditter per måned, alltid synlige.",
+        "Hele canvaset, repetisjon og fag. Uten abonnement og uten utløpsdato.",
       features: [
-        "Uendelig lerret, håndskriftsinntasting, fullstendig rendring-motor",
-        "3 grunnpensler (blyant, fyllepenn, markør — flere i Plus)",
-        "PNG-eksport",
-        "100 AI-kreditter per måned — Atlas alltid gratis (0 kreditter), Chat 1 per melding",
-        "Socratic 3 økter/uke, Ghost Map 3 sammenligninger/uke, 1 Exam/uke",
-        "Fog of War, FSRS (intervallrepetisjon)",
-        "Cross-Zone Bridges — se forbindelsene mellom konsepter som systemet oppdager",
-        "📍 3 Checkpoints per lerret — lagre et studieøyeblikk og hopp tilbake når du vil",
-        "Forhåndsvisning av Time Travel + lyd↔strek-sync på demo-lerret (kun lesing)",
-        "Local-first, helt offline (1 enhet)",
+        "Uendelig canvas og håndskrift",
+        "Repetisjon, fag, alle pensler, eksport og time travel",
+        "En smakebit av KI den første måneden etter registrering",
+        "500 MB sky på alle enhetene dine, uten lyd, når Cloud starter",
+        "Fungerer også offline: canvasene dine blir på enheten",
       ],
       cta: { label: "Start gratis", href: "/beta" },
       highlighted: false,
     },
     {
-      name: "Plus",
-      price: "€9,99",
-      period: "per måned · €99,99 / år (spar €19,89 — 2 måneder gratis)",
+      id: "cloud",
+      name: "Cloud",
+      price: "€19,99",
+      period: "per år · kun årlig · Cloud 60 for €44,99 / år",
       tagline:
-        "Komplett individuell studie: cloud sync, AI uten ukentlige grenser, ubegrenset stemmeopptak.",
+        "Plass til canvasene dine og innspilte forelesninger. Starter med en oppdatering av appen.",
       features: [
-        "Cloud sync 5 GB på 2 enheter — lerretene dine også på iPad og desktop",
-        "Socratic, Ghost Map, Exam uten frekvensgrenser (ikke lenger 3/uke)",
-        "5× flere AI-kreditter enn Free (500 per måned — ca. 60 Ghost Map eller 18 fullstendige Socratic-økter)",
-        "Ubegrenset stemmeopptak",
-        "Alle V1-pensler (6 totalt, flere på vei)",
-        "Fullstendig eksport (PNG, JPEG, WebP, SVG, PDF, .fluera)",
-        "Cross-Zone Bridges — lag og rediger dine egne konseptlenker",
-        "📍 Ubegrensede checkpoints per lerret",
-        "7 dagers gratis prøveperiode, kanseller når som helst",
+        "20 GB på enhetene dine: telefon, nettbrett og datamaskin",
+        "Innspilte forelesninger kan høres overalt",
+        "Canvasene dine er trygge, også om du bytter telefon",
+        "Cloud 60: 60 GB for deg som spiller inn mange forelesninger",
       ],
-      cta: { label: "Prøv Plus", href: "/beta" },
-      highlighted: true,
-      badge: "Anbefalt",
+      cta: { label: "Velg Cloud", href: "/beta" },
+      highlighted: false,
     },
     {
-      name: "Pro",
-      price: "€19,99",
-      period: "per måned · €199,99 / år (spar €39,89 — 2 måneder gratis)",
-      tagline:
-        "Forsterket studie: Time Travel, lyd↔strek-sync, samarbeid i sanntid, søk på alle lerret.",
+      id: "ia",
+      name: "KI",
+      price: "€9,99",
+      period: "per måned · €84,99 / år (spar €34,89)",
+      tagline: "En KI som leser det du skriver, med en måler som alltid er synlig.",
       features: [
-        "⏱️ Time Travel-scrubber — se studien din i avspilling",
-        "🎤 Lyd ↔ strek-sync — trykk på et strek og hør hva du sa i det øyeblikket",
-        "🤝 Lerret-samarbeid i sanntid (CRDT) — inviter medstudenter med en lenke",
-        "🔍 Proaktiv Background OCR — finn en formel du skrev for måneder siden, på alle lerret",
-        "Cloud sync 50 GB, ubegrensede enheter",
-        "Prioritert e-poststøtte",
-        "2000 AI-kreditter per måned",
+        "KI-en leser notatene dine og gir hvert begrep et navn",
+        "Veileder, eksamener, chat, formler og transkripsjon",
+        "Du ser alltid hvor mye KI du har igjen denne måneden, i prosent",
+        "Eksamensreserve for de travleste månedene",
+        "14 dager gratis for å prøve den",
       ],
-      cta: { label: "Bli Pro", href: "/beta" },
+      cta: { label: "Prøv KI-en", href: "/beta" },
       highlighted: false,
+    },
+    {
+      id: "cloud_ia",
+      name: "Cloud + KI",
+      price: "€99,99",
+      period: "per år · spar €4,99 sammenlignet med de to hver for seg · med Cloud 60 €119,99 / år",
+      tagline: "Hele Cloud og all KI, i ett abonnement.",
+      features: [
+        "Hele Cloud og all KI",
+        "20 GB, eller 60 GB med Cloud 60 + KI",
+        "Du ser alltid hvor mye KI du har igjen denne måneden, i prosent",
+        "Kun årlig",
+      ],
+      cta: { label: "Velg Cloud + KI", href: "/beta" },
+      highlighted: true,
+      badge: "Anbefalt",
     },
   ],
   faq: [
     {
-      q: "Hvordan fungerer AI-kredittene?",
-      a: "Hver AI-operasjon har en fast kredittkostnad: Ghost Map 8, Socratic 4 per stage, Exam 12 per spørsmål, Chat 1 per melding. Atlas (lerret-handlinger) er gratis. Proaktiv Background-OCR koster 1 kreditt per side og er en del av Pro. Du ser alltid resterende saldo i lerret-headeren — ingen skjulte rate limits, ingen overraskelser. Ubrukte kreditter rulles ikke over: planen fylles på hver 30. dag fra registreringsdatoen din (ikke den 1. i måneden — du betaler for 30 dager og får 30 dager).",
+      q: "Hvordan ser jeg hvor mye KI jeg har igjen?",
+      a: "I appen, alltid. En måler viser i prosent hvor mye av månedens KI du har igjen, når den fylles på (den 1. hver måned) og hvor lenge den holder i ditt tempo. Ingen skjulte grenser og ingen kreditter å regne om i hodet: det du ser, er det du har.",
     },
     {
-      q: "Hva skjer hvis jeg går tom for kreditter før reset?",
-      a: "Vi varsler på forhånd — en mild advarsel når du har brukt 80% av syklusen. Når du når null, stopper AI-funksjoner med en klar melding (aldri stille blokkeringer). Vent på neste 30-dagers syklus, eller oppgrader.",
+      q: "Hva om månedens KI tar slutt?",
+      a: "Repetisjon, fag og notatene dine fungerer alltid, også uten KI. KI-en kommer tilbake den 1. hver måned; trenger du den før, kan du i appen slå på eksamensreserven eller legge til litt mer.",
     },
     {
-      q: "Hvorfor koster Pro dobbelt så mye for bare tre pilarer?",
-      a: "Pro er ikke 'Plus med flere kreditter' — det er forsterket studie. Time Travel spiller av studieøkten din med lyd synkronisert per strek: trykk på en formel og hør forklaringen du ga deg selv. CRDT-samarbeid i sanntid lar deg jobbe samtidig med medstudenter eller kolleger på samme lerret. Notability, GoodNotes og Notion AI leverer ikke denne stacken — ikke på dette integrasjonsnivået.",
+      q: "Kjøper jeg én gang, gjelder det på alle enhetene mine?",
+      a: "Ja. Du abonnerer i Fluera-appen på telefonen eller nettbrettet via App Store eller Google Play, og betaler med betalingsmåtene som er lagret på butikkontoen din. Planen din gjelder deretter på alle enheter der du logger inn med samme konto, også datamaskiner.",
     },
     {
-      q: "Hva skjer med lerretene mine hvis jeg sier opp Plus eller Pro?",
-      a: "Alt forblir på enheten din (local-first), og de 3 grunnpenslene samt PNG-eksport fortsetter å fungere med Free. Funksjoner i den betalte planen settes på pause til du reaktiverer. Ingenting slettes uten din uttrykkelige handling.",
+      q: "Fungerer Cloud allerede mellom enhetene?",
+      a: "Ikke ennå. Cloud mellom telefon, nettbrett og datamaskin er under bygging og starter med en oppdatering av appen. Frem til da blir canvasene dine på enheten, der de også fungerer offline.",
     },
     {
-      q: "Hvorfor er det ingen gratis Pro-prøveperiode?",
-      a: "Plus har 7 dagers gratis prøveperiode. Pro har ikke det: sanntidssamarbeid + Time Travel-scrubber er tilbakevendende funksjoner med skykostnader vi ikke kan gi bort. Vil du evaluere metoden, er Free hele lerretet — bruk det så lenge du vil.",
+      q: "Finnes det en gratis prøveperiode?",
+      a: "Ja: 14 dager gratis, bare på KI-en. Du kan si opp i butikken når du vil, før prøveperioden er over. Free utløper aldri og krever ingen betaling.",
     },
     {
-      q: "Hva er et Checkpoint?",
-      a: "Et Checkpoint er et bokmerke av lerretet ditt i et bestemt øyeblikk — som \"lagre som\". Du oppretter ett når du vil (f.eks. \"før prøven\", \"etter å ha fullført kapittel 3\") og hopper tilbake når som helst: gjenoppretter lerretstilstanden på det punktet. Det er forskjellig fra Time Travel: et Checkpoint er et fast punkt du har valgt, Time Travel er den kontinuerlige scrubberen over hele historikken. Free inkluderer 3 Checkpoints per lerret, Plus ubegrenset.",
-    },
-    {
-      q: "Kan jeg prøve Time Travel + lyd↔strek-sync før jeg oppgraderer til Pro?",
-      a: "Ja. Hver Free-bruker får et forhåndslastet demo-lerret der du kan åpne Time Travel-scrubberen og trykke på strek for å høre den synkroniserte lyden — kun lesing, på demoen. For å ta opp dine egne studier trenger du Pro.",
+      q: "Hva skjer med canvasene mine hvis jeg sier opp?",
+      a: "De forblir dine, på enheten: canvas, repetisjon, fag, pensler og eksport fortsetter å fungere med Free. Planens funksjoner står på pause til du aktiverer den igjen. Ingenting slettes uten en handling fra deg.",
     },
     {
       q: "Refusjonspolicy?",
       a: "Vilkår for refusjon og angrerett avhenger av butikk og kjøpskanal. Gjeldende policy vises før bekreftelse; send e-post til support@fluera.dev fra den registrerte adressen din hvis du trenger hjelp.",
-    },
-    {
-      q: "Rabatter for forskere eller non-profit?",
-      a: "Ja. Forskningslaboratorier, doktorgradsprogrammer og registrerte non-profits kan søke på /contact — vanligvis gir vi Pro til Plus-pris eller gratis mot strukturert tilbakemelding.",
-    },
-    {
-      q: "Hvilke betalingsmetoder aksepterer dere?",
-      a: "Du abonnerer i Fluera-appen på telefonen eller nettbrettet via App Store eller Google Play, og betaler med betalingsmåtene som er lagret på butikkontoen din. Planen din gjelder deretter på alle enheter der du logger inn med samme konto.",
     },
     {
       q: "Team- eller Education-planer?",

@@ -6,11 +6,11 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Kryptering",
-    body: "Varje anteckningsbok i Fluera krypteras i vila på din enhet med AES-256 via SQLCipher, och exporterade .fluera-filer krypteras med AES-256-GCM. Trafiken krypteras under överföring med TLS 1.3. Molnsynkronisering är inte ände-till-ände-krypterad: synkroniserade anteckningsböcker lagras på EU-infrastruktur (Supabase, eu-north-1), krypterade under överföring och i vila på infrastrukturnivå. Som personuppgiftsansvarig kan Fluera tekniskt komma åt synkroniserat innehåll, men vi säljer det aldrig, använder det aldrig för annonsering och tränar aldrig modeller på det.",
+    body: "På din enhet är databasen med dina canvasar krypterad i vila med sqlite3mc (ChaCha20-Poly1305, 256-bitars nyckel); foton, PDF:er och ljud från föreläsningar är filer i appens privata mapp, skyddade av operativsystemet. En exporterad .fluera-fil är inte krypterad; den Krypterade säkerhetskopian är förseglad med AES-256-GCM. Trafiken går över TLS. Cloud sync är inte end-to-end-krypterad: synkade canvasar lagras på EU-infrastruktur (Supabase, eu-north-1), krypterade under överföring och i vila på infrastrukturnivå. Som personuppgiftsansvarig kan vi tekniskt komma åt synkat innehåll — men vi säljer det aldrig och använder det aldrig för reklam.",
   },
   {
     title: "Dataägande",
-    body: "Varje byte du skriver kan exporteras med ett klick: PNG, JPEG, WebP, SVG, PDF och vårt öppna format .fluera. Dina anteckningsböcker bor först och främst på dina enheter. Molnet är en bekvämlighet, inte ett fängelse — lock-in är en affärsmodell vi valt att avvisa.",
+    body: "Varje byte du skriver kan exporteras med ett klick: PNG, JPEG, WebP, SVG, PDF och vårt .fluera-format. Dina canvasar lever först på dina enheter. Molnet är en bekvämlighet, inte ett fängelse — inlåsning är en affärsmodell vi valt bort.",
   },
   {
     title: "GDPR från grunden",
@@ -18,18 +18,18 @@ const pillars = [
   },
   {
     title: "Local-first, alltid",
-    body: "Du kan använda Fluera helt offline. Sync är opt-in per anteckningsbok, inte på kontonivå. Stänger du av sync lämnar din data inte enheten — inklusive telemetri, som baseras på samtycke och är anonym.",
+    body: "Du kan använda Fluera helt offline. Synkning mellan dina enheter är av tills du slår på den, och den gäller hela ditt konto. Med synk avstängd stannar dina canvasar på enheten. Allt annat lämnar den bara så som guiden Integritet och AI-samtycke beskriver, reglage för reglage: telemetri till exempel bara med ditt samtycke, kopplad till ditt konto och aldrig med innehåll.",
   },
   {
     title: "Vad vi inte gör",
-    body: "Ingen reklam. Ingen försäljning av data. Vi tränar inte våra modeller på ditt innehåll. Vi spårar dig inte över webben. Vi delar inte data med tredje part utöver de deklarerade underbiträdena (listade på sidan Underbiträden) — alla under DPA.",
+    body: "Vi visar ingen reklam. Vi säljer inte din data. Vi tränar inga modeller på dina canvasar om du inte väljer det: Träningsdata för AI är av tills du slår på det. Vi spårar dig inte på webben. Vi lämnar inte ut data till tredje part utöver namngivna underbiträden (listade på sidan Underbiträden) — alla under biträdesavtal.",
   },
 ];
 ---
 
 <BaseLayout
   title="Säkerhet och integritet"
-  description="AES-256-kryptering i vila, GDPR från grunden, servrar i Europa, noll ad-tech. Flueras säkerhetsarkitektur och åtagande för dina datas ägande."
+  description="Krypterad lokal databas, GDPR från grunden, servrar i Europa, noll ad-tech. Flueras säkerhetsarkitektur och löftet om att din data är din."
   locale="sv"
 >
   <PageHero
@@ -62,12 +62,10 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Responsible disclosure</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Hittade du något?</h2>
           <p class="prose-ink mb-6">
-            Säkerhetsforskare är välkomna. Rapportera sårbarheter till
-            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
-            Vi svarar inom 24 timmar, patchar kritiska problem inom 72 och krediterar rapportören i vår hall of fame — om de inte föredrar anonymitet.
+            Säkerhetsforskare är välkomna här. Rapportera sårbarheter till <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. Vi svarar inom 5 arbetsdagar. Det finns inget bug bounty-program.
           </p>
           <p class="text-sm text-ink-500 italic">
-            PGP-nyckeln för krypterade rapporter är publicerad på vår GitHub-profil.
+            Reglerna för rapporter finns också i /.well-known/security.txt (RFC 9116).
           </p>
         </div>
         <div>
@@ -85,7 +83,7 @@ const pillars = [
   <section class="py-16 border-t border-white/[0.04]">
     <div class="container-narrow text-center">
       <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
-        Den här sidan täcker det väsentliga. Hela arkitekturen, listan över underbiträden och DPA-mallen bor på
+        Den här sidan täcker det väsentliga. Hela arkitekturen och listan över underbiträden bor på
         <a href="/sv/security/architecture" class="text-paper-300 underline">/sv/security/architecture</a> och
         <a href="/sv/security/sub-processors" class="text-paper-300 underline">/sv/security/sub-processors</a>. Specifika compliance-frågor? Skriv till
         <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.

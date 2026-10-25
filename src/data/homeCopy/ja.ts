@@ -13,7 +13,7 @@ const copy: HomeCopy = {
   proof: [
     ["12", "筆圧対応のブラシ"],
     ["FSRS", "記憶に合わせた復習スケジュール"],
-    ["AES-256", "暗号化されたローカルデータベース"],
+    ["ChaCha20", "暗号化されたローカルデータベース"],
     ["全対応", "すべてのプラットフォームがベータ公開"],
   ],
   flowKicker: "FLUERA のしるし",
@@ -62,7 +62,7 @@ const copy: HomeCopy = {
   trustBody: "すべての認知メカニズムは公開された研究に紐づいています。Fluera 自体が成績向上を証明済みだとは言いません。ベータは、私たちの実装を測るための期間です。",
   scienceLink: "科学を見る",
   securityTitle: "あなたの思考は、あなたのもの。",
-  securityBody: "端末上の SQLCipher AES-256、EU インフラ上の TLS 同期、行動ターゲティング広告なし、あなたの内容での学習なし。",
+  securityBody: "端末上で暗号化されたキャンバスのデータベース（sqlite3mc、ChaCha20-Poly1305）、EU インフラ上の TLS 同期、行動ターゲティング広告なし、あなたがオンにしない限りあなたの内容での学習なし。",
   securityLink: "セキュリティ設計を読む",
   platformKicker: "ひとつのインクを、どこでも",
   platformTitle: "すべてのプラットフォームに開かれています。",

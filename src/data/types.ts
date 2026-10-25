@@ -112,7 +112,15 @@ export interface HomeCopy {
   finalCta: string;
 }
 
+/**
+ * Piano del listino del 22/10/2026. `id` non si traduce: è il taglio con cui
+ * `fluera_engine/tool/public_truth_gate.dart` lega ogni prezzo della scheda
+ * alla costante di `FlueraPricing` (il nome invece cambia per lingua: IA, AI, KI…).
+ */
+export type PricingTierId = "free" | "cloud" | "ia" | "cloud_ia";
+
 export interface PricingTier {
+  id: PricingTierId;
   name: string;
   price: string;
   period: string;

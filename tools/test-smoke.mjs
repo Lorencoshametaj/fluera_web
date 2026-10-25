@@ -4,7 +4,7 @@
  *
  * Verifies:
  *   - Key routes are emitted (EN root, IT root, pricing, feature pages)
- *   - V1 content landed correctly (Exam Session pillar, Free/Plus/Pro pricing)
+ *   - V1 content landed correctly (Exam Session pillar, Free/Cloud/IA/Cloud + IA pricing)
  *   - Hidden Education tier is actually hidden everywhere visible
  *   - Sitemap-index exists (i18n routing healthy)
  *
@@ -41,8 +41,13 @@ function read(rel) {
   return readFileSync(resolve(DIST, rel), "utf8");
 }
 
-function hasPublicV1Tiers(html) {
-  return ["Free", "Plus", "Pro"].every((tier) => html.includes(`>${tier}<`))
+// Listino del 22/10/2026: Free, Cloud, IA, Cloud + IA. Il nome dell'IA si
+// traduce (AI, IA, KI, الذكاء الاصطناعي), quindi lo passa chi chiama. Plus e
+// Pro non devono tornare come nome di una scheda.
+function hasPublicTiers(html, ia = "AI") {
+  return ["Free", "Cloud", ia, `Cloud + ${ia}`].every((tier) => html.includes(`>${tier}<`))
+    && !html.includes(">Plus<")
+    && !html.includes(">Pro<")
     && !html.includes(">Team<")
     && !html.includes(">Education<");
 }
@@ -92,7 +97,7 @@ console.log("\nV1 content");
   const home = read("index.html");
   check("homepage Step 11 = Exam Session", home.includes("Exam Session · Step 11"));
   check("homepage pillar Exam Session present", home.includes("A closed-book exam built from your own notes"));
-  check("homepage pricing snapshot has 3 public tiers (Free/Plus/Pro)", hasPublicV1Tiers(home));
+  check("homepage pricing snapshot has the 4 public plans (Free/Cloud/AI/Cloud + AI)", hasPublicTiers(home));
 }
 {
   const pricing = read("pricing/index.html");
@@ -105,6 +110,8 @@ console.log("\nV1 content");
   //
   // Ora legge la FONTE UNICA, la stessa che legge `public_truth_gate.dart`:
   // se il listino cambia, il sito deve seguirlo, e nessuno deve toccare questo file.
+  // 2026-10-22: il listino definitivo tiene `double` (cloudAnnualEur, …), non
+  // frasi; la pagina EN li scrive col punto («€19.99»).
   const dart = resolve(
     __dirname, "..", "..",
     "fluera_engine/lib/src/paywall/fluera_pricing.dart",
@@ -112,41 +119,47 @@ console.log("\nV1 content");
   const src = existsSync(dart) ? readFileSync(dart, "utf8") : null;
   const constOf = (name) => {
     const m = src && src.match(
-      new RegExp(`static const String ${name} = '([^']+)'`),
+      new RegExp(`static const double ${name} = ([0-9]+(?:\\.[0-9]+)?);`),
     );
-    return m ? m[1] : null;
+    return m ? Number(m[1]) : null;
   };
-  const plus = constOf("plusMonthly");
-  const pro = constOf("proMonthly");
+  const names = [
+    "cloudAnnualEur",
+    "cloud60AnnualEur",
+    "iaMonthlyEur",
+    "iaAnnualEur",
+    "cloudIaAnnualEur",
+    "cloud60IaAnnualEur",
+  ];
+  const values = names.map((n) => [n, constOf(n)]);
+  const missing = values.filter(([, v]) => v === null).map(([n]) => n);
 
   // Fonte illeggibile ⇒ ROSSO, mai saltato in silenzio: un check che non puo'
   // misurare non e' un check superato.
-  const truthOk = Boolean(plus && pro);
+  const truthOk = Boolean(src) && missing.length === 0;
   check(
     "pricing source of truth is readable (fluera_engine/…/fluera_pricing.dart)",
     truthOk,
     truthOk
       ? ""
       : src
-        ? "costanti plusMonthly/proMonthly non trovate"
+        ? `costanti non trovate: ${missing.join(", ")}`
         : `file assente: ${dart}`,
   );
 
   if (truthOk) {
-    // Il sito scrive il decimale con la virgola o col punto a seconda della
-    // lingua; la pagina EN usa il punto. Accettiamo entrambe le forme.
-    const anyForm = (v) => [v, v.replace(",", ".")].some((f) => pricing.includes(f));
-    for (const [tier, want] of [["Plus", plus], ["Pro", pro]]) {
-      const ok = anyForm(want);
+    for (const [name, v] of values) {
+      const want = `€${v.toFixed(2)}`;
+      const ok = pricing.includes(want);
       check(
-        `pricing page shows ${tier} ${want} (from FlueraPricing)`,
+        `pricing page shows ${want} (FlueraPricing.${name})`,
         ok,
         ok ? "" : `atteso ${want}, non presente nella pagina renderizzata`,
       );
     }
   }
 
-  check("pricing page has 3 public tiers (Free/Plus/Pro)", hasPublicV1Tiers(pricing));
+  check("pricing page has the 4 public plans (Free/Cloud/AI/Cloud + AI)", hasPublicTiers(pricing));
 }
 {
   const examEn = read("features/exam-session/index.html");
@@ -167,8 +180,8 @@ console.log("\nV1 content");
 }
 {
   const pricingKo = read("ko/pricing/index.html");
-  check("KO /pricing has 3 public tiers + FAQ",
-    hasPublicV1Tiers(pricingKo) && hasFaqSurface(pricingKo));
+  check("KO /pricing has the 4 public plans + FAQ",
+    hasPublicTiers(pricingKo, "AI") && hasFaqSurface(pricingKo));
 }
 {
   const homeHi = read("hi/index.html");
@@ -179,8 +192,8 @@ console.log("\nV1 content");
 }
 {
   const pricingHi = read("hi/pricing/index.html");
-  check("HI /pricing has 3 public tiers + FAQ",
-    hasPublicV1Tiers(pricingHi) && hasFaqSurface(pricingHi));
+  check("HI /pricing has the 4 public plans + FAQ",
+    hasPublicTiers(pricingHi, "AI") && hasFaqSurface(pricingHi));
 }
 {
   const homePl = read("pl/index.html");
@@ -191,8 +204,8 @@ console.log("\nV1 content");
 }
 {
   const pricingPl = read("pl/pricing/index.html");
-  check("PL /pricing has 3 public tiers + FAQ",
-    hasPublicV1Tiers(pricingPl) && hasFaqSurface(pricingPl));
+  check("PL /pricing has the 4 public plans + FAQ",
+    hasPublicTiers(pricingPl, "AI") && hasFaqSurface(pricingPl));
 }
 {
   const homeAr = read("ar/index.html");
@@ -205,8 +218,8 @@ console.log("\nV1 content");
 }
 {
   const pricingAr = read("ar/pricing/index.html");
-  check("AR /pricing has 3 public tiers + FAQ",
-    hasPublicV1Tiers(pricingAr) && hasFaqSurface(pricingAr));
+  check("AR /pricing has the 4 public plans + FAQ",
+    hasPublicTiers(pricingAr, "الذكاء الاصطناعي") && hasFaqSurface(pricingAr));
 }
 
 console.log("\nCatalogue");

@@ -46,7 +46,7 @@ Hvis hakket fortsætter med Predicted slået til, så luk og genstart. Hvis det 
 
 [support@fluera.dev](mailto:support@fluera.dev). Beskriv hvad du var ved at gøre, hvad du forventede, hvad der skete, og inkluder app-versionen (Indstillinger → Om). Skærmbilleder hjælper.
 
-For sikkerhedssårbarheder, brug [lorenco@fluera.dev](mailto:lorenco@fluera.dev) og kryptér med vores PGP-nøgle (på vores GitHub-profil).
+For sikkerhedssårbarheder, skriv til [support@fluera.dev](mailto:support@fluera.dev). Vi svarer inden for 5 arbejdsdage. Der er intet bug bounty-program.
 
 ## Hvordan giver jeg feedback om pædagogikken?
 

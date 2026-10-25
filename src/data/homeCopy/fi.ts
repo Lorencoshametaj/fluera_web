@@ -13,7 +13,7 @@ const copy: HomeCopy = {
   proof: [
     ["12", "paineherkkää sivellintä"],
     ["FSRS", "kertaukset ajoitettu muistin mukaan"],
-    ["AES-256", "salattu paikallinen tietokanta"],
+    ["ChaCha20", "salattu paikallinen tietokanta"],
     ["KAIKKI", "alustat auki betassa"],
   ],
   flowKicker: "FLUERAN TUNNUS",
@@ -62,7 +62,7 @@ const copy: HomeCopy = {
   trustBody: "Jokainen kognitiivinen mekanismi johtaa julkaistuun tutkimukseen. Emme väitä, että Fluera itse olisi jo osoittanut parempia tuloksia: betassa mittaamme oman toteutuksemme.",
   scienceLink: "Tutustu tieteeseen",
   securityTitle: "Mielesi pysyy sinun.",
-  securityBody: "SQLCipher AES-256 laitteella, TLS-synkronointi EU-infrastruktuurissa, ei käyttäytymiseen perustuvaa mainontaa eikä koulutusta sisällölläsi.",
+  securityBody: "Canvas-näkymäsi sisältävä tietokanta salattuna laitteella (sqlite3mc, ChaCha20-Poly1305), TLS-synkronointi EU-infrastruktuurissa, ei käyttäytymiseen perustuvaa mainontaa eikä koulutusta sisällölläsi, ellet itse kytke sitä päälle.",
   securityLink: "Lue tietoturva-arkkitehtuuri",
   platformKicker: "YKSI MUSTE, KAIKKIALLA",
   platformTitle: "Auki kaikilla alustoilla.",

@@ -6,11 +6,11 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Szyfrowanie",
-    body: "Każdy notatnik Fluery jest szyfrowany w spoczynku na Twoim urządzeniu za pomocą AES-256 przez SQLCipher, a eksportowane pliki .fluera są szyfrowane przez AES-256-GCM. Ruch w tranzycie ma TLS 1.3 z nowoczesnymi zestawami szyfrów. Synchronizacja chmurowa jest szyfrowana w tranzycie (TLS) i w spoczynku na infrastrukturze w UE (Supabase, eu-north-1); nie jest to szyfrowanie end-to-end, więc Fluera jako administrator danych ma do niej dostęp techniczny — ale nigdy jej nie sprzedajemy ani nie wykorzystujemy do reklam.",
+    body: "Na twoim urządzeniu baza danych z twoimi canvasami jest szyfrowana w spoczynku przez sqlite3mc (ChaCha20-Poly1305, klucz 256-bitowy); zdjęcia, pliki PDF i nagrania z wykładów to pliki w prywatnym folderze aplikacji, chronione przez system operacyjny. Wyeksportowany plik .fluera nie jest szyfrowany; Zaszyfrowana kopia zapasowa jest zapieczętowana AES-256-GCM. Ruch idzie przez TLS. Cloud sync nie jest szyfrowany end-to-end: zsynchronizowane canvasy są przechowywane na infrastrukturze UE (Supabase, eu-north-1), szyfrowane w tranzycie i w spoczynku na poziomie infrastruktury. Jako administrator danych możemy technicznie uzyskać dostęp do zsynchronizowanych treści — ale nigdy ich nie sprzedajemy i nie używamy do reklam.",
   },
   {
     title: "Własność danych",
-    body: "Każdy bajt, który napiszesz, można wyeksportować jednym kliknięciem: PNG, JPEG, WebP, SVG, PDF i nasz otwarty format .fluera. Twoje notatniki najpierw mieszkają na Twoim urządzeniu. Chmura jest udogodnieniem, nie więzieniem — lock-in to model biznesowy, przeciwko któremu się opowiedzieliśmy.",
+    body: "Każdy bajt, który napiszesz, możesz wyeksportować jednym kliknięciem: PNG, JPEG, WebP, SVG, PDF i nasz format .fluera. Twoje canvasy żyją najpierw na twoich urządzeniach. Chmura to wygoda, a nie więzienie — lock-in to model biznesowy, który odrzuciliśmy.",
   },
   {
     title: "GDPR-native",
@@ -18,18 +18,18 @@ const pillars = [
   },
   {
     title: "Local-first, zawsze",
-    body: "Możesz uruchomić Fluerę całkowicie offline. Synchronizacja jest opt-in dla notatnika, nie dla całego konta. Jeśli wyłączysz synchronizację, Twoje dane nie opuszczają urządzenia — łącznie z opartą na zgodzie i anonimową telemetrią.",
+    body: "Możesz używać Fluera całkowicie offline. Synchronizacja między twoimi urządzeniami jest wyłączona, dopóki jej nie włączysz, i obejmuje całe twoje konto. Przy wyłączonej synchronizacji twoje canvasy zostają na urządzeniu. Reszta opuszcza je tylko tak, jak opisuje przewodnik Prywatność i zgoda na AI, przełącznik po przełączniku: telemetria na przykład tylko za twoją zgodą, powiązana z twoim kontem i nigdy z treścią.",
   },
   {
     title: "Czego nie robimy",
-    body: "Nie wyświetlamy reklam. Nie sprzedajemy danych. Nie trenujemy naszych modeli na Twoich treściach. Nie śledzimy Cię w sieci. Nie przekazujemy danych stronom trzecim poza wymienionymi podwykonawcami (lista na stronie Podwykonawcy) — wszyscy w ramach DPA.",
+    body: "Nie wyświetlamy reklam. Nie sprzedajemy twoich danych. Nie trenujemy modeli na twoich canvasach, chyba że sam to wybierzesz: Dane treningowe AI są wyłączone, dopóki ich nie włączysz. Nie śledzimy cię w sieci. Nie przekazujemy danych osobom trzecim poza wymienionymi podmiotami przetwarzającymi (na stronie Podmioty przetwarzające) — wszystkie objęte umową powierzenia.",
   },
 ];
 ---
 
 <BaseLayout
   title="Bezpieczeństwo i prywatność"
-  description="Szyfrowanie AES-256 w spoczynku, GDPR-native, hosting w UE, zero ad-tech. Przeczytaj pełną architekturę bezpieczeństwa Fluery i zobowiązanie własności danych."
+  description="Szyfrowana lokalna baza danych, RODO od podstaw, serwery w Europie, zero ad-tech. Architektura bezpieczeństwa Fluera i zobowiązanie, że twoje dane są twoje."
   locale="pl"
 >
   <PageHero
@@ -62,12 +62,10 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Odpowiedzialne ujawnianie</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Coś znalazłeś?</h2>
           <p class="prose-ink mb-6">
-            Badacze bezpieczeństwa są tu mile widziani. Zgłoś podatność na
-            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
-            Potwierdzamy w ciągu 24 godzin, łatamy krytyczne problemy w ciągu 72 i wyróżniamy zgłaszających w naszej hall of fame, chyba że wolisz pozostać anonimowy.
+            Badacze bezpieczeństwa są tu mile widziani. Zgłaszaj podatności na <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. Odpowiadamy w ciągu 5 dni roboczych. Nie mamy programu bug bounty.
           </p>
           <p class="text-sm text-ink-500 italic">
-            Klucz PGP do zaszyfrowanych zgłoszeń jest opublikowany na naszym GitHubie.
+            Zasady zgłoszeń są też opublikowane w /.well-known/security.txt (RFC 9116).
           </p>
         </div>
         <div>
@@ -85,7 +83,7 @@ const pillars = [
   <section class="py-16 border-t border-white/[0.04]">
     <div class="container-narrow text-center">
       <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
-        Ta strona obejmuje podstawy. Pełna architektura, rejestr podwykonawców i szablon DPA mieszkają na
+        Ta strona obejmuje podstawy. Pełna architektura i rejestr podwykonawców mieszkają na
         <a href="/pl/security/architecture" class="text-paper-300 underline">/pl/security/architecture</a> i
         <a href="/pl/security/sub-processors" class="text-paper-300 underline">/pl/security/sub-processors</a>. Konkretne pytania o zgodność?
         Napisz na <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.

@@ -1,112 +1,105 @@
-// 🇳🇱 V1.5 — Native pass complete (2026-05-15).
-// CTA labels + badge preserved from the previous locale file.
-// Coordinated with it.ts canonical.
-
 import type { PricingData } from "../types";
+
+// Listino del 22/10/2026 (Free, Cloud, IA, Cloud + IA). Allineato a it.ts.
+// Gli importi di `price` e `period` li controlla
+// fluera_engine/tool/public_truth_gate.dart contro FlueraPricing, per `id`.
 
 const data: PricingData = {
   tiers: [
     {
+      id: "free",
       name: "Free",
       price: "€0",
       period: "voor altijd",
       tagline:
-        "Het volledige canvas om de methode te proberen. 100 AI-credits per maand, altijd zichtbaar.",
+        "Het volledige canvas, herhaling en vakken. Zonder abonnement en zonder einddatum.",
       features: [
-        "Oneindig canvas, handschriftinvoer, volledige rendering-engine",
-        "3 basispenselen (potlood, vulpen, marker — meer in Plus)",
-        "PNG-export",
-        "100 AI-credits per maand — Atlas altijd gratis (0 credits), Chat 1 per bericht",
-        "Socratic 3 sessies/wk, Ghost Map 3 vergelijkingen/wk, 1 Exam/wk",
-        "Fog of War, FSRS (gespreide herhaling)",
-        "Cross-Zone Bridges — zie de verbindingen tussen concepten die het systeem ontdekt",
-        "📍 3 Checkpoints per canvas — sla een studiemoment op en spring er wanneer je wilt naar terug",
-        "Voorvertoning van Time Travel + audio↔streep-sync op demo-canvas (alleen lezen)",
-        "Local-first, volledig offline (1 apparaat)",
+        "Oneindig canvas en handschrift",
+        "Herhaling, vakken, alle penselen, export en time travel",
+        "Een voorproefje AI in je eerste maand na het aanmelden",
+        "500 MB cloud op al je apparaten, zonder audio, zodra Cloud start",
+        "Werkt ook offline: je canvassen blijven op je apparaat",
       ],
       cta: { label: "Gratis beginnen", href: "/beta" },
       highlighted: false,
     },
     {
-      name: "Plus",
-      price: "€9,99",
-      period: "per maand · €99,99 / jaar (bespaar €19,89 — 2 maanden gratis)",
+      id: "cloud",
+      name: "Cloud",
+      price: "€19,99",
+      period: "per jaar · alleen jaarlijks · Cloud 60 voor €44,99 / jaar",
       tagline:
-        "Volledige persoonlijke studie: cloud sync, AI zonder weekgrenzen, onbeperkte spraakopname.",
+        "Ruimte voor je canvassen en opgenomen colleges. Start met een update van de app.",
       features: [
-        "Cloud sync 5 GB op 2 apparaten — je canvases ook op iPad en desktop",
-        "Socratic, Ghost Map, Exam zonder frequentielimieten (niet meer 3/week)",
-        "5× meer AI-credits dan Free (500 per maand — circa 60 Ghost Maps of 18 volledige Socratic-sessies)",
-        "Onbeperkte spraakopname",
-        "Alle V1-penselen (6 in totaal, meer onderweg)",
-        "Volledige export (PNG, JPEG, WebP, SVG, PDF, .fluera)",
-        "Cross-Zone Bridges — maak en bewerk je eigen conceptlinks",
-        "📍 Onbeperkte checkpoints per canvas",
-        "7 dagen gratis proberen, op elk moment opzegbaar",
+        "20 GB op je apparaten: telefoon, tablet en computer",
+        "Opgenomen colleges luister je overal",
+        "Je canvassen veilig, ook als je van telefoon wisselt",
+        "Cloud 60: 60 GB voor wie veel colleges opneemt",
       ],
-      cta: { label: "Plus proberen", href: "/beta" },
-      highlighted: true,
-      badge: "Aanbevolen",
+      cta: { label: "Kies Cloud", href: "/beta" },
+      highlighted: false,
     },
     {
-      name: "Pro",
-      price: "€19,99",
-      period: "per maand · €199,99 / jaar (bespaar €39,89 — 2 maanden gratis)",
-      tagline:
-        "Versterkte studie: Time Travel, audio↔streep-sync, realtime samenwerking, zoeken in alle canvases.",
+      id: "ia",
+      name: "AI",
+      price: "€9,99",
+      period: "per maand · €84,99 / jaar (bespaar €34,89)",
+      tagline: "Een AI die leest wat je schrijft, met een teller die altijd zichtbaar is.",
       features: [
-        "⏱️ Time Travel-scrubber — bekijk je studie in playback",
-        "🎤 Audio ↔ streep-sync — tik op een streep en hoor wat je op dat moment zei",
-        "🤝 Realtime canvas-samenwerking (CRDT) — nodig medestudenten uit met een link",
-        "🔍 Proactieve Background OCR — zoek een formule die je maanden geleden schreef, in alle canvases",
-        "Cloud sync 50 GB, onbeperkte apparaten",
-        "Prioriteits-e-mailondersteuning",
-        "2000 AI-credits per maand",
+        "De AI leest je aantekeningen en geeft elk begrip een naam",
+        "Tutor, tentamens, chat, formules en transcriptie",
+        "Je ziet altijd hoeveel AI je deze maand nog hebt, in procenten",
+        "Tentamenreserve voor de zwaarste maanden",
+        "14 dagen gratis om het te proberen",
       ],
-      cta: { label: "Pro worden", href: "/beta" },
+      cta: { label: "Probeer de AI", href: "/beta" },
       highlighted: false,
+    },
+    {
+      id: "cloud_ia",
+      name: "Cloud + AI",
+      price: "€99,99",
+      period: "per jaar · je bespaart €4,99 vergeleken met de twee los · met Cloud 60 €119,99 / jaar",
+      tagline: "Alles van Cloud en alles van AI, in één abonnement.",
+      features: [
+        "Alles van Cloud en alles van AI",
+        "20 GB, of 60 GB met Cloud 60 + AI",
+        "Je ziet altijd hoeveel AI je deze maand nog hebt, in procenten",
+        "Alleen jaarlijks",
+      ],
+      cta: { label: "Kies Cloud + AI", href: "/beta" },
+      highlighted: true,
+      badge: "Aanbevolen",
     },
   ],
   faq: [
     {
-      q: "Hoe werken de AI-credits?",
-      a: "Elke AI-operatie heeft een vaste creditkost: Ghost Map 8, Socratic 4 per fase, Exam 12 per vraag, Chat 1 per bericht. Atlas (canvas-acties) is gratis. Proactieve Background-OCR kost 1 credit per pagina en zit in Pro. Je ziet altijd het resterende saldo in de canvas-header — geen verborgen rate limits, geen verrassingen. Ongebruikte credits worden niet overgedragen: het plan wordt elke 30 dagen vanaf je inschrijfdatum aangevuld (niet de 1e van de maand — je betaalt voor 30 dagen en krijgt 30 dagen).",
+      q: "Hoe zie ik hoeveel AI ik nog heb?",
+      a: "In de app, altijd. Een teller laat in procenten zien hoeveel AI je deze maand nog hebt, wanneer die zich aanvult (op de 1e van de maand) en tot wanneer je in jouw tempo genoeg hebt. Geen verborgen limieten en geen credits om in je hoofd om te rekenen: wat je ziet, is wat je hebt.",
     },
     {
-      q: "En als ik credits opmaak voor de reset?",
-      a: "We waarschuwen vooraf — een zachte melding wanneer je 80% van de cyclus hebt verbruikt. Op nul stoppen AI-functies met een duidelijke boodschap (nooit stille blokkades). Wacht op de volgende 30-dagencyclus of upgrade.",
+      q: "En als de AI van deze maand op is?",
+      a: "Herhaling, vakken en je aantekeningen werken altijd, ook zonder AI. De AI komt terug op de 1e van de maand; heb je hem eerder nodig, dan zet je in de app de tentamenreserve aan of voeg je wat toe.",
     },
     {
-      q: "Waarom kost Pro dubbel zoveel voor slechts drie pillars?",
-      a: "Pro is geen 'Plus met meer credits' — het is versterkte studie. Time Travel speelt je studiesessie af met audio gesynchroniseerd per streep: tik op een formule en hoor de uitleg die je jezelf gaf. Realtime CRDT-samenwerking laat je tegelijk werken met klasgenoten of collega's op hetzelfde canvas. Notability, GoodNotes en Notion AI leveren deze stack niet — niet op dit integratieniveau.",
+      q: "Eén keer kopen: werkt het op al mijn apparaten?",
+      a: "Ja. Je neemt een abonnement in de Fluera-app op je telefoon of tablet, via de App Store of Google Play, en betaalt met de betaalmethoden in je store-account. Je abonnement werkt daarna op elk apparaat waarop je inlogt met hetzelfde account, computers inbegrepen.",
     },
     {
-      q: "Wat gebeurt er met mijn canvases als ik Plus of Pro opzeg?",
-      a: "Alles blijft op je apparaat (local-first), en de 3 basispenselen en PNG-export blijven werken met Free. Functies van het betaalde plan pauzeren tot je opnieuw activeert. Niets wordt verwijderd zonder een expliciete actie van jou.",
+      q: "Werkt Cloud al tussen apparaten?",
+      a: "Nog niet. Cloud tussen telefoon, tablet en computer is in aanbouw en start met een update van de app. Tot dan blijven je canvassen op je apparaat, waar ze ook offline werken.",
     },
     {
-      q: "Waarom geen gratis Pro-proefperiode?",
-      a: "Plus heeft 7 dagen gratis proefperiode. Pro niet: realtime samenwerking + Time Travel-scrubber zijn terugkerende functies met cloudkosten die we niet kunnen weggeven. Wil je de methode evalueren, dan is Free het volledige canvas — gebruik het zo lang je wilt.",
+      q: "Is er een gratis proefperiode?",
+      a: "Ja: 14 dagen gratis, alleen op de AI. Je kunt altijd opzeggen in de store, vóór het einde van de proefperiode. Free verloopt niet en vraagt geen betaling.",
     },
     {
-      q: "Wat is een Checkpoint?",
-      a: "Een Checkpoint is een bladwijzer van je canvas op een specifiek moment — een soort \"opslaan als\". Je maakt er een aan wanneer je wilt (bijv. \"vóór de toets\", \"na hoofdstuk 3 afgemaakt\") en springt op elk moment terug: herstelt de canvasstaat op dat punt. Het verschilt van Time Travel: een Checkpoint is een vast punt dat jij gekozen hebt, Time Travel is de doorlopende scrubber over de hele geschiedenis. Free bevat 3 Checkpoints per canvas, Plus onbeperkt.",
-    },
-    {
-      q: "Kan ik Time Travel + audio↔streep-sync proberen voordat ik upgrade naar Pro?",
-      a: "Ja. Elke Free-gebruiker krijgt een vooraf geladen demo-canvas waar je de Time Travel-scrubber kunt openen en strepen kunt aantikken om de gesynchroniseerde audio af te spelen — alleen lezen, op de demo. Voor het opnemen van je eigen studies heb je Pro nodig.",
+      q: "Wat gebeurt er met mijn canvassen als ik opzeg?",
+      a: "Ze blijven van jou, op je apparaat: canvas, herhaling, vakken, penselen en export blijven werken met Free. De functies van het abonnement pauzeren tot je het opnieuw activeert. Niets wordt verwijderd zonder een actie van jou.",
     },
     {
       q: "Terugbetalingsbeleid?",
       a: "Voorwaarden voor terugbetaling en herroeping hangen af van de winkel en het aankoopkanaal. Het geldende beleid wordt vóór bevestiging getoond; mail voor hulp vanaf je geregistreerde adres naar support@fluera.dev.",
-    },
-    {
-      q: "Kortingen voor onderzoekers of non-profits?",
-      a: "Ja. Onderzoekslaboratoria, PhD-programma's en geregistreerde non-profits kunnen aanvragen op /contact — meestal verlenen we Pro tegen Plus-tarief of gratis in ruil voor gestructureerde feedback.",
-    },
-    {
-      q: "Welke betaalmethoden accepteren jullie?",
-      a: "Je neemt een abonnement in de Fluera-app op je telefoon of tablet, via de App Store of Google Play: je betaalt met de betaalmethoden die in je store-account staan. Je abonnement werkt daarna op elk apparaat waarop je inlogt met hetzelfde account.",
     },
     {
       q: "Team- of Education-plannen?",

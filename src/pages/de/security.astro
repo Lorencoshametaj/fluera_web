@@ -6,11 +6,11 @@ import { SITE } from "@/lib/site";
 const pillars = [
   {
     title: "Verschlüsselung",
-    body: "Jedes Fluera-Notizbuch ist auf deinem Gerät mit AES-256 via SQLCipher verschlüsselt. Der Datenverkehr ist beim Transport mit TLS 1.3 geschützt. Cloud-Sync wird beim Transport und im Ruhezustand auf EU-Infrastruktur verschlüsselt, ist aber nicht Ende-zu-Ende-verschlüsselt: Als Verantwortlicher kann Fluera technisch auf synchronisierte Inhalte zugreifen. Wir verkaufen sie nie und nutzen sie nicht für Werbung.",
+    body: "Auf deinem Gerät ist die Datenbank mit deinen Canvas im Ruhezustand mit sqlite3mc verschlüsselt (ChaCha20-Poly1305, 256-Bit-Schlüssel); Fotos, PDFs und Vorlesungsaudio sind Dateien im privaten Ordner der App, geschützt vom Betriebssystem. Eine exportierte .fluera-Datei ist nicht verschlüsselt; das Verschlüsselte Backup ist mit AES-256-GCM versiegelt. Der Datenverkehr läuft über TLS. Cloud-Sync ist nicht Ende-zu-Ende-verschlüsselt: synchronisierte Canvas liegen auf EU-Infrastruktur (Supabase, eu-north-1), beim Transport und im Ruhezustand auf Infrastrukturebene verschlüsselt. Als Verantwortlicher können wir technisch auf synchronisierte Inhalte zugreifen — wir verkaufen sie aber nie und nutzen sie nie für Werbung.",
   },
   {
     title: "Eigentum an deinen Daten",
-    body: "Jedes Byte, das du schreibst, ist mit einem Klick exportierbar: PNG, JPEG, WebP, SVG, PDF und unser offenes .fluera-Format. Deine Notizbücher leben zuerst auf deinen Geräten. Die Cloud ist eine Bequemlichkeit, kein Gefängnis — Lock-in ist ein Geschäftsmodell, das wir bewusst ablehnen.",
+    body: "Jedes Byte, das du schreibst, ist mit einem Klick exportierbar: PNG, JPEG, WebP, SVG, PDF und unser .fluera-Format. Deine Canvas leben zuerst auf deinen Geräten. Die Cloud ist ein Komfort, kein Gefängnis — Lock-in ist ein Geschäftsmodell, gegen das wir uns entschieden haben.",
   },
   {
     title: "DSGVO ab Werk",
@@ -18,18 +18,18 @@ const pillars = [
   },
   {
     title: "Local-first, immer",
-    body: "Du kannst Fluera komplett offline nutzen. Die Synchronisierung ist opt-in pro Notizbuch, nicht auf Kontoebene. Wenn du Sync abschaltest, verlassen deine Daten das Gerät nicht — inklusive der Telemetrie, die einwilligungsbasiert und anonym ist.",
+    body: "Du kannst Fluera komplett offline nutzen. Die Synchronisierung zwischen deinen Geräten ist aus, bis du sie einschaltest, und gilt für dein ganzes Konto. Mit ausgeschaltetem Sync bleiben deine Canvas auf dem Gerät. Alles andere verlässt es nur so, wie es Schalter für Schalter im Leitfaden Datenschutz und KI-Einwilligung steht: Telemetrie zum Beispiel nur mit deiner Einwilligung, an dein Konto gebunden und nie mit Inhalten.",
   },
   {
     title: "Was wir nicht tun",
-    body: "Keine Werbung. Kein Datenverkauf. Wir trainieren unsere Modelle nicht mit deinen Inhalten. Wir tracken dich nicht im Web. Wir geben Daten an niemanden außerhalb der erklärten Subauftragsverarbeiter (auf der Seite Auftragsverarbeiter aufgeführt) weiter — alle unter DPA.",
+    body: "Wir schalten keine Werbung. Wir verkaufen deine Daten nicht. Wir trainieren keine Modelle mit deinen Canvas, außer du entscheidest dich dafür: KI-Trainingsdaten sind aus, bis du sie einschaltest. Wir verfolgen dich nicht im Web. Wir geben keine Daten an Dritte weiter außer an benannte Auftragsverarbeiter (auf der Seite Sub-Processors aufgeführt) — alle unter AVV.",
   },
 ];
 ---
 
 <BaseLayout
   title="Sicherheit und Datenschutz"
-  description="AES-256 im Ruhezustand, DSGVO ab Werk, Server in Europa, null Ad-Tech. Die Sicherheitsarchitektur von Fluera und das Bekenntnis zum Eigentum an deinen Daten."
+  description="Verschlüsselte lokale Datenbank, DSGVO ab Werk, Server in Europa, null Ad-Tech. Die Sicherheitsarchitektur von Fluera und das Bekenntnis zum Eigentum an deinen Daten."
   locale="de"
 >
   <PageHero
@@ -62,12 +62,10 @@ const pillars = [
           <p class="eyebrow mb-4 text-accent-glow">Responsible Disclosure</p>
           <h2 class="font-serif text-display-lg text-paper-50 mb-4">Etwas gefunden?</h2>
           <p class="prose-ink mb-6">
-            Sicherheitsforschende sind willkommen. Melde Schwachstellen an
-            <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>.
-            Wir antworten innerhalb von 24 Stunden, patchen kritische Probleme innerhalb von 72 und nennen Reportende in unserem Hall of Fame — außer du bevorzugst Anonymität.
+            Sicherheitsforscher sind hier willkommen. Melde Schwachstellen an <a href={`mailto:${SITE.company.securityEmail}`}>{SITE.company.securityEmail}</a>. Wir antworten innerhalb von 5 Werktagen. Es gibt kein Bug-Bounty-Programm.
           </p>
           <p class="text-sm text-ink-500 italic">
-            Der PGP-Schlüssel für verschlüsselte Reports ist in unserem GitHub-Profil veröffentlicht.
+            Die Regeln für Meldungen stehen auch in /.well-known/security.txt (RFC 9116).
           </p>
         </div>
         <div>
@@ -85,7 +83,7 @@ const pillars = [
   <section class="py-16 border-t border-white/[0.04]">
     <div class="container-narrow text-center">
       <p class="text-xs text-ink-500 max-w-xl mx-auto leading-relaxed">
-        Diese Seite deckt das Wesentliche ab. Die vollständige Architektur, das Register der Subauftragsverarbeiter und das DPA-Template leben unter
+        Diese Seite deckt das Wesentliche ab. Die vollständige Architektur und das Register der Subauftragsverarbeiter leben unter
         <a href="/de/security/architecture" class="text-paper-300 underline">/de/security/architecture</a> und
         <a href="/de/security/sub-processors" class="text-paper-300 underline">/de/security/sub-processors</a>. Spezifische Compliance-Fragen? Schreibe an
         <a href={`mailto:${SITE.company.securityEmail}`} class="text-paper-300 underline">{SITE.company.securityEmail}</a>.

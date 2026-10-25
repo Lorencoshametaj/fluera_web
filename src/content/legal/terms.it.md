@@ -2,8 +2,8 @@
 lang: "it"
 slug: "terms"
 title: "Termini e Condizioni d'uso"
-versione: "1.5"
-aggiornato: "15 ottobre 2026"
+versione: "1.6"
+aggiornato: "25 ottobre 2026"
 sommario: "I presenti Termini e Condizioni d'uso (i \"**Termini**\") disciplinano l'accesso e l'utilizzo dell'applicazione Fluera e dei servizi correlati. L'utilizzo del servizio implica l'accettazione integrale dei presenti Termini."
 fonte: "Fluera/assets/legal/terms_it.md"
 ---
@@ -53,6 +53,8 @@ La licenza **non comprende**:
 - Decompilare, eseguire reverse engineering o derivare il codice sorgente (salvo limiti di legge)
 - Rimuovere o alterare avvisi di copyright o marchi
 - Utilizzare l'app per attività illecite
+
+Questo non riguarda i canali scelti dal Fornitore: Fluera è distribuita dagli store e da Flathub (flathub.org), che il Fornitore autorizza a ospitare e redistribuire i pacchetti dell'applicazione senza modifiche.
 
 ## 6. Contenuti dell'utente
 
