@@ -55,7 +55,7 @@ Default build output is fully static (`output: "static"`) and can ship to:
 - **Vercel** — drop in as-is; add `@astrojs/vercel` adapter for edge functions / runtime OG generation later.
 - **Netlify / Cloudflare Pages** — zero-config static deploy.
 
-Redirects from the legacy HTML site (`/index.html` → `/engine`, `/beta.html` → `/beta`) are in [`public/_redirects`](public/_redirects) (Netlify/Cloudflare format) and `vercel.json` — pick the file that matches your host.
+Redirects from the legacy HTML site (`/index.html` → `/engine`, `/beta.html` → `/beta`) are in [`public/_redirects`](public/_redirects) (Netlify/Cloudflare format).
 
 ## Configuration
 

@@ -6,7 +6,7 @@ Astro static marketing site, 16 locales. Deployed by **mirroring** — read this
 
 - GitHub Actions runs workflows **only** from the repo root `.github/workflows/`. The files under `fluera-landing/.github/workflows/` are inert in this repo: they execute only in the external mirror repo `fluera_web`, where the root-level `deploy-landing.yml` pushes the built output (GitHub Pages serves fluera.dev). A path broken in the mirror stays silently broken — the Lighthouse job was dead "since always" until commit `12b6ea55` (2026-08-16).
 - **The Actions of fluera-mono are intentionally OFF** (billing declined, 2026-08-17): `deploy-landing.yml` is dormant. The deploy path is `tools/deploy-landing-local.sh` at the monorepo root — same steps as the workflow (npm test gate → git archive of the TRACKED tree → push to fluera_web), run locally. fluera_web is public, so its Actions (Pages build + Lighthouse quality gate) stay free and alive. Quality enforcement for pushes lives in the local pre-push hook (41 certified gates).
-- `api/*.ts` and `vercel.json` are dead leftovers — hosting is GitHub Pages plus a Supabase Edge Function for share.fluera.dev, not Vercel.
+- Hosting is GitHub Pages plus the Deno Deploy app behind share.fluera.dev, not Vercel. The dead Vercel leftovers (`api/{c,i,s}.ts`, `vercel.json`, `@vercel/node`) were removed on 2026-10-28: `api/c.ts` carried an unescaped-SVG XSS that the public `fluera_web` mirror still published as source. Any serverless route goes to `Fluera/supabase/functions/seed-share/`.
 
 ## Content model
 

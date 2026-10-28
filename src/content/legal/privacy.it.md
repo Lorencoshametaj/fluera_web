@@ -2,8 +2,8 @@
 lang: "it"
 slug: "privacy"
 title: "Informativa Privacy"
-versione: "1.9.0"
-aggiornato: "25 ottobre 2026"
+versione: "1.10.0"
+aggiornato: "28 ottobre 2026"
 sommario: "Informativa sul trattamento dei dati personali degli utenti dell'applicazione Fluera, redatta ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (**GDPR**) e del D.Lgs. 196/2003 come novellato dal D.Lgs. 101/2018."
 fonte: "Fluera/assets/legal/privacy_it.md"
 ---
@@ -422,12 +422,12 @@ server; sui tuoi dispositivi restano.
 
 ### 2.15 Segnalazioni dei contenuti scritti dall'IA
 
-Accanto a una domanda scritta dall'IA (nel Socratico, e più avanti nell'Esame) c'è una bandierina per segnalarla. La segnalazione parte solo se la premi e confermi, e parte anche se hai tolto il consenso Analytics: è una tua richiesta, non telemetria. Con la segnalazione mandiamo:
-- il testo della domanda segnalata, la sua lingua e la funzione che l'ha scritta;
+Accanto a un contenuto scritto dall'IA (le domande del Socratico e dell'Esame, i messaggi dell'IA nella chat con gli appunti) c'è una bandierina per segnalarlo. La segnalazione parte solo se la premi e confermi, e parte anche se hai tolto il consenso Analytics: è una tua richiesta, non telemetria. Con la segnalazione mandiamo:
+- il testo della domanda o del messaggio segnalato, la sua lingua e la funzione che l'ha scritto;
 - il motivo, se lo scrivi;
-- la versione dell'app, l'identificativo del tuo account e l'ora.
+- la versione dell'app, l'identificativo del tuo account, l'ora e un codice casuale della segnalazione, che serve a non registrarla due volte se l'invio si ripete.
 
-Non mandiamo la tua risposta né altro dei tuoi appunti. Senza rete la segnalazione resta sul dispositivo e parte appena possibile; senza un account non parte. Le segnalazioni servono a correggere le domande sbagliate o offensive e a migliorare quelle che non suonano naturali. Le leggiamo noi, nessun altro utente le vede, e ne accettiamo al massimo 20 al giorno per account. Le trovi nell'esportazione dei tuoi dati.
+Non mandiamo le tue risposte, i tuoi messaggi né altro dei tuoi appunti. Senza rete la segnalazione resta sul dispositivo, nel database cifrato dell'app, e parte appena possibile; senza un account non parte. Le segnalazioni servono a correggere i contenuti sbagliati o offensivi e a migliorare quelli che non suonano naturali. Le leggiamo noi, nessun altro utente le vede, e ne accettiamo al massimo 20 al giorno per account. Le trovi nell'esportazione dei tuoi dati.
 
 ## 3. Finalità e basi giuridiche
 

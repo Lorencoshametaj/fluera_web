@@ -2,8 +2,8 @@
 lang: "en"
 slug: "privacy"
 title: "Privacy Policy"
-versione: "1.9.0"
-aggiornato: "October 25, 2026"
+versione: "1.10.0"
+aggiornato: "October 28, 2026"
 sommario: "This policy explains how Fluera processes personal data of its users under Articles 13 and 14 of Regulation (EU) 2016/679 (**GDPR**) and the Italian Legislative Decree 196/2003 as amended by Legislative Decree 101/2018."
 fonte: "Fluera/assets/legal/privacy_en.md"
 ---
@@ -406,12 +406,12 @@ leave the server; on your devices they stay.
 
 ### 2.15 Reports of content written by the AI
 
-Next to a question written by the AI (in Socratic mode, and later in the Exam) there is a flag to report it. A report leaves only if you tap it and confirm, and it leaves even if you have withdrawn the Analytics consent: it is your request, not telemetry. With the report we send:
-- the text of the reported question, its language and the feature that wrote it;
+Next to content written by the AI (the questions of Socratic mode and of the Exam, the AI's messages in the chat with your notes) there is a flag to report it. A report leaves only if you tap it and confirm, and it leaves even if you have withdrawn the Analytics consent: it is your request, not telemetry. With the report we send:
+- the text of the reported question or message, its language and the feature that wrote it;
 - the reason, if you write one;
-- the app version, your account identifier and the time.
+- the app version, your account identifier, the time and a random code of the report, used so that it is not recorded twice if the sending is repeated.
 
-We do not send your answer or anything else from your notes. Without a connection the report stays on the device and leaves as soon as possible; without an account it does not leave. Reports are used to fix wrong or offensive questions and to improve the ones that do not sound natural. We read them; no other user sees them, and we accept at most 20 a day per account. You find them in the export of your data.
+We do not send your answers, your messages or anything else from your notes. Without a connection the report stays on the device, in the app's encrypted database, and leaves as soon as possible; without an account it does not leave. Reports are used to fix wrong or offensive content and to improve what does not sound natural. We read them; no other user sees them, and we accept at most 20 a day per account. You find them in the export of your data.
 
 ## 3. Purposes and legal bases
 
