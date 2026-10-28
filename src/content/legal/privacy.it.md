@@ -58,7 +58,7 @@ Solo se l'utente ha prestato consenso alla categoria **Funzioni AI**:
 ### 2.5 Dati per Cloud Sync
 Solo se l'utente ha prestato consenso alla categoria **Cloud Sync**:
 - Copie dei canvas archiviate su Supabase (regione UE `eu-north-1`), cifrate in transito (TLS) e a riposo a livello infrastrutturale. Il Cloud Sync **non** è cifrato end-to-end: in qualità di titolare del trattamento, Fluera può tecnicamente accedere ai contenuti sincronizzati per erogare, proteggere e supportare il servizio (non li vende né li usa per pubblicità)
-- **Le pieghe del browser fanno eccezione.** Se accendi «Le pieghe del browser» in Impostazioni → Dati, le pagine piegate in un canvas (indirizzi, frasi, copie delle pagine, il retro, i fili, l'inchiostro al minuto) passano ai tuoi altri dispositivi **cifrate end-to-end**: chiuse sul dispositivo con AES-256-GCM e una chiave nata sul dispositivo, che il server non riceve mai. La chiave passa a un tuo nuovo dispositivo con un abbinamento che mostra lo stesso codice di 6 cifre sui due, o con il codice di recupero che vedi una sola volta all'accensione; sul server ne resta solo una copia chiusa con quel codice. Il server vede a quale canvas appartiene ogni piega, di che tipo è e quando cambia, mai il contenuto. Con la stessa chiave viaggiano anche la cronologia, i preferiti, le preferenze dei siti e le schede aperte di Fludomi (§2.14). Se perdi tutti i tuoi dispositivi e il codice di recupero, quelle pieghe non si possono recuperare (i canvas sì). «Spegni su tutti i dispositivi» le cancella dal server
+- **Le pieghe del browser fanno eccezione.** Se accendi «Le pieghe del browser» in Impostazioni → Dati, le pagine piegate in un canvas (indirizzi, frasi, copie delle pagine, il retro, i fili, l'inchiostro al minuto) passano ai tuoi altri dispositivi **cifrate end-to-end**: chiuse sul dispositivo con AES-256-GCM e una chiave nata sul dispositivo, che il server non riceve mai. La chiave passa a un tuo nuovo dispositivo con un abbinamento che mostra lo stesso codice di 6 cifre sui due, o con il codice di recupero che vedi una sola volta all'accensione; sul server ne resta solo una copia chiusa con quel codice. Il server vede a quale canvas appartiene ogni piega, di che tipo è e quando cambia, mai il contenuto. Con la stessa chiave viaggiano anche la cronologia, i preferiti, le preferenze dei siti e le schede aperte di Fludomi, se non li fermi in «Cosa viaggia» (§2.14). Se perdi tutti i tuoi dispositivi e il codice di recupero, quelle pieghe non si possono recuperare (i canvas sì). «Spegni su tutti i dispositivi» le cancella dal server
 - Metadati di sincronizzazione (hash, timestamp, dimensione)
 
 **Sincronizzazione fra i tuoi dispositivi** *(piano Cloud; con il piano Free fino a 500 MB, senza le lezioni registrate)*. In *Impostazioni → Dati e sincronizzazione* c'è l'interruttore «Sincronizza fra i tuoi dispositivi». È spento finché non lo accendi tu. Vale per tutto il tuo account: acceso su un dispositivo, vale su ogni dispositivo con cui entri. Per accenderlo servono un account (non una sessione ospite) e il piano Cloud. Quando lo accendi, il server registra la data e la versione di questa informativa che avevi davanti.
@@ -364,8 +364,16 @@ pagine che visiti, né le ricerche che fai.
   lì resta solo il consenso di Google, mai l'accesso al tuo account Google della navigazione.
 - **La protezione dai siti pericolosi** controlla gli indirizzi prima di aprirli. Su Android è il
   servizio Safe Browsing di Google: al servizio arrivano solo frammenti cifrati degli indirizzi.
-  Su iOS è l'avviso di sito fraudolento di Apple. È attiva di fabbrica e si spegne nelle
-  impostazioni di Fludomi («Navigazione sicura»).
+  Su iPhone, iPad e Mac è l'avviso di sito fraudolento di Apple. È attiva di fabbrica e si spegne
+  nelle impostazioni di Fludomi («Navigazione sicura»).
+- **Su Windows e Linux la protezione dai siti pericolosi non c'è**: Fludomi non controlla gli
+  indirizzi presso un servizio di siti pericolosi. Su Windows quello del sistema (Microsoft
+  SmartScreen) riceverebbe l'indirizzo intero di ogni pagina, e lo teniamo spento; su Linux non
+  ce n'è uno.
+- **L'avviso dei siti sosia**, su tutti i dispositivi: se l'indirizzo di una pagina imita quello di
+  un sito noto (per esempio «paypa1.com», o lettere di un altro alfabeto che sembrano quelle di
+  «paypal.com»), Fludomi ferma la pagina e mostra un avviso al suo posto. Il controllo si fa sul
+  dispositivo, con elenchi che sono dentro l'app, e non manda niente a nessuno.
 - **La scrittura a mano** nella barra si riconosce sul dispositivo. Il modello della lingua si
   scarica una volta dai server di Google.
 
@@ -373,6 +381,7 @@ pagine che visiti, né le ricerche che fai.
 - la cronologia, cancellata in automatico dopo il periodo che scegli (1 giorno, 1 settimana, 1 mese
   o 3 mesi, di fabbrica) senza visite; si può anche spegnere;
 - i preferiti, le schede aperte;
+- le icone dei siti visitati, che si cancellano con la cronologia;
 - le evidenziature, le pieghe, le fonti e la copia di testo delle pagine che pieghi;
 - le preferenze per sito.
 
@@ -403,13 +412,22 @@ chiusa di colpo. Si chiudono da sole dopo 15 minuti con Fluera in secondo piano.
 
 Se attivi la sincronizzazione, fra i tuoi dispositivi viaggiano le pieghe, la cronologia, i
 preferiti, la grandezza del testo e i blocchi di fotocamera e microfono scelti per ogni sito, e le
-schede aperte su ciascun dispositivo (con il suo nome). Sono cifrati da un capo all'altro con la
+schede aperte su ciascun dispositivo (con il suo nome e l'icona dei loro siti). Sono cifrati da un capo all'altro con la
 chiave delle pieghe (§2.5): il server vede quante voci ci sono, di che tipo e quando cambiano, mai
 gli indirizzi o i titoli. Le schede private, i cookie, gli accessi ai siti e i permessi concessi a
-un sito non viaggiano. «Cancella dati di navigazione» li cancella anche dal server e, alla loro
+un sito non viaggiano. In «Cosa viaggia» puoi fermare uno per uno la cronologia, i preferiti, le preferenze dei siti e le schede aperte. La scelta vale per tutti i tuoi dispositivi: il server non accetta più quel tipo e ne cancella le copie, mentre sui dispositivi resta tutto, tranne l'elenco delle schede degli altri dispositivi. «Cancella dati di navigazione» li cancella anche dal server e, alla loro
 prossima sincronizzazione, dagli altri tuoi dispositivi; «Cancella tutto alla chiusura» cancella
 solo sul dispositivo dove è attivo. Se spegni la sincronizzazione, le loro copie lasciano il
 server; sui tuoi dispositivi restano.
+
+### 2.15 Segnalazioni dei contenuti scritti dall'IA
+
+Accanto a una domanda scritta dall'IA (nel Socratico, e più avanti nell'Esame) c'è una bandierina per segnalarla. La segnalazione parte solo se la premi e confermi, e parte anche se hai tolto il consenso Analytics: è una tua richiesta, non telemetria. Con la segnalazione mandiamo:
+- il testo della domanda segnalata, la sua lingua e la funzione che l'ha scritta;
+- il motivo, se lo scrivi;
+- la versione dell'app, l'identificativo del tuo account e l'ora.
+
+Non mandiamo la tua risposta né altro dei tuoi appunti. Senza rete la segnalazione resta sul dispositivo e parte appena possibile; senza un account non parte. Le segnalazioni servono a correggere le domande sbagliate o offensive e a migliorare quelle che non suonano naturali. Le leggiamo noi, nessun altro utente le vede, e ne accettiamo al massimo 20 al giorno per account. Le trovi nell'esportazione dei tuoi dati.
 
 ## 3. Finalità e basi giuridiche
 
@@ -421,6 +439,7 @@ server; sui tuoi dispositivi restano.
 - **Dataset di riconoscimento della scrittura** (§2.10): consenso esplicito e revocabile (art. 6.1.a GDPR), separato dalle Funzioni AI
 - **Catalogo e condivisione delle schede** (§2.11): esecuzione del contratto (art. 6.1.b GDPR), su tua richiesta esplicita — nessuna scheda viene caricata senza che tu lo chieda
 - **Moderazione dei contenuti condivisi, gestione delle segnalazioni e prevenzione degli abusi** (§2.11): obbligo legale (art. 6.1.c GDPR, Regolamento UE 2022/2065 «DSA») e legittimo interesse (art. 6.1.f GDPR) a impedire che il servizio veicoli contenuti illeciti. Rientra qui anche la registrazione della versione dei Termini che accetti e della tua dichiarazione sui diritti relativi al contenuto, che è ciò che rende dimostrabile a quali condizioni hai condiviso
+- **Segnalazioni dei contenuti scritti dall'IA** (§2.15): legittimo interesse (art. 6.1.f GDPR) a correggere i contenuti generati dall'IA che ci segnali, su tua richiesta esplicita; il limite di 20 al giorno serve a prevenire gli abusi
 - **Gestione abbonamenti**: esecuzione del contratto (art. 6.1.b GDPR)
 - **Segnale del marketplace** (§2.11): legittimo interesse (art. 6.1.f GDPR) a misurare in modo equo quali schede del catalogo vengono installate e studiate davvero, per riconoscere i creator, con l'identificativo del tuo account e senza contenuti. Puoi opporti (art. 21 GDPR) in ogni momento spegnendo il segnale in *Impostazioni → Privacy e telemetria*: l'opposizione vale per il tuo account su tutti i tuoi dispositivi, il server la registra con l'ora e la versione di questa informativa, e cancella anche le installazioni del tuo account
 - **Sicurezza e prevenzione abusi** (enforcement quote AI): legittimo interesse (art. 6.1.f GDPR)
@@ -454,7 +473,7 @@ autonomi, secondo le loro informative (§2.14). Sono:
 - il motore di ricerca che scegli;
 - Google per Lens, quando lo usi;
 - il servizio di protezione dai siti pericolosi del sistema: Google Safe Browsing su Android,
-  Apple su iOS.
+  Apple su iPhone, iPad e Mac (su Windows e Linux nessuno).
 
 A parte questo, non vendiamo, non cediamo e non comunichiamo i dati personali a parti diverse da quelle indicate. Nessuna profilazione pubblicitaria viene effettuata.
 
@@ -473,8 +492,9 @@ Supabase consente di scegliere la regione del database: utilizziamo la regione `
 ## 6. Periodi di conservazione
 
 - **Account e contenuti utente:** per tutta la durata del rapporto contrattuale e fino alla richiesta di cancellazione
-- **Dati della sincronizzazione fra i tuoi dispositivi (§2.5):** restano nel cloud finché non li cancelli tu. Spegnere l'interruttore o togliere il consenso Cloud Sync non cancellano niente, tranne le copie dei dati di Fludomi (cronologia, preferiti, preferenze dei siti, schede), che lasciano il server allo spegnimento. Se il piano Cloud si chiude (scadenza, rimborso, cambio di piano o revoca), il server registra quando e perché, e per 6 mesi da quel momento resta tutto e lo puoi scaricare su ogni tuo dispositivo. Dopo i 6 mesi possiamo togliere dal cloud l'audio delle lezioni, i PDF e le foto che superano i 500 MB del piano Free, cominciando dai più vecchi; l'inchiostro dei canvas resta, e non togliamo niente da un canvas condiviso con un altro account né dalle schede del catalogo privato. Se il Cloud torna attivo prima, la chiusura si annulla. Un canvas messo nel **Cestino** è nel Cestino su ogni tuo dispositivo e resta nel cloud com'era; i 30 giorni del Cestino contano dall'ora in cui ci è entrato, la stessa su tutti; se ci scrivi ancora da un altro dispositivo, ne esce. Una risposta d'esame scartata e una foto tolta da un canvas lasciano il cloud appena il dispositivo è in rete. Di una cartella eliminata resta nel cloud solo il suo identificativo con l'ora, perché non torni; i canvas che conteneva restano. «Elimina definitivamente» su un canvas (nel Cestino) lo toglie dal cloud insieme a ciò che gli appartiene: tratti, foto, PDF, lezioni, carte del ripasso con le risposte, concetti, titoli, studio, testo riconosciuto e l'inchiostro dei suoi esami. «Cancella tutti i miei dati dal cloud» (*Impostazioni → Privacy e telemetria*) toglie tutti i canvas con le stesse cose, le lezioni, l'inchiostro degli esami, le impostazioni che viaggiano e le cartelle, e spegne l'interruttore su tutti i tuoi dispositivi; resta solo la registrazione dell'interruttore (quando l'hai acceso, con la versione di questa informativa, e quando l'hai spento), che è la prova del consenso. «Cancella l'account» (*Impostazioni → Profilo e account*) cancella anche quella. Le copie sui tuoi dispositivi restano finché non le elimini lì
+- **Dati della sincronizzazione fra i tuoi dispositivi (§2.5):** restano nel cloud finché non li cancelli tu. Spegnere l'interruttore o togliere il consenso Cloud Sync non cancellano niente, tranne le copie dei dati di Fludomi (cronologia, preferiti, preferenze dei siti, schede), che lasciano il server allo spegnimento, o quando ne fermi il tipo in «Cosa viaggia». Se il piano Cloud si chiude (scadenza, rimborso, cambio di piano o revoca), il server registra quando e perché, e per 6 mesi da quel momento resta tutto e lo puoi scaricare su ogni tuo dispositivo. Dopo i 6 mesi possiamo togliere dal cloud l'audio delle lezioni, i PDF e le foto che superano i 500 MB del piano Free, cominciando dai più vecchi; l'inchiostro dei canvas resta, e non togliamo niente da un canvas condiviso con un altro account né dalle schede del catalogo privato. Se il Cloud torna attivo prima, la chiusura si annulla. Un canvas messo nel **Cestino** è nel Cestino su ogni tuo dispositivo e resta nel cloud com'era; i 30 giorni del Cestino contano dall'ora in cui ci è entrato, la stessa su tutti; se ci scrivi ancora da un altro dispositivo, ne esce. Una risposta d'esame scartata e una foto tolta da un canvas lasciano il cloud appena il dispositivo è in rete. Di una cartella eliminata resta nel cloud solo il suo identificativo con l'ora, perché non torni; i canvas che conteneva restano. «Elimina definitivamente» su un canvas (nel Cestino) lo toglie dal cloud insieme a ciò che gli appartiene: tratti, foto, PDF, lezioni, carte del ripasso con le risposte, concetti, titoli, studio, testo riconosciuto e l'inchiostro dei suoi esami. «Cancella tutti i miei dati dal cloud» (*Impostazioni → Privacy e telemetria*) toglie tutti i canvas con le stesse cose, le lezioni, l'inchiostro degli esami, le impostazioni che viaggiano e le cartelle, e spegne l'interruttore su tutti i tuoi dispositivi; resta solo la registrazione dell'interruttore (quando l'hai acceso, con la versione di questa informativa, e quando l'hai spento), che è la prova del consenso. «Cancella l'account» (*Impostazioni → Profilo e account*) cancella anche quella. Le copie sui tuoi dispositivi restano finché non le elimini lì
 - **Eventi di telemetria:** 180 giorni
+- **Segnalazioni dei contenuti scritti dall'IA (§2.15):** 12 mesi, poi le cancella un job pianificato sui nostri server; prima, se cancelli l'account
 - **Eventi dei report di crash:** 30 giorni in Sentry. Le copie di backup cifrate vengono eliminate entro 90 giorni dalla loro creazione
 - **Log di utilizzo AI (`ai_usage_events`):** 24 mesi
 - **Misure di quanto ricordi delle schede del catalogo (§2.3):** finché non togli il consenso Analytics, non spegni il Segnale del marketplace, non usi «Cancella tutti i miei dati dal cloud» o non cancelli l'account

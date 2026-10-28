@@ -54,12 +54,9 @@ import { SITE } from "@/lib/site";
         Viety <code>.fluera</code>-tiedosto ei ole salattu: käsittele sitä kuin mitä tahansa tiedostoa. Komento <em>Salattu varmuuskopio</em> kirjoittaa <code>.fluerabackup</code>-tiedoston, joka on sinetöity AES-256-GCM:llä tämän laitteen avainvarastossa olevalla avaimella; se aukeaa vain laitteella, jolla tuo avain on.
       </p>
 
-      <h2>P2P-yhteistyö: suora, salattu</h2>
+      <h2>Reaaliaikainen yhteistyö: palvelimen kautta, ei päästä päähän</h2>
       <p>
-        Reaaliaikainen yhteistyö käyttää WebRTC DataChanneleja, jotka on salattu DTLS:llä. Supabase Realtime toimii vain signalointivälittäjänä — yhteyden muodostamisessa — eikä välitä varsinaista canvas-liikennettä. Kättelyn jälkeen canvasin muutokset kulkevat peer-to-peer. Palvelin ei näe niitä.
-      </p>
-      <p>
-        Välityspalvelinta ei ole: julkiset STUN-palvelimet (Google) vain auttavat kahta laitetta löytämään toisensa. Jos verkko estää suoran yhteyden, istunto ei muodostu.
+        Reaaliaikainen yhteistyö kulkee Supabase Realtimen kautta. Se on salattu siirrossa TLS:llä, mutta se <em>ei</em> ole päästä päähän salattu: istunnossa vaihdetut vedot kulkevat palvelimen kautta, ja palvelin voi lukea ne.
       </p>
 
       <h2>Tekoälykutsut: välityspalvelimen kautta, ei koskaan suoraan</h2>

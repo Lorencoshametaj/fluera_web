@@ -54,12 +54,9 @@ import { SITE } from "@/lib/site";
         Eine exportierte <code>.fluera</code>-Datei ist nicht verschlüsselt: Behandle sie wie jede andere Datei. Der Befehl <em>Verschlüsseltes Backup</em> schreibt eine <code>.fluerabackup</code>-Datei, mit AES-256-GCM versiegelt, mit einem Schlüssel im Schlüsselspeicher dieses Geräts; sie öffnet sich nur auf einem Gerät, das diesen Schlüssel hat.
       </p>
 
-      <h2>P2P-Zusammenarbeit: direkt, verschlüsselt</h2>
+      <h2>Echtzeit-Zusammenarbeit: über den Server, nicht Ende-zu-Ende</h2>
       <p>
-        Die Echtzeit-Zusammenarbeit nutzt WebRTC-DataChannels, mit DTLS verschlüsselt. Supabase Realtime dient nur als Signalisierungs-Broker — zum Aufbau der Verbindung — nicht als Relay für den eigentlichen Canvas-Verkehr. Nach dem Handshake fließen die Änderungen am Canvas Peer-to-Peer. Der Server sieht sie nicht.
-      </p>
-      <p>
-        Es gibt keinen Relay-Server: Öffentliche STUN-Server (Google) helfen den beiden Geräten nur, einander zu finden. Blockiert ein Netz die direkte Verbindung, kommt die Sitzung nicht zustande.
+        Die Echtzeit-Zusammenarbeit läuft über Supabase Realtime. Sie ist beim Transport mit TLS verschlüsselt, aber <em>nicht</em> Ende-zu-Ende-verschlüsselt: Die in einer Sitzung ausgetauschten Striche laufen über den Server, der sie lesen kann.
       </p>
 
       <h2>KI-Aufrufe: über Proxy, niemals direkt</h2>

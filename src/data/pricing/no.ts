@@ -1,23 +1,25 @@
 import type { PricingData } from "../types";
 
-// Listino del 22/10/2026 (Free, Cloud, IA, Cloud + IA). Allineato a it.ts.
-// Gli importi di `price` e `period` li controlla
-// fluera_engine/tool/public_truth_gate.dart contro FlueraPricing, per `id`.
+// Listino del 22/10/2026 coi nomi della tavola «I piani di Fluera» (26/10):
+// Fluera (gratis), Fluera Ovunque, Fluera Mentore, Fluera Ovunque + Mentore,
+// tradotti in ogni lingua con le stesse parole dell’app (ARB del motore).
+// `public_truth_gate.dart` lega prezzi e periodi a FlueraPricing per `id`, e
+// i nomi a `abbonamenti_piano*` della stessa lingua.
 
 const data: PricingData = {
   tiers: [
     {
       id: "free",
-      name: "Free",
+      name: "Fluera",
       price: "€0",
       period: "for alltid",
       tagline:
         "Hele canvaset, repetisjon og fag. Uten abonnement og uten utløpsdato.",
       features: [
         "Uendelig canvas og håndskrift",
-        "Repetisjon, fag, alle pensler, eksport og time travel",
-        "En smakebit av KI den første måneden etter registrering",
-        "500 MB sky på alle enhetene dine, uten lyd, når Cloud starter",
+        "Repetisjon, kurs, alle pensler, eksport og time travel",
+        "Mentor å prøve den første måneden",
+        "500 MB som er like på alle enhetene dine, uten lyd, når synkroniseringen starter",
         "Fungerer også offline: canvasene dine blir på enheten",
       ],
       cta: { label: "Start gratis", href: "/beta" },
@@ -25,77 +27,82 @@ const data: PricingData = {
     },
     {
       id: "cloud",
-      name: "Cloud",
-      price: "€19,99",
-      period: "per år · kun årlig · Cloud 60 for €44,99 / år",
+      name: "Fluera Overalt",
+      price: "€29,99",
+      period: "per år · kun årlig · 60 GB for €44,99 / år",
       tagline:
-        "Plass til canvasene dine og innspilte forelesninger. Starter med en oppdatering av appen.",
+        "Alt på telefon, nettbrett og datamaskin, uten å tenke på plass. Starter med en oppdatering av appen.",
       features: [
-        "20 GB på enhetene dine: telefon, nettbrett og datamaskin",
-        "Innspilte forelesninger kan høres overalt",
-        "Canvasene dine er trygge, også om du bytter telefon",
-        "Cloud 60: 60 GB for deg som spiller inn mange forelesninger",
+        "20 GB i stedet for gratisversjonens 500 MB",
+        "Innspilte forelesninger, med lyd, på hver enhet",
+        "Del et canvas og skriv sammen",
+        "Slutter du, har du 6 måneder til å laste ned alt. Blekket blir for alltid.",
+        "Ingen ekstra studiefunksjoner: alle er allerede gratis",
       ],
-      cta: { label: "Velg Cloud", href: "/beta" },
+      cta: { label: "Velg Overalt", href: "/beta" },
       highlighted: false,
     },
     {
       id: "ia",
-      name: "KI",
+      name: "Fluera Mentor",
       price: "€9,99",
       period: "per måned · €84,99 / år (spar €34,89)",
-      tagline: "En KI som leser det du skriver, med en måler som alltid er synlig.",
+      tagline:
+        "En veileder som har lest notatene dine, med en månedskvote som alltid vises i prosent.",
       features: [
-        "KI-en leser notatene dine og gir hvert begrep et navn",
-        "Veileder, eksamener, chat, formler og transkripsjon",
-        "Du ser alltid hvor mye KI du har igjen denne måneden, i prosent",
-        "Eksamensreserve for de travleste månedene",
-        "14 dager gratis for å prøve den",
+        "Stiller deg spørsmål om det du har skrevet",
+        "Gir deg en muntlig eksamen og sier hva som mangler",
+        "Gir hvert begrep du skriver en tittel",
+        "Gjør håndskrevne formler redigerbare",
+        "Og du kan stille notatene dine spørsmål i en chat",
+        "En kvote i måneden, alltid vist i prosent",
+        "De første 14 dagene er gratis",
       ],
-      cta: { label: "Prøv KI-en", href: "/beta" },
+      cta: { label: "Prøv Mentor", href: "/beta" },
       highlighted: false,
     },
     {
       id: "cloud_ia",
-      name: "Cloud + KI",
+      name: "Fluera Overalt + Mentor",
       price: "€99,99",
-      period: "per år · spar €4,99 sammenlignet med de to hver for seg · med Cloud 60 €119,99 / år",
-      tagline: "Hele Cloud og all KI, i ett abonnement.",
+      period: "per år · spar €14,99 sammenlignet med de to hver for seg · med 60 GB €119,99 / år",
+      tagline:
+        "Hele Fluera, på hver enhet, med veilederen. Den anbefalte planen.",
       features: [
-        "Hele Cloud og all KI",
-        "20 GB, eller 60 GB med Cloud 60 + KI",
-        "Du ser alltid hvor mye KI du har igjen denne måneden, i prosent",
+        "Hele Overalt: 20 GB og forelesninger med lyd",
+        "Hele Mentor: spørsmål, eksamen, titler og formler",
+        "En kvote i måneden, alltid vist i prosent",
         "Kun årlig",
       ],
-      cta: { label: "Velg Cloud + KI", href: "/beta" },
+      cta: { label: "Velg Overalt + Mentor", href: "/beta" },
       highlighted: true,
       badge: "Anbefalt",
     },
   ],
   faq: [
     {
-      q: "Hvordan ser jeg hvor mye KI jeg har igjen?",
-      a: "I appen, alltid. En måler viser i prosent hvor mye av månedens KI du har igjen, når den fylles på (den 1. hver måned) og hvor lenge den holder i ditt tempo. Ingen skjulte grenser og ingen kreditter å regne om i hodet: det du ser, er det du har.",
+      q: "Hvordan ser jeg hvor mye Mentor jeg har igjen?",
+      a: "I appen, alltid. En teller viser i prosent hvor mye som er igjen av månedens Mentor-kvote, når den fylles på (den 1. i måneden) og hvor lenge den varer i ditt tempo. Ingen skjulte grenser og ingen kreditter å regne om i hodet: det du ser, er det du har.",
     },
     {
-      q: "Hva om månedens KI tar slutt?",
-      a: "Repetisjon, fag og notatene dine fungerer alltid, også uten KI. KI-en kommer tilbake den 1. hver måned; trenger du den før, kan du i appen slå på eksamensreserven eller legge til litt mer.",
+      q: "Og hvis månedens Mentor tar slutt?",
+      a: "Repetisjon, kurs og notatene dine virker alltid, også uten Mentor. Mentor kommer tilbake den 1. i måneden; trenger du den før, kan du slå på eksamensreserven eller kjøpe litt ekstra i appen.",
     },
     {
       q: "Kjøper jeg én gang, gjelder det på alle enhetene mine?",
       a: "Ja. Du abonnerer i Fluera-appen på telefonen eller nettbrettet via App Store eller Google Play, og betaler med betalingsmåtene som er lagret på butikkontoen din. Planen din gjelder deretter på alle enheter der du logger inn med samme konto, også datamaskiner.",
     },
     {
-      q: "Fungerer Cloud allerede mellom enhetene?",
-      a: "Ikke ennå. Cloud mellom telefon, nettbrett og datamaskin er under bygging og starter med en oppdatering av appen. Frem til da blir canvasene dine på enheten, der de også fungerer offline.",
+      q: "Fungerer Overalt allerede mellom enhetene?",
+      a: "Ikke ennå. Synkroniseringen mellom telefon, nettbrett og datamaskin bygges og starter med en oppdatering av appen. Frem til da blir canvasene dine på enheten, der de også virker uten nett.",
     },
     {
       q: "Finnes det en gratis prøveperiode?",
-      a: "Ja: 14 dager gratis, bare på KI-en. Du kan si opp i butikken når du vil, før prøveperioden er over. Free utløper aldri og krever ingen betaling.",
+      a: "Ja: 14 dager gratis, bare på Mentor. Du kan si opp i butikken når du vil, før prøveperioden er over. Gratis Fluera utløper aldri og krever ingen betaling.",
     },
     {
       q: "Hva skjer med canvasene mine hvis jeg sier opp?",
-      a: "De forblir dine, på enheten: canvas, repetisjon, fag, pensler og eksport fortsetter å fungere med Free. Planens funksjoner står på pause til du aktiverer den igjen. Ingenting slettes uten en handling fra deg.",
+      a: "De forblir dine, på enheten din: canvas, repetisjon, kurs, pensler og eksport fortsetter å virke gratis. Hadde du Overalt, har du 6 måneder til å laste ned alt, og blekket blir for alltid. Ingenting slettes uten at du gjør det selv.",
     },
     {
       q: "Refusjonspolicy?",

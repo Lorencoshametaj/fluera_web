@@ -1,23 +1,25 @@
 import type { PricingData } from "../types";
 
-// Listino del 22/10/2026 (Free, Cloud, IA, Cloud + IA). Allineato a it.ts.
-// Gli importi di `price` e `period` li controlla
-// fluera_engine/tool/public_truth_gate.dart contro FlueraPricing, per `id`.
+// Listino del 22/10/2026 coi nomi della tavola «I piani di Fluera» (26/10):
+// Fluera (gratis), Fluera Ovunque, Fluera Mentore, Fluera Ovunque + Mentore,
+// tradotti in ogni lingua con le stesse parole dell’app (ARB del motore).
+// `public_truth_gate.dart` lega prezzi e periodi a FlueraPricing per `id`, e
+// i nomi a `abbonamenti_piano*` della stessa lingua.
 
 const data: PricingData = {
   tiers: [
     {
       id: "free",
-      name: "Free",
+      name: "Fluera",
       price: "€0",
       period: "voor altijd",
       tagline:
         "Het volledige canvas, herhaling en vakken. Zonder abonnement en zonder einddatum.",
       features: [
         "Oneindig canvas en handschrift",
-        "Herhaling, vakken, alle penselen, export en time travel",
-        "Een voorproefje AI in je eerste maand na het aanmelden",
-        "500 MB cloud op al je apparaten, zonder audio, zodra Cloud start",
+        "Herhalen, cursussen, alle penselen, export en time travel",
+        "Mentor om te proberen in je eerste maand",
+        "500 MB die op al je apparaten gelijk is, zonder audio, zodra synchroniseren start",
         "Werkt ook offline: je canvassen blijven op je apparaat",
       ],
       cta: { label: "Gratis beginnen", href: "/beta" },
@@ -25,77 +27,82 @@ const data: PricingData = {
     },
     {
       id: "cloud",
-      name: "Cloud",
-      price: "€19,99",
-      period: "per jaar · alleen jaarlijks · Cloud 60 voor €44,99 / jaar",
+      name: "Fluera Overal",
+      price: "€29,99",
+      period: "per jaar · alleen jaarlijks · 60 GB voor €44,99 / jaar",
       tagline:
-        "Ruimte voor je canvassen en opgenomen colleges. Start met een update van de app.",
+        "Alles op telefoon, tablet en computer, zonder aan ruimte te denken. Start met een update van de app.",
       features: [
-        "20 GB op je apparaten: telefoon, tablet en computer",
-        "Opgenomen colleges luister je overal",
-        "Je canvassen veilig, ook als je van telefoon wisselt",
-        "Cloud 60: 60 GB voor wie veel colleges opneemt",
+        "20 GB in plaats van de 500 MB van gratis",
+        "Opgenomen colleges, met geluid, op elk apparaat",
+        "Deel een canvas en schrijf er samen in",
+        "Stop je, dan heb je 6 maanden om alles te downloaden. De inkt blijft voor altijd.",
+        "Geen extra leerfuncties: die zitten allemaal al in gratis",
       ],
-      cta: { label: "Kies Cloud", href: "/beta" },
+      cta: { label: "Kies Overal", href: "/beta" },
       highlighted: false,
     },
     {
       id: "ia",
-      name: "AI",
+      name: "Fluera Mentor",
       price: "€9,99",
       period: "per maand · €84,99 / jaar (bespaar €34,89)",
-      tagline: "Een AI die leest wat je schrijft, met een teller die altijd zichtbaar is.",
+      tagline:
+        "Een tutor die je aantekeningen heeft gelezen, met een maandtegoed dat altijd in procenten zichtbaar is.",
       features: [
-        "De AI leest je aantekeningen en geeft elk begrip een naam",
-        "Tutor, tentamens, chat, formules en transcriptie",
-        "Je ziet altijd hoeveel AI je deze maand nog hebt, in procenten",
-        "Tentamenreserve voor de zwaarste maanden",
-        "14 dagen gratis om het te proberen",
+        "Stelt je vragen over wat je hebt geschreven",
+        "Neemt je een mondeling af en zegt wat er ontbreekt",
+        "Geeft elk begrip dat je schrijft een titel",
+        "Maakt van handgeschreven formules bewerkbare formules",
+        "En je kunt je aantekeningen vragen stellen, in een chat",
+        "Een tegoed per maand, altijd zichtbaar in procenten",
+        "De eerste 14 dagen zijn gratis",
       ],
-      cta: { label: "Probeer de AI", href: "/beta" },
+      cta: { label: "Probeer Mentor", href: "/beta" },
       highlighted: false,
     },
     {
       id: "cloud_ia",
-      name: "Cloud + AI",
+      name: "Fluera Overal + Mentor",
       price: "€99,99",
-      period: "per jaar · je bespaart €4,99 vergeleken met de twee los · met Cloud 60 €119,99 / jaar",
-      tagline: "Alles van Cloud en alles van AI, in één abonnement.",
+      period: "per jaar · je bespaart €14,99 vergeleken met de twee los · met 60 GB €119,99 / jaar",
+      tagline:
+        "Heel Fluera, op elk apparaat, met de tutor. Het aanbevolen abonnement.",
       features: [
-        "Alles van Cloud en alles van AI",
-        "20 GB, of 60 GB met Cloud 60 + AI",
-        "Je ziet altijd hoeveel AI je deze maand nog hebt, in procenten",
+        "Heel Overal: 20 GB en colleges met geluid",
+        "Heel Mentor: vragen, mondeling, titels en formules",
+        "Een tegoed per maand, altijd zichtbaar in procenten",
         "Alleen jaarlijks",
       ],
-      cta: { label: "Kies Cloud + AI", href: "/beta" },
+      cta: { label: "Kies Overal + Mentor", href: "/beta" },
       highlighted: true,
       badge: "Aanbevolen",
     },
   ],
   faq: [
     {
-      q: "Hoe zie ik hoeveel AI ik nog heb?",
-      a: "In de app, altijd. Een teller laat in procenten zien hoeveel AI je deze maand nog hebt, wanneer die zich aanvult (op de 1e van de maand) en tot wanneer je in jouw tempo genoeg hebt. Geen verborgen limieten en geen credits om in je hoofd om te rekenen: wat je ziet, is wat je hebt.",
+      q: "Hoe zie ik hoeveel Mentor ik nog heb?",
+      a: "In de app, altijd. Een teller laat in procenten zien hoeveel er nog over is van het Mentor-tegoed van de maand, wanneer het wordt aangevuld (op de 1e van de maand) en hoe lang het in jouw tempo meegaat. Geen verborgen limieten en geen credits om om te rekenen: wat je ziet, is wat je hebt.",
     },
     {
-      q: "En als de AI van deze maand op is?",
-      a: "Herhaling, vakken en je aantekeningen werken altijd, ook zonder AI. De AI komt terug op de 1e van de maand; heb je hem eerder nodig, dan zet je in de app de tentamenreserve aan of voeg je wat toe.",
+      q: "En als Mentor voor de maand op is?",
+      a: "Herhalen, cursussen en je aantekeningen werken altijd, ook zonder Mentor. Mentor komt terug op de 1e van de maand; heb je hem eerder nodig, dan kun je in de app de examenreserve aanzetten of wat bijkopen.",
     },
     {
       q: "Eén keer kopen: werkt het op al mijn apparaten?",
       a: "Ja. Je neemt een abonnement in de Fluera-app op je telefoon of tablet, via de App Store of Google Play, en betaalt met de betaalmethoden in je store-account. Je abonnement werkt daarna op elk apparaat waarop je inlogt met hetzelfde account, computers inbegrepen.",
     },
     {
-      q: "Werkt Cloud al tussen apparaten?",
-      a: "Nog niet. Cloud tussen telefoon, tablet en computer is in aanbouw en start met een update van de app. Tot dan blijven je canvassen op je apparaat, waar ze ook offline werken.",
+      q: "Werkt Overal al tussen apparaten?",
+      a: "Nog niet. Synchroniseren tussen telefoon, tablet en computer wordt gebouwd en start met een update van de app. Tot die tijd blijven je canvassen op het apparaat, waar ze ook offline werken.",
     },
     {
       q: "Is er een gratis proefperiode?",
-      a: "Ja: 14 dagen gratis, alleen op de AI. Je kunt altijd opzeggen in de store, vóór het einde van de proefperiode. Free verloopt niet en vraagt geen betaling.",
+      a: "Ja: 14 dagen gratis, alleen voor Mentor. Je kunt via de store altijd opzeggen, voor het einde van de proef. Gratis Fluera verloopt nooit en vraagt geen betaling.",
     },
     {
       q: "Wat gebeurt er met mijn canvassen als ik opzeg?",
-      a: "Ze blijven van jou, op je apparaat: canvas, herhaling, vakken, penselen en export blijven werken met Free. De functies van het abonnement pauzeren tot je het opnieuw activeert. Niets wordt verwijderd zonder een actie van jou.",
+      a: "Ze blijven van jou, op je apparaat: canvas, herhalen, cursussen, penselen en export blijven gratis werken. Had je Overal, dan heb je 6 maanden om alles te downloaden, en de inkt blijft voor altijd. Er wordt niets verwijderd zonder dat jij het doet.",
     },
     {
       q: "Terugbetalingsbeleid?",

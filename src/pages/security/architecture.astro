@@ -56,12 +56,9 @@ import { SITE } from "@/lib/site";
         A plain <code>.fluera</code> export is not encrypted: treat it like any other file. The <em>Encrypted backup</em> command writes a <code>.fluerabackup</code> file sealed with AES-256-GCM under a key kept in this device's key store; it opens only on a device that holds that key.
       </p>
 
-      <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">P2P collaboration: direct, encrypted</h2>
+      <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">Real-time collaboration: through the server, not end-to-end</h2>
       <p>
-        Real-time collaboration uses WebRTC DataChannels, encrypted with DTLS. Supabase Realtime acts as a signalling broker only — connection setup — not a relay for the actual canvas traffic. After the handshake, canvas edits flow peer-to-peer. The server does not see them.
-      </p>
-      <p>
-        There is no relay server: public STUN servers (Google) only help the two devices find a route to each other. If a network blocks a direct connection, the session does not connect.
+        Real-time collaboration travels through Supabase Realtime. It is encrypted in transit with TLS, but it is <em>not</em> end-to-end encrypted: the strokes exchanged in a session pass through the server, which can read them.
       </p>
 
       <h2 class="font-serif text-2xl text-paper-50 mt-12 mb-4">AI calls: proxied, processed in the EU</h2>

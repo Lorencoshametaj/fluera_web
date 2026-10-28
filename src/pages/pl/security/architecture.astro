@@ -54,12 +54,9 @@ import { SITE } from "@/lib/site";
         Wyeksportowany plik <code>.fluera</code> nie jest szyfrowany: traktuj go jak każdy inny plik. Polecenie <em>Zaszyfrowana kopia zapasowa</em> zapisuje plik <code>.fluerabackup</code> zapieczętowany AES-256-GCM kluczem z magazynu kluczy tego urządzenia; otwiera się tylko na urządzeniu, które ma ten klucz.
       </p>
 
-      <h2>Współpraca P2P: bezpośrednia, szyfrowana</h2>
+      <h2>Współpraca w czasie rzeczywistym: przez serwer, nie end-to-end</h2>
       <p>
-        Współpraca w czasie rzeczywistym używa WebRTC DataChannels, szyfrowanych przez DTLS. Supabase Realtime służy tylko jako broker sygnalizacji — do zestawienia połączenia — a nie jako przekaźnik właściwego ruchu canvasu. Po handshake'u zmiany w canvasie płyną peer-to-peer. Serwer ich nie widzi.
-      </p>
-      <p>
-        Nie ma serwera przekaźnikowego: publiczne serwery STUN (Google) pomagają tylko dwóm urządzeniom się odnaleźć. Jeśli sieć blokuje bezpośrednie połączenie, sesja się nie nawiązuje.
+        Współpraca w czasie rzeczywistym przechodzi przez Supabase Realtime. Jest szyfrowana w tranzycie przez TLS, ale <em>nie</em> jest szyfrowana end-to-end: pociągnięcia wymieniane w sesji przechodzą przez serwer, który może je odczytać.
       </p>
 
       <h2>Wywołania AI: w UE, przez proxy</h2>

@@ -54,12 +54,9 @@ import { SITE } from "@/lib/site";
         Un file <code>.fluera</code> esportato non è cifrato: trattalo come qualunque altro file. Il comando <em>Backup cifrato</em> scrive un file <code>.fluerabackup</code> sigillato con AES-256-GCM con una chiave custodita nell'archivio sicuro di questo dispositivo; si apre solo su un dispositivo che ha quella chiave.
       </p>
 
-      <h2>Collaborazione P2P: diretta, cifrata</h2>
+      <h2>Collaborazione in tempo reale: passa dal server, non è end-to-end</h2>
       <p>
-        La collaborazione in tempo reale usa WebRTC DataChannel, cifrati con DTLS. Supabase Realtime fa solo da broker di signaling — l'avvio della connessione — non da relay per il traffico vero del canvas. Dopo l'handshake, le modifiche al canvas viaggiano peer-to-peer. Il server non le vede.
-      </p>
-      <p>
-        Non c'è un server di relay: server STUN pubblici (Google) aiutano solo i due dispositivi a trovarsi. Se una rete blocca la connessione diretta, la sessione non parte.
+        La collaborazione in tempo reale passa da Supabase Realtime. È cifrata in transito con TLS, ma <em>non</em> è end-to-end: i tratti scambiati in una sessione passano dal server, che può leggerli.
       </p>
 
       <h2>Chiamate AI: via proxy, mai dirette</h2>

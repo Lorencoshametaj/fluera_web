@@ -1,14 +1,16 @@
 import type { PricingData } from "../types";
 
-// Listino del 22/10/2026 (Free, Cloud, IA, Cloud + IA). Allineato a it.ts.
-// Gli importi di `price` e `period` li controlla
-// fluera_engine/tool/public_truth_gate.dart contro FlueraPricing, per `id`.
+// Listino del 22/10/2026 coi nomi della tavola «I piani di Fluera» (26/10):
+// Fluera (gratis), Fluera Ovunque, Fluera Mentore, Fluera Ovunque + Mentore,
+// tradotti in ogni lingua con le stesse parole dell’app (ARB del motore).
+// `public_truth_gate.dart` lega prezzi e periodi a FlueraPricing per `id`, e
+// i nomi a `abbonamenti_piano*` della stessa lingua.
 
 const data: PricingData = {
   tiers: [
     {
       id: "free",
-      name: "Free",
+      name: "Fluera",
       price: "€0",
       period: "para sempre",
       tagline:
@@ -16,8 +18,8 @@ const data: PricingData = {
       features: [
         "Canvas infinito e escrita à mão",
         "Revisão, cursos, todos os pincéis, exportação e time travel",
-        "Uma amostra de IA no primeiro mês após o cadastro",
-        "500 MB de nuvem em todos os seus dispositivos, sem áudio, quando o Cloud for ativado",
+        "Mentor para testar no primeiro mês",
+        "500 MB iguais em todos os seus dispositivos, sem áudio, quando a sincronização for ativada",
         "Funciona também offline: seus canvas ficam no dispositivo",
       ],
       cta: { label: "Começar grátis", href: "/beta" },
@@ -25,77 +27,82 @@ const data: PricingData = {
     },
     {
       id: "cloud",
-      name: "Cloud",
-      price: "€19,99",
-      period: "por ano · somente anual · Cloud 60 por €44,99 / ano",
+      name: "Fluera Em todo lugar",
+      price: "€29,99",
+      period: "por ano · somente anual · 60 GB por €44,99 / ano",
       tagline:
-        "Espaço para seus canvas e suas aulas gravadas. É ativado com uma atualização do app.",
+        "Tudo no celular, no tablet e no computador, sem pensar no espaço. É ativado com uma atualização do app.",
       features: [
-        "20 GB nos seus dispositivos: celular, tablet e computador",
-        "As aulas gravadas tocam em qualquer lugar",
-        "Seus canvas seguros, mesmo se trocar de celular",
-        "Cloud 60: 60 GB para quem grava muitas aulas",
+        "20 GB em vez dos 500 MB do plano grátis",
+        "As aulas gravadas, com o áudio, em cada dispositivo",
+        "Compartilhe um canvas e escrevam juntos",
+        "Se parar, 6 meses para baixar tudo. A tinta fica para sempre.",
+        "Nenhuma função de estudo extra: todas já estão no grátis",
       ],
-      cta: { label: "Escolher Cloud", href: "/beta" },
+      cta: { label: "Escolher Em todo lugar", href: "/beta" },
       highlighted: false,
     },
     {
       id: "ia",
-      name: "IA",
+      name: "Fluera Mentor",
       price: "€9,99",
       period: "por mês · €84,99 / ano (economize €34,89)",
-      tagline: "Uma IA que lê o que você escreve, com um contador sempre visível.",
+      tagline:
+        "Um tutor que leu suas anotações, com uma cota do mês sempre visível em porcentagem.",
       features: [
-        "A IA lê suas anotações e dá nome a cada conceito",
-        "Tutor, provas, chat, fórmulas e transcrição",
-        "Você sempre vê quanta IA ainda tem no mês, em porcentagem",
-        "Reserva de prova para os meses mais pesados",
-        "14 dias grátis para experimentar",
+        "Faz perguntas sobre o que você escreveu",
+        "Faz uma prova oral e diz o que falta",
+        "Dá um título a cada conceito que você escreve",
+        "Transforma fórmulas escritas à mão em fórmulas editáveis",
+        "E você pode fazer perguntas às suas anotações, num chat",
+        "Uma cota por mês, sempre visível em porcentagem",
+        "Os primeiros 14 dias são grátis",
       ],
-      cta: { label: "Experimentar a IA", href: "/beta" },
+      cta: { label: "Testar o Mentor", href: "/beta" },
       highlighted: false,
     },
     {
       id: "cloud_ia",
-      name: "Cloud + IA",
+      name: "Fluera Em todo lugar + Mentor",
       price: "€99,99",
-      period: "por ano · economize €4,99 em relação aos dois separados · com Cloud 60 €119,99 / ano",
-      tagline: "Todo o Cloud e toda a IA, em uma assinatura só.",
+      period: "por ano · economize €14,99 em relação aos dois separados · com 60 GB €119,99 / ano",
+      tagline:
+        "Todo o Fluera, em cada dispositivo, com o tutor. O plano recomendado.",
       features: [
-        "Todo o Cloud e toda a IA",
-        "20 GB, ou 60 GB com Cloud 60 + IA",
-        "Você sempre vê quanta IA ainda tem no mês, em porcentagem",
+        "Todo o Em todo lugar: 20 GB e aulas com áudio",
+        "Todo o Mentor: perguntas, prova, títulos e fórmulas",
+        "Uma cota por mês, sempre visível em porcentagem",
         "Somente anual",
       ],
-      cta: { label: "Escolher Cloud + IA", href: "/beta" },
+      cta: { label: "Escolher Em todo lugar + Mentor", href: "/beta" },
       highlighted: true,
       badge: "Recomendado",
     },
   ],
   faq: [
     {
-      q: "Como vejo quanta IA ainda tenho?",
-      a: "No app, sempre. Um contador mostra em porcentagem quanta IA do mês ainda resta, quando ela recarrega (no dia 1º de cada mês) e, no seu ritmo, até quando ela dura. Sem limites escondidos e sem créditos para converter de cabeça: o que você vê é o que você tem.",
+      q: "Como vejo quanto Mentor ainda tenho?",
+      a: "No app, sempre. Um contador mostra em porcentagem quanto resta da cota do Mentor no mês, quando ela recarrega (no dia 1º) e, no seu ritmo, até quando ela dura. Sem limites escondidos e sem créditos para converter de cabeça: o que você vê é o que você tem.",
     },
     {
-      q: "E se a IA do mês acabar?",
-      a: "A revisão, os cursos e suas anotações sempre funcionam, mesmo sem IA. A IA volta no dia 1º do mês; se precisar antes, pelo app você pode ativar a reserva de prova ou adicionar um pouco mais.",
+      q: "E se o Mentor do mês acabar?",
+      a: "Revisão, cursos e suas anotações funcionam sempre, mesmo sem o Mentor. O Mentor volta no dia 1º; se precisar antes, no app você pode ativar a reserva de prova ou adicionar um pouco mais.",
     },
     {
       q: "Comprando uma vez, vale em todos os meus dispositivos?",
       a: "Sim. Você assina pelo app Fluera no celular ou tablet, via App Store ou Google Play, e paga com as formas de pagamento salvas na sua conta da loja. Depois, seu plano vale em todos os dispositivos em que você entrar com a mesma conta, computadores incluídos.",
     },
     {
-      q: "O Cloud já funciona entre dispositivos?",
-      a: "Ainda não. O Cloud entre celular, tablet e computador está em construção e é ativado com uma atualização do app. Até lá seus canvas ficam no dispositivo, onde funcionam também offline.",
+      q: "O Em todo lugar já funciona entre dispositivos?",
+      a: "Ainda não. A sincronização entre celular, tablet e computador está em construção e é ativada com uma atualização do app. Até lá seus canvas ficam no dispositivo, onde também funcionam offline.",
     },
     {
-      q: "Existe um teste grátis?",
-      a: "Sim: 14 dias grátis, somente na IA. Você pode cancelar pela loja quando quiser, antes do fim do teste. O Free não expira e não pede nenhum pagamento.",
+      q: "Tem teste grátis?",
+      a: "Sim: 14 dias grátis, só no Mentor. Você pode cancelar na loja quando quiser, antes do fim do teste. O Fluera grátis não expira e não pede nenhum pagamento.",
     },
     {
       q: "O que acontece com meus canvas se eu cancelar?",
-      a: "Continuam seus, no dispositivo: canvas, revisão, cursos, pincéis e exportação seguem funcionando no Free. As funções do plano param até você reativá-lo. Nada é apagado sem uma ação sua.",
+      a: "Continuam seus, no dispositivo: canvas, revisão, cursos, pincéis e exportação continuam funcionando de graça. Se você tinha o Em todo lugar, tem 6 meses para baixar tudo, e a tinta fica para sempre. Nada é apagado sem uma ação sua.",
     },
     {
       q: "Política de reembolso?",

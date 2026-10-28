@@ -58,7 +58,7 @@ Only if you have consented to the **AI features** category:
 ### 2.5 Cloud Sync data
 Only if you have consented to the **Cloud Sync** category:
 - Canvas copies stored on Supabase (EU region `eu-north-1`), encrypted in transit (TLS) and at rest at the infrastructure level. Cloud Sync is **not** end-to-end encrypted: as the data controller, Fluera can technically access synced content to provide, secure and support the service (we never sell it or use it for advertising)
-- **Browser folds are the exception.** If you turn on "Browser folds" in Settings → Data, the pages folded into a canvas (addresses, quotes, page copies, the back of the page, threads, ink tied to the minute) reach your other devices **end-to-end encrypted**: sealed on the device with AES-256-GCM and a key born on the device that the server never receives. The key reaches a new device of yours through a pairing that shows the same 6-digit code on both, or through the recovery code you see once when you turn it on; the server keeps only a copy sealed with that code. The server sees which canvas each fold belongs to, its type and when it changes, never its content. Fludomi's history, favorites, site preferences and open tabs travel with the same key (§2.14). If you lose all your devices and the recovery code, those folds cannot be recovered (your canvases can). "Turn off on all devices" deletes them from the server
+- **Browser folds are the exception.** If you turn on "Browser folds" in Settings → Data, the pages folded into a canvas (addresses, quotes, page copies, the back of the page, threads, ink tied to the minute) reach your other devices **end-to-end encrypted**: sealed on the device with AES-256-GCM and a key born on the device that the server never receives. The key reaches a new device of yours through a pairing that shows the same 6-digit code on both, or through the recovery code you see once when you turn it on; the server keeps only a copy sealed with that code. The server sees which canvas each fold belongs to, its type and when it changes, never its content. Fludomi's history, favorites, site preferences and open tabs travel with the same key, unless you stop them in "What travels" (§2.14). If you lose all your devices and the recovery code, those folds cannot be recovered (your canvases can). "Turn off on all devices" deletes them from the server
 - Sync metadata (hash, timestamp, size)
 
 **Sync across your devices** *(Cloud plan; on the Free plan up to 500 MB, without recorded lessons)*. In *Settings → Data and sync* there is the switch "Sync across your devices". It is off until you turn it on. It applies to your whole account: on for one device means on for every device you sign in on. To turn it on you need an account (not a guest session) and the Cloud plan. When you turn it on, the server records the date and the version of this policy you had in front of you.
@@ -350,9 +350,16 @@ or what you search for.
   a note or a page) and your IP address. Lens runs in a separate space: only Google's consent is
   kept there, never the sign-in to your Google account used for browsing.
 - **Protection from dangerous sites** checks addresses before opening them. On Android this is
-  Google Safe Browsing: the service receives only hashed fragments of addresses. On iOS it is
-  Apple's fraudulent-website warning. It is on by default and can be turned off in Fludomi's
-  settings («Safe Browsing»).
+  Google Safe Browsing: the service receives only hashed fragments of addresses. On iPhone, iPad
+  and Mac it is Apple's fraudulent-website warning. It is on by default and can be turned off in
+  Fludomi's settings («Safe Browsing»).
+- **On Windows and Linux there is no protection from dangerous sites**: Fludomi does not check
+  addresses with a dangerous-sites service. On Windows the system's one (Microsoft SmartScreen)
+  would receive the full address of every page, and we keep it off; on Linux there is none.
+- **The lookalike-site warning**, on every device: if a page's address imitates a well-known
+  site's (for example «paypa1.com», or letters from another alphabet that look like those of
+  «paypal.com»), Fludomi stops the page and shows a warning in its place. The check runs on the
+  device, with lists that are inside the app, and sends nothing to anyone.
 - **Handwriting** in the address bar is recognised on the device. The language model is
   downloaded once from Google's servers.
 
@@ -360,6 +367,7 @@ or what you search for.
 - your history, deleted automatically after the period you choose (1 day, 1 week, 1 month or
   3 months, the default) without a visit; it can also be turned off;
 - favourites and open tabs;
+- the icons of the sites you visit, deleted with the history;
 - highlights, folds, sources and the text copy of the pages you fold;
 - per-site preferences.
 
@@ -388,13 +396,22 @@ killed. They close by themselves after 15 minutes with Fluera in the background.
   a warning, and on Android in the phone's browser.
 
 If you turn sync on, your folds, history, favorites, the text size and the camera and microphone
-blocks chosen for each site, and the tabs open on each device (with its name) travel between your
+blocks chosen for each site, and the tabs open on each device (with its name and their sites' icons) travel between your
 devices. They are end-to-end encrypted with the folds key (§2.5): the server sees how many entries
 there are, of which type and when they change, never the addresses or the titles. Private tabs,
-cookies, sign-ins to sites and the permissions granted to a site do not travel. "Clear browsing
+cookies, sign-ins to sites and the permissions granted to a site do not travel. In "What travels" you can stop history, favorites, site preferences and open tabs one by one. The choice applies to all your devices: the server no longer accepts that type and deletes its copies, while everything stays on your devices, except the list of the other devices' tabs. "Clear browsing
 data" also deletes them from the server and, at their next sync, from your other devices; "Clear
 everything on close" deletes only on the device where it is on. If you turn sync off, their copies
 leave the server; on your devices they stay.
+
+### 2.15 Reports of content written by the AI
+
+Next to a question written by the AI (in Socratic mode, and later in the Exam) there is a flag to report it. A report leaves only if you tap it and confirm, and it leaves even if you have withdrawn the Analytics consent: it is your request, not telemetry. With the report we send:
+- the text of the reported question, its language and the feature that wrote it;
+- the reason, if you write one;
+- the app version, your account identifier and the time.
+
+We do not send your answer or anything else from your notes. Without a connection the report stays on the device and leaves as soon as possible; without an account it does not leave. Reports are used to fix wrong or offensive questions and to improve the ones that do not sound natural. We read them; no other user sees them, and we accept at most 20 a day per account. You find them in the export of your data.
 
 ## 3. Purposes and legal bases
 
@@ -406,6 +423,7 @@ leave the server; on your devices they stay.
 - **Handwriting recognition dataset** (§2.10): explicit and revocable consent (Art. 6.1.a GDPR), separate from AI features
 - **Catalogue and card sharing** (§2.11): contract performance (Art. 6.1.b GDPR), on your explicit request — no card is uploaded unless you ask for it
 - **Moderation of shared content, handling of reports and abuse prevention** (§2.11): legal obligation (Art. 6.1.c GDPR, EU Regulation 2022/2065 "DSA") and legitimate interest (Art. 6.1.f GDPR) in preventing the service from carrying unlawful content. This also covers recording the version of the Terms you accept and your declaration about the rights in the content, which is what makes the conditions of your sharing demonstrable
+- **Reports of content written by the AI** (§2.15): legitimate interest (Art. 6.1.f GDPR) in fixing the AI-generated content you report to us, at your explicit request; the limit of 20 a day serves to prevent abuse
 - **Subscription management**: contract performance (Art. 6.1.b GDPR)
 - **Marketplace signal** (§2.11): legitimate interest (Art. 6.1.f GDPR) in measuring fairly which catalogue cards are actually installed and studied, to recognise creators, with your account identifier and no content. You can object (Art. 21 GDPR) at any time by turning the signal off in *Settings → Privacy and telemetry*: the objection applies to your account on all your devices, the server records it with the time and the version of this policy, and it also deletes your account's installs
 - **Security and abuse prevention** (AI quota enforcement): legitimate interest (Art. 6.1.f GDPR)
@@ -438,7 +456,8 @@ controllers, under their own policies (§2.14). They are:
 - the sites you visit;
 - the search engine you choose;
 - Google for Lens, when you use it;
-- the system's protection from dangerous sites: Google Safe Browsing on Android, Apple on iOS.
+- the system's protection from dangerous sites: Google Safe Browsing on Android, Apple on iPhone,
+  iPad and Mac (none on Windows and Linux).
 
 Apart from this, we do not sell, transfer, or communicate personal data to parties other than those listed. No advertising profiling is performed.
 
@@ -457,8 +476,9 @@ Supabase allows region selection: we use the region `eu-north-1` (Stockholm) wit
 ## 6. Retention periods
 
 - **Account and user content:** for the duration of the contractual relationship and until deletion request
-- **Sync across your devices data (§2.5):** stays in the cloud until you delete it. Turning the switch off or withdrawing the Cloud Sync consent deletes nothing, except the copies of Fludomi's data (history, favorites, site preferences, tabs), which leave the server when the switch goes off. If the Cloud plan closes (expiry, refund, plan change or revocation), the server records when and why, and for 6 months from then everything stays and you can download it on any of your devices. After the 6 months we may remove from the cloud the lesson audio, PDFs and photos beyond the 500 MB of the Free plan, oldest first; the ink of your canvases stays, and we remove nothing from a canvas shared with another account or from the cards of your private catalogue. If the Cloud plan comes back before then, the closure is cancelled. A canvas put in the **Trash** is in the Trash on every one of your devices and stays in the cloud as it was; the 30 days of the Trash count from the time it went in, the same on all of them; if you write in it again from another device, it comes out. A discarded exam answer and a photo removed from a canvas leave the cloud as soon as the device is online. Of a deleted folder only its identifier and the time stay in the cloud, so that it does not come back; the canvases it held stay. "Delete forever" on a canvas (in the Trash) removes it from the cloud together with what belongs to it: strokes, photos, PDFs, lessons, review cards with their answers, concepts, titles, study, recognised text and the ink of its exams. "Delete all my data from the cloud" (*Settings → Privacy and telemetry*) removes every canvas with the same things, the lessons, the exam ink, the settings that travel and the folders, and turns the switch off on all your devices; only the record of the switch stays (when you turned it on, with the version of this policy, and when you turned it off), as proof of consent. "Delete account" (*Settings → Profile and account*) deletes that too. The copies on your devices stay until you delete them there
+- **Sync across your devices data (§2.5):** stays in the cloud until you delete it. Turning the switch off or withdrawing the Cloud Sync consent deletes nothing, except the copies of Fludomi's data (history, favorites, site preferences, tabs), which leave the server when the switch goes off, or when you stop their type in "What travels". If the Cloud plan closes (expiry, refund, plan change or revocation), the server records when and why, and for 6 months from then everything stays and you can download it on any of your devices. After the 6 months we may remove from the cloud the lesson audio, PDFs and photos beyond the 500 MB of the Free plan, oldest first; the ink of your canvases stays, and we remove nothing from a canvas shared with another account or from the cards of your private catalogue. If the Cloud plan comes back before then, the closure is cancelled. A canvas put in the **Trash** is in the Trash on every one of your devices and stays in the cloud as it was; the 30 days of the Trash count from the time it went in, the same on all of them; if you write in it again from another device, it comes out. A discarded exam answer and a photo removed from a canvas leave the cloud as soon as the device is online. Of a deleted folder only its identifier and the time stay in the cloud, so that it does not come back; the canvases it held stay. "Delete forever" on a canvas (in the Trash) removes it from the cloud together with what belongs to it: strokes, photos, PDFs, lessons, review cards with their answers, concepts, titles, study, recognised text and the ink of its exams. "Delete all my data from the cloud" (*Settings → Privacy and telemetry*) removes every canvas with the same things, the lessons, the exam ink, the settings that travel and the folders, and turns the switch off on all your devices; only the record of the switch stays (when you turned it on, with the version of this policy, and when you turned it off), as proof of consent. "Delete account" (*Settings → Profile and account*) deletes that too. The copies on your devices stay until you delete them there
 - **Telemetry events:** 180 days
+- **Reports of content written by the AI (§2.15):** 12 months, then a scheduled job on our servers deletes them; earlier, if you delete your account
 - **Crash-report events:** 30 days in Sentry. Encrypted backup copies are deleted within 90 days of their creation
 - **AI usage logs (`ai_usage_events`):** 24 months
 - **Measures of how much you remember of catalogue cards (§2.3):** until you withdraw the Analytics consent, turn the Marketplace signal off, use "Delete all my data from the cloud" or delete the account

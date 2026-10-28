@@ -1,3 +1,5 @@
+> **2026-10-26 — i nomi della tavola «I piani di Fluera».** Le schede si chiamano come nell'app, tradotte in ogni lingua: Fluera (gratis), Fluera Ovunque (`cloud`), Fluera Mentore (`ia`), Fluera Ovunque + Mentore (`cloud_ia`, consigliato). Solo «Fluera» resta uguale; i nomi vengono da `abbonamenti_piano*` negli ARB del motore e `public_truth_gate.dart` (P1d) li confronta. Gli `id` e i prezzi non cambiano.
+
 > **2026-10-22 — listino definitivo.** Free, Cloud, IA, Cloud + IA (più Cloud 60), in tutte e 16 le lingue. Le schede hanno un `id` che non si traduce (`free`, `cloud`, `ia`, `cloud_ia`): con quello `fluera_engine/tool/public_truth_gate.dart` lega `price` e `period` alle costanti di `FlueraPricing`. Niente crediti né Ghost Map; prova di 14 giorni solo sull'IA. Quello che segue è la storia del listino V1.5 (Free/Plus/Pro), non più in vigore.
 
 # Pricing copy — V1.5 schema rollout status

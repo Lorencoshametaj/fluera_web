@@ -54,12 +54,9 @@ import { SITE } from "@/lib/site";
         En exporterad <code>.fluera</code>-fil är inte krypterad: behandla den som vilken fil som helst. Kommandot <em>Krypterad säkerhetskopia</em> skriver en <code>.fluerabackup</code>-fil förseglad med AES-256-GCM med en nyckel i den här enhetens nyckellager; den öppnas bara på en enhet som har den nyckeln.
       </p>
 
-      <h2>P2P-samarbete: direkt, krypterat</h2>
+      <h2>Samarbete i realtid: via servern, inte end-to-end</h2>
       <p>
-        Samarbete i realtid använder WebRTC DataChannels, krypterade med DTLS. Supabase Realtime fungerar bara som signaleringsmäklare — uppkopplingen — inte som relä för den faktiska canvastrafiken. Efter handskakningen går ändringarna i canvasen peer-to-peer. Servern ser dem inte.
-      </p>
-      <p>
-        Det finns ingen reläserver: publika STUN-servrar (Google) hjälper bara de två enheterna att hitta varandra. Om ett nätverk blockerar den direkta anslutningen kommer sessionen inte igång.
+        Samarbete i realtid går via Supabase Realtime. Det är krypterat under överföring med TLS, men det är <em>inte</em> end-to-end-krypterat: strecken som utbyts i en session går via servern, som kan läsa dem.
       </p>
 
       <h2>AI-anrop: via proxy, aldrig direkt</h2>

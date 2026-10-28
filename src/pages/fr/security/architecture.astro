@@ -54,12 +54,9 @@ import { SITE } from "@/lib/site";
         Un fichier <code>.fluera</code> exporté n'est pas chiffré : traite-le comme n'importe quel autre fichier. La commande <em>Sauvegarde chiffrée</em> écrit un fichier <code>.fluerabackup</code> scellé en AES-256-GCM avec une clé conservée dans le magasin de clés de cet appareil ; il ne s'ouvre que sur un appareil qui possède cette clé.
       </p>
 
-      <h2>Collaboration P2P : directe, chiffrée</h2>
+      <h2>Collaboration en temps réel : via le serveur, pas de bout en bout</h2>
       <p>
-        La collaboration en temps réel utilise des DataChannels WebRTC, chiffrés en DTLS. Supabase Realtime ne sert que de broker de signalisation — l'établissement de la connexion — et pas de relais pour le trafic réel du canvas. Après le handshake, les modifications du canvas circulent en peer-to-peer. Le serveur ne les voit pas.
-      </p>
-      <p>
-        Il n'y a pas de serveur relais : des serveurs STUN publics (Google) aident seulement les deux appareils à se trouver. Si un réseau bloque la connexion directe, la session ne démarre pas.
+        La collaboration en temps réel passe par Supabase Realtime. Elle est chiffrée en transit avec TLS, mais elle n'est <em>pas</em> chiffrée de bout en bout : les traits échangés pendant une session passent par le serveur, qui peut les lire.
       </p>
 
       <h2>Appels d'IA : via proxy, jamais directs</h2>

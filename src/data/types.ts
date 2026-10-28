@@ -115,7 +115,10 @@ export interface HomeCopy {
 /**
  * Piano del listino del 22/10/2026. `id` non si traduce: è il taglio con cui
  * `fluera_engine/tool/public_truth_gate.dart` lega ogni prezzo della scheda
- * alla costante di `FlueraPricing` (il nome invece cambia per lingua: IA, AI, KI…).
+ * alla costante di `FlueraPricing`. Il nome cambia per lingua ed è quello
+ * dell'app (tavola «I piani di Fluera», 26/10: Fluera, Fluera Ovunque, Fluera
+ * Mentore, Fluera Ovunque + Mentore, tradotti): il cancello lo lega a
+ * `abbonamenti_piano*` dell'ARB della stessa lingua (P1d).
  */
 export type PricingTierId = "free" | "cloud" | "ia" | "cloud_ia";
 

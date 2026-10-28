@@ -1,14 +1,16 @@
 import type { PricingData } from "../types";
 
-// Listino del 22/10/2026 (Free, Cloud, IA, Cloud + IA). Allineato a it.ts.
-// Gli importi di `price` e `period` li controlla
-// fluera_engine/tool/public_truth_gate.dart contro FlueraPricing, per `id`.
+// Listino del 22/10/2026 coi nomi della tavola «I piani di Fluera» (26/10):
+// Fluera (gratis), Fluera Ovunque, Fluera Mentore, Fluera Ovunque + Mentore,
+// tradotti in ogni lingua con le stesse parole dell’app (ARB del motore).
+// `public_truth_gate.dart` lega prezzi e periodi a FlueraPricing per `id`, e
+// i nomi a `abbonamenti_piano*` della stessa lingua.
 
 const data: PricingData = {
   tiers: [
     {
       id: "free",
-      name: "Free",
+      name: "Fluera",
       price: "€0",
       period: "für immer",
       tagline:
@@ -16,8 +18,8 @@ const data: PricingData = {
       features: [
         "Unendlicher Canvas und Handschrift",
         "Wiederholung, Kurse, alle Pinsel, Export und Time Travel",
-        "Eine Kostprobe KI im ersten Monat nach der Anmeldung",
-        "500 MB Cloud auf allen deinen Geräten, ohne Audio, sobald die Cloud startet",
+        "Mentor im ersten Monat zum Ausprobieren",
+        "500 MB auf allen deinen Geräten gleich, ohne Audio, sobald die Synchronisierung startet",
         "Funktioniert auch offline: deine Canvas bleiben auf dem Gerät",
       ],
       cta: { label: "Kostenlos starten", href: "/beta" },
@@ -25,77 +27,82 @@ const data: PricingData = {
     },
     {
       id: "cloud",
-      name: "Cloud",
-      price: "€19,99",
-      period: "pro Jahr · nur jährlich · Cloud 60 für €44,99 / Jahr",
+      name: "Fluera Überall",
+      price: "€29,99",
+      period: "pro Jahr · nur jährlich · 60 GB für €44,99 / Jahr",
       tagline:
-        "Platz für deine Canvas und aufgenommenen Vorlesungen. Sie startet mit einem App-Update.",
+        "Alles auf Handy, Tablet und Computer, ohne an Speicherplatz zu denken. Startet mit einem App-Update.",
       features: [
-        "20 GB auf deinen Geräten: Handy, Tablet und Computer",
-        "Aufgenommene Vorlesungen hörst du überall",
-        "Deine Canvas sind sicher, auch wenn du das Handy wechselst",
-        "Cloud 60: 60 GB für alle, die viele Vorlesungen aufnehmen",
+        "20 GB statt der 500 MB der Gratisversion",
+        "Aufgenommene Vorlesungen mit Ton auf jedem Gerät",
+        "Teile ein Canvas und schreibt gemeinsam darin",
+        "Wenn du kündigst: 6 Monate, um alles herunterzuladen. Die Tinte bleibt für immer.",
+        "Keine zusätzlichen Lernfunktionen: Die sind alle schon kostenlos",
       ],
-      cta: { label: "Cloud wählen", href: "/beta" },
+      cta: { label: "Überall wählen", href: "/beta" },
       highlighted: false,
     },
     {
       id: "ia",
-      name: "KI",
+      name: "Fluera Mentor",
       price: "€9,99",
       period: "pro Monat · €84,99 / Jahr (sparst €34,89)",
-      tagline: "Eine KI, die liest, was du schreibst, mit einem Zähler, der immer sichtbar ist.",
+      tagline:
+        "Ein Tutor, der deine Notizen gelesen hat, mit einem Monatskontingent, das du immer in Prozent siehst.",
       features: [
-        "Die KI liest deine Notizen und benennt jedes Konzept",
-        "Tutor, Prüfungen, Chat, Formeln und Transkription",
-        "Du siehst immer, wie viel KI dir diesen Monat bleibt, in Prozent",
-        "Prüfungsreserve für die vollsten Monate",
-        "14 Tage kostenlos zum Ausprobieren",
+        "Stellt dir Fragen zu dem, was du geschrieben hast",
+        "Prüft dich mündlich und zeigt dir, was noch fehlt",
+        "Gibt jedem Begriff, den du schreibst, einen Titel",
+        "Macht handgeschriebene Formeln bearbeitbar",
+        "Und du kannst deinen Notizen im Chat Fragen stellen",
+        "Ein Kontingent pro Monat, immer in Prozent sichtbar",
+        "Die ersten 14 Tage sind kostenlos",
       ],
-      cta: { label: "KI testen", href: "/beta" },
+      cta: { label: "Mentor testen", href: "/beta" },
       highlighted: false,
     },
     {
       id: "cloud_ia",
-      name: "Cloud + KI",
+      name: "Fluera Überall + Mentor",
       price: "€99,99",
-      period: "pro Jahr · du sparst €4,99 gegenüber beiden einzeln · mit Cloud 60 €119,99 / Jahr",
-      tagline: "Die ganze Cloud und die ganze KI, in einem Abo.",
+      period: "pro Jahr · du sparst €14,99 gegenüber beiden einzeln · mit 60 GB €119,99 / Jahr",
+      tagline:
+        "Ganz Fluera, auf jedem Gerät, mit dem Tutor. Der empfohlene Plan.",
       features: [
-        "Die ganze Cloud und die ganze KI",
-        "20 GB, oder 60 GB mit Cloud 60 + KI",
-        "Du siehst immer, wie viel KI dir diesen Monat bleibt, in Prozent",
+        "Alles von Überall: 20 GB und Vorlesungen mit Ton",
+        "Alles von Mentor: Fragen, Prüfung, Titel und Formeln",
+        "Ein Kontingent pro Monat, immer in Prozent sichtbar",
         "Nur jährlich",
       ],
-      cta: { label: "Cloud + KI wählen", href: "/beta" },
+      cta: { label: "Überall + Mentor wählen", href: "/beta" },
       highlighted: true,
       badge: "Empfohlen",
     },
   ],
   faq: [
     {
-      q: "Wie sehe ich, wie viel KI mir bleibt?",
-      a: "In der App, immer. Ein Zähler zeigt dir in Prozent, wie viel KI dir diesen Monat bleibt, wann sie sich wieder auffüllt (am 1. des Monats) und wie lange sie in deinem Tempo reicht. Keine versteckten Limits und keine Credits, die du im Kopf umrechnen musst: Was du siehst, ist das, was du hast.",
+      q: "Wie sehe ich, wie viel Mentor mir bleibt?",
+      a: "In der App, immer. Ein Zähler zeigt dir in Prozent, wie viel vom Mentor-Kontingent des Monats übrig ist, wann es aufgefüllt wird (am 1. des Monats) und wie lange es bei deinem Tempo reicht. Keine versteckten Limits und keine Credits zum Umrechnen: Was du siehst, ist das, was du hast.",
     },
     {
-      q: "Und wenn die KI des Monats aufgebraucht ist?",
-      a: "Wiederholung, Kurse und deine Notizen funktionieren immer, auch ohne KI. Die KI kommt am 1. des Monats zurück; wenn du sie früher brauchst, kannst du in der App die Prüfungsreserve einschalten oder etwas dazukaufen.",
+      q: "Und wenn Mentor für den Monat aufgebraucht ist?",
+      a: "Wiederholung, Kurse und deine Notizen funktionieren immer, auch ohne Mentor. Mentor kommt am 1. des Monats zurück; wenn du ihn früher brauchst, kannst du in der App die Prüfungsreserve einschalten oder etwas dazukaufen.",
     },
     {
       q: "Einmal kaufen: gilt das auf allen meinen Geräten?",
       a: "Ja. Du schließt dein Abo in der Fluera-App auf dem Smartphone oder Tablet ab, über den App Store oder Google Play, und zahlst mit den Zahlungsmethoden aus deinem Store-Konto. Dein Tarif gilt dann auf allen Geräten, auf denen du dich mit demselben Konto anmeldest, Computer eingeschlossen.",
     },
     {
-      q: "Funktioniert die Cloud schon zwischen den Geräten?",
-      a: "Noch nicht. Die Cloud zwischen Handy, Tablet und Computer ist im Bau und startet mit einem App-Update. Bis dahin bleiben deine Canvas auf dem Gerät, wo sie auch offline funktionieren.",
+      q: "Funktioniert Überall schon zwischen den Geräten?",
+      a: "Noch nicht. Die Synchronisierung zwischen Handy, Tablet und Computer ist im Bau und startet mit einem App-Update. Bis dahin bleiben deine Canvas auf dem Gerät, wo sie auch offline funktionieren.",
     },
     {
-      q: "Gibt es eine kostenlose Testphase?",
-      a: "Ja: 14 Tage kostenlos, nur für die KI. Du kannst jederzeit vor dem Ende der Testphase im Store kündigen. Free läuft nicht ab und verlangt keine Zahlung.",
+      q: "Gibt es einen kostenlosen Test?",
+      a: "Ja: 14 Tage kostenlos, nur für Mentor. Du kannst im Store jederzeit vor Ende des Tests kündigen. Das kostenlose Fluera läuft nie ab und verlangt keine Zahlung.",
     },
     {
       q: "Was passiert mit meinen Canvas, wenn ich kündige?",
-      a: "Sie bleiben deine, auf dem Gerät: Canvas, Wiederholung, Kurse, Pinsel und Export funktionieren mit Free weiter. Die Funktionen des Tarifs pausieren, bis du ihn wieder aktivierst. Nichts wird ohne deine ausdrückliche Aktion gelöscht.",
+      a: "Sie bleiben deine, auf deinem Gerät: Canvas, Wiederholung, Kurse, Pinsel und Export funktionieren kostenlos weiter. Wenn du Überall hattest, hast du 6 Monate, um alles herunterzuladen, und die Tinte bleibt für immer. Nichts wird ohne dein Zutun gelöscht.",
     },
     {
       q: "Gibt es eine Rückerstattungsregelung?",

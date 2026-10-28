@@ -41,11 +41,17 @@ function read(rel) {
   return readFileSync(resolve(DIST, rel), "utf8");
 }
 
-// Listino del 22/10/2026: Free, Cloud, IA, Cloud + IA. Il nome dell'IA si
-// traduce (AI, IA, KI, الذكاء الاصطناعي), quindi lo passa chi chiama. Plus e
-// Pro non devono tornare come nome di una scheda.
-function hasPublicTiers(html, ia = "AI") {
-  return ["Free", "Cloud", ia, `Cloud + ${ia}`].every((tier) => html.includes(`>${tier}<`))
+// Dal 26/10/2026 (d09e07b00) le schede si chiamano come nell'app: Fluera,
+// Fluera Ovunque, Fluera Mentore, Fluera Ovunque + Mentore. «Ovunque» e
+// «Mentore» si traducono (src/data/pricing/<lingua>.ts), quindi li passa chi
+// chiama. Né i nomi del listino del 22/10 (Free, Cloud, Cloud + AI) né Plus e
+// Pro devono tornare come nome di una scheda.
+function hasPublicTiers(html, ovunque = "Anywhere", mentore = "Mentor") {
+  return ["Fluera", `Fluera ${ovunque}`, `Fluera ${mentore}`, `Fluera ${ovunque} + ${mentore}`]
+      .every((tier) => html.includes(`>${tier}<`))
+    && !html.includes(">Free<")
+    && !html.includes(">Cloud<")
+    && !html.includes(">Cloud + ")
     && !html.includes(">Plus<")
     && !html.includes(">Pro<")
     && !html.includes(">Team<")
@@ -97,7 +103,7 @@ console.log("\nV1 content");
   const home = read("index.html");
   check("homepage Step 11 = Exam Session", home.includes("Exam Session · Step 11"));
   check("homepage pillar Exam Session present", home.includes("A closed-book exam built from your own notes"));
-  check("homepage pricing snapshot has the 4 public plans (Free/Cloud/AI/Cloud + AI)", hasPublicTiers(home));
+  check("homepage pricing snapshot has the 4 public plans (Fluera/Anywhere/Mentor/Anywhere + Mentor)", hasPublicTiers(home));
 }
 {
   const pricing = read("pricing/index.html");
@@ -159,7 +165,7 @@ console.log("\nV1 content");
     }
   }
 
-  check("pricing page has the 4 public plans (Free/Cloud/AI/Cloud + AI)", hasPublicTiers(pricing));
+  check("pricing page has the 4 public plans (Fluera/Anywhere/Mentor/Anywhere + Mentor)", hasPublicTiers(pricing));
 }
 {
   const examEn = read("features/exam-session/index.html");
@@ -181,7 +187,7 @@ console.log("\nV1 content");
 {
   const pricingKo = read("ko/pricing/index.html");
   check("KO /pricing has the 4 public plans + FAQ",
-    hasPublicTiers(pricingKo, "AI") && hasFaqSurface(pricingKo));
+    hasPublicTiers(pricingKo, "어디서나", "멘토") && hasFaqSurface(pricingKo));
 }
 {
   const homeHi = read("hi/index.html");
@@ -193,7 +199,7 @@ console.log("\nV1 content");
 {
   const pricingHi = read("hi/pricing/index.html");
   check("HI /pricing has the 4 public plans + FAQ",
-    hasPublicTiers(pricingHi, "AI") && hasFaqSurface(pricingHi));
+    hasPublicTiers(pricingHi, "हर जगह", "मेंटर") && hasFaqSurface(pricingHi));
 }
 {
   const homePl = read("pl/index.html");
@@ -205,7 +211,7 @@ console.log("\nV1 content");
 {
   const pricingPl = read("pl/pricing/index.html");
   check("PL /pricing has the 4 public plans + FAQ",
-    hasPublicTiers(pricingPl, "AI") && hasFaqSurface(pricingPl));
+    hasPublicTiers(pricingPl, "Wszędzie", "Mentor") && hasFaqSurface(pricingPl));
 }
 {
   const homeAr = read("ar/index.html");
@@ -219,7 +225,7 @@ console.log("\nV1 content");
 {
   const pricingAr = read("ar/pricing/index.html");
   check("AR /pricing has the 4 public plans + FAQ",
-    hasPublicTiers(pricingAr, "الذكاء الاصطناعي") && hasFaqSurface(pricingAr));
+    hasPublicTiers(pricingAr, "في كل مكان", "مُرشد") && hasFaqSurface(pricingAr));
 }
 
 console.log("\nCatalogue");

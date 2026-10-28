@@ -54,12 +54,9 @@ import { SITE } from "@/lib/site";
         Een geëxporteerd <code>.fluera</code>-bestand is niet versleuteld: behandel het als elk ander bestand. De opdracht <em>Versleutelde back-up</em> schrijft een <code>.fluerabackup</code>-bestand, verzegeld met AES-256-GCM met een sleutel in de sleutelopslag van dit apparaat; het opent alleen op een apparaat dat die sleutel heeft.
       </p>
 
-      <h2>P2P-samenwerking: direct, versleuteld</h2>
+      <h2>Realtime samenwerking: via de server, niet end-to-end</h2>
       <p>
-        Realtime samenwerking gebruikt WebRTC-DataChannels, versleuteld met DTLS. Supabase Realtime dient alleen als signaling-broker — het opzetten van de verbinding — en niet als relay voor het echte canvasverkeer. Na de handshake gaan de wijzigingen aan het canvas peer-to-peer. De server ziet ze niet.
-      </p>
-      <p>
-        Er is geen relayserver: publieke STUN-servers (Google) helpen de twee apparaten alleen elkaar te vinden. Blokkeert een netwerk de directe verbinding, dan komt de sessie niet tot stand.
+        Realtime samenwerking loopt via Supabase Realtime. Ze is tijdens transport versleuteld met TLS, maar <em>niet</em> end-to-end versleuteld: de streken die in een sessie worden uitgewisseld, gaan via de server, die ze kan lezen.
       </p>
 
       <h2>AI-aanroepen: via proxy, nooit direct</h2>

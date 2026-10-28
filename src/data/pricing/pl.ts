@@ -1,14 +1,16 @@
 import type { PricingData } from "../types";
 
-// Listino del 22/10/2026 (Free, Cloud, IA, Cloud + IA). Allineato a it.ts.
-// Gli importi di `price` e `period` li controlla
-// fluera_engine/tool/public_truth_gate.dart contro FlueraPricing, per `id`.
+// Listino del 22/10/2026 coi nomi della tavola «I piani di Fluera» (26/10):
+// Fluera (gratis), Fluera Ovunque, Fluera Mentore, Fluera Ovunque + Mentore,
+// tradotti in ogni lingua con le stesse parole dell’app (ARB del motore).
+// `public_truth_gate.dart` lega prezzi e periodi a FlueraPricing per `id`, e
+// i nomi a `abbonamenti_piano*` della stessa lingua.
 
 const data: PricingData = {
   tiers: [
     {
       id: "free",
-      name: "Free",
+      name: "Fluera",
       price: "€0",
       period: "na zawsze",
       tagline:
@@ -16,86 +18,91 @@ const data: PricingData = {
       features: [
         "Nieskończony canvas i pismo odręczne",
         "Powtórki, kursy, wszystkie pędzle, eksport i time travel",
-        "Próbka AI w pierwszym miesiącu od rejestracji",
-        "500 MB chmury na wszystkich twoich urządzeniach, bez audio, gdy Cloud wystartuje",
+        "Mentor do wypróbowania w pierwszym miesiącu",
+        "500 MB takie samo na wszystkich twoich urządzeniach, bez audio, gdy wystartuje synchronizacja",
         "Działa też offline: twoje canvasy zostają na urządzeniu",
       ],
-      cta: { label: "Zacznij gratis", href: "/beta" },
+      cta: { label: "Zacznij za darmo", href: "/beta" },
       highlighted: false,
     },
     {
       id: "cloud",
-      name: "Cloud",
-      price: "€19,99",
-      period: "rocznie · tylko rocznie · Cloud 60 za €44,99 / rok",
+      name: "Fluera Wszędzie",
+      price: "€29,99",
+      period: "rocznie · tylko rocznie · 60 GB za €44,99 / rok",
       tagline:
-        "Miejsce na twoje canvasy i nagrane wykłady. Startuje wraz z aktualizacją aplikacji.",
+        "Wszystko na telefonie, tablecie i komputerze, bez myślenia o miejscu. Startuje wraz z aktualizacją aplikacji.",
       features: [
-        "20 GB na twoich urządzeniach: telefon, tablet i komputer",
-        "Nagrane wykłady odsłuchasz wszędzie",
-        "Twoje canvasy bezpieczne, nawet gdy zmienisz telefon",
-        "Cloud 60: 60 GB dla tych, którzy nagrywają dużo wykładów",
+        "20 GB zamiast 500 MB w wersji darmowej",
+        "Nagrane wykłady, z dźwiękiem, na każdym urządzeniu",
+        "Udostępnij canvas i piszcie razem",
+        "Jeśli zrezygnujesz, masz 6 miesięcy na pobranie wszystkiego. Atrament zostaje na zawsze.",
+        "Żadnych dodatkowych funkcji do nauki: wszystkie są już w darmowej wersji",
       ],
-      cta: { label: "Wybierz Cloud", href: "/beta" },
+      cta: { label: "Wybierz Wszędzie", href: "/beta" },
       highlighted: false,
     },
     {
       id: "ia",
-      name: "AI",
+      name: "Fluera Mentor",
       price: "€9,99",
       period: "miesięcznie · €84,99 / rok (oszczędzasz €34,89)",
-      tagline: "AI, które czyta to, co piszesz, z licznikiem zawsze na widoku.",
+      tagline:
+        "Tutor, który przeczytał twoje notatki, z miesięcznym limitem zawsze widocznym w procentach.",
       features: [
-        "AI czyta twoje notatki i nazywa każde pojęcie",
-        "Tutor, egzaminy, czat, wzory i transkrypcja",
-        "Zawsze widzisz, ile AI zostało ci w tym miesiącu, w procentach",
-        "Rezerwa egzaminacyjna na najcięższe miesiące",
-        "14 dni za darmo na wypróbowanie",
+        "Zadaje ci pytania o to, co napisałeś",
+        "Przeprowadza egzamin ustny i mówi, czego brakuje",
+        "Nadaje tytuł każdemu pojęciu, które piszesz",
+        "Zamienia odręczne wzory w wzory do edycji",
+        "Możesz też zadawać pytania swoim notatkom na czacie",
+        "Miesięczny limit, zawsze widoczny w procentach",
+        "Pierwsze 14 dni jest za darmo",
       ],
-      cta: { label: "Wypróbuj AI", href: "/beta" },
+      cta: { label: "Wypróbuj Mentora", href: "/beta" },
       highlighted: false,
     },
     {
       id: "cloud_ia",
-      name: "Cloud + AI",
+      name: "Fluera Wszędzie + Mentor",
       price: "€99,99",
-      period: "rocznie · oszczędzasz €4,99 w porównaniu z dwoma osobno · z Cloud 60 €119,99 / rok",
-      tagline: "Cały Cloud i całe AI w jednej subskrypcji.",
+      period: "rocznie · oszczędzasz €14,99 w porównaniu z dwoma osobno · z 60 GB €119,99 / rok",
+      tagline:
+        "Cała Fluera, na każdym urządzeniu, z tutorem. Polecany plan.",
       features: [
-        "Cały Cloud i całe AI",
-        "20 GB albo 60 GB z Cloud 60 + AI",
-        "Zawsze widzisz, ile AI zostało ci w tym miesiącu, w procentach",
+        "Całe Wszędzie: 20 GB i wykłady z dźwiękiem",
+        "Cały Mentor: pytania, egzamin, tytuły i wzory",
+        "Miesięczny limit, zawsze widoczny w procentach",
         "Tylko rocznie",
       ],
-      cta: { label: "Wybierz Cloud + AI", href: "/beta" },
+      cta: { label: "Wybierz Wszędzie + Mentor", href: "/beta" },
       highlighted: true,
       badge: "Polecane",
     },
   ],
   faq: [
     {
-      q: "Jak sprawdzę, ile AI mi zostało?",
-      a: "W aplikacji, zawsze. Licznik pokazuje w procentach, ile AI z tego miesiąca ci zostało, kiedy się odnowi (1. dnia miesiąca) i do kiedy wystarczy w twoim tempie. Bez ukrytych limitów i bez kredytów do przeliczania w głowie: to, co widzisz, to to, co masz.",
+      q: "Jak sprawdzę, ile Mentora mi zostało?",
+      a: "W aplikacji, zawsze. Licznik pokazuje w procentach, ile zostało z miesięcznego limitu Mentora, kiedy się odnawia (1. dnia miesiąca) i do kiedy wystarczy w twoim tempie. Bez ukrytych limitów i bez kredytów do przeliczania w głowie: to, co widzisz, to to, co masz.",
     },
     {
-      q: "A jeśli AI z tego miesiąca się skończy?",
-      a: "Powtórki, kursy i twoje notatki działają zawsze, także bez AI. AI wraca 1. dnia miesiąca; jeśli potrzebujesz wcześniej, w aplikacji możesz włączyć rezerwę egzaminacyjną albo trochę dokupić.",
+      q: "A jeśli Mentor na ten miesiąc się skończy?",
+      a: "Powtórki, kursy i twoje notatki działają zawsze, także bez Mentora. Mentor wraca 1. dnia miesiąca; jeśli potrzebujesz go wcześniej, w aplikacji możesz włączyć rezerwę egzaminacyjną albo trochę dokupić.",
     },
     {
       q: "Kupuję raz: czy działa na wszystkich moich urządzeniach?",
       a: "Tak. Subskrypcję wykupujesz w aplikacji Fluera na telefonie lub tablecie, przez App Store lub Google Play, i płacisz metodami zapisanymi na koncie w sklepie. Potem twój plan działa na wszystkich urządzeniach, na których zalogujesz się na to samo konto, łącznie z komputerami.",
     },
     {
-      q: "Czy Cloud działa już między urządzeniami?",
-      a: "Jeszcze nie. Cloud między telefonem, tabletem i komputerem jest w budowie i wystartuje wraz z aktualizacją aplikacji. Do tego czasu twoje canvasy zostają na urządzeniu, gdzie działają też offline.",
+      q: "Czy Wszędzie działa już między urządzeniami?",
+      a: "Jeszcze nie. Synchronizacja między telefonem, tabletem i komputerem jest w budowie i wystartuje wraz z aktualizacją aplikacji. Do tego czasu twoje canvasy zostają na urządzeniu, gdzie działają też offline.",
     },
     {
       q: "Czy jest darmowy okres próbny?",
-      a: "Tak: 14 dni za darmo, tylko dla AI. Możesz anulować w sklepie w dowolnej chwili przed końcem okresu próbnego. Free nie wygasa i nie wymaga żadnej płatności.",
+      a: "Tak: 14 dni za darmo, tylko dla Mentora. Możesz zrezygnować w sklepie w każdej chwili przed końcem okresu próbnego. Darmowa Fluera nie wygasa i nie wymaga płatności.",
     },
     {
-      q: "Co się stanie z moimi canvasami, jeśli zrezygnuję?",
-      a: "Zostają twoje, na urządzeniu: canvas, powtórki, kursy, pędzle i eksport dalej działają w Free. Funkcje planu zatrzymują się, dopóki go nie wznowisz. Nic nie jest usuwane bez twojego działania.",
+      q: "Co stanie się z moimi canvasami, jeśli zrezygnuję?",
+      a: "Zostają twoje, na twoim urządzeniu: canvas, powtórki, kursy, pędzle i eksport działają dalej za darmo. Jeśli miałeś Wszędzie, masz 6 miesięcy na pobranie wszystkiego, a atrament zostaje na zawsze. Nic nie zostanie usunięte bez twojego działania.",
     },
     {
       q: "Polityka zwrotów?",
