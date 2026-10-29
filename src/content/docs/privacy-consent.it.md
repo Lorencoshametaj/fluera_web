@@ -39,12 +39,12 @@ L'interruttore **Impostazioni → Dati e sincronizzazione → Sincronizza fra i 
 
 Senza l'interruttore tutto questo resta sul tuo dispositivo, come prima.
 
-## AI Training Data (sezione separata, solo opt-in)
+## Migliorare il riconoscimento (sezione separata, solo opt-in)
 
-Stiamo costruendo un riconoscitore di scrittura proprietario, su misura per come scrivono gli utenti Fluera. Sotto **Impostazioni → Privacy → AI Training Data** trovi altri due toggle, anch'essi disattivati di default e indipendenti dai quattro sopra:
+Stiamo costruendo un riconoscitore di scrittura proprietario, su misura per come scrivono gli utenti Fluera. Sotto **Impostazioni → Privacy → Migliorare il riconoscimento** trovi altri due toggle, anch'essi disattivati di default e indipendenti dai quattro sopra:
 
 - **Sessione di calibrazione (~5 min).** Una sessione guidata una tantum dove scrivi 30 simboli che ti mostriamo (cifre, operatori matematici, lettere greche, lettere italiane comuni). Il simbolo a schermo è la verità di base, accoppiato ai tuoi tratti. Dati di qualità più alta per singolo campione.
-- **Cattura automatica della scrittura.** Mentre scrivi naturalmente sul canvas, salviamo i tratti grezzi (coordinate, timing, pressione, tilt dello stilo dove supportato) più una piccola immagine PNG cifrata di ogni cluster. I dati restano cifrati sul nostro server. **Quando avremo completato gli accordi con Google** (Data Processing Agreement Vertex AI, in corso) Google Gemini Vision analizzerà le immagini per insegnare a Fluera AI cosa hai scritto. Fino ad allora nessun dato di AI Training esce dalla nostra infrastruttura verso terzi.
+- **Cattura automatica della scrittura.** Mentre scrivi naturalmente sul canvas, salviamo i tratti grezzi (coordinate, timing, pressione, tilt dello stilo dove supportato) più una piccola immagine PNG cifrata di ogni cluster. I dati restano cifrati sul nostro server. **Quando avremo completato gli accordi con Google** (Data Processing Agreement Vertex AI, in corso) Google Gemini Vision analizzerà le immagini per insegnare al riconoscitore della scrittura di Fluera cosa hai scritto. Fino ad allora nessun campione della tua scrittura esce dalla nostra infrastruttura verso terzi.
 
 Entrambi i toggle usano un identificatore pseudonimizzato dedicato (SHA-256 dell'user id + un salt fresco) **diverso** da quello usato dagli Analytics di prodotto. La correlazione incrociata tra i due corpora è matematicamente non fattibile senza la nostra infrastruttura.
 
@@ -53,7 +53,7 @@ Misure di sicurezza specifiche per questa categoria:
 - Row-Level Security sulle tabelle Supabase — un utente non può mai leggere i campioni di un altro utente.
 - Filtro rumore: i cluster con meno di 3 punti totali (tap accidentali, smudge) vengono scartati prima del salvataggio.
 - Deduplicazione persistente via fingerprint geometrico — re-disegnare identicamente lo stesso cluster non produce duplicati.
-- Anteprima per-sample in **Impostazioni → AI Training Data → Catture recenti**: vedi le miniature di esattamente cosa abbiamo salvato.
+- Anteprima per-sample in **Impostazioni → Privacy → Migliorare il riconoscimento → Catture recenti**: vedi le miniature di esattamente cosa abbiamo salvato.
 
 ## Cosa non viene mai raccolto
 

@@ -50,7 +50,7 @@ Solo se l'utente ha prestato consenso alla categoria **Analytics di prodotto**:
 
 ### 2.4 Dati per funzioni AI
 Solo se l'utente ha prestato consenso alla categoria **Funzioni AI**:
-- Contenuti selezionati del canvas inviati per Socratic Mode, Ghost Map, LaTeX OCR, Exam Session — porzioni di testo e immagini PNG renderizzate delle singole regioni-cluster di scrittura a mano (mai l'intero blocco note)
+- Contenuti selezionati del canvas inviati per Socratic Mode, Ghost Map, LaTeX OCR, Exam Session — porzioni di testo e immagini PNG renderizzate delle singole regioni-cluster di scrittura a mano (mai l'intero canvas)
 - L'inferenza AI gira su Google Vertex AI nell'**Unione Europea**, solo su endpoint dell'UE: le regioni europe-west4 (Paesi Bassi) ed europe-west1 (Belgio), oppure l'endpoint multi-regione UE di Vertex AI, che Google vincola agli Stati membri dell'UE; i contenuti del canvas non vengono trasferiti fuori dall'UE per l'inferenza AI
 - Token di utilizzo per enforcement dei limiti di piano
 - In produzione le chiamate transitano via proxy Supabase Edge Function (chiave API server-side)
@@ -109,7 +109,7 @@ Fluera sta costruendo un proprio riconoscitore della scrittura a mano,
 addestrato sulla scrittura reale degli utenti Fluera. **Ogni modalità di
 raccolta è disattiva per impostazione predefinita**, ognuna è una decisione
 separata, e ognuna è revocabile in qualsiasi momento da *Impostazioni →
-Privacy → AI Training Data*.
+Privacy → Migliorare il riconoscimento*.
 
 - **Cosa viene raccolto:** tratti grezzi (coordinate, tempi, pressione,
   inclinazione dello stilo dove supportata), una piccola immagine PNG di ogni
@@ -362,6 +362,10 @@ pagine che visiti, né le ricerche che fai.
 - **Google Lens**, solo quando lo usi tu, riceve l'immagine che scegli (un ritaglio del PDF,
   un'immagine della nota o della pagina) e il tuo indirizzo IP. Lens gira in uno spazio separato:
   lì resta solo il consenso di Google, mai l'accesso al tuo account Google della navigazione.
+- **Quando un sito ti manda alla pagina di accesso di Google** e sei entrato in Fluera con Google,
+  Fludomi apre quella pagina con l'indirizzo email del tuo account Google già scritto, così non
+  devi digitarlo. Lo riceve solo Google, sulla sua pagina, e solo se in Fludomi non hai già fatto
+  l'accesso a un account Google; mai nelle schede private. Su Windows e Linux non succede.
 - **La protezione dai siti pericolosi** controlla gli indirizzi prima di aprirli. Su Android è il
   servizio Safe Browsing di Google: al servizio arrivano solo frammenti cifrati degli indirizzi.
   Su iPhone, iPad e Mac è l'avviso di sito fraudolento di Apple. È attiva di fabbrica e si spegne
@@ -472,6 +476,8 @@ autonomi, secondo le loro informative (§2.14). Sono:
 - i siti che visiti;
 - il motore di ricerca che scegli;
 - Google per Lens, quando lo usi;
+- Google, quando un sito ti manda alla sua pagina di accesso: l'indirizzo email del tuo account
+  Google con cui sei entrato in Fluera;
 - il servizio di protezione dai siti pericolosi del sistema: Google Safe Browsing su Android,
   Apple su iPhone, iPad e Mac (su Windows e Linux nessuno).
 
@@ -503,7 +509,7 @@ Supabase consente di scegliere la regione del database: utilizziamo la regione `
 - **Schede del catalogo (§2.11):** finché non le rimuovi o non vengono rimosse dalla moderazione. I **link** scaduti o revocati e le **autorizzazioni** revocate restano registrati (senza il testo del link, di cui conserviamo solo l'impronta) per poter dimostrare chi ha avuto accesso e quando. Alla cancellazione dell'account, le schede di cui sei **autore** vengono cancellate insieme ai loro file; le copie già installate da altre persone restano sui loro dispositivi e non sono raggiungibili né da te né da noi
 - **Decisioni di moderazione e segnalazioni:** conservate per la durata necessaria a gestire un eventuale reclamo o ricorso, e comunque per rispondere agli obblighi del DSA
 - **Audit trail del consenso:** fino alla revoca + 3 anni (art. 7.1 GDPR)
-- **Dataset di riconoscimento della scrittura (§2.10):** fino a 5 anni dopo la cancellazione dell'account, o finché non lo revochi da *Impostazioni → Privacy → AI Training Data* — quello che viene prima, sempre in forma pseudonimizzata. La revoca raggiunge solo i contributi fatti da un dispositivo i cui dati dell'app sono ancora presenti; dopo una disinstallazione ciò che li limita è la finestra di 5 anni (vedi §2.10, art. 11 GDPR)
+- **Dataset di riconoscimento della scrittura (§2.10):** fino a 5 anni dopo la cancellazione dell'account, o finché non lo revochi da *Impostazioni → Privacy → Migliorare il riconoscimento* — quello che viene prima, sempre in forma pseudonimizzata. La revoca raggiunge solo i contributi fatti da un dispositivo i cui dati dell'app sono ancora presenti; dopo una disinstallazione ciò che li limita è la finestra di 5 anni (vedi §2.10, art. 11 GDPR)
 - **Cronologia di Fludomi (sul dispositivo e, con la sincronizzazione, cifrata nel cloud, §2.14):** per il periodo che scegli senza nuove visite — 1 giorno, 1 settimana, 1 mese o 3 mesi (di fabbrica); una pagina tolta lascia nel cloud un segno cifrato per 30 giorni; cookie e dati dei siti finché non li cancelli, esci dall'account o lo elimini
 - **Indice di memoria cognitiva (sul dispositivo):** conservato localmente finché la funzione resta attiva; cancellato immediatamente alla disattivazione (opt-out) o su richiesta di cancellazione dei dati. La sua copia nel cloud, se hai acceso la sincronizzazione fra i tuoi dispositivi, si cancella anch'essa alla disattivazione (§2.9)
 - **Sessioni anonime:** quando usi Fluera senza account permanente, i dati sono associati a un identificatore device temporaneo. Se non converti la sessione in un account permanente entro **24 ore di inattività** dall'apertura di una nuova sessione su un altro device, l'account anonimo e tutti i dati associati vengono cancellati automaticamente tramite un job pianificato sui nostri server.

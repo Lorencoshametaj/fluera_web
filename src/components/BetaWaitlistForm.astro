@@ -200,11 +200,6 @@ const referrals = [
           </div>
         </div>
 
-        <div id="status-already" class="status-card status-already hidden" role="status">
-          <span class="status-mark" aria-hidden="true">→</span>
-          <p>{copy.already}</p>
-        </div>
-
         <div id="status-error" class="status-card status-error hidden" role="alert">
           <span class="status-mark" aria-hidden="true">!</span>
           <div>
@@ -348,8 +343,6 @@ const referrals = [
   .status-card a { display: inline-block; margin-top: .5rem; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
   .status-success { border: 1px solid rgb(52 211 153 / .24); background: rgb(16 185 129 / .08); color: #a7f3d0; }
   .status-success .status-mark { background: rgb(16 185 129 / .14); color: #6ee7b7; }
-  .status-already { border: 1px solid rgb(96 165 250 / .24); background: rgb(37 99 235 / .08); color: #bfdbfe; }
-  .status-already .status-mark { background: rgb(37 99 235 / .16); color: #93c5fd; }
   .status-error { border: 1px solid rgb(248 113 113 / .26); background: rgb(239 68 68 / .08); color: #fecaca; }
   .status-error .status-mark { background: rgb(239 68 68 / .14); color: #fca5a5; }
 
@@ -387,7 +380,6 @@ const referrals = [
   const btnLabel = document.getElementById("submit-label");
   const btnSpinner = document.getElementById("submit-spinner");
   const okBox = document.getElementById("status-success");
-  const dupeBox = document.getElementById("status-already");
   const errBox = document.getElementById("status-error");
   const errDetail = document.getElementById("status-error-detail");
   const renderedAt = Date.now();
@@ -418,7 +410,6 @@ const referrals = [
 
   function hideStatuses() {
     okBox.classList.add("hidden");
-    dupeBox.classList.add("hidden");
     errBox.classList.add("hidden");
   }
 
@@ -483,14 +474,11 @@ const referrals = [
         body: JSON.stringify(payload),
       });
       if (!response.ok) throw new Error((await response.text()) || `HTTP ${response.status}`);
-      const result = await response.json();
-      if (result && result.already_signed) {
-        dupeBox.classList.remove("hidden");
-      } else {
-        okBox.classList.remove("hidden");
-        form.reset();
-        applyRoleVisibility();
-      }
+      // Any 2xx is a success and shows the same box to everyone: the reply is
+      // not read, so the page never tells whether an email was on the list.
+      okBox.classList.remove("hidden");
+      form.reset();
+      applyRoleVisibility();
     } catch (error) {
       console.error("Waitlist submit failed:", error);
       showError(retryError);

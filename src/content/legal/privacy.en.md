@@ -50,7 +50,7 @@ Only if you have consented to the **Product analytics** category:
 
 ### 2.4 AI feature data
 Only if you have consented to the **AI features** category:
-- Selected canvas content sent for Socratic Mode, Ghost Map, LaTeX OCR, Exam Session — text portions and rendered PNG images of individual handwriting-cluster regions (never the full notebook)
+- Selected canvas content sent for Socratic Mode, Ghost Map, LaTeX OCR, Exam Session — text portions and rendered PNG images of individual handwriting-cluster regions (never the whole canvas)
 - AI inference runs on Google Vertex AI in the **European Union**, on EU endpoints only: the europe-west4 (Netherlands) and europe-west1 (Belgium) regions, or the Vertex AI EU multi-region endpoint, which Google limits to EU member states; canvas content is not transferred outside the EU for AI inference
 - Usage tokens for plan limit enforcement
 - In production, calls go through a Supabase Edge Function proxy (API key server-side)
@@ -108,7 +108,7 @@ On by default (opt-out). Fluera builds **on your device** a cognitive index of y
 Fluera is building its own handwriting recogniser trained on real handwriting
 from Fluera users. **Every collection mode is off by default**, each is a
 separate decision, and each is revocable at any time from *Settings → Privacy →
-AI Training Data*.
+Improve recognition*.
 
 - **What is collected:** raw strokes (coordinates, timing, pressure, stylus
   tilt where supported), a small PNG image of each handwriting cluster, and
@@ -131,7 +131,7 @@ AI Training Data*.
   pseudonym attached to your contributions is computed on your device, from a
   key that never leaves it. That is what makes the dataset genuinely
   unlinkable to your account — and it has a consequence we would rather state
-  than hide. *Settings → Privacy → AI Training Data* erases the contributions
+  than hide. *Settings → Privacy → Improve recognition* erases the contributions
   made **from that device**, as long as the app's data is still there. If you
   uninstall the app, clear its data, or move to a new device, that key is gone,
   and neither you nor we can any longer tell which contributions were yours. In
@@ -349,6 +349,11 @@ or what you search for.
 - **Google Lens**, only when you use it, receives the image you choose (a PDF crop, an image from
   a note or a page) and your IP address. Lens runs in a separate space: only Google's consent is
   kept there, never the sign-in to your Google account used for browsing.
+- **When a site sends you to Google's sign-in page** and you signed in to Fluera with Google,
+  Fludomi opens that page with your Google account's email address already typed, so you do not
+  have to type it. Only Google receives it, on its own page, and only if you are not already
+  signed in to a Google account in Fludomi; never in private tabs. On Windows and Linux this does
+  not happen.
 - **Protection from dangerous sites** checks addresses before opening them. On Android this is
   Google Safe Browsing: the service receives only hashed fragments of addresses. On iPhone, iPad
   and Mac it is Apple's fraudulent-website warning. It is on by default and can be turned off in
@@ -456,6 +461,8 @@ controllers, under their own policies (§2.14). They are:
 - the sites you visit;
 - the search engine you choose;
 - Google for Lens, when you use it;
+- Google, when a site sends you to its sign-in page: the email address of the Google account you
+  signed in to Fluera with;
 - the system's protection from dangerous sites: Google Safe Browsing on Android, Apple on iPhone,
   iPad and Mac (none on Windows and Linux).
 
@@ -487,7 +494,7 @@ Supabase allows region selection: we use the region `eu-north-1` (Stockholm) wit
 - **Catalogue cards (§2.11):** until you remove them or moderation removes them. Expired or revoked **links** and revoked **authorisations** stay recorded (without the link's text, of which we keep only a fingerprint) so it remains possible to show who had access and when. On account deletion, cards you **authored** are deleted together with their files; copies already installed by other people stay on their devices and are reachable neither by you nor by us
 - **Moderation decisions and reports:** kept for as long as needed to handle a complaint or appeal, and in any case to meet DSA obligations
 - **Consent audit trail:** until revocation + 3 years (Art. 7.1 GDPR)
-- **Handwriting recognition dataset (§2.10):** up to 5 years after account deletion, or until you withdraw it in *Settings → Privacy → AI Training Data* — whichever comes first, always pseudonymised. Withdrawal only reaches contributions made from a device whose app data is still present; after an uninstall the 5-year window is what bounds them (see §2.10, Art. 11 GDPR)
+- **Handwriting recognition dataset (§2.10):** up to 5 years after account deletion, or until you withdraw it in *Settings → Privacy → Improve recognition* — whichever comes first, always pseudonymised. Withdrawal only reaches contributions made from a device whose app data is still present; after an uninstall the 5-year window is what bounds them (see §2.10, Art. 11 GDPR)
 - **Fludomi history (on the device and, with sync, encrypted in the cloud, §2.14):** for the period you choose without a new visit — 1 day, 1 week, 1 month or 3 months (the default); a page you remove leaves an encrypted marker in the cloud for 30 days; sites' cookies and data until you clear them, sign out or delete your account
 - **Cognitive memory index (on-device):** kept locally while the feature is enabled; erased immediately on disable (opt-out) or on a data-deletion request. Its copy in the cloud, if you turned on sync across your devices, is erased on disable too (§2.9)
 - **Anonymous sessions:** when you use Fluera without a permanent account, data is associated with a temporary device identifier. If you do not convert the session into a permanent account within **24 hours of inactivity** after opening a new session on another device, the anonymous account and all associated data are automatically deleted by a scheduled job on our servers.
