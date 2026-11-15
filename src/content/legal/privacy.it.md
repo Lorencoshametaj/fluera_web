@@ -3,7 +3,7 @@ lang: "it"
 slug: "privacy"
 title: "Informativa Privacy"
 versione: "1.10.0"
-aggiornato: "30 ottobre 2026"
+aggiornato: "15 novembre 2026"
 sommario: "Informativa sul trattamento dei dati personali degli utenti dell'applicazione Fluera, redatta ai sensi degli articoli 13 e 14 del Regolamento (UE) 2016/679 (**GDPR**) e del D.Lgs. 196/2003 come novellato dal D.Lgs. 101/2018."
 fonte: "Fluera/assets/legal/privacy_it.md"
 ---
@@ -58,7 +58,7 @@ Solo se l'utente ha prestato consenso alla categoria **Funzioni AI**:
 ### 2.5 Dati per Cloud Sync
 Solo se l'utente ha prestato consenso alla categoria **Cloud Sync**:
 - Copie dei canvas archiviate su Supabase (regione UE `eu-north-1`), cifrate in transito (TLS) e a riposo a livello infrastrutturale. Il Cloud Sync **non** è cifrato end-to-end: in qualità di titolare del trattamento, Fluera può tecnicamente accedere ai contenuti sincronizzati per erogare, proteggere e supportare il servizio (non li vende né li usa per pubblicità)
-- **Le pieghe del browser fanno eccezione.** Se accendi «Le pieghe del browser» in Impostazioni → Dati, le pagine piegate in un canvas (indirizzi, frasi, copie delle pagine, il retro, i fili, l'inchiostro al minuto) passano ai tuoi altri dispositivi **cifrate end-to-end**: chiuse sul dispositivo con AES-256-GCM e una chiave nata sul dispositivo, che il server non riceve mai. La chiave passa a un tuo nuovo dispositivo con un abbinamento che mostra lo stesso codice di 6 cifre sui due, o con il codice di recupero che vedi una sola volta all'accensione; sul server ne resta solo una copia chiusa con quel codice. Il server vede a quale canvas appartiene ogni piega, di che tipo è e quando cambia, mai il contenuto. Con la stessa chiave viaggiano anche la cronologia, i preferiti, le preferenze dei siti e le schede aperte di Fludomi, se non li fermi in «Cosa viaggia» (§2.14). Se perdi tutti i tuoi dispositivi e il codice di recupero, quelle pieghe non si possono recuperare (i canvas sì). «Spegni su tutti i dispositivi» le cancella dal server
+- **Le pieghe del browser fanno eccezione.** Se accendi «Le pieghe del browser» in Impostazioni → Dati, le pagine piegate in un canvas (indirizzi, frasi, copie delle pagine, il retro, i fili, l'inchiostro al minuto, i segni a mano sulle pagine) passano ai tuoi altri dispositivi **cifrate end-to-end**: chiuse sul dispositivo con AES-256-GCM e una chiave nata sul dispositivo, che il server non riceve mai. La chiave passa a un tuo nuovo dispositivo con un abbinamento che mostra lo stesso codice di 6 cifre sui due, o con il codice di recupero che vedi una sola volta all'accensione; sul server ne resta solo una copia chiusa con quel codice. Il server vede a quale canvas appartiene ogni piega, di che tipo è e quando cambia, mai il contenuto. Con la stessa chiave viaggiano anche la cronologia, i preferiti, le preferenze dei siti e le schede aperte di Fludomi, se non li fermi in «Cosa viaggia» (§2.14). Se perdi tutti i tuoi dispositivi e il codice di recupero, quelle pieghe non si possono recuperare (i canvas sì). «Spegni su tutti i dispositivi» le cancella dal server
 - Metadati di sincronizzazione (hash, timestamp, dimensione)
 
 **Sincronizzazione fra i tuoi dispositivi** *(piano Cloud; con il piano Free fino a 500 MB, senza le lezioni registrate)*. In *Impostazioni → Dati e sincronizzazione* c'è l'interruttore «Sincronizza fra i tuoi dispositivi». È spento finché non lo accendi tu. Vale per tutto il tuo account: acceso su un dispositivo, vale su ogni dispositivo con cui entri. Per accenderlo servono un account (non una sessione ospite) e il piano Cloud. Quando lo accendi, il server registra la data e la versione di questa informativa che avevi davanti.
@@ -360,9 +360,21 @@ pagine che visiti, né le ricerche che fai.
   limiti: il sito può ancora sapere sopra quale elemento della pagina si trova la Pencil sospesa
   (lo stile «:hover»), e un riquadro che la pagina riempie da sé, senza caricarlo da un indirizzo,
   può ancora ricevere la Pencil, compreso l'inizio dei tratti.
-- **Il motore di ricerca** che scegli nelle impostazioni (predefinito: DuckDuckGo) riceve ciò che
-  cerchi e il tuo indirizzo IP. Anche «Cerca in Fludomi» manda al motore il testo che hai
-  selezionato nella nota o nel PDF.
+- **Il motore di ricerca** che scegli nelle impostazioni (predefinito: Google) riceve ciò che
+  cerchi, il tuo indirizzo IP e i cookie che ha impostato, come qualunque sito. Se in Fludomi hai
+  fatto l'accesso a un account Google, Google può legare le tue ricerche a quell'account; le schede
+  private partono sempre senza accesso. Puoi scegliere un altro motore, per esempio DuckDuckGo,
+  nelle impostazioni di Fludomi («Motore di ricerca»). Anche «Cerca in Fludomi» manda al motore il
+  testo che hai selezionato nella nota o nel PDF.
+- **I suggerimenti mentre scrivi**: se il motore che hai scelto ne offre (Wikipedia), mentre
+  scrivi nella barra le parole scritte fin lì gli arrivano, con il tuo indirizzo
+  IP, perché ti proponga come continuare la ricerca. Partono senza i cookie e senza l'accesso del
+  browser, mai dalle schede private e mai quando scrivi un indirizzo. Sono attivi di fabbrica e si
+  spengono nelle impostazioni di Fludomi («Suggerimenti di ricerca»).
+- **«Traduci la pagina»**, solo quando lo scegli tu: l'indirizzo della pagina va a Google
+  Traduttore, che la apre, la traduce nella lingua di Fluera e te la mostra come una sua pagina;
+  come qualunque sito, Google riceve anche il tuo indirizzo IP e i cookie che ha impostato. Dalle
+  schede private non si può.
 - **Google Lens**, solo quando lo usi tu, riceve l'immagine che scegli (un ritaglio del PDF,
   un'immagine della nota o della pagina) e il tuo indirizzo IP. Lens gira in uno spazio separato:
   lì resta solo il consenso di Google, mai l'accesso al tuo account Google della navigazione.
@@ -390,7 +402,8 @@ pagine che visiti, né le ricerche che fai.
   o 3 mesi, di fabbrica) senza visite; si può anche spegnere;
 - i preferiti, le schede aperte;
 - le icone dei siti visitati, che si cancellano con la cronologia;
-- le evidenziature, le pieghe, le fonti e la copia di testo delle pagine che pieghi;
+- le evidenziature e i segni a mano sulle pagine (cerchi, frecce, «?», parole barrate), le
+  pieghe, le fonti e la copia di testo delle pagine che pieghi;
 - le preferenze per sito.
 
 I cookie e i dati che i siti salvano (accessi, preferenze) stanno nello spazio del browser
@@ -407,6 +420,8 @@ Se elimini l'account, anche il suo database locale viene cancellato dal disposit
 **Schede private.** Non salvano cronologia, schede o pieghe, e su Android la tastiera non impara
 ciò che vi scrivi. I loro cookie si cancellano alla chiusura, o al primo avvio successivo se l'app è stata
 chiusa di colpo. Si chiudono da sole dopo 15 minuti con Fluera in secondo piano. Il sistema non conserva immagini della scheda nell'elenco delle app recenti.
+
+**Se scegli Fludomi come browser predefinito**, i link che apri dalle altre app si aprono in Fludomi come qualunque pagina: entrano nella cronologia come le altre e i nostri server non li vedono. Le pagine di accesso con Google che un'altra app ti apre passano direttamente a un altro browser installato.
 
 **Protezioni attive per impostazione predefinita:**
 - blocchiamo i servizi di tracciamento più diffusi, con una lista scritta da noi;
@@ -478,8 +493,10 @@ I responsabili del trattamento, vincolati da contratto ex art. 28 GDPR, sono:
 che non trattano dati per nostro conto: ricevono i dati per tua azione e ne sono titolari
 autonomi, secondo le loro informative (§2.14). Sono:
 - i siti che visiti;
-- il motore di ricerca che scegli;
+- il motore di ricerca: Google di fabbrica, o quello che scegli;
+- il motore di ricerca anche mentre scrivi nella barra, se i suggerimenti sono attivi;
 - Google per Lens, quando lo usi;
+- Google Traduttore, quando traduci una pagina;
 - Google, quando un sito ti manda alla sua pagina di accesso: l'indirizzo email del tuo account
   Google con cui sei entrato in Fluera;
 - il servizio di protezione dai siti pericolosi del sistema: Google Safe Browsing su Android,

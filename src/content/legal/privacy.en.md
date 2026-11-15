@@ -3,7 +3,7 @@ lang: "en"
 slug: "privacy"
 title: "Privacy Policy"
 versione: "1.10.0"
-aggiornato: "October 30, 2026"
+aggiornato: "November 15, 2026"
 sommario: "This policy explains how Fluera processes personal data of its users under Articles 13 and 14 of Regulation (EU) 2016/679 (**GDPR**) and the Italian Legislative Decree 196/2003 as amended by Legislative Decree 101/2018."
 fonte: "Fluera/assets/legal/privacy_en.md"
 ---
@@ -58,7 +58,7 @@ Only if you have consented to the **AI features** category:
 ### 2.5 Cloud Sync data
 Only if you have consented to the **Cloud Sync** category:
 - Canvas copies stored on Supabase (EU region `eu-north-1`), encrypted in transit (TLS) and at rest at the infrastructure level. Cloud Sync is **not** end-to-end encrypted: as the data controller, Fluera can technically access synced content to provide, secure and support the service (we never sell it or use it for advertising)
-- **Browser folds are the exception.** If you turn on "Browser folds" in Settings → Data, the pages folded into a canvas (addresses, quotes, page copies, the back of the page, threads, ink tied to the minute) reach your other devices **end-to-end encrypted**: sealed on the device with AES-256-GCM and a key born on the device that the server never receives. The key reaches a new device of yours through a pairing that shows the same 6-digit code on both, or through the recovery code you see once when you turn it on; the server keeps only a copy sealed with that code. The server sees which canvas each fold belongs to, its type and when it changes, never its content. Fludomi's history, favorites, site preferences and open tabs travel with the same key, unless you stop them in "What travels" (§2.14). If you lose all your devices and the recovery code, those folds cannot be recovered (your canvases can). "Turn off on all devices" deletes them from the server
+- **Browser folds are the exception.** If you turn on "Browser folds" in Settings → Data, the pages folded into a canvas (addresses, quotes, page copies, the back of the page, threads, ink tied to the minute, handwritten marks on pages) reach your other devices **end-to-end encrypted**: sealed on the device with AES-256-GCM and a key born on the device that the server never receives. The key reaches a new device of yours through a pairing that shows the same 6-digit code on both, or through the recovery code you see once when you turn it on; the server keeps only a copy sealed with that code. The server sees which canvas each fold belongs to, its type and when it changes, never its content. Fludomi's history, favorites, site preferences and open tabs travel with the same key, unless you stop them in "What travels" (§2.14). If you lose all your devices and the recovery code, those folds cannot be recovered (your canvases can). "Turn off on all devices" deletes them from the server
 - Sync metadata (hash, timestamp, size)
 
 **Sync across your devices** *(Cloud plan; on the Free plan up to 500 MB, without recorded lessons)*. In *Settings → Data and sync* there is the switch "Sync across your devices". It is off until you turn it on. It applies to your whole account: on for one device means on for every device you sign in on. To turn it on you need an account (not a guest session) and the Cloud plan. When you turn it on, the server records the date and the version of this policy you had in front of you.
@@ -347,8 +347,20 @@ or what you search for.
   remain: the site can still know which element of the page the hovering Pencil is over (the
   «:hover» style), and a frame the page fills by itself, without loading it from an address, can
   still receive the Pencil, the start of strokes included.
-- **The search engine** you choose in Settings (default: DuckDuckGo) receives what you search for
-  and your IP address. «Search in Fludomi» also sends it the text you selected in a note or PDF.
+- **The search engine** you choose in Settings (default: Google) receives what you search for,
+  your IP address and the cookies it has set, like any site. If you have signed in to a Google
+  account in Fludomi, Google can link your searches to that account; private tabs always start
+  signed out. You can pick another engine, for example DuckDuckGo, in Fludomi's settings
+  («Search engine»). «Search in Fludomi» also sends it the text you selected in a note or PDF.
+- **Suggestions while you type**: if the engine you chose offers them (Wikipedia), while
+  you type in the address bar the words typed so far reach it, with your IP
+  address, so that it can suggest how to complete the search. They are sent without the browser's
+  cookies or sign-in, never from private tabs and never when you type an address. They are on by
+  default and can be turned off in Fludomi's settings («Search suggestions»).
+- **«Translate page»**, only when you choose it: the page's address goes to Google Translate,
+  which opens it, translates it into Fluera's language and shows it to you as a page of its own;
+  like any site, Google also receives your IP address and the cookies it has set. It is not
+  available from private tabs.
 - **Google Lens**, only when you use it, receives the image you choose (a PDF crop, an image from
   a note or a page) and your IP address. Lens runs in a separate space: only Google's consent is
   kept there, never the sign-in to your Google account used for browsing.
@@ -376,7 +388,8 @@ or what you search for.
   3 months, the default) without a visit; it can also be turned off;
 - favourites and open tabs;
 - the icons of the sites you visit, deleted with the history;
-- highlights, folds, sources and the text copy of the pages you fold;
+- highlights and handwritten marks on pages (circles, arrows, «?», struck-out words), folds,
+  sources and the text copy of the pages you fold;
 - per-site preferences.
 
 Cookies and the data sites store (sign-ins, preferences) live in the browser space of your
@@ -393,6 +406,8 @@ If you delete your account, its local database is deleted from the device too.
 **Private tabs.** They save no history, tabs or folds, and on Android the keyboard does not
 learn what you type in them. Their cookies are deleted when they close, or at the next launch if the app was
 killed. They close by themselves after 15 minutes with Fluera in the background. The system keeps no picture of the tab in the recent-apps list.
+
+**If you choose Fludomi as your default browser**, the links you open from other apps open in Fludomi like any page: they enter the history like the others, and our servers do not see them. Google sign-in pages that another app opens for you go straight to another installed browser.
 
 **Protections on by default:**
 - we block the most common tracking services, with a list we write ourselves;
@@ -462,8 +477,10 @@ Our processors, bound by contract under Art. 28 GDPR, are:
 do not process data on our behalf: they receive it because of your action and are independent
 controllers, under their own policies (§2.14). They are:
 - the sites you visit;
-- the search engine you choose;
+- the search engine: Google by default, or the one you choose;
+- the search engine also while you type in the address bar, if suggestions are on;
 - Google for Lens, when you use it;
+- Google Translate, when you translate a page;
 - Google, when a site sends you to its sign-in page: the email address of the Google account you
   signed in to Fluera with;
 - the system's protection from dangerous sites: Google Safe Browsing on Android, Apple on iPhone,
